@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'unicorn'
 gem 'faraday'
@@ -18,6 +18,8 @@ gem 'faraday_middleware'
 gem "russian"
 gem "mini_magick"
 gem "autoprefixer-rails"
+gem 'bcrypt'
+gem 'turbolinks'
 
 group :development do
   gem 'pry'

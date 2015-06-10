@@ -1,4 +1,5 @@
 class HomeController < ActionController::Base
-  def index
+  def show
+    render :text => "profile"
   end
 end
