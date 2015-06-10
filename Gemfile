@@ -20,6 +20,7 @@ gem "mini_magick"
 gem "autoprefixer-rails"
 gem 'bcrypt'
 gem 'turbolinks'
+gem 'thin'
 
 group :development do
   gem 'pry'
