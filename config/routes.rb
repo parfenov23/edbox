@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #get ':controller/:action'
   namespace :api do
     namespace :v1 do
       #=============
