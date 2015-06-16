@@ -1,27 +1,39 @@
 module Api::V1
-  class SessionsController < ::ActionController::Base
+  class SessionsController < ::ApplicationController
     skip_before_filter :verify_authenticity_token
     protect_from_forgery unless: -> { request.format.json? }
+    skip_before_action :authorize
+
     def auth
-      render :text => "test"
+      user_auth = User.auth(params[:user])
+      unless user_auth.nil?
+        render json: user_auth
+      else
+        render_error(401, 'Не удалось пройти аутентификацию, проверьте введенные данные')
+      end
     end
 
     def registration
-      user = User.build(user_params)
-      user.password_digest = user_params[:password]
-      if user.save
-        user_hash = user.as_json
-        user_hash.delete("password_digest")
-      else
-        user_hash = {error: user.errors.messages}
+      permit_params = user_params
+      if user_params[:director].to_s == "true" && user_params[:corporate].to_s == "true"
+        company = Company.build(params[:company])
+        if company.save
+          permit_params[:company_id] = company.id
+        end
       end
-      render json: user_hash
+      user = User.build(permit_params)
+      if (user.save rescue false)
+        render json: user.transfer_to_json
+      else
+        company.destroy unless company.nil? rescue true
+        render_error(401, 'Не удалось пройти регистрацию, проверьте введенные данные')
+      end
     end
 
     private
 
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :first_name, :password, :director, :corporate, :company_id)
     end
 
   end

@@ -9,6 +9,20 @@ Rails.application.routes.draw do
           post :registration
         end
       end
+      resources :users, only: [] do
+        collection do
+          get :info
+          post :invite
+        end
+      end
+      resources :groups do
+        member do
+          post :invite
+          post :remove_user
+        end
+        collection do
+        end
+      end
 
       #=============
     end
