@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+
+  root to: 'application#index'
+
   namespace :api do
     namespace :v1 do
-      #=============
-
       resources :sessions, only: [] do
         collection do
           post :auth
@@ -23,12 +24,9 @@ Rails.application.routes.draw do
         collection do
         end
       end
-
-      #=============
     end
   end
 
-  #=================
   namespace :superuser do
     resources :home, only: [] do
       collection do
@@ -54,5 +52,4 @@ Rails.application.routes.draw do
     end
   end
 
-  root "home#index"
 end

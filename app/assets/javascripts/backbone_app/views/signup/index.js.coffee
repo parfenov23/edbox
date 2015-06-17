@@ -93,16 +93,16 @@ BackboneApp.Views signup: index: Backbone.Marionette.ItemView.extend
   post: ->
     data = _.omit @getInput(), 'agreed'
     @ui.button.addClass 'inactive'
-    @show_error 'Подождите чуть-чуть!', 20000
+    @show_error 'Подождите чуть-чуть!', 2000
     $.ajax
       type: 'POST'
-      url: '/api/register'
+      url: '/api/v1/sessions/registration'
       data: data
       success: (m) =>
-        $.cookie('cham_key', m.cham_key)
+        $.cookie('cham_key', m.user_key)
         _.extend BackboneApp.current_user.attributes, m
         @trigger 'menu:update'
-        location.href = '#signup/set_password'
+        location.href = '#profile'
       error: (xhr) =>
         response = xhr.responseJSON
         @show_error response.error, 5000

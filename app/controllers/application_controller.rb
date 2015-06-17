@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery unless: -> { request.format.json? }
   before_action :authorize
   helper_method :current_user
+  skip_before_action :authorize, only: [:index]
+
+  def index
+    render layout: 'layouts/application'
+  end
 
   def render_error(code, message = nil)
     json_response = {error: message} if message
