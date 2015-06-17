@@ -15,7 +15,8 @@ module Api::V1
 
     def registration
       permit_params = user_params
-      if user_params[:director].to_s == "true" && user_params[:corporate].to_s == "true"
+      permit_params[:director] = permit_params[:corporate].to_s
+      if permit_params[:director].to_s == "true"
         company = Company.build(params[:company])
         if company.save
           permit_params[:company_id] = company.id
@@ -25,7 +26,7 @@ module Api::V1
       if (user.save rescue false)
         render json: user.transfer_to_json
       else
-        company.destroy unless company.nil? rescue true
+        company.destroy unless (company.nil? rescue true)
         render_error(401, 'Не удалось пройти регистрацию, проверьте введенные данные')
       end
     end
@@ -33,7 +34,7 @@ module Api::V1
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :password, :director, :corporate, :company_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
     end
 
   end
