@@ -1,0 +1,56 @@
+.content
+  .content-item
+    .top
+      .title Настройка воронки продаж
+      .toggle class=="#{'active' unless @first_setup}"
+      .clearfix
+      .inner__holder class=="#{'hide' unless @first_setup}"
+        .inner
+          .text
+            |Ваша воронка продаж из amoCRM состоит из 11 статусов, для корректной работы алгоритмов Chameleon, необходимо настроить воронку Chemeleon, которая разбита на 5 этапов, в каждой из которой содержится несколько последовательных и параллельных статусов.
+          ul.list
+            li.item
+              .number 1.
+              .text В amoСRM у Вас уже есть статусы, из которых состоит воронка продаж.
+            li.item
+              .number 2.
+              .left
+                |Перетащите статусы воронки из AmoCRM из левой части в экрана в правый для, того чтобы сформировать воронку в Chameleon как показано на видео.
+              .right
+                img src="assets/direcor_settings.png"
+            li.item
+              .number 3.
+              .text Вы сможете внести правки в настройки воронки продаж в вашем профиле, после окончания первых настроек.
+
+    .bottom
+      .title Установите все плановые показатели Ваших менеджеров
+
+      ul.plan
+        .item
+          .name &nbsp;
+          .money Деньги
+          .deal Сделки
+          .contacts Конакты
+
+        .item.main_input
+          .name.name__dark Для всех сотрудников
+          .money
+            .input-wrp
+              input.input placeholder="0" name='money'
+              hr
+          .deal
+            .input-wrp
+              input.input placeholder="0" name='leads'
+              hr
+          .contacts
+            .input-wrp
+              input.input placeholder="0" name='contacts'
+              hr
+
+      .clearfix
+
+    .btn__holder.fixed
+      .btn__wrapper
+        .btn.btn-default.btn-raised#post ="#{if @first_setup then 'Далее' else 'Сохранить'}"
+        a.btn.btn-default.btn-flat href='#reload' Отменить
+        .clearfix

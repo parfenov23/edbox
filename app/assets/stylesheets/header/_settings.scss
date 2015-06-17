@@ -1,0 +1,72 @@
+.header__activity-settings-menu {
+  position   : fixed;
+  z-index    : 90;
+  top        : 0;
+  right      : -400px;
+  width      : 385px;
+  height     : 100%;
+  background : #FFF;
+  box-shadow : 0px 0px 8px 0px rgba(0, 0, 0, 0.12), 0px 8px 8px 0px rgba(0, 0, 0, 0.24);
+  padding    : 88px 0 0 0;
+  transition : right 0.2s ease;
+  &.lower {
+    padding: 120px 0 0 0;
+  }
+  &.active {
+    right : 0;
+    transition : right 0.3s ease;
+  }
+  &-title {
+    font-size   : 20px;
+    color       : rgba(0, 0, 0, 0.87);
+    line-height : 26px;
+    padding     : 0 32px;
+    margin: 0 0 10px;
+  }
+  &-legend {
+    font-size   : 13px;
+    color       : rgba(0, 0, 0, 0.54);
+    line-height : 20px;
+    padding     : 0 32px;
+    margin: 0 0 20px;
+  }
+  &-list {
+    margin  : 0;
+    padding : 0;
+    list-style: none;
+    &-item {
+      position: relative;
+      font-size       : 13px;
+      color           : rgba(0, 0, 0, 0.54);
+      border-bottom   : 1px solid #F1F1F1;
+      padding         : 24px 32px;
+      line-height     : 20px;
+      &:first-child {
+        border-top   : 1px solid #F1F1F1;
+      }
+      &:last-child {
+        border: 0;
+        &:first-child {
+            border-top   : 1px solid #F1F1F1;
+        }
+      }
+      .paper-toggle {
+        position : absolute;
+        top      : 24px;
+        right    : 32px;
+      }
+    }
+  }
+  .custom-radio-holder {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: 0 80px 0 0;
+        margin: 0 0 24px 0;
+    }
+}
+
+
+
+
+

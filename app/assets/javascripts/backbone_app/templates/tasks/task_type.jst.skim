@@ -1,0 +1,2 @@
+.task-type class=="#{@class_name or ''}"
+  .title =@type

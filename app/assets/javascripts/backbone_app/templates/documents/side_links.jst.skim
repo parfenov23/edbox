@@ -1,0 +1,7 @@
+.documents__menu
+  .title Основные документы
+  ul.menu
+    li.item.item__agreement class="#{'active' if @page == 'user_agreement'}"
+      a href="/#documents/user_agreement" Пользовательское соглашение
+    li.item.item__privacy class="#{'active' if @page == 'privacy_policy'}"
+      a href="/#documents/privacy_policy" Политика конфиденциальности

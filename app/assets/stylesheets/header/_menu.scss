@@ -1,0 +1,203 @@
+.header__menu {
+    position         : fixed;
+    z-index          : 90;
+    top              : 0;
+    left             : -340px;
+    height           : 100%;
+    width            : 320px;
+    height           : 100%;
+    padding          : 64px 0 0 0;
+    background       : #FFFFFF;
+    box-shadow       : 0px 9px 18px 0px rgba(0, 0, 0, 0.18), 0px 5px 5px 0px rgba(0, 0, 0, 0.24);
+    cursor           : default;
+    transition       : left 0.2s ease-in-out;
+    &.lower {
+      padding: 96px 0 0 0;
+    }
+    ul {
+      margin  : 0;
+      padding : 0;
+      li {
+        list-style-type : none;
+      }
+    }
+    &-user {
+      position         : relative;
+      z-index          : 5;
+      height           : 192px;
+      background-color : #00838F;
+      padding          : 24px;
+      margin-bottom    : 27px;
+      background       : url("user_menu_bg.png") 50% 50% no-repeat;
+      &-img {
+        float  : left;
+        width  : 56px;
+        margin : 0 10px 0 0;
+        @include circle-img;
+      }
+      &-name {
+        position    : absolute;
+        bottom      : 22px;
+        left        : 24px;
+        margin      : 0;
+        font-size   : 13px;
+        width       : 272px;
+        color       : #FFFFFF;
+        line-height : 20px;
+      }
+      &-arrow {
+        position   : absolute;
+        right      : 0;
+        top        : -8px;
+        width      : 16px;
+        height     : 16px;
+        margin     : 10px -3px 0 0;
+        background : url("/assets/arrow.png") 50% 50% no-repeat;
+        cursor     : pointer;
+      }
+      &-menu {
+        position         : absolute;
+        top              : 100%;
+        right            : 0;
+        background-color : #FFFFFF;
+        box-shadow       : 0px 0px 2px 0px rgba(0, 0, 0, 0.12), 0px 2px 2px 0px rgba(0, 0, 0, 0.24);
+        border-radius    : 2px;
+        width            : 193px;
+        height           : 0;
+        overflow         : hidden;
+        margin           : 0;
+        list-style       : none;
+        transition       : all .2s ease;
+        &.active {
+          height     : 96px;
+          transition : all .3s ease;
+        }
+        &-item {
+          &:first-child {
+            padding : 8px 0 0 0;
+          }
+          &:last-child {
+            padding : 0 0 8px 0;
+          }
+          &-link {
+            display     : block;
+            width       : 100%;
+            padding     : 8px 0 8px 24px;
+            font-size   : 15px;
+            color       : rgba(0, 0, 0, 0.87);
+            line-height : 24px;
+            &:hover {
+              background-color : #EEEEEE;
+            }
+          }
+        }
+      }
+    }
+    &-items {
+      position: relative;
+      min-height: 100%;
+      padding: 12px 0 70px 0;
+      &-block {
+        border-top: 1px solid rgba(0,0,0,.12);
+        &:first-child {
+          border: 0;
+        }
+      }
+      &-title {
+        margin: 12px 0 0 24px;
+        font: 500 13px/24px 'Roboto';
+        color: #757575;
+        &.disabled {
+          color: rgba(0,0,0,.26);
+        }
+      }
+    }
+    &-item {
+      display: block;
+      float: left;
+      clear: left;
+      margin: 12px 0 12px 24px;
+      color: #757575;
+      @include clearfix;
+      &:hover {
+        color: #00BCD4;
+        i.icon:before {
+          color: #00BCD4;
+        }
+      }
+      &.disabled {
+        color: rgba(0,0,0,.12);
+        &:hover {
+          color: rgba(0,0,0,.12);
+          i.icon:before {
+            color: rgba(0,0,0,.12);
+          }
+        }
+      }
+      .header__menu-item-title {
+        float: left;
+        font: 400 13px/24px 'Roboto';
+      }
+      .icon {
+        float: left;
+        width: 22px;
+        margin: 0 24px 0 0;
+        &:before {
+          font-size: 22px;
+        }
+        &-tasks {
+          &:before {
+            content : "\E640";
+          }
+        }
+        &-contacts {
+          &:before {
+            content : "\e8cb";
+          }
+        }
+        &-deals {
+          &:before {
+            content : "\e8ca";
+          }
+        }
+        &-efficiency {
+          &:before {
+            content : "\e68b";
+          }
+        }
+        &-tasksDone {
+          &:before {
+            content : "\e899";
+          }
+        }
+        &-dynamic {
+          &:before {
+            content : "\e6a5";
+          }
+        }
+        &-settings {
+          &:before {
+            content : "\e660";
+          }
+        }
+        &-questions {
+          &:before {
+            content : "\e633";
+          }
+        }
+      }
+    }
+    .main-menu-logo {
+      position: absolute;
+      bottom: 32px;
+      left: 27px;
+      width  : 107px;
+      height : 19px;
+      background: url("menu__logo.svg") 0 0 no-repeat;
+    }
+}
+
+.header__menu.active {
+  left       : 0;
+  transition : 0.3s ease-in-out;
+}

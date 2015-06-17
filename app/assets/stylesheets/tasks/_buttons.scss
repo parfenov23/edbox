@@ -1,0 +1,142 @@
+.actions_buttons {
+    position   : absolute;
+    z-index    : 50;
+    top        : 50%;
+    margin-top : -28px;
+    right      : -28px;
+    height     : 56px;
+    width      : 56px;
+    display    : none;
+    opacity    : 0;
+    transition : all .2s ease;
+    text-align : right;
+    .inner {
+        position      : absolute;
+        z-index       : 3;
+        top           : 50%;
+        margin-top    : -21px;
+        right         : 8px;
+        width         : 40px;
+        height        : 40px;
+        border-radius : 100%;
+        transition    : all .5s ease;
+        .md-fab {
+            width  : 40px;
+            height : 40px;
+        }
+    }
+    .task__button-close {
+        position : absolute;
+        z-index  : 5;
+        right    : 0;
+        .md-fab {
+            background : #00BCD4 !important;
+        }
+        .plus-arrow {
+            position   : absolute;
+            top        : 28px;
+            left       : 16px;
+            width      : 24px;
+            height     : 2px;
+            background : #FFFFFF;
+            transition : 0.5s;
+            &:before {
+                position   : absolute;
+                top        : -11px;
+                left       : 11px;
+                width      : 2px;
+                height     : 24px;
+                background : #FFFFFF;
+                transition : 0.5s;
+                content    : '';
+            }
+        }
+    }
+    .task__button-reopen {
+        .md-fab {
+            background : #F50057 !important;
+        }
+        i:before {
+            font    : 20px/56px 'Icons';
+            color   : #FFFFFF;
+            content : "\E603";
+        }
+    }
+    .inner.subtask {
+        .md-fab {
+            background : #6A199A !important;
+        }
+        i:before {
+            font    : 20px/28px 'Icons';
+            color   : #FFFFFF;
+            content : "\E6BE";
+        }
+    }
+    .inner.edit {
+        .md-fab {
+            background : #0091EA !important;
+        }
+        i:before {
+            font    : 20px/28px 'Icons';
+            color   : #FFFFFF;
+            content : "\E7FC";
+        }
+    }
+    .inner.comment {
+        .md-fab {
+            background : #FF6D00 !important;
+        }
+        i:before {
+            font    : 20px/28px 'Icons';
+            color   : #FFFFFF;
+            content : "\E6EB";
+        }
+    }
+    .inner.info {
+        .md-fab {
+            background : #FFAB3F !important;
+        }
+        i:before {
+            font    : 20px/28px 'Icons';
+            color   : #FFFFFF;
+            content : "\E6A0";
+        }
+    }
+
+
+    &:hover {
+        .task__button-close {
+            .md-fab {
+                background : #F50057 !important;
+            }
+            .plus-arrow {
+                top       : 32px;
+                left      : 14px;
+                width     : 12px;
+                transform : rotate(45deg);
+                &:before {
+                    top : -22px;
+                }
+            }
+        }
+        .inner {
+            cursor : pointer;
+            &:nth-child(2) {
+                right : 80px;
+            }
+            &:nth-child(3) {
+                right : 144px;
+            }
+            &:nth-child(4) {
+                right : 208px;
+            }
+            &:nth-child(5) {
+                right : 272px;
+            }
+        }
+    }
+}
+
+.task__overdue .crm__task-item .action__block.complete .buttons .btn-yes {
+	color: #F50057;
+}

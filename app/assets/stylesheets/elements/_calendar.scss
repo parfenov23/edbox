@@ -1,0 +1,96 @@
+.ui-datepicker {
+    width            : 345px;
+    background-color : #FFFFFF;
+    box-shadow       : 0px 15px 12px 0px rgba(0, 0, 0, 0.22), 0px 19px 38px 0px rgba(0, 0, 0, 0.30);
+    margin-left      : -22px;
+    margin-top       : -14px;
+    padding          : 0;
+    border-radius    : 2px;
+    border: none;
+    .today-holder {
+        padding : 12px 0 12px 24px;
+        span {
+            font-size   : 13px;
+            color       : rgba(0, 0, 0, 0.54);
+            line-height : 20px;
+
+        }
+    }
+    .ui-datepicker-header {
+        border         : none;
+        border-bottom  : 1px solid #E0E0E0;
+        background     : none;
+        border-radius  : 0;
+        padding-bottom : 24px;
+        font-size      : 20px;
+        color          : rgba(0, 0, 0, 0.54);
+        line-height    : 24px;
+        font-weight    : 400;
+        .ui-datepicker-prev, .ui-datepicker-next {
+            width            : 10px;
+            height           : 16px;
+            background-image : url("calendar__next_prev.png");
+            display          : block;
+            border-radius    : 0;
+            margin-top       : 10px;
+            cursor           : pointer;
+            &:hover {
+                background-color : transparent;
+                outline          : none;
+                border           : none;
+            }
+        }
+        .ui-datepicker-prev {
+            background-position : 0 0;
+            left                : 32px;
+        }
+        .ui-datepicker-next {
+            right               : 32px;
+            background-position : 0 -16px;
+        }
+        .ui-datepicker-title {
+            font-size   : 20px;
+            color       : rgba(0, 0, 0, 0.54);
+            line-height : 23px;
+        }
+    }
+    .ui-datepicker-calendar {
+        margin-right : 24px;
+        margin-left  : 15px;
+        width        : 300px;
+        th {
+            font-size   : 12px;
+            color       : rgba(0, 0, 0, 0.54);
+            line-height : 15px;
+            height      : 47px;
+            span {
+                font-size   : 12px;
+                color       : rgba(0, 0, 0, 0.54);
+                line-height : 14px;
+                font-weight : 400;
+            }
+        }
+        td a {
+            background     : none;
+            border         : none;
+            font-size      : 12px;
+            color          : rgba(0, 0, 0, 0.87);
+            line-height    : 15px;
+            display        : table-cell;
+            width          : 44px;
+            height         : 44px;
+            vertical-align : middle;
+            text-align     : center;
+        }
+        .ui-datepicker-today {
+            a {
+                color : #00BCD4;
+            }
+
+        }
+    }
+}
+
+#ui-datepicker-div.hide {
+    display : none !important;
+}

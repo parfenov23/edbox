@@ -1,0 +1,53 @@
+.auth
+  .auth__box
+    .logo
+      img src="assets/logo.png"
+    .auth__title-top adconsult
+    .auth__top.auth__enter
+      .auth__title Регистрация
+      .auth__reg-block
+        .auth__reg-title.auth__reg-data Персональные данные
+        .input-wrp
+          input placeholder='Фамилия' type='text' name='surname'
+          hr
+        .input-wrp
+          input placeholder='Имя' type='text' name='name'
+          hr
+        .input-wrp
+          input placeholder='Email' type='text' name='email'
+          hr
+
+      .auth__reg-block
+        .auth__reg-title.auth__reg-secutity Безопасность
+        .input-wrp
+          input placeholder='Пароль' type='password' name='pasword'
+          hr
+        .input-wrp
+          input placeholder='Повторите пароль' type='password' name='password_repeat'
+          hr
+
+      .auth__reg-block
+        .auth__reg-title.auth__reg-type Выберите тип аккаунта
+        .auth__reg-select
+          .auth__reg-selected Корпоративный аккаунт
+          .auth__reg-select-list
+            .auth__reg-select-list-item Корпоративный аккаунт
+            .auth__reg-select-list-item Персональный аккаунт
+
+
+
+
+      .auth_agree.checkbox__holder
+        input.checkbox#checkbox1 type='checkbox' name='agreed'
+        label.label for='checkbox1'
+          i.check
+          i.ripple-effect.ripple-check
+          i.ripple-effect.ripple-uncheck
+          |Я ознакомлен с
+          a.auth_agree-link>< href='#oferta' договором оферты
+          |и принимаю условия договора
+
+      .have__acc
+        a.auth__what href='#signin' У меня уже есть аккаунт
+      .btn-holdr
+        .btn.btn-default.btn-standart.btn-raised.auth__submit.inactive Создать аккаунт

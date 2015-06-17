@@ -1,0 +1,4 @@
+- _.each @actionTitles, (v, k) =>
+  - text = if @forward then @forward + ' ' else ''
+  - text += v
+  li data-type==k ==text

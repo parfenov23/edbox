@@ -1,0 +1,98 @@
+
+.header
+  .header__menu-icon-holder.hide
+    i.js__small-ripple.icon.header__menu-icon data-color="#000000"
+
+  .header__title Chameleon
+
+  .header__activity.hide
+    /.icon-holder
+      i.icon.header__activity-team
+        .header__activity-team-menu
+          / = render 'header/header__activity_team_menu'
+
+    / .icon-holder
+      i.icon.header__activity-settings
+
+
+
+    .icon__holder
+      .header__activity-profile
+        img.header__activity-profile-img src="#{@avatar or '../uploads/ava.png'}"
+      .header__activity-profile-menu.js-header__dropdown
+        .info__holder
+          .ava__wrapper
+            .ava__holder
+              img.ava src="#{@avatar or '../uploads/ava.png'}"
+          .info
+            .name =@name
+            .login =@login
+        ul.menu
+          li.menu__item
+            a.menu__item-link href="/#profile"
+              i.icon.icon-profile
+              .text Профиль
+
+          li.menu__item
+            a.menu__item-link href="/#documents"
+              i.icon.icon-documents
+              .text Документация
+
+          li.menu__item
+            a.menu__item-link.disabled href="/#profile"
+              i.icon.icon-materials
+              .text Материалы
+
+        .logout__holder
+          a.logout href="/#logout"
+            i.icon
+            .text Выйти
+
+    .icon__holder
+      i.icon.header__activity-apps
+        ul.header__apps.list.js-header__dropdown
+          li.list__item.last__row
+            .list__item-img-holder
+              img.list__item-img src="assets/edbox.png"
+            .list__item-text Доступно с сентября 2015
+
+          li.list__item.last__row
+            .list__item-img-holder
+              img.list__item-img src="assets/markethub.png"
+            .list__item-text Доступно с ноября 2015
+
+          li.list__item.last__row
+            .list__item-img-holder
+              img.list__item-img src="assets/pf.png"
+            .list__item-text Доступно с декабря 2015
+
+
+
+    /.icon__holder
+      i.header__activity-notifications
+        .header__notifications.js-header__dropdown
+          .notifications__block.active
+            ul.opened
+              li.opened__item
+                .icon__holder
+                  i.icon data-color="#00BCD4" data-icon="cham"
+                .text
+                  .name
+                    span> Новая задача от Chameleon:
+                    span “Перевести сделку с ООО Альфастрой в статус переговоры”
+                  .time
+                    span> 12 минут
+                    span назад
+                .eye
+
+            .closed Непрочитанные уведомления
+          .notifications__block
+            .closed Прочитанные уведомления
+            .opened
+              |111
+
+
+
+  .clearfix
+  .header__tabs
+

@@ -1,0 +1,26 @@
+.l-wrp
+  - fio_arr = @contact_name?.split(' ') or ['Х', 'З']
+  - initials = fio_arr[0][0]
+  - initials += fio_arr[1][0] if fio_arr[1]
+  .icon.contact-icon style="background-color: #{@lead_status_color};" =initials.toUpperCase()
+  .contacts-name>
+    - if @contact_name
+      =@contact_name
+      span> &nbsp -
+  .task-description =@content
+  - if @email
+    .email-ico
+.r-wrp
+  .company-title =@company_name
+  .deal-amount>
+    =$.format_price @lead_price
+    span
+    | &nbsp
+    |₽
+.action-btns
+  .add-task
+    i
+  .add-comment
+    i
+  .complete
+    i

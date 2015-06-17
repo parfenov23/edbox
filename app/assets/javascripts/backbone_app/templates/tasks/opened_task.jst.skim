@@ -1,0 +1,73 @@
+.title
+  .visible-wrp
+    .l-wrp
+      span.company-name>
+        - @company_name ||= 'Нет компании'
+        = @company_name
+        |&nbsp -
+      span.deal-name>
+        =@content
+        span.sum
+          |&nbsp на сумму &nbsp
+          = $.format_price @price
+          |&nbsp ₽
+    .r-wrp
+      span.deal-status style="background-color: #{@status.color};"
+        =@status?.name
+      .action-btns
+        .add-comment
+          i
+        .add-task
+          i
+        .more
+          i
+  .hidden-info class=="#{'hide' unless _.isEmpty @planned_activities.concat(@today_activities)}"
+    .contacts.col
+      .title Контакт
+      .description
+        p.black = @main_contact?.name or 'Нет имени'
+        p = @main_contact?.phone or 'Нет телефона'
+        p = @main_contact?.email or 'Нет email'
+        p = @main_contact?.url or 'Нет сайта'
+    .deal-inf.col
+      .title Сделка:
+      .description
+        p
+          | сумма &nbsp
+          span.black
+            =@price
+            |&nbsp ₽
+        p
+          | Дата создания сделки &nbsp
+          - datetime = $.improve_date @today_date, @creation_date
+          span.black ="#{datetime.date}, #{datetime.time}"
+        p
+          - duration = $.last_status_duration @today_date, @moved_to_last_status_at
+          span ="#{duration}"
+          | дн. в статусе &nbsp
+          span.black
+            =@status?.name
+        p
+          - commonDuration = $. common_duration @today_date, @creation_date
+          |общая продолжительность  - &nbsp
+          span.black
+            ="#{commonDuration}"
+            |&nbsp дн.
+
+
+    / .recommendation.col
+      .title Рекомендация:
+      .description
+        p
+          |Учитавая динамику продаж сделок аналогичного ценового диапазона и источника контакта, вероятность закрытия сделки в срок до
+          span.black &nbsp 31 апреля &nbsp
+          |составляет
+          span.black &nbsp 87%.
+          |Рекомендуется перевести в статус Согласование договора до 22 мар. 15
+
+          span.black
+        p.black Рекомендуемый скрипт: Повторный звонок от 12 фев. 2015
+
+.planned_actions.list
+.today_activity.list
+.super-mega-search-2000

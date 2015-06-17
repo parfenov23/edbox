@@ -1,0 +1,8 @@
+.action__block data-id="#{@id or null}"
+  .ava
+    img src="/uploads/ava.png"
+  .info-block
+    .title Примечание
+    .input.js__task-action-input contenteditable="true"  data-ph="Добавить комментарий"
+      =@content
+  .mega-btn.add-comment

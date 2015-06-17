@@ -1,0 +1,794 @@
+/* Dashboard css start */
+
+$colorBlue          : #0091EA;
+$colorLighterBlue   : #4DB2F0;
+
+$colorRose          : #F50057;
+$colorLighterRose   : #F76398;
+
+$colorCyan          : #00C1C4;
+$colorLighterCyan   : #49D0D2;
+
+$colorPurple        : #6A199A;
+$colorLighterPurple : #935BB5;
+
+$colorGray : rgba(0,0,0,.54);
+$colorBackground: #f5f5f5;
+
+
+.dashboard {
+	&__block {
+		// display: none;
+		& > .title {
+			font-size: 15px;
+			color: rgba(0, 0, 0, 0.54);
+			line-height: 24px;
+			position: relative;
+			padding-left  : 30px;
+        	margin: 0 0 12px 24px;
+			&:before {
+				font: 20px/32px 'Icons';
+				color: #6E6E6E;
+				display: block;
+				position: absolute;
+				top: 6px;
+				left: 0;
+				background: url("task_column-title.png") 50% 50% no-repeat;
+				content: " ";
+				width: 18px;
+				height: 10px;
+			}
+		}
+	}
+
+	&__item {
+		position: relative;
+		overflow: hidden;
+		background : $colorBackground;
+		box-shadow : 0  0    2px 0  rgba(0,0,0,.12),
+					 0  2px  6px 0  rgba(0,0,0,.24);
+		transition: all .3s ease;
+		width: 100%;
+		&:first-child {
+			border-radius: 2px 2px 0 0;
+		}
+		&:last-child {
+			border-radius: 0 0 2px 2px;
+		}
+		&-score {
+			border-left : 4px solid $colorBlue;
+			.icon__holder i:before {
+				color: $colorBlue;
+			}
+			.ink {
+				background: $colorBlue;
+			}
+		}
+		&-plan {
+			border-left : 4px solid $colorRose;
+			.icon__holder i:before {
+				color: $colorRose;
+			}
+			.ink {
+				background: $colorRose;
+			}
+		}
+		&-forecast {
+			border-left : 4px solid $colorCyan;
+			.icon__holder i:before {
+				color: $colorCyan;
+			}
+			.ink {
+				background: $colorCyan;
+			}
+		}
+		&-convertion {
+			border-left : 4px solid $colorPurple;
+			.icon__holder i:before {
+				color: $colorPurple;
+			}
+			.ink {
+				background: $colorPurple;
+			}
+		}
+	}
+	.blue {
+		color: $colorBlue;
+	}
+	.rose {
+		color: $colorRose;
+	}
+	.cyan {
+		color: $colorCyan;
+	}
+	.purple {
+		color: $colorPurple;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	.top {
+		position: relative;
+		padding: 24px 24px 24px 80px;
+		color: $colorGray;
+		.icon__holder {
+			position: absolute;
+			top: 24px;
+			left: 24px;
+			width: 32px;
+			height: 32px;
+			text-align: center;
+			i {
+				display: inline-block;
+				&:before {
+					font: 20px/20px 'Icons';
+					content: "\E6EB";
+				}
+			}
+		}
+		.title {
+			font: 400 12px/20px 'Roboto';
+			margin: 0 0 20px 0;
+		}
+		.text {
+			font: 400 13px/20px 'Roboto';
+			margin: 0 0 10px 0;
+		}
+		.big {
+			font: 400 34px/40px 'Roboto';
+			&.rouble {
+				&:after {
+					display: inline-block;
+					width: 24px;
+					font: 26px/40px 'Icons';
+					content: "\E605";
+					text-align: right;
+				}
+			}
+		}
+		.left {
+			float: left;
+			width: 48%;
+			margin: 0 2% 0 0;
+		}
+		.right {
+			float: right;
+			width: 48%;
+			color: rgba(0,0,0,.26);
+			text-align: right;
+		}
+		.number {
+			font: 400 34px/40px 'Roboto';
+			margin: 0 0 10px 0;
+			&:after {
+				display: inline-block;
+				width: 24px;
+				font: 26px/40px 'Icons';
+				content: "\E605";
+				text-align: right;
+			}
+		}
+		.done {
+			font: 400 13px/20px 'Roboto';
+			margin: 0 0 10px 0;
+		}
+		.diagram {
+			background: rgba(0,0,0,.26);
+			border-radius: 2px;
+			width: 100%;
+			height: 16px;
+			overflow: hidden;
+			margin: 0 0 10px 0;
+			.done {
+				height: 100%;
+				border-radius: 2px;
+				background: $colorRose;
+			}
+		}
+		.plan {
+			font: 400 13px/20px 'Roboto';
+			color: rgba(0,0,0,.26);
+			text-align: right;
+			&:after {
+				display: inline-block;
+				width: 10px;
+				font: 10px/10px 'Icons';
+				content: "\E605";
+				text-align: right;
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	.hidden {
+		&__holder {
+			height: 0;
+			overflow: hidden;
+			transition: all .3s ease;
+			.title.cyan {
+				color: #fff;
+				background: $colorCyan;
+			}
+			.item.cyan {
+				border-top: 1px solid rgba(255,255,255,.7);
+				background: $colorCyan;
+				&:nth-child(3) + .item {
+					border: 0;
+					.delimiter {
+						background: $colorCyan;
+					}
+				}
+				.delimiter {
+					background: $colorCyan;
+				}
+				.number {
+					font: 400 13px/32px 'Roboto';
+					color: rgba(255,255,255,.7);
+					&:after {
+						display: inline-block;
+						width: 10px;
+						font: 10px/10px 'Icons';
+						content: "\E605";
+						text-align: right;
+					}
+				}
+				.company {
+					font: 400 13px/32px 'Roboto';
+					color: #fff;
+				}
+			}
+			.title {
+				font: 400 13px/20px 'Roboto';
+				color: rgba(0,0,0,.54);
+				padding: 24px 0 10px 80px;
+			}
+			.list {
+
+			}
+			.item {
+				position: relative;
+				padding: 24px 24px 24px 80px;
+				min-height: 80px;
+				border-top: 1px solid rgba(0,0,0,.12);
+				@include clearfix;
+				&:first-child {
+					border: 0;
+				}
+				&.title {
+					padding: 24px 24px 0 80px;
+					min-height: 0;
+					& + .item {
+						border: 0;
+					}
+				}
+			}
+			.delimiter {
+				position: absolute;
+				top: -2px;
+				left: 0;
+				width: 80px !important;
+				height: 2px;
+				background: $colorBackground;
+			}
+			.icon {
+				position: absolute;
+				top: 24px;
+				left: 24px;
+				width: 32px;
+				height: 32px;
+				border-radius: 100%;
+				background-position:  50% 55%;
+				background-repeat: no-repeat;
+				&.blue {
+					background-color: $colorBlue;
+				}
+				&.rose {
+					background-color: $colorRose;
+				}
+				&.cyan {
+					background-color: $colorCyan;
+				}
+				&.purple {
+					background-color: $colorPurple;
+				}
+				&.icon-1 {
+					background-image: url(/images/111.png);
+				}
+				&.icon-2 {
+					background-image: url(/images/222.png);
+				}
+				&.icon-3 {
+					background-image: url(/images/333.png);
+				}
+				&.icon-4 {
+					background-image: url(/images/444.png);
+				}
+				&.icon-5 {
+					background-image: url(/images/555.png);
+				}
+			}
+			.score {
+				float: left;
+				width: 120px;
+				font: 400 13px/20px 'Roboto';
+			}
+			.number {
+				float: left;
+				width: 120px;
+				font: 400 13px/20px 'Roboto';
+				color: #333;
+				&:after {
+					display: inline-block;
+					width: 10px;
+					font: 10px/10px 'Icons';
+					content: "\E605";
+					text-align: right;
+				}
+			}
+			.company {
+				float: left;
+				width: calc(100% - 120px);
+				font: 400 13px/20px 'Roboto';
+				color: #757575;
+				margin: 0 0 10px 0;
+			}
+			.content {
+				float: left;
+				width: calc(100% - 120px);
+				min-width: 0;
+				padding: 0;
+				.company {
+					float: none;
+					width: 100%;
+					font: 400 13px/20px 'Roboto';
+					color: #757575;
+					margin: 0 0 10px 0;
+				}
+				.time {
+					font: 400 13px/20px 'Roboto';
+					color: #757575;
+					margin: 0 0 10px 0;
+				}
+				.description {
+					font: 400 15px/24px 'Roboto';
+					color: rgba(0,0,0,.87);
+				}
+			}
+			.another__list {
+				margin: 0 -24px 0 0;
+			}
+			.another__item {
+				padding: 24px 0;
+				border-bottom: 1px solid rgba(0,0,0,.12);
+				&:first-child {
+					padding: 0 0 24px 0;
+					&:last-child {
+						padding: 0 0 24px 0;
+					}
+				}
+				&:last-child {
+					border: 0;
+				}
+				&-top {
+					padding: 0 24px 0 0;
+				}
+				.type {
+					float: left;
+					padding: 0 24px 0 0;
+					width: 140px;
+					font: 400 13px/20px 'Roboto';
+				}
+				.cost {
+					float: left;
+					width: 140px;
+					font: 400 13px/20px 'Roboto';
+					color: rgba(0,0,0,.54);
+					&:after {
+						display: inline-block;
+						width: 10px;
+						font: 10px/10px 'Icons';
+						content: "\E605";
+						text-align: right;
+					}
+				}
+				.text {
+					float: left;
+					width: calc(100% - 140px);
+					font: 400 13px/20px 'Roboto';
+					color: rgba(0,0,0,.54);
+				}
+				.progress {
+					float: left;
+					height: 16px;
+					width: calc(100% - 280px);
+					&__holder {
+						height: 100%;
+						background: $colorCyan;
+						border-radius: 2px;
+					}
+					.full {
+						width: 100%;
+					}
+				}
+				.sublist {
+					margin: 24px 0 0 0;
+				}
+				.subitem {
+					position: relative;
+					padding: 24px 24px 24px 0;
+					border-top: 1px solid rgba(0,0,0,.12);
+					&:last-child {
+						padding: 24px 24px 0 0;
+					}
+					.delimiter {
+						position: absolute;
+						top: -2px;
+						left: 0;
+						width: 140px !important;
+						height: 2px;
+						background: $colorBackground;
+					}
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	.bottom {
+		border-top: 1px solid rgba(0,0,0,.12);
+		color: $colorGray;
+		.delimiter {
+			position: absolute;
+			top: -2px;
+			left: 0;
+			width: 80px;
+			height: 2px;
+			background: $colorBackground;
+		}
+		.list {
+		}
+		.item {
+			position: relative;
+			display: none;
+			padding: 24px 24px 24px 80px;
+			//min-height: 80px;
+			border-top: 1px solid rgba(0,0,0,.12);
+			//transition: all .3s ease;
+			@include clearfix;
+			&:first-child {
+				border: 0;
+			}
+			.delimiter {
+				position: absolute;
+				top: -2px;
+				left: 0;
+				width: 80px;
+				height: 2px;
+				background: $colorBackground;
+			}
+			.ava {
+				position: absolute;
+				top: 24px;
+				left: 24px;
+				width: 32px;
+				height: 32px;
+				text-align: center;
+				border-radius: 100%;
+				overflow: hidden;
+				img {
+					display: inline-block;
+					max-width: 100%;
+					max-height: 100%;
+				}
+			}
+			.place {
+				float: left;
+				width: 80px;
+				font: 13px/20px 'Roboto';
+			}
+			.text {
+				float: left;
+				width: calc(100% - 160px);
+				font: 13px/20px 'Roboto';
+				&.forecast:after {
+					display: inline-block;
+					width: 10px;
+					font: 10px/10px 'Icons';
+					content: "\E605";
+					text-align: right;
+				}
+			}
+			.score {
+				float: right;
+				width: 80px;
+				font: 13px/20px 'Roboto';
+				text-align: right;
+			}
+			.rouble {
+				float: right;
+				width: 80px;
+				font: 13px/20px 'Roboto';
+				text-align: right;
+				&:after {
+					display: inline-block;
+					width: 10px;
+					font: 10px/10px 'Icons';
+					content: "\E605";
+					text-align: right;
+				}
+			}
+
+
+			.line {
+				position: absolute;
+				z-index: 1;
+				top: 16px;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background: rgba(0,0,0,.26);
+			}
+
+
+			&.counter {
+				padding: 0 0 0 24px;
+				border: 0;
+				min-height: 32px;
+				&.last {
+					padding: 0 0 24px 24px;
+				}
+				& + .item {
+					border: 0;
+				}
+				.counter__holder {
+					position: relative;
+					z-index: 2;
+					width: 32px;
+					height: 32px;
+					border: 1px solid rgba(0,0,0,.26);
+					border-radius: 100%;
+					font: 400 12px/32px 'Roboto';
+					color: rgba(0,0,0,.26);
+					background: $colorBackground;
+					text-align: center;
+					cursor: pointer;
+				}
+			}
+
+
+			&.active {
+				display: block !important;
+				border: 0;
+				& + .item {
+					border: 0;
+				}
+				.score {
+					// color: rgba(0,0,0,.87);
+				}
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	&__item.active {
+		margin: 10px -32px;
+		width: calc(100% + 64px);
+		border: 0;
+		border-radius: 2px;
+		.top {
+			color: #fff;
+			.icon__holder i:before {
+				color: #fff;
+			}
+			.big, .text {
+				color: #fff;
+			}
+			.left {
+				color: #fff !important;
+			}
+			.right {
+				color: rgba(255,255,255,.7);
+			}
+			.diagram {
+				background: rgba(255,255,255,.3);
+				.done {
+					background: #fff;
+				}
+			}
+			.plan {
+				color: rgba(255,255,255,.7);
+			}
+		}
+		.bottom {
+			.active {
+				cursor: pointer;
+				border: 0;
+				.place {
+					color: rgba(255,255,255,.7);
+				}
+				.text, .score, .rouble, .rouble:after {
+					color: #fff;
+				}
+				&.show {
+					cursor: default;
+				}
+			}
+		}
+		&.background.dashboard__item-score {
+			.top {
+				background-color: $colorBlue;
+			}
+			.bottom .item.active {
+				background-color: $colorLighterBlue;
+			}
+		}
+		&.background.dashboard__item-plan {
+			.top {
+				background-color: $colorRose;
+			}
+			.bottom .item.active {
+				background-color: $colorLighterRose;
+			}
+		}
+		&.background.dashboard__item-forecast {
+			.top {
+				background-color: $colorCyan;
+			}
+			.bottom .item.active {
+				background-color: $colorLighterCyan;
+			}
+			.hidden {
+				.title {
+					border-top: 1px solid rgba(255,255,255,.7)
+				}
+				&__holder {
+					.item {
+						padding: 24px 24px 0 80px;
+					}
+				}
+			}
+		}
+		&.background.dashboard__item-convertion {
+			.top {
+				background-color: $colorPurple;
+				.text {
+					color: rgba(255,255,255,.7);
+					.purple {
+						color: #fff;
+					}
+				}
+			}
+			.hidden {
+				.title {
+					padding: 24px 24px 24px 80px;
+					.legend {
+						float: left;
+						width: 16px;
+						height: 16px;
+						margin: 0 8px 0 0;
+						border-radius: 2px;
+					}
+					.left {
+						float: left;
+						margin: 0 10px 0 0;
+						.legend {
+							background: $colorPurple;
+						}
+					}
+					.right {
+						float: left;
+						.legend {
+							background: $colorLighterPurple;
+						}
+					}
+				}
+				&__holder {
+					.item {
+						padding: 24px 24px 0 80px;
+					}
+				}
+				.number {
+					&:after {
+						width: 0;
+						content: '';
+					}
+				}
+				.progress {
+					width: calc(100% - 140px);
+					.number {
+						width: 30%;
+						color: $colorPurple;
+					}
+					.legend {
+						max-width: 68%;
+						min-width: 2%;
+						height: 16px;
+						border-radius: 2px;
+					}
+					.left {
+						float: left;
+						width: 48%;
+						margin: 0 2% 0 0;
+						text-align: right;
+						.number {
+							float: right;
+						}
+						.legend {
+							float: right;
+							background: $colorPurple;
+							margin: 0 0 0 2%;
+						}
+					}
+					.right {
+						float: left;
+						width: 48%;
+						.number {
+							float: left;
+						}
+						.legend {
+							float: left;
+							background: $colorLighterPurple;
+							margin: 0 2% 0 0;
+						}
+					}
+				}
+			}
+			.bottom .item.active {
+				background-color: $colorLighterPurple;
+			}
+		}
+		.delimiter {
+			width: 0;
+		}
+	}
+}
+
+/* Dashboard css end */
