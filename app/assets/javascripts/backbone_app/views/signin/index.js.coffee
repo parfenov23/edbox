@@ -7,10 +7,10 @@ BackboneApp.Views signin: index: Backbone.Marionette.ItemView.extend
   post: ->
     $.ajax
       type: 'POST'
-      url: '/api/auth'
+      url: '/api/v1/sessions/auth'
       data: @getInput()
       success: (m) =>
-        $.cookie('cham_key', m.cham_key)
+        $.cookie('cham_key', m.user_key)
         _.extend BackboneApp.current_user.attributes, m
         @trigger 'menu:update'
         location.href = '#profile'

@@ -8,22 +8,22 @@
       .auth__reg-block
         .auth__reg-title.auth__reg-data Персональные данные
         .input-wrp
-          input placeholder='Фамилия' type='text' name='surname'
+          input placeholder='Фамилия' type='text' name='user[last_name]'
           hr
         .input-wrp
-          input placeholder='Имя' type='text' name='name'
+          input placeholder='Имя' type='text' name='user[first_name]'
           hr
         .input-wrp
-          input placeholder='Email' type='text' name='email'
+          input placeholder='Email' type='text' name='user[email]'
           hr
 
       .auth__reg-block
         .auth__reg-title.auth__reg-secutity Безопасность
         .input-wrp
-          input placeholder='Пароль' type='password' name='pasword'
+          input.pass placeholder='Пароль' type='password' name='user[pasword]'
           hr
         .input-wrp
-          input placeholder='Повторите пароль' type='password' name='password_repeat'
+          input placeholder='Повторите пароль' type='password' name='user[password_repeat]'
           hr
 
       .auth__reg-block
@@ -31,8 +31,12 @@
         .auth__reg-select
           .auth__reg-selected Корпоративный аккаунт
           .auth__reg-select-list
-            .auth__reg-select-list-item Корпоративный аккаунт
-            .auth__reg-select-list-item Персональный аккаунт
+            .auth__reg-select-list-item.corporate Корпоративный аккаунт
+            .auth__reg-select-list-item.personal Персональный аккаунт
+
+        .input-wrp.corporate_acc
+          input placeholder='Напишите название компании' type='text' name='company[name]'
+          hr
 
 
 

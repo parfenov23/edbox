@@ -6,10 +6,10 @@
     .auth__top.auth__enter-first
       .auth__title Авторизация
       .input-wrp.email
-        input placeholder="Email" name="login" type="text"
+        input placeholder="Email" name="user[email]" type="text"
         hr
       .input-wrp.password
-        input placeholder="Пароль" name="password" type="password"
+        input placeholder="Пароль" name="user[password]" type="password"
         hr
       .what__wrp
         a.what__wrp-link href="/#signin/problems" Проблемы со входом?
