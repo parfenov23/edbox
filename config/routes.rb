@@ -29,5 +29,30 @@ Rails.application.routes.draw do
   end
 
   #=================
+  namespace :superuser do
+    resources :home, only: [] do
+      collection do
+        get :index
+      end
+    end
+    resources :companies do
+      member do
+        get :remove
+      end
+    end
+    resources :users do
+      member do
+        get :remove
+      end
+    end
+    resources :groups do
+      member do
+        get :remove
+        get :add_user
+        get :remove_user
+      end
+    end
+  end
+
   root "home#index"
 end

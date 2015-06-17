@@ -20,7 +20,7 @@ module Api::V1
       group = find_group
       unless group.nil?
         group_json = group.as_json.as_json(:except => Group.except_attr)
-        group_json[:users] = group.users.as_json(:except => User.except_attr)
+        group_json[:users] = group.bunch_groups.map{|bg| bg.user.as_json(:except => User.except_attr)}
         render json: group_json
       else
         render_error(400, 'Проверьте данные')
@@ -48,10 +48,14 @@ module Api::V1
           else
             user.group_id = group.id
           end
-          user.transfer_to_json if (user.save rescue false)
+          if (user.save rescue false)
+            bunch_group = BunchGroup.build(user.id, group.id)
+            bunch_group.save
+            user.transfer_to_json
+          end
         end
       end
-      render json: {users: arr_hash_users.compact}
+      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
     end
 
     def remove_user
@@ -59,14 +63,15 @@ module Api::V1
       group = get_find_group
       arr_hash_users = []
       unless group.nil?
-        users = group.users
+        # bunch_group = group.bunch_groups
+        users = group.company.users
         arr_hash_users = emails.map do |email|
           user = users.find_by_email(email)
-          user.group_id = nil unless user.nil?
+          user.bunch_groups.where(group_id: group.id).destroy_all
           user.transfer_to_json if (user.save rescue false)
         end
       end
-      render json: {users: arr_hash_users.compact}
+      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
     end
 
     def destroy

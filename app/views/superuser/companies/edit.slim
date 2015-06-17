@@ -1,0 +1,37 @@
+h2
+    = "Редактирование компании #{@company.first_name}"
+hr
+
+= render "superuser/companies/form"
+
+ul.nav.nav-tabs
+    li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
+        a href="/superuser/companies/#{@company.id}/edit"
+            = "Все пользователи (#{@company.users.count})"
+    li.category_active class="#{params[:type] == 'group' ? 'active' : ''}" role="presentation"
+        a href="/superuser/companies/#{@company.id}/edit?type=group"
+            = "Группы (#{@company.groups.count})"
+- if params[:type].to_s == ''
+    .list-group.row
+        .list-group-item.active
+            a.btn.btn-success href="/superuser/users/new?company_id=#{@company.id}"  Добавить Участника
+        - @company.users.each do |user|
+            - class_director = user.director ? "alert alert-info" : ""
+            .list-group-item.col-md-6 class="#{class_director}"
+                span
+                    = user.first_name
+                = link_to("Удалить", "/superuser/users/#{user.id}/remove", method: :delete, class: "btn btn-danger pull-right")
+                a.btn.btn-success.pull-right href="/superuser/users/#{user.id}/edit?company_id=#{@company.id}" style="margin-right: 5px;"
+                    | Редактировать
+- if params[:type] == 'group'
+    .list-group.row
+        .list-group-item.active
+            a.btn.btn-success href="/superuser/groups/new?company_id=#{@company.id}"  Добавить Группу
+        - @company.groups.each do |group|
+            .list-group-item.col-md-6
+                span
+                    = group.first_name
+                a.btn.btn-danger.pull-right href="/superuser/groups/#{group.id}/remove"  data-method='delete'
+                    | Удалить
+                a.btn.btn-success.pull-right href="/superuser/groups/#{group.id}/edit?company_id=#{@company.id}" style="margin-right: 5px;"
+                    | Редактировать

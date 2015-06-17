@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :group
+  has_many :bunch_groups
   before_create :create_hash_key
+  validates :email, presence: true
 
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""

@@ -1,0 +1,13 @@
+nav.navbar.navbar-default
+    ul.nav.navbar-nav
+        - arr_nav_li = [{url: "/superuser/home", title: "Главная"},
+                        {url: "/superuser/all_courses", title: "Все курсы"},
+                        {url: "/superuser/companies", title: "Все компании"}]
+        - arr_nav_li.each do |li_nav|
+            - class_li = li_nav[:url] == request.fullpath.to_s ? "active" : ""
+            li class="#{class_li}"
+                a href="#{li_nav[:url]}"
+                    = li_nav[:title]
+        li
+            a.btn.btn-success.btn_nav_back href="#{request.env["HTTP_REFERER"]}"
+                |Назад

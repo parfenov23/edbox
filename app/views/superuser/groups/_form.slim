@@ -1,0 +1,16 @@
+- action_url = @group.id.nil? ? "/superuser/groups" : "/superuser/groups/#{@group.id}"
+- method = @group.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="first_name" type="text" value="#{@group.first_name}"
+
+    .form-group
+        label
+            | Компания:
+        - company_id = !@group.id.nil? ? @group.company_id : params[:company_id]
+        = select_tag 'company_id', options_for_select(Company.all.collect { |ac| [ac.first_name, ac.id] }, company_id), {:class => 'form-control'}
+
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить

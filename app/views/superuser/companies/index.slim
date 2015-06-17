@@ -1,0 +1,11 @@
+.list-group.row
+    .list-group-item.active
+        a.btn.btn-success href="/superuser/companies/new"  Добавить компанию
+    - @companies.each do |company|
+        .list-group-item.col-md-6
+            span
+                = company.first_name
+            a.btn.btn-danger.pull-right href="/superuser/companies/#{company.id}/remove"  data-method='delete'
+                | Удалить
+            a.btn.btn-success.pull-right href="/superuser/companies/#{company.id}/edit" style="margin-right: 5px;"
+                | Редактировать
