@@ -1,0 +1,35 @@
+h2
+    = "Редактирование группы #{@group.first_name}"
+hr
+
+= render 'superuser/groups/form'
+
+ul.nav.nav-tabs
+    li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
+        a href="/superuser/groups/#{@group.id}/edit"
+            = "Участники (#{@group.bunch_groups.count})"
+    li.category_active class="#{params[:type] == 'add_user' ? 'active' : ''}" role="presentation"
+        a href="/superuser/groups/#{@group.id}/edit?type=add_user"
+            = "Добавить участника"
+- if params[:type].to_s == ''
+    .list-group.row
+        .list-group-item.active
+            a.btn.btn-success href="/superuser/users/new"  Добавить Участника
+        - @group.bunch_groups.each do |bunch_group|
+            - user = bunch_group.user
+            - class_director = user.director ? "alert alert-info" : ""
+            .list-group-item.col-md-6 class="#{class_director}"
+                span
+                    = user.first_name
+                = link_to("Удалить из группы", "/superuser/groups/#{@group.id}/remove_user?user_id=#{user.id}", method: :delete, class: "btn btn-danger pull-right")
+- if params[:type] == 'add_user'
+    .list-group.row
+        .list-group-item.active
+            |Участники не состоящие в группе
+        - bunch_groups_ids = @group.bunch_groups.map{|bg| bg.user_id}
+        - @group.company.users.where.not(id: bunch_groups_ids).each do |user|
+            .list-group-item.col-md-6
+                span
+                    = user.first_name
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_user?user_id=#{user.id}" style="margin-right: 5px;"
+                    | Добавить

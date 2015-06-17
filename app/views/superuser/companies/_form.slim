@@ -1,0 +1,9 @@
+- action_url = @company.id.nil? ? "/superuser/companies" : "/superuser/companies/#{@company.id}"
+- method = @company.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="first_name" type="text" value="#{@company.first_name}"
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить

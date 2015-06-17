@@ -1,0 +1,32 @@
+body, .well {
+    height : 100%;
+}
+
+.well {
+    padding       : 0px 5px 5px 5px;
+    margin-bottom : 0;
+}
+
+.list-group.row {
+    margin-right : 0px;
+    margin-left  : 0px;
+}
+
+.form-horizontal .form-group {
+    margin-right : 0px;
+    margin-left  : 0px;
+}
+
+.list-group-item span {
+    line-height : 35px;
+}
+
+.btn_nav_back {
+    height           : 20px;
+    line-height      : 0px !important;
+    margin-left      : 10px;
+    margin-top       : 10px;
+    background-color : #419641 !important;
+    color            : white !important;
+    text-shadow      : 0 0px 0 rgba(255, 255, 255, .25) !important;
+}

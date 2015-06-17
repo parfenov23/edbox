@@ -1,7 +1,33 @@
 class User < ActiveRecord::Base
+  belongs_to :company
+  belongs_to :group
+  has_many :bunch_groups
   before_create :create_hash_key
+  validates :email, presence: true
+
   def self.build(params)
-    new(params)
+    params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
+    user = new(params)
+    user.password = params[:password]
+    user
+  end
+
+  def self.auth(params)
+    user = find_by_email(params[:email])
+    unless user.nil?
+      if user.password == params[:password]
+        user.transfer_to_json
+      end
+    end
+  end
+
+  def transfer_to_json
+    result = as_json.as_json(:except => User.except_attr)
+    result
+  end
+
+  def all_groups
+    company.groups
   end
 
   def password
@@ -17,5 +43,9 @@ class User < ActiveRecord::Base
 
   def create_hash_key
     self.user_key = SecureRandom.hex(20)
+  end
+
+  def self.except_attr
+    ["password_digest", "user_key", "created_at", "updated_at"]
   end
 end

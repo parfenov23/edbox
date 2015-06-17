@@ -14,6 +14,7 @@ gem 'faraday_middleware'
 gem "russian"
 gem 'bcrypt'
 gem 'turbolinks'
+gem 'thin'
 
 # Frontend
 gem 'uglifier'

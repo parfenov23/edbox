@@ -4,6 +4,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email, null: false, default: ""
       t.string :password_digest, null: false, default: ""
       t.string :user_key, null: false, default: ""
+      t.string :first_name, default: ""
+      t.string :avatar, default: ""
       t.timestamps
     end
 
