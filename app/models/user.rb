@@ -4,12 +4,9 @@ class User < ActiveRecord::Base
   has_many :bunch_groups
   before_create :create_hash_key
   validates :email, presence: true
-  serialize :first_name, Hash
 
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
-    params[:first_name] = {first_name: params[:first_name], last_name: params[:last_name]}
-    params.delete("last_name")
     user = new(params)
     user.password = params[:password]
     user
