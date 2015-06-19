@@ -18,6 +18,6 @@
 //= require_tree ./backbone_app/views
 //= require_tree ./backbone_app/routers
 
-$( document ).ajaxSend(function( event, jqxhr, settings ) {
+$(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'application#index'
-
+  get ":action" => "home#:action"
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [] do

@@ -1,11 +1,11 @@
 router = Marionette.AppRouter.extend
   appRoutes:
-    'signin'                  : 'signin'
-    'signin/:page' : 'signin_problems'
-    'signup'                  : 'signup'
-    'signup/:page'            : 'signup_pages'
-    'signout'                 : 'signout'
-    'oferta'                  : 'oferta'
+    'signin'      : 'signin'
+    'signin/:page': 'signin_problems'
+    'signup'      : 'signup'
+    'signup/:page': 'signup_pages'
+    'signout'     : 'signout'
+    'oferta'      : 'oferta'
 
 render = (v) ->
   BackboneApp.layout.main.show v
