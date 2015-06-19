@@ -32,7 +32,7 @@ isView = (v)->
 #   _sync = Backbone.sync
 #   Backbone.sync = (method, entity, options = {}) ->
 #     options.beforeSend = (xhr) ->
-#       xhr.setRequestHeader('CHAM-KEY', $.cookie('cham_key'))
+#       xhr.setRequestHeader('CHAM-KEY', $.cookie('user_key'))
 
 #     sync = _sync(method, entity, options)
 #     if !entity._fetch and method is "read"

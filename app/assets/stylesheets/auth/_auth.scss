@@ -2,7 +2,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -16,6 +15,8 @@
     -webkit-box-shadow: 0 0 0px 1000px white inset;
   }
   &__box {
+    margin: 0 auto;
+    margin-top: 120px;
     position: relative;
     width: 384px;
     border-radius: 2px;
@@ -254,10 +255,11 @@
       }
     }
     &-block {
-      margin: 0 0 40px 0;
+      margin: 0 0 24px 0;
     }
     &-select {
       position: relative;
+      margin: 0 0 24px 0;
       &ed {
         position: relative;
         width: 180px;
@@ -279,7 +281,7 @@
       &-list {
         position: absolute;
         display: none;
-        z-index: 10;
+        z-index: 15;
         top: -14px;
         left: -16px;
         width: 224px;
@@ -301,6 +303,12 @@
           }
         }
       }
+    }
+  }
+  .corporate_acc {
+    display: none;
+    &.active {
+      display: block;
     }
   }
   .checkbox__holder .label {

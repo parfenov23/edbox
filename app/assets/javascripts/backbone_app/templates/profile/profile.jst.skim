@@ -34,14 +34,14 @@
                 label
                     | Уведомление о том, что участник закрыл абсолютно все дневные задачи на сегодня
                     input type="checkbox" name="notice_2" checked=(to_boolean(@user['setting']['notice_2']) rescue false)
-            .custom-radio-holder
-                .legend Перевод сделки из одного статуса в другой
-                .item.togglebutton.custom-radio
-                    input#toggle-1.input type="checkbox" name='transfer_lead' checked=JSON.parse(@setting.transfer_lead or false)
-                    label.label for="toggle-1"
-                        i.circle
-                            i.ripple-effect.ripple-check
-                            i.ripple-effect.ripple-uncheck
+            / .custom-radio-holder
+            /     .legend Перевод сделки из одного статуса в другой
+            /     .item.togglebutton.custom-radio
+            /         input#toggle-1.input type="checkbox" name='transfer_lead' checked=JSON.parse(@setting.transfer_lead or false)
+            /         label.label for="toggle-1"
+            /             i.circle
+            /                 i.ripple-effect.ripple-check
+            /                 i.ripple-effect.ripple-uncheck
 
         .profile__item.save-changes
             .btn.btn-raised.task__open-button-yes.profile_save СОХРАНИТЬ

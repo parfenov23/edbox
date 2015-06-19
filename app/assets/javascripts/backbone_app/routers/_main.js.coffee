@@ -1,5 +1,5 @@
 diff =
-  profile: 'users/current'
+  profile: 'v1/users/info'
   tasks: 'tasks/index_new'
 
 router = Marionette.AppRouter.extend
