@@ -1,402 +1,77 @@
-.header__holder {
-  display     : block;
-  position    : fixed;
-  z-index     : 100;
-  top         : 0;
-  left        : 0;
-  width       : 100%;
-  min-height  : 64px;
-  user-select : none;
-}
-
-.header {
-  position   : relative;
-  z-index    : 100;
-  padding    : 14px 20px 14px 28px;
-  background : url("header__bg.png") 50% 50% no-repeat;
-  box-shadow : 0px 0px 4px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.24);
-  &__menu {
-    &-icon {
-      position : relative;
-      z-index: 2;
-      &:before {
-        cursor      : pointer;
-        content     : "\E8A1";
-        font-size   : 24px;
-        line-height : 35px;
-        color       : #FFFFFF;
-      }
-      &-holder {
-        position: relative;
-        float: left;
-        width    : 35px;
-        height   : 35px;
-        margin: 0 25px 0 0;
-        .ink {
-          position: absolute;
-          z-index: 1;
-          width: 25px !important;
-          height: 25px !important;
-          top: 5px !important;
-          left: 0px !important;
-          background: rgba(0,0,0,.1);
-        }
-      }
-    }
-  }
-  &__title {
-    float: left;
-    margin: 8px 0 0 0;
-    font: 300 20px/20px 'Roboto';
-    color: #fff;
-  }
-  &__activity {
-    position: relative;
-    float: right;
-    margin: 2px 0 0 0;
-    height      : 35px;
-    line-height : 35px;
-    @include clearfix;
-    .icon__holder {
-      position : relative;
-      float: right;
-      margin-right: 24px;
-      &:first-child {
-        margin: 0;
-      }
-      i {
-        position: relative;
-        z-index: 2;
-        &:before {
-          cursor: pointer;
-        }
-      }
-    }
-    &-team {
-      font-size : 32px;
-      &:before {
-        content : "\E8CB";
-      }
-    }
-    &-user {
-      font-size   : 24px;
-      &:before {
-        content : "\E8CF";
-      }
-    }
-    &-notifications {
+#header__holder {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  .header {
+    &__top {
       position: relative;
-      height: 35px;
-      &:before {
-        font: 24px/35px 'Icons';
-        content: "\e8cf";
-        color: #fff;
-      }
-      .ink {
+      height: 56px;
+      background: #FD9348;
+      .logo {
         position: absolute;
-        z-index: 1;
-        width: 25px !important;
-        height: 25px !important;
-        top: -8px !important;
-        left: -1px !important;
-        background: rgba(0,0,0,.1);
+        &__ed {
+          top: 18px;
+          left: 32px;
+        }
+        &__ad {
+          top: 19px;
+          left: 119px;
+        }
       }
+      .header__icons {
+        position: absolute;
+        cursor: pointer;
+        .icon:before {
+          font: 22px/1 'Icons';
+          color: #fff;
+        }
+      }
+      .header__user {
+        overflow: hidden;
+        top: 12px;
+        right: 32px;
+        width: 32px;
+        height: 32px;
+        border-radius: 100%;
+        .ava {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      .header__apps {
+        top: 17px;
+        right: 81px;
+        .icon:before {
+          content: '\e892';
+        }
+      }
+
       .header__notifications {
-        position: absolute;
-        display: none;
-        top: 36px;
-        right: -78px;
-        width: 355px;
-        border-radius: 2px;
-        box-shadow : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-        background: #fff;
-        &.active {
-          display: block !important;
-        }
-        &:before {
-          position: absolute;
-          top: -8px;
-          right: 86px;
-          width: 0;
-          height: 0;
-          content: ' ';
-          border: 4px solid transparent;
-          border-bottom: 4px solid #fff;
-        }
-        .closed {
-          padding: 16px 0;
-          text-align: center;
-          font: 400 13px/20px 'Roboto';
-          color: rgba(0,0,0,.54);
-          cursor: pointer;
-        }
-        .opened {
-          &__item {
-            padding: 24px 24px 12px 24px;
-            .icon__holder {
-              float: left;
-              width: 56px;
-              .icon {
-                width: 24px;
-                height: 24px;
-                text-align: center;
-                border-radius: 100%;
-              }
-            }
-            .text {
-              float: left;
-              width: calc(100% - 56px);
-            }
-            .eye {
-              float: left;
-              width: 42px;
-              text-align: right;
-              &:before {
-                content: '\e600';
-              }
-            }
-          }
-        }
-        .notifications__block {
-          .opened {
-            overflow: hidden;
-            height: 0;
-          }
-          &.active {
-            background: rgba(0,0,0,.12);
-            .opened {
-              height: auto;
-            }
-            .closed {
-              display: none;
-            }
-          }
+        top: 17px;
+        right: 120px;
+        .icon:before {
+          content: '\e8cf';
         }
       }
+
+      .header__courses {
+        top: 17px;
+        right: 161px;
+        .icon:before {
+          content: '\e8de';
+        }
+      }
+
     }
-    &-apps {
-      position: relative;
-      font-size   : 24px;
-      &:before {
-        content : "\e893";
-        color: #fff;
-      }
-      .ink {
-        position: absolute;
-        z-index: 1;
-        width: 25px !important;
-        height: 25px !important;
-        top: 0px !important;
-        left: 0px !important;
-        background: rgba(0,0,0,.1);
-      }
-      .list {
-        position: absolute;
-        display: none;
-        top: 44px;
-        right: -24px;
-        padding: 24px 24px 16px 24px;
-        width: 282px;
-        border-radius: 2px;
-        box-shadow : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-        background: #fff;
-        &.lower {
-          top: 76px;
-        }
-        &.active {
-          display: block;
-        }
-        &:before {
-          position: absolute;
-          top: -8px;
-          right: 32px;
-          width: 0;
-          height: 0;
-          content: ' ';
-          border: 4px solid transparent;
-          border-bottom: 4px solid #fff;
-        }
-        &__item {
-          float: left;
-          width: 54px;
-          text-align: center;
-          margin: 0 36px 24px 0;
-          &:nth-child(3n) {
-            margin: 0 0 24px 0;
-          }
-          &.last__row {
-            margin: 0 36px 0 0;
-            &:nth-child(3n) {
-              margin: 0;
-            }
-          }
-          &-img {
-            max-width: 100%;
-            max-height: 100%;
-            &-holder {
-              margin: 0 0 12px 0;
-              border-radius: 8px;
-            }
-          }
-          &-text {
-            font: 400 8px/12px 'Roboto';
-            color: rgba(0,0,0,.54);
-          }
-        }
-      }
-    }
-    &-profile {
-      width: 32px;
-      height: 32px;
-      border-radius: 100%;
-      cursor: pointer;
-      overflow: hidden;
-      &-img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-      &-menu {
-        position: absolute;
-        display: none;
-        top: 49px;
-        right: -24px;
-        width: 320px;
-        border-radius: 2px;
-        box-shadow : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-        background: #fff;
-        color: #000;
-        &.lower {
-          top: 81px;
-        }
-        &.active {
-          display: block;
-        }
-        &:before {
-          position: absolute;
-          top: -8px;
-          right: 32px;
-          width: 0;
-          height: 0;
-          content: ' ';
-          border: 4px solid transparent;
-          border-bottom: 4px solid #fff;
-        }
-        .info__holder {
-          overflow: hidden;
-          padding: 30px 24px 12px 24px;
-          border-bottom: 1px solid rgba(0,0,0,.12);
-          .ava__wrapper {
-            float: left;
-            width: 64px;
-            text-align: center;
-            .ava__holder {
-              height: 48px;
-              width: 48px;
-              border-radius: 100%;
-              overflow: hidden;
-              .ava {
-                max-width: 100%;
-                max-height: 100%;
-              }
-            }
-          }
-          .info {
-            float: left;
-            width: calc(100% - 64px);
-            .name {
-              font: 400 13px/20px 'Roboto';
-              color: rgba(0,0,0,.87);
-              margin: 0 0 6px 0;
-            }
-            .login {
-              font: 400 13px/20px 'Roboto';
-              color: rgba(0,0,0,.54);
-            }
-          }
-        }
-        .menu {
-          padding: 12px 0;
-          border-bottom: 1px solid rgba(0,0,0,.12);
-          &__item {
-            &-link {
-              display: block;
-              height: 48px;
-              padding: 0 24px;
-              overflow: hidden;
-              color: rgba(0,0,0,.65);
-              &:hover {
-                background: rgba(0,0,0,.03);
-              }
-              &.disabled {
-                opacity: .3;
-                cursor: default;
-                .icon:before {
-                  cursor: default;
-                }
-                &:hover {
-                  background: transparent;
-                }
-              }
-              .icon {
-                float: left;
-                width: 20%;
-                line-height: 48px;
-                font-size: 20px;
-                &-profile {
-                  &:before {
-                    content: '\e8d8';
-                  }
-                }
-                &-documents {
-                  &:before {
-                    content: '\e703';
-                  }
-                }
-                &-materials {
-                  &:before {
-                    content: '\e7a7';
-                  }
-                }
-              }
-              .text {
-                float: left;
-                font: 400 13px/48px 'Roboto';
-              }
-            }
-          }
-        }
-        .logout__holder {
-          padding: 12px 0;
-          .logout {
-            display: block;
-            height: 48px;
-            padding: 0 24px;
-            overflow: hidden;
-            color: rgba(0,0,0,.65);
-            &:hover {
-              background: rgba(0,0,0,.03);
-            }
-            .icon {
-              float: left;
-              width: 20%;
-              line-height: 48px;
-              font-size: 20px;
-              &:before {
-                content: '\e7bc';
-              }
-            }
-            .text {
-              float: left;
-              font: 400 13px/48px 'Roboto';
-            }
-          }
-        }
-      }
+    &__bottom {
+      height: 64px;
+      background: #fff;
+      box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+                  0  2px  6px 0  rgba(0,0,0,.24);
     }
   }
 }
-
-@import "header/menu";
-@import "header/settings";
-@import "header/notification";
-@import "header/tabs";

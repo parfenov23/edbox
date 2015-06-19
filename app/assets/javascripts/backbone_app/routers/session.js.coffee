@@ -24,7 +24,7 @@ controller =
     render new BackboneApp.Views.signup[page]
 
   signout: ->
-    $.removeCookie 'cham_key'
+    $.removeCookie 'user_key'
     location.href = '#signin'
 
   oferta: ->

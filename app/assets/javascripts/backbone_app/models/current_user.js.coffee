@@ -1,15 +1,15 @@
 CurrentUser = Backbone.Model.extend
-  url: '/api/users/current'
+  url: '/api/v1/users/info'
   defaults:
-    id: ''
-    login: ''
+    last_name: ''
+    first_name: ''
+    email: ''
     avatar: '../assets/ava.png'
-    crm_is_admin: false
     director: false
     name: ''
 
   initialize: ->
-    @fetch() if $.cookie('cham_key')
+    @fetch() if $.cookie('user_key')
 
   isFunnelSet: ->
     @attributes.account.is_funnel_set

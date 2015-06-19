@@ -4,7 +4,11 @@ BackboneApp.Views oferta: index: Backbone.Marionette.ItemView.extend
   header: false
 
   events:
-    'click .back' : 'goBackToReg'
+    'click .back'   : 'goBackToReg'
+    'click #submit' : 'ofertaAgree'
 
   goBackToReg: () ->
     location.href = '/#signup'
+
+  ofertaAgree: () ->
+    location.href = '/#signup?agreed=true'

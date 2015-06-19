@@ -10,7 +10,7 @@ BackboneApp.Views signin: index: Backbone.Marionette.ItemView.extend
       url: '/api/v1/sessions/auth'
       data: @getInput()
       success: (m) =>
-        $.cookie('cham_key', m.user_key)
+        $.cookie('user_key', m.user_key)
         _.extend BackboneApp.current_user.attributes, m
         @trigger 'menu:update'
         location.href = '#profile'
