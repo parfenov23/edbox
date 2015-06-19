@@ -1,0 +1,63 @@
+- statuses = @unused_statuses.concat(@used_statuses)
+.content
+  .content-item
+    .top
+      .title Настройка воронки продаж
+      .toggle class=="#{'active' unless @first_setup}"
+      .clearfix
+      .inner__holder class=="#{'hide' unless @first_setup}"
+        .inner
+          .text Ваша воронка продаж из amoCRM состоит из 11 статусов, для корректной работы алгоритмов Chameleon, необходимо настроить воронку Chemeleon, которая разбита на 5 этапов, в каждой из которой содержится несколько последовательных и параллельных статусов.
+          ul.list
+            li.item
+              .number 1.
+              .text В amoСRM у Вас уже есть статусы, из которых состоит воронка продаж.
+            li.item
+              .number 2.
+              .left
+                |Перетащите статусы воронки из AmoCRM из левой части в экрана в правый для, того чтобы сформировать воронку в Chameleon как показано на видео.
+              .right
+                img src="assets/direcor_settings.png"
+            li.item
+              .number 3.
+              .text Вы сможете внести правки в настройки воронки продаж в вашем профиле, после окончания первых настроек.
+
+    .bottom
+      .left
+        .title Ваши статусы воронки из amoCRM
+        ul.list.status
+          - for status in statuses
+            li.item.item__color
+              .status__item class="item__color item__color-#{status['id']} #{'used' if status.position}" data-id="item__color-#{status['id']}" data-tooltip="#{status['name']}" data-color="#{status['color']}"
+                .circle
+                  i.left
+                    i.right
+                .delete
+                .text =status['name']
+
+      .right.drag
+        .title Ваша воронка в Chameleon
+        .funnel__holder
+          - for funnel_type in @funnel_types
+            .funnel class="funnel-#{funnel_type.id}" data-id="#{funnel_type.id}"
+              .top
+                .number =funnel_type.id
+                .title =funnel_type.title
+                .left
+                  - _.each funnel_type.positions, (statuses, position) ->
+                    .dropzone class="dropzone-line-#{position}" data-line="#{position}"
+                      - _.each statuses, (status) ->
+                        .status__item class="item__color ui-state-disabled item__color-#{status['id']}" data-id="item__color-#{status['id']}" data-tooltip==status.name data-color==status.color
+                          .circle
+                            i
+                          .delete
+                          .text ==status.name
+                .plus +
+                .clearfix
+      .clearfix
+
+    .btn__holder
+      .btn__wrapper
+        .btn.btn-default.btn-raised#post ="#{if @first_setup then 'Далее' else 'Сохранить'}"
+        a.btn.btn-default.btn-flat href='#reload' Отменить
+        .clearfix

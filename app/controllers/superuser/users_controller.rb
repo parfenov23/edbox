@@ -9,10 +9,13 @@ module Superuser
 
     def edit
       @user = User.find(params[:id])
+      @back_url = "/superuser/companies/#{params[:company_id]}/edit" if params[:back_url] == "company"
     end
 
     def new
       @user = User.new
+      @back_url = "/superuser/groups/#{params[:group_id]}/edit" if params[:back_url] == "groups"
+      @back_url = "/superuser/companies/#{params[:company_id]}/edit" if params[:back_url] == "company"
     end
 
     def create
@@ -22,12 +25,12 @@ module Superuser
         if params[:company_id].to_s != ""
           redirect_to "/superuser/companies/#{params[:company_id]}/edit"
         else
-          redirect_to "/superuser/users/#{user.id}/edit"
+          redirect_to "/superuser/users/#{user.id}/edit?back_url=#{params[:back_url]}"
         end
       else
         back_url = "/superuser/users/new"
-        params_error = "?company_id=#{params[:company_id]}&error=error"
-        redirect_to  back_url + params_error
+        params_error = "?company_id=#{params[:company_id]}&error=error&back_url=#{params[:back_url]}"
+        redirect_to back_url + params_error
       end
     end
 
@@ -45,7 +48,7 @@ module Superuser
       else
         back_url = "/superuser/users/#{params[:id]}/edit"
         params_error = "?company_id=#{params[:company_id]}&error=error"
-        redirect_to  back_url + params_error
+        redirect_to back_url + params_error
       end
     end
 
@@ -57,7 +60,7 @@ module Superuser
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :password, :director, :corporate, :company_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
     end
 
   end

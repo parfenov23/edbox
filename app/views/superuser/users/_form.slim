@@ -12,6 +12,10 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Имя:
         input.form-control name="user[first_name]" type="text" value="#{@user.first_name}"
+    .form-group
+        label
+            | Фамилия:
+        input.form-control name="user[last_name]" type="text" value="#{@user.last_name}"
 
     .form-group
         label

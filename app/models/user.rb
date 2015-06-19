@@ -46,6 +46,6 @@ class User < ActiveRecord::Base
   end
 
   def self.except_attr
-    ["password_digest", "user_key", "created_at", "updated_at"]
+    ["password_digest", "created_at", "updated_at"]
   end
 end

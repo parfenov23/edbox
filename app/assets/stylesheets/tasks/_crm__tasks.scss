@@ -1,0 +1,178 @@
+.crm__task {
+    margin-bottom : $gridMargin;
+    &-item {
+        position : relative;
+
+        .default-state {
+            position   : relative;
+            width      : 100%;
+            padding    : 24px 24px 24px 80px;
+            background : #F5F5F5;
+            font       : 400 13px/20px 'Roboto';
+            box-shadow : 0 0 2px 0 rgba(0, 0, 0, .12),
+            0 2px 6px 0 rgba(0, 0, 0, .24);
+
+        }
+        &:first-child {
+            border-radius : 2px 2px 0 0;
+        }
+        &:last-child {
+            border-radius : 0 0 2px 2px;
+        }
+    }
+    &-icon {
+        &-holder {
+            position   : absolute;
+            top        : 24px;
+            left       : 24px;
+            width      : 32px;
+            height     : 32px;
+            text-align : center;
+        }
+        @include inline-block;
+        width  : 16px;
+        height : 16px;
+        &-overdue {
+            &:before {
+                opacity : 0.5;
+                font    : 16px/16px 'Icons';
+                content : "\E601";
+            }
+        }
+        &-1 {
+          color : #FF6D00;
+        }
+        &-2 {
+          color : #FFAB3F;
+        }
+        &-3 {
+          color : #3FC4FF;
+        }
+        &-4 {
+          color : #FF80AB;
+        }
+        &-5 {
+          color : #6A199A;
+        }
+    }
+    &-top {
+        margin-bottom : $gridMargin;
+        &-left {
+            float : left;
+            width : calc(100% - 100px);
+            .company {
+                color : rgba(0, 0, 0, 0.87);
+            }
+            .contact {
+                color : rgba(0, 0, 0, 0.54);
+            }
+        }
+        &-right {
+            float      : right;
+            width      : 100px;
+            text-align : right;
+            color      : rgba(0, 0, 0, 0.54);
+            &:after {
+                display : inline-block;
+                width   : 10px;
+                font    : 10px/10px 'Icons';
+                color   : rgba(0, 0, 0, 0.54);
+                content : "\E605";
+            }
+        }
+    }
+    &-bottom {
+        &-left {
+            float : left;
+            width : 80px;
+            color : rgba(0, 0, 0, 0.26);
+            .date {
+            }
+            .time {
+            }
+        }
+        &-right {
+            float          : left;
+            width          : calc(100% - 80px);
+            color          : rgba(0, 0, 0, 0.54);
+            letter-spacing : -0.5px;
+        }
+    }
+
+
+    @import "action__block";
+    .ripple__range__ft {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        z-index: -1;
+    }
+}
+
+.crm__task-item:hover {
+    .actions_buttons {
+        opacity : 1;
+        display : block;
+        .inner {
+            right: 13px;
+            .md-fab {
+                width: 56px;
+                height: 56px;
+            }
+        }
+        i:before {
+            font : 28px/46px 'Icons';
+        }
+        &:hover {
+            width : 56px;
+        }
+    }
+}
+
+.task__overdue .crm__task-item:hover, .task__tomorrow .crm__task-item:hover, .task__valued .crm__task-item:hover {
+    .actions_buttons {
+        opacity : 1;
+        display : block;
+        .inner {
+            right: 13px;
+            .md-fab {
+                width: 40px;
+                height: 40px;
+            }
+            &:nth-child(2) {
+                right: 13px;
+            }
+        }
+        &:hover {
+            width: 120px;
+            .inner {
+                &:nth-child(2) {
+                    right: 80px;
+                }
+            }
+        }
+        i:before {
+            font: 20px/28px 'Icons';
+        }
+    }
+}
+
+.crm__task-item.separated {
+    width         : calc(100% + 64px);
+    margin-left   : -32px;
+    margin-bottom : 8px;
+    margin-top    : 8px;
+    .default-state {
+        display : none;
+    }
+}
+
+.task__tomorrow .crm__task-icon {
+  &:before {
+      opacity : 0.5;
+      font    : 16px/16px 'Icons';
+      content : "\E84D";
+  }
+}
+

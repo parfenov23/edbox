@@ -1,0 +1,8 @@
+@mixin inline-block() {
+  display        : inline-block;
+  vertical-align : top;
+  margin         : 0px;
+  zoom           : 1;
+  *display       : inline;
+  content : "";
+}

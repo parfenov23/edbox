@@ -14,14 +14,14 @@ ul.nav.nav-tabs
 - if params[:type].to_s == ''
     .list-group.row
         .list-group-item.active
-            a.btn.btn-success href="/superuser/users/new?company_id=#{@company.id}"  Добавить Участника
+            a.btn.btn-success href="/superuser/users/new?company_id=#{@company.id}&back_url=company"  Добавить Участника
         - @company.users.each do |user|
             - class_director = user.director ? "alert alert-info" : ""
             .list-group-item.col-md-6 class="#{class_director}"
                 span
-                    = user.first_name
+                    = user.first_name.to_s + " " + user.last_name.to_s
                 = link_to("Удалить", "/superuser/users/#{user.id}/remove", method: :delete, class: "btn btn-danger pull-right")
-                a.btn.btn-success.pull-right href="/superuser/users/#{user.id}/edit?company_id=#{@company.id}" style="margin-right: 5px;"
+                a.btn.btn-success.pull-right href="/superuser/users/#{user.id}/edit?company_id=#{@company.id}&back_url=company" style="margin-right: 5px;"
                     | Редактировать
 - if params[:type] == 'group'
     .list-group.row

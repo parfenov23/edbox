@@ -1,0 +1,12 @@
+.list-group.row
+    .list-group-item.active
+        a.btn.btn-success href="/superuser/attachments/new?back_url=section&model_id=#{section.id}&model_type=Section"  Добавить материал
+    - section.attachments.each do |attachment|
+        .list-group-item.col-md-6
+            span
+                /= user.first_name
+                = attachment.file.file.original_filename
+            a.btn.btn-danger.pull-right href="/superuser/attachments/#{attachment.id}/remove" style="margin-right: 5px;"
+                | Удалить
+            /a.btn.btn-success.pull-right href="/superuser/groups/#{section.id}/add_user?user_id=" style="margin-right: 5px;"
+            /    | Редактировать

@@ -1,0 +1,15 @@
+- action_url = @course.id.nil? ? "/superuser/courses" : "/superuser/courses/#{@course.id}"
+- method = @course.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="course[title]" type="text" value="#{@course.title}"
+    .form-group
+        label
+            | Описание:
+            a#open_descriptio href="javascript:void(0)" style="padding-left: 5px" Открыть
+        textarea.form-control.description name="course[description]" type="text" style="display:none;"
+            = @course.description
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить

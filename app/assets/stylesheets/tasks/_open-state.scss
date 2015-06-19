@@ -1,0 +1,291 @@
+
+.task__item {
+    .task__openState {
+        display : none;
+        .active__state-list {
+            display : none;
+        }
+        .task__contacts {
+            display : none;
+        }
+
+    }
+}
+
+.task__item.opened {
+    width         : calc(100% + 64px);
+    margin-left   : -32px;
+    margin-bottom : 8px;
+    box-shadow    : 0px 3px 4px 3px rgba(0, 0, 0, 0.12), 0px 3px 7px 4px rgba(0, 0, 0, 0.12);
+    margin-top    : 8px;
+    .mock__border {
+        display : none !important;
+    }
+    .chameleon__task {
+        height : 256px;
+    }
+
+    > .subtask {
+        display : none;
+    }
+    .actions_buttons {
+        display : none;
+    }
+    .active__state {
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        padding  : 56px 24px 24px 32px;
+        width    : 100%;
+        height   : 256px;
+        z-index  : 12;
+        > .title, > .description, > .score {
+            color : #FFFFFF;
+        }
+        .icon-holder {
+            position : absolute;
+            top      : 24px;
+            left     : 32px;
+            .funnel__lvl-icon-cham {
+                display          : inline-block;
+                vertical-align   : top;
+                margin           : 0px;
+                zoom             : 1;
+                content          : "";
+                width            : 32px;
+                height           : 32px;
+                border-radius    : 100%;
+                background-color : transparent;
+            }
+        }
+        .title {
+            font-size    : 34px;
+            color        : #FFFFFF;
+            line-height  : 40px;
+            position     : absolute;
+            left         : 0;
+            bottom       : 56px;
+            height       : 120px;
+            width        : 100%;
+            padding-left : 32px;
+            overflow     : hidden;
+            span {
+                display  : block;
+                position : absolute;
+                bottom   : 0;
+                left     : 32px;
+            }
+        }
+        .description {
+            position    : absolute;
+            left        : 32px;
+            bottom      : 24px;
+            font-size   : 15px;
+            color       : rgba(255, 255, 255, 0.70);
+            line-height : 24px;
+        }
+        .score {
+            position    : absolute;
+            top         : 24px;
+            right       : 32px;
+            font-size   : 13px;
+            color       : #FFFFFF;
+            line-height : 20px;
+        }
+    }
+
+    .task__contacts {
+        background-color : #BDEEF4;
+        position         : relative;
+        padding          : 24px 0 24px 80px;
+        opacity          : 1;
+        width            : 100%;
+        transition       : 0.3s ease-in-out;
+        display          : block;
+        .task-information {
+            position      : absolute;
+            width         : 16px;
+            height        : 16px;
+            top           : 24px;
+            left          : 32px;
+            background    : #00BCD4;
+            text-align    : center;
+            border-radius : 100%;
+            &:before {
+                //content : "\e6a0";
+                content : "i";
+                color   : #FFFFFF;
+                font    : 12px/18px 'Roboto';
+            }
+        }
+        .item {
+            @include clearfix;
+            margin-bottom : 8px;
+            .label_field {
+                width       : 30%;
+                float       : left;
+                font-size   : 12px;
+                color       : rgba(0, 0, 0, 0.26);
+                line-height : 15px;
+                background  : none;
+            }
+            .value {
+                width       : 70%;
+                float       : left;
+                font-size   : 13px;
+                color       : rgba(0, 0, 0, 0.54);
+                line-height : 20px;
+            }
+        }
+    }
+    .task__contacts.shot {
+        height : 96px;
+        .contacts__list-wrp {
+            overflow : hidden;
+            height   : 48px;
+        }
+
+    }
+
+    .active__state-list {
+        margin           : 0;
+        padding          : 0;
+        display          : block;
+        background-color : #FFFFFF;
+        .active__state-list-item {
+            list-style-type : none;
+            position        : relative;
+            .default__state {
+                position : relative;
+                padding  : 21px 23px 28px 61px;
+                @include clearfix;
+            }
+        }
+        .active__state-list-item {
+            border-bottom : 1px solid #E1E1E1;
+            .icon {
+                position : absolute;
+                top      : 24px;
+                left     : 24px;
+                &:before {
+                    width  : 16px;
+                    height : 16px;
+                }
+            }
+            .fackedup__icon {
+                &:before {
+                    content : "\e601";
+                    color   : #F50057;
+                }
+            }
+            .current__icon {
+                &:before {
+                    content : "\e84d";
+                    color   : #9FE1FF;
+                }
+            }
+            .comment__icon {
+                &:before {
+                    content : "\e6eb";
+                    color   : #00BCD4;
+                }
+            }
+            .completed__icon {
+                display          : inline-block;
+                width            : 16px;
+                height           : 16px;
+                background-color : #00BCD4;
+                border-radius    : 100%;
+                text-align       : center;
+                &:before {
+                    content     : "\e899";
+                    font-size   : 12px;
+                    line-height : 16px;
+                    color       : #FFFFFF;
+                    display     : block;
+                }
+            }
+            .ripple__range__openstate {
+                position : absolute;
+                height   : 100%;
+                width    : 100%;
+                overflow : hidden;
+                z-index  : 2;
+            }
+            .default__state {
+
+            }
+            .active__state-list__date {
+                float : left;
+                width : 80px;
+                span {
+                    display     : block;
+                    font-size   : 12px;
+                    color       : rgba(0, 0, 0, 0.26);
+                    line-height : 15px;
+                }
+            }
+            .active__state-list__description {
+                float       : left;
+                font-size   : 13px;
+                color       : rgba(0, 0, 0, 0.54);
+                line-height : 20px;
+                width       : calc(100% - 80px);
+            }
+
+            &:hover {
+                .actions_buttons {
+                    display : block;
+                    opacity : 1;
+
+                }
+            }
+        }
+        .active__state-list-item.open {
+            min-height : 256px;
+            .default__state {
+                display : none;
+            }
+        }
+
+        .active__state-list-item.no__borders {
+            border : none;
+        }
+
+        .separator {
+            position         : relative;
+            height           : 32px;
+            padding          : 0;
+            cursor           : pointer;
+            margin-top       : -1px;
+            background-color : #fff;
+            .qty {
+                width            : 32px;
+                height           : 32px;
+                border           : 1px solid #E1E1E1;
+                border-radius    : 100%;
+                background-color : #FFFFFF;
+                position         : absolute;
+                top              : 0;
+                left             : 26px;
+                text-align       : center;
+                line-height      : 32px;
+                font-size        : 12px;
+                color            : rgba(0, 0, 0, 0.26);
+                z-index          : 1;
+            }
+            hr {
+                position      : absolute;
+                top           : 15px;
+                left          : 0;
+                border        : none;
+                border-bottom : 1px solid #E1E1E1;
+                width         : 100%;
+                margin        : 0;
+                z-index       : 0;
+            }
+        }
+    }
+}
+
+

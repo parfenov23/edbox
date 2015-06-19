@@ -1,0 +1,114 @@
+.task-type {
+    margin-bottom : 40px;
+    > .title {
+        font-size     : 19px;
+        line-height   : 20px;
+        margin-bottom : 24px;
+        color         : rgba(0, 0, 0, .26);
+    }
+    @import 'basic_task_item';
+    .action-btns {
+        position         : absolute;
+        top              : 17px;
+        right            : 0;
+        @include clearfix;
+        background-color : #FFFFFF;
+        z-index          : 10;
+        display          : none;
+        .add-task, .add-comment, .complete, .more {
+            float        : left;
+            width        : 24px;
+            height       : 24px;
+            margin-right : 24px;
+        }
+        i {
+            font-family : 'Icons';
+            &:before {
+                font-size : 16px;
+
+                position  : absolute;
+                z-index   : 2;
+
+                cursor    : pointer;
+                color     : rgba(0, 0, 0, .26);
+            }
+        }
+        .add-task {
+            i {
+                &:before {
+                    content : '\E6BE';
+                }
+            }
+        }
+        .add-comment {
+            i {
+                &:before {
+                    content : '\E6EB';
+                }
+            }
+        }
+        .complete {
+            i {
+                &:before {
+                    content : '\E899';
+                }
+            }
+        }
+        .more {
+            i {
+                &:before {
+                    content : '\E8A6';
+                }
+            }
+        }
+    }
+
+    .basic-task-item {
+        cursor: pointer;
+    }
+}
+
+.task-type.grey {
+    .task-category {
+        background-color : #F8F8F8;
+        border-bottom    : 1px solid rgba(0, 0, 0, .12);
+        padding-bottom   : 24px;
+        &:last-child {
+            border : none;
+        }
+    }
+    .category-title {
+        position      : relative;
+        padding-left  : 72px;
+        @include clearfix;
+        padding-top   : 15px;
+        margin-bottom : 20px;
+        .cha-ico {
+            width    : 24px;
+            height   : 24px;
+            position : absolute;
+            top      : 15px;
+            left     : 24px;
+        }
+        .left {
+            float : left;
+        }
+        .right {
+            float         : right;
+            font-size     : 13px;
+            color         : rgba(0, 0, 0, .54);
+            padding-right : 54px;
+            em {
+                font-style : normal;
+                font-size  : 13px;
+                color      : rgba(0, 0, 0, 0.54);
+            }
+            span {
+                color : #000000;
+            }
+        }
+    }
+    .basic-task-item {
+        margin : 0 32px 0 28px;
+    }
+}

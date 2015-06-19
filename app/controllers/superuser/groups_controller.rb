@@ -9,10 +9,12 @@ module Superuser
 
     def edit
       @group = Group.find(params[:id])
+      @back_url = "/superuser/companies/#{@group.company.id}/edit?type=group"
     end
 
     def new
       @group = Group.new
+      @back_url = "/superuser/companies/#{params[:company_id]}/edit?type=group"
     end
 
     def create

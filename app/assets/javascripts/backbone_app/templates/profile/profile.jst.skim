@@ -1,0 +1,54 @@
+.content
+    .profile
+        .profile__item.user-info
+            form.ava
+                - ava = if @avatar then @avatar else '/assets/ava.png'
+                img#userAva(src==ava)
+                .upload__block
+                    input#imgInp name="ava" type="file"
+            .name =@name
+            - role = if @director then 'Директор' else 'Менеджер'
+            .level =role
+        .profile__item.change-pass
+            .icon
+            .title Создание нового пароля
+            .input-wrp
+                input type="password" name="old_pass" placeholder="Введите старый пароль"
+                hr
+            .input-wrp
+                input type="password" name="new_pass" placeholder="Введите пароль " editable="true"
+                hr
+            .input-wrp
+                input type="password" name="confirm_pass" placeholder="Повторите пароль"
+                hr
+
+        .profile__item.notification__settings
+            .icon
+            .title Настройка уведомлений
+            /.item.togglebutton
+                label
+                    | Перевод сделки из одного статуса в другой
+                    input type="checkbox" name="notice_1" checked=(to_boolean(@user['setting']['notice_1']) rescue false)
+
+            /.item.togglebutton
+                label
+                    | Уведомление о том, что участник закрыл абсолютно все дневные задачи на сегодня
+                    input type="checkbox" name="notice_2" checked=(to_boolean(@user['setting']['notice_2']) rescue false)
+            .custom-radio-holder
+                .legend Перевод сделки из одного статуса в другой
+                .item.togglebutton.custom-radio
+                    input#toggle-1.input type="checkbox" name='transfer_lead' checked=JSON.parse(@setting.transfer_lead or false)
+                    label.label for="toggle-1"
+                        i.circle
+                            i.ripple-effect.ripple-check
+                            i.ripple-effect.ripple-uncheck
+
+        .profile__item.save-changes
+            .btn.btn-raised.task__open-button-yes.profile_save СОХРАНИТЬ
+            .btn.btn-flat.task__open-button-cancel.profile_cancel ОТМЕНИТЬ
+
+    .clearfix
+
+    .nizya
+
+.blackout

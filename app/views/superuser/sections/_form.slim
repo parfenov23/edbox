@@ -1,0 +1,11 @@
+- action_url = @section.id.nil? ? "/superuser/sections" : "/superuser/sections/#{@section.id}"
+- method = @section.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="sections[title]" type="text" value="#{@section.title}"
+    input type="hidden" name="_method" value="#{method}"
+    input type="hidden" name="sections[course_id]" value="#{params[:course_id]}"
+    - if params[:course_id].to_s != ""
+        button.btn.btn-primary type="submit" Сохранить

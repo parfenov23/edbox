@@ -1,0 +1,24 @@
+@mixin placeholder($color, $fontsize, $lineheight) {
+    &::-webkit-input-placeholder {
+        font-size: $fontsize;
+        color: $color;
+        line-height: $lineheight;
+    }
+    &::-moz-placeholder {
+        font-size: $fontsize;
+        color: $color;
+        line-height: $lineheight;
+
+    }
+    &:-moz-placeholder {
+        font-size: $fontsize;
+        color: $color;
+        line-height: $lineheight;
+    }
+    &:-ms-input-placeholder {
+        font-size: $fontsize;
+        color: $color;
+        line-height: $lineheight;
+    }
+
+}

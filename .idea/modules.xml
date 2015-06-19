@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../best_chance/.idea/best_chance.iml" filepath="$PROJECT_DIR$/../best_chance/.idea/best_chance.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/edbox.iml" filepath="$PROJECT_DIR$/.idea/edbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../playfield/.idea/playfield.iml" filepath="$PROJECT_DIR$/../playfield/.idea/playfield.iml" />
     </modules>
   </component>
 </project>

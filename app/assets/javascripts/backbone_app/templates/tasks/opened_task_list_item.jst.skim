@@ -1,0 +1,21 @@
+.l-wrp class="#{@type.toLowerCase()}"
+  .icon.ico-task
+  .type =@task_type
+  .info =@content
+.r-wrp class="#{@type.toLowerCase()}"
+  - datetime = $.improve_date @today_date, @complete_till or @creation_date
+  .date ="#{datetime.date}, #{datetime.time}"
+  .action
+    .list-wrp.task-action
+      ul.action-category
+        li data-type="finish" Завершить
+        li data-type="edit" Редактировать
+      ul.action-category
+        li data-type='change_date' data-date="tomorrow" Перенести на завтра
+        li data-type='change_date' data-date="after_tomorrow" Перенести на послезавтра
+        li data-type='change_date' data-date="week" Перенести на неделю
+        li data-type='change_date' data-date="month" Перенести на месяц
+      .choose-time data-type='choose_date' Выбрать время
+    .list-wrp.note-action
+      ul.action-category
+        li data-type= "note-edit" Редактировать

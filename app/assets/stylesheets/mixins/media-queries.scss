@@ -1,0 +1,21 @@
+/* Стили для Media queries */
+
+$small    : 1280px;
+$sredniy  : 1440px;
+$large    : 1600px;
+$largest  : 1920px;
+
+@mixin respond-to($media) {
+  @if $media == small {
+    @media only screen and (min-width: $small + 1) and (max-width: $sredniy - 1) { @content; }
+  }
+  @else if $media == sredniy {
+    @media only screen and (min-width: $sredniy) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == large {
+    @media only screen and (min-width: $large) and (max-width: $largest - 1) { @content; }
+  }
+  @else if $media == largest {
+    @media only screen and (min-width: $largest) { @content; }
+  }
+}

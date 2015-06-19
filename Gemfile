@@ -2,10 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 gem 'mysql2'
-gem 'sass-rails'
-gem 'slim', '~> 3.0.2'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
@@ -16,12 +12,21 @@ gem 'faraday'
 gem 'bootstrap-material-design', '~> 0.1.7'
 gem 'faraday_middleware'
 gem "russian"
-gem "mini_magick"
-gem "autoprefixer-rails"
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'thin'
+gem 'babosa'
 
+# Frontend
+gem 'uglifier'
+gem 'sass-rails'
+gem 'autoprefixer-rails'
+gem 'mini_magick'
+gem 'slim', '~> 2.0.0'
+gem 'skim', '~> 0.9.3'
+gem 'without-rails'
+gem 'coffee-rails'
+gem 'carrierwave'
 group :development do
   gem 'pry'
   gem 'capistrano', '~> 3.0', require: false
@@ -30,5 +35,5 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1', require: false
   gem 'capistrano3-unicorn'
   gem 'net-ssh', '~> 2.7.0'
-  gem 'spring'
+  # gem 'spring'
 end

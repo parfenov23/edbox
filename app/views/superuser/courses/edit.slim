@@ -1,0 +1,24 @@
+h2
+    = "Редактирование курса #{@course.title}"
+hr
+
+= render "superuser/courses/form"
+
+hr
+- sections = @course.sections
+ul.nav.nav-tabs
+    li.category_active class="active" role="presentation"
+        a href="/superuser/courses/#{@course.id}/edit"
+            = "Разделы (#{sections.count})"
+
+.list-group.row
+    .list-group-item.active
+        a.btn.btn-success href="/superuser/sections/new?course_id=#{@course.id}"  Добавить раздел
+    - sections.each do |section|
+        .list-group-item.col-md-6
+            span
+                = section.title
+            a.btn.btn-danger.pull-right href="/superuser/sections/#{section.id}/remove"  data-method='delete'
+                | Удалить
+            a.btn.btn-success.pull-right href="/superuser/sections/#{section.id}/edit?course_id=#{@course.id}" style="margin-right: 5px;"
+                | Редактировать

@@ -1,0 +1,27 @@
+h2
+    = "Редактирование рездела #{@section.title}"
+hr
+
+= render "superuser/sections/form"
+
+ul.nav.nav-tabs
+    li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
+        a href="/superuser/groups/#{@section.id}/edit"
+            = "Материалы"
+    li.category_active class="#{params[:type] == 'close_task' ? 'active' : ''}" role="presentation"
+        a href="/superuser/groups/#{@section.id}/edit?type=close_task"
+            = "Завершающие задание"
+
+- if params[:type].to_s == ''
+    = render "superuser/sections/attachments", {:section => @section}
+- if params[:type] == 'add_user'
+    .list-group.row
+        .list-group-item.active
+            |Участники не состоящие в группе
+        - bunch_groups_ids = @group.bunch_groups.map{|bg| bg.user_id}
+        - @group.company.users.where.not(id: bunch_groups_ids).each do |user|
+            .list-group-item.col-md-6
+                span
+                    = user.first_name
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_user?user_id=#{user.id}" style="margin-right: 5px;"
+                    | Добавить
