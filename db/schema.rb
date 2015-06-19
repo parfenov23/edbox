@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616143038) do
+ActiveRecord::Schema.define(version: 20150617110024) do
 
   create_table "bunch_groups", force: true do |t|
     t.integer  "user_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150616143038) do
     t.boolean  "corporate",       default: false
     t.string   "first_name"
     t.integer  "group_id"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

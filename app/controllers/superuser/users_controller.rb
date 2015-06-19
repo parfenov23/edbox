@@ -27,7 +27,7 @@ module Superuser
       else
         back_url = "/superuser/users/new"
         params_error = "?company_id=#{params[:company_id]}&error=error"
-        redirect_to  back_url + params_error
+        redirect_to back_url + params_error
       end
     end
 
@@ -45,7 +45,7 @@ module Superuser
       else
         back_url = "/superuser/users/#{params[:id]}/edit"
         params_error = "?company_id=#{params[:company_id]}&error=error"
-        redirect_to  back_url + params_error
+        redirect_to back_url + params_error
       end
     end
 
@@ -57,7 +57,7 @@ module Superuser
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :password, :director, :corporate, :company_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
     end
 
   end
