@@ -20,7 +20,7 @@ module Api::V1
       group = find_group
       unless group.nil?
         group_json = group.as_json.as_json(:except => Group.except_attr)
-        group_json[:users] = group.bunch_groups.map{|bg| bg.user.as_json(:except => User.except_attr)}
+        group_json[:users] = group.bunch_groups.map { |bg| bg.user.as_json(:except => User.except_attr) }
         render json: group_json
       else
         render_error(400, 'Проверьте данные')
@@ -33,24 +33,9 @@ module Api::V1
       unless group.nil?
         arr_hash_users = emails.map do |email|
           user = User.find_by_email(email)
-          if user.nil?
-            user = User.build(
-              {
-                email: email,
-                first_name: "Пользователь",
-                director: false,
-                corporate: true,
-                company_id: current_user.company_id,
-                password: SecureRandom.hex(8),
-                group_id: group.id
-              }
-            )
-          else
-            user.group_id = group.id
-          end
+          user = User.build_default(current_user.company_id, email) if user.nil?
           if (user.save rescue false)
-            bunch_group = BunchGroup.build(user.id, group.id)
-            bunch_group.save
+            BunchGroup.build(user.id, group.id).save
             user.transfer_to_json
           end
         end
@@ -63,7 +48,6 @@ module Api::V1
       group = get_find_group
       arr_hash_users = []
       unless group.nil?
-        # bunch_group = group.bunch_groups
         users = group.company.users
         arr_hash_users = emails.map do |email|
           user = users.find_by_email(email)
@@ -77,10 +61,7 @@ module Api::V1
     def destroy
       group = get_find_group
       unless group.nil?
-        group.users.each do |user|
-          user.group_id = nil
-          user.save
-        end
+        BunchGroup.where(group_id: group.id).destroy_all
         group.destroy
       end
       render json: {success: true}

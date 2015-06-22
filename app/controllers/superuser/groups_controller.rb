@@ -29,11 +29,12 @@ module Superuser
     end
 
     def remove
-      Group.find(params[:id]).users.each do |user|
+      group = Group.find(params[:id])
+      group.users.each do |user|
         user.group_id = nil
         user.save
       end
-      Group.find(params[:id]).destroy
+      group.destroy
       redirect_to :back
     end
 
@@ -47,6 +48,15 @@ module Superuser
       user = User.find(params[:user_id])
       user.bunch_groups.where(group_id: params[:id]).destroy_all
       redirect_to :back
+    end
+
+    def add_course
+      @group = Group.find(params[:id])
+      @bunch_course = BunchCourse.new
+    end
+
+    def update_course
+
     end
 
     def params_group

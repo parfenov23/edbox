@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618091948) do
+ActiveRecord::Schema.define(version: 20150619120236) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
     t.string   "file_type"
     t.string   "attachmentable_type"
     t.integer  "attachmentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bunch_courses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.datetime "date_start"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
