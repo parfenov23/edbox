@@ -34,5 +34,27 @@ $(document).ready(function(){
     headerTabsLine();
   },10);
 
+  profilePasswordChangeValidation = function(){
+    $('#profile input').blur(function(){
+      var pass = $('#profile input[name=password]').val();
+      var pass_repeat = $('#profile input[name=password_repeat]').val();
+      if (pass == pass_repeat){
+        $('#profile input[name=password_repeat]').removeClass('error');
+      }
+      else {
+        $('#profile input[name=password_repeat]').addClass('error');
+      }
+    });
+  }
+
+  profilePasswordChange = function(){
+
+  }
+
+  profilePasswordChangeValidation();
+  profilePasswordChange();
+
+
+
 
 });
