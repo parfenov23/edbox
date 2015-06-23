@@ -18,7 +18,7 @@ module Superuser
     def create
       course = Course.new(params_course)
       course.save
-      redirect_to "/superuser/courses/#{course.id}/edit"
+      redirect_to edit_superuser_course_path(course.id)
     end
 
     def update

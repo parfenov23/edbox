@@ -9,13 +9,13 @@ module Superuser
 
     def edit
       @user = find_user
-      @back_url = "/superuser/companies/#{params[:company_id]}/edit" if params[:back_url] == "company"
+      @back_url = edit_superuser_company_path(params[:company_id]) if params[:back_url] == "company"
     end
 
     def new
       @user = User.new
-      @back_url = "/superuser/groups/#{params[:group_id]}/edit" if params[:back_url] == "groups"
-      @back_url = "/superuser/companies/#{params[:company_id]}/edit" if params[:back_url] == "company"
+      @back_url = edit_superuser_group_path(params[:group_id]) if params[:back_url] == "groups"
+      @back_url = edit_superuser_company_path(params[:company_id]) if params[:back_url] == "company"
     end
 
     def create
@@ -23,12 +23,12 @@ module Superuser
       if user.valid? && user_params[:password].length > 4
         user.save
         if params[:company_id].to_s != ""
-          redirect_to "/superuser/companies/#{params[:company_id]}/edit"
+          redirect_to edit_superuser_company_path(params[:company_id])
         else
-          redirect_to "/superuser/users/#{user.id}/edit?back_url=#{params[:back_url]}"
+          redirect_to edit_superuser_user_path(user.id, params: {back_url: params[:back_url]})
         end
       else
-        back_url = "/superuser/users/new"
+        back_url = new_superuser_user_path
         params_error = "?company_id=#{params[:company_id]}&error=error&back_url=#{params[:back_url]}"
         redirect_to back_url + params_error
       end
@@ -41,9 +41,9 @@ module Superuser
       if user.valid?
         user.update(permit_params)
         if params[:company_id].to_s != ""
-          redirect_to "/superuser/companies/#{params[:company_id]}/edit"
+          redirect_to edit_superuser_company_path(params[:company_id])
         else
-          redirect_to "/superuser/users/#{user.id}/edit"
+          redirect_to edit_superuser_user_path(user.id)
         end
       else
         back_url = "/superuser/users/#{params[:id]}/edit"

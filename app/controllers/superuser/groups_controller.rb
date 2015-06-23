@@ -9,18 +9,18 @@ module Superuser
 
     def edit
       @group = find_group
-      @back_url = "/superuser/companies/#{@group.company.id}/edit?type=group"
+      @back_url = (edit_superuser_company_path(params[:company_id], params: {type: 'group'}) rescue nil)
     end
 
     def new
       @group = Group.new
-      @back_url = "/superuser/companies/#{params[:company_id]}/edit?type=group"
+      @back_url = edit_superuser_company_path(params[:company_id], params: {type: 'group'})
     end
 
     def create
       group = Group.new(params_group)
       group.save
-      redirect_to "/superuser/groups/#{group.id}/edit"
+      redirect_to edit_superuser_group_path(group.id, params:{company_id: group.company_id})
     end
 
     def update

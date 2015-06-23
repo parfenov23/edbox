@@ -30,6 +30,11 @@ module Api::V1
       end
     end
 
+    def signout
+      session[:user_key] = nil
+      render json:{success: true}
+    end
+
     private
 
     def user_params

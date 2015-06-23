@@ -2,13 +2,14 @@ Rails.application.routes.draw do
 
   root to: 'application#index_page'
   get ":action" => "home#:action"
-  
+
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [] do
         collection do
           post :auth
           post :registration
+          get :signout
         end
       end
       resources :users, only: [] do
