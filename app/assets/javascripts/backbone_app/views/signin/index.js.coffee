@@ -13,7 +13,6 @@ BackboneApp.Views signin: index: Backbone.Marionette.ItemView.extend
         $.cookie('user_key', m.user_key)
         _.extend BackboneApp.current_user.attributes, m
         @trigger 'menu:update'
-        console.log 123
         location.href = '/profile'
       error: (m) =>
         @show_error m.responseJSON.error, 5000

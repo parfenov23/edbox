@@ -2,3 +2,5 @@
 #menus
 #main
 #alert
+  .text
+  .close ×

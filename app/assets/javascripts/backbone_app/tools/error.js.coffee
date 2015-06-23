@@ -1,9 +1,12 @@
 $.show_error = show_error = (text, duration) ->
   el = $('#alert')
-  el.text(text).show 300
-  setTimeout ->
+  el.find('.text').text(text)
+  el.show 300
+  el.find('.close').click ->
     el.hide 400
-  , duration or 3000
+  setTimeout ->
+      el.hide 400
+  , duration or 5000
 
 Backbone.View::route_error = $.route_error = (xhr) ->
   switch xhr.status
@@ -16,4 +19,4 @@ Backbone.View::route_error = $.route_error = (xhr) ->
       show_error 'Не удалось загрузить страницу'
 
 Backbone.View::show_error = (text, duration) ->
-  show_error text, duration or 3000
+  show_error text, duration or 5000

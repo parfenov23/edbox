@@ -39,7 +39,7 @@ $(document).ready(function(){
       var data = $('.profile__main').serialize();
       $.ajax({
         type: 'POST',
-        url: '/api/v1/users/update',
+        url: '/api/v1/users',
         data: data
       }).success(function(){
           console.log('Ушло');

@@ -106,8 +106,8 @@ BackboneApp.Views signup:
           $.cookie('user_key', m.user_key)
           # _.extend BackboneApp.current_user.attributes, m
           # @trigger 'menu:update'
-          location.href = '#profile'
+          location.href = '/profile'
         error  : (xhr) =>
-          response = xhr.responseJSON
-          @show_error response.error, 5000
+          # response = xhr.responseJSON
+          # @show_error response.error, 5000
           location.href = '#signin' if response.user

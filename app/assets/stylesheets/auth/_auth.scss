@@ -184,6 +184,7 @@
     width: 100%;
     &:before {
       position: absolute;
+      z-index: 12;
       font: 14px/14px 'Icons';
       color: rgba(0,0,0,.54);
     }

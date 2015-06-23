@@ -8,10 +8,13 @@
       img.ava src="/images/ava.png"
     .data
       .input-wrp.name
-        input type="text" name="name" placeholder="Имя и фамилия" value="#{current_user.first_name + ' ' + current_user.last_name}"
+        input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
+        hr
+      .input-wrp.name
+        input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
         hr
       .input-wrp.state
-        input type="text" name="state" placeholder="Должность" value="#{current_user.job}"
+        input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
         hr
       .account
         span>Ваш персональный ID:
