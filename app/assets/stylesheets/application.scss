@@ -107,6 +107,7 @@ i {
   transition       : all .3s ease;
   text-align       : center;
   text-transform   : uppercase;
+  cursor: pointer;
   border: 0;
   &.inactive {
     opacity : .5;
