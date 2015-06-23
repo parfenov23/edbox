@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         collection do
           get :info
           post :invite
+          post :change_password
         end
       end
       resources :groups do
