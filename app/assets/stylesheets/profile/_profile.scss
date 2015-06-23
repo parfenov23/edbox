@@ -59,5 +59,15 @@
       font: 400 13px/13px 'Roboto';
       color: rgba(0,0,0,.26);
     }
+    input:focus + hr {
+      border-bottom: 2px solid #00bcd8;
+    }
+    input.error {
+      border-bottom: 1px solid #f50057;
+    }
+    input.error:focus + hr {
+      border-bottom: 2px solid #f50057;
+    }
+
   }
 }
