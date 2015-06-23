@@ -8,7 +8,7 @@ module Superuser
     end
 
     def edit
-      @user = User.find(params[:id])
+      @user = find_user
       @back_url = "/superuser/companies/#{params[:company_id]}/edit" if params[:back_url] == "company"
     end
 
@@ -37,7 +37,7 @@ module Superuser
     def update
       permit_params = user_params
       permit_params.delete(:password) if permit_params[:password].to_s.length == 0
-      user = User.find(params[:id])
+      user = find_user
       if user.valid?
         user.update(permit_params)
         if params[:company_id].to_s != ""
@@ -53,11 +53,15 @@ module Superuser
     end
 
     def remove
-      User.find(params[:id]).destroy
+      find_user.destroy
       redirect_to :back
     end
 
     private
+
+    def find_user
+      User.find(params[:id])
+    end
 
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)

@@ -8,7 +8,7 @@ module Superuser
     end
 
     def edit
-      @company = Company.find(params[:id])
+      @company = find_company
     end
 
     def new
@@ -22,15 +22,19 @@ module Superuser
     end
 
     def update
-      Company.find(params[:id]).update({first_name: params[:first_name]})
+      find_company.update({first_name: params[:first_name]})
       redirect_to :back
     end
 
     def remove
-      Company.find(params[:id]).users.destroy_all
-      Company.find(params[:id]).groups.destroy_all
-      Company.find(params[:id]).destroy
+      find_company.destroy
       redirect_to :back
+    end
+
+    private
+
+    def find_company
+      Company.find(params[:id])
     end
   end
 end

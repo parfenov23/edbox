@@ -8,7 +8,7 @@ module Superuser
     end
 
     def edit
-      @group = Group.find(params[:id])
+      @group = find_group
       @back_url = "/superuser/companies/#{@group.company.id}/edit?type=group"
     end
 
@@ -29,7 +29,7 @@ module Superuser
     end
 
     def remove
-      group = Group.find(params[:id])
+      group = find_group
       group.users.each do |user|
         user.group_id = nil
         user.save
@@ -51,12 +51,18 @@ module Superuser
     end
 
     def add_course
-      @group = Group.find(params[:id])
+      @group = find_group
       @bunch_course = BunchCourse.new
     end
 
     def update_course
 
+    end
+
+    private
+
+    def find_group
+      Group.find(params[:id])
     end
 
     def params_group

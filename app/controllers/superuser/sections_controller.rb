@@ -8,7 +8,7 @@ module Superuser
     end
 
     def edit
-      @section = Section.find(params[:id])
+      @section = find_section
       @back_url = "/superuser/courses/#{@section.course_id}/edit"
     end
 
@@ -24,14 +24,20 @@ module Superuser
     end
 
     def update
-      section = Section.find(params[:id])
+      section = find_section
       section.update(params_course)
       redirect_to "/superuser/courses/#{section.course_id}/edit"
     end
 
     def remove
-      Section.find(params[:id]).destroy
+      find_section.destroy
       redirect_to :back
+    end
+
+    private
+
+    def find_section
+      Section.find(params[:id])
     end
 
     def params_course

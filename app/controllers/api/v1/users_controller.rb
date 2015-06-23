@@ -16,10 +16,28 @@ module Api::V1
       render json: {users: arr_hash_users}
     end
 
+    def update
+      user = find_user
+      permit_params = user_params
+      permit_params.delete(:password) if permit_params[:password].to_s.length == 0
+      permit_params[:director] = user.director
+
+      if user.valid?
+        user.update(permit_params)
+        render json: user.transfer_to_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     private
 
     def is_director
       render_error(401, 'Недостаточно прав') unless current_user.director
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
     end
 
   end

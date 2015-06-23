@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :bunch_groups
   before_create :create_hash_key
   validates :email, presence: true
+  EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
 
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
@@ -35,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def transfer_to_json
-    result = as_json.as_json(:except => User.except_attr)
+    result = as_json(:except => EXCEPT_ATTR)
     result
   end
 
@@ -59,6 +60,6 @@ class User < ActiveRecord::Base
   end
 
   def self.except_attr
-    ["password_digest", "created_at", "updated_at"]
+
   end
 end
