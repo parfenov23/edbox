@@ -8,7 +8,7 @@ module Superuser
     end
 
     def edit
-      @course = Course.find(params[:id])
+      @course = find_course
     end
 
     def new
@@ -22,13 +22,19 @@ module Superuser
     end
 
     def update
-      Course.find(params[:id]).update(params_course)
+      find_course.update(params_course)
       redirect_to :back
     end
 
     def remove
-      Course.find(params[:id]).destroy
+      find_course.destroy
       redirect_to :back
+    end
+
+    private
+
+    def find_course
+      Course.find(params[:id])
     end
 
     def params_course

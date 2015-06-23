@@ -3,7 +3,7 @@ module Api::V1
     before_action :is_director, only: [:create, :invite, :remove_user]
 
     def index
-      groups = current_user.all_groups.as_json(:except => Group.except_attr)
+      groups = current_user.all_groups.as_json(:except => Group::EXCEPT_ATTR)
       render json: groups
     end
 
@@ -19,8 +19,8 @@ module Api::V1
     def show
       group = find_group
       unless group.nil?
-        group_json = group.as_json.as_json(:except => Group.except_attr)
-        group_json[:users] = group.bunch_groups.map { |bg| bg.user.as_json(:except => User.except_attr) }
+        group_json = group.transfer_to_json
+        group_json[:users] = group.bunch_groups.map { |bg| bg.user.transfer_to_json }
         render json: group_json
       else
         render_error(400, 'Проверьте данные')
@@ -70,7 +70,7 @@ module Api::V1
     def update
       group = get_find_group
       group.update(group_params) unless group.nil?
-      render json: group.as_json(:except => Group.except_attr)
+      render json: group.transfer_to_json
     end
 
     private

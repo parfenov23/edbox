@@ -1,12 +1,13 @@
 module Api::V1
   class SessionsController < ::ApplicationController
-    skip_before_filter :verify_authenticity_token
-    protect_from_forgery unless: -> { request.format.json? }
+    # skip_before_filter :verify_authenticity_token
+    # protect_from_forgery unless: -> { request.format.json? }
     skip_before_action :authorize
 
     def auth
       user_auth = User.auth(params[:user])
       unless user_auth.nil?
+        session[:user_key] = user_auth["user_key"]
         render json: user_auth
       else
         render_error(401, 'Не удалось пройти аутентификацию, проверьте введенные данные')
