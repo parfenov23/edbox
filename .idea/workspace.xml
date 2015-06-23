@@ -4,7 +4,6 @@
     <list default="true" id="8d4fc607-cb42-47fe-8a9d-3e9e89a45ba0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../playfield/app/uploaders/media_link_image_uploader.rb" afterPath="$PROJECT_DIR$/../playfield/app/uploaders/media_link_image_uploader.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="edbox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +42,8 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28366247">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.59066427">
+              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+              <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -109,7 +108,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-12.214286">
               <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-              <folding />
+              <folding>
+                <marker date="1435068246000" expanded="true" signature="0:241" placeholder="#header__holder" />
+                <marker date="1435068246000" expanded="true" signature="242:1173" placeholder=".content#profile" />
+                <marker date="1435068246000" expanded="true" signature="1162:1173" placeholder=".btn-default.btn__orange сохранить" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1091,7 +1094,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.214286">
           <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding />
+          <folding>
+            <marker date="1435068246000" expanded="true" signature="0:241" placeholder="#header__holder" />
+            <marker date="1435068246000" expanded="true" signature="242:1173" placeholder=".content#profile" />
+            <marker date="1435068246000" expanded="true" signature="1162:1173" placeholder=".btn-default.btn__orange сохранить" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1106,7 +1113,7 @@
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+          <caret line="67" column="14" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -1149,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28366247">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.59066427">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding />
         </state>
       </provider>
