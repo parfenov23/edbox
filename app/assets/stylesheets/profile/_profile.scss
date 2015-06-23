@@ -26,11 +26,38 @@
     .data {
       float: left;
       width: 328px;
+      .name {
+        font: 400 18px/1 'Roboto';
+        color: rgba(0,0,0,.87);
+        margin: 0 0 12px 0;
+      }
+      .state {
+        font: 400 13px/1 'Roboto';
+        color: rgba(0,0,0,.87);
+        margin: 0 0 24px 0;
+      }
+      .account {
+        font: 400 13px/1 'Roboto';
+        color: rgba(0,0,0,.54);
+        .number {
+          color: rgba(0,0,0,.87);
+        }
+      }
     }
   }
 
 
   .profile__password {
-
+    padding: 24px 24px 72px 32px;
+    .title {
+      font: 400 18px/18px 'Roboto';
+      color: rgba(0,0,0,.54);
+      margin: 0 0 32px 0;
+    }
+    .password {
+      margin: 0 0 12px 0;
+      font: 400 13px/13px 'Roboto';
+      color: rgba(0,0,0,.26);
+    }
   }
 }

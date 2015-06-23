@@ -7,16 +7,26 @@
     .avatar
       img.ava src="/images/ava.png"
     .data
-      .input-wrp.password
-        input name="name" value="Константин Констнтинов"
+      .input-wrp.name
+        input type="text" name="name" value="Дарья Ивнова"
         hr
-      .input-wrp.password
-        input name="state" value="Менеджер"
+      .input-wrp.state
+        input type="text" name="state" value="Менеджер"
         hr
       .account
         span>Ваш персональный ID:
         span.number KLI55233DF4
-    .btn сохранить
+    .btn-holder
+      .btn-default.btn__orange сохранить
 
 
   .profile__block.profile__password
+    .title Создание нового пароля
+    .input-wrp.password
+      input type="password" name="state" placeholder="Введите пароль"
+      hr
+    .input-wrp.password
+      input type="password" name="state" placeholder="Повторите пароль"
+      hr
+    .btn-holder
+      .btn-default.btn__orange сохранить

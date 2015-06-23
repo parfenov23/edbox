@@ -53,5 +53,5 @@
 
       .have__acc
         a.auth__what href='#signin' У меня уже есть аккаунт
-      .btn-holdr
+      .btn-holder
         .btn.btn-default.btn-standart.btn-raised.auth__submit Создать аккаунт
