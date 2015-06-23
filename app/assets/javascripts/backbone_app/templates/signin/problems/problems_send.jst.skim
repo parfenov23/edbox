@@ -6,5 +6,5 @@
     .auth__problem.auth__top#problem-parent
       .auth__title Ваш вопрос отправлен. В ближайщее время мы свяжемся с вами.
 
-      .btn-holdr
-        button.btn.btn-default.btn-raised.auth__button.auth__button-yes#submit ОК
+      .btn-holder
+        button.btn.btn-default.btn-raised.auth__button.auth__button-yes.btn__cyan#submit ОК

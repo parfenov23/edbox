@@ -32,7 +32,7 @@ $(document).ready(function(){
 
   setTimeout(function(){
     headerTabsLine();
-  },0);
+  },10);
 
 
 });

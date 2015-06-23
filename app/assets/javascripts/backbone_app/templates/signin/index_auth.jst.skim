@@ -16,8 +16,8 @@
 
       .create__acc
         a.auth__what href="/#signup" Создать новый аккаунт
-      .btn-holdr
-        button.btn__raised.btn__cyan#submit Войти
+      .btn-holder
+        button.btn-default.btn__cyan#submit Войти
     .auth__bottom
       .title Авторизоваться через:
       ul.social__links

@@ -77,11 +77,7 @@
       &-text {
         font: 300 13px/20px 'Roboto';
       }
-      .btn-holdr {
-        position: absolute;
-        right: 24px;
-        bottom: 8px;
-        @include clearfix;
+      .btn-holder {
         .auth__submit {
           float: right;
           background: #00bcd4;
@@ -198,7 +194,7 @@
       &:before {
         top: 9px;
         left: 4px;
-        content: '\e8d8';
+        content: '\e8d9';
       }
     }
     &.password {
@@ -244,7 +240,7 @@
         color: rgba(0,0,0,.54);
       }
       &.auth__reg-data:before {
-        content: '\e8d8';
+        content: '\e8d9';
       }
       &.auth__reg-secutity:before {
         content: '\e637';
@@ -391,5 +387,15 @@
         float: right;
       }
     }
+  }
+
+
+
+}
+
+.what__wrp {
+  &-link {
+    font: 400 13px/20px 'Roboto';
+    color: rgba(0,0,0,.54);
   }
 }
