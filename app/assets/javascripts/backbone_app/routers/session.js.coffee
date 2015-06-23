@@ -25,6 +25,16 @@ controller =
 
   signout: ->
     $.removeCookie 'user_key'
+    $.ajax
+      type: 'GET'
+      url: '/api/v1/sessions/signout'
+      success: (m) =>
+        # show_error('Успех',1000)
+        console.log '111'
+      error: (m) =>
+        # show_error('Ошибка',1000)
+        console.log '222'
+
     location.href = '#signin'
 
   oferta: ->
