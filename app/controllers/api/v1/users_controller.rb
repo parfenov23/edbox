@@ -30,6 +30,15 @@ module Api::V1
       end
     end
 
+    def change_password
+      current_user.password = params[:password]
+      if (current_user.save rescue false)
+        render json: current_user.transfer_to_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     private
 
     def is_director
