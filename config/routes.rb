@@ -48,6 +48,9 @@ Rails.application.routes.draw do
         get :remove
         get :add_user
         get :remove_user
+        get :add_course
+        post :update_course
+        get :edit_course
       end
     end
     resources :courses do

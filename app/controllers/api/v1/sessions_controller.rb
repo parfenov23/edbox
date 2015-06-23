@@ -18,9 +18,7 @@ module Api::V1
       permit_params[:director] = permit_params[:corporate].to_s
       if permit_params[:director].to_s == "true"
         company = Company.build(params[:company])
-        if company.save
-          permit_params[:company_id] = company.id
-        end
+        permit_params[:company_id] = company.id if company.save
       end
       user = User.build(permit_params)
       if (user.save rescue false)

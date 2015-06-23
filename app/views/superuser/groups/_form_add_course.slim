@@ -1,0 +1,11 @@
+- action_url = @bunch_course.id.nil? ? "/superuser/groups/#{@group.id}/update_course?type=new" : "/superuser/groups/#{@group.id}/update_course?type=new"
+- method = "post"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Курс:
+        = select_tag 'company_id', options_for_select(Course.all.collect { |ac| [ac.title, ac.id] }, @bunch_course.id), {:class => 'form-control'}
+
+    input type="hidden" name="_method" value="#{method}"
+    input type="hidden" name="bunch_group_id" value="#{@bunch_course.id}"
+    button.btn.btn-primary type="submit" Сохранить

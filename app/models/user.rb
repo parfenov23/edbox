@@ -21,6 +21,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def build_default(company_id, email)
+    User.build(
+      {
+        email: email,
+        first_name: "Пользователь",
+        director: false,
+        corporate: true,
+        company_id: company_id,
+        password: SecureRandom.hex(8)
+      }
+    )
+  end
+
   def transfer_to_json
     result = as_json.as_json(:except => User.except_attr)
     result
