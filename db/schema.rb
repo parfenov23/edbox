@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623111823) do
+ActiveRecord::Schema.define(version: 20150623112831) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150623111823) do
     t.integer  "group_id"
     t.string   "last_name"
     t.string   "job",             default: "Должность"
+    t.text     "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

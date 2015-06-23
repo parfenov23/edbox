@@ -1,3 +1,5 @@
+require 'base64'
+require 'resize_image'
 module Api::V1
   class UsersController < ::ApplicationController
     before_action :is_director, only: [:invite]
@@ -36,6 +38,21 @@ module Api::V1
         render json: current_user.transfer_to_json
       else
         render_error(500, 'Проверьте данные')
+      end
+    end
+
+    def update_avatar
+      unless params[:avatar].nil?
+        img = ResizeImage.crop(params[:avatar].path)
+        img_base64 = Base64.encode64(File.open(img.path, "rb").read)
+        current_user.avatar = img_base64
+        if (current_user.save rescue false)
+          render json: {base64: current_user.transfer.to_json}
+        else
+          render_error(500, 'Проверьте данные')
+        end
+      else
+        render json: {error: "You do not pass the picture"}
       end
     end
 

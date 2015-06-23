@@ -8,14 +8,15 @@
       img.ava src="/images/ava.png"
     .data
       .input-wrp.name
-        input type="text" name="name" value="#{current_user.first_name}"
+        input type="text" name="name" value="#{current_user.first_name + ' ' + current_user.last_name}"
         hr
       .input-wrp.state
-        input type="text" name="state" value="Менеджер"
+        input type="text" name="state" value="#{current_user.job}"
         hr
       .account
         span>Ваш персональный ID:
-        span.number KLI55233DF4
+        span.number
+            = current_user.user_key
     .btn-holder
       .btn-default.btn__orange сохранить
 
