@@ -34,6 +34,21 @@ $(document).ready(function(){
     headerTabsLine();
   },10);
 
+  profileDataChange = function(){
+    $('.profile__main #submit').click(function(){
+      var data = $('.profile__main').serialize();
+      $.ajax({
+        type: 'POST',
+        url: '/api/v1/users/update',
+        data: data
+      }).success(function(){
+          console.log('Ушло');
+      }).error(function(){
+          console.log('Не ушло');
+      });
+    });
+  }
+
   profilePasswordChangeValidation = function(){
     $('#profile input').blur(function(){
       var pass = $('#profile input[name=password]').val();
@@ -48,11 +63,24 @@ $(document).ready(function(){
   }
 
   profilePasswordChange = function(){
-
+    $('.profile__password #submit').click(function(){
+      var data = $('.profile__password input[name=password]').serialize();
+      $.ajax({
+        type: 'POST',
+        url: '/api/v1/users/change_password',
+        data: data
+      }).success(function(){
+          console.log('Ушло');
+      }).error(function(){
+          console.log('Не ушло');
+      });
+    });
   }
 
+  profileDataChange();
   profilePasswordChangeValidation();
   profilePasswordChange();
+
 
 
 
