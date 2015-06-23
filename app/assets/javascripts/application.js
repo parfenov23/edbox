@@ -21,3 +21,18 @@
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
+
+
+$(document).ready(function(){
+
+  headerTabsLine = function(){
+    var width = $('.tabs__item.active').outerWidth();
+    $('.header__bottom .tabs .line').css({'width':width+'px'});
+  }
+
+  setTimeout(function(){
+    headerTabsLine();
+  },0);
+
+
+});

@@ -1,0 +1,104 @@
+.header__top
+  .logo.logo__ed
+    img.logo__img src="assets/header__edbox.png"
+  .logo.logo__ad
+    img.logo__img src="assets/header__adconsult.png"
+
+
+  .header__icons.header__user
+    img.ava src="/images/ava.png"
+    .menu__user
+      .top
+        .avatar
+          img.ava src="/images/ava.png"
+        .text
+          .name Name
+          .login Login
+
+      ul.menu
+        li.menu__item
+          a.menu__item-link.menu__item-schedule href="schedule" Расписание и аналитика
+        li.menu__item
+          a.menu__item-link.menu__item-profile href="profile" Мой профиль
+        li.menu__item
+          a.menu__item-link.menu__item-company href="company" Моя компания
+        li.menu__item
+          a.menu__item-link.menu__item-groups href="groups" Группы
+        li.menu__item
+          a.menu__item-link.menu__item-courses href="courses" Курсы
+
+      .account
+        .avatar
+          img.ava src="/images/ava.png"
+        .text
+          .name Name
+          .login Login
+
+      .account
+        .avatar
+          img.ava src="/images/ava.png"
+        .text
+          .name Name
+          .login Login
+
+      .bottom
+        .btn__raised.add__acc добавить аккаунт
+        .btn__flat.exit выход
+
+
+
+  .header__icons.header__apps
+    i.icon
+    ul.menu__apps
+      li.menu__apps-item.last__row
+        .menu__apps-item-img-holder
+          img.menu__apps-item-img src="assets/edbox.png"
+        .menu__apps-item-text Доступно с сентября 2015
+
+      li.menu__apps-item.last__row
+        .menu__apps-item-img-holder
+          img.menu__apps-item-img src="assets/markethub.png"
+        .menu__apps-item-text Доступно с ноября 2015
+
+      li.menu__apps-item.last__row
+        .menu__apps-item-img-holder
+          img.menu__apps-item-img src="assets/pf.png"
+        .menu__apps-item-text Доступно с декабря 2015
+
+  - header_top_arr.each do |header_top|
+    - case header_top
+    - when "notifications"
+      .header__icons.header__notifications
+        i.icon
+        .number 3
+        .menu__notifications
+          .menu__notifications-top
+            .notifications__title Нет непрочитанных уведомлений
+            ul.list
+              li.list__item
+                .name
+                  span> Новый курс:
+                  span.title “Как публиковать посты в 50 социальных сетях одновременно?”
+                .time 12 минут назад
+                .eye
+              li.list__item
+                .name
+                  span> У вас есть непройденный курс
+                  span.title “Экономьте ваше время вместе с Favitimer”
+                .time 2 часа назад
+                .eye
+              li.list__item
+                .name
+                  span> Курс
+                  span.title> “10 основных приемов продвижения бренда в социальных сетях”
+                  span> начнется через 2 дня
+                .time 12 марта 15:30
+                .eye
+
+          .menu__notifications-bottom
+            .notifications__title Прочитанные уведомления
+
+
+
+  .header__icons.header__courses
+    a.icon href="/courses"

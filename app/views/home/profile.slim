@@ -1,1 +1,22 @@
-|123
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom_arr: [{block:"title", title: 'Мой профиль'},
+                                                      {block:"tabs"}]}
+.content#profile
+  .profile__block.profile__main
+    .avatar
+      img.ava src="/images/ava.png"
+    .data
+      .input-wrp.password
+        input name="name" value="Константин Констнтинов"
+        hr
+      .input-wrp.password
+        input name="state" value="Менеджер"
+        hr
+      .account
+        span>Ваш персональный ID:
+        span.number KLI55233DF4
+    .btn сохранить
+
+
+  .profile__block.profile__password

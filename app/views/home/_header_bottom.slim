@@ -1,0 +1,30 @@
+.header__bottom
+  - header_bottom_arr.each do |header_bottom|
+    - case header_bottom[:block]
+    - when "arrow"
+      .arrow.icon
+    - when "title"
+      .title
+        = header_bottom[:title]
+    - when "tabs"
+      ul.tabs
+        li.tabs__item.active
+          a.tabs__item-link href="#" персональные данные
+        li.tabs__item
+          a.tabs__item-link href="#" уведомления
+        li.tabs__item
+          a.tabs__item-link href="#" тариф
+        li.tabs__item
+          a.tabs__item-link href="#" аналитика
+        li.tabs__item
+          a.tabs__item-link href="#" достижения
+        .line
+
+
+
+    - when "settings"
+      .settings
+        i.icon
+    - when "plus"
+      .plus
+        i.icon

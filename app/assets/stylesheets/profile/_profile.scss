@@ -1,190 +1,36 @@
-.profile {
-    margin        : 0 auto;
-    max-width     : 1200px;
-    min-width     : 896px;
-    border-radius : 4px;
-    overflow      : hidden;
-    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-    .custom-radio-holder {
-        position : relative;
-        width    : 100%;
-        padding  : 0 80px 0 0;
-        margin   : 0 0 24px 0;
-        .legend {
-            font-size: 13px;
-            color: rgba(0,0,0,0.54);
-            line-height: 20px;
-        }
+#profile {
+  .profile__block {
+    position: relative;
+    overflow: hidden;
+    width: 920px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    padding: 24px 24px 72px 64px;
+    background: #fff;
+    box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+                0  2px  6px 0  rgba(0,0,0,.24);
+    border-radius: 2px;
+  }
+  .profile__main {
+    .avatar {
+      float: left;
+      width: 128px;
+      height: 128px;
+      margin: 0 32px 0 0;
+      border-radius: 100%;
+      .ava {
+        max-width: 100%;
+        min-width: 100%;
+      }
     }
-    .input-wrp hr {
-        border-bottom: 2px solid #00A0B7;
+    .data {
+      float: left;
+      width: 328px;
     }
-    .profile__item {
-        padding          : 36px 32px 32px 32px;
-        background-color : #FFFFFF;
-        position         : relative;
-        .icon {
-          position: absolute;
-          top: 36px;
-          left: 32px;
-          &:before {
-            font: 24px/24px 'Icons';
-            color: rgba(0,0,0,.54);
-          }
-        }
-        .title {
-            font     : 400 13px/24px 'Roboto';
-            color         : rgba(76, 76, 77, 0.54);
-            margin-bottom : 26px;
-        }
-    }
-    .user-info {
-        // background      : url("user_info_bg.png") 50% 50% no-repeat;
-        height          : 300px;
-        padding-top     : 48px;
-        background-size : cover;
-        .ava {
-            @include middle-block(128px);
-            margin-bottom : 22px;
-            cursor        : pointer;
-            position      : relative;
-            img {
-                border-radius : 50%;
-                width         : 100%;
-                position      : relative;
-                z-index       : 1;
-            }
-            input {
-                display : none;
-            }
-            &:hover {
-                .upload__block {
-                    position      : absolute;
-                    top           : 0;
-                    left          : 0;
-                    width         : 128px;
-                    height        : 128px;
-                    border-radius : 50%;
-                    overflow      : hidden;
-                    background    : url("ava-upload.png") 50% 50% no-repeat;
-                    z-index       : 2;
-                    cursor        : pointer;
-                    input {
-                        display     : block;
-                        width       : 300px;
-                        margin-left : -170px;
-                        position    : absolute;
-                        z-index     : 3;
-                        cursor      : pointer;
-                        height      : 128px;
-                        opacity     : 0;
-                    }
+  }
 
-                }
 
-            }
-        }
-        .name {
-            text-align    : center;
-            font-size     : 24px;
-            color         : #FFFFFF;
-            line-height   : 32px;
-            margin-bottom : 10px;
-        }
-        .level {
-            text-align  : center;
-            font-size   : 15px;
-            color       : rgba(255, 255, 255, 0.70);
-            line-height : 24px;
-        }
-    }
-    .change-pass {
-        padding-left  : 88px;
-        border-bottom : 1px solid rgba(0, 0, 0, 0.12);
-        .icon {
-          &:before {
-            content: '\E637';
-          }
-        }
-    }
-    .notification__settings {
-        padding-left : 88px;
-        .icon {
-          &:before {
-            content: '\E6E3';
-          }
-        }
-        .item {
-            margin-bottom : 24px;
-            label {
-                color       : rgba(0, 0, 0, 0.54);
-                line-height : 20px;
-                .toggle {
-                    position : absolute;
-                    top      : 4px;
-                    left     : 485px;
+  .profile__password {
 
-                }
-                input[type="checkbox"]:first-child:checked + .toggle::after {
-                    background-color : #00BCD4;
-                }
-                input[type="checkbox"]:first-child:checked + .toggle {
-                    background-color : #00BCD4;
-                }
-            }
-        }
-    }
-
-    .save-changes {
-        @include clearfix;
-        height             : 0;
-        padding-top        : 0;
-        padding-bottom     : 0;
-        overflow           : hidden;
-        border-top         : 1px solid rgba(0, 0, 0, 0.12);
-        -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        .btn {
-            display: none;
-            float              : right;
-            opacity            : 0;
-            -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            font-size          : 14px;
-            color              : #FFFFFF;
-            line-height        : 20px;
-            padding            : 8px 5px;
-        }
-        .task__open-button-yes {
-            background-color : #00BCD4;
-            color            : #FFFFFF;
-        }
-        .task__open-button-cancel {
-            color        : #00BCD4;
-            margin-right : 9px;
-        }
-    }
-    .save-changes.active {
-        -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        padding-top        : 24px;
-        padding-bottom     : 32px;
-        height             : 80px;
-        overflow           : visible;
-        .btn {
-            opacity            : 1;
-            -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-    }
+  }
 }
-
-

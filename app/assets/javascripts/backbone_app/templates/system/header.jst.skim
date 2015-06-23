@@ -16,3 +16,10 @@
   .header__icons.header__courses
     i.icon
 
+.header__bottom
+  .arrow
+  .title Header bottom title
+  .tabs Tabs
+  .plus +
+  .settings settings
+
