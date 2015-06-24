@@ -1,0 +1,9 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom_arr: [{block:"title", title: 'Мой профиль'},
+                                                      {block:"tabs"}]}
+.content#profile
+  .profile__tariff.tariff__free
+
+  .profile__tariff.tariff__paid
+

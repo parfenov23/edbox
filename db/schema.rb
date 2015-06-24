@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623112831) do
+ActiveRecord::Schema.define(version: 20150619120236) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -66,21 +66,21 @@ ActiveRecord::Schema.define(version: 20150623112831) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",           default: "",          null: false
-    t.string   "password_digest", default: "",          null: false
-    t.string   "user_key",        default: "",          null: false
+    t.string   "email",           default: "",             null: false
+    t.string   "password_digest", default: "",             null: false
+    t.string   "user_key",        default: "",             null: false
+    t.string   "first_name",      default: "Пользователь"
+    t.string   "last_name",       default: "Пользователь"
+    t.string   "avatar",          default: ""
+    t.string   "job",             default: "Должность"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
     t.boolean  "director",        default: false
     t.boolean  "corporate",       default: false
-    t.string   "first_name"
     t.integer  "group_id"
-    t.string   "last_name"
-    t.string   "job",             default: "Должность"
-    t.text     "avatar"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
