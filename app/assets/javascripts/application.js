@@ -27,7 +27,8 @@ $(document).ready(function(){
 
   headerTabsLine = function(){
     var width = $('.tabs__item.active').outerWidth();
-    $('.header__bottom .tabs .line').css({'width':width+'px'});
+    var offset = $('.tabs__item.active').position().left;
+    $('.header__bottom .tabs .line').css({'width':width+'px','left':offset+'px'});
   }
 
   setTimeout(function(){
