@@ -23,6 +23,7 @@ module Api::V1
       end
       user = User.build(permit_params)
       if (user.save rescue false)
+        session[:user_key] = user["user_key"]
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)
