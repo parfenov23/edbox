@@ -13,7 +13,10 @@
   .header__icons.header__notifications
     i.icon
 
-  .header__icons.header__courses
+  a.header__icons.header__courses href="courses"
+    i.icon
+
+  a.header__icons.header__cabinet href="cabinet"
     i.icon
 
 .header__bottom

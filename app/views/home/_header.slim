@@ -12,34 +12,27 @@
         .avatar
           img.ava src="/images/ava.png"
         .text
-          .name Name
-          .login Login
+          .name =current_user.first_name+' '+current_user.last_name
+          .login = current_user.email
 
       ul.menu
+        / li.menu__item
+        /   a.menu__item-link.menu__item-schedule href="schedule" Расписание и аналитика
         li.menu__item
-          a.menu__item-link.menu__item-schedule href="schedule" Расписание и аналитика
-        li.menu__item
-          a.menu__item-link.menu__item-profile href="profile" Мой профиль
-        li.menu__item
-          a.menu__item-link.menu__item-company href="company" Моя компания
-        li.menu__item
-          a.menu__item-link.menu__item-groups href="groups" Группы
-        li.menu__item
-          a.menu__item-link.menu__item-courses href="courses" Курсы
+          a.menu__item-link.menu__item-profile href="profile" Профиль
+        / li.menu__item
+        /   a.menu__item-link.menu__item-company href="company" Моя компания
+        / li.menu__item
+        /   a.menu__item-link.menu__item-groups href="groups" Группы
+        / li.menu__item
+        /   a.menu__item-link.menu__item-courses href="courses" Курсы
 
       .account
         .avatar
           img.ava src="/images/ava.png"
         .text
-          .name Name
-          .login Login
-
-      .account
-        .avatar
-          img.ava src="/images/ava.png"
-        .text
-          .name Name
-          .login Login
+          .name =current_user.first_name+' '+current_user.last_name
+          .login = current_user.email
 
       .bottom
         .btn__raised.add__acc добавить аккаунт
@@ -102,3 +95,7 @@
 
   .header__icons.header__courses
     a.icon href="/courses"
+
+
+  .header__icons.header__cabinet
+    a.icon href="cabinet"

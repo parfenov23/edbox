@@ -60,4 +60,51 @@
       color: rgba(0,0,0,.26);
     }
   }
+
+  .profile__block-tariff {
+    &.profile__tariff-free {
+      padding: 32px 32px 48px 32px;
+    }
+    &.profile__tariff-paid {
+      padding: 32px;
+    }
+    overflow: hidden;
+    .title {
+      float: left;
+      width: 70%;
+      font: 400 18px/24px 'Roboto';
+      color: rgba(0,0,0,.87);
+      margin: 0 5% 8px 0;
+    }
+    .time {
+      float: right;
+      width: 25%;
+      font: 400 13px/18px 'Roboto';
+      color: rgba(0,0,0,.54);
+      margin: 0 0 8px 0;
+      text-align: right;
+    }
+    .quantity {
+      font: 400 13px/20px 'Roboto';
+      color: rgba(0,0,0,.87);
+    }
+    .info {
+      border-top: 1px solid #E0E0E0;
+      overflow: hidden;
+      margin: 24px 0 0 0;
+      padding: 24px 0 0 0;
+      &__item {
+        float: left;
+        width: calc(100%/3);
+        font: 400 13px/18px 'Roboto';
+        color: rgba(0,0,0,.54);
+        &-top {
+          margin: 0 0 24px 0;
+        }
+        &-bottom {
+
+        }
+      }
+    }
+  }
 }
