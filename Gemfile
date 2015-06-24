@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 # gem 'mysql2'
+gem 'pg'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
