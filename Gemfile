@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
-gem 'mysql2'
+# gem 'mysql2'
+
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
@@ -28,6 +29,8 @@ gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
 group :development do
+  gem 'sqlite3'
+  gem 'sqlite3_ar_regexp', '~> 2.1'
   gem 'pry'
   gem 'capistrano', '~> 3.0', require: false
   gem 'capistrano-rails', '~> 1.1', require: false
