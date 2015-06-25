@@ -54,11 +54,10 @@ BackboneApp.Views signup:
 
     changeSelect: (e) ->
       if $(e.target).hasClass('corporate')
-        $('.corporate_acc').addClass('active')
-        $('input[name=corporate]').val('true')
+        @$('.corporate_acc').addClass('active')
       else
-        !$('.corporate_acc').removeClass('active')
-        $('input[name=corporate]').val('')
+        !@$('.corporate_acc').removeClass('active')
+        @$('.corporate_acc input').val('')
       $(e.target).closest('.auth__reg-select').find('.auth__reg-selected').html('' + $(e.target).html() + '')
       $(e.target).closest('.auth__reg-select').find('.auth__reg-select-list').removeClass('active')
 
