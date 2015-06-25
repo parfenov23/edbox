@@ -27,9 +27,20 @@
       .plane
 
   ul.members__in_system
-  / - @members.each do |member|
-  /   li.members__in_system-item
-  /     .ava
-  /     .name = member.first_name + ' ' + member.last_name
-  /     .email = member.email
+    - @members.each do |member|
+      li.members__in_system-item
+        .ava = member.first_name[0]
+        .name = member.first_name + ' ' + member.last_name
+        .email = member.email
+        .status
+          .delete ×
+          - if true
+            .send
+              .date Сегодня, 15:30
+              .text Отправлено:
+          - else
+            .authorized
+              .date Сегодня, 15:30
+              .text Авторизован:
+
 

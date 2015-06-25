@@ -69,11 +69,88 @@
     }
   }
   .members__in_system {
-    box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
-                0  2px  6px 0  rgba(0,0,0,.24);
-    border-radius: 2px;
+    margin: 64px 0 0 0;
     &-item {
-
+      overflow: hidden;
+      padding: 12px 32px;
+      background: #fff;
+      box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+                  0  2px  6px 0  rgba(0,0,0,.24);
+      &:first-child {
+        border-radius: 2px 2px 0 0;
+      }
+      &:last-child {
+        border-radius: 0 0 2px 2px;
+        &:first-child {
+          border-radius: 2px;
+        }
+      }
+      .ava {
+        float: left;
+        width: 30px;
+        height: 30px;
+        margin: 0 24px 0 0;
+        background: #FD9348;
+        border-radius: 100%;
+        font: 400 13px/30px 'Roboto';
+        color: #fff;
+        text-align: center;
+      }
+      .name {
+        float: left;
+        width: 25%;
+        font: 400 13px/30px 'Roboto';
+        color: #000;
+      }
+      .email {
+        float: left;
+        width: 30%;
+        font: 400 13px/30px 'Roboto';
+        color: rgba(0,0,0,.87);
+      }
+      .status {
+        float: right;
+        overflow: hidden;
+        width: 30%;
+        font: 400 13px/30px 'Roboto';
+        color: #9B9B9B;
+        text-align: right;
+        .delete {
+          float: right;
+          display: none;
+          font-size: 30px;
+          cursor: pointer;
+        }
+        .date {
+          float: right;
+          position: relative;
+        }
+        .text {
+          position: relative;
+          float: right;
+          font: 400 13px/30px 'Roboto';
+          padding: 0 8px 0 26px;
+        }
+        .text:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 20px;
+          font-family: 'Icons';
+          content: '\e899';
+        }
+        .authorized {
+          color: #FD9348;
+        }
+        &:hover {
+          .delete {
+            display: block;
+          }
+          .send, .authorized {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

@@ -12,9 +12,9 @@ class HomeController < ActionController::Base
     @current_user = current_user
   end
 
-  # def members
-  #   @members = current_user.company.users
-  # end
+  def members
+    @members = current_user.company.users
+  end
 
   private
 
