@@ -48,6 +48,10 @@ a {
     text-decoration : none;
 }
 
+p {
+  margin: 0;
+}
+
 ul {
     margin     : 0;
     padding    : 0;
@@ -61,6 +65,22 @@ ul {
 i {
     font-style : normal;
 }
+
+.clearfix {
+  *zoom : 1;
+  &:after {
+    clear : both;
+    display     : table;
+    content     : "";
+    line-height : 0;
+  }
+  &:before {
+    display     : table;
+    content     : "";
+    line-height : 0;
+  }
+}
+
 
 .content {
   padding: 160px 0 40px 0;
@@ -90,6 +110,7 @@ i {
 @import "header/header";
 @import "auth/auth";
 @import "profile/profile";
+@import "members/members";
 
 .btn-default {
   display          : block;

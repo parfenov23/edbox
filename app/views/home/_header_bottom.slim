@@ -1,30 +1,51 @@
 .header__bottom
-  - header_bottom_arr.each do |header_bottom|
-    - case header_bottom[:block]
-    - when "arrow"
-      .arrow.icon
-    - when "title"
-      .title
-        = header_bottom[:title]
-    - when "tabs"
-      ul.tabs
-        li.tabs__item.active
-          a.tabs__item-link href="#" персональные данные
-        li.tabs__item
-          a.tabs__item-link href="#" уведомления
-        li.tabs__item
-          a.tabs__item-link href="#" тариф
-        li.tabs__item
-          a.tabs__item-link href="#" аналитика
-        li.tabs__item
-          a.tabs__item-link href="#" достижения
-        .line
+  - unless header_bottom[:arrow].nil?
+        a.arrow.icon href="#{header_bottom[:arrow][:url]}"
+  - unless header_bottom[:title].nil?
+    .title
+      = header_bottom[:title]
+  - case header_bottom[:block]
+  - when "profile"
+    ul.tabs
+      li.tabs__item class="#{header_bottom[:profile_class]}"
+        a.tabs__item-link href="/profile" персональные данные
+      / li.tabs__item
+      /   a.tabs__item-link href="#" уведомления
+      li.tabs__item class="#{header_bottom[:tariff_class]}"
+        a.tabs__item-link href="/tariff" тариф
+      / li.tabs__item
+      /   a.tabs__item-link href="#" аналитика
+      / li.tabs__item
+      /   a.tabs__item-link href="#" достижения
+      .line
+
+  - when "cabinet"
+    ul.tabs
+      li.tabs__item class="#{header_bottom[:groups_class]}"
+        a.tabs__item-link href="/group?id=1" группы
+      li.tabs__item class="#{header_bottom[:members_class]}"
+        a.tabs__item-link href="/members" участники
+      li.tabs__item class="#{header_bottom[:schedule_class]}"
+        a.tabs__item-link href="/schedule" расписание
+      li.tabs__item class="#{header_bottom[:favorite_class]}"
+        a.tabs__item-link href="/favorite" избранное
+      .line
+
+  - when "groups"
+    ul.tabs
+      - 5.times do |i|
+        - n = i + 1
+        - class_active = "active" if params[:id].to_i == n
+        li.tabs__item class="#{(class_active rescue nil)}"
+          a.tabs__item-link href="/group?id=#{n}"
+            = "группа #{n}"
+      .line
 
 
 
-    - when "settings"
-      .settings
-        i.icon
-    - when "plus"
-      .plus
-        i.icon
+  - when "settings"
+    .settings
+      i.icon
+  - when "plus"
+    .plus
+      i.icon

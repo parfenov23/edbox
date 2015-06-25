@@ -114,6 +114,7 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
+    pg (0.18.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -226,6 +227,7 @@ DEPENDENCIES
   mechanize
   mini_magick
   net-ssh (~> 2.7.0)
+  pg
   pry
   rails (= 4.1.8)
   russian
@@ -240,3 +242,6 @@ DEPENDENCIES
   uglifier
   unicorn
   without-rails
+
+BUNDLED WITH
+   1.10.4

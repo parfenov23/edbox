@@ -1,0 +1,81 @@
+/* Cabinet css start */
+
+#members {
+  width: 920px;
+  margin: 0 auto;
+  .title {
+    width: 780px;
+    margin: 0 auto;
+    margin-bottom: 24px;
+    font: 400 20px/32px 'Roboto';
+    color: #4A4A4A;
+    text-align: center;
+  }
+  .members__invite {
+    position: relative;
+    background: #fff;
+    box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+                0  2px  6px 0  rgba(0,0,0,.24);
+    border-radius: 2px;
+    padding: 20px 32px 16px;
+    .invited {
+      overflow: hidden;
+      padding: 12px 0;
+      &__item {
+        float: left;
+        overflow: hidden;
+        margin: 0 16px 8px 0;
+        height: 28px;
+        padding: 0 12px;
+        background: rgba(0,0,0,.54);
+        border-radius: 2px;
+        font: 400 13px/28px 'Roboto';
+        color: #fff;
+        .email {
+          float: left;
+          margin: 0 16px 0 0;
+        }
+        .cancel {
+          float: left;
+          cursor: pointer;
+        }
+      }
+    }
+    .form {
+      position: relative;
+      width: 100%;
+      .input {
+        width: calc(100% - 30px);
+        border: 0;
+        padding: 0;
+        font: 400 13px/20px 'Roboto';
+        color: rgba(0,0,0,.26);
+      }
+      .plane {
+        position: absolute;
+        display: block;
+        border: 0;
+        padding: 0;
+        background: transparent;
+        top: 0;
+        right: 0;
+        &:before {
+          font: 22px/22px 'Icons';
+          color: rgba(0,0,0,.54);
+          content: '\e719';
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .members__in_system {
+    box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+                0  2px  6px 0  rgba(0,0,0,.24);
+    border-radius: 2px;
+    &-item {
+
+    }
+  }
+}
+
+/* Cabinet css end */

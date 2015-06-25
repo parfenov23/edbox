@@ -42,7 +42,7 @@
         }
         .menu__user {
           position: absolute;
-          // display: none;
+          display: none;
           top: 44px;
           right: 0;
           width: 320px;
@@ -111,7 +111,7 @@
                   content: '\e640';
                 }
                 &.menu__item-profile:before {
-                  content: '\e8d9';
+                  content: '\e660';
                 }
                 &.menu__item-company:before {
                   content: '\e8ca';
@@ -326,6 +326,14 @@
         right: 161px;
         .icon:before {
           content: '\e8de';
+        }
+      }
+
+      .header__cabinet {
+        top: 17px;
+        right: 200px;
+        .icon:before {
+          content: '\e8d9';
         }
       }
 
