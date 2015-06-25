@@ -16,6 +16,10 @@ class HomeController < ActionController::Base
     @members = current_user.company.users
   end
 
+  def courses
+    @courses = Course.all
+  end
+
   private
 
   def current_user
