@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :group
   has_many :bunch_groups
-  before_create :create_hash_key
-  after_create :welcome_letter
+  before_create :create_hash_key, :welcome_letter, :hash_password
   validates :email, presence: true
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
 
@@ -52,15 +51,21 @@ class User < ActiveRecord::Base
   end
 
   def password=(new_password)
-    @password = BCrypt::Password.create(new_password)
-    self.password_digest = @password
+    self.password_digest = new_password
   end
+
+  private
 
   def create_hash_key
     self.user_key = SecureRandom.hex(20)
   end
 
   def welcome_letter
-    return "Метод для отправки приветсвенного сообщения"
+    HomeMailer.welcome_latter(self).deliver
   end
+
+  def hash_password
+    self.password_digest = BCrypt::Password.create(self.password_digest)
+  end
+
 end

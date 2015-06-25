@@ -71,6 +71,19 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.action_mailer.default_url_options = { :host => 'chameleon.today' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "s02.atomsmtp.com",
+    :port                 => 2525,
+    :domain               => "masshtab.am",
+    :user_name            => "prisakar@aim-m.ru",
+    :password             => "KR8LYKJBFZL9",
+    :authentication       => "plain",
+    :enable_starttls_auto => true,
+    :openssl_verify_mode => 'none'
+  }
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 

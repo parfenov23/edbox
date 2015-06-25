@@ -16,7 +16,7 @@ gem 'faraday_middleware'
 gem "russian"
 gem 'bcrypt'
 gem 'turbolinks'
-gem 'thin'
+gem 'thin', '~> 1.5.0'
 gem 'babosa'
 
 # Frontend
@@ -30,6 +30,7 @@ gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
 group :development do
+  gem 'mailcatcher', '0.6.1'
   gem 'sqlite3'
   gem 'sqlite3_ar_regexp', '~> 2.1'
   gem 'pry'
