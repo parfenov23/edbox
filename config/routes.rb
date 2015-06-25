@@ -19,6 +19,7 @@ Rails.application.routes.draw do
           post :change_password
           post :update
           post :update_ava
+          post :remove_user
         end
       end
       resources :groups do
