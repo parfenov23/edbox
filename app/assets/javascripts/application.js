@@ -6,6 +6,7 @@
 //= require ./vendor/marionette
 //= require ./vendor/material
 //= require ./vendor/ripples
+//= require ./vendor/zbaron.min
 //= require skim
 
 
@@ -23,7 +24,16 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 });
 
 
+
+
 $(document).ready(function(){
+
+
+  $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
+    $('#js-filter-courses').toggleClass('show');
+  })
+
+  $('.filter-courses').baron();
 
   headerTabsLine = function(){
     var width = $('.tabs__item.active').outerWidth();
