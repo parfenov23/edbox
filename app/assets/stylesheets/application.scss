@@ -4,15 +4,19 @@
  *= require_tree ./core
  *= require_self
  */
-@import "mixins/inline-block";
-@import "mixins/circle-img";
-@import "mixins/middle-block";
-@import "mixins/media-queries";
-@import "mixins/clearfix";
-@import "mixins/placeholder";
-@import "elements/rippleAnimation";
-@import "elements/checkbox";
-@import "elements/switch";
+
+ @import "mixins/inline-block";
+ @import "mixins/circle-img";
+ @import "mixins/middle-block";
+ @import "mixins/media-queries";
+ @import "mixins/clearfix";
+ @import "mixins/placeholder";
+ @import "elements/rippleAnimation";
+ @import "elements/checkbox";
+ @import "elements/switch";
+
+
+@import "courses/courses";
 
 @font-face {
     font-family : 'Icons';
@@ -64,7 +68,10 @@ i {
 
 .content {
   padding: 160px 0 40px 0;
+  width: 1090px;
+  margin: 0 auto;
 }
+
 
 .btn__raised {
   display: block;

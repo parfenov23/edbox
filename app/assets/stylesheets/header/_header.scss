@@ -42,7 +42,7 @@
         }
         .menu__user {
           position: absolute;
-          // display: none;
+          display: none;
           top: 44px;
           right: 0;
           width: 320px;
@@ -331,9 +331,8 @@
 
     }
     &__bottom {
-      overflow: hidden;
+      @include clearfix;
       height: 64px;
-      line-height: 64px;
       padding: 0 37px 0 32px;
       background: #fff;
       box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
@@ -347,7 +346,7 @@
           content: '\e893';
         }
       }
-      .title {
+      >.title {
         float: left;
         font: 400 24px/64px 'Roboto';
         color: rgba(0,0,0,.54);
@@ -394,9 +393,11 @@
       .settings {
         float: right;
         height: 64px;
+        position: relative;
         .icon {
           height: 22px;
           cursor: pointer;
+          line-height: 64px;
           &:before {
             font-size: 22px;
             color: #757575;
