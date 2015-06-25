@@ -33,7 +33,7 @@ $(document).ready(function(){
 
   setTimeout(function(){
     headerTabsLine();
-  },10);
+  },100);
 
   profileDataChange = function(){
     $('.profile__main #submit').click(function(){

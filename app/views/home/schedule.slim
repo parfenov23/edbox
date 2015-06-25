@@ -1,0 +1,7 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', schedule_class:'active' }}
+.content#schedule
+
+  .schedule__block
+    |Расписание

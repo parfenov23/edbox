@@ -1,0 +1,35 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', members_class:'active' }}
+.content#members
+
+  .title Для того, чтобы добавить пользователя в систему, вам необходимо выслать приглашение на его эллектронный адресс.
+
+  .members__invite
+    ul.invited
+      li.invited__item
+        .email alexander@gmail.com
+        .cancel ×
+      li.invited__item
+        .email alexander@gmail.com
+        .cancel ×
+      li.invited__item
+        .email alexander@gmail.com
+        .cancel ×
+      li.invited__item
+        .email alexander@gmail.com
+        .cancel ×
+      li.invited__item
+        .email alexander@gmail.com
+        .cancel ×
+    form.form
+      input.input type="text" placeholder="Введите адрес электронной почты"
+      .plane
+
+  ul.members__in_system
+  / - @members.each do |member|
+  /   li.members__in_system-item
+  /     .ava
+  /     .name = member.first_name + ' ' + member.last_name
+  /     .email = member.email
+

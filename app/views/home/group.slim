@@ -1,0 +1,7 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "groups", arrow: {url: "/cabinet"}, title: 'Мои группы'} }
+.content#groups
+
+  .groups__block
+    |Группа1

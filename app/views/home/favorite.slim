@@ -1,0 +1,7 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', favorite_class:'active' }}
+.content#favorite
+
+  .favorite__block
+    |Избранное
