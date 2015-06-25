@@ -2,7 +2,7 @@ require 'base64'
 require 'resize_image'
 module Api::V1
   class UsersController < ::ApplicationController
-    before_action :is_director, only: [:invite]
+    before_action :is_director, only: [:invite, :remove_user]
 
     def info
       render json: current_user.transfer_to_json
@@ -16,6 +16,15 @@ module Api::V1
         arr_hash_users << user.transfer_to_json if (user.save rescue false)
       end
       render json: {users: arr_hash_users}
+    end
+
+    def remove_user
+      user = find_user
+      user.company_id = nil
+      user.corporate = false
+      user.director = false
+      user.save
+      render json: {user: user.transfer_to_json}
     end
 
     def update
@@ -57,6 +66,10 @@ module Api::V1
     end
 
     private
+
+    def find_user
+      User.find(params[:id])
+    end
 
     def is_director
       render_error(401, 'Недостаточно прав') unless current_user.director
