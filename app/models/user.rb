@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def build_default(company_id, email)
+  def self.build_default(company_id, email)
     User.build(
       {
         email: email,

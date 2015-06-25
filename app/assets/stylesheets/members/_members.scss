@@ -24,6 +24,7 @@
       &__item {
         float: left;
         overflow: hidden;
+        max-width: 100%;
         margin: 0 16px 8px 0;
         height: 28px;
         padding: 0 12px;
@@ -33,10 +34,16 @@
         color: #fff;
         .email {
           float: left;
+          max-width: calc(100% - 40px);
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           margin: 0 16px 0 0;
         }
         .cancel {
           float: left;
+          width: 24px;
+          text-align: center;
           cursor: pointer;
         }
       }
@@ -99,19 +106,25 @@
       .name {
         float: left;
         width: 25%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         font: 400 13px/30px 'Roboto';
         color: #000;
       }
       .email {
         float: left;
         width: 30%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         font: 400 13px/30px 'Roboto';
         color: rgba(0,0,0,.87);
       }
       .status {
         float: right;
         overflow: hidden;
-        width: 30%;
+        width: 35%;
         font: 400 13px/30px 'Roboto';
         color: #9B9B9B;
         text-align: right;

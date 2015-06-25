@@ -78,11 +78,83 @@ $(document).ready(function(){
     });
   }
 
+
+  invitedEmpty = function(){
+    if ($('.invited__item').length == 0) {
+      $('.members__invite .invited').hide();
+    }
+  }
+
+  invitedMemberDelete = function(){
+    $('.members__invite .cancel').click(function(){
+      $(this).closest('.invited__item').remove();
+      invitedEmpty();
+    });
+  }
+
+  inviteMember = function(){
+    $('.members__invite .input').focus(function(){
+      $(window).keydown(function(e){
+        code = e.keyCode || e.which
+        if ( code == 13 ) {
+          e.preventDefault();
+          $('.members__invite .invited').show();
+          var member = $('.members__invite .input').val();
+          $('<li class="invited__item"><div class="email">'+member+'</div><div class="cancel">×</div></li>').appendTo('.members__invite .invited');
+        }
+      });
+    });
+  }
+
+  sendInvintations = function(){
+    $('.members__invite .plane').click(function(){
+      if (!$('.invited__item').length == 0) {
+        var data = $.map($('.members__invite .invited__item .email'), function(el){
+          return $(el).text();
+        });
+        $.ajax({
+          type: 'POST',
+          url: '/api/v1/users/invite',
+          data: {emails:data},
+        }).success(function(){
+            console.log('Ушло');
+        }).error(function(){
+            console.log('Не ушло');
+        });
+      }
+    });
+  }
+
+
+
+  deleteInvitedMember = function(){
+    $('.members__in_system .members__in_system-item .delete').click(function(){
+      var number = $(this).attr('data-id');
+      console.log({id:number});
+      $.ajax({
+        type: 'POST',
+        url: '/api/v1/users/remove_user',
+        data: {id:number},
+      }).success(function(){
+          console.log('Ушло');
+      }).error(function(){
+          console.log('Не ушло');
+      });
+    });
+  }
+
+
+
   profileDataChange();
   profilePasswordChangeValidation();
   profilePasswordChange();
 
 
+  invitedEmpty();
+  invitedMemberDelete();
+  inviteMember();
+  sendInvintations();
+  deleteInvitedMember();
 
 
 

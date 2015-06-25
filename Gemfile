@@ -29,6 +29,7 @@ gem 'skim', '~> 0.9.3'
 gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
+gem 'eventmachine', '1.0.4'
 group :development do
   gem 'mailcatcher', '0.6.1'
   gem 'sqlite3'

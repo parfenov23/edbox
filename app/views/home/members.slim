@@ -7,40 +7,26 @@
 
   .members__invite
     ul.invited
-      li.invited__item
-        .email alexander@gmail.com
-        .cancel ×
-      li.invited__item
-        .email alexander@gmail.com
-        .cancel ×
-      li.invited__item
-        .email alexander@gmail.com
-        .cancel ×
-      li.invited__item
-        .email alexander@gmail.com
-        .cancel ×
-      li.invited__item
-        .email alexander@gmail.com
-        .cancel ×
     form.form
       input.input type="text" placeholder="Введите адрес электронной почты"
       .plane
 
   ul.members__in_system
     - @members.each do |member|
-      li.members__in_system-item
-        .ava = member.first_name[0]
-        .name = member.first_name + ' ' + member.last_name
-        .email = member.email
-        .status
-          .delete ×
-          - unless member.auth?
-            .send
-              .date = "#{time_ago_in_words(member.created_at)} назад"
-              .text Отправлено:
-          - else
-            .authorized
-              .date = "#{time_ago_in_words(member.last_auth)} назад"
-              .text Авторизован:
+      - unless member.director
+        li.members__in_system-item
+          .ava = member.first_name[0]
+          .name = member.first_name + ' ' + member.last_name
+          .email = member.email
+          .status
+            .delete data-id="#{member.id}" ×
+            - unless member.auth?
+              .send
+                .date = "#{time_ago_in_words(member.created_at)} назад"
+                .text Отправлено:
+            - else
+              .authorized
+                .date = "#{time_ago_in_words(member.last_auth)} назад"
+                .text Авторизован:
 
 
