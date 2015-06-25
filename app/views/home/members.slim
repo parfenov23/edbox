@@ -34,13 +34,13 @@
         .email = member.email
         .status
           .delete ×
-          - if true
+          - unless member.auth?
             .send
-              .date Сегодня, 15:30
+              .date = "#{time_ago_in_words(member.created_at)} назад"
               .text Отправлено:
           - else
             .authorized
-              .date Сегодня, 15:30
+              .date = "#{time_ago_in_words(member.last_auth)} назад"
               .text Авторизован:
 
 

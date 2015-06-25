@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619120236) do
+ActiveRecord::Schema.define(version: 20150625075504) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150619120236) do
     t.boolean  "director",        default: false
     t.boolean  "corporate",       default: false
     t.integer  "group_id"
+    t.datetime "last_auth"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

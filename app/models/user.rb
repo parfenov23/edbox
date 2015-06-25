@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     user = find_by_email(params[:email])
     unless user.nil?
       if user.password == params[:password]
-        user.transfer_to_json
+        user.assign_last_auth.transfer_to_json
       end
     end
   end
@@ -52,6 +52,16 @@ class User < ActiveRecord::Base
 
   def password=(new_password)
     self.password_digest = new_password
+  end
+
+  def assign_last_auth
+    self.last_auth = Time.now
+    save
+    self
+  end
+
+  def auth?
+    (last_auth > created_at ? true : false) rescue false
   end
 
   private
