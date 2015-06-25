@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :group
   has_many :bunch_groups
   before_create :create_hash_key
+  after_create :welcome_letter
   validates :email, presence: true
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
 
@@ -59,7 +60,7 @@ class User < ActiveRecord::Base
     self.user_key = SecureRandom.hex(20)
   end
 
-  def self.except_attr
-
+  def welcome_letter
+    return "Метод для отправки приветсвенного сообщения"
   end
 end
