@@ -24,8 +24,11 @@ Rails.application.routes.draw do
       end
       resources :groups do
         member do
+          get :all_course
           post :invite
           post :remove_user
+          post :update_course
+          post :remove_course
         end
         collection do
         end

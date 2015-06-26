@@ -57,7 +57,7 @@ module Superuser
     end
 
     def remove_course
-      find_bunch_course.destroy
+      find_bunch_course.to_archive
       redirect_to :back
     end
 

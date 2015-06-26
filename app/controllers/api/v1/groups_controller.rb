@@ -73,7 +73,39 @@ module Api::V1
       render json: group.transfer_to_json
     end
 
+    def update_course
+      if (find_bunch_course.nil? rescue true)
+        bunch_course = BunchCourse.build(params[:course_id], params[:id], params[:date_start])
+      else
+        bunch_course = find_bunch_course.update({date_start: Time.parse(params[:date_start]),
+                                                 course_id: params[:course_id],
+                                                 group_id: params[:id]})
+      end
+      if (bunch_course.save rescue false)
+        render json: bunch_course.transfer_to_json
+      else
+        render_error(500, 'Ошибка сервера')
+      end
+    end
+
+    def all_courses
+      bunch_courses = (get_find_group.bunch_courses rescue [])
+      render json: bunch_courses.as_json
+    end
+
+    def remove_course
+      if (find_bunch_course.to_archive rescue false)
+        render json: {success: true}
+      else
+        render_error(500, 'Ошибка сервера')
+      end
+    end
+
     private
+
+    def find_bunch_course
+      BunchCourse.find(params[:bunch_course_id])
+    end
 
     def is_director
       render_error(401, 'Недостаточно прав') unless current_user.director

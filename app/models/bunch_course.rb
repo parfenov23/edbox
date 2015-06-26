@@ -1,6 +1,7 @@
 class BunchCourse < ActiveRecord::Base
   belongs_to :course
   belongs_to :group
+  default_scope {where(archive: false)} #unscoped
 
   def self.build(course_id, group_id, date_start)
     group = Group.find(group_id)
@@ -13,6 +14,15 @@ class BunchCourse < ActiveRecord::Base
       result.date_start = date_start
     end
     result
+  end
+
+  def to_archive
+    self.archive = true
+    self.save
+  end
+
+  def self.closed
+    with_exclusive_scope { find(:all) }
   end
 
 
