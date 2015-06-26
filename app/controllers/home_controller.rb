@@ -20,6 +20,10 @@ class HomeController < ActionController::Base
     @courses = Course.all
   end
 
+  def cabinet
+    redirect_to "/schedule" unless current_user.director
+  end
+
   private
 
   def current_user

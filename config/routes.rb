@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :remove
+        get :add_favorite_course
       end
     end
     resources :groups do

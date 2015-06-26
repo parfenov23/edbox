@@ -57,7 +57,30 @@ module Superuser
       redirect_to :back
     end
 
+    def add_favorite_course
+      user = find_user
+      @courses = Course.all
+      @back_url = edit_superuser_user_path(params[:id], params: {company_id: user.company_id, back_url: "company"})
+      render :text => "В разработке"
+    end
+
+    def create_favorite_course
+      user = find_user
+      favorite_course = FavoriteCourse.new({course_id: params[:course_id], user_id: user.id})
+      favorite_course.save
+      redirect_to edit_superuser_user_path(user.id, params: {company_id: user.company_id, back_url: "company"})
+    end
+
+    def remove_favorite_course
+      find_favorite_course.destroy
+      redirect_to :back
+    end
+
     private
+
+    def find_favorite_course
+      FavoriteCourse.find(params[:favorite_course_id])
+    end
 
     def find_user
       User.find(params[:id])
