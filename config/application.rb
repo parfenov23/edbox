@@ -24,5 +24,8 @@ module Edbox
     config.i18n.available_locales = ["en", "ru"]
     config.i18n.default_locale = :ru
     config.exceptions_app = self.routes
+
+    # config.time_zone = 'Asia/Yekaterinburg'
+    # config.active_record.default_timezone = :local
   end
 end

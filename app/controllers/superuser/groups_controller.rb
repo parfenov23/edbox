@@ -20,7 +20,7 @@ module Superuser
     def create
       group = Group.new(params_group)
       group.save
-      redirect_to edit_superuser_group_path(group.id, params:{company_id: group.company_id})
+      redirect_to edit_superuser_group_path(group.id, params: {company_id: group.company_id})
     end
 
     def update
@@ -53,13 +53,35 @@ module Superuser
     def add_course
       @group = find_group
       @bunch_course = BunchCourse.new
+      @back_url = edit_superuser_group_path(params[:id], params: {company_id: @group.company_id})
+    end
+
+    def remove_course
+      find_bunch_course.destroy
+      redirect_to :back
+    end
+
+    def edit_course
+      @group = find_group
+      @bunch_course = find_bunch_course
     end
 
     def update_course
-      render :text => "Метод в разработке"
+      if (find_bunch_course.nil? rescue true)
+        BunchCourse.build(params[:course_id], params[:id], params[:date_start]).save
+      else
+        find_bunch_course.update({date_start: Time.parse(params[:date_start]),
+                                 course_id: params[:course_id],
+                                 group_id: params[:id]})
+      end
+      redirect_to edit_superuser_group_path(params[:id], params: {type: "courses"})
     end
 
     private
+
+    def find_bunch_course
+      BunchCourse.find(params[:bunch_course_id])
+    end
 
     def find_group
       Group.find(params[:id])

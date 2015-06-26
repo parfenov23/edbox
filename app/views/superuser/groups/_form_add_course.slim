@@ -1,11 +1,22 @@
-- action_url = @bunch_course.id.nil? ? "/superuser/groups/#{@group.id}/update_course?type=new" : "/superuser/groups/#{@group.id}/update_course?type=new"
+- action_url = "/superuser/groups/#{@group.id}/update_course"
 - method = "post"
 form.form-horizontal action="#{action_url}" method="post"
-    .form-group
+    - if @bunch_course.id.nil?
+        .form-group
+            label
+                | Курс:
+            = select_tag 'course_id', options_for_select(Course.all.collect { |ac| [ac.title, ac.id] }, @bunch_course.course_id), {:class => 'form-control'}
+    - else
+        input type="hidden" name="course_id" value="#{@bunch_course.course_id}"
+    .form-group#sandbox-container
         label
-            | Курс:
-        = select_tag 'course_id', options_for_select(Course.all.collect { |ac| [ac.title, ac.id] }, @bunch_course.id), {:class => 'form-control'}
+            | Дата начала:
+        .input-group.date
+            - get_time_start = (local_time(@bunch_course.date_start).strftime("%Y-%m-%d") rescue local_time(Time.now).strftime("%Y-%m-%d") )
+            input.form-control type="text" name="date_start" value="#{get_time_start}"
+            span.input-group-addon
+                i.glyphicon.glyphicon-th
 
     input type="hidden" name="_method" value="#{method}"
-    input type="hidden" name="bunch_group_id" value="#{@bunch_course.id}"
+    input type="hidden" name="bunch_course_id" value="#{@bunch_course.id}"
     button.btn.btn-primary type="submit" Сохранить

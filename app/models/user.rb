@@ -64,6 +64,11 @@ class User < ActiveRecord::Base
     (last_auth > created_at ? true : false) rescue false
   end
 
+  def self.time_zone
+    timezone = "Asia/Yekaterinburg"
+    TZInfo::Timezone.get(timezone).current_period.utc_offset / (60*60)
+  end
+
   private
 
   def create_hash_key

@@ -38,4 +38,14 @@ $(document).ready( function() {
         }
 
     });
+    $('#sandbox-container .input-group.date').datepicker({
+        format: "20yy-mm-dd",
+        startView: 1,
+        language: "ru",
+        multidate: false,
+        autoclose: true,
+        todayHighlight: true
+        //toggleActive: true
+    });
 });
+

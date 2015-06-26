@@ -57,6 +57,7 @@ Rails.application.routes.draw do
         get :add_course
         post :update_course
         get :edit_course
+        get :remove_course
       end
     end
     resources :courses do
