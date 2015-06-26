@@ -89,6 +89,9 @@ $(document).ready(function(){
   }
 
 
+
+
+
   invitedEmpty = function(){
     if ($('.invited__item').length == 0) {
       $('.members__invite .invited').hide();
@@ -96,21 +99,29 @@ $(document).ready(function(){
   }
 
   invitedMemberDelete = function(){
-    $('.members__invite .cancel').click(function(){
+    $(document).on('click', '.members__invite .cancel', function(){
+      console.log($(this));
+      console.log($(this).closest('.invited__item'));
       $(this).closest('.invited__item').remove();
       invitedEmpty();
     });
   }
 
   inviteMember = function(){
+    var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     $('.members__invite .input').focus(function(){
       $(window).keydown(function(e){
         code = e.keyCode || e.which
         if ( code == 13 ) {
           e.preventDefault();
-          $('.members__invite .invited').show();
           var member = $('.members__invite .input').val();
-          $('<li class="invited__item"><div class="email">'+member+'</div><div class="cancel">×</div></li>').appendTo('.members__invite .invited');
+          if(emailRegexp.test(member) == false) {
+            alert('Неправильный email');
+          }
+          else {
+            $('.members__invite .invited').show();
+            $('<li class="invited__item"><div class="email">'+member+'</div><div class="cancel">×</div></li>').appendTo('.members__invite .invited');
+          }
         }
       });
     });
@@ -128,6 +139,7 @@ $(document).ready(function(){
           data: {emails:data},
         }).success(function(){
             console.log('Ушло');
+            location.reload();
         }).error(function(){
             console.log('Не ушло');
         });
@@ -140,7 +152,7 @@ $(document).ready(function(){
   deleteInvitedMember = function(){
     $('.members__in_system .members__in_system-item .delete').click(function(){
       var number = $(this).attr('data-id');
-      console.log({id:number});
+      $(this).closest('.members__in_system-item').remove();
       $.ajax({
         type: 'POST',
         url: '/api/v1/users/remove_user',
