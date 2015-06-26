@@ -7,7 +7,7 @@ hr
 ul.nav.nav-tabs
     li.category_active class="#{params[:type].to_s == 'courses' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit?type=courses"
-            = "Курсы (5)"
+            = "Курсы (#{@group.bunch_courses.count})"
 
     li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit"

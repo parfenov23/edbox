@@ -56,7 +56,7 @@ module Superuser
     end
 
     def update_course
-
+      render :text => "Метод в разработке"
     end
 
     private

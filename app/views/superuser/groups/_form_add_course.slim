@@ -4,7 +4,7 @@ form.form-horizontal action="#{action_url}" method="post"
     .form-group
         label
             | Курс:
-        = select_tag 'company_id', options_for_select(Course.all.collect { |ac| [ac.title, ac.id] }, @bunch_course.id), {:class => 'form-control'}
+        = select_tag 'course_id', options_for_select(Course.all.collect { |ac| [ac.title, ac.id] }, @bunch_course.id), {:class => 'form-control'}
 
     input type="hidden" name="_method" value="#{method}"
     input type="hidden" name="bunch_group_id" value="#{@bunch_course.id}"

@@ -1,1 +1,9 @@
-|courses page
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "settings", title: 'Библиотека' }}
+
+= render 'home/courses/filter'
+.content#courses
+    - @courses.each do |course|
+        = render "home/courses/course", {course: course}
+      

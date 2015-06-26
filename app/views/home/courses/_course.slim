@@ -1,0 +1,21 @@
+figure.corses-prev
+    .image
+        img (src="uploads/pic1.png")
+        .course-type Записанный курс
+        .action-btn
+            .add.icon
+            .favorite.icon
+
+    figcaption
+        .title = course.title
+        .author Денис Баталин
+        .info-block
+            .duration
+                |32 часа
+                i.icon
+            .qty-lectures
+                = "#{course.sections.count} лекций"
+                i.icon
+            .completed-courses
+                |Прошли курс
+                i.icon
