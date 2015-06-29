@@ -3,8 +3,10 @@ class User < ActiveRecord::Base
   belongs_to :group
   has_many :bunch_groups, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
+  has_many :courses, dependent: :destroy
   before_create :create_hash_key, :welcome_letter, :hash_password
   validates :email, presence: true
+  scope :leading, -> { where(leading: true) }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
 
   def self.build(params)

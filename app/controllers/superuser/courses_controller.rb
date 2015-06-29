@@ -38,7 +38,7 @@ module Superuser
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img)
+      params.require(:course).permit(:title, :description, :img, :user_id)
     end
 
   end

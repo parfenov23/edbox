@@ -52,6 +52,9 @@ Rails.application.routes.draw do
         get :remove
         get :add_favorite_course
       end
+      collection do
+        get :all_leading
+      end
     end
     resources :groups do
       member do

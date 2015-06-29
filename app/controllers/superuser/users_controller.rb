@@ -20,12 +20,16 @@ module Superuser
 
     def create
       user = User.build(user_params)
-      if user.valid? && user_params[:password].length > 4
+      if user.valid? && user_params[:password].length >= 4
         user.save
         if params[:company_id].to_s != ""
           redirect_to edit_superuser_company_path(params[:company_id])
         else
-          redirect_to edit_superuser_user_path(user.id, params: {back_url: params[:back_url]})
+          if user.leading
+            redirect_to all_leading_superuser_users_path
+          else
+            redirect_to edit_superuser_user_path(user.id, params: {back_url: params[:back_url]})
+          end
         end
       else
         back_url = new_superuser_user_path
@@ -64,6 +68,10 @@ module Superuser
       render :text => "В разработке"
     end
 
+    def all_leading
+      @users_leading = User.leading
+    end
+
     def create_favorite_course
       user = find_user
       favorite_course = FavoriteCourse.new({course_id: params[:course_id], user_id: user.id})
@@ -87,7 +95,7 @@ module Superuser
     end
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :leading)
     end
 
   end
