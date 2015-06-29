@@ -62,10 +62,11 @@ module Superuser
     end
 
     def add_favorite_course
-      user = find_user
+      @user = find_user
       @courses = Course.all
-      @back_url = edit_superuser_user_path(params[:id], params: {company_id: user.company_id, back_url: "company"})
-      render :text => "В разработке"
+      @favorite_course = FavoriteCourse.new
+      @back_url = edit_superuser_user_path(params[:id], params: {company_id: @user.company_id, back_url: "company"})
+      # render :text => "В разработке"
     end
 
     def all_leading

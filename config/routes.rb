@@ -51,6 +51,8 @@ Rails.application.routes.draw do
       member do
         get :remove
         get :add_favorite_course
+        get :remove_favorite_course
+        post :create_favorite_course
       end
       collection do
         get :all_leading
