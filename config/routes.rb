@@ -20,6 +20,8 @@ Rails.application.routes.draw do
           post :update
           post :update_ava
           post :remove_user
+          post :add_favorite_course
+          post :remove_favorite_course
         end
       end
       resources :groups do
