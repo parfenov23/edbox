@@ -48,7 +48,9 @@
         .favorite.icon
         
     figcaption
-      .title Как в два клика определить хронометраж рекламного текста?
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
       .author Денис Баталин
       .info-block
         .duration 
@@ -65,8 +67,13 @@
     .image
       img (src="uploads/pic2.png")
       .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
     figcaption
-      .title Как в два клика определить хронометраж рекламного текста?
+      .title 
+        |Как в два клика определить хронометраж рекламнлика определить хронометраж рекламнлика определить хронометраж рекламного текста?
+        .shadow
       .author Денис Баталин
       .info-block
         .duration 
@@ -83,8 +90,13 @@
     .image
       img (src="uploads/pic1.png")
       .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
     figcaption
-      .title Как в два клика определить хронометраж рекламного текста?
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
       .author Денис Баталин
       .info-block
         .duration 
@@ -101,8 +113,13 @@
     .image
       img (src="uploads/pic3.png")
       .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
     figcaption
-      .title Как в два клика определить хронометраж рекламного текста?
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
       .author Денис Баталин
       .info-block
         .duration 
@@ -115,4 +132,27 @@
           |Прошли курс
           i.icon
           
+#js-add-course-to-shedule.add-course-to-shedule
+  .inner          
+    .title Добавить курс в расписание группы
+    .select.time
+      i.icon
+      .select-trigger Выберите группу
+      input.task_type type='hidden' name='time' 
+      ul.hidden
+        li.js_psevdo-select списан
+        li.js_psevdo-select списан
+        li.js_psevdo-select списан
+    .calendar
+        i.icon
+        .calendar-trigger Установите крайний срок прохождения курса
+        input.datapicker__trigger name='date'
+    .action-btn
+      .btn.yes ДОБАВИТЬ
+      .btn.cancel ОТМЕНИТ
       
+  .inner.allgood          
+    .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
+    .action-btn
+      .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
+      .btn.cancel ЗАКРЫТЬ
