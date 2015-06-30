@@ -18,14 +18,19 @@ Rails.application.routes.draw do
           post :invite
           post :change_password
           post :update
-          post :update_ava
+          post :update_avatar
           post :remove_user
+          post :add_favorite_course
+          post :remove_favorite_course
         end
       end
       resources :groups do
         member do
+          get :all_course
           post :invite
           post :remove_user
+          post :update_course
+          post :remove_course
         end
         collection do
         end
@@ -47,6 +52,12 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :remove
+        get :add_favorite_course
+        get :remove_favorite_course
+        post :create_favorite_course
+      end
+      collection do
+        get :all_leading
       end
     end
     resources :groups do
@@ -57,6 +68,7 @@ Rails.application.routes.draw do
         get :add_course
         post :update_course
         get :edit_course
+        get :remove_course
       end
     end
     resources :courses do

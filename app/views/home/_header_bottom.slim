@@ -21,10 +21,11 @@
 
     - when "cabinet"
         ul.tabs
-            li.tabs__item class="#{header_bottom[:groups_class]}"
-                a.tabs__item-link href="/group?id=1" группы
-            li.tabs__item class="#{header_bottom[:members_class]}"
-                a.tabs__item-link href="/members" участники
+            - if current_user.director
+                li.tabs__item class="#{header_bottom[:groups_class]}"
+                    a.tabs__item-link href="/group?id=1" группы
+                li.tabs__item class="#{header_bottom[:members_class]}"
+                    a.tabs__item-link href="/members" участники
             li.tabs__item class="#{header_bottom[:schedule_class]}"
                 a.tabs__item-link href="/schedule" расписание
             li.tabs__item class="#{header_bottom[:favorite_class]}"

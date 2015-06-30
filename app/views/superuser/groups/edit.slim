@@ -37,6 +37,7 @@ ul.nav.nav-tabs
                     = user.first_name
                 a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_course?user_id=#{user.id}" style="margin-right: 5px;"
                     | Добавить
+
 - if params[:type] == 'courses'
     .list-group.row
         .list-group-item.active
@@ -46,6 +47,6 @@ ul.nav.nav-tabs
             .list-group-item.col-md-6
                 span
                     = course.title
-                = link_to("Удалить курс", "/superuser/groups/#{@group.id}/remove_course?user_id=#{bunch_course.id}", class: "btn btn-danger pull-right")
-                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/edit_course?user_id=#{bunch_course.id}" style="margin-right: 5px;"
+                = link_to("Удалить курс", "/superuser/groups/#{@group.id}/remove_course?bunch_course_id=#{bunch_course.id}", class: "btn btn-danger pull-right")
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/edit_course?bunch_course_id=#{bunch_course.id}" style="margin-right: 5px;"
                     | Редактировать

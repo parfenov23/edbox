@@ -3,3 +3,20 @@ h2
 hr
 
 = render "superuser/users/form"
+
+- unless @user.leading || params[:leading].to_s == "true"
+    .list-group.row
+        .list-group-item.active
+            a.btn.btn-success href="/superuser/users/#{@user.id}/add_favorite_course"
+                |Добавить избранное
+        - @user.favorite_courses.each do |favorite_course|
+            - course = favorite_course.course
+            .list-group-item.col-md-6
+                span
+                    = course.title
+                a.btn.btn-danger.pull-right href="/superuser/users/#{@user.id}/remove_favorite_course?favorite_course_id=#{favorite_course.id}"
+                    | Удалить избранное
+
+                /a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/edit_course?bunch_course_id=#{bunch_course.id}" style="margin-right: 5px;"
+                /    | Редактировать
+                /

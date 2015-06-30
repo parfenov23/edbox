@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625075504) do
+ActiveRecord::Schema.define(version: 20150629111502) do
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150625075504) do
     t.datetime "date_start"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archive",    default: false
   end
 
   create_table "bunch_groups", force: true do |t|
@@ -47,6 +48,14 @@ ActiveRecord::Schema.define(version: 20150625075504) do
     t.string   "title"
     t.text     "description"
     t.text     "main_img"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "favorite_courses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150625075504) do
     t.boolean  "corporate",       default: false
     t.integer  "group_id"
     t.datetime "last_auth"
+    t.boolean  "leading",         default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

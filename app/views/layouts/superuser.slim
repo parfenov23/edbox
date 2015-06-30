@@ -4,10 +4,14 @@ html
         link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
         link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" rel="stylesheet"
         link href="/superuser/style/app.css" rel="stylesheet"
+        link href="/superuser/bootstrap_datepicker/css/bootstrap-datepicker.min.css"
+        link id="bsdp-css" href="/superuser/bootstrap_datepicker/css/datepicker3.css" rel="stylesheet"
         script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
         script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"
         = javascript_include_tag "/tinymce/tinymce.min.js"
         = javascript_include_tag "/superuser/script/app.js"
+        = javascript_include_tag "/superuser/bootstrap_datepicker/js/bootstrap-datepicker.min.js"
+        = javascript_include_tag "/superuser/bootstrap_datepicker/locales/bootstrap-datepicker.ru.min.js"
     body
         .well
             = render 'layouts/superuser/header'

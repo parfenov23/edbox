@@ -1,0 +1,10 @@
+.list-group.row
+    .list-group-item.active
+        a.btn.btn-success href="/superuser/users/new?leading=true"  Добавить ведущего
+    - @users_leading.each do |leading|
+        .list-group-item.col-md-6
+            span
+                = leading.first_name + " " + leading.last_name
+            = link_to("Удалить ведущего", "/superuser/users/#{leading.id}/remove", class: "btn btn-danger pull-right")
+            a.btn.btn-success.pull-right href="/superuser/users/#{leading.id}/edit" style="margin-right: 5px;"
+                | Редактировать

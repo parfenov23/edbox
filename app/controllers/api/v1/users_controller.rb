@@ -65,7 +65,25 @@ module Api::V1
       end
     end
 
+    def add_favorite_course
+      favorite_course = FavoriteCourse.new({course_id: params[:course_id], user_id: current_user.id})
+      if (favorite_course.save rescue false)
+        render json: favorite_course.transfer_to_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
+    def remove_favorite_course
+      find_favorite_course.destroy
+      render json: {success: true}
+    end
+
     private
+
+    def find_favorite_course
+      FavoriteCourse.find(params[:favorite_course_id])
+    end
 
     def find_user
       User.find(params[:id])

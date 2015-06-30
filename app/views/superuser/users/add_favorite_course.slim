@@ -1,0 +1,11 @@
+- action_url = @favorite_course.id.nil? ? "/superuser/users/#{@user.id}/create_favorite_course" : "/superuser/users/#{@user.id}/update_favorite_course"
+- method = "post"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Курс:
+        - arr_courses = []
+        - Course.all.map { |course| arr_courses << [course.title, course.id] }
+        = select_tag 'course_id', options_for_select(arr_courses.collect { |ac| [ac.first, ac.last] }, @favorite_course.id), {:class => 'form-control'}
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить

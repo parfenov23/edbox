@@ -11,5 +11,11 @@ form.form-horizontal action="#{action_url}" method="post"
             a#open_descriptio href="javascript:void(0)" style="padding-left: 5px" Открыть
         textarea.form-control.description name="course[description]" type="text" style="display:none;"
             = @course.description
+    .form-group
+        label
+            | Ведущий:
+        - arr_leading = [["Нет", nil]]
+        - User.leading.map { |leading| arr_leading << ["#{leading.first_name} #{leading.last_name}", leading.id] }
+        = select_tag 'course[user_id]', options_for_select(arr_leading.collect { |al| [al.first, al.last] }, @course.user_id), {:class => 'form-control'}
     input type="hidden" name="_method" value="#{method}"
     button.btn.btn-primary type="submit" Сохранить
