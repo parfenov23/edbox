@@ -72,6 +72,22 @@
         background: #fd9348;
       }
     }
+    .more {
+      &.hidden {
+        i.icon {
+          cursor: pointer;
+          color: rgba(0,0,0,0.54);
+          margin-left: 6px;
+          &::before {
+            content: '\E7B4';
+            font-size: 24px;
+          }
+        }
+        .checkbox__holder {
+          display: none;
+        }
+      }
+    }
   }
   &.show {
     -webkit-transition: all 300ms;

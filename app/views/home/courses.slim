@@ -29,6 +29,26 @@
         i.check
         i.ripple-effect.ripple-check
         |Живые курсы 
+    .more.hidden
+      i.icon
+      .checkbox__holder
+        input#checkbox3.checkbox name="n3" type="checkbox" /
+        label.label for="checkbox3" 
+          i.check
+          i.ripple-effect.ripple-check
+          |Живые курсы 
+      .checkbox__holder
+        input#checkbox3.checkbox name="n3" type="checkbox" /
+        label.label for="checkbox3" 
+          i.check
+          i.ripple-effect.ripple-check
+          |Живые курсы 
+      .checkbox__holder
+        input#checkbox3.checkbox name="n3" type="checkbox" /
+        label.label for="checkbox3" 
+          i.check
+          i.ripple-effect.ripple-check
+          |Живые курсы 
   .filter-category
     .title Темы:
     .checkbox__holder
@@ -131,28 +151,28 @@
         .completed-courses 
           |Прошли курс
           i.icon
-          
-#js-add-course-to-shedule.add-course-to-shedule
-  .inner          
-    .title Добавить курс в расписание группы
-    .select.time
-      i.icon
-      .select-trigger Выберите группу
-      input.task_type type='hidden' name='time' 
-      ul.hidden
-        li.js_psevdo-select списан
-        li.js_psevdo-select списан
-        li.js_psevdo-select списан
-    .calendar
+//          
+  #js-add-course-to-shedule.add-course-to-shedule
+    .inner          
+      .title Добавить курс в расписание группы
+      .select.time
         i.icon
-        .calendar-trigger Установите крайний срок прохождения курса
-        input.datapicker__trigger name='date'
-    .action-btn
-      .btn.yes ДОБАВИТЬ
-      .btn.cancel ОТМЕНИТ
-      
-  .inner.allgood          
-    .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
-    .action-btn
-      .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
-      .btn.cancel ЗАКРЫТЬ
+        .select-trigger Выберите группу
+        input.task_type type='hidden' name='time' 
+        ul.hidden
+          li.js_psevdo-select списан
+          li.js_psevdo-select списан
+          li.js_psevdo-select списан
+      .calendar
+          i.icon
+          .calendar-trigger Установите крайний срок прохождения курса
+          input.datapicker__trigger name='date'
+      .action-btn
+        .btn.yes ДОБАВИТЬ
+        .btn.cancel ОТМЕНИТ
+        
+    .inner.allgood          
+      .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
+      .action-btn
+        .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
+        .btn.cancel ЗАКРЫТЬ

@@ -546,6 +546,32 @@
 			"setIdx": 1,
 			"setId": 1,
 			"iconIdx": 258
+		},
+		{
+			"icon": {
+				"paths": [
+					"M316.373 350.294l195.627 195.627 195.627-195.627 60.373 60.373-256 256-256-256z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"defaultCode": 59316,
+				"grid": 0
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"id": 436,
+				"order": 22,
+				"prevSize": 32,
+				"code": 59316,
+				"name": "uniE7B4"
+			},
+			"setIdx": 1,
+			"setId": 1,
+			"iconIdx": 436
 		}
 	],
 	"height": 1024,

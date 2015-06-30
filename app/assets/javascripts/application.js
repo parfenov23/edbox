@@ -44,6 +44,10 @@ $(document).ready(function(){
     });
   })
 
+  $('.filter-category .more .icon').on('click', function () {
+    $(this).closest('.more').removeClass('hidden');
+  })
+
 
 
   $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
