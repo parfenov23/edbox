@@ -137,7 +137,7 @@ $(document).ready(function(){
           e.preventDefault();
           var member = $('.members__invite .input').val();
           if(emailRegexp.test(member) == false) {
-            alert('Неправильный email');
+            show_error('Неправильный email', 3000);
           }
           else {
             $('.members__invite .invited').show();
@@ -159,10 +159,10 @@ $(document).ready(function(){
           url: '/api/v1/users/invite',
           data: {emails:data},
         }).success(function(){
-            console.log('Ушло');
+            show_error('Приглашения отправлены', 3000);
             location.reload();
         }).error(function(){
-            console.log('Не ушло');
+            show_error('Произошла ошибка отправки', 3000);
         });
       }
     });
@@ -179,9 +179,9 @@ $(document).ready(function(){
         url: '/api/v1/users/remove_user',
         data: {id:number},
       }).success(function(){
-          console.log('Ушло');
+          show_error('Пользователь удален', 3000);
       }).error(function(){
-          console.log('Не ушло');
+          show_error('Произошла ошибка', 3000);
       });
     });
   }
@@ -204,21 +204,25 @@ $(document).ready(function(){
   }
 
   changeAvatar = function(e){
-    var data = new FormData();
-    data.append('ava', $('input[type=file]')[0].files[0]);
-    $.ajax({
-        type: 'POST',
-        url: '/api/v1/users/update_avatar',
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-      }).success(function(){
-          $('.profile__main .ava').attr('src', 'data:image/png;base64,' + data.base64);
-          show_error('Ваш новый аватар готов', 3000);
-      }).error(function(){
-          show_error('Не удалось обновить аватар', 3000);
-      });
+    $('.profile__main .upload__block input').change(function(){
+      var data = new FormData();
+      data.append('avatar', $('input[type=file]')[0].files[0]);
+      $.ajax({
+          type: 'POST',
+          url: '/api/v1/users/update_avatar',
+          data: data,
+          cache: false,
+          contentType: false,
+          processData: false,
+        }).success(function(data){
+            console.log(data);
+            console.log(data.base64);
+            $('.profile__main .ava').attr('src', 'data:image/png;base64,' + data.base64);
+            show_error('Ваш новый аватар готов', 3000);
+        }).error(function(){
+            show_error('Не удалось обновить аватар', 3000);
+        });
+    });
   }
 
 

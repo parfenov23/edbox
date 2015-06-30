@@ -8,6 +8,7 @@
   .header {
     &__top {
       position: relative;
+      z-index: 2;
       height: 48px;
       background: #5C4141;
       .logo {
@@ -43,7 +44,7 @@
         .menu__user {
           position: absolute;
           display: none;
-          top: 44px;
+          top: 40px;
           right: 0;
           width: 320px;
           background: #fff;
@@ -412,7 +413,7 @@
         .icon {
           height: 22px;
           cursor: pointer;
-          line-height: 64px;
+          line-height: 48px;
           &:before {
             font-size: 22px;
             color: #757575;

@@ -50,13 +50,23 @@ module Api::V1
       end
     end
 
+    # def update_avatar
+    #   if params[:avatar].present?
+    #     img = ::ResizeImage.crop(params[:avatar].path)
+    #     img_base64 = Base64.encode64(File.open(img.path, "rb").read)
+    #     render json: { base64: img_base64 }
+    #   else
+    #     render json: { error: "You do not pass the picture" }
+    #   end
+    # end
+
     def update_avatar
       unless params[:avatar].nil?
         img = ResizeImage.crop(params[:avatar].path)
         img_base64 = Base64.encode64(File.open(img.path, "rb").read)
         current_user.avatar = img_base64
         if (current_user.save rescue false)
-          render json: {base64: current_user.transfer.to_json}
+          render json: {base64: img_base64}
         else
           render_error(500, 'Проверьте данные')
         end
