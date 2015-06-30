@@ -133,20 +133,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.slim" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profile.slim" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.15605749">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_header.slim" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_header.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19507186">
+            <state vertical-scroll-proportion="50.214287">
               <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
@@ -252,9 +252,9 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/home/tariff.slim" />
         <option value="$PROJECT_DIR$/app/views/home/members.slim" />
-        <option value="$PROJECT_DIR$/app/views/home/profile.slim" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/home/_header.slim" />
+        <option value="$PROJECT_DIR$/app/views/home/profile.slim" />
       </list>
     </option>
   </component>
@@ -1229,18 +1229,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
+    <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        <state vertical-scroll-proportion="50.214287">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
+    <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19507186">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.15605749">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>

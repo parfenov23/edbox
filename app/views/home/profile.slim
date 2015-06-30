@@ -2,7 +2,6 @@
     = render "home/header", {header_top_arr: ['notifications']}
     = render "home/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
 .content#profile
-    = current_user.id
     form.profile__block.profile__main
         .avatar
             img.ava src="#{default_img(current_user.avatar)}"
