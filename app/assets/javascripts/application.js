@@ -78,30 +78,13 @@ $(document).ready(function(){
     $('#ui-datepicker-div').removeClass('hide');
   });
 
-  // $('.calendar-trigger').on('click', function () {
-  //   $('#js-add-course-to-shedule .datapicker__trigger').datepicker();
-  // })
-
   figcaptionTitleEclipses = function () {
-
-    var heights = [];  // переменная, которая будет хранить высоты элементов
-
+    var heights = [];
     $('.corses-prev figcaption .title').each(function(indx, element){
       if ($(element).height()> 84) {
         $(element).addClass('over-title')
       }
     });
-
-    // console.log(heights);
-
-    // var titleHeight = [$('.corses-prev figcaption .title')]
-    // $.each([$('.corses-prev figcaption .title')], function (i, n) {
-    //   console.log(n.height());
-    // })
-    // console.log(titleHeight);
-    // if (titleHeight > 84) {
-    //
-    // }
   }
 
   $('.filter-courses').baron();
