@@ -2,12 +2,12 @@
     = render "home/header", {header_top_arr: ['notifications']}
     = render "home/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
 .content#profile
-
+    = current_user.id
     form.profile__block.profile__main
         .avatar
-            img.ava src="/images/ava.png"
+            img.ava src="#{default_img(current_user.avatar)}"
             .upload__block
-              input#imgInp name="ava" type="file"
+                input#imgInp name="ava" type="file"
         .data
             .input-wrp.name
                 input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
