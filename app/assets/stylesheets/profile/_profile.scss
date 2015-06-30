@@ -94,6 +94,21 @@
     &.profile__tariff-free {
       padding: 32px 32px 48px 32px;
     }
+    &.profile__tariff-buy {
+      padding: 32px;
+      background: #FFF3EB;
+      .text {
+        font: 400 13px/18px 'Roboto';
+        color: rgba(0,0,0,.54);
+        margin: 0 0 20px 0;
+        &:last-child {
+          margin: 0;
+        }
+        &.black {
+          color: rgba(0,0,0,.87);
+        }
+      }
+    }
     &.profile__tariff-paid {
       padding: 32px;
     }
