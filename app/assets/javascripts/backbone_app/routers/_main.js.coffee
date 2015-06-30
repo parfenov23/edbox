@@ -12,6 +12,7 @@ render = (v) ->
 
 controller=
   main: (page) ->
+    location.href="/cabinet" if page == 'profile'
     unless page in ['profile', 'tasks']
       return console.log 'render 404'
     new Backbone.Model()

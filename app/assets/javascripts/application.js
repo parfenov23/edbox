@@ -29,6 +29,25 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 $(document).ready(function(){
 
 
+  show_error = function(text, duration){
+    var el = $('#alert');
+    el.find('.text').text(text);
+    el.show(300);
+    el.find('.close').click(function(){
+      el.hide(400);
+    });
+    setTimeout(function(){
+      el.hide(400);
+    }, duration);
+  }
+
+  setTimeout(function(){
+    var windowHeight = $(window).outerHeight();
+    $('.auth').css({'height':windowHeight+'px'});
+  } , 100);
+
+
+
   $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
     $('#js-filter-courses').toggleClass('show');
   })
@@ -53,9 +72,11 @@ $(document).ready(function(){
         url: '/api/v1/users',
         data: data
       }).success(function(){
-          console.log('Ушло');
+        console.log('111');
+        show_error('Успешно сохранено', 3000);
       }).error(function(){
-          console.log('Не ушло');
+        console.log('111');
+        show_error('Ошибка', 3000);
       });
     });
   }
@@ -81,9 +102,9 @@ $(document).ready(function(){
         url: '/api/v1/users/change_password',
         data: data
       }).success(function(){
-          console.log('Ушло');
+          show_error('Успешно сохранено', 3000);
       }).error(function(){
-          console.log('Не ушло');
+          show_error('Ошибка', 3000);
       });
     });
   }
@@ -166,6 +187,41 @@ $(document).ready(function(){
   }
 
 
+  headerUserToggle = function(){
+    $(document).on('click', function(e){
+      if ( $(e.target).closest('.header__user').length == 0 ) {
+        $('.menu__user').removeClass('active');
+      }
+      else if ( $(e.target).closest('.header__user').length == 1 ) {
+        if ( $(e.target)[0].className == 'ava' ) {
+         $('.menu__user').toggleClass('active');
+        }
+        else {
+          $('.menu__user').addClass('active');
+        }
+      }
+    });
+  }
+
+  changeAvatar = function(e){
+    var data = new FormData();
+    data.append('ava', $('input[type=file]')[0].files[0]);
+    $.ajax({
+        type: 'POST',
+        url: '/api/v1/users/update_avatar',
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+      }).success(function(){
+          $('.profile__main .ava').attr('src', 'data:image/png;base64,' + data.base64);
+          show_error('Ваш новый аватар готов', 3000);
+      }).error(function(){
+          show_error('Не удалось обновить аватар', 3000);
+      });
+  }
+
+
 
   profileDataChange();
   profilePasswordChangeValidation();
@@ -178,6 +234,8 @@ $(document).ready(function(){
   sendInvintations();
   deleteInvitedMember();
 
+  headerUserToggle();
 
+  changeAvatar();
 
 });

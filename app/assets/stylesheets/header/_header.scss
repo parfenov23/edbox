@@ -8,16 +8,16 @@
   .header {
     &__top {
       position: relative;
-      height: 56px;
-      background: #FD9348;
+      height: 48px;
+      background: #5C4141;
       .logo {
         position: absolute;
         &__ed {
-          top: 18px;
+          top: 13px;
           left: 32px;
         }
         &__ad {
-          top: 19px;
+          top: 15px;
           left: 119px;
         }
       }
@@ -31,7 +31,7 @@
       }
       .header__user {
         position: absolute;
-        top: 12px;
+        top: 8px;
         right: 32px;
         width: 32px;
         height: 32px;
@@ -51,6 +51,9 @@
           box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
                       0  2px  6px 0  rgba(0,0,0,.24);
           cursor: default;
+          &.active {
+            display: block;
+          }
           &:before {
             position: absolute;
             display: block;
@@ -66,11 +69,15 @@
             overflow: hidden;
             padding: 24px;
             border-bottom: 1px solid rgba(0,0,0,.12);
-            .avatar {
+            .avatar__holder {
               float: left;
               width: 48px;
               height: 48px;
               margin: 0 24px 0 0;
+              .avatar {
+                max-width: 100%;
+                max-height: 100%;
+              }
             }
             .text {
               float: left;
@@ -163,7 +170,7 @@
       }
 
       .header__apps {
-        top: 17px;
+        top: 13px;
         right: 81px;
         .icon:before {
           content: '\e892';
@@ -228,7 +235,7 @@
 
       .header__notifications {
         position: absolute;
-        top: 17px;
+        top: 14px;
         right: 120px;
         .icon:before {
           position: relative;
@@ -322,7 +329,7 @@
       }
 
       .header__courses {
-        top: 17px;
+        top: 14px;
         right: 161px;
         .icon:before {
           content: '\e8de';
@@ -330,7 +337,7 @@
       }
 
       .header__cabinet {
-        top: 17px;
+        top: 14px;
         right: 200px;
         .icon:before {
           content: '\e8d9';
@@ -340,14 +347,14 @@
     }
     &__bottom {
       @include clearfix;
-      height: 64px;
+      height: 48px;
       padding: 0 37px 0 32px;
       background: #fff;
       box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
                   0  2px  6px 0  rgba(0,0,0,.24);
       .arrow {
         float: left;
-        margin: 0 24px 0 0;
+        margin: 10px 24px 0 0;
         &:before {
           font-size: 30px;
           color: #757575;
@@ -356,7 +363,7 @@
       }
       >.title {
         float: left;
-        font: 400 24px/64px 'Roboto';
+        font: 400 20px/48px 'Roboto';
         color: rgba(0,0,0,.54);
       }
       .tabs {
@@ -366,10 +373,10 @@
         margin: 0 0 0 46px;
         &__item {
           float: left;
-          height: 64px;
+          height: 48px;
           padding: 0 18px;
           &-link {
-            font: 400 13px/64px 'Roboto';
+            font: 400 13px/48px 'Roboto';
             color: rgba(0,0,0,.54);
             text-transform: uppercase;
           }
@@ -379,12 +386,12 @@
           left: 0;
           bottom: 0;
           height: 2px;
-          background: #FD9348;
+          background: #5C4141;
         }
       }
       .plus {
         float: right;
-        height: 64px;
+        height: 48px;
         margin: 0 24px 0 0;
         .icon {
           height: 16px;
@@ -400,7 +407,7 @@
       }
       .settings {
         float: right;
-        height: 64px;
+        height: 48px;
         position: relative;
         .icon {
           height: 22px;

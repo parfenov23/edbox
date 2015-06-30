@@ -9,8 +9,8 @@
     img.ava src="/images/ava.png"
     .menu__user
       .top
-        .avatar
-          img.ava src="/images/ava.png"
+        .avatar__holder
+          img.avatar src="/images/ava.png"
         .text
           .name =current_user.first_name+' '+current_user.last_name
           .login = current_user.email
@@ -27,12 +27,11 @@
         / li.menu__item
         /   a.menu__item-link.menu__item-courses href="courses" Курсы
 
-      .account
-        .avatar
-          img.ava src="/images/ava.png"
-        .text
-          .name =current_user.first_name+' '+current_user.last_name
-          .login = current_user.email
+      /   .avatar
+      /     img.ava src="/images/ava.png"
+      /   .text
+      /     .name =current_user.first_name+' '+current_user.last_name
+      /     .login = current_user.email
 
       .bottom
         .btn__raised.add__acc добавить аккаунт

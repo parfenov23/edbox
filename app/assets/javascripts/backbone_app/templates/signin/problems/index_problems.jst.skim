@@ -10,7 +10,7 @@
         hr
       .input-wrp.textarea
         textarea placeholder="Опишите проблему" name="comment" type="text"
-        hr
+        / hr
       .btn-holder
         button.btn.btn-default.btn-raised.auth__button.auth__button-yes.btn__cyan#submit Далее
         button.btn.btn-default.btn-flat.auth__button.auth__button-cancel#cancel Отменить
