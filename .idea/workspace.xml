@@ -79,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+              <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -89,8 +89,26 @@
         <entry file="file://$PROJECT_DIR$/app/views/home/tariff.slim">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.6785714">
-              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-              <folding />
+              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+              <folding>
+                <marker date="1435669046000" expanded="true" signature="0:193" placeholder="#header__holder" />
+                <marker date="1435669046000" expanded="true" signature="194:1226" placeholder=".content#profile" />
+                <marker date="1435669046000" expanded="true" signature="213:445" placeholder=".profile__block.profile__block-tariff.profile__tariff-free" />
+                <marker date="1435669046000" expanded="true" signature="276:316" placeholder=".title Бесплатная корпоративная подписка" />
+                <marker date="1435669046000" expanded="true" signature="321:376" placeholder=".time" />
+                <marker date="1435669046000" expanded="true" signature="381:390" placeholder=".clearfix" />
+                <marker date="1435669046000" expanded="true" signature="395:445" placeholder=".quantity" />
+                <marker date="1435669046000" expanded="true" signature="448:1226" placeholder=".profile__block.profile__block-tariff.profile__tariff-paid" />
+                <marker date="1435669046000" expanded="true" signature="601:630" placeholder=".title Корпоративная подписка" />
+                <marker date="1435669046000" expanded="true" signature="635:690" placeholder=".time" />
+                <marker date="1435669046000" expanded="true" signature="695:704" placeholder=".clearfix" />
+                <marker date="1435669046000" expanded="true" signature="805:845" placeholder=".info__item-top Количество пользователей" />
+                <marker date="1435669046000" expanded="true" signature="854:875" placeholder=".info__item-bottom 20" />
+                <marker date="1435669046000" expanded="true" signature="904:980" placeholder=".info__item-top" />
+                <marker date="1435669046000" expanded="true" signature="989:1045" placeholder=".info__item-bottom" />
+                <marker date="1435669046000" expanded="true" signature="1074:1157" placeholder=".info__item-top" />
+                <marker date="1435669046000" expanded="true" signature="1166:1226" placeholder=".info__item-bottom" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,21 +123,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application_helper.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application_helper.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29514563">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.slim" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/superuser/users/edit.slim">
+      <file leaf-file-name="profile.slim" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.15605749">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_header.slim" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="50.214287">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,7 +158,17 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="51" column="35" selection-start-line="41" selection-start-column="0" selection-end-line="51" selection-end-column="35" />
-              <folding />
+              <folding>
+                <marker date="1435557703000" expanded="true" signature="770:1382" placeholder=".list-group.row" />
+                <marker date="1435557703000" expanded="true" signature="794:933" placeholder=".list-group-item.active" />
+                <marker date="1435557703000" expanded="true" signature="1107:1382" placeholder=".list-group-item.col-md-6 class=&quot;#{class_director}&quot;" />
+                <marker date="1435557703000" expanded="true" signature="1420:1929" placeholder=".list-group.row" />
+                <marker date="1435557703000" expanded="true" signature="1444:1512" placeholder=".list-group-item.active" />
+                <marker date="1435557703000" expanded="true" signature="1673:1929" placeholder=".list-group-item.col-md-6" />
+                <marker date="1435557703000" expanded="true" signature="1966:2690" placeholder=".list-group.row" />
+                <marker date="1435557703000" expanded="true" signature="1990:2145" placeholder=".list-group-item.active" />
+                <marker date="1435557703000" expanded="true" signature="2255:2690" placeholder=".list-group-item.col-md-6" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,7 +214,6 @@
         <option value="$PROJECT_DIR$/app/views/home_mailer/welcome_latter.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/backbone_app/app.js.coffee" />
         <option value="$PROJECT_DIR$/app/views/home/courses/filter.slim" />
-        <option value="$PROJECT_DIR$/app/views/home/profile.slim" />
         <option value="$PROJECT_DIR$/app/views/home/courses.slim" />
         <option value="$PROJECT_DIR$/app/views/home/courses/_course.slim" />
         <option value="$PROJECT_DIR$/app/views/superuser/groups/edit.slim" />
@@ -194,7 +231,6 @@
         <option value="$PROJECT_DIR$/app/controllers/api/v1/groups_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/home/_header.slim" />
         <option value="$PROJECT_DIR$/app/views/home/_header_bottom.slim" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/home/favorite.slim" />
@@ -217,6 +253,8 @@
         <option value="$PROJECT_DIR$/app/views/home/tariff.slim" />
         <option value="$PROJECT_DIR$/app/views/home/members.slim" />
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
+        <option value="$PROJECT_DIR$/app/views/home/_header.slim" />
+        <option value="$PROJECT_DIR$/app/views/home/profile.slim" />
       </list>
     </option>
   </component>
@@ -308,6 +346,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -820,24 +898,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59641254">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0357144">
-          <caret line="1" column="63" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/cabinet.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.75">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -874,6 +939,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.392857">
           <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -881,6 +947,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.392857">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1075,7 +1142,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="35" selection-start-line="41" selection-start-column="0" selection-end-line="51" selection-end-column="35" />
-          <folding />
+          <folding>
+            <marker date="1435557703000" expanded="true" signature="770:1382" placeholder=".list-group.row" />
+            <marker date="1435557703000" expanded="true" signature="794:933" placeholder=".list-group-item.active" />
+            <marker date="1435557703000" expanded="true" signature="1107:1382" placeholder=".list-group-item.col-md-6 class=&quot;#{class_director}&quot;" />
+            <marker date="1435557703000" expanded="true" signature="1420:1929" placeholder=".list-group.row" />
+            <marker date="1435557703000" expanded="true" signature="1444:1512" placeholder=".list-group-item.active" />
+            <marker date="1435557703000" expanded="true" signature="1673:1929" placeholder=".list-group-item.col-md-6" />
+            <marker date="1435557703000" expanded="true" signature="1966:2690" placeholder=".list-group.row" />
+            <marker date="1435557703000" expanded="true" signature="1990:2145" placeholder=".list-group-item.active" />
+            <marker date="1435557703000" expanded="true" signature="2255:2690" placeholder=".list-group-item.col-md-6" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,7 +1182,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+          <caret line="60" column="7" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -1113,7 +1190,33 @@
     <entry file="file://$PROJECT_DIR$/app/views/home/tariff.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6785714">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <marker date="1435669046000" expanded="true" signature="0:193" placeholder="#header__holder" />
+            <marker date="1435669046000" expanded="true" signature="194:1226" placeholder=".content#profile" />
+            <marker date="1435669046000" expanded="true" signature="213:445" placeholder=".profile__block.profile__block-tariff.profile__tariff-free" />
+            <marker date="1435669046000" expanded="true" signature="276:316" placeholder=".title Бесплатная корпоративная подписка" />
+            <marker date="1435669046000" expanded="true" signature="321:376" placeholder=".time" />
+            <marker date="1435669046000" expanded="true" signature="381:390" placeholder=".clearfix" />
+            <marker date="1435669046000" expanded="true" signature="395:445" placeholder=".quantity" />
+            <marker date="1435669046000" expanded="true" signature="448:1226" placeholder=".profile__block.profile__block-tariff.profile__tariff-paid" />
+            <marker date="1435669046000" expanded="true" signature="601:630" placeholder=".title Корпоративная подписка" />
+            <marker date="1435669046000" expanded="true" signature="635:690" placeholder=".time" />
+            <marker date="1435669046000" expanded="true" signature="695:704" placeholder=".clearfix" />
+            <marker date="1435669046000" expanded="true" signature="805:845" placeholder=".info__item-top Количество пользователей" />
+            <marker date="1435669046000" expanded="true" signature="854:875" placeholder=".info__item-bottom 20" />
+            <marker date="1435669046000" expanded="true" signature="904:980" placeholder=".info__item-top" />
+            <marker date="1435669046000" expanded="true" signature="989:1045" placeholder=".info__item-bottom" />
+            <marker date="1435669046000" expanded="true" signature="1074:1157" placeholder=".info__item-top" />
+            <marker date="1435669046000" expanded="true" signature="1166:1226" placeholder=".info__item-bottom" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1126,10 +1229,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29514563">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        <state vertical-scroll-proportion="50.214287">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/profile.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15605749">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
