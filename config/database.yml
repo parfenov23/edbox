@@ -3,7 +3,7 @@ default: &pg
   encoding: unicode
   pool: 5
   username: gigrave
- password: qwerty
+  password: qwerty
 
 development:
   <<: *pg
