@@ -3,7 +3,7 @@
   top: 0;
   right: -100%;
   width: 512px !important;
-  padding-top: 120px;
+  padding-top: 97px;
   background: #fff;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26), 0 2px 10px 0 rgba(0,0,0,0.16);
   z-index: 2;
@@ -126,7 +126,7 @@
       i {
         display: block;
         position: absolute;
-        top: 2px;
+        top: 0;
         left: 0;
       }
     }
@@ -174,10 +174,43 @@
         position: relative;
         padding-right: 80px;
         margin-bottom: 18px;
+        z-index: 2;
         .ingroup {
           font-size: 13px;
           color: rgba(0,0,0,0.54);
           line-height: 20px;
+          position: relative;
+          cursor: pointer;
+          &:hover {
+            span {
+              color: #FD9348;
+            }
+          }
+          .group-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #F9F9F9;
+            border-radius: 2px 0px 0px 2px;
+            box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+            padding: 17px 24px;
+            padding-bottom: 0;
+            &.hidden {
+              display: none;
+            }
+            li {
+              font-size: 13px;
+              color: rgba(0,0,0,0.54);
+              line-height: 20px;
+              overflow: hidden;
+              width: 190px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              margin-bottom: 12px;
+              z-index: 9999;
+
+            }
+          }
           span {
             color: #000;
           }
@@ -185,7 +218,8 @@
         .add-group, .delete {
           color: rgba(0,0,0,0.54);
           position: absolute;
-          top: 2px;
+          top: 0;
+          cursor: pointer;
           .icon {
             display: block;
             color: rgba(0,0,0,0.26);
