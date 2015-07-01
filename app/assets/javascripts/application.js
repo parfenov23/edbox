@@ -60,9 +60,9 @@ $(document).ready(function(){
     $('.auth').css({'height':windowHeight+'px'});
   } , 100);
 
-  $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
-    $('#js-filter-courses').toggleClass('show');
-  })
+  // $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
+  //   $('#js-filter-courses').toggleClass('show');
+  // })
 
   $('.filter-category .more .icon').on('click', function () {
     $(this).closest('.more').removeClass('hidden');
@@ -73,11 +73,14 @@ $(document).ready(function(){
     var id = $(this).data('id');
     if ($('#'+ id +'').hasClass('show')) {
       $('#'+ id +'').toggleClass('show');
+      console.log(1);
     }
     else {
       $('.courses-aside:visible').removeClass('show');
       $('#'+ id +'').toggleClass('show');
     }
+
+
   })
 
   $('#js-add-course-to-shedule .datapicker__trigger').datepicker({

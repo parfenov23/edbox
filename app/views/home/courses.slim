@@ -1,7 +1,8 @@
 #header__holder
   = render "home/header" , {header_top_arr:['notifications']}
-  = render "home/header_bottom", {header_bottom_arr: [{block:"title", title: 'Библиотека'},
-                                                      {block:"settings"}, {block:"favorite"}, {block:"groups"} ]}
+                                                      
+  = render "home/header_bottom", {header_bottom: {block: "courses", title: 'Курсы', profile_class: "active"}}
+
 
 = render "home/courses/filter"
 = render "home/courses/groups"
