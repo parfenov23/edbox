@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150629111502) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attachments", force: true do |t|
     t.string   "file"
     t.string   "file_type"
@@ -92,6 +95,6 @@ ActiveRecord::Schema.define(version: 20150629111502) do
     t.boolean  "leading",         default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
