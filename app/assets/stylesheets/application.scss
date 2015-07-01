@@ -251,7 +251,7 @@ i {
 }
 
 #alert {
-  position: absolute;
+  position: fixed;
   display: none;
   z-index: 1000;
   bottom: 20px;
@@ -272,4 +272,8 @@ i {
     color: #fff;
     cursor: pointer;
   }
+}
+
+#menus {
+  display: none;
 }

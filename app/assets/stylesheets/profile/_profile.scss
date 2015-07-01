@@ -13,6 +13,7 @@
   }
   .profile__main {
     .avatar {
+      position: relative;
       float: left;
       width: 128px;
       height: 128px;
@@ -21,6 +22,34 @@
       .ava {
         max-width: 100%;
         min-width: 100%;
+        border-radius: 100%;
+      }
+      input {
+        display : none;
+      }
+      &:hover {
+        .upload__block {
+          position      : absolute;
+          top           : 0;
+          left          : 0;
+          width         : 128px;
+          height        : 128px;
+          border-radius : 50%;
+          overflow      : hidden;
+          background    : url("ava-upload.png") 50% 50% no-repeat;
+          z-index       : 2;
+          cursor        : pointer;
+          input {
+            display     : block;
+            width       : 300px;
+            margin-left : -170px;
+            position    : absolute;
+            z-index     : 3;
+            cursor      : pointer;
+            height      : 128px;
+            opacity     : 0;
+          }
+        }
       }
     }
     .data {
@@ -64,6 +93,21 @@
   .profile__block-tariff {
     &.profile__tariff-free {
       padding: 32px 32px 48px 32px;
+    }
+    &.profile__tariff-buy {
+      padding: 32px;
+      background: #FFF3EB;
+      .text {
+        font: 400 13px/18px 'Roboto';
+        color: rgba(0,0,0,.54);
+        margin: 0 0 20px 0;
+        &:last-child {
+          margin: 0;
+        }
+        &.black {
+          color: rgba(0,0,0,.87);
+        }
+      }
     }
     &.profile__tariff-paid {
       padding: 32px;

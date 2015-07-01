@@ -11,14 +11,14 @@
       .input-wrp.password
         input placeholder="Пароль" name="user[password]" type="password"
         hr
-      .what__wrp
+      /.what__wrp
         a.what__wrp-link href="/#signin/problems" Проблемы со входом?
 
       .create__acc
         a.auth__what href="/#signup" Создать новый аккаунт
       .btn-holder
         button.btn-default.btn__cyan#submit Войти
-    .auth__bottom
+    /.auth__bottom
       .title Авторизоваться через:
       ul.social__links
         li.social__links-item.social__links-item-fb Facebook

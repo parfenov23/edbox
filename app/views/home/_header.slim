@@ -6,11 +6,11 @@
 
 
   .header__icons.header__user
-    img.ava src="/images/ava.png"
+    img.ava src="#{default_img(current_user.avatar)}"
     .menu__user
       .top
-        .avatar
-          img.ava src="/images/ava.png"
+        .avatar__holder
+          img.avatar src="/images/ava.png"
         .text
           .name =current_user.first_name+' '+current_user.last_name
           .login = current_user.email
@@ -27,15 +27,14 @@
         / li.menu__item
         /   a.menu__item-link.menu__item-courses href="courses" Курсы
 
-      .account
-        .avatar
-          img.ava src="/images/ava.png"
-        .text
-          .name =current_user.first_name+' '+current_user.last_name
-          .login = current_user.email
+      /   .avatar
+      /     img.ava src="/images/ava.png"
+      /   .text
+      /     .name =current_user.first_name+' '+current_user.last_name
+      /     .login = current_user.email
 
       .bottom
-        .btn__raised.add__acc добавить аккаунт
+        /.btn__raised.add__acc добавить аккаунт
         a.btn__flat.exit href="/#signout" выход
 
 

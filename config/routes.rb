@@ -18,7 +18,7 @@ Rails.application.routes.draw do
           post :invite
           post :change_password
           post :update
-          post :update_ava
+          post :update_avatar
           post :remove_user
           post :add_favorite_course
           post :remove_favorite_course
