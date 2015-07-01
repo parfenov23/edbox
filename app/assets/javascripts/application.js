@@ -49,9 +49,15 @@ $(document).ready(function(){
   })
 
 
-
-  $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
-    $('#js-filter-courses').toggleClass('show');
+  $('.header__bottom .aside-trigger').on('click', function () {
+    var id = $(this).data('id');
+    if ($('#'+ id +'').hasClass('show')) {
+      $('#'+ id +'').toggleClass('show');
+    }
+    else {
+      $('.courses-aside:visible').removeClass('show');
+      $('#'+ id +'').toggleClass('show');
+    }
   })
 
   $('#js-add-course-to-shedule .datapicker__trigger').datepicker({
@@ -78,10 +84,10 @@ $(document).ready(function(){
     $('#ui-datepicker-div').removeClass('hide');
   });
 
-  figcaptionTitleEclipses = function () {
+  figcaptionTitleEclipses = function ( el, height) {
     var heights = [];
-    $('.corses-prev figcaption .title').each(function(indx, element){
-      if ($(element).height()> 84) {
+    $(el).each(function(indx, element){
+      if ($(element).height()> height) {
         $(element).addClass('over-title')
       }
     });
@@ -144,7 +150,8 @@ $(document).ready(function(){
   profileDataChange();
   profilePasswordChangeValidation();
   profilePasswordChange();
-  figcaptionTitleEclipses();
+  figcaptionTitleEclipses('.corses-prev figcaption .title', 84);
+  figcaptionTitleEclipses('.favorite-item .description .title', 56);
 
 
 
