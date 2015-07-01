@@ -1,6 +1,6 @@
 #header__holder
-    = render "home/header", {header_top_arr: ['notifications']}
-    = render "home/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
+    = render "home/header/header", {header_top_arr: ['notifications']}
+    = render "home/header/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
 .content#profile
     form.profile__block.profile__main
         .avatar

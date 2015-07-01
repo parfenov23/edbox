@@ -1,0 +1,9 @@
+.header__top
+    .logo.logo__ed
+        img.logo__img src="assets/header__edbox.png"
+    .logo.logo__ad
+        img.logo__img src="assets/header__adconsult.png"
+    - if true
+        = render "home/header/auth"
+    - else
+        = render "home/header/no_auth"
