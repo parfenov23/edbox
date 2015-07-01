@@ -42,6 +42,17 @@
                         = "группа #{n}"
             .line
 
+    - when "settings"
+      .settings.aside-trigger data-id ="js-filter-courses"
+        i.icon
+
+    - when "groups"
+      .groups.aside-trigger data-id ="js-groups-courses"
+        i.icon
+
+    - when "favorite"
+      .favorite.aside-trigger data-id ="js-favorite-courses"
+        i.icon
 
     - when "settings"
         .settings

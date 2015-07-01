@@ -65,34 +65,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tariff.slim" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/home/tariff.slim">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6785714">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-              <folding>
-                <marker date="1435669046000" expanded="true" signature="0:193" placeholder="#header__holder" />
-                <marker date="1435669046000" expanded="true" signature="194:1226" placeholder=".content#profile" />
-                <marker date="1435669046000" expanded="true" signature="213:445" placeholder=".profile__block.profile__block-tariff.profile__tariff-free" />
-                <marker date="1435669046000" expanded="true" signature="276:316" placeholder=".title Бесплатная корпоративная подписка" />
-                <marker date="1435669046000" expanded="true" signature="321:376" placeholder=".time" />
-                <marker date="1435669046000" expanded="true" signature="381:390" placeholder=".clearfix" />
-                <marker date="1435669046000" expanded="true" signature="395:445" placeholder=".quantity" />
-                <marker date="1435669046000" expanded="true" signature="448:1226" placeholder=".profile__block.profile__block-tariff.profile__tariff-paid" />
-                <marker date="1435669046000" expanded="true" signature="601:630" placeholder=".title Корпоративная подписка" />
-                <marker date="1435669046000" expanded="true" signature="635:690" placeholder=".time" />
-                <marker date="1435669046000" expanded="true" signature="695:704" placeholder=".clearfix" />
-                <marker date="1435669046000" expanded="true" signature="805:845" placeholder=".info__item-top Количество пользователей" />
-                <marker date="1435669046000" expanded="true" signature="854:875" placeholder=".info__item-bottom 20" />
-                <marker date="1435669046000" expanded="true" signature="904:980" placeholder=".info__item-top" />
-                <marker date="1435669046000" expanded="true" signature="989:1045" placeholder=".info__item-bottom" />
-                <marker date="1435669046000" expanded="true" signature="1074:1157" placeholder=".info__item-top" />
-                <marker date="1435669046000" expanded="true" signature="1166:1226" placeholder=".info__item-bottom" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="members.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/members.slim">
           <provider selected="true" editor-type-id="text-editor">
@@ -147,13 +119,13 @@
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/header/_header.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-3.392857">
-              <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+              <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attachments_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="attachments_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/superuser/attachments_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -173,11 +145,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_header.slim" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_header.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29648894">
+            <state vertical-scroll-proportion="-8.142858">
               <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.4705882">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -304,60 +286,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -717,10 +645,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293124" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34016886" sideWeight="0.49712643" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2110977" sideWeight="0.49712643" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293124" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -781,13 +709,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../playfield/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20150626114140_add_archive_to_bunch_course.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18446602">
@@ -1095,25 +1016,25 @@
     <entry file="file://$PROJECT_DIR$/app/views/home/tariff.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6785714">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
           <folding>
-            <marker date="1435669046000" expanded="true" signature="0:193" placeholder="#header__holder" />
-            <marker date="1435669046000" expanded="true" signature="194:1226" placeholder=".content#profile" />
-            <marker date="1435669046000" expanded="true" signature="213:445" placeholder=".profile__block.profile__block-tariff.profile__tariff-free" />
-            <marker date="1435669046000" expanded="true" signature="276:316" placeholder=".title Бесплатная корпоративная подписка" />
-            <marker date="1435669046000" expanded="true" signature="321:376" placeholder=".time" />
-            <marker date="1435669046000" expanded="true" signature="381:390" placeholder=".clearfix" />
-            <marker date="1435669046000" expanded="true" signature="395:445" placeholder=".quantity" />
-            <marker date="1435669046000" expanded="true" signature="448:1226" placeholder=".profile__block.profile__block-tariff.profile__tariff-paid" />
-            <marker date="1435669046000" expanded="true" signature="601:630" placeholder=".title Корпоративная подписка" />
-            <marker date="1435669046000" expanded="true" signature="635:690" placeholder=".time" />
-            <marker date="1435669046000" expanded="true" signature="695:704" placeholder=".clearfix" />
-            <marker date="1435669046000" expanded="true" signature="805:845" placeholder=".info__item-top Количество пользователей" />
-            <marker date="1435669046000" expanded="true" signature="854:875" placeholder=".info__item-bottom 20" />
-            <marker date="1435669046000" expanded="true" signature="904:980" placeholder=".info__item-top" />
-            <marker date="1435669046000" expanded="true" signature="989:1045" placeholder=".info__item-bottom" />
-            <marker date="1435669046000" expanded="true" signature="1074:1157" placeholder=".info__item-top" />
-            <marker date="1435669046000" expanded="true" signature="1166:1226" placeholder=".info__item-bottom" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder="#header__holder" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".content#profile" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".profile__block.profile__block-tariff.profile__tariff-free" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".title Бесплатная корпоративная подписка" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".time" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".clearfix" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".quantity" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".profile__block.profile__block-tariff.profile__tariff-paid" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".title Корпоративная подписка" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".time" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".clearfix" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-top Количество пользователей" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-bottom 20" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-top" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-bottom" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-top" />
+            <marker date="1435731007000" expanded="true" signature="-1:-1" placeholder=".info__item-bottom" />
           </folding>
         </state>
       </provider>
@@ -1145,15 +1066,7 @@
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/header/_header.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.392857">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/superuser/attachments_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1184,8 +1097,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/_header.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29648894">
+        <state vertical-scroll-proportion="-8.142858">
           <caret line="59" column="39" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4705882">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/superuser/attachments_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -28,7 +28,20 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 
 $(document).ready(function(){
 
+  $('#js-add-course-to-shedule .select-trigger').on('click', function () {
+    $(this).closest('.select').find('ul.hidden').show();
+  })
 
+  $('body').on('click', function (e) {
+    var list;
+    $(document).trigger('click.dropdown');
+    list = $(e.target).closest('.select').find('ul.hidden').show();
+    $(document).bind('click.dropdown', function(ev) {
+      if (e.target !== ev.target) {
+        list.hide();
+        return $(document).unbind('click.dropdown');
+      }
+    });
   show_error = function(text, duration){
     var el = $('#alert');
     el.find('.text').text(text);
@@ -51,6 +64,55 @@ $(document).ready(function(){
   $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
     $('#js-filter-courses').toggleClass('show');
   })
+
+  $('.filter-category .more .icon').on('click', function () {
+    $(this).closest('.more').removeClass('hidden');
+  })
+
+
+  $('.header__bottom .aside-trigger').on('click', function () {
+    var id = $(this).data('id');
+    if ($('#'+ id +'').hasClass('show')) {
+      $('#'+ id +'').toggleClass('show');
+    }
+    else {
+      $('.courses-aside:visible').removeClass('show');
+      $('#'+ id +'').toggleClass('show');
+    }
+  })
+
+  $('#js-add-course-to-shedule .datapicker__trigger').datepicker({
+    prevText: '&#x3c;Пред',
+    nextText: 'След&#x3e;',
+    currentText: 'Сегодня',
+    monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+    monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+    dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+    dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+    dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+    dateFormat: 'dd.mm.yy',
+    firstDay: 1,
+    isRTL: false,
+    beforeShow: function() {
+      return $('#ui-datepicker-div').addClass('hide');
+    },
+    onSelect: function() {
+      return $(this).parent().addClass('show');
+    }
+  });
+
+  $('#js-add-course-to-shedule .datapicker__trigger').on('click', function ()  {
+    $('#ui-datepicker-div').removeClass('hide');
+  });
+
+  figcaptionTitleEclipses = function ( el, height) {
+    var heights = [];
+    $(el).each(function(indx, element){
+      if ($(element).height()> height) {
+        $(element).addClass('over-title')
+      }
+    });
+  }
 
   $('.filter-courses').baron();
 
@@ -230,7 +292,8 @@ $(document).ready(function(){
   profileDataChange();
   profilePasswordChangeValidation();
   profilePasswordChange();
-
+  figcaptionTitleEclipses('.corses-prev figcaption .title', 84);
+  figcaptionTitleEclipses('.favorite-item .description .title', 56);
 
   invitedEmpty();
   invitedMemberDelete();

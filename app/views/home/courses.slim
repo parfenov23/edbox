@@ -1,9 +1,127 @@
 #header__holder
   = render "home/header" , {header_top_arr:['notifications']}
-  = render "home/header_bottom", {header_bottom: {block: "settings", title: 'Библиотека' }}
+  = render "home/header_bottom", {header_bottom_arr: [{block:"title", title: 'Библиотека'},
+                                                      {block:"settings"}, {block:"favorite"}, {block:"groups"} ]}
 
-= render 'home/courses/filter'
+= render "home/courses/filter"
+= render "home/courses/groups"
+= render "home/courses/favorite"
+                                                      
 .content#courses
-    - @courses.each do |course|
-        = render "home/courses/course", {course: course}
-      
+  figure.corses-prev
+    .image
+      img (src="uploads/pic1.png")
+      .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
+        
+    figcaption
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
+      .author Денис Баталин
+      .info-block
+        .duration 
+          |32 часа
+          i.icon
+        .qty-lectures 
+          |16 лекций
+          i.icon
+        .completed-courses 
+          |Прошли курс
+          i.icon
+          
+  figure.corses-prev
+    .image
+      img (src="uploads/pic2.png")
+      .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
+    figcaption
+      .title 
+        |Как в два клика определить хронометраж рекламнлика определить хронометраж рекламнлика определить хронометраж рекламного текста?
+        .shadow
+      .author Денис Баталин
+      .info-block
+        .duration 
+          |32 часа
+          i.icon
+        .qty-lectures 
+          |16 лекций
+          i.icon
+        .completed-courses 
+          |Прошли курс
+          i.icon
+          
+  figure.corses-prev
+    .image
+      img (src="uploads/pic1.png")
+      .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
+    figcaption
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
+      .author Денис Баталин
+      .info-block
+        .duration 
+          |32 часа
+          i.icon
+        .qty-lectures 
+          |16 лекций
+          i.icon
+        .completed-courses 
+          |Прошли курс
+          i.icon
+          
+  figure.corses-prev
+    .image
+      img (src="uploads/pic3.png")
+      .course-type Записанный курс
+      .action-btn
+        .add.icon
+        .favorite.icon
+    figcaption
+      .title 
+        |Как в два клика определить хронометраж рекламного текста?
+        .shadow
+      .author Денис Баталин
+      .info-block
+        .duration 
+          |32 часа
+          i.icon
+        .qty-lectures 
+          |16 лекций
+          i.icon
+        .completed-courses 
+          |Прошли курс
+          i.icon
+//          
+  #js-add-course-to-shedule.add-course-to-shedule
+    .inner          
+      .title Добавить курс в расписание группы
+      .select.time
+        i.icon
+        .select-trigger Выберите группу
+        input.task_type type='hidden' name='time' 
+        ul.hidden
+          li.js_psevdo-select списан
+          li.js_psevdo-select списан
+          li.js_psevdo-select списан
+      .calendar
+          i.icon
+          .calendar-trigger Установите крайний срок прохождения курса
+          input.datapicker__trigger name='date'
+      .action-btn
+        .btn.yes ДОБАВИТЬ
+        .btn.cancel ОТМЕНИТ
+        
+    .inner.allgood          
+      .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
+      .action-btn
+        .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
+        .btn.cancel ЗАКРЫТЬ
