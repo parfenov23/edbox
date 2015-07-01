@@ -79,6 +79,7 @@
               .avatar {
                 max-width: 100%;
                 max-height: 100%;
+                border-radius: 100%;
               }
             }
             .text {
@@ -407,10 +408,13 @@
           }
         }
       }
-      .settings {
+      .settings, .groups, .favorite {
         float: right;
-        height: 48px;
+        height: 100%;
         position: relative;
+
+      }
+      .settings {
         .icon {
           height: 22px;
           cursor: pointer;
@@ -423,14 +427,11 @@
         }
       }
       .groups {
-        float: right;
-        height: 64px;
-        position: relative;
         margin-right: 20px;
         .icon {
           height: 22px;
           cursor: pointer;
-          line-height: 64px;
+          line-height: 48px;
           &:before {
             font-size: 22px;
             color: #757575;
@@ -440,14 +441,11 @@
 
       }
       .favorite {
-        float: right;
-        height: 64px;
-        position: relative;
         margin-right: 20px;
         .icon {
           height: 22px;
           cursor: pointer;
-          line-height: 64px;
+          line-height: 48px;
           &:before {
             font-size: 22px;
             color: #757575;

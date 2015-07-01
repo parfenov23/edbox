@@ -10,7 +10,7 @@
     .menu__user
       .top
         .avatar__holder
-          img.avatar src="/images/ava.png"
+          img.avatar src="#{default_img(current_user.avatar)}"
         .text
           .name =current_user.first_name+' '+current_user.last_name
           .login = current_user.email
