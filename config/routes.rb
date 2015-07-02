@@ -29,10 +29,10 @@ Rails.application.routes.draw do
           get :all_course
           post :invite
           post :remove_user
-          post :update_course
           post :remove_course
         end
         collection do
+          post :add_course
         end
       end
     end

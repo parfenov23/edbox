@@ -3,7 +3,7 @@ figure.corses-prev
         img (src="uploads/pic3.png")
         .course-type Записанный курс
         .action-btn
-            .add.icon
+            .add.icon data-id="#{course.id}"
             .favorite.icon data-id="#{course.id}"
     figcaption
         .title
@@ -13,10 +13,12 @@ figure.corses-prev
             = course.user.full_name
         .info-block
             .duration
-                |32 часа
+                - duration = course.duration
+                = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
                 i.icon
             .qty-lectures
-                = "#{course.sections.count} лекций"
+                - section_count = course.sections.count
+                = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
                 i.icon
             .completed-courses
                 |Прошли курс

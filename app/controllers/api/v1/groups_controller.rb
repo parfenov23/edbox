@@ -73,6 +73,15 @@ module Api::V1
       render json: group.transfer_to_json
     end
 
+    def add_course
+      bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start])
+      if (bunch_course.save rescue false)
+        render json: bunch_course.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def update_course
       if (find_bunch_course.nil? rescue true)
         bunch_course = BunchCourse.build(params[:course_id], params[:id], params[:date_start])
