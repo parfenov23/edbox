@@ -72,6 +72,10 @@ class User < ActiveRecord::Base
     TZInfo::Timezone.get(timezone).current_period.utc_offset / (60*60)
   end
 
+  def full_name
+    first_name + " " + last_name
+  end
+
   private
 
   def create_hash_key
