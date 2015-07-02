@@ -1,0 +1,35 @@
+- course = favorite_course.course
+.favorite-item
+    .image
+        img src ="uploads/pic4.png"
+    .description
+        .header
+            - if current_user.corporate
+                .ingroup
+                    'Добавлен
+                    span 5 группам
+                    ul.group-list.hidden
+                        li Менеджеры отдела продаж
+                        li Менеджеры отдела продаж b Менеджеры отдела продаж
+                        li Менеджеры отдела продаж
+                        li Продажники
+            .add-group
+                i.icon
+            .delete data-id="#{favorite_course.id}"
+                i.icon
+        .title
+            = course.title
+            .shadow
+        .author = course.user.full_name
+        .info-block
+            .duration
+                - duration = course.duration
+                = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+                i.icon
+            .qty-lectures
+                - section_count = course.sections.count
+                = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
+                i.icon
+            .completed-courses
+                |Прошли курс
+                i.icon

@@ -20,6 +20,7 @@ class HomeController < ActionController::Base
     @courses = Course.all
     time = Time.now
     @new_courses = @courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
+    @favorite_courses = current_user.favorite_courses
   end
 
   def cabinet
