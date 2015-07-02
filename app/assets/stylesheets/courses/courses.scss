@@ -1,5 +1,43 @@
 @import "courses/filter";
-#courses {
+.new-courses-holder {
+  .content {
+    position: relative;
+    .new-top-title {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      font-size: 20px;
+      color: #FD9348;
+      line-height: 32px;
+    }
+    .new-btm-title {
+      position: absolute;
+      left: 0;
+      bottom: -60px;
+      font-size: 20px;
+      color: #999999;
+      line-height: 32px;
+    }
+    .new-label {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      font-size: 13px;
+      color: #FFFFFF;
+      line-height: 18px;
+      background-color: #FD9348;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 9px;
+    }
+    .corses-prev {
+      &:nth-child(3) {
+        margin-right: 0;
+      }
+    }
+  }
+}
+.courses-list {
   @include clearfix;
   .corses-prev {
     float: left;
@@ -30,6 +68,10 @@
         color: #fff;
         line-height: 18px;
         padding: 2px 7px;
+        max-width: 246px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .action-btn {
         position: absolute;
@@ -38,6 +80,7 @@
         width: 50px;
         height: 50px;
         display: none;
+        z-index: 2;
         .add {
           border-radius: 50%;
           width: 50px;

@@ -34,6 +34,13 @@ $(document).ready(function(){
     $(this).closest('.select').find('ul.hidden').show();
   })
 
+  $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
+    $(this).find('.group-list').show();
+  }, function () {
+    $(this).find('.group-list').hide();
+
+  });
+
   $('body').on('click', function (e) {
       var list;
       $(document).trigger('click.dropdown');
