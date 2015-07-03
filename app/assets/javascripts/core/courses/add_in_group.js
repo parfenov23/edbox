@@ -64,6 +64,7 @@ var addCourse = function(){
 };
 
 $(document).ready(function () {
+    $(document).on('click', '#js-favorite-courses .header .add-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .add', openPopup);
     $(document).on('click', '#js-add-course-to-shedule, #js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);

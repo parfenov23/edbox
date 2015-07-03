@@ -17,8 +17,9 @@
                 .new-top-title Новинки
                 - if @courses.present?
                     .new-btm-title Все курсы
-                .new-label
-                    a href="/courses?type_new=all" Посмотреть все  новинки
+                - if @new_courses.count > 3
+                    .new-label
+                        a href="/courses?type_new=all" Посмотреть все  новинки
                 .courses-list
                     - new_courses = params[:type_new] == "all" ? @new_courses : @new_courses.limit(3)
                     - new_courses.each do |course|

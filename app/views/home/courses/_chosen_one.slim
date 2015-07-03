@@ -5,15 +5,19 @@
     .description
         .header
             - if current_user.corporate
-                .ingroup
-                    'Добавлен
-                    span 5 группам
-                    ul.group-list.hidden
-                        li Менеджеры отдела продаж
-                        li Менеджеры отдела продаж b Менеджеры отдела продаж
-                        li Менеджеры отдела продаж
-                        li Продажники
-            .add-group
+                - course_added_groups = current_user.company.course_in_groups(course.id)
+                - if course_added_groups.present?
+                    .ingroup
+                        'Добавлен
+                        span
+                            - count_group = course_added_groups.count
+                            = "#{count_group} #{Russian.p(count_group, "группой", "группами", "группами")}"
+                        ul.group-list.hidden
+                            - course_added_groups.each do |course_added_group|
+                                - group = course_added_group.group
+                                li = group.first_name
+
+            .add-group data-id="#{course.id}"
                 i.icon
             .delete data-id="#{favorite_course.id}"
                 i.icon
