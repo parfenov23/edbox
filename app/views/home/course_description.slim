@@ -1,0 +1,69 @@
+#header__holder
+  = render "home/header" , {header_top_arr:['notifications']}
+  = render "home/header_bottom", {header_bottom: {block: "courses", title: 'Курсы', profile_class: "active"}}
+.inner-content                  
+  .content
+    .image-bg style="background: url('/uploads/pic5.png')"
+    .courses-description
+      .image-block
+        .mask
+        img src="/uploads/pic5.png"
+        .title Курс “Покори секретаря”
+        .author Денис Баталин и Роман Пивоваров
+        ul.tags
+          li
+            .tag-itm Маркетинг
+          li
+            .tag-itm Пивоварение
+        .info-block
+          p Записанный видеокурс
+          p Продолжительность: 32 часа
+          .btn.get-course ПОЛУЧИТЬ КУРС
+      .text-block    
+        .description Самый большой видеоархив академических лекций на русском языке. Коллекция постоянно пополняется ведущими учебными заведениями России. Доступ к материалам бесплатный. Самый большой видеоархив академических лекций на русском языке. Коллекция постоянно пополняется ведущими учебными заведениями России. Доступ к материалам бесплатный.
+        .icon-list
+          i.icon.text
+          i.icon.audio
+          i.icon.video
+          i.icon.test
+          div
+            a href="" Посмотреть программу курса
+        .principals-list
+          .title Ведущие курса
+          .princ-area
+            .principial-item
+              .image
+                img src ="/uploads/pic6.png"
+              .name Денис Баталин
+              .lvl Бизнес-тренер, консультант, эксперт по digital маркетингу и онлайн-рекламе.
+            .principial-item
+              .image
+                img src ="/uploads/pic6.png"
+              .name Денис Баталин
+              .lvl Бизнес-тренер, консультант, эксперт по digital маркетингу и онлайн-рекламе.
+            .principial-item
+              .image
+                img src ="/uploads/pic6.png"
+              .name Денис Баталин
+              .lvl Бизнес-тренер, консультант, эксперт по digital маркетингу и онлайн-рекламе.
+        .action-block
+          //
+          .registration
+            .title Для того, чтобы начать обучение, вам необходимо зарегистрироваться и выбрать форму подписки
+            .btn.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
+          //
+            .some-action
+              .title Добавьте курс в расписание группы или отложите его в избранное
+              .btn-block
+                .btn.yes.add-to-group НАЗНАЧИТЬ ГРУППЕ
+                .btn.no.add-to-fav ДОБАВИТЬ В ИЗБРАННОЕ
+          //      
+            .add-info
+              .title Сейчас вы используете бесплатный аккаунт. Для того, чтобы начать обучение, оформите платную подписку и получите доступ ко всем курсам библиотеки.
+              .addititonal-info
+                .info-title Полный доступ к базе знаний
+                .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. 
+                .price 
+                  |1000 ₽
+                  span за одного пользователя
+                .btn.yes.add-to-group ОФОРМИТЬ

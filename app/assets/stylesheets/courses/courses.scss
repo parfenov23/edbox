@@ -1,6 +1,6 @@
 @import "courses/filter";
 .new-courses-holder {
-  .content {
+  .content-courses {
     position: relative;
     .new-top-title {
       position: absolute;
@@ -39,6 +39,25 @@
       }
     }
   }
+}
+.courses-description {
+  @import "courses/description/description";
+  border-radius: 2px;
+
+}
+.image-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  -webkit-filter: url(#blur);
+  filter: url(#blur);
+  -webkit-filter: blur(16px);
+  filter: blur(16px);
+  filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='16');
+  z-index: -1;
 }
 .courses-list {
   @include clearfix;

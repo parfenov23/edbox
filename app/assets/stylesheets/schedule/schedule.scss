@@ -1,0 +1,189 @@
+.schedule-block  {
+  .daily-block {
+    > .title {
+      font-size: 15px;
+      color: rgba(0,0,0,0.87);
+      line-height: 24px;
+    }
+    .schedule-item {
+      @include clearfix;
+      height: 84px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+      width: 888px;
+      margin-bottom: 16px;
+      .image {
+        width: 104px;
+        float: left;
+        position: relative;
+        img {
+          border-radius: 2px 0px 0px 2px;
+        }
+        i {
+          position: absolute;
+          z-index: 10;
+        }
+        &.video {
+          i {
+            top: 30px;
+            font-size: 25px;
+            left: 36px;
+            color: #fff;
+            &::before {
+              content: '\e602';
+            }
+          }
+        }
+        &.text-ico {
+          i {
+            top: 22px;
+            font-size: 39px;
+            left: 34px;
+            color: rgba(0,0,0,0.54);
+            &::before {
+              content: '\E621';
+            }
+          }
+
+        }
+        &.test {
+          i {
+            top: 28px;
+            font-size: 32px;
+            left: 38px;
+            color: rgba(0,0,0,0.54);
+            &::before {
+              content: '\e601';
+            }
+          }
+        }
+        &.audio {
+          i {
+            top: 25px;
+            font-size: 33px;
+            left: 36px;
+            color: rgba(0,0,0,0.54);
+            &::before {
+              content: '\e603';
+            }
+          }
+        }
+        &.completed {
+          i {
+            top: 25px;
+            font-size: 27px;
+            left: 34px;
+            color: #FD9348;
+            border: 2px solid #FD9348;
+            border-radius: 16px;
+            width: 33px;
+            line-height: 31px;
+            text-align: center;
+            height: 33px;
+            display: block;
+            &::before {
+              content: '\E899';
+            }
+          }
+          .shadow {
+            width: 100%;
+            height: 84px;
+            background: rgba(255,255,255,0.70);
+            border-radius: 2px 0px 0px 2px;
+            position: absolute;
+            z-index: 9;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+      .text {
+        width: 784px;
+        float: right;
+        padding: 18px 24px 16px 24px;
+        &.completed{
+          color: #BDBDBD;
+          .header {
+            .course-title {
+              color: #BDBDBD;
+            }
+          }
+        }
+        .header {
+          display: flex;
+          .course-title {
+            font-size: 13px;
+            color: rgba(0,0,0,0.54);
+            line-height: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 8px;
+            margin-top: -3px;
+          }
+          .additional-info {
+            font-size: 11px;
+            color: rgba(0,0,0,0.26);
+            line-height: 15px;
+            @include clearfix;
+            white-space: nowrap;
+            div {
+              @include inline-block;
+              position: relative;
+              i {
+                position: absolute;
+              }
+            }
+            .action-btn {
+              width: 25px;
+              height: 28px;
+              margin-right: -9px;
+              margin-top: 1px;
+              margin-left: 25px;
+              i {
+                top: 0;
+                left: 0;
+                font-size: 25px;
+                &::before {
+                  content: '\E8A3';
+                }
+              }
+            }
+            .duration {
+              padding-left: 19px;
+              margin-left: 12px;
+              i {
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 14px;
+                &::before {
+                  content: '\E71F';
+                }
+              }
+            }
+            .note {
+              padding-left: 19px;
+              margin-left: 12px;
+              i {
+                top: 0px;
+                left: -1px;
+                font-size: 16px;
+                &::before {
+                  content: '\E70D';
+                }
+              }
+            }
+            .competed-time {
+
+            }
+          }
+        }
+        .title  {
+          margin-top: -3px;
+        }
+      }
+    }
+  }
+}
