@@ -20,7 +20,7 @@
                     p Записанный видеокурс
                     p
                         'Продолжительность:
-                        - duration = @course.duration
+                        - duration = (@course.duration.to_i rescue 0)
                         = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
                     .btn.get-course ПОЛУЧИТЬ КУРС
             .text-block
