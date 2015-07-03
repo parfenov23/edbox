@@ -2,7 +2,7 @@ var openPopup = function () {
     var btn = $(this);
     var popup = $("#js-add-course-to-shedule");
     var course_id = btn.data("id");
-    popup.find("input.courseId").val();
+    popup.find("input.courseId").val(course_id);
     popup.show();
     popup.find(".check_group_added").show();
     popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
@@ -66,7 +66,8 @@ var addCourse = function(){
 };
 
 $(document).ready(function () {
-    $(document).on('click', '#js-favorite-courses .header .add-group', openPopup);
+    $(document).on('click', '#js-favorite-courses .header .add-group, ' +
+        '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .add', openPopup);
     $(document).on('click', '#js-add-course-to-shedule, #js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);

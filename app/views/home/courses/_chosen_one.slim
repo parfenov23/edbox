@@ -1,39 +1,40 @@
-- course = favorite_course.course
-.favorite-item
-    .image
-        img src ="uploads/pic4.png"
-    .description
-        .header
-            - if current_user.corporate
-                - course_added_groups = current_user.company.course_in_groups(course.id)
-                - if course_added_groups.present?
-                    .ingroup
-                        'Добавлен
-                        span
-                            - count_group = course_added_groups.count
-                            = "#{count_group} #{Russian.p(count_group, "группой", "группами", "группами")}"
-                        ul.group-list.hidden
-                            - course_added_groups.each do |course_added_group|
-                                - group = course_added_group.group
-                                li = group.first_name
+- course = (favorite_course.course rescue nil)
+- if course.present?
+    .favorite-item
+        .image
+            img src ="uploads/pic4.png"
+        .description
+            .header
+                - if current_user.corporate
+                    - course_added_groups = current_user.company.course_in_groups(course.id)
+                    - if course_added_groups.present?
+                        .ingroup
+                            'Добавлен
+                            span
+                                - count_group = course_added_groups.count
+                                = "#{count_group} #{Russian.p(count_group, "группой", "группами", "группами")}"
+                            ul.group-list.hidden
+                                - course_added_groups.each do |course_added_group|
+                                    - group = course_added_group.group
+                                    li = group.first_name
 
-            .add-group data-id="#{course.id}"
-                i.icon
-            .delete data-id="#{favorite_course.id}"
-                i.icon
-        .title
-            = course.title
-            .shadow
-        .author = course.user.full_name
-        .info-block
-            .duration
-                - duration = course.duration
-                = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
-                i.icon
-            .qty-lectures
-                - section_count = course.sections.count
-                = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
-                i.icon
-            .completed-courses
-                |Прошли курс
-                i.icon
+                .add-group data-id="#{course.id}"
+                    i.icon
+                .delete data-id="#{favorite_course.id}"
+                    i.icon
+            .title
+                = course.title
+                .shadow
+            .author = course.user.full_name
+            .info-block
+                .duration
+                    - duration = course.duration
+                    = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+                    i.icon
+                .qty-lectures
+                    - section_count = course.sections.count
+                    = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
+                    i.icon
+                .completed-courses
+                    |Прошли курс
+                    i.icon
