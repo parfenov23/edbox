@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-xbi40x');
-	src:url('fonts/icomoon.eot?#iefix-xbi40x') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?-xbi40x') format('truetype'),
-		url('fonts/icomoon.woff?-xbi40x') format('woff'),
-		url('fonts/icomoon.svg?-xbi40x#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?8qkg3v');
+	src:url('fonts/icomoon.eot?#iefix8qkg3v') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?8qkg3v') format('truetype'),
+		url('fonts/icomoon.woff?8qkg3v') format('woff'),
+		url('fonts/icomoon.svg?8qkg3v#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,6 +23,15 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-e601:before {
+	content: "\e601";
+}
+.icon-e602:before {
+	content: "\e602";
+}
+.icon-e603:before {
+	content: "\e603";
+}
 .icon-uniE600:before {
 	content: "\e600";
 }
@@ -80,6 +89,9 @@
 .icon-uniE620:before {
 	content: "\e620";
 }
+.icon-uniE621:before {
+	content: "\e621";
+}
 .icon-uniE625:before {
 	content: "\e625";
 }
@@ -89,6 +101,12 @@
 .icon-uniE702:before {
 	content: "\e702";
 }
+.icon-uniE70D:before {
+	content: "\e70d";
+}
 .icon-uniE7B4:before {
 	content: "\e7b4";
+}
+.icon-uniE8A3:before {
+	content: "\e8a3";
 }
