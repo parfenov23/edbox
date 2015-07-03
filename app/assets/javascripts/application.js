@@ -125,8 +125,11 @@ $(document).ready(function () {
     headerTabsLine = function () {
         if (! $('.tabs__item').length == 0){
             var width = $('.tabs__item.active').outerWidth();
-            var offset = $('.tabs__item.active').position().left;
-            $('.header__bottom .tabs .line').css({'width': width + 'px', 'left': offset + 'px'});
+            var tabs_item_active = $('.tabs__item.active')
+            if (tabs_item_active.length > 0){
+                var offset = tabs_item_active.position().left;
+                $('.header__bottom .tabs .line').css({'width': width + 'px', 'left': offset + 'px'});
+            }
         }
     }
 

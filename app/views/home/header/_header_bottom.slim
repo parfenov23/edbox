@@ -34,12 +34,11 @@
 
     - when "groups"
         ul.tabs
-            - 5.times do |i|
-                - n = i + 1
-                - class_active = "active" if params[:id].to_i == n
+            - current_user.company.groups.each do |group|
+                - class_active = "active" if params[:id].to_i == group.id
                 li.tabs__item class="#{(class_active rescue nil)}"
-                    a.tabs__item-link href="/group?id=#{n}"
-                        = "группа #{n}"
+                    a.tabs__item-link href="/group?id=#{group.id}"
+                        = group.first_name
             .line
 
     - when "courses"

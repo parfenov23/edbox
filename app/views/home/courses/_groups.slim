@@ -3,7 +3,8 @@
     - groups = (current_user.company.groups rescue [])
     - groups.each do |group|
         .group-item
-            .title = group.first_name
+            a href="/group?id=#{group.id}"
+                .title = group.first_name
             .user-qty
                 i.icon
                 - count_users = group.bunch_groups.count

@@ -1,9 +1,11 @@
 var openPopup = function () {
     var btn = $(this);
     var popup = $("#js-add-course-to-shedule");
-    popup.find("input.courseId").val(btn.data("id"));
+    var course_id = btn.data("id");
+    popup.find("input.courseId").val();
     popup.show();
     popup.find(".check_group_added").show();
+    popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
 };
 
 var openEdnPopup = function(){
