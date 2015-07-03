@@ -14,7 +14,7 @@ figure.corses-prev
             = (course.user.full_name rescue "Нет ведущего")
         .info-block
             .duration
-                - duration = course.duration
+                - duration = (course.duration.to_i rescue 0)
                 = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
                 i.icon
             .qty-lectures
