@@ -29,8 +29,12 @@ var removeFavorite = function () {
     return true;
 };
 
+var closeAsideFavorite = function(){
+    $("#js-favorite-courses").removeClass("show");
+};
 
 $(document).ready(function () {
     $(document).on('click', '.corses-prev .action-btn .favorite', addFavorite);
     $(document).on('click', '.favorite-item .header .delete', removeFavorite);
+    $(document).on('click', '#js-favorite-courses .close-filter', closeAsideFavorite);
 });

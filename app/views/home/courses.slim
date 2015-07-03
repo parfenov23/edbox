@@ -5,7 +5,8 @@
 
 
 = render "home/courses/filter"
-= render "home/courses/groups"
+- if current_user.director
+    = render "home/courses/groups"
 = render "home/courses/favorite", {favorite_courses: @favorite_courses}
 
 
@@ -14,10 +15,13 @@
         .new-courses-holder
             .content
                 .new-top-title Новинки
-                .new-btm-title Все курсы
-                .new-label Посмотреть все  новинки
+                - if @courses.present?
+                    .new-btm-title Все курсы
+                .new-label
+                    a href="/courses?type_new=all" Посмотреть все  новинки
                 .courses-list
-                    - @new_courses.each do |course|
+                    - new_courses = params[:type_new] == "all" ? @new_courses : @new_courses.limit(3)
+                    - new_courses.each do |course|
                         = render "home/courses/course", {course: course}
 
     .content#courses.courses-list
