@@ -25,7 +25,7 @@
                     - new_courses.each do |course|
                         = render "home/courses/course", {course: course}
 
-    .content#courses.courses-list
+    #courses.content-courses.courses-list
         - @courses.each do |course|
             = render "home/courses/course", {course: course}
     - if current_user.corporate
