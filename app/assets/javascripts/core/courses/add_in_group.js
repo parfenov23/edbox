@@ -1,11 +1,15 @@
 var openPopup = function () {
     var btn = $(this);
-    var popup = $("#js-add-course-to-shedule");
-    var course_id = btn.data("id");
-    popup.find("input.courseId").val(course_id);
-    popup.show();
-    popup.find(".check_group_added").show();
-    popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
+    if(!btn.hasClass("noOpenPopup")){
+        var popup = $("#js-add-course-to-shedule");
+        var course_id = btn.data("id");
+        popup.find("input.courseId").val(course_id);
+        popup.show();
+        popup.find(".check_group_added").show();
+        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
+    }else{
+        show_error('У ва нет групп', 3000);
+    }
 };
 
 var openEdnPopup = function(){
