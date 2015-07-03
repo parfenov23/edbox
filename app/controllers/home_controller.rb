@@ -29,6 +29,10 @@ class HomeController < ActionController::Base
     redirect_to "/schedule" unless current_user.director
   end
 
+  def course_description
+    @course = Course.find(params[:id])
+  end
+
   private
 
   def current_user

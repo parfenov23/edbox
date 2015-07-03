@@ -6,11 +6,12 @@ figure.corses-prev
             .add.icon data-id="#{course.id}"
             .favorite.icon data-id="#{course.id}"
     figcaption
-        .title id="titleCoursePrev#{course.id}"
-            = course.title
-            .shadow
+        a href="/course_description?id=#{course.id}"
+            .title id="titleCoursePrev#{course.id}"
+                = course.title
+                .shadow
         .author
-            = course.user.full_name
+            = (course.user.full_name rescue "Нет ведущего")
         .info-block
             .duration
                 - duration = course.duration
