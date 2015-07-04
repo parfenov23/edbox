@@ -8,7 +8,7 @@ var openPopup = function () {
         popup.find(".check_group_added").show();
         popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
     }else{
-        show_error('У ва нет групп', 3000);
+        show_error('У ваc нет групп', 3000);
     }
 };
 
