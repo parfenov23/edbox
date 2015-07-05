@@ -26,6 +26,20 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 });
 
 
+var loop = function(){
+    var t = 1;
+    console.log(t);
+	while(t < 4){
+	    t++;
+	    console.log( "I'm looping!" )
+
+		//Your code goes here!
+	}
+};
+
+loop();
+
+
 $(document).ready(function () {
 
     $('#js-add-course-to-shedule .select-trigger').on('click', function () {
