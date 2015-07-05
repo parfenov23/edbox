@@ -18,8 +18,10 @@
                                     - group = course_added_group.group
                                     li = group.first_name
 
-                .add-group data-id="#{course.id}"
-                    i.icon
+                - if current_user.director
+                    - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
+                    .add-group class="#{add_class}" data-id="#{course.id}"
+                        i.icon
                 .delete data-id="#{favorite_course.id}"
                     i.icon
             .title

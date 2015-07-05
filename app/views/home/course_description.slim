@@ -59,7 +59,8 @@
                             .title Добавьте курс в расписание группы или отложите его в избранное
                             .btn-block
                                 - if current_user.director
-                                    .btn.yes.add-to-group data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
+                                    - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
+                                    .btn.yes.add-to-group class="#{add_class}" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
                                 - else
                                     .btn.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
                                 .btn.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
