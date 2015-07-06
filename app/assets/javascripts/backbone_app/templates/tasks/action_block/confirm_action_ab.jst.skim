@@ -1,9 +1,0 @@
-.action__block
-  .confirm
-    .confirm-text
-      | Вы уверенны, что хотите
-      =" #{@text or ''}?"
-
-    .confirm-action
-      .btn.btn-yes ДА
-      .btn.btn-no НЕТ

@@ -1,5 +1,0 @@
-.title
-  =@name
-  |&nbsp;
-  span.title_description - запланированные на сегодня задачи
-ul.analytics__list
