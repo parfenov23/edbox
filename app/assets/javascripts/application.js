@@ -21,6 +21,10 @@
 
 //= require_tree ./core
 
+
+
+//=require main/main
+
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
@@ -28,18 +32,12 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 
 
 
-
 $(document).ready(function () {
-
-    $('#js-add-course-to-shedule .select-trigger').on('click', function () {
-        $(this).closest('.select').find('ul.hidden').show();
-    })
-
+  
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
     }, function () {
         $(this).find('.group-list').hide();
-
     });
 
     $('body').on('click', function (e) {
