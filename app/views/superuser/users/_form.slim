@@ -16,7 +16,10 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Фамилия:
         input.form-control name="user[last_name]" type="text" value="#{@user.last_name}"
-
+    .form-group
+        label
+            | О себе:
+        input.form-control name="user[about_me]" type="text" value="#{@user.about_me}"
     .form-group
         label
             | Пароль:

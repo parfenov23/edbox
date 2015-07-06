@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701071855) do
+ActiveRecord::Schema.define(version: 20150703124040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "duration"
   end
 
   create_table "favorite_courses", force: true do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.integer  "group_id"
     t.datetime "last_auth"
     t.boolean  "leading",         default: false
+    t.text     "about_me"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

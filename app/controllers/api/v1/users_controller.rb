@@ -76,7 +76,7 @@ module Api::V1
     end
 
     def add_favorite_course
-      favorite_course = FavoriteCourse.new({course_id: params[:course_id], user_id: current_user.id})
+      favorite_course = FavoriteCourse.find_or_create_by({course_id: params[:course_id], user_id: current_user.id})
       if (favorite_course.save rescue false)
         render json: favorite_course.transfer_to_json
       else
@@ -92,7 +92,7 @@ module Api::V1
     private
 
     def find_favorite_course
-      FavoriteCourse.find(params[:favorite_course_id])
+      current_user.favorite_courses.find(params[:favorite_course_id])
     end
 
     def find_user

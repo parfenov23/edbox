@@ -34,22 +34,22 @@
 
     - when "groups"
         ul.tabs
-            - 5.times do |i|
-                - n = i + 1
-                - class_active = "active" if params[:id].to_i == n
+            - current_user.company.groups.each do |group|
+                - class_active = "active" if params[:id].to_i == group.id
                 li.tabs__item class="#{(class_active rescue nil)}"
-                    a.tabs__item-link href="/group?id=#{n}"
-                        = "группа #{n}"
+                    a.tabs__item-link href="/group?id=#{group.id}"
+                        = group.first_name
             .line
 
     - when "courses"
-      .settings.aside-trigger data-id ="js-filter-courses"
-          i.icon
-      .favorite.aside-trigger data-id ="js-favorite-courses"
-          i.icon
-      .groups.aside-trigger data-id ="js-groups-courses"
-          i.icon
-        
+        .settings.aside-trigger data-id ="js-filter-courses"
+            i.icon
+        .favorite.aside-trigger data-id ="js-favorite-courses"
+            i.icon
+        - if current_user.corporate
+            .groups.aside-trigger data-id ="js-groups-courses"
+                i.icon
+
     - when "settings"
         .settings
             i.icon

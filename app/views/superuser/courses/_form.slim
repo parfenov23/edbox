@@ -13,6 +13,10 @@ form.form-horizontal action="#{action_url}" method="post"
             = @course.description
     .form-group
         label
+            | Введите продолжительность курса:
+        input.form-control name="course[duration]" type="text" value="#{@course.duration}"
+    .form-group
+        label
             | Ведущий:
         - arr_leading = [["Нет", nil]]
         - User.leading.map { |leading| arr_leading << ["#{leading.first_name} #{leading.last_name}", leading.id] }

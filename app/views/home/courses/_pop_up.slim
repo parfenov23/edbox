@@ -1,24 +1,30 @@
 #js-add-course-to-shedule.add-course-to-shedule style="display:none;"
-    .inner
+    form.inner.check_group_added
         .title Добавить курс в расписание группы
-        .select.time
+        .select.group
             i.icon
-            .select-trigger Выберите группу
-            input.task_type type='hidden' name='time'
-            ul.hidden
-                li.js_psevdo-select списан
-                li.js_psevdo-select списан
-                li.js_psevdo-select списан
+            .select-trigger.titleSelectGroup Выберите группу
+            input.selectGroupId type='hidden' name='group_id'
+            - groups = current_user.company.groups
+            ul.hidden.listGroup
+                - groups.each do |group|
+                    li.js_psevdo-select.selectGroup data-id="#{group.id}"
+                        = group.first_name
         .calendar
             i.icon
             .calendar-trigger Установите крайний срок прохождения курса
-            input.datapicker__trigger name='date'
+            input.datapicker__trigger name='date_start'
+        input.courseId type="hidden" name="course_id"
         .action-btn
             .btn.yes ДОБАВИТЬ
-            .btn.cancel ОТМЕНИТ
+            .btn.cancel ОТМЕНИТЬ
 
-    .inner.allgood
-        .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
+    .inner.end_added
+        .description
+            |Курс добавлен в рассписание группы “
+            span.courseFirstName
+                |Имя курса
+            |”. Для редактирования дат перейдите на страницу “Расписание”
         .action-btn
             .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
             .btn.cancel ЗАКРЫТЬ

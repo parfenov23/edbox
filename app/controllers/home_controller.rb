@@ -17,13 +17,20 @@ class HomeController < ActionController::Base
   end
 
   def courses
-    @courses = Course.all
+    all_courses = Course.all
     time = Time.now
-    @new_courses = @courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
+    @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
+                     .order("created_at ASC")
+    @courses = all_courses.where.not({id: @new_courses.ids})
+    @favorite_courses = current_user.favorite_courses
   end
 
   def cabinet
     redirect_to "/schedule" unless current_user.director
+  end
+
+  def course_description
+    @course = Course.find(params[:id])
   end
 
   private

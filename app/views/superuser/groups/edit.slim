@@ -35,7 +35,7 @@ ul.nav.nav-tabs
             .list-group-item.col-md-6
                 span
                     = user.first_name
-                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_course?user_id=#{user.id}" style="margin-right: 5px;"
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_user?user_id=#{user.id}" style="margin-right: 5px;"
                     | Добавить
 
 - if params[:type] == 'courses'

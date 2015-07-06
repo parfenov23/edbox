@@ -7,4 +7,10 @@ class Company < ActiveRecord::Base
     company.first_name = params[:name]
     company
   end
+
+  def course_in_groups(course_id)
+    ids_groups = groups.ids
+    BunchCourse.where({group_id: ids_groups, course_id: course_id})
+  end
+
 end

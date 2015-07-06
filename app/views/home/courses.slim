@@ -5,23 +5,28 @@
 
 
 = render "home/courses/filter"
-= render "home/courses/groups"
-= render "home/courses/favorite"
+- if current_user.director
+    = render "home/courses/groups"
+= render "home/courses/favorite", {favorite_courses: @favorite_courses}
 
 
 .inner-content
     - if @new_courses.present?
         .new-courses-holder
-            .content
+            .content-courses
                 .new-top-title Новинки
-                .new-btm-title Все курсы
-                .new-label Посмотреть все  новинки
+                - if @courses.present?
+                    .new-btm-title Все курсы
+                - if @new_courses.count > 3
+                    .new-label
+                        a href="/courses?type_new=all" Посмотреть все  новинки
                 .courses-list
-                    - @new_courses.each do |course|
+                    - new_courses = params[:type_new] == "all" ? @new_courses : @new_courses.limit(3)
+                    - new_courses.each do |course|
                         = render "home/courses/course", {course: course}
 
-    .content#courses.courses-list
+    #courses.content-courses.courses-list
         - @courses.each do |course|
             = render "home/courses/course", {course: course}
-
-    = render "home/courses/pop_up"
+    - if current_user.corporate
+        = render "home/courses/pop_up"

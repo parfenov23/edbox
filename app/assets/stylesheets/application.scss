@@ -5,20 +5,14 @@
  *= require_self
  */
 
+
+
  @import "mixins/inline-block";
  @import "mixins/circle-img";
  @import "mixins/middle-block";
  @import "mixins/media-queries";
  @import "mixins/clearfix";
  @import "mixins/placeholder";
- @import "elements/rippleAnimation";
- @import "elements/checkbox";
- @import "elements/switch";
- @import "elements/calendar";
-
-
-
-@import "courses/courses";
 
 @font-face {
     font-family : 'Icons';
@@ -88,9 +82,14 @@ i {
 }
 
 
-.content {
+.content-courses {
   padding: 90px 0 40px 0;
   width: 1090px;
+  margin: 0 auto;
+}
+.content {
+  padding: 90px 0 40px 0;
+  width: 920px;
   margin: 0 auto;
 }
 .inner-content  {
@@ -122,11 +121,6 @@ i {
   text-transform: uppercase;
 }
 
-@import "header/header";
-@import "auth/auth";
-@import "profile/profile";
-@import "members/members";
-
 .btn-default {
   display          : block;
   min-width        : 88px !important;
@@ -139,6 +133,33 @@ i {
   box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, .26);
   font-size        : 14px;
   color            : #fff !important;
+  line-height      : 36px;
+  transition       : all .3s ease;
+  text-align       : center;
+  text-transform   : uppercase;
+  cursor: pointer;
+  border: 0;
+  &.inactive {
+    opacity : .5;
+    cursor  : default;
+  }
+  &.btn__cyan {
+    background : #00bcd8 !important;
+  }
+  &.btn__orange {
+    background : #FD9348 !important;
+  }
+}
+.btn {
+  display          : block;
+  min-width        : 88px !important;
+  padding          : 0 8px !important;
+  height           : 36px !important;
+  text-align       : center !important;
+  padding-top      : 0px !important;
+  opacity          : 1;
+  box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, .26);
+  font-size        : 14px;
   line-height      : 36px;
   transition       : all .3s ease;
   text-align       : center;
@@ -285,3 +306,23 @@ i {
 #menus {
   display: none;
 }
+
+
+@import "elements/rippleAnimation";
+@import "elements/checkbox";
+@import "elements/switch";
+@import "elements/calendar";
+
+
+
+@import "courses/courses";
+@import "schedule/schedule";
+
+
+
+
+
+@import "header/header";
+@import "auth/auth";
+@import "profile/profile";
+@import "members/members";
