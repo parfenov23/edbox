@@ -1,11 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
   helper_method :current_user
-  skip_before_action :authorize, only: [:index_page]
+  skip_before_action :authorize
 
   def index_page
-    if @current_user
-      redirect_to '/shedule'
+    unless current_user.nil?
+      redirect_to '/cabinet'
     else
       redirect_to '/sign_in'
     end

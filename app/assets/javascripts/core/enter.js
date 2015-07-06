@@ -1,4 +1,82 @@
+function validateEmail($email) {
+    var emailReg = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return emailReg.test($email);
+}
+
+function view_px_block(block) {
+    var win_height = $(window).height();
+    var curr_pos = block.position().top;
+    var curr_scroll = $(document.body).scrollTop();
+    var accessing_top = parseInt(block.css("margin-top")) + parseInt(block.css("padding-top"));
+
+    var do_block = win_height + curr_scroll - (curr_pos + 64 + accessing_top);
+    return do_block
+}
+
+/* Сабмит профиля */
+function fixed_btn_save(){
+    var block = $(".oferta_holder .auth_oferta");
+    var block_action = block.find(".btn_active_fixed:visible");
+    if (block.length > 0 && block_action.length > 0){
+        var do_block = view_px_block(block);
+        var block_height = parseInt(block.innerHeight());
+        var block_action_height = parseInt(block_action.outerHeight());
+        var header_height = 0;
+        var view_action_top = do_block - header_height;
+        var block_action_normal = function () {
+            block.css("height", "");
+            block_action.css("position", "").css("top", "")
+                .css("bottom", "")
+                .removeClass("fixed_bot")
+                .removeClass("absolute_top")
+                .css("z-index", "")
+                .css("width", "");
+
+        };
+
+        var block_action_position_top = function () {
+            block_action.css("position", "relative");
+            block_height = block.outerHeight();
+            block_action
+                .css("top", ((0 - (block_height - block_action_height) ) + header_height) + "px")
+                .css("bottom", "")
+                .css("z-index", "10")
+                .css("width", block.outerWidth())
+        };
+
+        var block_action_position_fixed = function () {
+            block.css("height", block_height + "px");
+            block_action.css("position", "fixed")
+                .css("top", "")
+                .css("bottom", "0px")
+                .css("z-index", "10")
+                .css("margin-left", "-24px")
+                .css("width", block.outerWidth())
+        };
+
+        if (view_action_top + 5 >= 0 && (view_action_top - block_action_height) <= 0){
+            block_action_position_top();
+        }
+
+        if ((view_action_top - block_action_height) >= 0 && (view_action_top + block_action_height) <= block_height + 20){
+            block_action_position_fixed();
+        }
+
+        if (do_block + 105 >= (block_height )){
+            block_action_normal();
+        }
+
+    }
+}
+
 $(document).ready(function () {
+    $(window).scroll(function () {
+        fixed_btn_save();
+    });
+    $(window).resize(function () {
+        fixed_btn_save();
+    });
+    fixed_btn_save();
     $(".auth__enter-first .btn-holder #submit").click(function (e) {
         e.preventDefault();
         var btn = $(this);
@@ -55,7 +133,7 @@ $(document).ready(function () {
     });
 
 
-    $("input[name=password], input[name=password_repeat]").change(function (e) {
+    $("input[name='user[password]'], input[name=password_repeat]").change(function (e) {
         changePassword(e);
     });
 
@@ -103,7 +181,7 @@ $(document).ready(function () {
 
     changePassword = function (e) {
         var pass, pass_repeat;
-        pass = this.$('input[name=password]').val();
+        pass = this.$('input[name="user[password]"]').val();
         pass_repeat = this.$('input[name=password_repeat]').val();
         if (pass === pass_repeat){
             $('input[name=password_repeat]').removeClass('error');
@@ -125,41 +203,41 @@ $(document).ready(function () {
         }
         $(e.target).closest('.auth__reg-select').find('.auth__reg-selected').html('' + $(e.target).html() + '');
         $(e.target).closest('.auth__reg-select').find('.auth__reg-select-list').removeClass('active');
-    }
+    };
 
     validate = function () {
-        var arr, data;
-        _.each(this.$('input'), function (el) {
-            if (! $(el).val()){
-                $(el).addClass('error');
+        $.each($('input'), function (k, el) {
+            var block = $(el);
+            if (! block.val()){
+                block.addClass('error');
+            }else{
+                block.removeClass('error');
+            }
+            if (block.attr("name") == "user[email]"){
+                if(validateEmail(block.val())){
+                    block.removeClass('error');
+                }else{
+                    block.addClass('error');
+                }
+            }
+            if (block.attr("name") == "company[name]"){
+                if(! block.closest(".corporate_acc").hasClass("active")){
+                    block.removeClass("error");
+                }
             }
         });
         if (! $('input.checkbox').is(':checked')){
             $('input.checkbox').addClass('error');
         }
-        //data = this.getInput();
+        var inputPass = $("input[name='user[password]']");
+        var inputRePass = $("input[name='password_repeat']");
 
-        //var btn = $(this);
-        //var form = btn.closest("form");
-        //var data = form.serialize();
+        if(inputPass.val() != inputRePass.val()){
+            inputPass.addClass("error");
+            inputRePass.addClass("error");
+        }else{
 
-        //arr = _.map(data, function (v, k) {
-        //    if (_.isBoolean(v)){
-        //        return v;
-        //    } else if (_.isString(v)){
-        //        return v !== '';
-        //    }
-        //});
-        //setTimeout((function (_this) {
-        //    return function () {
-        //        if (_.isEqual(arr, [true, true, true, true, true, true, true])){
-        //            return _this.post();
-        //        } else if (_.isEqual(arr, [true, true, true, false, true, true, true])){
-        //            return _this.post();
-        //        } else {
-        //            return _this.show_error('Заполните все поля', 5000);
-        //        }
-        //    };
-        //})(this), 1000);
+        }
+
     }
-})
+});

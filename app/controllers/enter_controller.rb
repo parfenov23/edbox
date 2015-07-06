@@ -6,6 +6,11 @@ class EnterController < ActionController::Base
   def sign_up
   end
 
+  def sign_out
+    session[:user_key] = nil
+    redirect_to "/"
+  end
+
   def oferta
   end
 end

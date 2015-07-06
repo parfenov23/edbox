@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'application#index_page'
   get :sign_in, to: "enter#sign_in"
   get :sign_up, to: "enter#sign_up"
+  get :sign_out, to: "enter#sign_out"
   get :oferta, to: "enter#oferta"
 
   get ":action" => "home#:action"

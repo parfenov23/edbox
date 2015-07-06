@@ -1,57 +1,58 @@
 .auth
-  .auth__box
-    .logo
-      img src="assets/logo.png"
-    .auth__title-top adconsult
-    form.auth__top.auth__enter
-      .auth__title Регистрация
-      .auth__reg-block
-        .auth__reg-title.auth__reg-data Персональные данные
-        .input-wrp
-          input.validInput placeholder='Фамилия' type='text' name='last_name'
-          hr
-        .input-wrp
-          input.validInput placeholder='Имя' type='text' name='first_name'
-          hr
-        .input-wrp
-          input.validInput placeholder='Email' type='text' name='email'
-          hr
+    .auth__box
+        .logo
+            img src="assets/logo.png"
+        .auth__title-top adconsult
+        form.auth__top.auth__enter
+            .auth__title Регистрация
+            .auth__reg-block
+                .auth__reg-title.auth__reg-data Персональные данные
+                .input-wrp
+                    input.validInput placeholder='Фамилия' type='text' name='user[last_name]'
+                    hr
+                .input-wrp
+                    input.validInput placeholder='Имя' type='text' name='user[first_name]'
+                    hr
+                .input-wrp
+                    input.validInput placeholder='Email' type='text' name='user[email]'
+                    hr
 
-      .auth__reg-block
-        .auth__reg-title.auth__reg-secutity Безопасность
-        .input-wrp
-          input.pass.validInput placeholder='Пароль' type='password' name='password'
-          hr
-        .input-wrp
-          input.validInput placeholder='Повторите пароль' type='password' name='password_repeat'
-          hr
+            .auth__reg-block
+                .auth__reg-title.auth__reg-secutity Безопасность
+                .input-wrp
+                    input.pass.validInput placeholder='Пароль' type='password' name='user[password]'
+                    hr
+                .input-wrp
+                    input.validInput placeholder='Повторите пароль' type='password' name='password_repeat'
+                    hr
 
-      .auth__reg-block
-        .auth__reg-title.auth__reg-type Выберите тип аккаунта
-        .auth__reg-select
-          .auth__reg-selected Персональный аккаунт
-          .auth__reg-select-list
-            .auth__reg-select-list-item.personal Персональный аккаунт
-            .auth__reg-select-list-item.corporate Корпоративный аккаунт
+            .auth__reg-block
+                .auth__reg-title.auth__reg-type Выберите тип аккаунта
+                .auth__reg-select
+                    .auth__reg-selected Персональный аккаунт
+                    .auth__reg-select-list
+                        .auth__reg-select-list-item.personal Персональный аккаунт
+                        .auth__reg-select-list-item.corporate Корпоративный аккаунт
 
-        .input-wrp.corporate_acc
-          input placeholder='Напишите название компании' type='text' name='corporate'
-          hr
-
-
+                .input-wrp.corporate_acc
+                    input placeholder='Напишите название компании' type='text' name='company[name]'
+                    hr
 
 
-      .auth_agree.checkbox__holder
-        input.checkbox#checkbox1 type='checkbox' name='agreed'
-        label.label for='checkbox1'
-          i.check
-          i.ripple-effect.ripple-check
-          i.ripple-effect.ripple-uncheck
-          'Я ознакомлен с
-          a.auth_agree-link href='/oferta' договором оферты&nbsp
-          |и принимаю условия договора
+            .auth_agree.checkbox__holder
+                - if params[:agreed]
+                    input.checkbox#checkbox1 type='checkbox' name='agreed' checked="true"
+                - else
+                    input.checkbox#checkbox1 type='checkbox' name='agreed'
+                label.label for='checkbox1'
+                    i.check
+                    i.ripple-effect.ripple-check
+                    i.ripple-effect.ripple-uncheck
+                    'Я ознакомлен с
+                    a.auth_agree-link href='/oferta' договором оферты&nbsp
+                    |и принимаю условия договора
 
-      .have__acc
-        a.auth__what href='/sign_in' У меня уже есть аккаунт
-      .btn-holder
-        .btn.btn-default.btn-standart.btn-raised.auth__submit#submit Создать аккаунт
+            .have__acc
+                a.auth__what href='/sign_in' У меня уже есть аккаунт
+            .btn-holder
+                .btn.btn-default.btn-standart.btn-raised.auth__submit#submit Создать аккаунт
