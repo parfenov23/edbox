@@ -3,27 +3,27 @@
     .logo
       img src="assets/logo.png"
     .auth__title-top adconsult
-    .auth__top.auth__enter
+    form.auth__top.auth__enter
       .auth__title Регистрация
       .auth__reg-block
         .auth__reg-title.auth__reg-data Персональные данные
         .input-wrp
-          input placeholder='Фамилия' type='text' name='last_name'
+          input.validInput placeholder='Фамилия' type='text' name='last_name'
           hr
         .input-wrp
-          input placeholder='Имя' type='text' name='first_name'
+          input.validInput placeholder='Имя' type='text' name='first_name'
           hr
         .input-wrp
-          input placeholder='Email' type='text' name='email'
+          input.validInput placeholder='Email' type='text' name='email'
           hr
 
       .auth__reg-block
         .auth__reg-title.auth__reg-secutity Безопасность
         .input-wrp
-          input.pass placeholder='Пароль' type='password' name='password'
+          input.pass.validInput placeholder='Пароль' type='password' name='password'
           hr
         .input-wrp
-          input placeholder='Повторите пароль' type='password' name='password_repeat'
+          input.validInput placeholder='Повторите пароль' type='password' name='password_repeat'
           hr
 
       .auth__reg-block
@@ -35,7 +35,7 @@
             .auth__reg-select-list-item.corporate Корпоративный аккаунт
 
         .input-wrp.corporate_acc
-          input placeholder='Напишите название компании' type='text' name='name'
+          input placeholder='Напишите название компании' type='text' name='corporate'
           hr
 
 
@@ -47,11 +47,11 @@
           i.check
           i.ripple-effect.ripple-check
           i.ripple-effect.ripple-uncheck
-          |Я ознакомлен с
-          a.auth_agree-link>< href='#oferta' договором оферты
+          'Я ознакомлен с
+          a.auth_agree-link href='/oferta' договором оферты&nbsp
           |и принимаю условия договора
 
       .have__acc
-        a.auth__what href='#signin' У меня уже есть аккаунт
+        a.auth__what href='/sign_in' У меня уже есть аккаунт
       .btn-holder
-        .btn.btn-default.btn-standart.btn-raised.auth__submit Создать аккаунт
+        .btn.btn-default.btn-standart.btn-raised.auth__submit#submit Создать аккаунт

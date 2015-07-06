@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   skip_before_action :authorize, only: [:index_page]
 
   def index_page
-    render layout: 'layouts/application'
+    if @current_user
+      redirect_to '/shedule'
+    else
+      redirect_to '/sign_in'
+    end
   end
 
   def render_error(code, message = nil)

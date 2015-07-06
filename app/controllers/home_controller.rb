@@ -34,7 +34,7 @@ class HomeController < ActionController::Base
   end
 
   def authorize
-    redirect_to "/#signin" if current_user.nil?
+    redirect_to "/sign_in" if current_user.nil?
   end
 
 end
