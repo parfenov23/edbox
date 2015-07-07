@@ -1,166 +1,167 @@
 /* Cabinet css start */
 
 #members {
-  width: 920px;
-  margin: 0 auto;
+  width       : 920px;
+  margin      : 0 auto;
+  padding-top : 128px;
   .title {
-    width: 780px;
-    margin: 0 auto;
-    margin-bottom: 24px;
-    font: 400 20px/32px 'Roboto';
-    color: #4A4A4A;
-    text-align: center;
+    width         : 780px;
+    margin        : 0 auto;
+    margin-bottom : 24px;
+    font          : 400 20px/32px 'Roboto';
+    color         : #4A4A4A;
+    text-align    : center;
   }
   .members__invite {
-    position: relative;
-    background: #fff;
-    box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
-                0  2px  6px 0  rgba(0,0,0,.24);
-    border-radius: 2px;
-    padding: 20px 32px 16px;
+    position      : relative;
+    background    : #FFF;
+    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, .12),
+    0 2px 6px 0 rgba(0, 0, 0, .24);
+    border-radius : 2px;
+    padding       : 20px 32px 16px;
     .invited {
-      overflow: hidden;
-      padding: 12px 0;
+      overflow : hidden;
+      padding  : 12px 0;
       &__item {
-        float: left;
-        overflow: hidden;
-        max-width: 100%;
-        margin: 0 16px 8px 0;
-        height: 28px;
-        padding: 0 12px;
-        background: rgba(0,0,0,.54);
-        border-radius: 2px;
-        font: 400 13px/28px 'Roboto';
-        color: #fff;
+        float         : left;
+        overflow      : hidden;
+        max-width     : 100%;
+        margin        : 0 16px 8px 0;
+        height        : 28px;
+        padding       : 0 12px;
+        background    : rgba(0, 0, 0, .54);
+        border-radius : 2px;
+        font          : 400 13px/28px 'Roboto';
+        color         : #FFF;
         .email {
-          float: left;
-          max-width: calc(100% - 40px);
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          margin: 0 16px 0 0;
+          float         : left;
+          max-width     : calc(100% - 40px);
+          overflow      : hidden;
+          white-space   : nowrap;
+          text-overflow : ellipsis;
+          margin        : 0 16px 0 0;
         }
         .cancel {
-          float: left;
-          width: 24px;
-          text-align: center;
-          cursor: pointer;
+          float      : left;
+          width      : 24px;
+          text-align : center;
+          cursor     : pointer;
         }
       }
     }
     .form {
-      position: relative;
-      width: 100%;
+      position : relative;
+      width    : 100%;
       .input {
-        width: calc(100% - 30px);
-        border: 0;
-        padding: 0;
-        font: 400 13px/20px 'Roboto';
-        color: rgba(0,0,0,.87);
+        width   : calc(100% - 30px);
+        border  : 0;
+        padding : 0;
+        font    : 400 13px/20px 'Roboto';
+        color   : rgba(0, 0, 0, .87);
       }
       .plane {
-        position: absolute;
-        display: block;
-        border: 0;
-        padding: 0;
-        background: transparent;
-        top: 0;
-        right: 0;
+        position   : absolute;
+        display    : block;
+        border     : 0;
+        padding    : 0;
+        background : transparent;
+        top        : 0;
+        right      : 0;
         &:before {
-          font: 22px/22px 'Icons';
-          color: rgba(0,0,0,.54);
-          content: '\e719';
-          cursor: pointer;
+          font    : 22px/22px 'Icons';
+          color   : rgba(0, 0, 0, .54);
+          content : '\e719';
+          cursor  : pointer;
         }
       }
     }
   }
   .members__in_system {
-    margin: 64px 0 0 0;
+    margin : 64px 0 0 0;
     &-item {
-      overflow: hidden;
-      padding: 12px 32px;
-      background: #fff;
-      box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
-                  0  2px  6px 0  rgba(0,0,0,.24);
+      overflow   : hidden;
+      padding    : 12px 32px;
+      background : #FFF;
+      box-shadow : 0 0 2px 0 rgba(0, 0, 0, .12),
+      0 2px 6px 0 rgba(0, 0, 0, .24);
       &:first-child {
-        border-radius: 2px 2px 0 0;
+        border-radius : 2px 2px 0 0;
       }
       &:last-child {
-        border-radius: 0 0 2px 2px;
+        border-radius : 0 0 2px 2px;
         &:first-child {
-          border-radius: 2px;
+          border-radius : 2px;
         }
       }
       .ava {
-        float: left;
-        width: 30px;
-        height: 30px;
-        margin: 0 24px 0 0;
-        background: #FD9348;
-        border-radius: 100%;
-        font: 400 13px/30px 'Roboto';
-        color: #fff;
-        text-align: center;
+        float         : left;
+        width         : 30px;
+        height        : 30px;
+        margin        : 0 24px 0 0;
+        background    : #FD9348;
+        border-radius : 100%;
+        font          : 400 13px/30px 'Roboto';
+        color         : #FFF;
+        text-align    : center;
       }
       .name {
-        float: left;
-        width: 25%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font: 400 13px/30px 'Roboto';
-        color: #000;
+        float         : left;
+        width         : 25%;
+        overflow      : hidden;
+        white-space   : nowrap;
+        text-overflow : ellipsis;
+        font          : 400 13px/30px 'Roboto';
+        color         : #000;
       }
       .email {
-        float: left;
-        width: 30%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font: 400 13px/30px 'Roboto';
-        color: rgba(0,0,0,.87);
+        float         : left;
+        width         : 30%;
+        overflow      : hidden;
+        white-space   : nowrap;
+        text-overflow : ellipsis;
+        font          : 400 13px/30px 'Roboto';
+        color         : rgba(0, 0, 0, .87);
       }
       .status {
-        float: right;
-        overflow: hidden;
-        width: 35%;
-        font: 400 13px/30px 'Roboto';
-        color: #9B9B9B;
-        text-align: right;
+        float      : right;
+        overflow   : hidden;
+        width      : 35%;
+        font       : 400 13px/30px 'Roboto';
+        color      : #9B9B9B;
+        text-align : right;
         .delete {
-          float: right;
-          display: none;
-          font-size: 30px;
-          cursor: pointer;
+          float     : right;
+          display   : none;
+          font-size : 30px;
+          cursor    : pointer;
         }
         .date {
-          float: right;
-          position: relative;
+          float    : right;
+          position : relative;
         }
         .text {
-          position: relative;
-          float: right;
-          font: 400 13px/30px 'Roboto';
-          padding: 0 8px 0 26px;
+          position : relative;
+          float    : right;
+          font     : 400 13px/30px 'Roboto';
+          padding  : 0 8px 0 26px;
         }
         .text:before {
-          position: absolute;
-          top: 0;
-          left: 0;
-          font-size: 20px;
-          font-family: 'Icons';
-          content: '\e899';
+          position    : absolute;
+          top         : 0;
+          left        : 0;
+          font-size   : 20px;
+          font-family : 'Icons';
+          content     : '\e899';
         }
         .authorized {
-          color: #FD9348;
+          color : #FD9348;
         }
         &:hover {
           .delete {
-            display: block;
+            display : block;
           }
           .send, .authorized {
-            display: none;
+            display : none;
           }
         }
       }

@@ -16,10 +16,11 @@
                 .author
                     = (@course.user.full_name rescue "Нет ведущего")
                 ul.tags
-                    li
-                        .tag-itm Маркетинг
-                    li
-                        .tag-itm Пивоварение
+                    - course_tags = @course.bunch_tags
+                    - course_tags.each do |course_tag|
+                        li
+                            .tag-itm = (course_tag.tag.title rescue nil)
+
                 .info-block
                     p Записанный видеокурс
                     p

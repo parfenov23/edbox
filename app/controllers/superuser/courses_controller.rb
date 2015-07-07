@@ -9,10 +9,12 @@ module Superuser
 
     def edit
       @course = find_course
+      @tags = Tag.all
     end
 
     def new
       @course = Course.new
+      @tags = Tag.all
     end
 
     def create
@@ -22,7 +24,10 @@ module Superuser
     end
 
     def update
-      find_course.update(params_course)
+      course = find_course
+      course.update(params_course)
+      course.bunch_tags.destroy_all
+      course.bunch_tags.create(params[:tags].map { |t| {tag_id: t} })
       redirect_to :back
     end
 

@@ -1,7 +1,9 @@
 figure.corses-prev
     .image
         img (src="uploads/pic3.png")
-        .course-type Записанный курс
+        - course_tag = (course.bunch_tags.last.tag rescue nil)
+        - if course_tag.present?
+            .course-type = (course_tag.title rescue nil)
         .action-btn
             - if current_user.director
                 - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
