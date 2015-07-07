@@ -8,6 +8,10 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
     .form-group
         label
             | Превью:
+        - tumb = @course.attachments.where(size: '347x192').last
+        - if tumb.present?
+            .image
+                img (src="#{tumb.file.url}")
         input name="image" type="file"
     .form-group
         label

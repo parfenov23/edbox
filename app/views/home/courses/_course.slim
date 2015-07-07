@@ -1,6 +1,10 @@
 figure.corses-prev
     .image
-        img (src="uploads/pic3.png")
+        - tumb = course.attachments.where(size: '347x192').last
+        - if tumb.present?
+            img (src="#{tumb.file.url}")
+        - else
+            img (src="uploads/pic3.png")
         .course-type Записанный курс
         .action-btn
             - if current_user.director
