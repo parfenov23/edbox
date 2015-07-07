@@ -36,7 +36,6 @@ var closeAsideFavorite = function(){
 $(document).ready(function () {
     $(document).on('click', '.corses-prev .action-btn .favorite, ' +
         '.courses-description .text-block .action-block .add-to-fav', addFavorite);
-    $(document).on('click', '.corses-prev .action-btn .favorite', addFavorite);
     $(document).on('click', '.favorite-item .header .delete', removeFavorite);
     $(document).on('click', '#js-favorite-courses .close-filter', closeAsideFavorite);
 });

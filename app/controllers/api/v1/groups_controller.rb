@@ -8,7 +8,7 @@ module Api::V1
     end
 
     def create
-      group = Group.new(group_params)
+      group = Group.find_or_create_by(group_params)
       if (group.save rescue false)
         render json: group.as_json
       else
@@ -121,7 +121,7 @@ module Api::V1
     end
 
     def find_group
-      Group.find_by(id: params[:group][:id], company_id: current_user.company_id) rescue nil
+      Group.find_by(id: params[:groups][:id], company_id: current_user.company_id) rescue nil
     end
 
     def get_find_group
@@ -129,7 +129,7 @@ module Api::V1
     end
 
     def group_params
-      permit_params = params.require(:group).permit(:first_name, :company_id)
+      permit_params = params.require(:group).permit(:first_name, :company_id, :description)
       permit_params[:company_id] = current_user.company_id
       permit_params
     end

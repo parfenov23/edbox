@@ -1,6 +1,7 @@
 class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize
+  before_action :is_corporate?, only: [:group]
 
   layout "application"
 
@@ -33,6 +34,11 @@ class HomeController < ActionController::Base
     @course = Course.find(params[:id])
   end
 
+  def group
+    @group = (current_user.company.groups.find(params[:id]) rescue nil)
+    redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless params[:id].present?
+  end
+
   private
 
   def current_user
@@ -42,6 +48,10 @@ class HomeController < ActionController::Base
 
   def authorize
     redirect_to "/sign_in" if current_user.nil?
+  end
+
+  def is_corporate?
+    redirect_to "/" unless current_user.corporate
   end
 
 end

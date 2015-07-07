@@ -5,7 +5,10 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Название:
         input.form-control name="first_name" type="text" value="#{@group.first_name}"
-
+    .form-group
+        label
+            | Описание:
+        input.form-control name="description" type="text" value="#{@group.description}"
     .form-group
         label
             | Компания:

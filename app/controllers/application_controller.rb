@@ -18,10 +18,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def current_user(request_value=nil)
-    request.headers['HTTP_USER_KEY'] = session[:user_key]
-    request_value = request if request_value.nil?
-    user_key = request_value.headers['HTTP_USER_KEY']
+  def current_user
+    user_key = request.headers['HTTP_USER_KEY']
     @current_user ||= User.find_by(user_key: user_key) if user_key
     @current_user
   end

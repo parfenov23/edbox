@@ -10,4 +10,8 @@ module ApplicationHelper
       "/images/ava.png"
     end
   end
+
+  def rus_case(count, n1, n2, n3)
+    "#{count} #{Russian.p(count, n1, n2, n3)}"
+  end
 end

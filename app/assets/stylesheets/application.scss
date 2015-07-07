@@ -4,6 +4,7 @@
  *= require_tree ./core
  *= require_self
  */
+@import "groups/groups";
 @import "mixins/inline-block";
 @import "mixins/circle-img";
 @import "mixins/middle-block";
@@ -305,6 +306,10 @@ i {
 
 #menus {
   display : none;
+}
+
+.content#groups {
+  padding-top : 130px;
 }
 
 @import "elements/rippleAnimation";
