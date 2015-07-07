@@ -4,7 +4,15 @@ $(document).ready ->
     $(document).trigger 'click.dropdown'
     list = $(@).find('ul.hidden-list').show()
     $('body').bind 'click.dropdown', (ev) ->
-      unless e.target == ev.target
+      unless e.target.closest('.action-btn') == ev.target.closest('.action-btn')
+        list.hide()
+        $(document).unbind 'click.dropdown'
+
+  $('.schedule-header .select-trigger').on 'click',(e) ->
+    $(document).trigger 'click.dropdown'
+    list = $(@).closest('.psevdo-select').find('ul.hidden-list').show()
+    $('body').bind 'click.dropdown', (ev) ->
+      unless e.target.closest('.psevdo-select') == ev.target.closest('.psevdo-select')
         list.hide()
         $(document).unbind 'click.dropdown'
 
@@ -12,11 +20,17 @@ $(document).ready ->
   $('#js-add-course-to-shedule .select-trigger').on 'click', ->
     $(@).closest('.select').find('ul.hidden').show()
 
-  $('.schedule-header .select-trigger').on 'click', ->
-    $(@).closest('.psevdo-select').find('ul.hidden-list').show()
-
-  $('.schedule-item.closed-state .fixed-h .title').on 'click', ->
-    el = $(@).closest('.schedule-item')
+  $('.js__toggle-state .fixed-h .title').on 'click', (e) ->
+    $(document).trigger 'click.dropdown'
+    el = $(@).closest('.js__toggle-state')
+    hideBlock = (elem) ->
+      $(elem).removeClass('open-state').addClass 'closed-state'
     if el.hasClass('closed-state')
-      $('.schedule-item').removeClass('open-state').addClass 'closed-state'
-      el.toggleClass('closed-state').toggleClass 'open-state'
+      hideBlock('.js__toggle-state')
+      el.removeClass('closed-state').addClass 'open-state'
+    else
+      hideBlock(el)
+    $('body').bind 'click.dropdown', (ev) ->
+      unless e.target.closest('.js__toggle-state') == ev.target.closest('.js__toggle-state')
+        hideBlock(el)
+        $(document).unbind 'click.dropdown'

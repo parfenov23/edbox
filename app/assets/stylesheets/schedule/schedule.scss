@@ -3,6 +3,8 @@
     width       : 950px;
 }
 
+
+
 .schedule-header {
     @include clearfix;
     position      : relative;
@@ -60,6 +62,21 @@
       position     : relative;
       margin-bottom: 80px;
       min-height: 50px;
+      &.today {
+        .schedule-item {
+            &::before {
+                content       : '';
+                display       : block;
+                width         : 4px;
+                height        : 100%;
+                position      : absolute;
+                top           : 0;
+                left          : 0;
+                background    : #FD9348;
+                border-radius : 2px 0 0 2px;
+            }
+        }
+      }
       hr {
         margin: 0;
         border: none;
@@ -90,6 +107,7 @@
                 line-height : 34px;
             }
         }
+
         .group-block {
             background    : rgba(0, 0, 0, 0.04);
             border-radius : 2px;
@@ -112,17 +130,6 @@
                 position      : relative;
                 padding-right : 20px;
                 margin-bottom: 12px;
-                &::before {
-                    content       : '';
-                    display       : block;
-                    width         : 4px;
-                    height        : 100%;
-                    position      : absolute;
-                    top           : 0;
-                    left          : 0;
-                    background    : #FD9348;
-                    border-radius : 2px 0 0 2px;
-                }
                 .fixed-h {
                     display : flex;
 
@@ -179,112 +186,279 @@
                         }
                     }
                 }
-                &.closed-state {
-                    height : 56px;
-                    .fixed-h {
-                        > .title {
-                            white-space   : nowrap;
-                            overflow      : hidden;
-                            text-overflow : ellipsis;
-                        }
-
-                    }
-                    .course-components {
-                      display: none;
-                    }
-                }
-                &.open-state {
-                  margin: 12px -32px 12px -32px;
-                  width: calc(100% + 64px);
-                  .fixed-h {
-                    margin-bottom: 35px;
-                  }
-                  .course-components {
-                    .course-component-item {
-                      background: #FFFFFF;
-                      border-radius: 2px;
-                      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-                      margin-bottom: 16px;
-                      padding-left: 72px;
-                      padding-right: 72px;
-                      padding-top: 18px;
-                      height: 56px;
-                      position: relative;
-                      &.video {
-                        >.icon {
-                          top: 20px;
-                          left: 26px;
-                          font-size: 16px;
-                          &::before {
-                            content: '\e602'
-                          }
-                        }
-                      }
-                      &.text {
-                        >.icon {
-                          top: 16px;
-                          font-size: 24px;
-                          left: 25px;
-                          &::before {
-                            content: '\E621'
-                          }
-                        }
-                      }
-                      &.audio {
-                        >.icon {
-                          top: 20px;
-                          font-size: 17px;
-                          left: 28px;
-                          &::before {
-                            content: '\e603'
-                          }
-                        }
-                      }
-                      &.test {
-                        >.icon {
-                          font-size: 18px;
-                          left: 28px;
-                          top: 20px;
-                          &::before {
-                            content: '\e601'
-                          }
-                        }
-                      }
-                      .icon {
-                        position: absolute;
-                        left: 0;
-                        top: 0;
-                        color: #757575;
-                      }
-                      .title {
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                      }
-                      .duration {
-                          padding-left : 19px;
-                          margin-left  : 12px;
-                          position     : relative;
-                          font-size    : 11px;
-                          color        : rgba(0, 0, 0, 0.26);
-                          line-height  : 18px;
-                          position: absolute;
-                          right: 16px;
-                          top: 20px;
-                          i {
-                              position  : absolute;
-                              left      : 0;
-                              top       : 0;
-                              font-size : 14px;
-                              &::before {
-                                  content : '\E71F';
-                              }
-                          }
-                      }
-                    }
-                  }
-                }
             }
         }
     }
+}
+
+
+
+.personal-schedule-block  {
+  .schedule-day {
+    padding-left : 60px;
+    position     : relative;
+    margin-bottom: 80px;
+    min-height: 50px;
+    &.today {
+      .schedule-item {
+          &::before {
+              content       : '';
+              display       : block;
+              width         : 4px;
+              height        : 100%;
+              position      : absolute;
+              top           : 0;
+              left          : 0;
+              background    : #FD9348;
+              border-radius : 2px 0 0 2px;
+          }
+      }
+  }
+  hr {
+    margin: 0;
+    border: none;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    position: absolute;
+    left: 60px;
+    bottom: -15px;
+    width: calc(100% - 60px);
+  }
+    .date {
+        position : absolute;
+        left     : 0;
+        top      : 0;
+        color    : rgba(0, 0, 0, 0.26);
+        width    : 60px;
+        &.curr {
+            color : #FD9348;
+        }
+        .day {
+            font-size     : 11px;
+            line-height   : 16px;
+            text-align    : center;
+            margin-bottom : 4px;
+        }
+        .num {
+            font-size   : 34px;
+            line-height : 34px;
+        }
+    }
+  }
+  .grey-wrp  {
+    background: rgba(0,0,0,0.04);
+    border-radius: 2px;
+    padding: 16px 16px 24px 16px;
+    margin-bottom: 24px;
+    .group-name {
+      font-size: 13px;
+      color: rgba(0,0,0,0.54);
+      line-height: 20px;
+      margin-bottom: 8px;
+      }
+  }
+  .course-wrp {
+
+    hr {
+      margin: 0;
+      border: none;
+      border-bottom: 1px solid rgba(0,0,0,0.26);
+      display: block;
+      width: 100%;
+      position: static;
+      margin-bottom: 24px;
+        }
+      .course-header  {
+        display : flex;
+        margin-bottom: 12px;
+        .title {
+          font-size: 13px;
+          color: rgba(0,0,0,0.26);
+          line-height: 20px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .additional-info {
+            white-space : nowrap;
+            color       : rgba(0, 0, 0, 0.26);
+            padding-top : 2px;
+            div {
+                @include inline-block;
+                position : relative;
+                i {
+                    position : absolute;
+                }
+            }
+            .action-btn {
+                width        : 25px;
+                height       : 28px;
+                margin-right : -9px;
+                margin-top   : -5px;
+                margin-left  : 20px;
+                cursor       : pointer;
+                position     : relative;
+                i {
+                    top       : 0;
+                    left      : 0;
+                    font-size : 25px;
+                    &::before {
+                        content : '\E8A3';
+                    }
+                }
+                @import "elements/hidden-list";
+            }
+            >.duration {
+                padding-left : 19px;
+                margin-left  : 12px;
+                position     : relative;
+                font-size    : 11px;
+                color        : rgba(0, 0, 0, 0.26);
+                line-height  : 18px;
+                i {
+                    position  : absolute;
+                    left      : 0;
+                    top       : 0;
+                    font-size : 14px;
+                    &::before {
+                        content : '\E71F';
+                    }
+                }
+            }
+        }
+      }
+    .course-item {
+      background: #FFFFFF;
+      border-radius: 2px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+      margin-bottom: 16px;
+      padding-left: 72px;
+      padding-right: 72px;
+      padding-top: 18px;
+      height: 56px;
+      position: relative;
+      display: flex;
+      .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .additional-info {
+        white-space : nowrap;
+        color       : rgba(0, 0, 0, 0.26);
+        padding-top : 2px;
+        div {
+            @include inline-block;
+            position : relative;
+            i {
+                position : absolute;
+            }
+        }
+        .duration {
+            padding-left : 19px;
+            margin-left  : 12px;
+            position     : relative;
+            font-size    : 11px;
+            color        : rgba(0, 0, 0, 0.26);
+            line-height  : 18px;
+
+            i {
+                position  : absolute;
+                left      : 0;
+                top       : 0;
+                font-size : 14px;
+                &::before {
+                    content : '\E71F';
+                }
+            }
+        }
+        .past {
+          margin-left  : 12px;
+          position     : relative;
+          font-size    : 11px;
+          color        : rgba(0, 0, 0, 0.26);
+          line-height  : 18px;
+        }
+        .note {
+          padding-left : 19px;
+          margin-left  : 12px;
+          position     : relative;
+          font-size    : 11px;
+          color        : rgba(0, 0, 0, 0.26);
+          line-height  : 18px;
+          i {
+              position  : absolute;
+              left      : 0;
+              top       : 0;
+              font-size : 14px;
+              &::before {
+                  content : '\E70D';
+              }
+          }
+        }
+        .overdue {
+          margin-left  : 12px;
+          font-size: 11px;
+          color: #FD9348;
+          line-height: 24px;
+          border: 1px solid #FD9348;
+          border-radius: 2px;
+          padding: 0 8px;
+          margin-top: -4px;
+        }
+      }
+      &.video {
+        >.icon {
+          top: 20px;
+          left: 26px;
+          font-size: 16px;
+          &::before {
+            content: '\e602'
+          }
+        }
+      }
+      &.text {
+        >.icon {
+          top: 16px;
+          font-size: 24px;
+          left: 25px;
+          &::before {
+            content: '\E621'
+          }
+        }
+      }
+      &.audio {
+        >.icon {
+          top: 20px;
+          font-size: 17px;
+          left: 28px;
+          &::before {
+            content: '\e603'
+          }
+        }
+      }
+      &.test {
+        >.icon {
+          font-size: 18px;
+          left: 28px;
+          top: 20px;
+          &::before {
+            content: '\e601'
+          }
+        }
+      }
+      .icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #757575;
+      }
+      .title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+    }
+  }
 }
