@@ -1,5 +1,11 @@
 figure.corses-prev
     .image
+        - tumb = course.attachments.where(size: '347x192').last
+        - if tumb.present?
+            img (src="#{tumb.file.url}")
+        - else
+            img (src="uploads/pic3.png")
+        .course-type Записанный курс
         img (src="uploads/pic3.png")
         - course_tag = (course.bunch_tags.last.tag rescue nil)
         - if course_tag.present?

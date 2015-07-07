@@ -1,0 +1,38 @@
+.programm-block  {
+  .program-item {
+    background    : #FFFFFF;
+    border-radius : 2px;
+    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+    padding       : 17px 24px;
+    position      : relative;
+    padding-right : 20px;
+    margin-bottom: 12px;
+    .fixed-h {
+      display: block;
+      @include clearfix;
+      .title {
+        float: left;
+        width: calc(100% - 70px);
+      }
+      .duration {
+        float: right;
+        width: 64px;
+        padding-left : 19px;
+        margin-left  : 0;
+        position     : relative;
+        font-size    : 11px;
+        color        : rgba(0, 0, 0, 0.26);
+        line-height  : 18px;
+        i {
+            position  : absolute;
+            left      : 0;
+            top       : 0;
+            font-size : 14px;
+            &::before {
+                content : '\E71F';
+            }
+        }
+      }
+    }
+  }
+}

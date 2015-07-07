@@ -1,10 +1,18 @@
 - action_url = @course.id.nil? ? "/superuser/courses" : "/superuser/courses/#{@course.id}"
 - method = @course.id.nil? ? "post" : "put"
-form.form-horizontal action="#{action_url}" method="post"
+form.form-horizontal action="#{action_url}" method="post" enctype="multipart/form-data"
     .form-group
         label
             | Название:
         input.form-control name="course[title]" type="text" value="#{@course.title}"
+    .form-group
+        label
+            | Превью:
+        - tumb = @course.attachments.where(size: '347x192').last
+        - if tumb.present?
+            .image
+                img (src="#{tumb.file.url}")
+        input name="image" type="file"
     .form-group
         label
             | Описание:

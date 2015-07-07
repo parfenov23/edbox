@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150707072458) do
     t.integer  "attachmentable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "size"
   end
 
   create_table "bunch_courses", force: true do |t|

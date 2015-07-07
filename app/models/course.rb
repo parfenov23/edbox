@@ -3,5 +3,6 @@ class Course < ActiveRecord::Base
   has_many :bunch_courses, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
   has_many :bunch_tags, dependent: :destroy
+  has_many :attachments, :as => :attachmentable, :dependent => :destroy
   belongs_to :user
 end

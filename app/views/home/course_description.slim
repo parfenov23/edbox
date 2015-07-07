@@ -3,11 +3,19 @@
     = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }}}
 .inner-content                  
     .content
-        .image-bg style="background: url('/uploads/pic5.png')"
+        - full = @course.attachments.where(size: 'full').last
+        - if full.present?
+            .image-bg style="background: url('#{full.file.url}')"
+        - else
+            .image-bg style="background: url('/uploads/pic5.png')"
         .courses-description
             .image-block
                 .mask
-                img src="/uploads/pic5.png"
+                - tumb = @course.attachments.where(size: '920x377').last
+                - if tumb.present?
+                    img (src="#{tumb.file.url}")
+                - else
+                    img src="/uploads/pic5.png"
                 .title
                     |Курс “
                     span id="titleCoursePrev#{@course.id}"
