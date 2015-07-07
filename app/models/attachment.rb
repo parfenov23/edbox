@@ -15,12 +15,13 @@ class Attachment < ActiveRecord::Base
   before_save :set_file_type
 
 
-  def self.save_file(type, id, file)
+  def self.save_file(type, id, file, size=nil)
     class_name = type
     id = id
     attachmentable = class_name.classify.constantize.find(id)
     attachment = attachmentable.attachments.build
     attachment.file = file
+    attachment.size  = size
     attachment.save
     attachment
   end
