@@ -6,7 +6,7 @@ set :rvm_custom_path, '/usr/local/rvm'
 set :rvm_ruby_version, '2.1.0'
 
 set :application, 'edbox'
-set :repo_url, 'ssh://git@bitbucket.org:masshtab/edbox.git'
+set :repo_url, 'git@bitbucket.org:masshtab/edbox.git'
 set :user, 'edbox'
 set :deploy_to, "/home/#{ fetch :user }/htdocs"
 
