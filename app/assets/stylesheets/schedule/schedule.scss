@@ -131,8 +131,6 @@
                 padding-right : 20px;
                 margin-bottom: 12px;
                 .fixed-h {
-                    display : flex;
-
                     .title {
                         font-size   : 15px;
                         color       : #000000;
@@ -140,11 +138,9 @@
                     }
                 }
                 .additional-info {
-                    white-space : nowrap;
                     color       : rgba(0, 0, 0, 0.26);
                     padding-top : 2px;
                     div {
-                        @include inline-block;
                         position : relative;
                         i {
                             position : absolute;
@@ -175,6 +171,7 @@
                         font-size    : 11px;
                         color        : rgba(0, 0, 0, 0.26);
                         line-height  : 18px;
+                        width: 60px !important;
                         i {
                             position  : absolute;
                             left      : 0;
@@ -269,27 +266,27 @@
       margin-bottom: 24px;
         }
       .course-header  {
-        display : flex;
+        // display : flex;
         margin-bottom: 12px;
         .title {
           font-size: 13px;
           color: rgba(0,0,0,0.26);
           line-height: 20px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          // white-space: nowrap;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
         }
         .additional-info {
-            white-space : nowrap;
+            // white-space : nowrap;
             color       : rgba(0, 0, 0, 0.26);
             padding-top : 2px;
-            div {
-                @include inline-block;
-                position : relative;
-                i {
-                    position : absolute;
-                }
-            }
+            // div {
+            //     @include inline-block;
+            //     position : relative;
+            //     i {
+            //         position : absolute;
+            //     }
+            // }
             .action-btn {
                 width        : 25px;
                 height       : 28px;
@@ -333,27 +330,27 @@
       box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
       margin-bottom: 16px;
       padding-left: 72px;
-      padding-right: 72px;
+      padding-right: 24px;
       padding-top: 18px;
       height: 56px;
       position: relative;
-      display: flex;
+      // display: flex;
       .title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
       .additional-info {
-        white-space : nowrap;
+        // white-space : nowrap;
         color       : rgba(0, 0, 0, 0.26);
         padding-top : 2px;
-        div {
-            @include inline-block;
-            position : relative;
-            i {
-                position : absolute;
-            }
-        }
+        // div {
+        //     @include inline-block;
+        //     position : relative;
+        //     i {
+        //         position : absolute;
+        //     }
+        // }
         .duration {
             padding-left : 19px;
             margin-left  : 12px;
@@ -405,6 +402,7 @@
           border-radius: 2px;
           padding: 0 8px;
           margin-top: -4px;
+          height: 24px;
         }
       }
       &.video {

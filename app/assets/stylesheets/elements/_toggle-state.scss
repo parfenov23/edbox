@@ -1,6 +1,6 @@
 .js__toggle-state {
   .fixed-h {
-      display : flex;
+      // display : flex;
       .title {
           font-size   : 15px;
           color       : #000000;
@@ -14,9 +14,9 @@
       height : 56px;
       .fixed-h {
           > .title {
-              white-space   : nowrap;
-              overflow      : hidden;
-              text-overflow : ellipsis;
+              // white-space   : nowrap;
+              // overflow      : hidden;
+              // text-overflow : ellipsis;
           }
 
       }
@@ -97,7 +97,6 @@
         .duration {
             padding-left : 19px;
             margin-left  : 12px;
-            position     : relative;
             font-size    : 11px;
             color        : rgba(0, 0, 0, 0.26);
             line-height  : 18px;

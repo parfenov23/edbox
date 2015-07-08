@@ -1,4 +1,9 @@
 $(document).ready ->
+  $('.adaptive-title').each ->
+    rightWidth = $(@).find('.right-col').width()
+    $(@).find('.left-col').css
+      width: $(@).width() - rightWidth + 'px'
+
 
   $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
     $(document).trigger 'click.dropdown'
