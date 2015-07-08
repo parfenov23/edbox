@@ -25,7 +25,7 @@ class ResizeImage
     "#{w}x#{h}+#{crop_w}+#{crop_h}"
   end
 
-  def self.edresize(image, img_width, img_height)
+  def self.course_image_resize(image, img_width, img_height)
     qtumb = img_width/img_height.to_f
     width = image.width
     height = image.height
