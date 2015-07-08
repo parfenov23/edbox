@@ -19,7 +19,7 @@ var openEdnPopup = function(){
     popup.find(".end_added").addClass("allgood").show();
 };
 
-var closePopup = function () {
+var closePopup = function (event) {
     var evt = evt || event;
     var target = evt.target || evt.srcElement;
     if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){

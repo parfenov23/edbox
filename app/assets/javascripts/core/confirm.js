@@ -6,7 +6,7 @@ function confirm(text, action){
     btn_yes_action = action;
     popup.show();
 }
-var closePopupConfirm = function () {
+var closePopupConfirm = function (event) {
     var evt = evt || event;
     var target = evt.target || evt.srcElement;
     if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("pop_up_confirm") > 0){
