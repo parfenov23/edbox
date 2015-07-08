@@ -6,20 +6,21 @@
   top: 0;
   left: 0;
   z-index: 200;
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // display: none;
   .inner {
     width: 512px;
-    top: 50%;
-    left: 50%;
-    margin: -158px 0 0 -256px;
+    height: auto;
     background: #fff;
     box-shadow: 0 15px 12px 0 rgba(0,0,0,0.22), 0 19px 38px 0 rgba(0,0,0,0.30);
     border-radius: 2px;
     padding: 32px 24px 8px;
     position: relative;
     display: block;
-    height: 192px;
     margin-top: -96px;
+    padding-bottom: 40px;
     .description {
       font-family: Roboto-Regular;
       font-size: 15px;

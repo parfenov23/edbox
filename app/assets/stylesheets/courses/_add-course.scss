@@ -1,166 +1,166 @@
 .add-course-to-shedule {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.54);
-  top: 0;
-  left: 0;
-  z-index: 200;
-  .inner {
-    width: 512px;
-    height: 316px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin: -158px 0 0 -256px;
-    background: #fff;
-    box-shadow: 0 15px 12px 0 rgba(0,0,0,0.22), 0 19px 38px 0 rgba(0,0,0,0.30);
-    border-radius: 2px;
-    padding: 32px 24px 8px;
-    position: relative;
-    display: none;
-    >.title {
-      font-size: 20px;
-      color: rgba(0,0,0,0.87);
-      line-height: 32px;
-      margin-bottom: 42px;
-    }
-    .action-btn {
-      font-size: 14px;
-      line-height: 20px;
-      @include clearfix;
-      position: absolute;
-      right: 24px;
-      bottom: 8px;
-      width: 100%;
-      .btn {
-        float: right;
-      }
-      .cancel {
-        color: #fd9348;
-      }
-      .yes {
-        color: #fff;
-        background-color: #fd9348;
-      }
-    }
-    &.allgood  {
-      display: block;
-      height: 192px;
-      margin-top: -96px;
-      .description {
-        font-family: Roboto-Regular;
-        font-size: 15px;
-        color: #000000;
-        line-height: 24px;
-      }
-    }
-  }
-  .select {
-    position: relative;
-    cursor: pointer;
-    padding-left: 46px;
-    color: rgba(0,0,0,0.54);
-    @include inline-block;
-    margin-bottom: 44px;
-    &.task-type {
-
-      //                    min-width : 128px;
-    }
-    i {
-      position: absolute;
-      left: 0;
-      top: 5px;
-      &::before {
-        content: '\E8D6';
-      }
-    }
-    .select-trigger {
-      padding-right: 26px;
-      background: url("arrow-grey.svg") 100% 50% no-repeat;
-      white-space: nowrap;
-      font-size: 15px;
-      color: rgba(0,0,0,0.54);
-      line-height: 20px;
-    }
-    .hidden {
-      min-width: 128px;
-      background-color: #fff;
-      padding: 6px 0;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.52);
-      border-radius: 2px;
-      max-height: 236px;
-      overflow-y: scroll;
-      position: absolute;
-      top: -13px;
-      left: 29px;
-      display: none;
-      z-index: 99;
-      bottom: auto;
-      &.to-top {
-        top: auto;
-        bottom: 0;
-      }
-      li {
-        height: 32px;
-        font-size: 15px;
-        color: rgba(0,0,0,0.54);
-        line-height: 20px;
-        padding: 6px 16px;
-        cursor: pointer;
-        white-space: nowrap;
-        &:hover {
-          color: #000;
-          line-height: 20px;
-          background: rgba(0, 0, 0, 0.12);
+    position         : fixed;
+    width            : 100%;
+    height           : 100%;
+    background-color : rgba(0, 0, 0, 0.54);
+    top              : 0;
+    left             : 0;
+    z-index          : 200;
+    .inner {
+        width         : 512px;
+        height        : 316px;
+        position      : absolute;
+        top           : 50%;
+        left          : 50%;
+        margin        : -158px 0 0 -256px;
+        background    : #FFFFFF;
+        box-shadow    : 0 15px 12px 0 rgba(0, 0, 0, 0.22), 0 19px 38px 0 rgba(0, 0, 0, 0.30);
+        border-radius : 2px;
+        padding       : 32px 24px 8px;
+        position      : relative;
+        display       : none;
+        > .title {
+            font-size     : 20px;
+            color         : rgba(0, 0, 0, 0.87);
+            line-height   : 32px;
+            margin-bottom : 42px;
         }
-      }
+        .action-btn {
+            font-size   : 14px;
+            line-height : 20px;
+            @include clearfix;
+            position    : absolute;
+            right       : 24px;
+            bottom      : 8px;
+            width       : 100%;
+            .btn {
+                float : right;
+            }
+            .cancel {
+                color : #FD9348;
+            }
+            .yes {
+                color            : #FFFFFF;
+                background-color : #FD9348;
+            }
+        }
+        &.allgood {
+            display    : block;
+            height     : 192px;
+            margin-top : -96px;
+            .description {
+                font-family : Roboto-Regular;
+                font-size   : 15px;
+                color       : #000000;
+                line-height : 24px;
+            }
+        }
     }
-  }
-  .calendar {
-    margin-right: 35px;
-    position: relative;
-    padding-left: 46px;
-    color: rgba(0,0,0,0.54);
-    i {
-      position: absolute;
-      left: 0;
-      top: 5px;
-      &::before {
-        content: '\E625';
-      }
+    .select {
+        position      : relative;
+        cursor        : pointer;
+        padding-left  : 46px;
+        color         : rgba(0, 0, 0, 0.54);
+        @include inline-block;
+        margin-bottom : 44px;
+        &.task-type {
+
+            //                    min-width : 128px;
+        }
+        i {
+            position : absolute;
+            left     : 0;
+            top      : 5px;
+            &::before {
+                content : '\E8D6';
+            }
+        }
+        .select-trigger {
+            padding-right : 26px;
+            background    : url("arrow-grey.svg") 100% 50% no-repeat;
+            white-space   : nowrap;
+            font-size     : 15px;
+            color         : rgba(0, 0, 0, 0.54);
+            line-height   : 20px;
+        }
+        .hidden {
+            min-width        : 128px;
+            background-color : #FFFFFF;
+            padding          : 6px 0;
+            box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+            border-radius    : 2px;
+            max-height       : 236px;
+            overflow-y       : scroll;
+            position         : absolute;
+            top              : -13px;
+            left             : 29px;
+            display          : none;
+            z-index          : 99;
+            bottom           : auto;
+            &.to-top {
+                top    : auto;
+                bottom : 0;
+            }
+            li {
+                height      : 32px;
+                font-size   : 15px;
+                color       : rgba(0, 0, 0, 0.54);
+                line-height : 20px;
+                padding     : 6px 16px;
+                cursor      : pointer;
+                white-space : nowrap;
+                &:hover {
+                    color       : #000000;
+                    line-height : 20px;
+                    background  : rgba(0, 0, 0, 0.12);
+                }
+            }
+        }
     }
-    .calendar-trigger {
-      white-space: nowrap;
-      font-size: 15px;
-      color: rgba(0,0,0,0.54);
-      line-height: 20px;
-      background: url("arrow-grey.svg") 100% 50% no-repeat;
-      padding-right: 26px;
-      width: 356px;
+    .calendar {
+        margin-right : 35px;
+        position     : relative;
+        padding-left : 46px;
+        color        : rgba(0, 0, 0, 0.54);
+        i {
+            position : absolute;
+            left     : 0;
+            top      : 5px;
+            &::before {
+                content : '\E625';
+            }
+        }
+        .calendar-trigger {
+            white-space   : nowrap;
+            font-size     : 15px;
+            color         : rgba(0, 0, 0, 0.54);
+            line-height   : 20px;
+            background    : url("arrow-grey.svg") 100% 50% no-repeat;
+            padding-right : 26px;
+            width         : 356px;
+        }
+        &.show {
+            background    : url("arrow-grey.svg") 100% 50% no-repeat;
+            padding-right : 26px;
+            float         : left;
+            .calendar-trigger {
+                display : none;
+            }
+            input {
+                position : static;
+                width    : 90px;
+                opacity  : 1;
+            }
+        }
+        input {
+            position   : absolute;
+            top        : 2px;
+            left       : -3px;
+            width      : 330px;
+            border     : none;
+            background : none;
+            opacity    : 0;
+            color      : rgba(0, 0, 0, 0.54);
+        }
     }
-    &.show {
-      background: url("arrow-grey.svg") 100% 50% no-repeat;
-      padding-right: 26px;
-      float: left;
-      .calendar-trigger {
-        display: none;
-      }
-      input {
-        position: static;
-        width: 90px;
-        opacity: 1;
-      }
-    }
-    input {
-      position: absolute;
-      top: 2px;
-      left: -3px;
-      width: 330px;
-      border: none;
-      background: none;
-      opacity: 0;
-      color: rgba(0,0,0,0.54);
-    }
-  }
 }
