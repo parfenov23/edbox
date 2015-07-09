@@ -356,27 +356,82 @@
       background: #fff;
       box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
                   0  2px  6px 0  rgba(0,0,0,.24);
-      .arrow {
-        float: left;
-        margin: 10px 24px 0 0;
-        &:before {
-          font-size: 30px;
-          color: #757575;
-          content: '\e893';
+
+      &.for_next {
+        .next_arr {
+          display: none;
         }
+      }
+      &.for_prev {
+        .prev_arr {
+          display: none;
+        }
+      }
+      &.carusel {
+        position: relative;
+        .prev_arr, .next_arr {
+          position: absolute;
+          height: 100%;
+          background-color: #fff;
+          top: 0;
+          z-index: 2;
+          i {
+          cursor: pointer;
+            &::before {
+              font-size: 20px;
+              color: #BDBDBD;
+              line-height: 48px;
+            }
+          }
+        }
+        .next_arr{
+          right: 0;
+          width: 32px;
+          i {
+            &::before {
+              content: '\E7B6';
+            }
+          }
+
+        }
+        .prev_arr{
+          left: 0;
+          
+          i{
+            &::before {
+              content: '\E7B5'
+            }
+          }
+        }
+
       }
       >.title {
         float: left;
         font: 400 20px/48px 'Roboto';
         color: rgba(0,0,0,.54);
+        position: relative;
+        max-width: 408px;
+        .title-text {
+          float: left;
+        }
+        .arrow {
+          float: left;
+          margin: 0 24px 0 0;
+          &:before {
+            font-size: 30px;
+            color: #757575;
+            content: '\e893';
+          }
+        }
       }
       .tabs {
-        position: relative;
-        float: left;
-        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 100%;
         margin: 0 0 0 46px;
+        white-space: nowrap;
         &__item {
-          float: left;
+          @include inline-block;
           height: 48px;
           padding: 0 18px;
           &-link {

@@ -1,10 +1,32 @@
+tabsCorusel = ->
+  tabsWidth = $('.header__bottom .title .tabs').width()
+  headerWidth = $('.header__bottom').width() - 69
+  titleWidth = $('.header__bottom .title').width()
+
+  if headerWidth < titleWidth + tabsWidth
+    $('.header__bottom').addClass('carusel for_prev')
+
 $(document).ready ->
-  $('img').load ->
+  $('img:last').load ->
+
+    tabsCorusel()
+
+    $('.carusel.for_prev .next_arr i').on 'click', ->
+      headerWidth = $('.header__bottom').width() - 69
+      $('.header__bottom .title').animate
+        marginLeft: - headerWidth + 'px', 300, ->
+          $('.carusel.for_prev').removeClass('for_prev').addClass('for_next')
+
+    $('.carusel .prev_arr i').on 'click', ->
+      console.log 12
+      $('.header__bottom .title').animate
+        marginLeft: 0, 300, ->
+          $('.carusel.for_next').removeClass('for_next').addClass('for_prev')
+
     $('.adaptive-title').each ->
       rightWidth = $(@).find('.right-col').width()
       $(@).find('.left-col').css
         width: $(@).width() - rightWidth + 'px'
-
 
     $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
       $(document).trigger 'click.dropdown'
@@ -21,7 +43,6 @@ $(document).ready ->
         unless e.target.closest('.psevdo-select') == ev.target.closest('.psevdo-select')
           list.hide()
           $(document).unbind 'click.dropdown'
-
 
     $('#js-add-course-to-shedule .select-trigger').on 'click', ->
       $(@).closest('.select').find('ul.hidden').show()
