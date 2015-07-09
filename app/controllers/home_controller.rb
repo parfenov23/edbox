@@ -26,6 +26,11 @@ class HomeController < ActionController::Base
     @favorite_courses = current_user.favorite_courses
   end
 
+  def programm
+    @course = Course.find(params[:course_id])
+    @sections = @course.sections
+  end
+
   def cabinet
     redirect_to "/schedule" unless current_user.director
   end

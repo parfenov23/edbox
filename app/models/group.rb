@@ -10,4 +10,8 @@ class Group < ActiveRecord::Base
     result
   end
 
+  def all_courses
+    Course.where(id: bunch_courses.pluck(:course_id).uniq)
+  end
+
 end

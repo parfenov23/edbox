@@ -45,7 +45,7 @@
                     i.icon.video
                     i.icon.test
                     div
-                        a href="" Посмотреть программу курса
+                        a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
                 - user_lead = @course.user
                 - if user_lead.present?
                     .principals-list

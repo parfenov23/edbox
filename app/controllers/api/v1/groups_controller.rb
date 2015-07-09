@@ -74,8 +74,7 @@ module Api::V1
     end
 
     def add_course
-      bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start])
-      if (bunch_course.save rescue false)
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
         render json: bunch_course.as_json
       else
         render_error(500, 'Проверьте данные')
@@ -83,17 +82,10 @@ module Api::V1
     end
 
     def update_course
-      if (find_bunch_course.nil? rescue true)
-        bunch_course = BunchCourse.build(params[:course_id], params[:id], params[:date_start])
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
+        render json: bunch_course.as_json
       else
-        bunch_course = find_bunch_course.update({date_start: Time.parse(params[:date_start]),
-                                                 course_id: params[:course_id],
-                                                 group_id: params[:id]})
-      end
-      if (bunch_course.save rescue false)
-        render json: bunch_course.transfer_to_json
-      else
-        render_error(500, 'Ошибка сервера')
+        render_error(500, 'Проверьте данные')
       end
     end
 
