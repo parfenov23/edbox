@@ -1,16 +1,18 @@
-#header__holder
-  = render "home/header/header" , {header_top_arr:['notifications']}
-  = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', members_class:'active' }}
-.content#members.members
-
-  .title Чтобы добавить участника, введите его email и отправьте приглашение.
+.members.ingroups
 
   .members__invite
     ul.invited
     form.form
       input.input type="text" placeholder="Email участника"
       .plane
+
   ul.members__in_system
+    li.members__in_system-item
+      .ava A
+      .name last_name
+      .email member@email
+      .status
+
     - @members.each do |member|
       - unless member.director
         li.members__in_system-item

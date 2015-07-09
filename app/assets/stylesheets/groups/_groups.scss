@@ -99,6 +99,31 @@ h2 {
   content : "\e8cf";
 }
 
+.icon-uniE8D6:before {
+  font-family: 'Icons';
+  content : "\E8D6";
+}
+
+.icon-uniE8D9:before {
+  font-family: 'Icons';
+  content : "\E8D9";
+}
+
+.icon-uniE6BE:before {
+  font-family: 'Icons';
+  content : "\E6BE";
+}
+
+.icon-uniE8D6:before {
+  font-family: 'Icons';
+  content : "\E625";
+}
+
+.icon-uniE620:before {
+  font-family: 'Icons';
+  content : "\E620";
+}
+
 .icon-uniE892:before {
   content : "\e892";
 }
@@ -120,11 +145,13 @@ h2 {
 }
 
 .icon-edit {
-  background : url(../images/edit-pen.png) 0 0 no-repeat;
-  background : url(../images/edit-pen.svg) 0 0 no-repeat;
   width      : 14px;
   height     : 14px;
   display    : inline-block;
+  &::before {
+    font-family: 'Icons';
+    content : "\E706";
+  }
 }
 
 
@@ -201,7 +228,7 @@ h2 {
 */
 
 .content {
-  margin-top : 36px;
+  // margin-top : 36px;
   background : none;
 }
 
@@ -308,7 +335,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
   background-color   : #FD9348;
   font-size          : 14px;
   font-weight        : 500;
-  line-height        : 20px;
+  line-height        : 36px;
   color              : #FFF;
   text-transform     : uppercase;
   border             : none;

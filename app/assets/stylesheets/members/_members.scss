@@ -4,6 +4,12 @@
   width       : 920px;
   margin      : 0 auto;
   padding-top : 128px;
+
+
+
+
+}
+.members {
   .title {
     width         : 780px;
     margin        : 0 auto;
@@ -167,6 +173,31 @@
       }
     }
   }
+  &.ingroups {
+    .members__invite {
+      box-shadow: none;
+    }
+    .members__in_system {
+      box-shadow: none;
+      margin-top: 0;
+      padding-bottom: 8px;
+      li {
+        border-top: 1px solid  rgba(0,0,0,0.12);
+        background-color: #FCFCFC;
+        box-shadow: none;
+        cursor: pointer;
+        &:hover {
+          background-color: #EBEBEB;
+        }
+        &:last-child {
+
+        }
+      }
+    }
+  }
 }
+
+
+
 
 /* Cabinet css end */

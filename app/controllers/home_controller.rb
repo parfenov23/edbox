@@ -41,6 +41,7 @@ class HomeController < ActionController::Base
 
   def group
     @group = (current_user.company.groups.find(params[:id]) rescue nil)
+    @members = current_user.company.users
     redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless params[:id].present?
   end
 

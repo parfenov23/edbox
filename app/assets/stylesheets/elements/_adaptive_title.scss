@@ -1,0 +1,16 @@
+.adaptive-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;;
+  .left-col {
+      overflow      : hidden;
+      white-space   : nowrap;
+      text-overflow : ellipsis;
+  }
+  .right-col {
+    white-space: nowrap;
+    div {
+      @include inline-block;
+    }
+  }
+}

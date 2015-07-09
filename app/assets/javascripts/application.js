@@ -1,10 +1,8 @@
 //= require ./jquery-2.1.3.min
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
-//= require ./vendor/material
-//= require ./vendor/ripples
 //= require ./vendor/zbaron.min
-//= require skim
+//= require ./vendor/material.min
 
 //= require_tree ./core
 
@@ -20,7 +18,7 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 
 
 $(document).ready(function () {
-  
+
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
     }, function () {
