@@ -4,9 +4,7 @@
     .logo.logo__ad
         img.logo__img src="assets/header__adconsult.svg"
 
-    .for-registration Зарегистрироваться
-      
-    / - if true
-    /     = render "home/header/auth", {header_top_arr: header_top_arr}
-    / - else
-    /     = render "home/header/no_auth"
+    - if current_user.present?
+        = render "home/header/auth", {header_top_arr: header_top_arr}
+    - else
+        = render "home/header/no_auth"
