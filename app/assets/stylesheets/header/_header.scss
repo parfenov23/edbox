@@ -11,6 +11,14 @@
       z-index: 2;
       height: 48px;
       background: #5C4141;
+      .for-registration {
+        font-size: 15px;
+        color: #FFFFFF;
+        line-height: 24px;
+        position: absolute;
+        top: 12px;
+        right: 32px;
+      }
       .logo {
         position: absolute;
         &__ed {
@@ -356,7 +364,7 @@
       background: #fff;
       box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
                   0  2px  6px 0  rgba(0,0,0,.24);
-
+      position: relative;
       &.for_next {
         .next_arr {
           display: none;
@@ -365,6 +373,28 @@
       &.for_prev {
         .prev_arr {
           display: none;
+        }
+      }
+      .icons-block{
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        i {
+          font-size: 20px;
+          &::before {
+            color: rgba(0,0,0,0.26);
+          }
+        }
+        .group {
+          &::before{
+            content: '\E8D6';
+          }
+        }
+        .favorite {
+          margin-left: 19px;
+          &::before{
+            content: '\E631';
+          }
         }
       }
       &.carusel {
@@ -396,7 +426,6 @@
         }
         .prev_arr{
           left: 0;
-          
           i{
             &::before {
               content: '\E7B5'

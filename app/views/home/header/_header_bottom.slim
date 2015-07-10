@@ -3,6 +3,9 @@
       i.icon
     .prev_arr
       i.icon
+    .icons-block
+      i.icon.group
+      i.icon.favorite
     .title
         - unless header_bottom[:arrow].nil?
             a.arrow.icon href="#{header_bottom[:arrow][:url]}"
@@ -38,37 +41,38 @@
                 li.tabs__item class="#{header_bottom[:favorite_class]}"
                     a.tabs__item-link href="/favorite" избранное
                 li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное2
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное3
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное4
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное5
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное6
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное7
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное8
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное9
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное0
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное11
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное22
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное33
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное44
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное55
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное66
-                li.tabs__item class="#{header_bottom[:favorite_class]}"
-                    a.tabs__item-link href="/favorite" избранное77
+
+                /     a.tabs__item-link href="/favorite" избранное2
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное3
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное4
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное5
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное6
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное7
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное8
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное9
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное0
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное11
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное22
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное33
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное44
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное55
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное66
+                / li.tabs__item class="#{header_bottom[:favorite_class]}"
+                /     a.tabs__item-link href="/favorite" избранное77
                 .line
 
         - when "groups"

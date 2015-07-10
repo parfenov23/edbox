@@ -36,6 +36,7 @@ $(document).ready(function () {
             }
         });
     });
+
     show_error = function (text, duration) {
         var el = $('#alert');
         el.find('.text').text(text);
@@ -53,9 +54,6 @@ $(document).ready(function () {
         $('.auth').css({'height': windowHeight + 'px'});
     }, 100);
 
-    // $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
-    //   $('#js-filter-courses').toggleClass('show');
-    // })
 
     $('.filter-category .more .icon').on('click', function () {
         $(this).closest('.more').removeClass('hidden');
@@ -104,24 +102,9 @@ $(document).ready(function () {
                 $(element).addClass('over-title')
             }
         });
-    }
+    };
 
     $('.filter-courses').baron();
-
-    headerTabsLine = function () {
-        if (! $('.tabs__item').length == 0){
-            var width = $('.tabs__item.active').outerWidth();
-            var tabs_item_active = $('.tabs__item.active')
-            if (tabs_item_active.length > 0){
-                var offset = tabs_item_active.position().left;
-                $('.header__bottom .tabs .line').css({'width': width + 'px', 'left': offset + 'px'});
-            }
-        }
-    }
-
-    setTimeout(function () {
-        headerTabsLine();
-    }, 100);
 
     profileDataChange = function () {
         $('.profile__main #submit').click(function () {
