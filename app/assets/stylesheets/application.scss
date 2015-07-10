@@ -1,4 +1,5 @@
 @import "vendor/material";
+@import "vendor/jquery-ui.min";
 @import "mixins/inline-block";
 @import "mixins/circle-img";
 @import "mixins/middle-block";
@@ -154,6 +155,7 @@ i {
 @import "elements/adaptive_popup";
 @import "elements/input";
 @import "elements/btns";
+@import "elements/tooltip";
 
 @import "courses/courses";
 @import "schedule/schedule";
