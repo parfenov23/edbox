@@ -32,20 +32,19 @@
         }
       }
       .header__icons {
-        position : absolute;
         cursor   : pointer;
+        float: right;
         .icon:before {
           font-size : 22px;
           color     : #FFF;
         }
       }
       .header__user {
-        position      : absolute;
-        top           : 8px;
-        right         : 32px;
         width         : 32px;
         height        : 32px;
         border-radius : 100%;
+        margin-top: 8px;
+        margin-right: 33px;
         .ava {
           max-width     : 100%;
           max-height    : 100%;
@@ -182,8 +181,8 @@
       }
 
       .header__apps {
-        top   : 13px;
-        right : 81px;
+        margin-top: 15px;
+        margin-right: 17px;
         .icon:before {
           content : '\e892';
         }
@@ -246,9 +245,9 @@
       }
 
       .header__notifications {
-        position : absolute;
-        top      : 14px;
-        right    : 120px;
+        margin-top: 14px;
+        position: relative;
+        margin-right: 17px;
         .icon:before {
           position : relative;
           z-index  : 1;
@@ -341,16 +340,16 @@
       }
 
       .header__courses {
-        top   : 14px;
-        right : 161px;
+        margin-top: 14px;
+        margin-right: 19px;
         .icon:before {
           content : '\e8de';
         }
       }
 
       .header__cabinet {
-        top   : 14px;
-        right : 200px;
+        margin-top: 14px;
+        margin-right: 18px;
         .icon:before {
           content : '\e8d9';
         }

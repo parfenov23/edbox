@@ -136,6 +136,45 @@
                 position      : relative;
                 padding-right : 20px;
                 margin-bottom : 12px;
+                &.completed {
+                  .fixed-h {
+                    .title {
+                      font-size: 15px;
+                      color: rgba(0,0,0,0.26);
+                      line-height: 24px;
+                      padding-left: 24px;
+                    }
+                    &::before {
+                      display: block;
+                      font-family: Icons, sans-serif;
+                      width: 23px;
+                      margin-left: 1px;
+                      height: 22px;
+                      color: #FD9348;
+                      content: '\E899';
+                      border: 1px solid #FD9348;
+                      border-radius: 50%;
+                      text-align: center;                    }
+                  }
+                }
+                &.disabled {
+                  .fixed-h {
+                    .title {
+                      font-size: 15px;
+                      color: rgba(0,0,0,0.26);
+                      line-height: 24px;
+                    }
+                  }
+                }
+                &.overdue {
+                  .fixed-h {
+                    .title {
+                      font-size: 15px;
+                      color: rgba(0,0,0,0.26);
+                      line-height: 24px;
+                    }
+                  }
+                }
                 .fixed-h {
                     .title {
                         font-size   : 15px;
@@ -177,6 +216,15 @@
                       line-height: 16px;
                       text-transform: uppercase;
                       }
+                    }
+                    .overdue-label {
+                      border: 1px solid #FD9348;
+                      border-radius: 2px;
+                      padding: 0 8px;
+                      line-height: 24px;
+                      font-size: 11px;
+                      color: #FD9348;
+                      margin-top: -2px;
                     }
                     .duration {
                         padding-left : 19px;
