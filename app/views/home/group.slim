@@ -21,6 +21,9 @@
                         .container
                             = render "home/group/users"
                     - when "schedule"
-                        = render "home/group/schedule"
+                        - if false
+                            = render "home/group/schedule"
+                        - else
+                            = render "home/group/no_schedule"
                     - when "courses"
                         = render "home/group/courses"

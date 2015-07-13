@@ -53,7 +53,7 @@ $url_3 : url(/images/plus-big-icon-dark.svg);
 }
 
 .manage-group .container-inner {
-  padding: 21px 21px 32px 32px;
+  padding : 21px 21px 32px 32px;
 }
 
 .flat-button {
@@ -221,6 +221,7 @@ input[type="submit"] {
     color : $black_87;
   }
 }
+
 .single-course {
   background-color : $white;
   float            : left;
@@ -266,6 +267,7 @@ input[type="submit"] {
 }
 
 .timetable-description {
+  margin      : 0 0 24px;
   font-family : $font_1;
   color       : $color_shark_approx;
   font-size   : 14px;

@@ -55,7 +55,8 @@ class User < ActiveRecord::Base
   end
 
   def password=(new_password)
-    self.password_digest = new_password
+    password = BCrypt::Password.create(new_password)
+    self.password_digest = password
   end
 
   def assign_last_auth
