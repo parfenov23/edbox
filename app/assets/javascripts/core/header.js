@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#header__holder .header__apps").click(function(){
+    $("#header__holder .header__apps").click(function(event){
         var evt = evt || event;
         var target = evt.target || evt.srcElement;
         if ($(target).closest(".menu__apps").length == 0){
@@ -7,7 +7,7 @@ $(document).ready(function(){
             btn.find(".menu__apps").toggle()
         }
     });
-    $(document).click(function(){
+    $(document).click(function(event){
         var evt = evt || event;
         var target = evt.target || evt.srcElement;
         if ($(target).closest(".header__apps").length == 0){

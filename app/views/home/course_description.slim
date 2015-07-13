@@ -1,6 +1,9 @@
+= render "home/courses/favorite", {favorite_courses: @favorite_courses}
+- if current_user.corporate
+    = render "home/courses/groups"
 #header__holder
     = render "home/header/header", {header_top_arr: ['notifications']}
-    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }}}
+    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }, description_class: "active"}}
 .inner-content                  
     .content
         - full = @course.attachments.where(size: 'full').last
@@ -45,7 +48,7 @@
                     i.icon.video
                     i.icon.test
                     div
-                        a href="" Посмотреть программу курса
+                        a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
                 - user_lead = @course.user
                 - if user_lead.present?
                     .principals-list

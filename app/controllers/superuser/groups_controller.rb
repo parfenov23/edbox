@@ -67,20 +67,14 @@ module Superuser
     end
 
     def update_course
-      if (find_bunch_course.nil? rescue true)
-        BunchCourse.build(params[:course_id], params[:id], params[:date_start]).save
-      else
-        find_bunch_course.update({date_start: Time.parse(params[:date_start]),
-                                  course_id: params[:course_id],
-                                  group_id: params[:id]})
-      end
+      BunchCourse.build(params[:course_id], params[:id], params[:date_start], "group")
       redirect_to edit_superuser_group_path(params[:id], params: {type: "courses"})
     end
 
     private
 
     def find_bunch_course
-      BunchCourse.find(params[:bunch_course_id])
+      find_group.bunch_courses.find_by_course_id(params[:course_id])
     end
 
     def find_group
