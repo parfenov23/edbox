@@ -1,6 +1,8 @@
 .header__top
-    .logo.logo__ed
-        img.logo__img src="assets/header__edbox.svg"
+    - link = current_user.present? ? "/cabinet" : "/courses"
+    a href="#{link}"
+        .logo.logo__ed
+            img.logo__img src="assets/header__edbox.svg"
     .logo.logo__ad
         img.logo__img src="assets/header__adconsult.svg"
 

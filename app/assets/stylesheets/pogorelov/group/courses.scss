@@ -161,7 +161,7 @@ $url_3 : url(/images/plus-big-icon-dark.svg);
 }
 
 input[type="text"] {
-  @extend %extend_1;
+  //@extend %extend_1;
   &:focus {
     outline : none;
     ~ .bar {
