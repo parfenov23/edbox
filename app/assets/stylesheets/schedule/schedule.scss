@@ -156,7 +156,7 @@
                         width        : 25px;
                         height       : 28px;
                         margin-right : -9px;
-                        margin-top   : -5px;
+                        margin-top   : -1px;
                         margin-left  : 20px;
                         cursor       : pointer;
                         position     : relative;
@@ -170,6 +170,14 @@
                         }
                         @import "elements/hidden-list";
                     }
+                    .download {
+                      a {
+                      font-size: 14px;
+                      color: #FD9348;
+                      line-height: 16px;
+                      text-transform: uppercase;
+                      }
+                    }
                     .duration {
                         padding-left : 19px;
                         margin-left  : 12px;
@@ -177,7 +185,9 @@
                         font-size    : 11px;
                         color        : rgba(0, 0, 0, 0.26);
                         line-height  : 18px;
-                        width        : 60px !important;
+                        padding-top: 1px;
+                        width: 60px !important;
+                        margin-top: 1px;
                         i {
                             position  : absolute;
                             left      : 0;
