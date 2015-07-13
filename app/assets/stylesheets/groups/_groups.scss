@@ -347,6 +347,11 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 
 .manage-group {
   position : relative;
+  .schedule-block  {
+    width: 888px;
+    margin-left: 40px;
+    padding-top: 20px;
+  }
 }
 
 /* Group left menu */

@@ -11,11 +11,13 @@
     - else
         #infoGroup.box.show
             .item.manage-group
-                .container
-                    = render "home/group/left_menu"
-                    - unless params[:type].present?
-                      = render 'home/group/info'
-                    - else
-                      - case params[:type]
-                      - when "user"
-                        = render "home/group/users"
+                = render "home/group/left_menu"
+                - unless params[:type].present?
+                  = render 'home/group/info'
+                - else
+                  - case params[:type]
+                  - when "user"
+                    .container
+                      = render "home/group/users"
+                  - when "schedule"
+                    = render "home/group/schedule"
