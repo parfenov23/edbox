@@ -36,6 +36,9 @@ $(document).ready(function () {
                                 '<div class="cancel">×</div>' +
                             '</li>')
                                 .appendTo('.members__invite .invited');
+                        }else{
+                            show_error('Email уже добавленн', 3000);
+                            $('.members__invite .input').val('');
                         }
                     }
                 }
