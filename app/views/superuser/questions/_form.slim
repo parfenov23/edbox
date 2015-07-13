@@ -1,0 +1,17 @@
+- if @question.id.nil?
+    - action_url = "/superuser/questions"
+    - method = "post"
+    - test_id = params[:test_id]
+- else
+    - action_url = "/superuser/questions/#{@question.id}"
+    - method = "put"
+    - test_id = @question.test_id
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="questions[title]" type="text" value="#{@question.title}"
+    input type="hidden" name="_method" value="#{method}"
+    input type="hidden" name="questions[test_id]" value="#{test_id}"
+    - if test_id.present?
+        button.btn.btn-primary type="submit" Сохранить

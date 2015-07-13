@@ -1,0 +1,23 @@
+- if @answer.id.nil?
+    - action_url = "/superuser/answers"
+    - method = "post"
+    - question_id = params[:question_id]
+- else
+    - action_url = "/superuser/answers/#{@answer.id}"
+    - method = "put"
+    - question_id = @answer.question_id
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Текст:
+        input.form-control name="answer[text]" type="text" value="#{@answer.text}"
+    .form-group
+        label
+            | Правильный ответ?
+        select.form-control name="answer[right]" type="text" value="true"
+            option true
+            option false
+    input type="hidden" name="_method" value="#{method}"
+    input type="hidden" name="answer[question_id]" value="#{question_id}"
+    - if question_id.present?
+        button.btn.btn-primary type="submit" Сохранить

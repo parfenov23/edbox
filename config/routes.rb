@@ -86,6 +86,21 @@ Rails.application.routes.draw do
         get :remove
       end
     end
+    resources :tests do
+      member do
+        get :remove
+      end
+    end
+    resources :questions do
+      member do
+        get :remove
+      end
+    end
+    resources :answers do
+      member do
+        get :remove
+      end
+    end
     resources :tags do
       member do
         get :remove
