@@ -3,10 +3,9 @@
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
 //= require ./vendor/material.min
+//= require ./vendor/jquery-migrate-1.2.1.min.js
 
 //= require_tree ./core
-
-
 
 //=require main/main
 
