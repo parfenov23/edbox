@@ -68,10 +68,15 @@
       .account {
         font: 400 13px/1 'Roboto';
         color: rgba(0,0,0,.54);
+        margin-bottom: 8px;
         .number {
           color: rgba(0,0,0,.87);
         }
       }
+      .tets {
+        font-size: 13px;
+        color: rgba(0,0,0,0.54);
+        line-height: 20px;      }
     }
   }
 

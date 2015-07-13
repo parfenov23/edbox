@@ -5,17 +5,17 @@ jQuery(document).ready(function() {
     if(textareaResize.length) {
          $(textareaResize).TextAreaExpander();
     }
-   
+
     // Modal init
     ModalWindow.init({onShow: scrollInit});
 
 
-    $(".date" ).datepicker({
-      changeMonth: true,
-      changeYear: true
-    });
+    // $(".date" ).datepicker({
+    //   changeMonth: true,
+    //   changeYear: true
+    // });
 
-}); 
+});
 
 
 // Modal window
@@ -31,7 +31,7 @@ function ModalWindow() {
         this.close      = $('.md-close');
         onShow = options ? options.onShow : null;
         onHide = options ? options.onHide : null;
-        //remove old events     
+        //remove old events
         this.overlay.unbind('click.modal');
         this.close.unbind('click.modal');
         this.trigger.unbind('click.modal');
@@ -49,7 +49,7 @@ function ModalWindow() {
             this.attrID = $(this).attr('href');
             self.showModalWindow(this.attrID, onShow);
         });
-        
+
     };
 
     self.showModalWindow = function(id, callback){
@@ -72,7 +72,7 @@ function ModalWindow() {
 
 var ModalWindow = new ModalWindow();
 
-function scrollInit() {   
+function scrollInit() {
     $('.scrollbar-outer, .textarea-scrollbar').scrollbar({
         ignoreOverlay: false
     });
@@ -80,7 +80,7 @@ function scrollInit() {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         } else {
-            $(this).addClass('selected');   
+            $(this).addClass('selected');
         };
     });
 }
@@ -113,7 +113,7 @@ window.onload = function() {
         span.className = 'clicked';
         span.addEventListener('webkitAnimationEnd', function(event){
             this.className = '';
-        }, false);  
+        }, false);
     };
 
     for(var i=0;i<classname.length;i++){
