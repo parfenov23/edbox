@@ -44,18 +44,15 @@ module Api::V1
     end
 
     def remove_user
-      emails = params[:emails]
       group = get_find_group
-      arr_hash_users = []
-      unless group.nil?
-        users = group.company.users
-        arr_hash_users = emails.map do |email|
-          user = users.find_by_email(email)
-          user.bunch_groups.where(group_id: group.id).destroy_all
-          user.transfer_to_json if (user.save rescue false)
-        end
-      end
-      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
+      result = unless group.nil?
+                 user = group.company.users.where(id: params[:user_id]).last
+                 if user.present?
+                   user.bunch_groups.where(group_id: group.id).destroy_all
+                   user.transfer_to_json if (user.save rescue false)
+                 end
+               end
+      render json: {user: (result rescue render_error(400, 'Проверьте данные'))}
     end
 
     def destroy

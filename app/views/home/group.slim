@@ -7,7 +7,10 @@
     = render "home/header/header_bottom", {header_bottom: params_header}
 .content#groups
     - unless @group.present?
-        = render 'home/group/new'
+        - if current_user.director
+            = render 'home/group/new'
+        - elsif current_user.corporate
+            = render 'home/group/no_group'
     - else
         #infoGroup.box.show
             .item.manage-group
@@ -18,8 +21,7 @@
                 - else
                     - case params[:type]
                     - when "user"
-                        .container
-                            = render "home/group/users"
+                        = render "home/group/users"
                     - when "schedule"
                         - if false
                             = render "home/group/schedule"

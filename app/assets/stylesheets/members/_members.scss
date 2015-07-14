@@ -83,7 +83,9 @@
     }
   }
   .members__in_system {
-    margin : 64px 0 0 0;
+    &.director{
+      margin : 64px 0 0 0;
+    }
     &-item {
       overflow   : hidden;
       padding    : 12px 32px;
@@ -162,7 +164,7 @@
         .authorized {
           color : #FD9348;
         }
-        &:hover {
+        &.director:hover {
           .delete {
             display : block;
           }

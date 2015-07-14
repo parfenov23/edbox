@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
     company.groups
   end
 
+  def my_groups
+    ids_group = bunch_groups.map{|bg| bg.group_id}
+    company.groups.where(id: ids_group)
+  end
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   rescue BCrypt::Errors::InvalidHash
@@ -75,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name + " " + last_name
+    first_name.to_s + " " + last_name.to_s
   end
 
   private

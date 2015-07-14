@@ -20,6 +20,7 @@ module Superuser
     def create
       attachment = Attachment.save_file(params[:model_type], params[:model_id], params_attachment[:file])
       attachment.title = params_attachment[:title]
+      attachment.duration = params_attachment[:duration]
       attachment.save
       redirect_to "/superuser/#{params[:model_type].downcase}s/#{params[:model_id]}/edit"
     end
@@ -41,7 +42,7 @@ module Superuser
     end
 
     def params_attachment
-      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title)
+      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title, :duration)
     end
 
   end
