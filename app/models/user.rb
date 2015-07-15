@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
-  before_create :create_hash_key, :welcome_letter, :hash_password
+  before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
     user = new(params)
     user.password = params[:password]
+    user.welcome_letter(params[:password])
     user
   end
 
@@ -90,18 +91,14 @@ class User < ActiveRecord::Base
     first_name.to_s + " " + last_name.to_s
   end
 
+  def welcome_letter(new_password)
+    HomeMailer.welcome_latter(self, new_password).deliver
+  end
+
   private
 
   def create_hash_key
     self.user_key = SecureRandom.hex(20)
-  end
-
-  def welcome_letter
-    HomeMailer.welcome_latter(self).deliver
-  end
-
-  def hash_password
-    self.password_digest = BCrypt::Password.create(self.password_digest)
   end
 
 end
