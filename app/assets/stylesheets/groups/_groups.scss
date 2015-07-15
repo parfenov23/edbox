@@ -50,14 +50,6 @@
 
 /* Headers */
 
-h2 {
-  color         : rgba(0, 0, 0, 0.54);
-  font-size     : 20px;
-  font-weight   : 400;
-  line-height   : 32px;
-  margin-bottom : 23px;
-}
-
 /* Icons */
 
 .all-group:before,
@@ -100,28 +92,28 @@ h2 {
 }
 
 .icon-uniE8D6:before {
-  font-family: 'Icons';
-  content : "\E8D6";
+  font-family : 'Icons';
+  content     : "\E8D6";
 }
 
 .icon-uniE8D9:before {
-  font-family: 'Icons';
-  content : "\E8D9";
+  font-family : 'Icons';
+  content     : "\E8D9";
 }
 
 .icon-uniE6BE:before {
-  font-family: 'Icons';
-  content : "\E6BE";
+  font-family : 'Icons';
+  content     : "\E6BE";
 }
 
 .icon-uniE8D6:before {
-  font-family: 'Icons';
-  content : "\E625";
+  font-family : 'Icons';
+  content     : "\E625";
 }
 
 .icon-uniE620:before {
-  font-family: 'Icons';
-  content : "\E620";
+  font-family : 'Icons';
+  content     : "\E620";
 }
 
 .icon-uniE892:before {
@@ -145,15 +137,14 @@ h2 {
 }
 
 .icon-edit {
-  width      : 14px;
-  height     : 14px;
-  display    : inline-block;
+  width   : 14px;
+  height  : 14px;
+  display : inline-block;
   &::before {
-    font-family: 'Icons';
-    content : "\E706";
+    font-family : 'Icons';
+    content     : "\E706";
   }
 }
-
 
 /* Animation for menu items */
 @-webkit-keyframes expand {
@@ -237,9 +228,9 @@ h2 {
   background-color   : #FFF;
   border-radius      : 2px;
   margin-bottom      : 11px;
-  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow    : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
+  box-shadow         : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
 
 }
 
@@ -249,7 +240,7 @@ h2 {
 }
 
 .manage-group .container-inner {
-  padding : 21px 0 9px 32px;
+  padding: 21px 21px 32px 32px;
 }
 
 .top-text {
@@ -269,7 +260,7 @@ h2 {
 }
 
 .group textarea,
-input[type="text"] {
+.group [type="text"] {
   font-size     : 13px;
   padding       : 10px 0 9px 0;
   display       : block;
@@ -458,7 +449,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 }
 
 .manage-group h2 {
-  color         : rgba(0, 0, 0, 0.87);
+  //color         : rgba(0, 0, 0, 0.87);
   margin-bottom : 17px;
 }
 
@@ -466,7 +457,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
   color       : rgba(0, 0, 0, 0.87);
   font-size   : 15px;
   font-weight : 400;
-  line-height : 24px;
+  line-height : 26px;
 }
 
 .data-group-create,
@@ -518,6 +509,15 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 .group-info li strong {
   font-weight : 400;
   color       : rgba(0, 0, 0, 0.87);
+}
+
+h2 {
+  margin-top    : 0px;
+  color         : rgba(0, 0, 0, 0.54);
+  font-size     : 20px;
+  font-weight   : 400;
+  line-height   : 32px;
+  margin-bottom : 23px;
 }
 
 .group-info h3 {

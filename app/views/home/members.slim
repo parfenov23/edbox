@@ -9,16 +9,16 @@
     ul.invited
     form.form
       input.input type="text" placeholder="Email участника"
-      .plane
-  ul.members__in_system
+      .plane.js_inviteUser
+  ul.members__in_system.director
     - @members.each do |member|
       - unless member.director
         li.members__in_system-item
           .ava = member.first_name[0]
           .name = member.first_name + ' ' + member.last_name
           .email = member.email
-          .status
-            .delete data-id="#{member.id}" ×
+          .status.director
+            .delete.js_removeUser data-id="#{member.id}" ×
             - unless member.auth?
               .send
                 .date = "#{time_ago_in_words(member.created_at)} назад"

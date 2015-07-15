@@ -2,38 +2,41 @@
     = render "home/header/header", {header_top_arr: ['notifications']}
     = render "home/header/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
 .inner-content
-  .content#profile
-      form.profile__block.profile__main
-          .avatar
-              img.ava src="#{default_img(current_user.avatar)}"
-              .upload__block
-                  input#imgInp name="ava" type="file"
-          .data
-              .input-wrp.name
-                  input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
-                  hr
-              .input-wrp.name
-                  input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
-                  hr
-              .input-wrp.state
-                  input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
-                  hr
-              .account
-                  span>Ваш персональный ID:
-                  span.number
-                      = current_user.user_key
-              .tets hdfhj
-          .btn-holder
-              .btn-default.btn__orange#submit сохранить
+    .content#profile
+        form.profile__block.profile__main
+            .avatar
+                img.ava src="#{default_img(current_user.avatar)}"
+                .upload__block
+                    input#imgInp name="ava" type="file"
+            .data
+                .input-wrp.name
+                    input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
+                    hr
+                .input-wrp.name
+                    input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
+                    hr
+                .input-wrp.state
+                    input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
+                    hr
+                .account
+                    span>Ваш персональный ID:
+                    span.number
+                        = current_user.user_key
+                .tets
+                    'Это ваш идентификационный номер в Edbox. Он
+                    'понадобится вам для участия в различных акциях и
+                    |специальных предложениях от Edbox.
+            .btn-holder
+                .btn-default.btn__orange#submit сохранить
 
 
-      form.profile__block.profile__password
-          .title Создание нового пароля
-          .input-wrp.password
-              input type="password" name="password" placeholder="Введите пароль"
-              hr
-          .input-wrp.password
-              input type="password" name="password_repeat" placeholder="Повторите пароль"
-              hr
-          .btn-holder
-              .btn-default.btn__orange#submit сохранить
+        form.profile__block.profile__password
+            .title Создание нового пароля
+            .input-wrp.password
+                input type="password" name="password" placeholder="Введите пароль"
+                hr
+            .input-wrp.password
+                input type="password" name="password_repeat" placeholder="Повторите пароль"
+                hr
+            .btn-holder
+                .btn-default.btn__orange#submit сохранить

@@ -6,6 +6,10 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
             | Название:
         input.form-control name="attachment[title]" type="text" value="#{@attachment.title}"
     .form-group
+        label
+            | Продолжительность:
+        input.form-control name="attachment[duration]" type="text" value="#{@attachment.duration}"
+    .form-group
         .col-lg-6.col-sm-6.col-12.no_padding
             .input-group
                 span.input-group-btn

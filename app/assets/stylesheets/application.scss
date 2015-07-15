@@ -8,36 +8,41 @@
 @import "mixins/placeholder";
 
 @font-face {
-    font-family : 'Icons';
-    src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
-    src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
+  font-family : 'Icons';
+  src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
+  src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
 $fontColor : rgba(0, 0, 0, 0.87);
 $bgColor : #ECEFF1;
 
 *, *:before, *:after {
-    box-sizing: border-box; }
+  box-sizing : border-box;
+}
 
 html {
-    position    : relative;
-    font-family : 'Roboto', sans-serif;
-    min-height  : 100%;
-    height      : 100%;
+  position    : relative;
+  font-family : 'Roboto', sans-serif;
+  min-height  : 100%;
+  height      : 100%;
 }
 
 body {
-    background-color : $bgColor;
-    height           : 100%;
-    min-height       : 100%;
-    height           : auto !important;
-    color            : $fontColor;
-    font-weight      : 400 !important;
+  background-color : $bgColor;
+  height           : 100%;
+  min-height       : 100%;
+  height           : auto !important;
+  color            : $fontColor;
+  font-weight      : 400 !important;
+}
+
+input:focus {
+  outline : none;
 }
 
 a {
-    color           : $fontColor;
-    text-decoration : none;
+  color           : $fontColor;
+  text-decoration : none;
 }
 
 p {
@@ -156,6 +161,11 @@ i {
   }
 }
 
+.content#groups{
+  @import "pogorelov/group/courses";
+  @import "groups/groups";
+}
+
 @import "elements/rippleAnimation";
 @import "elements/checkbox";
 @import "elements/switch";
@@ -168,7 +178,6 @@ i {
 @import "elements/tooltip";
 @import "elements/no_content";
 
-@import "pogorelov/group/courses";
 @import "courses/courses";
 @import "schedule/schedule";
 @import "programm/programm";
@@ -178,3 +187,4 @@ i {
 @import "auth/auth";
 @import "profile/profile";
 @import "members/members";
+@import "cabinet/cabinet";

@@ -496,7 +496,7 @@
           }
         }
       }
-      .settings, .groups, .favorite {
+      .settings, .groups, .favorite, .schedule {
         float    : right;
         height   : 100%;
         position : relative;
@@ -529,7 +529,7 @@
 
       }
       .favorite {
-        margin-right : 20px;
+        //margin-right : 20px;
         .icon {
           height      : 22px;
           cursor      : pointer;
@@ -540,7 +540,18 @@
             content   : '\E631';
           }
         }
-
+      }
+      .schedule {
+        .icon {
+          height      : 22px;
+          cursor      : pointer;
+          line-height : 48px;
+          &:before {
+            font-size : 22px;
+            color     : #757575;
+            content   : '\E625';
+          }
+        }
       }
     }
   }

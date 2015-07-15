@@ -39,6 +39,13 @@ class User < ActiveRecord::Base
     )
   end
 
+  def random_password
+    new_pass = SecureRandom.hex(8)
+    self.password = new_pass
+    save
+    HomeMailer.change_password(self, new_pass).deliver
+  end
+
   def transfer_to_json
     result = as_json(:except => EXCEPT_ATTR)
     result
@@ -48,6 +55,11 @@ class User < ActiveRecord::Base
     company.groups
   end
 
+  def my_groups
+    ids_group = bunch_groups.map{|bg| bg.group_id}
+    company.groups.where(id: ids_group)
+  end
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   rescue BCrypt::Errors::InvalidHash
@@ -55,7 +67,8 @@ class User < ActiveRecord::Base
   end
 
   def password=(new_password)
-    self.password_digest = new_password
+    password = BCrypt::Password.create(new_password)
+    self.password_digest = password
   end
 
   def assign_last_auth
@@ -74,7 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name + " " + last_name
+    first_name.to_s + " " + last_name.to_s
   end
 
   private

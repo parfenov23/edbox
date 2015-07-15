@@ -41,7 +41,7 @@ $(document).ready ->
         marginLeft: - headerWidth + 'px', 300, ->
           $('.carusel.for_prev').removeClass('for_prev').addClass('for_next')
 
-    $('.manage-group .top-line .edit-menu').hover (->
+    $('.js__select-calendar').hover (->
       $(@).addClass('is__active')
       $('.js__backing').addClass('is__active')
       ), ->
@@ -51,7 +51,7 @@ $(document).ready ->
       showId = $(@).data('show')
       parenBlock = $(@).closest('.hidden-calendar-wrp')
       parenBlock.find('.hidden-list').hide()
-      parenBlock.find('.hidden-calendar').show()
+      parenBlock.find('.' + showId + ' ').show()
 
     $('.hidden-calendar-wrp .calendar-header .back').on 'click', ->
       parenBlock = $(@).closest('.hidden-calendar-wrp')

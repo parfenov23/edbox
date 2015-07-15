@@ -1,11 +1,12 @@
 .container-inner
-    ul.group-edit-menu
-        li
-            a.edit-item href="#"
-                i.icon-edit
-        li
-            a.delete-item data-id="#{@group.id}" href="#"
-                i.icon-uniE620
+    - if current_user.director
+        ul.group-edit-menu
+            li
+                a.edit-item href="#"
+                    i.icon-edit
+            li
+                a.delete-item data-id="#{@group.id}" href="#"
+                    i.icon-uniE620
     h2 = @group.first_name
     .data-group-create
         'Создано:
@@ -19,8 +20,8 @@
         ul
             li
                 'Добавлено
-                a href="#"
-                    - course_count = @group.bunch_courses.count
+                a href="/group?id=#{@group.id}&type=courses"
+                    - course_count = @group.ligament_courses.count
                     = rus_case(course_count, "курс", "курса", "курсов")
             li
                 'Период прохождения курса
@@ -31,7 +32,7 @@
                 - users_group = @group.bunch_groups.includes(:user)
                 - users_no_auth_count = users_group.where(users: {last_auth: nil}).count
                 'Авторизовались
-                a href="#"
+                a href="/group?id=#{@group.id}&type=user"
                     =' rus_case(users_no_auth_count, "ползователь", "пользователя", "пользователей")
                     'из
                     = users_group.count
