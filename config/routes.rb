@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         collection do
           post :auth
           post :registration
+          post :recover_password
           get :signout
         end
       end

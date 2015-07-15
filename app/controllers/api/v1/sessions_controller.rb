@@ -32,9 +32,18 @@ module Api::V1
       end
     end
 
+    def recover_password
+      result = (User.find_by_email(params[:email]).random_password rescue nil)
+      if result.present?
+        render json: {success: true}
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def signout
       session[:user_key] = nil
-      render json:{success: true}
+      render json: {success: true}
     end
 
     private

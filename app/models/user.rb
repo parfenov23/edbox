@@ -39,6 +39,13 @@ class User < ActiveRecord::Base
     )
   end
 
+  def random_password
+    new_pass = SecureRandom.hex(8)
+    self.password = new_pass
+    save
+    HomeMailer.change_password(self, new_pass).deliver
+  end
+
   def transfer_to_json
     result = as_json(:except => EXCEPT_ATTR)
     result
