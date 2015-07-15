@@ -1,0 +1,40 @@
+#header__holder
+    = render "home/header/header", {header_top_arr: ['notifications']}
+    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }}}
+.inner-content                  
+    .content
+        - full = @course.attachments.where(size: 'full').last
+        - if full.present?
+            .image-bg style="background: url('#{full.file.url}')"
+        - else
+            .image-bg style="background: url('/uploads/pic5.png')"
+        .courses-description
+            .image-block style="height: 80px;"
+                .mask
+                .title
+                    |Тест 1
+            .text-block
+                .action-block
+                    .some-action
+                        #wrapper
+                            #steps
+                                form#formElem action="" method="post" name="formElem"
+                                    input name="test_id" value="#{@test.id}" style="display:none;"
+                                    - step = 0;
+                                    - @test.questions.each do |question|
+                                        - step+=1
+                                        fieldset class="step#{step}"
+                                            legend #{question.title}
+                                            - question.answers.each do |answer|
+                                                p
+                                                    input type="checkbox" name="answer[#{answer.question_id}]" value="#{answer.id}" #{answer.text}
+
+                        #navigation style="display:none;"
+                            ul.testNav
+                                - step = 0;
+                                - @test.questions.each do |question|
+                                    - step+=1
+                                    li.btnCurrent data-id="#{step}"
+                                        | #{question.title}
+                                li.btnCurrentSubmit#submit
+                                    | Завершить

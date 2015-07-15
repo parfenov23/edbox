@@ -1,6 +1,9 @@
 .list-group.row
     .list-group-item.active
-        a.btn.btn-success href="/superuser/tests/new?section_id=#{params[:section_id]}"  Добавить тест
+        - if params[:section_id].present?
+            a.btn.btn-success href="/superuser/tests/new?section_id=#{params[:section_id]}"  Добавить тест
+        - else
+            | Тесты
     - @tests.each do |test|
         .list-group-item.col-md-6
             span

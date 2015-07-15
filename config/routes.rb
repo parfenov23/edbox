@@ -8,6 +8,15 @@ Rails.application.routes.draw do
 
   get ":action" => "home#:action"
 
+  resources :tests, only: [] do
+    collection do
+      post :complete
+    end
+    member do
+      get :run
+    end
+  end
+
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [] do

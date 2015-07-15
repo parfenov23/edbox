@@ -1,10 +1,14 @@
 module Superuser
   class TestsController < ActionController::Base
     layout "superuser"
-    skip_before_action :authorize
 
     def index
       @tests = Test.where(section_id: params[:section_id])
+    end
+
+    def show
+      @tests = Test.all
+      render :index
     end
 
     def edit

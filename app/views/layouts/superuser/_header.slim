@@ -4,7 +4,8 @@ nav.navbar.navbar-default
                         {url: "/superuser/courses", title: "Все курсы"},
                         {url: "/superuser/companies", title: "Все компании"},
                         {url: "/superuser/users/all_leading", title: "Все ведущие"},
-                        {url: "/superuser/tags", title: "Все теги"}]
+                        {url: "/superuser/tags", title: "Все теги"},
+                        {url: "/superuser/tests/all", title: "Все тесты"}]
         - arr_nav_li.each do |li_nav|
             - class_li = li_nav[:url] == request.fullpath.to_s ? "active" : ""
             li class="#{class_li}"
