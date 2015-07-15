@@ -50,7 +50,6 @@
                 li.tabs__item class="#{header_bottom[:favorite_class]}"
                     a.tabs__item-link href="/favorite" избранное
                 .line
-
         - when "groups"
             ul.tabs
                 - groups = current_user.director ? current_user.company.groups : []
@@ -78,9 +77,11 @@
             .groups.aside-trigger data-id ="js-groups-courses"
                 i.icon
     - when "courses_description"
-
         .favorite.aside-trigger data-id ="js-favorite-courses"
             i.icon
         - if current_user.corporate
             .groups.aside-trigger data-id ="js-groups-courses"
                 i.icon
+    - when "cabinet"
+        .schedule.aside-trigger data-id ="js-schedule-cabinet"
+            i.icon
