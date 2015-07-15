@@ -1,0 +1,62 @@
+.manage-group {
+  .courses-lists {
+    .edit-menu {
+        position: relative;
+        z-index: 10;
+      .hidden-calendar-wrp{
+        @import 'elements/hidden-list';
+        .hidden-calendar {
+          display: none;
+          min-width: 345px;
+          background-color: #FFFFFF;
+          padding: 6px 0;
+          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.52);
+          border-radius: 2px;
+          max-height: 236px;
+          position: absolute;
+          top: 100%;
+          right: 0;
+          z-index: 100;
+          bottom: auto;
+          .calendar-header {
+            font-size: 15px;
+            color: rgba(0,0,0,0.87);
+            line-height: 18px;
+            margin-bottom: 24px;
+            padding-left: 23px;
+            @include clearfix;
+            padding-top: 13px;
+            .back {
+              float: left;
+              margin-right: 15px;
+              font-size: 16px;
+              &::before {
+                color: rgba(0,0,0,0.87);
+                content: '\E893'
+              }
+            }
+          }
+          .selected-value {
+            padding-left: 24px;
+          }
+          .calendar-holder{
+            font-size: 13px;
+            color: rgba(0,0,0,0.54);
+            line-height: 20px;
+            .ui-datepicker {
+              padding-top: 10px;
+            }
+          }
+        }
+      }
+
+      &.is__active {
+        .hidden-calendar-wrp {
+          .hidden-list {
+            display: block !important;
+          }
+        }
+      }
+    }
+  }
+}
