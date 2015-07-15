@@ -21,16 +21,7 @@ li.single-course
                             - text_data = "Установить дату окончания курса" if type == "course"
                             li data-show="hidden-calendar" = text_data
                             li Удалить
-                            li data-show="hidden-calendar" = text_data
-                            li Удалить
-                            li data-show="hidden-calendar" = text_data
-                            li Удалить
-                            li data-show="hidden-calendar" = text_data
-                            li Удалить
-                            li data-show="hidden-calendar" = text_data
-                            li Удалить
-                            li data-show="hidden-calendar" = text_data
-                            li Удалить
+
             h3 = course.title
         .courses-autor = (course.user.full_name rescue "Нет ведущего")
         .details-nav

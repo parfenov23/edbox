@@ -244,21 +244,26 @@ input[type="submit"] {
   }
   &.selected {
     opacity : 0.7;
-    &:before {
-      content       : "\e899";
-      font-size     : 32px;
-      text-align    : center;
-      color         : $color_tan_hide_approx;
-      border        : 2px solid $color_tan_hide_approx;
-      width         : 47px;
-      height        : 40px;
-      padding-top   : 6px;
-      position      : absolute;
-      top           : 50%;
-      margin-top    : -24px;
-      left          : 55px;
-      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-      border-radius : 48px;
+    .left-image {
+      position: relative;
+      &:before {
+        content       : "\e899";
+        font-size     : 32px;
+        text-align    : center;
+        color         : $color_tan_hide_approx;
+        border        : 2px solid $color_tan_hide_approx;
+        width         : 47px;
+        height        : 47px;
+        font-family: Icons, sans-serif;
+        position      : absolute;
+        line-height: 47px;
+        top           : 50%;
+        margin-top    : -24px;
+        left          : 55px;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius : 48px;
+      }
+
     }
   }
   &:first-child {
@@ -320,8 +325,8 @@ input[type="submit"] {
   //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
   transform           : translateX(-50%) translateY(-50%);
   .single-course {
-    position : relative;
-    z-index  : 1;
+    //position : relative;
+    //z-index  : 1;
   }
   h2 {
     font-size   : 15px;
