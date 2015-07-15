@@ -41,6 +41,28 @@ $(document).ready ->
         marginLeft: - headerWidth + 'px', 300, ->
           $('.carusel.for_prev').removeClass('for_prev').addClass('for_next')
 
+    $('.manage-group .top-line .edit-menu').hover (->
+      $(@).addClass('is__active')
+      $('.js__backing').addClass('is__active')
+      ), ->
+      $(@).removeClass('is__active')
+
+    $('.hidden-calendar-wrp .hidden-list li').on 'click', ->
+      showId = $(@).data('show')
+      parenBlock = $(@).closest('.hidden-calendar-wrp')
+      parenBlock.find('.hidden-list').hide()
+      parenBlock.find('.hidden-calendar').show()
+
+    $('.hidden-calendar-wrp .calendar-header .back').on 'click', ->
+      parenBlock = $(@).closest('.hidden-calendar-wrp')
+      parenBlock.find('.hidden-calendar').hide()
+      parenBlock.find('.hidden-list').show()
+
+    $('.js__backing').on 'click', ->
+      $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+      $(@).removeClass('is__active')
+
+
     $('.carusel .prev_arr i').on 'click', ->
       $('.header__bottom .title').animate
         marginLeft: 0, 300, ->

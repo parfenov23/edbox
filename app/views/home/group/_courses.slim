@@ -15,11 +15,17 @@
                                     .edit-menu
                                         a.edit-date href="#"
                                             i.icon-uniE8A3
-                                        ul
-                                            li
-                                                a.date href="#"  Выбрать дату окончания курса
-                                            li
-                                                a.md-trigger href="#modal-1"  Удалить
+                                        .hidden-calendar-wrp
+                                          .hidden-calendar
+                                            .calendar-header
+                                              .back.icon 
+                                              |Выбор даты
+                                            .calendar-holder
+                                              .selected-value Выберите дату
+                                              .datapicker__trigger
+                                          ul.hidden-list
+                                            li data-show = "hidden-calendar" Перенести дату окончания курса
+                                            li Удалить
                                     h3 Экономьте ваше время вместе с Favitimer. Мы ответим на вcе ваши вопросы
                                 .courses-autor Денис Баталин
                                 .details-nav
@@ -218,3 +224,4 @@
                             a.orange-button href="#"  Добавить
         .md-overlay
     /! modals end
+.js__backing

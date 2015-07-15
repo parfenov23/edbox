@@ -70,7 +70,7 @@ $(document).ready(function () {
         }
     })
 
-    $('#js-add-course-to-shedule .datapicker__trigger').datepicker({
+    $('.datapicker__trigger').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
         currentText    : 'Сегодня',
@@ -85,12 +85,16 @@ $(document).ready(function () {
         beforeShow     : function () {
             return $('#ui-datepicker-div').addClass('hide');
         },
-        onSelect       : function () {
-            return $(this).parent().addClass('show');
+        onSelect       : function (e) {
+          var dates = $(this).data('datepicker');
+          var selectDate = dates.currentDay + '/' + dates.currentMonth + '/' + dates.currentYear
+          $(this).parent().find('.selected-value').html(selectDate)
+          return $(this).parent().addClass('show');
         }
     });
-
-    $('#js-add-course-to-shedule .datapicker__trigger').on('click', function () {
+    $('.ui-state-default').on('click', function (e) {
+    })
+    $('.datapicker__trigger').on('click', function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
