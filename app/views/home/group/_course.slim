@@ -22,7 +22,8 @@ li.single-course
                             li data-show="hidden-calendar" = text_data
                             li Удалить
 
-            h3 = course.title
+            a.title href="/course_description?id=#{course.id}"
+                h3 = course.title
         .courses-autor = (course.user.full_name rescue "Нет ведущего")
         .details-nav
             ul

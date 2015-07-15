@@ -367,6 +367,9 @@ input[type="submit"] {
     height        : 33px;
     margin-bottom : 9px;
     white-space   : nowrap;
+    &:hover{
+      color: #FD9348;
+    }
   }
 }
 
