@@ -17,7 +17,19 @@ li.single-course
                                 .selected-value Выберите дату
                                 .datapicker__trigger
                         ul.hidden-list
-                            li data-show = "hidden-calendar" Перенести дату окончания курса
+                            - text_data = "Перенести дату окончания курса" if type == "ligament"
+                            - text_data = "Установить дату окончания курса" if type == "course"
+                            li data-show="hidden-calendar" = text_data
+                            li Удалить
+                            li data-show="hidden-calendar" = text_data
+                            li Удалить
+                            li data-show="hidden-calendar" = text_data
+                            li Удалить
+                            li data-show="hidden-calendar" = text_data
+                            li Удалить
+                            li data-show="hidden-calendar" = text_data
+                            li Удалить
+                            li data-show="hidden-calendar" = text_data
                             li Удалить
             h3 = course.title
         .courses-autor = (course.user.full_name rescue "Нет ведущего")
