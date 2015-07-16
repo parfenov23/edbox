@@ -8,8 +8,23 @@ Rails.application.routes.draw do
 
   get ":action" => "home#:action"
 
+  resources :tests, only: [] do
+    collection do
+      post :complete
+    end
+    member do
+      get :run
+    end
+  end
+
   namespace :api do
     namespace :v1 do
+      resources :tests do
+        member do
+          get :get_test
+          post :result
+        end
+      end
       resources :sessions, only: [] do
         collection do
           post :auth
@@ -83,6 +98,21 @@ Rails.application.routes.draw do
       end
     end
     resources :sections do
+      member do
+        get :remove
+      end
+    end
+    resources :tests do
+      member do
+        get :remove
+      end
+    end
+    resources :questions do
+      member do
+        get :remove
+      end
+    end
+    resources :answers do
       member do
         get :remove
       end

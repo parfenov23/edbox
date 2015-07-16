@@ -9,8 +9,10 @@ ul.nav.nav-tabs
         a href="/superuser/groups/#{@section.id}/edit"
             = "Материалы"
     li.category_active class="#{params[:type] == 'close_task' ? 'active' : ''}" role="presentation"
-        a href="/superuser/groups/#{@section.id}/edit?type=close_task"
+        /a href="/superuser/groups/#{@section.id}/edit?type=close_task"
             = "Завершающие задание"
+        a href="/superuser/tests?section_id=#{@section.id}"
+            | Завершающие задание
 
 - if params[:type].to_s == ''
     = render "superuser/sections/attachments", {:section => @section}

@@ -1,0 +1,17 @@
+- if @test.id.nil?
+    - action_url = "/superuser/tests"
+    - method = "post"
+    - section_id = params[:section_id]
+- else
+    - action_url = "/superuser/tests/#{@test.id}"
+    - method = "put"
+    - section_id = @test.section_id
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="tests[title]" type="text" value="#{@test.title}"
+    input type="hidden" name="_method" value="#{method}"
+    input type="hidden" name="tests[section_id]" value="#{section_id}"
+    - if section_id.present?
+        button.btn.btn-primary type="submit" Сохранить
