@@ -181,12 +181,16 @@ $(document).ready(function () {
 
     changePassword = function (e) {
         var pass, pass_repeat;
-        pass = this.$('input[name="user[password]"]').val();
-        pass_repeat = this.$('input[name=password_repeat]').val();
+        pass = $('input[name="user[password]"]').val();
+        pass_repeat = $('input[name=password_repeat]').val();
         if (pass === pass_repeat){
             $('input[name=password_repeat]').removeClass('error');
         } else {
-            $('input[name=password_repeat]').addClass('error');
+            if (pass_repeat.length){
+                $('input[name=password_repeat]').addClass('error');
+            }else{
+                $('input[name=password_repeat]').removeClass('error');
+            }
         }
     };
 
@@ -236,7 +240,8 @@ $(document).ready(function () {
             inputPass.addClass("error");
             inputRePass.addClass("error");
         }else{
-
+            inputPass.removeClass("error");
+            inputRePass.removeClass("error");
         }
 
     }

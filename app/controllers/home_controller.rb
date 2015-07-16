@@ -26,17 +26,33 @@ class HomeController < ActionController::Base
     @favorite_courses = current_user.favorite_courses
   end
 
+  def programm
+    @course = Course.find(params[:course_id])
+    @sections = @course.sections
+  end
+
   def cabinet
     redirect_to "/schedule" unless current_user.director
   end
 
   def course_description
+    @favorite_courses = current_user.favorite_courses
     @course = Course.find(params[:id])
   end
 
   def group
-    @group = (current_user.company.groups.find(params[:id]) rescue nil)
-    redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless params[:id].present?
+    @members = current_user.company.users
+    except_params = ["new", "no_group"]
+    unless except_params.include?(params[:id])
+      if current_user.director
+        @group = (current_user.company.groups.find(params[:id]) rescue nil)
+        redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless @group.present?
+      elsif current_user.corporate
+        @group = (current_user.my_groups.find(params[:id]) rescue nil)
+        redirect_to "/group?id=#{(current_user.my_groups.first.id rescue "no_group")}" unless @group.present?
+      end
+    end
+
   end
 
   private

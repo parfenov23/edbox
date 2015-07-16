@@ -1,6 +1,14 @@
-- action_url = @attachment.id.nil? ? "/superuser/attachments" : "/superuser/attachment/#{@attachment.id}"
+- action_url = @attachment.id.nil? ? "/superuser/attachments" : "/superuser/attachments/#{@attachment.id}"
 - method = @attachment.id.nil? ? "post" : "put"
 form.form-horizontal action="#{action_url}" method="post" enctype="multipart/form-data"
+    .form-group
+        label
+            | Название:
+        input.form-control name="attachment[title]" type="text" value="#{@attachment.title}"
+    .form-group
+        label
+            | Продолжительность:
+        input.form-control name="attachment[duration]" type="text" value="#{@attachment.duration}"
     .form-group
         .col-lg-6.col-sm-6.col-12.no_padding
             .input-group

@@ -1,14 +1,11 @@
 //= require ./jquery-2.1.3.min
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
-//= require ./vendor/material
-//= require ./vendor/ripples
 //= require ./vendor/zbaron.min
-//= require skim
+//= require ./vendor/material.min
+//= require ./vendor/jquery-migrate-1.2.1.min.js
 
 //= require_tree ./core
-
-
 
 //=require main/main
 
@@ -20,7 +17,7 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
 
 
 $(document).ready(function () {
-  
+
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
     }, function () {
@@ -38,6 +35,7 @@ $(document).ready(function () {
             }
         });
     });
+
     show_error = function (text, duration) {
         var el = $('#alert');
         el.find('.text').text(text);
@@ -55,9 +53,6 @@ $(document).ready(function () {
         $('.auth').css({'height': windowHeight + 'px'});
     }, 100);
 
-    // $('.header__bottom .settings .icon, #js-filter-courses .close-filter').on ('click', function () {
-    //   $('#js-filter-courses').toggleClass('show');
-    // })
 
     $('.filter-category .more .icon').on('click', function () {
         $(this).closest('.more').removeClass('hidden');
@@ -75,7 +70,7 @@ $(document).ready(function () {
         }
     })
 
-    $('#js-add-course-to-shedule .datapicker__trigger').datepicker({
+    $('.datapicker__trigger').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
         currentText    : 'Сегодня',
@@ -90,12 +85,16 @@ $(document).ready(function () {
         beforeShow     : function () {
             return $('#ui-datepicker-div').addClass('hide');
         },
-        onSelect       : function () {
-            return $(this).parent().addClass('show');
+        onSelect       : function (e) {
+          var dates = $(this).data('datepicker');
+          var selectDate = dates.currentDay + '/' + dates.currentMonth + '/' + dates.currentYear
+          $(this).parent().find('.selected-value').html(selectDate)
+          return $(this).parent().addClass('show');
         }
     });
-
-    $('#js-add-course-to-shedule .datapicker__trigger').on('click', function () {
+    $('.ui-state-default').on('click', function (e) {
+    })
+    $('.datapicker__trigger').on('click', function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
@@ -106,69 +105,11 @@ $(document).ready(function () {
                 $(element).addClass('over-title')
             }
         });
-    }
+    };
 
     $('.filter-courses').baron();
 
-    headerTabsLine = function () {
-        if (! $('.tabs__item').length == 0){
-            var width = $('.tabs__item.active').outerWidth();
-            var tabs_item_active = $('.tabs__item.active')
-            if (tabs_item_active.length > 0){
-                var offset = tabs_item_active.position().left;
-                $('.header__bottom .tabs .line').css({'width': width + 'px', 'left': offset + 'px'});
-            }
-        }
-    }
 
-    setTimeout(function () {
-        headerTabsLine();
-    }, 100);
-
-    profileDataChange = function () {
-        $('.profile__main #submit').click(function () {
-            var data = $('.profile__main').serialize();
-            $.ajax({
-                type: 'POST',
-                url : '/api/v1/users',
-                data: data
-            }).success(function () {
-                console.log('111');
-                show_error('Успешно сохранено', 3000);
-            }).error(function () {
-                console.log('111');
-                show_error('Ошибка', 3000);
-            });
-        });
-    }
-
-    profilePasswordChangeValidation = function () {
-        $('#profile input').blur(function () {
-            var pass = $('#profile input[name=password]').val();
-            var pass_repeat = $('#profile input[name=password_repeat]').val();
-            if (pass == pass_repeat){
-                $('#profile input[name=password_repeat]').removeClass('error');
-            }
-            else {
-                $('#profile input[name=password_repeat]').addClass('error');
-            }
-        });
-    }
-
-    profilePasswordChange = function () {
-        $('.profile__password #submit').click(function () {
-            var data = $('.profile__password input[name=password]').serialize();
-            $.ajax({
-                type: 'POST',
-                url : '/api/v1/users/change_password',
-                data: data
-            }).success(function () {
-                show_error('Успешно сохранено', 3000);
-            }).error(function () {
-                show_error('Ошибка', 3000);
-            });
-        });
-    }
 
     headerUserToggle = function () {
         $(document).on('click', function (e) {
@@ -208,10 +149,6 @@ $(document).ready(function () {
         });
     }
 
-
-    profileDataChange();
-    profilePasswordChangeValidation();
-    profilePasswordChange();
     figcaptionTitleEclipses('.corses-prev figcaption .title', 84);
     figcaptionTitleEclipses('.favorite-item .description .title', 56);
 

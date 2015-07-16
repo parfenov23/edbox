@@ -44,18 +44,15 @@ module Api::V1
     end
 
     def remove_user
-      emails = params[:emails]
       group = get_find_group
-      arr_hash_users = []
-      unless group.nil?
-        users = group.company.users
-        arr_hash_users = emails.map do |email|
-          user = users.find_by_email(email)
-          user.bunch_groups.where(group_id: group.id).destroy_all
-          user.transfer_to_json if (user.save rescue false)
-        end
-      end
-      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
+      result = unless group.nil?
+                 user = group.company.users.where(id: params[:user_id]).last
+                 if user.present?
+                   user.bunch_groups.where(group_id: group.id).destroy_all
+                   user.transfer_to_json if (user.save rescue false)
+                 end
+               end
+      render json: {user: (result rescue render_error(400, 'Проверьте данные'))}
     end
 
     def destroy
@@ -74,8 +71,7 @@ module Api::V1
     end
 
     def add_course
-      bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start])
-      if (bunch_course.save rescue false)
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
         render json: bunch_course.as_json
       else
         render_error(500, 'Проверьте данные')
@@ -83,17 +79,10 @@ module Api::V1
     end
 
     def update_course
-      if (find_bunch_course.nil? rescue true)
-        bunch_course = BunchCourse.build(params[:course_id], params[:id], params[:date_start])
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
+        render json: bunch_course.as_json
       else
-        bunch_course = find_bunch_course.update({date_start: Time.parse(params[:date_start]),
-                                                 course_id: params[:course_id],
-                                                 group_id: params[:id]})
-      end
-      if (bunch_course.save rescue false)
-        render json: bunch_course.transfer_to_json
-      else
-        render_error(500, 'Ошибка сервера')
+        render_error(500, 'Проверьте данные')
       end
     end
 

@@ -9,7 +9,7 @@ module Superuser
 
     def edit
       @attachment = find_attachment
-      # @back_url = "/superuser/companies/#{@group.company.id}/edit?type=group"
+      @back_url = "/superuser/#{@attachment.attachmentable_type.downcase}s/#{@attachment.attachmentable_id}/edit"
     end
 
     def new
@@ -18,12 +18,15 @@ module Superuser
     end
 
     def create
-      Attachment.save_file(params[:model_type], params[:model_id], params_attachment[:file])
+      attachment = Attachment.save_file(params[:model_type], params[:model_id], params_attachment[:file])
+      attachment.title = params_attachment[:title]
+      attachment.duration = params_attachment[:duration]
+      attachment.save
       redirect_to "/superuser/#{params[:model_type].downcase}s/#{params[:model_id]}/edit"
     end
 
     def update
-      find_attachment.update(params_attachment)
+      find_attachment.update(params_attachment.compact)
       redirect_to :back
     end
 
@@ -39,7 +42,7 @@ module Superuser
     end
 
     def params_attachment
-      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id)
+      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title, :duration)
     end
 
   end

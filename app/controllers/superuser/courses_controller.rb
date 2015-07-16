@@ -29,7 +29,7 @@ module Superuser
       course = find_course
       course.update(params_course)
       course.bunch_tags.destroy_all
-      course.bunch_tags.create(params[:tags].map { |t| {tag_id: t} })
+      course.bunch_tags.create((params[:tags].map { |t| {tag_id: t} } rescue []) )
       course.create_all_img(params[:image]) if params[:image]
       redirect_to :back
     end

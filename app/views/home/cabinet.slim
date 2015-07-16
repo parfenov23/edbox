@@ -1,7 +1,16 @@
 #header__holder
   = render "home/header/header" , {header_top_arr:['notifications']}
   = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет' }}
-.content#cabinet
 
-  .cabinet__block
-    |Кабинет
+
+.inner-content
+  .content#cabinet
+    .cabinet__block
+      .empty-title Лёхан, добро пожаловать в Edbox
+      .empty-description Теперь вы сможете качественно и быстро получать необходимые знания и профессиональные рекомендации в режиме онлайн. В Edbox вы сами выбираете темы, которые вам нравятся и создаёте уникальное расписание своего обучения. Вы можете начать учиться прямо сейчас. 
+      .choose-course.mdl-shadow--2dp
+        .description На данный момент основной план обучения еще не составлен. Вы можете перейти в библиотеку и выбрать интересующие вас курсы, сформировать расписание обучения и начать заниматься. 
+        .action-block
+          .btn ВЫБРАТЬ КУРС
+
+= render "home/cabinet/schedule"
