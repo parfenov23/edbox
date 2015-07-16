@@ -27,7 +27,11 @@ class Test < ActiveRecord::Base
   end
 
   def result(user_id, answer)
-    user_result = get_result(answer)
+    if answer.present?
+      user_result = get_result(answer)
+    else
+      user_result = 0
+    end
     result = TestResult.new(user_id: user_id, test_id: id, result: user_result)
     if result.save
       result
