@@ -25,7 +25,8 @@
                         - section.tests.each do |test|
                             .programm-item.hidden-item.text
                                 i.icon
-                                a.title href='/tests/1/run' #{test.title}
+                                .title
+                                    = test.title
                                 .duration
                             /.programm-item.hidden-item.audio
                             /    i.icon
