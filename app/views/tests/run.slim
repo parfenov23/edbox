@@ -19,7 +19,7 @@
                         #wrapper
                             #steps
                                 form#formElem action="" method="post" name="formElem"
-                                    input name="test_id" value="#{@test.id}" style="display:none;"
+                                    input name="id" value="#{@test.id}" style="display:none;"
                                     - step = 0;
                                     - @test.questions.each do |question|
                                         - step+=1
@@ -27,7 +27,7 @@
                                             legend #{question.title}
                                             - question.answers.each do |answer|
                                                 p
-                                                    input type="checkbox" name="answer[#{answer.question_id}]" value="#{answer.id}" #{answer.text}
+                                                    input type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}" #{answer.text}
 
                         #navigation style="display:none;"
                             ul.testNav

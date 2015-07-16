@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :tests do
+        member do
+          get :get_test
+          post :result
+        end
+      end
       resources :sessions, only: [] do
         collection do
           post :auth
