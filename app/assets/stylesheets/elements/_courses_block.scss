@@ -181,7 +181,7 @@
         padding: 0 16px;
         white-space: normal;
         &.over-title {
-
+          position: relative;
             .inner {
               height   : 84px;
             overflow : hidden;
@@ -190,7 +190,7 @@
             .shadow {
                 position   : absolute;
                 bottom     : 0;
-                right      : 0;
+                right      : 16px;
                 height     : 28px;
                 width      : 32px;
                 background : url("white-shadow.png");
@@ -232,7 +232,10 @@
           padding-top: 15px;
           margin-bottom: 10px;
           .until {
-
+              width: 190px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
           }
           .complite {
 
@@ -249,6 +252,19 @@
             height: 4px;
             background-color: #FD9348;
           }
+        }
+      }
+      &.completed {
+        .progress-label {
+          padding-top: 23px;
+          .complite {
+            font-size: 15px;
+            color: rgba(0,0,0,0.26);
+            line-height: 24px;
+          }
+        }
+        .progress-bar {
+          display: none;
         }
       }
     }

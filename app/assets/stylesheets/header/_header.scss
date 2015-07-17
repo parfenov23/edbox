@@ -509,8 +509,11 @@
           line-height : 48px;
           &:before {
             font-size : 22px;
-            color     : #757575;
+            color     : #bdbdbd;
             content   : '\e855';
+          }
+          &:hover {
+            color: #757575;
           }
         }
       }
@@ -522,8 +525,11 @@
           line-height : 48px;
           &:before {
             font-size : 22px;
-            color     : #757575;
+            color     : #bdbdbd;
             content   : '\E8D6';
+          }
+          &:hover {
+            color: #757575;
           }
         }
 
@@ -536,8 +542,11 @@
           line-height : 48px;
           &:before {
             font-size : 22px;
-            color     : #757575;
+            color     : #bdbdbd;
             content   : '\E631';
+          }
+          &:hover {
+            color: #757575;
           }
         }
       }
@@ -548,8 +557,11 @@
           line-height : 48px;
           &:before {
             font-size : 22px;
-            color     : #757575;
+            color     : #bdbdbd;
             content   : '\E625';
+          }
+          &:hover {
+            color: #757575;
           }
         }
       }
