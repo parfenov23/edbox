@@ -16,9 +16,39 @@ headerTabsLine = (elem) ->
         'left': offset + 'px').dequeue 'fx'
 
 
+figcaptionTitleEclipses = (el, height) ->
+  heights = []
+  $(el).each (indx, element) ->
+    if $(element).height() > height
+      $(element).addClass 'over-title'
+
 
 $(document).ready ->
   $('img:last').load ->
+
+    figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
+    figcaptionTitleEclipses('.favorite-item .description .title', 56)
+    figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
+
+    $('.js__carusel').jcarousel(
+    )
+    $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
+      $(this).removeClass 'inactive'
+      return
+    ).on('jcarouselcontrol:inactive', ->
+      $(this).addClass 'inactive'
+      return
+    ).jcarouselControl target: '-=1'
+    $('.jcarousel-control-next').on('jcarouselcontrol:active', ->
+      $(this).removeClass 'inactive'
+      return
+    ).on('jcarouselcontrol:inactive', ->
+      $(this).addClass 'inactive'
+      return
+    ).jcarouselControl target: '+=1'
+
+
+
 
     tabsCorusel()
 
