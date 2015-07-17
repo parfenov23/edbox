@@ -15,6 +15,12 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
+adaptiveTitle = ->
+  $('.adaptive-title').each ->
+    rightWidth = $(@).find('.right-col').width()
+    $(@).find('.left-col').css
+      width: $(@).width() - rightWidth + 'px'
+
 
 figcaptionTitleEclipses = (el, height) ->
   heights = []
@@ -98,10 +104,8 @@ $(document).ready ->
         marginLeft: 0, 300, ->
           $('.carusel.for_next').removeClass('for_next').addClass('for_prev')
 
-    $('.adaptive-title').each ->
-      rightWidth = $(@).find('.right-col').width()
-      $(@).find('.left-col').css
-        width: $(@).width() - rightWidth + 'px'
+
+
 
     $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
       $(document).trigger 'click.dropdown'
@@ -122,6 +126,9 @@ $(document).ready ->
     $('#js-add-course-to-shedule .select-trigger').on 'click', ->
       $(@).closest('.select').find('ul.hidden').show()
 
+    adaptiveTitle()
+
+
     $('.js__toggle-state .fixed-h .title').on 'click', (e) ->
       $(document).trigger 'click.dropdown'
       el = $(@).closest('.js__toggle-state')
@@ -130,6 +137,7 @@ $(document).ready ->
       if el.hasClass('closed-state')
         hideBlock('.js__toggle-state')
         el.removeClass('closed-state').addClass 'open-state'
+        adaptiveTitle()
       else
         hideBlock(el)
       $('body').bind 'click.dropdown', (ev) ->

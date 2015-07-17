@@ -485,14 +485,13 @@
         height : 48px;
         margin : 0 24px 0 0;
         .icon {
-          height : 16px;
-          cursor : pointer;
           &:before {
             display    : block;
-            margin-top : -5px;
             font-size  : 30px;
             color      : #757575;
             content    : '+';
+            margin-top: -5px;
+            line-height: 48px;
           }
         }
       }
