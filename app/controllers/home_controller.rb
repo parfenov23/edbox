@@ -29,6 +29,8 @@ class HomeController < ActionController::Base
   def programm
     @course = Course.find(params[:course_id])
     @sections = @course.sections
+    section_ids = @sections.pluck(:id)
+    @tests = Test.where(section_id: section_ids)
   end
 
   def cabinet

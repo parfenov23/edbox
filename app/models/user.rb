@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
+  has_many :test_results, dependent: :destroy
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }

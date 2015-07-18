@@ -1,0 +1,22 @@
+fieldset {
+  display : none;
+  border: 0;
+}
+
+ul.testNav {
+  .btnCurrent, .btnCurrentSubmit {
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+    @include inline-block;
+    padding: 0 8px;
+    line-height: 36px;
+    margin: 6px;
+    background: #fff;
+    font-size: 14px;
+    color: #FD9348;
+    &.selected {
+      background : #FD9348;
+      font-size : 14px;
+      color : #FFFFFF;
+    }
+  }
+}
