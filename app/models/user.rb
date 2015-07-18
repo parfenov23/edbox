@@ -61,6 +61,20 @@ class User < ActiveRecord::Base
     company.groups.where(id: ids_group)
   end
 
+  def schedule
+    bunch_courses_and_sections = bunch_courses.joins(:bunch_sections)
+    all_dates = bunch_courses_and_sections.pluck(:date_complete, "bunch_sections.date_complete").flatten.uniq.compact
+    arr_schedule = all_dates.map do |date|
+      bunch_courses = bunch_courses_and_sections.where({date_complete: date}).uniq
+      bunch_sections_ids = bunch_courses_and_sections
+                             .where(bunch_sections: {date_complete: date})
+                             .pluck("bunch_sections.id").uniq
+
+      {date: date, bunch_courses: bunch_courses.ids, bunch_sections: bunch_sections_ids}
+    end
+    arr_schedule
+  end
+
   def password
     @password ||= BCrypt::Password.new(password_digest)
   rescue BCrypt::Errors::InvalidHash

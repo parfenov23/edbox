@@ -199,6 +199,9 @@
                             font-size: 24px;
                             /* Oval 2 Copy 2: */
                         }
+                      &.user_schedule::before{
+                        content: '\E625';
+                      }
                     }
                     .favorite {
                         -webkit-transition : all 300ms;

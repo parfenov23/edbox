@@ -28,5 +28,4 @@
     #courses.content-courses.courses-list
         - @courses.each do |course|
             = render "home/courses/course", {course: course}
-    - if current_user.corporate
         = render "home/courses/pop_up"

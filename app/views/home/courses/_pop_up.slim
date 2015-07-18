@@ -1,30 +1,43 @@
 #js-add-course-to-shedule.add-course-to-shedule style="display:none;"
     form.inner.check_group_added
-        .title Добавить курс в расписание группы
-        .select.group
-            i.icon
-            .select-trigger.titleSelectGroup Выберите группу
-            input.selectGroupId type='hidden' name='group_id'
-            - groups = current_user.company.groups
-            ul.hidden.listGroup
-                - groups.each do |group|
-                    li.js_psevdo-select.selectGroup data-id="#{group.id}"
-                        = group.first_name
+        .title
+            'Добавить курс в расписание
+            span группы
+        - if current_user.corporate && current_user.director
+            .select.group.js_show
+                i.icon
+                .select-trigger.titleSelectGroup Выберите группу
+                input.selectGroupId type='hidden' name='group_id'
+                - groups = current_user.company.groups
+                ul.hidden.listGroup
+                    - groups.each do |group|
+                        li.js_psevdo-select.selectGroup data-id="#{group.id}"
+                            = group.first_name
         .calendar
             i.icon
             .calendar-trigger Установите крайний срок прохождения курса
-            input.datapicker__trigger name='date_start'
+            input.datapicker__trigger name='date_complete'
         input.courseId type="hidden" name="course_id"
         .action-btn
-            .btn.yes ДОБАВИТЬ
+            .btn.yes.js_addCourse ДОБАВИТЬ
             .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
 
     .inner.end_added
-        .description
-            |Курс добавлен в рассписание группы “
-            span.courseFirstName
-                |Имя курса
-            |”. Для редактирования дат перейдите на страницу “Расписание”
-        .action-btn
-            .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
-            .btn.cancel.btn__noShadow ЗАКРЫТЬ
+        - if current_user.corporate && current_user.director
+            .description
+                |Курс “
+                span.courseFirstName
+                    |Имя курса
+                |” добавлен в рассписание группы. Для редактирования дат перейдите на страницу “Расписание”
+            .action-btn
+                .btn.yes.js_goToSchedule ПЕРЕЙТИ В РАСПИСАНИЕ
+                .btn.cancel.btn__noShadow ЗАКРЫТЬ
+        - else
+            .description
+                |Курс “
+                span.courseFirstName
+                    |Имя курса
+                |”добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
+            .action-btn
+                .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/cabinet'" ПЕРЕЙТИ В КАБИНЕТ
+                .btn.cancel.btn__noShadow ЗАКРЫТЬ

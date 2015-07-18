@@ -13,7 +13,30 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
-
+var includeDatePicker = function(){
+    $('.datapicker__trigger').datepicker({
+        prevText       : '&#x3c;Пред',
+        nextText       : 'След&#x3e;',
+        currentText    : 'Сегодня',
+        monthNames     : ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        dayNames       : ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+        dayNamesShort  : ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+        dayNamesMin    : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        dateFormat     : 'dd.mm.yy',
+        firstDay       : 1,
+        isRTL          : false,
+        beforeShow     : function () {
+            return $('#ui-datepicker-div').addClass('hide');
+        },
+        onSelect       : function (e) {
+            var dates = $(this).data('datepicker');
+            var selectDate = dates.currentDay + '/' + dates.currentMonth + '/' + dates.currentYear
+            $(this).parent().find('.selected-value').html(selectDate)
+            return $(this).parent().addClass('show');
+        }
+    });
+}
 
 
 $(document).ready(function () {
@@ -58,7 +81,6 @@ $(document).ready(function () {
         $(this).closest('.more').removeClass('hidden');
     })
 
-
     $('.header__bottom .aside-trigger').on('click', function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
@@ -70,31 +92,13 @@ $(document).ready(function () {
         }
     })
 
-    $('.datapicker__trigger').datepicker({
-        prevText       : '&#x3c;Пред',
-        nextText       : 'След&#x3e;',
-        currentText    : 'Сегодня',
-        monthNames     : ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-        dayNames       : ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
-        dayNamesShort  : ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
-        dayNamesMin    : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        dateFormat     : 'dd.mm.yy',
-        firstDay       : 1,
-        isRTL          : false,
-        beforeShow     : function () {
-            return $('#ui-datepicker-div').addClass('hide');
-        },
-        onSelect       : function (e) {
-          var dates = $(this).data('datepicker');
-          var selectDate = dates.currentDay + '/' + dates.currentMonth + '/' + dates.currentYear
-          $(this).parent().find('.selected-value').html(selectDate)
-          return $(this).parent().addClass('show');
-        }
-    });
+
     $('.ui-state-default').on('click', function (e) {
     })
-    $('.datapicker__trigger').on('click', function () {
+
+    includeDatePicker()
+
+    $(document).on('click', '.datapicker__trigger', function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 

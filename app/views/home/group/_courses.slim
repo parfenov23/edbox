@@ -17,17 +17,6 @@
                                 = render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
                     - else
                         .data-group-create Вы не добавили ни одного курса
-        /! Delete dialog
-        #modal-1.md-modal.md-effect-1
-            .md-content
-                div
-                    .modal-text
-                        h2 Вы уверенны, что хотите удалить курс?
-                        ul.button-area
-                            li
-                                a.flat-button.button.button-ok.md-close href="#"  Нет
-                            li
-                                a.orange-button href="#"  ДА
         /! Create dialog
         #modal-3.md-modal.md-effect-1
             .md-content.popupFavorite

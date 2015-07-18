@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get :sign_up, to: "enter#sign_up"
   get :sign_out, to: "enter#sign_out"
   get :oferta, to: "enter#oferta"
+  post :render_mini_schedule, to: "home#render_mini_schedule"
 
   get ":action" => "home#:action"
 
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
           post :remove_user
           post :add_favorite_course
           post :remove_favorite_course
+          post :update_course
         end
       end
       resources :groups do
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
           post :invite
           post :remove_user
           post :remove_course
+          post :update_course
         end
         collection do
           post :add_course

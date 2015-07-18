@@ -42,6 +42,14 @@ module Api::V1
       end
     end
 
+    def update_course
+      if (bunch_course = BunchCourse.build(params[:course_id], nil, params[:date_complete], "user", current_user.id) rescue false)
+        render json: bunch_course.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def change_password
       current_user.password = params[:password]
       if (current_user.save rescue false)

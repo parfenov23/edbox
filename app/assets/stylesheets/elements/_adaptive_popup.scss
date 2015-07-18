@@ -19,7 +19,9 @@
     padding: 32px 24px 8px;
     position: relative;
     display: block;
-    margin-top: -96px;
+    //margin-top: -96px;
+    margin: 0 auto;
+    top: 25%;
     padding-bottom: 80px;
     .description {
       font-family: Roboto-Regular;

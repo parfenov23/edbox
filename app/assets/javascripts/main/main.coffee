@@ -47,23 +47,24 @@ $(document).ready ->
       ), ->
       $(@).removeClass('is__active')
 
-    $('.hidden-calendar-wrp .hidden-list li').on 'click', ->
-      showId = $(@).data('show')
-      parenBlock = $(@).closest('.hidden-calendar-wrp')
+    $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
+      parenBlock = undefined
+      showId = undefined
+      showId = $(this).data('show')
+      parenBlock = $(this).closest('.hidden-calendar-wrp')
       parenBlock.find('.hidden-list').hide()
       parenBlock.find('.' + showId + ' ').show()
 
-    $('.hidden-calendar-wrp .calendar-header .back').on 'click', ->
+    $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
       parenBlock = $(@).closest('.hidden-calendar-wrp')
       parenBlock.find('.hidden-calendar').hide()
       parenBlock.find('.hidden-list').show()
 
-    $('.js__backing').on 'click', ->
+    $(document).on 'click', '.js__backing', ->
       $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
       $(@).removeClass('is__active')
 
-
-    $('.carusel .prev_arr i').on 'click', ->
+    $(document).on 'click', '.carusel .prev_arr i', ->
       $('.header__bottom .title').animate
         marginLeft: 0, 300, ->
           $('.carusel.for_next').removeClass('for_next').addClass('for_prev')

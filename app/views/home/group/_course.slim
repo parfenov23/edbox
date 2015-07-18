@@ -14,13 +14,20 @@ li.single-course
                                 .back.icon
                                 |Выбор даты
                             .calendar-holder
-                                .selected-value Выберите дату
+                                - if type == "ligament"
+                                    .selected-value.js_changeDeadLineCourse data-id="#{ligament_course.course_id}" data-group_id="#{@group.id}"
+                                        |Выберите дату
+                                - if type == "course"
+                                    .selected-value data-group_id="#{@group.id}" Выберите дату
                                 .datapicker__trigger
                         ul.hidden-list
                             - text_data = "Перенести дату окончания курса" if type == "ligament"
                             - text_data = "Установить дату окончания курса" if type == "course"
                             li data-show="hidden-calendar" = text_data
-                            li Удалить
+                            - if type == "ligament"
+                                li.js_removeCourseToGroup data-id="#{ligament_course.course_id}" data-group_id="#{@group.id}" Удалить
+                            - if type == "course"
+                                li.js_removeCourseToFavorite Удалить
 
             a.title href="/course_description?id=#{course.id}"
                 h3 = course.title
@@ -40,5 +47,5 @@ li.single-course
                     |Прошли курс
             - if type == "ligament"
                 .courses-date
-                    | Пройти курс до:
+                    'Пройти курс до:
                     span = ((l local_time(ligament_course.bunch_courses.last.date_complete), :format => :short_min) rescue "Нет даты")

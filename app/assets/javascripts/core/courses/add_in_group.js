@@ -1,18 +1,31 @@
 var openPopup = function () {
     var btn = $(this);
-    if(!btn.hasClass("noOpenPopup")){
+    if (! btn.hasClass("noOpenPopup")){
         var popup = $("#js-add-course-to-shedule");
         var course_id = btn.data("id");
         popup.find("input.courseId").val(course_id);
         popup.show();
         popup.find(".check_group_added").show();
-        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev"+course_id).text())
-    }else{
+        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text())
+        if (btn.data('hide') != undefined){
+            popup.find(btn.data('hide')).hide();
+        }
+        if (btn.data('show') != undefined){
+            popup.find(btn.data('show')).show();
+        }
+        if (btn.data('height') != undefined){
+            popup.find("form").css("height", btn.data('height'));
+        }else{
+            popup.find("form").css("height", "");
+        }
+        popup.find(".js_addCourse").data("type", btn.data('type'))
+
+    } else {
         show_error('У ваc нет групп', 3000);
     }
 };
 
-var openEdnPopup = function(){
+var openEdnPopup = function () {
     var popup = $("#js-add-course-to-shedule");
     popup.show();
     popup.find(".check_group_added").hide();
@@ -31,7 +44,7 @@ var closePopup = function (event) {
     }
 };
 
-var clearPopup = function(){
+var clearPopup = function () {
     var popup = $("#js-add-course-to-shedule");
     var select = popup.find(".select");
     var calendar = popup.find(".calendar");
@@ -53,6 +66,15 @@ var selectGroup = function () {
 
 var addCourse = function(){
     var btn = $(this);
+    if (btn.data("type") == "group"){
+        addCourseGroup(btn);
+    }
+    if (btn.data("type") == "user"){
+        addCourseMySchedule(btn);
+    }
+};
+
+var addCourseGroup = function (btn) {
     var form = btn.closest("form");
     var data = form.serialize();
     $.ajax({
@@ -60,6 +82,8 @@ var addCourse = function(){
         url : '/api/v1/groups/add_course',
         data: data
     }).success(function () {
+        var group_id = form.find(".selectGroupId").val();
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=schedule'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в группу', 3000);
@@ -69,11 +93,29 @@ var addCourse = function(){
     return true;
 };
 
+var addCourseMySchedule = function (btn) {
+    var form = btn.closest("form");
+    var data = form.serialize();
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/update_course',
+        data: data
+    }).success(function () {
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
+        openEdnPopup();
+        clearPopup();
+        show_error('Курс добавлен в расписание', 3000);
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
-    $(document).on('click', '.corses-prev .action-btn .add', openPopup);
+    $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
     $(document).on('click', '#js-add-course-to-shedule, #js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
-    $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.yes', addCourse);
+    $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
 });
