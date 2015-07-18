@@ -1,36 +1,26 @@
 .schedule-block 
   .schedule-header
-    .psevdo-select
-      .select-trigger Август
-      ul.hidden-list
-        li Август
-        li Август
-        li Август
-    .psevdo-select
-      .select-trigger Все группы
-      ul.hidden-list
-        li managers
-        li managers
-        li managers
+    .left-block
+      .psevdo-select
+        .select-trigger Курс “Преодоление секретаря
+        ul.hidden-list
+          li Август
+          li Август
+          li Август
+    .right-block
+      .duration Продолжительность: 32 часа
+      .deadline Пройти до: 26 марта
   .schedule-day-list
-    section.schedule-day.today
-      .date.curr 
-        .day ПН
-        .num 12
+    section.schedule-day
       .group-block
-        .title
-          span> Группа: 
-          |Менеждеры отдела продаж
-          
         .schedule-item.completed.closed-state.js__toggle-state
           .fixed-h.adaptive-title.adaptive-title
-            .title.left-col Курс “Преодоление
+            .title.left-col Раздел 1 Преодоление
             .additional-info.right-col
-              .download 
-                a href = "#" Скачать
-              .duration 
-                |32 часа
-                i.icon
+              .compl пройдено
+              / .duration 
+              /   |32 часа
+              /   i.icon
               .action-btn
                 i.icon
                 ul.hidden-list
@@ -38,12 +28,18 @@
                   li Перенести дату окончания курса
                   li jbs kbfjh
           .course-components.hidden-part
-            .course-component-item.hidden-item.video
+            / Бери этот блок  
+            .course-component-item.hidden-item.video.adaptive-title
               i.icon
-              .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-              .duration
-                |32 часа
-                i.icon
+              .title.left-col  Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
+              .right-col
+                .download
+                  a href = "#" Скачать
+                .overdue-label Раздел просрочен
+                .duration
+                  |32 часа
+                  i.icon
+
             .course-component-item.hidden-item.text
               i.icon
               .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
@@ -65,7 +61,7 @@
         
         .schedule-item.disabled.closed-state.js__toggle-state
           .fixed-h.adaptive-title
-            .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
+            .title.left-col Раздел 2 “Преодоление и покорение такого персона секретаря ведение”  одоление и покорение такого персона секретаря”. Ра ние” 
             .additional-info.right-col
               .duration 
                 |32 часа
@@ -76,6 +72,7 @@
                   li jbs kbfjh
                   li Перенести дату окончания курса
                   li jbs kbfjh
+
           .course-components.hidden-part
             .course-component-item.hidden-item.video
               i.icon
@@ -104,7 +101,7 @@
         
         .schedule-item.overdue.closed-state.js__toggle-state
           .fixed-h.adaptive-title
-            .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
+            .title.left-col Раздел 3 “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
             .additional-info.right-col
               .overdue-label Раздел просрочен
               .duration 
@@ -116,115 +113,8 @@
                   li jbs kbfjh
                   li Перенести дату окончания курса
                   li jbs kbfjh
-                
-      .group-block
-        .title
-          span> Группа: 
-          |Менеждеры отдела продаж
-        .schedule-item.closed-state.js__toggle-state
-          .fixed-h.adaptive-title
-            .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-            .additional-info.right-col
-              .duration 
-                |32 часа
-                i.icon
-              .action-btn
-                i.icon
-                ul.hidden-list
-                  li jbs kbfjh
-                  li Перенести дату окончания курса
-                  li jbs kbfjh
-          .course-components.hidden-part
-            .course-component-item.hidden-item.video
-              i.icon
-              .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.text
-              i.icon
-              .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.audio
-              i.icon
-              .title Аудиофайлы. “Невербальные коммуникации” 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.test
-              i.icon
-              .title Чеклист 
-              .duration
-                |32 часа
-                i.icon
-      hr
 
-    section.schedule-day
-      .date 
-        .day ВТ
-        .num 13
-      .group-block
-        .title
-          span> Группа: 
-          |Менеждеры отдела продаж
-        .schedule-item.closed-state.js__toggle-state
-          .fixed-h.adaptive-title
-            .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-            .additional-info.right-col
-              .duration 
-                |32 часа
-                i.icon
-              .action-btn
-                i.icon
-                ul.hidden-list
-                  li jbs kbfjh
-                  li Перенести дату окончания курса
-                  li jbs kbfjh
-          .course-components.hidden-part
-            .course-component-item.hidden-item.video
-              i.icon
-              .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.text
-              i.icon
-              .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.audio
-              i.icon
-              .title Аудиофайлы. “Невербальные коммуникации” 
-              .duration
-                |32 часа
-                i.icon
-            .course-component-item.hidden-item.test
-              i.icon
-              .title Чеклист 
-              .duration
-                |32 часа
-                i.icon
 
-      .group-block
-        .title
-          span> Группа: 
-          |Менеждеры отдела продаж
-        .schedule-item.closed-state.js__toggle-state
-          .fixed-h.adaptive-title
-            .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-            .additional-info.right-col
-              .duration 
-                |32 часа
-                i.icon
-              .action-btn
-                i.icon
-                ul.hidden-list
-                  li jbs kbfjh
-                  li Перенести дату окончания курса
-                  li jbs kbfjh
           .course-components.hidden-part
             .course-component-item.hidden-item.video
               i.icon
@@ -249,9 +139,138 @@
               .title Чеклист 
               .duration
                 |32 часа
-      hr
-    section.schedule-day
-      .date 
-        .day СР
-        .num 14
-      hr
+                i.icon
+        
+
+      /           
+      / .group-block
+      /   .title
+      /     span> Группа: 
+      /     |Менеждеры отдела продаж
+      /   .schedule-item.closed-state.js__toggle-state
+      /     .fixed-h.adaptive-title
+      /       .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
+      /       .additional-info.right-col
+      /         .duration 
+      /           |32 часа
+      /           i.icon
+      /         .action-btn
+      /           i.icon
+      /           ul.hidden-list
+      /             li jbs kbfjh
+      /             li Перенести дату окончания курса
+      /             li jbs kbfjh
+      /     .course-components.hidden-part
+      /       .course-component-item.hidden-item.video
+      /         i.icon
+      /         .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
+      /         .duration
+      /           |32 часа
+      /           i.icon
+      /       .course-component-item.hidden-item.text
+      /         i.icon
+      /         .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
+      /         .duration
+      /           |32 часа
+      /           i.icon
+      /       .course-component-item.hidden-item.audio
+      /         i.icon
+      /         .title Аудиофайлы. “Невербальные коммуникации” 
+      /         .duration
+      /           |32 часа
+      /           i.icon
+      /       .course-component-item.hidden-item.test
+      /         i.icon
+      /         .title Чеклист 
+      /         .duration
+      /           |32 часа
+      /           i.icon
+      / 
+    / section.schedule-day
+    /   .group-block
+    /     .title
+    /       span> Группа: 
+    /       |Менеждеры отдела продаж
+    /     .schedule-item.closed-state.js__toggle-state
+    /       .fixed-h.adaptive-title
+    /         .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
+    /         .additional-info.right-col
+    /           .duration 
+    /             |32 часа
+    /             i.icon
+    /           .action-btn
+    /             i.icon
+    /             ul.hidden-list
+    /               li jbs kbfjh
+    /               li Перенести дату окончания курса
+    /               li jbs kbfjh
+    /       .course-components.hidden-part
+    /         .course-component-item.hidden-item.video
+    /           i.icon
+    /           .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.text
+    /           i.icon
+    /           .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.audio
+    /           i.icon
+    /           .title Аудиофайлы. “Невербальные коммуникации” 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.test
+    /           i.icon
+    /           .title Чеклист 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    / 
+    /   .group-block
+    /     .title
+    /       span> Группа: 
+    /       |Менеждеры отдела продаж
+    /     .schedule-item.closed-state.js__toggle-state
+    /       .fixed-h.adaptive-title
+    /         .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
+    /         .additional-info.right-col
+    /           .duration 
+    /             |32 часа
+    /             i.icon
+    /           .action-btn
+    /             i.icon
+    /             ul.hidden-list
+    /               li jbs kbfjh
+    /               li Перенести дату окончания курса
+    /               li jbs kbfjh
+    /       .course-components.hidden-part
+    /         .course-component-item.hidden-item.video
+    /           i.icon
+    /           .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.text
+    /           i.icon
+    /           .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.audio
+    /           i.icon
+    /           .title Аудиофайлы. “Невербальные коммуникации” 
+    /           .duration
+    /             |32 часа
+    /             i.icon
+    /         .course-component-item.hidden-item.test
+    /           i.icon
+    /           .title Чеклист 
+    /           .duration
+    /             |32 часа
+    /   hr
+    / section.schedule-day
+    /   hr

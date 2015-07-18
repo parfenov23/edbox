@@ -3,6 +3,7 @@
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
 //= require ./vendor/material.min
+//= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 
 //= require_tree ./core
@@ -102,14 +103,7 @@ $(document).ready(function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
-    figcaptionTitleEclipses = function (el, height) {
-        var heights = [];
-        $(el).each(function (indx, element) {
-            if ($(element).height() > height){
-                $(element).addClass('over-title')
-            }
-        });
-    };
+
 
     $('.filter-courses').baron();
 
@@ -153,11 +147,8 @@ $(document).ready(function () {
         });
     }
 
-    figcaptionTitleEclipses('.corses-prev figcaption .title', 84);
-    figcaptionTitleEclipses('.favorite-item .description .title', 56);
 
     headerUserToggle();
-
     changeAvatar();
 
 });
