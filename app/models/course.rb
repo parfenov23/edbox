@@ -23,13 +23,13 @@ class Course < ActiveRecord::Base
     else
       case size
       when 'full'
-        '/uploads/pic5.png'
+        '/uploads/course_default_image_full.png'
       when '347x192'
-        '/uploads/pic3.png'
+        '/uploads/course_default_image_347×192.png'
       when '920x377'
-        '/uploads/pic5.png'
+        '/uploads/course_default_image_920×377.png'
       else
-        '/uploads/pic5.png'
+        '/uploads/course_default_image_full.png'
       end
     end
   end
