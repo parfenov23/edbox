@@ -15,10 +15,46 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
+adaptiveTitle = ->
+  $('.adaptive-title').each ->
+    rightWidth = $(@).find('.right-col').width()
+    $(@).find('.left-col').css
+      width: $(@).width() - rightWidth + 'px'
+
+
+figcaptionTitleEclipses = (el, height) ->
+  heights = []
+  $(el).each (indx, element) ->
+    if $(element).height() > height
+      $(element).addClass 'over-title'
 
 
 $(document).ready ->
   $('img:last').load ->
+
+    figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
+    figcaptionTitleEclipses('.favorite-item .description .title', 56)
+    figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
+
+    $('.js__carusel').jcarousel(
+    )
+    $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
+      $(this).removeClass 'inactive'
+      return
+    ).on('jcarouselcontrol:inactive', ->
+      $(this).addClass 'inactive'
+      return
+    ).jcarouselControl target: '-=1'
+    $('.jcarousel-control-next').on('jcarouselcontrol:active', ->
+      $(this).removeClass 'inactive'
+      return
+    ).on('jcarouselcontrol:inactive', ->
+      $(this).addClass 'inactive'
+      return
+    ).jcarouselControl target: '+=1'
+
+
+
 
     tabsCorusel()
 
@@ -47,31 +83,30 @@ $(document).ready ->
       ), ->
       $(@).removeClass('is__active')
 
-    $('.hidden-calendar-wrp .hidden-list li').on 'click', ->
-      showId = $(@).data('show')
-      parenBlock = $(@).closest('.hidden-calendar-wrp')
+    $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
+      parenBlock = undefined
+      showId = undefined
+      showId = $(this).data('show')
+      parenBlock = $(this).closest('.hidden-calendar-wrp')
       parenBlock.find('.hidden-list').hide()
       parenBlock.find('.' + showId + ' ').show()
 
-    $('.hidden-calendar-wrp .calendar-header .back').on 'click', ->
+    $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
       parenBlock = $(@).closest('.hidden-calendar-wrp')
       parenBlock.find('.hidden-calendar').hide()
       parenBlock.find('.hidden-list').show()
 
-    $('.js__backing').on 'click', ->
+    $(document).on 'click', '.js__backing', ->
       $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
       $(@).removeClass('is__active')
 
-
-    $('.carusel .prev_arr i').on 'click', ->
+    $(document).on 'click', '.carusel .prev_arr i', ->
       $('.header__bottom .title').animate
         marginLeft: 0, 300, ->
           $('.carusel.for_next').removeClass('for_next').addClass('for_prev')
 
-    $('.adaptive-title').each ->
-      rightWidth = $(@).find('.right-col').width()
-      $(@).find('.left-col').css
-        width: $(@).width() - rightWidth + 'px'
+
+
 
     $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
       $(document).trigger 'click.dropdown'
@@ -92,6 +127,9 @@ $(document).ready ->
     $('#js-add-course-to-shedule .select-trigger').on 'click', ->
       $(@).closest('.select').find('ul.hidden').show()
 
+    adaptiveTitle()
+
+
     $('.js__toggle-state .fixed-h .title').on 'click', (e) ->
       $(document).trigger 'click.dropdown'
       el = $(@).closest('.js__toggle-state')
@@ -100,6 +138,7 @@ $(document).ready ->
       if el.hasClass('closed-state')
         hideBlock('.js__toggle-state')
         el.removeClass('closed-state').addClass 'open-state'
+        adaptiveTitle()
       else
         hideBlock(el)
       $('body').bind 'click.dropdown', (ev) ->

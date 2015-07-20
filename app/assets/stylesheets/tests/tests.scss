@@ -1,0 +1,128 @@
+.content#tests {
+  .test-info {
+    background: rgba(0,0,0,0.03);
+    padding: 32px;
+    .title {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      .title-text {
+        font-size: 20px;
+        color: rgba(0,0,0,0.54);
+        line-height: 28px;
+      }
+      .duration {
+        font-size: 11px;
+        color: rgba(0,0,0,0.54);
+        line-height: 18px;
+      }
+    }
+    .description {
+      font-size: 13px;
+      color: rgba(0,0,0,0.54);
+      line-height: 20px;
+      margin-bottom: 24px;
+    }
+    .question-qty {
+      font-size: 13px;
+      color: rgba(0,0,0,0.54);
+      line-height: 20px;
+    }
+  }
+  .test-list {
+    padding: 32px;
+    background-color: #fff;
+  }
+  .test-item{
+    margin-bottom: 36px;
+    .title {
+      font-size: 15px;
+      color: rgba(37,37,37,0.87);
+      line-height: 24px;
+      margin-bottom: 8px;
+    }
+    .description {
+      margin-bottom: 24px;
+    }
+    .answer {
+      margin-bottom: 12px;
+      padding-left: 40px;
+      position: relative;
+      .radio, .check {
+        width: 40px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .radio {
+        input {
+          opacity: 0;
+          &:checked + label{
+            &::before {
+              background-color: #FD9348;
+            }
+          }
+        }
+        label {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border: 1px solid #FD9348;
+          border-radius: 50%;
+          top: 50%;
+          left: 50%;
+          margin: -8px 0 0 -8px;
+          position: absolute;
+          cursor: pointer;
+          &::before {
+            display: block;
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            border-radius: 50%;
+            content: " ";
+            background-color: #fff;
+          }
+        }
+      }
+      .check {
+        input {
+          opacity: 0;
+          &:checked + label{
+            &::before {
+              color: #FD9348;
+            }
+          }
+        }
+        label {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border: 1px solid #FD9348;
+          border-radius: 2px;
+          top: 50%;
+          left: 50%;
+          margin: -8px 0 0 -8px;
+          position: absolute;
+          cursor: pointer;
+          &::before {
+            font-size: 11px;
+            line-height: 14px;
+            border-radius: 50%;
+            content: "\E899";
+            position: absolute;
+            color: #fff;
+            top: 0px;
+            left: 1px;
+          }
+        }
+      }
+      .text {
+
+      }
+    }
+  }
+}

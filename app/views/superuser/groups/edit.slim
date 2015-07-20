@@ -7,7 +7,7 @@ hr
 ul.nav.nav-tabs
     li.category_active class="#{params[:type].to_s == 'courses' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit?type=courses"
-            = "Курсы (#{@group.bunch_courses.count})"
+            = "Курсы (#{@group.ligament_courses.count})"
 
     li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit"
@@ -42,7 +42,8 @@ ul.nav.nav-tabs
     .list-group.row
         .list-group-item.active
             a.btn.btn-success href="/superuser/groups/#{@group.id}/add_course?back_url=groups&group_id=#{@group.id}"  Добавить курс
-        - @group.all_courses.each do |course|
+        - @group.ligament_courses.each do |ligament_course|
+            - course = ligament_course.course
             .list-group-item.col-md-6
                 span
                     = course.title
