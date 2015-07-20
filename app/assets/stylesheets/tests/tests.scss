@@ -45,9 +45,10 @@
       margin-bottom: 24px;
     }
     .answer {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       padding-left: 40px;
       position: relative;
+      min-height: 32px;
       .radio, .check {
         width: 40px;
         height: 100%;
@@ -70,9 +71,9 @@
           height: 14px;
           border: 1px solid #FD9348;
           border-radius: 50%;
-          top: 50%;
-          left: 50%;
-          margin: -8px 0 0 -8px;
+          top: 0;
+          left: 0;
+          margin: 3px 0 0 6px;
           position: absolute;
           cursor: pointer;
           &::before {
@@ -103,9 +104,9 @@
           height: 14px;
           border: 1px solid #FD9348;
           border-radius: 2px;
-          top: 50%;
-          left: 50%;
-          margin: -8px 0 0 -8px;
+          top: 0;
+          left: 0;
+          margin: 3px 0 0 6px;
           position: absolute;
           cursor: pointer;
           &::before {

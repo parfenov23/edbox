@@ -17,10 +17,15 @@
             i.icon
             .calendar-trigger Установите крайний срок прохождения курса
             input.datapicker__trigger name='date_complete'
+        
+        .select-deadline
+            .title Установите крайний срок прохождения разделов
+            .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.   
+            i.icon 
         input.courseId type="hidden" name="course_id"
         .action-btn
-            .btn.yes.js_addCourse ДОБАВИТЬ
-            .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
+          .btn.yes.js_addCourse ДОБАВИТЬ
+          .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
 
     .inner.end_added
         - if current_user.corporate && current_user.director
