@@ -8,6 +8,7 @@
     border-radius    : 2px;
     border: none;
     padding-top: 24px;
+    z-index: 9999 !important;
     .today-holder {
         padding : 12px 0 12px 24px;
         span {

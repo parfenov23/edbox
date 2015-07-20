@@ -3,6 +3,63 @@
         .title
             'Добавить курс в расписание
             span группы
+        .section__deadline-title 
+          .back.icon
+          |Установка крайнего срока прохождения раздела
+        .section__description Курс “Основная специализация — digital реклама, digital маркетинг, digital продакшн.”
+        ul.section-list.js__baron
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .date-added 12 мар.
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .date-added 12 мар.
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+          li.section-item.adaptive-title
+            .left-part.left-col Раздел 2. Первый звонок.
+            .right-part.right-col
+              .set-date
+                i.icon
+                input.datapicker__trigger.js__set-date
+
+
         - if current_user.corporate && current_user.director
             .select.group.js_show
                 i.icon
@@ -22,6 +79,7 @@
             .title Установите крайний срок прохождения разделов
             .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.   
             i.icon 
+
         input.courseId type="hidden" name="course_id"
         .action-btn
           .btn.yes.js_addCourse ДОБАВИТЬ

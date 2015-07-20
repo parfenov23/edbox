@@ -5,17 +5,17 @@
 //= require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
+//=require main/main
 
 //= require_tree ./core
 
-//=require main/main
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
 var includeDatePicker = function(){
-    $('.datapicker__trigger').datepicker({
+    $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
         currentText    : 'Сегодня',
@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 
 
-    $('.filter-courses').baron();
+    $('.filter-courses, .js__baron').baron();
 
 
 
