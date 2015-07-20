@@ -95,16 +95,25 @@ var bind_block = function () {
     includeDatePicker();
 };
 
-var loadMySchedule = function () {
+var loadMySchedule = function (data) {
     $.ajax({
         type: 'POST',
         url : '/render_mini_schedule',
+        data: data
     }).success(function (data) {
         $("#js-schedule-cabinet").html($(data).html());
         bind_block();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
+};
+
+var selectMonthSchedule = function () {
+    var btn = $(this);
+    var number_month = btn.data("id");
+    var common_select = btn.closest('.common_select');
+    btn.closest('.listGroup').hide();
+    loadMySchedule({schedule: {month: number_month} })
 };
 
 $(document).ready(function () {
@@ -118,7 +127,7 @@ $(document).ready(function () {
                     }
                 )
             });
-
+        $(document).on('click', '.listGroup .selectMonthSchedule', selectMonthSchedule);
         $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
             changeDeadLineCourse($(this));
         });

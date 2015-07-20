@@ -1,10 +1,12 @@
 #header__holder
-    = render "home/header/header", {header_top_arr: ['notifications']}
-    = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет'}}
+  = render "home/header/header", {header_top_arr: ['notifications']}
+  = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет'}}
 
 
 .inner-content
-    .content#cabinet.cabinet__block
-        = render 'home/cabinet/empty_courses'
-        = render 'home/cabinet/all_courses'
+  .content#cabinet.cabinet__block
+    - if true
+      = render 'home/cabinet/empty_courses'
+    - else
+      = render 'home/cabinet/all_courses'
 = render "home/cabinet/schedule"

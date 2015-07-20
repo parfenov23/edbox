@@ -10,9 +10,9 @@
                 i.icon
                 .select-trigger.titleSelectGroup = current_month[:title]
                 input.selectCurrentMonth name="current_month" type="hidden" value="#{current_month[:month]}" /
-                ul.hidden.listGroup style=("display: none;")
+                ul.hidden.listGroup.js__baron style=("display: none;")
                     - schedule_line.each do |date|
-                        li.js_psevdo-select.selectGroup data-id="#{date[:month]}" = date[:title]
+                        li.js_psevdo-select.selectGroup.selectMonthSchedule data-id="#{date[:month]}" = date[:title]
 
         ul.month-list
             / li.item.curr

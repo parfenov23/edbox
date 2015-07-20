@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 
 
-    $('.filter-courses').baron();
+    $('.filter-courses, .js__baron').baron();
 
 
 
