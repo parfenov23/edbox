@@ -1,83 +1,83 @@
 = render "home/courses/favorite", {favorite_courses: @favorite_courses}
 - if current_user.corporate
-    = render "home/courses/groups"
+  = render "home/courses/groups"
 #header__holder
-    = render "home/header/header", {header_top_arr: ['notifications']}
-    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }, description_class: "active"}}
+  = render "home/header/header", {header_top_arr: ['notifications']}
+  = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow: {url: "/courses"}, description_class: "active"}}
 .inner-content                  
-    .content
-        .image-bg style="background: url('#{@course.get_image_path('full')}')"
-        .courses-description
-            .image-block
-                .mask
-                img (src="#{@course.get_image_path('920x377')}")
-                .title
-                    |Курс “
-                    span id="titleCoursePrev#{@course.id}"
-                        = @course.title
-                    |”
-                .author
-                    = (@course.user.full_name rescue "Нет ведущего")
-                ul.tags
-                    - course_tags = @course.bunch_tags
-                    - course_tags.each do |course_tag|
-                        li
-                            .tag-itm = (course_tag.tag.title rescue nil)
+  .content
+    .image-bg style="background: url('#{@course.get_image_path('full')}')"
+    .courses-description
+      .image-block
+        .mask
+        img (src="#{@course.get_image_path('920x377')}")
+        .title
+          |Курс “
+          span id="titleCoursePrev#{@course.id}"
+            = @course.title
+          |”
+        .author
+          = (@course.user.full_name rescue "Нет ведущего")
+        ul.tags
+          - course_tags = @course.bunch_tags
+          - course_tags.each do |course_tag|
+            li
+              .tag-itm = (course_tag.tag.title rescue nil)
 
-                .info-block
-                    p Записанный видеокурс
-                    p
-                        'Продолжительность:
-                        - duration = (@course.duration.to_i rescue 0)
-                        = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
-                    .btn.get-course ПОЛУЧИТЬ КУРС
-            .text-block
-                .description
-                    = raw @course.description
-                .icon-list
-                    i.icon.text
-                    i.icon.audio
-                    i.icon.video
-                    i.icon.test
-                    div
-                        a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
-                - user_lead = @course.user
-                - if user_lead.present?
-                    .principals-list
-                        .title Ведущий курса
-                        .princ-area
-                            .principial-item
-                                .image
-                                    img style="height: 144px;" src ="#{default_img(user_lead.avatar)}"
-                                .name = user_lead.full_name
-                                .lvl = user_lead.about_me
-                .action-block
-                    - if current_user.nil?
-                        .registration
-                            .title Для того, чтобы начать обучение, вам необходимо зарегистрироваться и выбрать форму подписки
-                            a href="/signup"
-                                .btn.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
+        .info-block
+          p Записанный видеокурс
+          p
+            'Продолжительность:
+            - duration = (@course.sections.joins(:attachments).sum(attachments: :duration).to_i rescue 0)
+            = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+          .btn.get-course ПОЛУЧИТЬ КУРС
+      .text-block
+        .description
+          = raw @course.description
+        .icon-list
+          i.icon.text
+          i.icon.audio
+          i.icon.video
+          i.icon.test
+          div
+            a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
+        - user_lead = @course.user
+        - if user_lead.present?
+          .principals-list
+            .title Ведущий курса
+            .princ-area
+              .principial-item
+                .image
+                  img style="height: 144px;" src ="#{default_img(user_lead.avatar)}"
+                .name = user_lead.full_name
+                .lvl = user_lead.about_me
+        .action-block
+          - if current_user.nil?
+            .registration
+              .title Для того, чтобы начать обучение, вам необходимо зарегистрироваться и выбрать форму подписки
+              a href="/signup"
+                .btn.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
 
-                    - else
-                        .some-action
-                            .title Добавьте курс в расписание группы или отложите его в избранное
-                            .btn-block
-                                - if current_user.director
-                                    - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
-                                    .btn.yes.add-to-group class="#{add_class}" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
-                                - else
-                                    .btn.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
-                                .btn.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
+          - else
+            .some-action
+              .title Добавьте курс в расписание группы или отложите его в избранное
+              .btn-block
+                - if current_user.director
+                  - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
+                  .btn.yes.add-to-group class="#{add_class}" data-type="group" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
+                - else
+                  .btn.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
+                .btn.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
 
-                /.add-info
-                /    .title Сейчас вы используете бесплатный аккаунт. Для того, чтобы начать обучение, оформите платную подписку и получите доступ ко всем курсам библиотеки.
-                /    .addititonal-info
-                /        .info-title Полный доступ к базе знаний
-                /        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
-                /        .price
-                /            |1000 ₽
-                /            span за одного пользователя
-                /        .btn.yes.add-to-group ОФОРМИТЬ
+  /.add-info
+  /    .title Сейчас вы используете бесплатный аккаунт. Для того, чтобы начать обучение, оформите платную подписку и получите доступ ко всем курсам библиотеки.
+  /    .addititonal-info
+  /        .info-title Полный доступ к базе знаний
+  /        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+  /        .price
+  /            |1000 ₽
+  /            span за одного пользователя
+  /        .btn.yes.add-to-group ОФОРМИТЬ
 
-    - if current_user.corporate
-        = render "home/courses/pop_up"
+  - if current_user.corporate
+    = render "home/courses/pop_up"

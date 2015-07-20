@@ -10,6 +10,7 @@
 //= require_tree ./core
 
 
+
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });

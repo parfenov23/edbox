@@ -38,7 +38,7 @@ class HomeController < ActionController::Base
   end
 
   def render_mini_schedule
-    html = render_to_string 'home/cabinet/_schedule', :layout => false
+    html = render_to_string 'home/cabinet/_schedule', :layout => false, :locals => {params: params}
     render text: html
   end
 

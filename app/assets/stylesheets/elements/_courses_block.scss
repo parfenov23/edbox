@@ -7,7 +7,7 @@
     box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
     margin        : 0 24px 32px 0;
     &:hover {
-      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+        box-shadow : 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     }
     &:nth-child(3) {
         margin-right : 0;
@@ -21,20 +21,20 @@
         position : relative;
         height   : 192px;
         .tegs {
-          position: absolute;
-          left          : 16px;
-          top:         8px;
-          font-size     : 12px;
-          color         : #FFF;
-          line-height   : 18px;
-          padding       : 2px 7px;
-          max-width     : 246px;
-          overflow      : hidden;
-          text-overflow : ellipsis;
-          white-space   : nowrap;
-          max-width: 256px;
-          background: rgba(0,0,0,0.54);
-          border-radius: 2px;
+            position      : absolute;
+            left          : 16px;
+            top           : 8px;
+            font-size     : 12px;
+            color         : #FFF;
+            line-height   : 18px;
+            padding       : 2px 7px;
+            max-width     : 246px;
+            overflow      : hidden;
+            text-overflow : ellipsis;
+            white-space   : nowrap;
+            max-width     : 256px;
+            background    : rgba(0, 0, 0, 0.54);
+            border-radius : 2px;
         }
         .course-type {
             position      : absolute;
@@ -46,11 +46,10 @@
             color         : #FFF;
             line-height   : 18px;
             padding       : 2px 7px;
-            max-width     : 246px;
             overflow      : hidden;
             text-overflow : ellipsis;
             white-space   : nowrap;
-            max-width: 256px;
+            max-width     : 256px;
         }
         .action-btn {
             position : absolute;
@@ -61,17 +60,22 @@
             // display  : none;
             z-index  : 2;
             &.three {
-              &:hover {
-                width: 150px;
-              }
+                &:hover {
+                    width : 150px;
+                }
+            }
+            &.two:hover {
+                .schedule.icon {
+                    right : 60px !important;
+                }
             }
             .add, .favorite, .schedule {
-              &:active {
-                  background-color: #FD9348;
-                &::before {
-                  color: #fff;
+                &:active {
+                    background-color : #FD9348;
+                    &::before {
+                        color : #FFF;
+                    }
                 }
-              }
             }
             .add {
                 border-radius : 50%;
@@ -99,34 +103,34 @@
                 }
             }
             .favorite, .schedule {
-              width         : 36px;
-              height        : 36px;
-              border-radius : 50%;
-              box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
-              background    : #FFF;
-              text-align    : center;
-              cursor        : pointer;
-              position      : absolute;
-              top           : 7px;
-              right         : 7px;
-              z-index       : 0;
+                width         : 36px;
+                height        : 36px;
+                border-radius : 50%;
+                box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
+                background    : #FFF;
+                text-align    : center;
+                cursor        : pointer;
+                position      : absolute;
+                top           : 7px;
+                right         : 7px;
+                z-index       : 0;
                 &::before {
-                    color    : #FD9348;
-                    display  : block;
-                    position : absolute;
-                    top      : 0;
-                    left     : 0;
-                    line-height: 36px;
-                    text-align: center;
-                    width: 100%;
-              }
-              &:hover {
-              box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.30), 0px 6px 5px 0px rgba(0,0,0,0.22);
-              }
+                    color       : #FD9348;
+                    display     : block;
+                    position    : absolute;
+                    top         : 0;
+                    left        : 0;
+                    line-height : 36px;
+                    text-align  : center;
+                    width       : 100%;
+                }
+                &:hover {
+                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
+                }
             }
             .favorite {
                 &::before {
-                    content  : '\E631';
+                    content : '\E631';
                 }
             }
             .schedule{
@@ -137,7 +141,7 @@
             &:hover {
                 width : 95px;
                 .add {
-                  box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.30), 0px 6px 5px 0px rgba(0,0,0,0.22);
+                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
                     &::before {
                         content     : '\E8D6';
                         left        : 10px;
@@ -145,7 +149,7 @@
                         width       : 30px;
                         height      : 20px;
                         line-height : 21px;
-                        font-size: 24px;
+                        font-size   : 24px;
                         /* Oval 2 Copy 2: */
                     }
                 }
@@ -178,14 +182,14 @@
         margin-bottom : 16px;
         cursor        : pointer;
         min-height    : 83px;
-        padding: 0 16px;
-        white-space: normal;
+        padding       : 0 16px;
+        white-space   : normal;
         &.over-title {
-          position: relative;
-            .inner {
-              height   : 84px;
-            overflow : hidden;
             position : relative;
+            .inner {
+                height   : 84px;
+                overflow : hidden;
+                position : relative;
             }
             .shadow {
                 position   : absolute;
@@ -201,7 +205,7 @@
         }
     }
     .author {
-      padding: 0 16px;
+        padding       : 0 16px;
         font-size     : 13px;
         color         : rgba(0, 0, 0, 0.54);
         line-height   : 20px;
@@ -210,104 +214,104 @@
 
     @import "courses/info-block";
 
-    &.with_progress-bar{
-      height: 480px;
-      figcaption {
-        height: 288px;
-      }
-      .info-block {
-        position: static;
-        padding: 0 16px;
-        margin-bottom: 12px;
-      }
-      .progress-block {
-        border-top: 1px solid #E1E1E1;
-        padding: 0 16px;
-        .progress-label {
-          display: flex;
-          justify-content: space-between;
-          font-size: 15px;
-          color: rgba(0,0,0,0.54);
-          line-height: 24px;
-          padding-top: 15px;
-          margin-bottom: 10px;
-          .until {
-              width: 190px;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-          }
-          .complite {
+    &.with_progress-bar {
+        height : 480px;
+        figcaption {
+            height : 288px;
+        }
+        .info-block {
+            position      : static;
+            padding       : 0 16px;
+            margin-bottom : 12px;
+        }
+        .progress-block {
+            border-top : 1px solid #E1E1E1;
+            padding    : 0 16px;
+            .progress-label {
+                display         : flex;
+                justify-content : space-between;
+                font-size       : 15px;
+                color           : rgba(0, 0, 0, 0.54);
+                line-height     : 24px;
+                padding-top     : 15px;
+                margin-bottom   : 10px;
+                .until {
+                    width         : 190px;
+                    overflow      : hidden;
+                    white-space   : nowrap;
+                    text-overflow : ellipsis;
+                }
+                .complite {
 
-          }
+                }
+            }
+            .progress-bar {
+                height     : 4px;
+                background : rgba(0, 0, 0, 0.12);
+                position   : relative;
+                .progress-bar_inner {
+                    position         : absolute;
+                    top              : 0;
+                    left             : 0;
+                    height           : 4px;
+                    background-color : #FD9348;
+                }
+            }
         }
-        .progress-bar {
-          height: 4px;
-          background: rgba(0,0,0,0.12);
-          position: relative;
-          .progress-bar_inner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background-color: #FD9348;
-          }
+        &.completed {
+            .progress-label {
+                padding-top : 23px;
+                .complite {
+                    font-size   : 15px;
+                    color       : rgba(0, 0, 0, 0.26);
+                    line-height : 24px;
+                }
+            }
+            .progress-bar {
+                display : none;
+            }
         }
-      }
-      &.completed {
-        .progress-label {
-          padding-top: 23px;
-          .complite {
-            font-size: 15px;
-            color: rgba(0,0,0,0.26);
-            line-height: 24px;
-          }
-        }
-        .progress-bar {
-          display: none;
-        }
-      }
     }
 
     &.compact {
-      height: 264px;
-      width: 264px;
-      .image {
-        height: 144px;
-        text-align: center;
-        img {
-          height: 100%;
+        height : 264px;
+        width  : 264px;
+        .image {
+            height     : 144px;
+            text-align : center;
+            img {
+                height : 100%;
+            }
         }
-      }
-      figcaption {
-        padding-top: 16px;
-        height: 120px;
-        .title {
-          font-size: 15px;
-          color: rgba(0,0,0,0.87);
-          line-height: 24px;
-          min-height: 72px;
-          margin-bottom: 4px;
-          .inner {
+        figcaption {
+            padding-top : 16px;
+            height      : 120px;
+            .title {
+                font-size     : 15px;
+                color         : rgba(0, 0, 0, 0.87);
+                line-height   : 24px;
+                min-height    : 72px;
+                margin-bottom : 4px;
+                .inner {
 
-          }
-          &.with_btn {
-            padding-right: 45px;
-          }
-          .com__director-btn {
-            position: absolute;
-            top: 12px;
-            right: 8px;
-          }
-          &.over-title {
-            .inner {
-            height: 72px;
+                }
+                &.with_btn {
+                    padding-right : 45px;
+                }
+                .com__director-btn {
+                    position : absolute;
+                    top      : 12px;
+                    right    : 8px;
+                }
+                &.over-title {
+                    .inner {
+                        height : 72px;
+                    }
+                    .shadow {
+                        right : 16px;
+                    }
+                }
             }
-            .shadow {
-              right: 16px;
-            }
-          }
         }
-      }
     }
 }

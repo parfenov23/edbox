@@ -1,46 +1,50 @@
 .common_select {
-    position      : relative;
-    cursor        : pointer;
+  position : relative;
+  cursor   : pointer;
+  color    : rgba(0, 0, 0, 0.54);
+  @include inline-block;
+  .select-trigger {
+    padding-right : 26px;
+    background    : url("arrow-grey.svg") 100% 50% no-repeat;
+    white-space   : nowrap;
+    font-size     : 15px;
     color         : rgba(0, 0, 0, 0.54);
-    @include inline-block;
-    .select-trigger {
-        padding-right : 26px;
-        background    : url("arrow-grey.svg") 100% 50% no-repeat;
-        white-space   : nowrap;
-        font-size     : 15px;
-        color         : rgba(0, 0, 0, 0.54);
-        line-height   : 20px;
+    line-height   : 20px;
+  }
+  .hidden {
+    min-width        : 128px;
+    background-color : #FFF;
+    padding          : 6px 0;
+    box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+    border-radius    : 2px;
+    max-height       : 236px;
+    position         : absolute;
+    top              : -13px;
+    left             : -15px;
+    display          : none;
+    z-index          : 99;
+    bottom           : auto;
+    overflow-y       : scroll;
+    &::-webkit-scrollbar {
+      width: 0;
     }
-    .hidden {
-        min-width        : 128px;
-        background-color : #FFFFFF;
-        padding          : 6px 0;
-        box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
-        border-radius    : 2px;
-        max-height       : 236px;
-        position         : absolute;
-        top              : -13px;
-        left             : -15px;
-        display          : none;
-        z-index          : 99;
-        bottom           : auto;
-        &.to-top {
-            top    : auto;
-            bottom : 0;
-        }
-        li {
-            height      : 32px;
-            font-size   : 15px;
-            color       : rgba(0, 0, 0, 0.54);
-            line-height : 20px;
-            padding     : 6px 16px;
-            cursor      : pointer;
-            white-space : nowrap;
-            &:hover {
-                color       : #000000;
-                line-height : 20px;
-                background  : rgba(0, 0, 0, 0.12);
-            }
-        }
+    &.to-top {
+      top    : auto;
+      bottom : 0;
     }
+    li {
+      height      : 32px;
+      font-size   : 15px;
+      color       : rgba(0, 0, 0, 0.54);
+      line-height : 20px;
+      padding     : 6px 16px;
+      cursor      : pointer;
+      white-space : nowrap;
+      &:hover {
+        color       : #000;
+        line-height : 20px;
+        background  : rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
 }
