@@ -6,6 +6,7 @@ tabsCorusel = ->
     $('.header__bottom').addClass('carusel for_prev')
 
 headerTabsLine = (elem) ->
+
   if $('.tabs__item').length
     width = $(elem).outerWidth()
     tabs_item_active = $(elem)
@@ -15,11 +16,11 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
-adaptiveTitle = ->
-  $('.adaptive-title').each ->
-    rightWidth = $(@).find('.right-col').width()
-    $(@).find('.left-col').css
-      width: $(@).width() - rightWidth + 'px'
+  adaptiveTitle = ->
+    $('.adaptive-title').each ->
+      rightWidth = $(@).find('.right-col').width()
+      $(@).find('.left-col').css
+        width: $(@).width() - rightWidth + 'px'
 
 
 figcaptionTitleEclipses = (el, height) ->
@@ -45,8 +46,6 @@ $(document).ready ->
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
 
 
-    testList()
-
     $('.js__carusel').jcarousel()
 
     $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
@@ -67,7 +66,6 @@ $(document).ready ->
 
 
 
-    tabsCorusel()
 
     $('.js_for-tooltip').hover ->
       $(@).find('.js_tooltip').addClass('is-active')
@@ -156,3 +154,7 @@ $(document).ready ->
         unless e.target.closest('.js__toggle-state') == ev.target.closest('.js__toggle-state')
           hideBlock(el)
           $(document).unbind 'click.dropdown'
+
+
+    tabsCorusel()
+    testList()
