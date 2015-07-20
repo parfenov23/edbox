@@ -1,6 +1,7 @@
 class Company < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   has_many :groups, :dependent => :destroy
+  has_many :account_type_relations, :as => :modelable, :dependent => :destroy
 
   def self.build(params)
     company = new
@@ -11,6 +12,16 @@ class Company < ActiveRecord::Base
   def course_in_groups(course_id)
     ids_groups = groups.ids
     BunchCourse.where({group_id: ids_groups, course_id: course_id})
+  end
+
+  def get_account_type
+    account_type_relations.last.account_type
+  end
+
+  def update_account_type(account_type_id)
+    unless account_type_id == (get_account_type.id rescue nil)
+      AccountTypeRelation.new({modelable_type: "Company", modelable_id: id, account_type_id: account_type_id}).save
+    end
   end
 
   def schedule

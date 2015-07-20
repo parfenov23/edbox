@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
   has_many :test_results, dependent: :destroy
+  has_many :account_type_relations, :as => :modelable, :dependent => :destroy
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
@@ -51,6 +52,24 @@ class User < ActiveRecord::Base
   def transfer_to_json
     result = as_json(:except => EXCEPT_ATTR)
     result
+  end
+
+  def get_real_account_type
+    account_type_relations.last.account_type
+  end
+
+  def get_account_type
+    if corporate?
+      company.get_account_type
+    else
+      get_real_account_type
+    end
+  end
+
+  def update_account_type(account_type_id)
+    unless account_type_id == (get_real_account_type.id rescue nil)
+      AccountTypeRelation.new({modelable_type: "User", modelable_id: id, account_type_id: account_type_id}).save
+    end
   end
 
   def all_groups
