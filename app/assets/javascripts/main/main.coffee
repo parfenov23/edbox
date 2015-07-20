@@ -28,6 +28,14 @@ figcaptionTitleEclipses = (el, height) ->
     if $(element).height() > height
       $(element).addClass 'over-title'
 
+testList = ->
+  parenBlock = $('.content#tests')
+  if parenBlock.height() > $(window).height()
+    parenBlock.addClass('fixed-btm')
+    $('.finish-test').css
+      width: parenBlock.width() + 'px'
+      left: parenBlock.offset().left + 'px'
+
 
 $(document).ready ->
   $('img:last').load ->
@@ -36,8 +44,11 @@ $(document).ready ->
     figcaptionTitleEclipses('.favorite-item .description .title', 56)
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
 
-    $('.js__carusel').jcarousel(
-    )
+
+    testList()
+
+    $('.js__carusel').jcarousel()
+
     $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
       $(this).removeClass 'inactive'
       return
