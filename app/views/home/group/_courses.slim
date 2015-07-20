@@ -14,61 +14,12 @@
                             = rus_case(count_ligament_courses, "курс", "курса", "курсов")
                         ul.courses-list
                             - ligament_courses.each do |ligament_course|
-                                - course = ligament_course.course
-                                li.single-course
-                                    .left-image
-                                        img alt="" src="images/courses-avatar.jpg"
-                                    .courses-info
-                                        .top-line
-                                            - if current_user.director
-                                              .edit-menu.js__select-calendar
-                                                a.edit-date href="#"
-                                                  i.icon-uniE8A3
-                                                .hidden-calendar-wrp
-                                                  .hidden-calendar
-                                                    .calendar-header
-                                                      .back.icon
-                                                      |Выбор даты
-                                                    .calendar-holder
-                                                      .selected-value Выберите дату
-                                                      .datapicker__trigger
-                                                  ul.hidden-list
-                                                    li data-show = "hidden-calendar" Перенести дату окончания курса
-                                                    li Удалить
-                                            h3 = course.title
-                                        .courses-autor = (course.user.full_name rescue "Нет ведущего")
-                                        .details-nav
-                                            ul
-                                                li.hours
-                                                    i.icon
-                                                    - duration = (course.duration_time rescue 0)
-                                                    = rus_case(duration, "минута", "минуты", "минут")
-                                                li.lections
-                                                    i.icon
-                                                    - count_sections = course.sections.count
-                                                    = rus_case(count_sections, "лекция", "лекции", "лекций")
-                                                li.courses-end
-                                                    i.icon
-                                                    |Прошли курс
-                                            .courses-date
-                                                | Пройти курс до:
-                                                span = ((l local_time(ligament_course.bunch_courses.last.date_complete), :format => :short_min) rescue "Нет даты")
+                                = render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
                     - else
                         .data-group-create Вы не добавили ни одного курса
-        /! Delete dialog
-        #modal-1.md-modal.md-effect-1
-            .md-content
-                div
-                    .modal-text
-                        h2 Вы уверенны, что хотите удалить курс?
-                        ul.button-area
-                            li
-                                a.flat-button.button.button-ok.md-close href="#"  Нет
-                            li
-                                a.orange-button href="#"  ДА
         /! Create dialog
         #modal-3.md-modal.md-effect-1
-            .md-content
+            .md-content.popupFavorite
                 div
                     .modal-text
                         h2 Выберите курс из "Избранного"
@@ -76,34 +27,7 @@
                             ul.courses-list
                                 - current_user.favorite_courses.each do |favorite_course|
                                     - course = favorite_course.course
-                                    li.single-course
-                                        .left-image
-                                            img alt="" src="images/courses-avatar.jpg" /
-                                        .courses-info
-                                            .top-line
-                                                .edit-menu
-                                                    a.edit-date href="#"
-                                                        i.icon-uniE8A3
-                                                    ul
-                                                        li
-                                                            a href="#"  Выбрать дату окончания курса
-                                                        li
-                                                            a href="#"  Удалить
-                                                h3 = course.title
-                                            .courses-autor = (course.user.full_name rescue "Нет ведущего")
-                                            .details-nav
-                                                ul
-                                                    li.hours.icon-uniE71F
-                                                        - duration = course.duration_time
-                                                        span = rus_case(duration, "минута", "минуты", "минут")
-                                                    li.lections.icon-uniE6B2
-                                                        - count_sections = course.sections.count
-                                                        span = rus_case(count_sections, "лекция", "лекции", "лекций")
-                                                    li.courses-end.icon-uniE8D6
-                                                        span Прошли курс
-                                                .courses-date
-                                                    | Проходжение курса:
-                                                    span 12 марта - 19 марта
+                                    = render "home/group/course", {course: course, type: "course"}
 
                     ul.button-area
                         li
@@ -111,6 +35,5 @@
                         li
                             a.orange-button href="#"  Добавить
         .md-overlay
-            /! modals end
     /! modals end
 .js__backing

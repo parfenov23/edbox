@@ -29,10 +29,17 @@ class HomeController < ActionController::Base
   def programm
     @course = Course.find(params[:course_id])
     @sections = @course.sections
+    section_ids = @sections.pluck(:id)
+    @tests = Test.where(section_id: section_ids)
   end
 
   def cabinet
-    redirect_to "/schedule" unless current_user.director
+    # redirect_to "/schedule" unless current_user.director
+  end
+
+  def render_mini_schedule
+    html = render_to_string 'home/cabinet/_schedule', :layout => false
+    render text: html
   end
 
   def course_description

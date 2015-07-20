@@ -57,7 +57,7 @@ module Superuser
     end
 
     def remove_course
-      find_bunch_course.to_archive
+      find_group.ligament_courses.where(course_id: params[:course_id]).destroy_all
       redirect_to :back
     end
 
@@ -67,7 +67,7 @@ module Superuser
     end
 
     def update_course
-      BunchCourse.build(params[:course_id], params[:id], params[:date_start], "group")
+      BunchCourse.build(params[:course_id], params[:id], params[:date_complete], "group")
       redirect_to edit_superuser_group_path(params[:id], params: {type: "courses"})
     end
 

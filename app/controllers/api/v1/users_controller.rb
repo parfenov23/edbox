@@ -12,7 +12,8 @@ module Api::V1
       arr_hash_users = []
       emails = params[:emails]
       emails.each do |email|
-        user = User.build_default(current_user.company_id, email)
+        user = User.find_by_email(email)
+        user = User.build_default(current_user.company_id, email) if user.blank?
         arr_hash_users << user.transfer_to_json if (user.save rescue false)
       end
       render json: {users: arr_hash_users}
@@ -41,6 +42,14 @@ module Api::V1
       end
     end
 
+    def update_course
+      if (bunch_course = BunchCourse.build(params[:course_id], nil, params[:date_complete], "user", current_user.id) rescue false)
+        render json: bunch_course.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def change_password
       current_user.password = params[:password]
       if (current_user.save rescue false)
@@ -49,16 +58,6 @@ module Api::V1
         render_error(500, 'Проверьте данные')
       end
     end
-
-    # def update_avatar
-    #   if params[:avatar].present?
-    #     img = ::ResizeImage.crop(params[:avatar].path)
-    #     img_base64 = Base64.encode64(File.open(img.path, "rb").read)
-    #     render json: { base64: img_base64 }
-    #   else
-    #     render json: { error: "You do not pass the picture" }
-    #   end
-    # end
 
     def update_avatar
       unless params[:avatar].nil?

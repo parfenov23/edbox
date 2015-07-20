@@ -1,6 +1,8 @@
 module Api::V1
   class GroupsController < ::ApplicationController
-    before_action :is_director, only: [:create, :invite, :remove_user]
+    before_action :is_director, only: [:create, :invite,
+                                       :remove_user, :remove_course,
+                                       :add_course]
 
     def index
       groups = current_user.all_groups.as_json(:except => Group::EXCEPT_ATTR)
@@ -71,7 +73,7 @@ module Api::V1
     end
 
     def add_course
-      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group") rescue false)
         render json: bunch_course.as_json
       else
         render_error(500, 'Проверьте данные')
@@ -79,7 +81,7 @@ module Api::V1
     end
 
     def update_course
-      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_start], "group") rescue false)
+      if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group") rescue false)
         render json: bunch_course.as_json
       else
         render_error(500, 'Проверьте данные')
@@ -92,7 +94,8 @@ module Api::V1
     end
 
     def remove_course
-      if (find_bunch_course.to_archive rescue false)
+      ligament_courses = get_find_group.ligament_courses.where(course_id: params[:course_id])
+      if (ligament_courses.destroy_all rescue false)
         render json: {success: true}
       else
         render_error(500, 'Ошибка сервера')

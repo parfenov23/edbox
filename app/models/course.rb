@@ -16,6 +16,24 @@ class Course < ActiveRecord::Base
     Attachment.save_file('Course', id, tumb2, '920x377')
   end
 
+  def get_image_path(size)
+    attachment = attachments.where(size: size).last
+    if attachment.present?
+      attachment.file.url
+    else
+      case size
+      when 'full'
+        '/uploads/pic5.png'
+      when '347x192'
+        '/uploads/pic3.png'
+      when '920x377'
+        '/uploads/pic5.png'
+      else
+        '/uploads/pic5.png'
+      end
+    end
+  end
+
   def duration_time
     sections.joins(:attachments).sum("attachments.duration")
   end

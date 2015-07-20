@@ -16,7 +16,7 @@ module Api::V1
 
     def registration
       permit_params = user_params
-      permit_params[:corporate] = "true" if params[:company][:name].to_s.length > 0
+      permit_params[:corporate] = "true" if (params[:company][:name].to_s.length > 0 rescue false)
       permit_params[:director] = permit_params[:corporate].to_s
       if permit_params[:director].to_s == "true"
         company = Company.build(params[:company])

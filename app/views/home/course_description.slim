@@ -6,19 +6,11 @@
     = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }, description_class: "active"}}
 .inner-content                  
     .content
-        - full = @course.attachments.where(size: 'full').last
-        - if full.present?
-            .image-bg style="background: url('#{full.file.url}')"
-        - else
-            .image-bg style="background: url('/uploads/pic5.png')"
+        .image-bg style="background: url('#{@course.get_image_path('full')}')"
         .courses-description
             .image-block
                 .mask
-                - tumb = @course.attachments.where(size: '920x377').last
-                - if tumb.present?
-                    img (src="#{tumb.file.url}")
-                - else
-                    img src="/uploads/pic5.png"
+                img (src="#{@course.get_image_path('920x377')}")
                 .title
                     |Курс “
                     span id="titleCoursePrev#{@course.id}"

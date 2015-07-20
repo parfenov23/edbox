@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
-  before_create :create_hash_key, :welcome_letter, :hash_password
+  has_many :test_results, dependent: :destroy
+  has_many :account_type_relations, :as => :modelable, :dependent => :destroy
+  before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
@@ -14,6 +16,7 @@ class User < ActiveRecord::Base
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
     user = new(params)
     user.password = params[:password]
+    user.welcome_letter(params[:password])
     user
   end
 
@@ -51,6 +54,24 @@ class User < ActiveRecord::Base
     result
   end
 
+  def get_real_account_type
+    account_type_relations.last.account_type
+  end
+
+  def get_account_type
+    if corporate?
+      company.get_account_type
+    else
+      get_real_account_type
+    end
+  end
+
+  def update_account_type(account_type_id)
+    unless account_type_id == (get_real_account_type.id rescue nil)
+      AccountTypeRelation.new({modelable_type: "User", modelable_id: id, account_type_id: account_type_id}).save
+    end
+  end
+
   def all_groups
     company.groups
   end
@@ -58,6 +79,20 @@ class User < ActiveRecord::Base
   def my_groups
     ids_group = bunch_groups.map{|bg| bg.group_id}
     company.groups.where(id: ids_group)
+  end
+
+  def schedule
+    bunch_courses_and_sections = bunch_courses.joins(:bunch_sections)
+    all_dates = bunch_courses_and_sections.pluck(:date_complete, "bunch_sections.date_complete").flatten.uniq.compact
+    arr_schedule = all_dates.map do |date|
+      bunch_courses = bunch_courses_and_sections.where({date_complete: date}).uniq
+      bunch_sections_ids = bunch_courses_and_sections
+                             .where(bunch_sections: {date_complete: date})
+                             .pluck("bunch_sections.id").uniq
+
+      {date: date, bunch_courses: bunch_courses.ids, bunch_sections: bunch_sections_ids}
+    end
+    arr_schedule
   end
 
   def password
@@ -90,18 +125,14 @@ class User < ActiveRecord::Base
     first_name.to_s + " " + last_name.to_s
   end
 
+  def welcome_letter(new_password)
+    HomeMailer.welcome_latter(self, new_password).deliver
+  end
+
   private
 
   def create_hash_key
     self.user_key = SecureRandom.hex(20)
-  end
-
-  def welcome_letter
-    HomeMailer.welcome_latter(self).deliver
-  end
-
-  def hash_password
-    self.password_digest = BCrypt::Password.create(self.password_digest)
   end
 
 end

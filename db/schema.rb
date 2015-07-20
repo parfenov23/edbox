@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714140950) do
+ActiveRecord::Schema.define(version: 20150717084745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_type_relations", force: true do |t|
+    t.string  "modelable_type"
+    t.integer "modelable_id"
+    t.integer "account_type_id"
+  end
+
+  create_table "account_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "answers", force: true do |t|
+    t.integer "question_id"
+    t.string  "text"
+    t.boolean "right"
+  end
 
   create_table "attachments", force: true do |t|
     t.string   "file"
@@ -104,6 +120,11 @@ ActiveRecord::Schema.define(version: 20150714140950) do
     t.datetime "updated_at"
   end
 
+  create_table "questions", force: true do |t|
+    t.integer "test_id"
+    t.string  "title"
+  end
+
   create_table "sections", force: true do |t|
     t.string   "title"
     t.integer  "course_id"
@@ -115,6 +136,17 @@ ActiveRecord::Schema.define(version: 20150714140950) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "test_results", force: true do |t|
+    t.integer "user_id"
+    t.integer "test_id"
+    t.integer "result"
+  end
+
+  create_table "tests", force: true do |t|
+    t.integer "section_id"
+    t.string  "title"
   end
 
   create_table "users", force: true do |t|

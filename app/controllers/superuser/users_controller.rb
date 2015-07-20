@@ -22,6 +22,7 @@ module Superuser
       user = User.build(user_params)
       if user.valid? && user_params[:password].length >= 4
         user.save
+        user.update_account_type(params[:account_type].to_i) if params[:user][:corporate].to_i == 0
         if params[:company_id].to_s != ""
           redirect_to edit_superuser_company_path(params[:company_id])
         else
@@ -42,6 +43,7 @@ module Superuser
       permit_params = user_params
       permit_params.delete(:password) if permit_params[:password].to_s.length == 0
       user = find_user
+      user.update_account_type(params[:account_type].to_i) if params[:user][:corporate].to_i == 0
       if user.valid?
         user.update(permit_params)
         if params[:company_id].to_s != ""
