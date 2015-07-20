@@ -6,6 +6,7 @@ tabsCorusel = ->
     $('.header__bottom').addClass('carusel for_prev')
 
 headerTabsLine = (elem) ->
+
   if $('.tabs__item').length
     width = $(elem).outerWidth()
     tabs_item_active = $(elem)
@@ -15,11 +16,11 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
-adaptiveTitle = ->
-  $('.adaptive-title').each ->
-    rightWidth = $(@).find('.right-col').width()
-    $(@).find('.left-col').css
-      width: $(@).width() - rightWidth + 'px'
+  adaptiveTitle = ->
+    $('.adaptive-title').each ->
+      rightWidth = $(@).find('.right-col').width()
+      $(@).find('.left-col').css
+        width: $(@).width() - rightWidth + 'px'
 
 
 figcaptionTitleEclipses = (el, height) ->
@@ -27,6 +28,14 @@ figcaptionTitleEclipses = (el, height) ->
   $(el).each (indx, element) ->
     if $(element).height() > height
       $(element).addClass 'over-title'
+
+testList = ->
+  parenBlock = $('.content#tests')
+  if parenBlock.height() > $(window).height()
+    parenBlock.addClass('fixed-btm')
+    $('.finish-test').css
+      width: parenBlock.width() + 'px'
+      left: parenBlock.offset().left + 'px'
 
 
 $(document).ready ->
@@ -36,8 +45,9 @@ $(document).ready ->
     figcaptionTitleEclipses('.favorite-item .description .title', 56)
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
 
-    $('.js__carusel').jcarousel(
-    )
+
+    $('.js__carusel').jcarousel()
+
     $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
       $(this).removeClass 'inactive'
       return
@@ -56,7 +66,6 @@ $(document).ready ->
 
 
 
-    tabsCorusel()
 
     $('.js_for-tooltip').hover ->
       $(@).find('.js_tooltip').addClass('is-active')
@@ -145,3 +154,7 @@ $(document).ready ->
         unless e.target.closest('.js__toggle-state') == ev.target.closest('.js__toggle-state')
           hideBlock(el)
           $(document).unbind 'click.dropdown'
+
+
+    tabsCorusel()
+    testList()
