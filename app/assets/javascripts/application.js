@@ -103,12 +103,9 @@ $(document).ready(function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
-
-
     $('.filter-courses, .js__baron').baron();
 
-
-
+    
     headerUserToggle = function () {
         $(document).on('click', function (e) {
             if ($(e.target).closest('.header__user').length == 0){

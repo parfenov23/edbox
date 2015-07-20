@@ -23,9 +23,9 @@
                 .courses-list
                     - new_courses = params[:type_new] == "all" ? @new_courses : @new_courses.limit(3)
                     - new_courses.each do |course|
-                        = render "home/courses/course", {course: course}
+                        = render "home/courses/course", {course: course, type: 'courses'}
 
     #courses.content-courses.courses-list
         - @courses.each do |course|
-            = render "home/courses/course", {course: course}
+            = render "home/courses/course", {course: course, type: 'courses'}
         = render "home/courses/pop_up"
