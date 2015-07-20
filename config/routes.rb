@@ -45,6 +45,8 @@ Rails.application.routes.draw do
           post :add_favorite_course
           post :remove_favorite_course
           post :update_course
+          post :remove_course
+          post :update_section
         end
       end
       resources :groups do

@@ -15,7 +15,7 @@ var removeCourseToGroup = function (btn) {
     return true;
 };
 
-var changeDeadLineCourse = function (btn){
+var changeDeadLineCourse = function (btn) {
     var group_id = btn.data("group_id");
     var data_time = btn.text();
     var course_id = btn.data("id");
@@ -31,7 +31,7 @@ var changeDeadLineCourse = function (btn){
     });
 };
 
-var changeDeadLineCourseMy = function(btn, text_success){
+var changeDeadLineCourseMy = function (btn, text_success) {
     var data_time = btn.text();
     var course_id = btn.data("course_id");
     show_error('Загрузка', 3000);
@@ -48,25 +48,59 @@ var changeDeadLineCourseMy = function(btn, text_success){
     return true;
 };
 
-var bind_block = function(){
-    $('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function() {
+var removeCourseMy = function (btn, text_success) {
+    var data_time = btn.text();
+    var course_id = btn.data("course_id");
+    show_error('Загрузка', 3000);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/remove_course',
+        data: {course_id: course_id, date_complete: data_time}
+    }).success(function () {
+        show_error(text_success, 3000);
+        loadMySchedule();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
+var changeDeadLineSectionMy = function (btn, text_success) {
+    var data_time = btn.text();
+    var section_id = btn.data("section_id");
+    show_error('Загрузка', 3000);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/update_section',
+        data: {section_id: section_id, date_complete: data_time}
+    }).success(function () {
+        show_error(text_success, 3000);
+        loadMySchedule();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
+var bind_block = function () {
+    $('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
-    $('.js__select-calendar').hover((function() {
+    $('.js__select-calendar').hover((function () {
         $(this).addClass('is__active');
         return $('.js__backing').addClass('is__active');
-    }), function() {
+    }), function () {
         return $(this).removeClass('is__active');
     });
     includeDatePicker();
 };
 
-var loadMySchedule = function(){
+var loadMySchedule = function () {
     $.ajax({
         type: 'POST',
         url : '/render_mini_schedule',
     }).success(function (data) {
-        $("#js-schedule-cabinet").html( $(data).html() );
+        $("#js-schedule-cabinet").html($(data).html());
         bind_block();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -85,10 +119,23 @@ $(document).ready(function () {
                 )
             });
 
-        $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function() {
+        $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
             changeDeadLineCourse($(this));
         });
 
+        $('.edit-menu .js_changeDeadLineSectionMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+            changeDeadLineSectionMy($(this));
+        });
+
+        $(document).on('click', '.js_removeCourseMy',
+            function () {
+                var btn = $(this);
+                confirm("Вы действительно хотате удалить курс?",
+                    function () {
+                        removeCourseMy(btn, btn.data("text"));
+                    }
+                )
+            });
         bind_block();
     });
 });

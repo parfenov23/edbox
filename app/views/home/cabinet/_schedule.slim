@@ -48,11 +48,12 @@
                                                     .calendar-holder
                                                         - ts = "Дата оканчания курса изменена"
                                                         .selected-value.js_changeDeadLineCourseMy data-text=ts data-course_id=bunch_course.course_id
-                                                            = l local_time(bunch_course.date_complete), :format => :short_min
+                                                            = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Выберите дату")
                                                         .datapicker__trigger
                                                 ul.hidden-list
                                                     li data-show = "hidden-calendar" Перенести дату окончания курса
-                                                    li Удалить
+                                                    - ts = "Курс удален!"
+                                                    li.js_removeCourseMy data-text=ts data-course_id=bunch_course.course_id Удалить
                             - schedule_current_day[:bunch_sections].each do |bunch_section|
                                 - bunch_section = BunchSection.find(bunch_section)
                                 - section = bunch_section.section
@@ -68,7 +69,9 @@
                                                         .back.icon
                                                         |Выбор даты
                                                     .calendar-holder
-                                                        .selected-value Выберите дату
+                                                        - ts = "Дата оканчания раздела изменена"
+                                                        .selected-value.js_changeDeadLineSectionMy data-text=ts data-section_id=bunch_section.id
+                                                            = ((l local_time(bunch_section.date_complete), :format => :short_min) rescue "Выберите дату")
                                                         .datapicker__trigger
                                                 ul.hidden-list
                                                     li data-show = "hidden-calendar" Перенести дату окончания раздела

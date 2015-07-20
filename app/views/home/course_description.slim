@@ -64,7 +64,7 @@
                             .btn-block
                                 - if current_user.director
                                     - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
-                                    .btn.yes.add-to-group class="#{add_class}" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
+                                    .btn.yes.add-to-group class="#{add_class}" data-type="group" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
                                 - else
                                     .btn.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
                                 .btn.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
