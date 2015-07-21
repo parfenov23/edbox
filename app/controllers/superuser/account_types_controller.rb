@@ -18,18 +18,18 @@ module Superuser
     def create
       account_type = AccountType.new(params_account_type)
       account_type.save
-      redirect_to edit_superuser_course_path(account_type.id)
+      redirect_to superuser_account_types_path
     end
 
     def update
       account_type = find_account_type
       account_type.update(params_account_type)
-      redirect_to :back
+      redirect_to superuser_account_types_path
     end
 
     def remove
       find_account_type.destroy
-      redirect_to :back
+      redirect_to superuser_account_types_path
     end
 
     private

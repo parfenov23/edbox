@@ -9,4 +9,5 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Название:
         input.form-control name="account_type[name]" type="text" value="#{@account_type.name}"
+    input type="hidden" name="_method" value="#{method}"
     button.btn.btn-primary type="submit" Сохранить
