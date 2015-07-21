@@ -13,6 +13,7 @@ class Attachment < ActiveRecord::Base
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
+  has_many :bunch_attachments
 
 
   def self.save_file(type, id, file, size=nil)
@@ -24,6 +25,19 @@ class Attachment < ActiveRecord::Base
     attachment.size  = size
     attachment.save
     attachment
+  end
+
+  def class_type
+    arr_types = ["text", "audio", "video", "test"]
+    (arr_types.include? (file_type)) ? file_type : "text"
+  end
+
+  def find_bunch_attachment(bunch_section_id)
+    bunch_attachments.find_by_bunch_section_id(bunch_section_id)
+  end
+
+  def full_duration
+    duration.to_s + " часа"
   end
 
   private
@@ -41,4 +55,5 @@ class Attachment < ActiveRecord::Base
 
     self.file_type = type
   end
+
 end

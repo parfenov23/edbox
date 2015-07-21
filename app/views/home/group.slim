@@ -23,10 +23,7 @@
           - when "user"
             = render "home/group/users"
           - when "schedule"
-            - if true
-              = render "home/group/schedule"
-            - else
-              = render "home/group/no_schedule"
+            = render "home/group/schedule", {group: @group}
           - when "courses"
             = render "home/group/courses"
         .form_group
