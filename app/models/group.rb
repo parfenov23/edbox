@@ -1,13 +1,25 @@
 class Group < ActiveRecord::Base
   belongs_to :company
-  has_many :users
   has_many :bunch_groups, :dependent => :destroy
   has_many :bunch_courses, :dependent => :destroy
+  has_many :ligament_courses, :dependent => :destroy
   EXCEPT_ATTR = ["created_at", "updated_at"]
 
   def transfer_to_json
     result = as_json(:except => EXCEPT_ATTR)
     result
+  end
+
+  def all_courses
+    Course.where(id: bunch_courses.pluck(:course_id).uniq)
+  end
+
+  def build_all_course
+    ligament_courses.each do |ligament_course|
+      course = ligament_course.course
+      date_complete = (ligament_course.bunch_courses.last.date_complete.to_s rescue (Time.now + 2.day).to_s )
+      BunchCourse.build(course.id, id, date_complete, 'group', nil)
+    end
   end
 
 end

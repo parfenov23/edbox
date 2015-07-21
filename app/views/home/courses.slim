@@ -1,232 +1,31 @@
 #header__holder
-  = render "home/header" , {header_top_arr:['notifications']}
-                                                      
-  = render "home/header_bottom", {header_bottom: {block: "courses", title: 'Курсы', profile_class: "active"}}
+    = render "home/header/header", {header_top_arr: ['notifications']}
+
+    = render "home/header/header_bottom", {header_bottom: {block: "courses", title: 'Курсы', profile_class: "active"}}
 
 
 = render "home/courses/filter"
-= render "home/courses/groups"
-= render "home/courses/favorite"
-                                    
-                  
-.inner-content                  
-  .new-courses-holder
-    .content
-      .new-top-title Новинки
-      .new-btm-title Все курсы 
-      .new-label Посмотреть все  новинки
-      .courses-list
-        figure.corses-prev
-          .image
-            img (src="uploads/pic1.png")
-            .course-type Записанный курс
-            .action-btn
-              .add.icon
-              .favorite.icon
-              
-          figcaption
-            .title 
-              |Как в два клика определить хронометраж рекламного текста?
-              .shadow
-            .author Денис Баталин
-            .info-block
-              .duration 
-                |32 часа
-                i.icon
-              .qty-lectures 
-                |16 лекций
-                i.icon
-              .completed-courses 
-                |Прошли курс
-                i.icon
-                                                  
-        figure.corses-prev
-          .image
-            img (src="uploads/pic1.png")
-            .course-type Записанный курс
-            .action-btn
-              .add.icon
-              .favorite.icon
-              
-          figcaption
-            .title 
-              |Как в два клика определить хронометраж рекламного текста?
-              .shadow
-            .author Денис Баталин
-            .info-block
-              .duration 
-                |32 часа
-                i.icon
-              .qty-lectures 
-                |16 лекций
-                i.icon
-              .completed-courses 
-                |Прошли курс
-                i.icon
-                                                  
-        figure.corses-prev
-          .image
-            img (src="uploads/pic1.png")
-            .course-type Записанный курс
-            .action-btn
-              .add.icon
-              .favorite.icon
-              
-          figcaption
-            .title 
-              |Как в два клика определить хронометраж рекламного текста?
-              .shadow
-            .author Денис Баталин
-            .info-block
-              .duration 
-                |32 часа
-                i.icon
-              .qty-lectures 
-                |16 лекций
-                i.icon
-              .completed-courses 
-                |Прошли курс
-                i.icon
-                                                  
-        figure.corses-prev
-          .image
-            img (src="uploads/pic1.png")
-            .course-type Записанный курс
-            .action-btn
-              .add.icon
-              .favorite.icon
-              
-          figcaption
-            .title 
-              |Как в два клика определить хронометраж рекламного текста?
-              .shadow
-            .author Денис Баталин
-            .info-block
-              .duration 
-                |32 часа
-                i.icon
-              .qty-lectures 
-                |16 лекций
-                i.icon
-              .completed-courses 
-                |Прошли курс
-                i.icon
-                                                  
-                                      
-  .content#courses.courses-list
-    figure.corses-prev
-      .image
-        img (src="uploads/pic1.png")
-        .course-type Записанный курс
-        .action-btn
-          .add.icon
-          .favorite.icon
-          
-      figcaption
-        .title 
-          |Как в два клика определить хронометраж рекламного текста?
-          .shadow
-        .author Денис Баталин
-        .info-block
-          .duration 
-            |32 часа
-            i.icon
-          .qty-lectures 
-            |16 лекций
-            i.icon
-          .completed-courses 
-            |Прошли курс
-            i.icon
-            
-    figure.corses-prev
-      .image
-        img (src="uploads/pic2.png")
-        .course-type Записанный курс
-        .action-btn
-          .add.icon
-          .favorite.icon
-      figcaption
-        .title 
-          |Как в два клика определить хронометраж рекламнлика определить хронометраж рекламнлика определить хронометраж рекламного текста?
-          .shadow
-        .author Денис Баталин
-        .info-block
-          .duration 
-            |32 часа
-            i.icon
-          .qty-lectures 
-            |16 лекций
-            i.icon
-          .completed-courses 
-            |Прошли курс
-            i.icon
-            
-    figure.corses-prev
-      .image
-        img (src="uploads/pic1.png")
-        .course-type Записанный курс
-        .action-btn
-          .add.icon
-          .favorite.icon
-      figcaption
-        .title 
-          |Как в два клика определить хронометраж рекламного текста?
-          .shadow
-        .author Денис Баталин
-        .info-block
-          .duration 
-            |32 часа
-            i.icon
-          .qty-lectures 
-            |16 лекций
-            i.icon
-          .completed-courses 
-            |Прошли курс
-            i.icon
-            
-    figure.corses-prev
-      .image
-        img (src="uploads/pic3.png")
-        .course-type Записанный курс
-        .action-btn
-          .add.icon
-          .favorite.icon
-      figcaption
-        .title 
-          |Как в два клика определить хронометраж рекламного текста?
-          .shadow
-        .author Денис Баталин
-        .info-block
-          .duration 
-            |32 часа
-            i.icon
-          .qty-lectures 
-            |16 лекций
-            i.icon
-          .completed-courses 
-            |Прошли курс
-            i.icon
-  #js-add-course-to-shedule.add-course-to-shedule
-    .inner          
-      .title Добавить курс в расписание группы
-      .select.time
-        i.icon
-        .select-trigger Выберите группу
-        input.task_type type='hidden' name='time' 
-        ul.hidden
-          li.js_psevdo-select списан
-          li.js_psevdo-select списан
-          li.js_psevdo-select списан
-      .calendar
-          i.icon
-          .calendar-trigger Установите крайний срок прохождения курса
-          input.datapicker__trigger name='date'
-      .action-btn
-        .btn.yes ДОБАВИТЬ
-        .btn.cancel ОТМЕНИТ
-        
-    .inner.allgood          
-      .description Курс добавлен в рассписание группы “Менеджеры отдела продаж”. Для редактирования дат перейдите на страницу “Расписание”
-      .action-btn
-        .btn.yes ПЕРЕЙТИ В РАСПИСАНИЕ
-        .btn.cancel ЗАКРЫТЬ
+- if current_user.director
+    = render "home/courses/groups"
+= render "home/courses/favorite", {favorite_courses: @favorite_courses}
+
+
+.inner-content
+    - if @new_courses.present?
+        .new-courses-holder
+            .content-courses
+                .new-top-title Новинки
+                - if @courses.present?
+                    .new-btm-title Все курсы
+                - if @new_courses.count > 3
+                    .new-label
+                        a href="/courses?type_new=all" Посмотреть все  новинки
+                .courses-list
+                    - new_courses = params[:type_new] == "all" ? @new_courses : @new_courses.limit(3)
+                    - new_courses.each do |course|
+                        = render "home/courses/course", {course: course, type: 'courses'}
+
+    #courses.content-courses.courses-list
+        - @courses.each do |course|
+            = render "home/courses/course", {course: course, type: 'courses'}
+        = render "home/courses/pop_up"

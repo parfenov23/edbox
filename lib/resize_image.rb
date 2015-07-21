@@ -24,4 +24,18 @@ class ResizeImage
     crop_h = center_h - (h/2)
     "#{w}x#{h}+#{crop_w}+#{crop_h}"
   end
+
+  def self.course_image_resize(image, img_width, img_height)
+    qtumb = img_width/img_height.to_f
+    width = image.width
+    height = image.height
+    if (width/height.to_f) > qtumb
+      remove = (width - height*qtumb)/2
+      image.shave("#{remove}x0")
+    else
+      remove = (height - width/qtumb)/2
+      image.shave("0x#{remove}")
+    end
+    image.resize("#{img_width}x#{img_height}")
+  end
 end

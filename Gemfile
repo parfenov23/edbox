@@ -30,6 +30,7 @@ gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
 gem 'eventmachine', '1.0.4'
+gem 'rails-i18n'
 group :development do
   gem 'mailcatcher', '0.6.1'
   gem 'sqlite3'

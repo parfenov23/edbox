@@ -16,7 +16,10 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Фамилия:
         input.form-control name="user[last_name]" type="text" value="#{@user.last_name}"
-
+    .form-group
+        label
+            | О себе:
+        input.form-control name="user[about_me]" type="text" value="#{@user.about_me}"
     .form-group
         label
             | Пароль:
@@ -43,6 +46,13 @@ form.form-horizontal action="#{action_url}" method="post"
             - arr_companies = [["Нет", nil]]
             - Company.all.map{|company| arr_companies << [company.first_name, company.id]}
             = select_tag 'user[company_id]', options_for_select(arr_companies.collect{ |ac| [ac.first, ac.last] }, params[:company_id]), { :class => 'form-control' }
+    - unless @user.corporate?
+        .form-group
+            label
+                | Тип индивидуального аккаунта:
+            - arr_account_type = [["не назначен", nil]]
+            - AccountType.all.map { |account_type| arr_account_type << [account_type.name, account_type.id] }
+            = select_tag 'account_type', options_for_select(arr_account_type.collect { |ac| [ac.first, ac.last] }, (@user.get_real_account_type.id rescue nil)), { :class => 'form-control' }
 
     input type="hidden" name="_method" value="#{method}"
     input type="hidden" name="company_id" value="#{params[:company_id]}"

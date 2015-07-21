@@ -1,0 +1,38 @@
+#header__holder
+    = render "home/header/header", {header_top_arr: ['notifications']}
+    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }, programm_class: "active"}}
+
+.inner-content
+    #programm.content.programm-block
+        - @sections.each do |section|
+            - attachments = section.attachments
+            - if attachments.present? || @tests.present?
+                .program-item.closed-state.js__toggle-state
+                    .fixed-h
+                        .title = section.title
+                        .duration
+                            - count_duration = attachments.sum(:duration)
+                            = rus_case(count_duration, "час", "часа", "часов")
+                            i.icon
+                    .programm-components.hidden-part
+                        - attachments.each do |attachment|
+                            .programm-item.hidden-item class=attachment.class_type
+                                i.icon
+                                .title = attachment.title
+                                .duration
+                        - section.tests.each do |test|
+                            .programm-item.hidden-item.text
+                                i.icon
+                                .title
+                                    = test.title
+                                .duration
+                            /.programm-item.hidden-item.audio
+                            /    i.icon
+                            /    .title Аудиофайлы. “Невербальные коммуникации”
+                            /    .duration
+                            /.programm-item.hidden-item.test
+                            /    i.icon
+                            /    .title Чеклист
+                            /    .duration
+                            /
+

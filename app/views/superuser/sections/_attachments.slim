@@ -5,8 +5,8 @@
         .list-group-item.col-md-6
             span
                 /= user.first_name
-                = attachment.file.file.original_filename
+                = attachment.title
             a.btn.btn-danger.pull-right href="/superuser/attachments/#{attachment.id}/remove" style="margin-right: 5px;"
                 | Удалить
-            /a.btn.btn-success.pull-right href="/superuser/groups/#{section.id}/add_user?user_id=" style="margin-right: 5px;"
-            /    | Редактировать
+            a.btn.btn-success.pull-right href="/superuser/attachments/#{attachment.id}/edit" style="margin-right: 5px;"
+                | Редактировать

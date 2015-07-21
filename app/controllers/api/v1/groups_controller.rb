@@ -1,6 +1,8 @@
 module Api::V1
   class GroupsController < ::ApplicationController
-    before_action :is_director, only: [:create, :invite, :remove_user]
+    before_action :is_director, only: [:create, :invite,
+                                       :remove_user, :remove_course,
+                                       :add_course]
 
     def index
       groups = current_user.all_groups.as_json(:except => Group::EXCEPT_ATTR)
@@ -8,7 +10,7 @@ module Api::V1
     end
 
     def create
-      group = Group.new(group_params)
+      group = Group.find_or_create_by(group_params)
       if (group.save rescue false)
         render json: group.as_json
       else
@@ -40,22 +42,20 @@ module Api::V1
           end
         end
       end
+      group.build_all_course
       render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
     end
 
     def remove_user
-      emails = params[:emails]
       group = get_find_group
-      arr_hash_users = []
-      unless group.nil?
-        users = group.company.users
-        arr_hash_users = emails.map do |email|
-          user = users.find_by_email(email)
-          user.bunch_groups.where(group_id: group.id).destroy_all
-          user.transfer_to_json if (user.save rescue false)
-        end
-      end
-      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
+      result = unless group.nil?
+                 user = group.company.users.where(id: params[:user_id]).last
+                 if user.present?
+                   user.bunch_groups.where(group_id: group.id).destroy_all
+                   user.transfer_to_json if (user.save rescue false)
+                 end
+               end
+      render json: {user: (result rescue render_error(400, 'Проверьте данные'))}
     end
 
     def destroy
@@ -73,18 +73,19 @@ module Api::V1
       render json: group.transfer_to_json
     end
 
-    def update_course
-      if (find_bunch_course.nil? rescue true)
-        bunch_course = BunchCourse.build(params[:course_id], params[:id], params[:date_start])
+    def add_course
+      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group") rescue false)
+        render json: bunch_course.as_json
       else
-        bunch_course = find_bunch_course.update({date_start: Time.parse(params[:date_start]),
-                                                 course_id: params[:course_id],
-                                                 group_id: params[:id]})
+        render_error(500, 'Проверьте данные')
       end
-      if (bunch_course.save rescue false)
-        render json: bunch_course.transfer_to_json
+    end
+
+    def update_course
+      if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group") rescue false)
+        render json: bunch_course.as_json
       else
-        render_error(500, 'Ошибка сервера')
+        render_error(500, 'Проверьте данные')
       end
     end
 
@@ -94,7 +95,8 @@ module Api::V1
     end
 
     def remove_course
-      if (find_bunch_course.to_archive rescue false)
+      ligament_courses = get_find_group.ligament_courses.where(course_id: params[:course_id])
+      if (ligament_courses.destroy_all rescue false)
         render json: {success: true}
       else
         render_error(500, 'Ошибка сервера')
@@ -112,7 +114,7 @@ module Api::V1
     end
 
     def find_group
-      Group.find_by(id: params[:group][:id], company_id: current_user.company_id) rescue nil
+      Group.find_by(id: params[:groups][:id], company_id: current_user.company_id) rescue nil
     end
 
     def get_find_group
@@ -120,7 +122,7 @@ module Api::V1
     end
 
     def group_params
-      permit_params = params.require(:group).permit(:first_name, :company_id)
+      permit_params = params.require(:group).permit(:first_name, :company_id, :description)
       permit_params[:company_id] = current_user.company_id
       permit_params
     end

@@ -1,6 +1,0 @@
-.analytics
-  .content
-    input#filter.suggest name="filter" placeholder=("Введите имя менеджера или название компании") type="text" /
-    / .analytics_block
-
-    |analytics_closed_failed

@@ -1,54 +1,68 @@
 #js-filter-courses.courses-aside.filter-courses
-  .close-filter.icon Фильтр
-  .reset-filter СБРОСИТЬ ФИЛЬТР
-  .filter-category
-    .title Тип материала:
-    .checkbox__holder
-      input#checkbox1.checkbox name="n1" type="checkbox" /
-      label.label for="checkbox1"
-        i.check
-        i.ripple-effect.ripple-check
-        |Живые курсы
-  .filter-category
-    .title Стоимость:
-    .checkbox__holder
-      input#checkbox2.checkbox name="n2" type="checkbox" /
-      label.label for="checkbox2"
-        i.check
-        i.ripple-effect.ripple-check
-        |Живые вебинары
+    .close-filter.icon Фильтр
+    .reset-filter СБРОСИТЬ ФИЛЬТР
+    .filter-category
+        .title Тип материала:
+        - all_tags = Tag.all
+        - first_tags = all_tags[0..2]
+        - last_tags = all_tags[3..all_tags.count]
+        - first_tags.each do |tag|
+            .checkbox__holder
+                input.checkbox id="checkbox_tag#{tag.id}" name="tags[]" type="checkbox"
+                label.label for="checkbox_tag#{tag.id}"
+                    i.check
+                    i.ripple-effect.ripple-check
+                    = tag.title
+        - if last_tags.present?
+            .more.hidden
+                i.icon
+                - last_tags.each do |tag|
+                    .checkbox__holder
+                        input.checkbox id="checkbox_tag#{tag.id}" name="tags[]" type="checkbox"
+                        label.label for="checkbox_tag#{tag.id}"
+                            i.check
+                            i.ripple-effect.ripple-check
+                            = tag.title
+    .filter-category
+        .title Стоимость:
+        .checkbox__holder
+            input#checkbox2.checkbox name="n2" type="checkbox" /
+            label.label for="checkbox2"
+                i.check
+                i.ripple-effect.ripple-check
+                |Живые вебинары
 
-    .checkbox__holder
-      input#checkbox3.checkbox name="n3" type="checkbox" /
-      label.label for="checkbox3"
-        i.check
-        i.ripple-effect.ripple-check
-        |Живые курсы
-    .more.hidden
-      i.icon
-      .checkbox__holder
-        input#checkbox3.checkbox name="n3" type="checkbox" /
-        label.label for="checkbox3"
-          i.check
-          i.ripple-effect.ripple-check
-          |Живые курсы
-      .checkbox__holder
-        input#checkbox3.checkbox name="n3" type="checkbox" /
-        label.label for="checkbox3"
-          i.check
-          i.ripple-effect.ripple-check
-          |Живые курсы
-      .checkbox__holder
-        input#checkbox3.checkbox name="n3" type="checkbox" /
-        label.label for="checkbox3"
-          i.check
-          i.ripple-effect.ripple-check
-          |Живые курсы
-  .filter-category
-    .title Темы:
-    .checkbox__holder
-      input#checkbox4.checkbox name="n4" type="checkbox" /
-      label.label for="checkbox4"
-        i.check
-        i.ripple-effect.ripple-check
-        |Живые вебинары
+        .checkbox__holder
+            input#checkbox3.checkbox name="n3" type="checkbox" /
+            label.label for="checkbox3"
+                i.check
+                i.ripple-effect.ripple-check
+                |Живые курсы
+        .more.hidden
+            i.icon
+            .checkbox__holder
+                input#checkbox3.checkbox name="n3" type="checkbox" /
+                label.label for="checkbox3"
+                    i.check
+                    i.ripple-effect.ripple-check
+                    |Живые курсы
+            .checkbox__holder
+                input#checkbox3.checkbox name="n3" type="checkbox" /
+                label.label for="checkbox3"
+                    i.check
+                    i.ripple-effect.ripple-check
+                    |Живые курсы
+            .checkbox__holder
+                input#checkbox3.checkbox name="n3" type="checkbox" /
+                label.label for="checkbox3"
+                    i.check
+                    i.ripple-effect.ripple-check
+                    |Живые курсы
+    .filter-category
+        .title Темы:
+        .checkbox__holder
+            input#checkbox4.checkbox name="n4" type="checkbox" /
+            label.label for="checkbox4"
+                i.check
+                i.ripple-effect.ripple-check
+                |Живые вебинары

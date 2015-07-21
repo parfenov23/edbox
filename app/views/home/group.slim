@@ -1,7 +1,32 @@
 #header__holder
-  = render "home/header" , {header_top_arr:['notifications']}
-  = render "home/header_bottom", {header_bottom: {block: "groups", arrow: {url: "/cabinet"}, title: 'Мои группы'} }
+  = render "home/header/header", {header_top_arr: ['notifications']}
+  - unless @group.present?
+    - params_header = {block: "cabinet", title: 'Мой кабинет', groups_class: 'active'}
+  - else
+    - params_header = {block: "groups", arrow: {url: "/cabinet"}, title: 'Мои группы', group1_class: 'active'}
+  = render "home/header/header_bottom", {header_bottom: params_header}
 .content#groups
-
-  .groups__block
-    |Группа1
+  - unless @group.present?
+    - if current_user.director
+      = render 'home/group/new'
+    - elsif current_user.corporate
+      = render 'home/group/no_group'
+  - else
+    #infoGroup.box.show
+      .item.manage-group
+        = render "home/group/left_menu"
+        - unless params[:type].present?
+          .container
+            = render 'home/group/info'
+        - else
+          - case params[:type]
+          - when "user"
+            = render "home/group/users"
+          - when "schedule"
+            = render "home/group/schedule", {group: @group}
+          - when "courses"
+            = render "home/group/courses"
+        .form_group
+          = render 'home/group/form', {type: 'new'}
+          = render 'home/group/form', {type: 'edit', group: @group}
+          .md-overlay.js_closePopupFormGroup

@@ -1,8 +1,0 @@
-.input-area
-  .ava
-    img src="/uploads/ava.png"
-  .mega_input
-    .input.js__main-action-input contenteditable="true" data-ph="Что сделать"
-  .mega-btn.default-btn
-
-ul.result-list.hide

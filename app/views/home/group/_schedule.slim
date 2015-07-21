@@ -1,0 +1,65 @@
+- ligament_courses = group.ligament_courses
+- first_ligament_course = (ligament_courses.first rescue nil)
+- first_ligament_course = (ligament_courses.find(params[:course_id]).course rescue nil) if params[:course_id].present?
+- current_course = (first_ligament_course.course rescue nil)
+
+- if current_course.present?
+  - my_bunch_course = current_course.find_bunch_course(current_user.id, 'group', group.id)
+  .schedule-block
+    .schedule-header
+      .left-block
+        .psevdo-select
+          .select-trigger = current_course.title
+          ul.hidden-list
+            - ligament_courses.each do |ligament_course|
+              - course = ligament_course.course
+              li = course.title
+      .right-block
+        .duration
+          'Продолжительность:
+          = my_bunch_course.full_duration
+        .deadline
+          'Пройти до:
+          = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
+    .schedule-day-list
+      section.schedule-day
+        .group-block
+          - current_course.sections.each do |section|
+            - my_bunch_section = (my_bunch_course.bunch_sections.find_by_section_id(section.id) rescue nil)
+            - attachments = section.attachments
+            - if attachments.present? && my_bunch_section.present?
+              // completed
+              .schedule-item.closed-state.js__toggle-state class=(my_bunch_section.complete ? 'completed' : '')
+                .fixed-h.adaptive-title.adaptive-title
+                  .title.left-col = section.title
+                  .additional-info.right-col
+                    - if my_bunch_section.complete
+                      .compl пройдено
+                    - else
+                      - if (my_bunch_section.date_complete < Time.current rescue false)
+                        .overdue-label Раздел просрочен
+                      .duration
+                        |32 часа
+                        i.icon
+                    - if current_user.director
+                      .action-btn
+                        i.icon
+                        ul.hidden-list
+                          li Перенести дату окончания раздела
+                .course-components.hidden-part
+                  / Бери этот блок  text audio test
+                  - attachments.each do |attachment|
+                    - bunch_attachment = attachment.find_bunch_attachment(my_bunch_section.id)
+                    .course-component-item.hidden-item.adaptive-title class=attachment.class_type
+                      i.icon
+                      .title.left-col = attachment.title
+                      .right-col
+                        - unless bunch_attachment.complete
+                          .download
+                            a.js_downloadFile data-id=attachment.id data-bunch_section_id=my_bunch_section.id href = "javascript:void(0)" Скачать
+                          .duration = attachment.full_duration
+                            i.icon
+                        - else
+                          .overdue-label Пройдено
+- else
+  = render 'home/group/no_schedule'

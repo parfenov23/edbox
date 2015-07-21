@@ -1,0 +1,88 @@
+.btn__raised {
+  display        : block;
+  width          : 148px;
+  height         : 36px;
+  font           : 400 13px/36px 'Roboto';
+  color          : #FFF;
+  background     : #FD9348;
+  cursor         : pointer;
+  text-align     : center;
+  text-transform : uppercase;
+  box-shadow     : 0 0 2px 0 rgba(0, 0, 0, .12),
+  0 2px 6px 0 rgba(0, 0, 0, .24);
+}
+
+.btn__flat {
+  display        : block;
+  font           : 400 14px/1 'Roboto';
+  color          : #FD9348;
+  text-transform : uppercase;
+}
+
+.is__orange {
+  background : #FD9348;
+  color      : #FFF;
+}
+
+.btn-default {
+  display        : block;
+  min-width      : 88px !important;
+  padding        : 0 8px !important;
+  height         : 36px !important;
+  text-align     : center !important;
+  padding-top    : 0px !important;
+  margin         : 0 !important;
+  opacity        : 1;
+  box-shadow     : 0 2px 5px 0 rgba(0, 0, 0, .26);
+  font-size      : 14px;
+  color          : #FFF !important;
+  line-height    : 36px;
+  transition     : all .3s ease;
+  text-align     : center;
+  text-transform : uppercase;
+  cursor         : pointer;
+  border         : 0;
+  &.inactive {
+    opacity : .5;
+    cursor  : default;
+  }
+  &.btn__cyan {
+    background : #00BCD8 !important;
+  }
+  &.btn__orange {
+    background : #FD9348 !important;
+  }
+}
+
+.btn {
+  display        : block;
+  min-width      : 88px !important;
+  padding        : 0 8px !important;
+  height         : 36px !important;
+  text-align     : center !important;
+  padding-top    : 0px !important;
+  opacity        : 1;
+  box-shadow     : 0 2px 5px 0 rgba(0, 0, 0, .26);
+  font-size      : 14px;
+  line-height    : 36px;
+  transition     : all .3s ease;
+  text-align     : center;
+  text-transform : uppercase;
+  cursor         : pointer;
+  border         : 0;
+  &.inactive {
+    opacity : .5;
+    cursor  : default;
+  }
+  &.btn__cyan {
+    background : #00BCD8 !important;
+  }
+  &.btn__orange {
+    background : #FD9348 !important;
+  }
+}
+
+.btn.btn__noShadow {
+  box-shadow   : none;
+  margin-right : 5px;
+}

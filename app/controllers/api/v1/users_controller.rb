@@ -12,7 +12,8 @@ module Api::V1
       arr_hash_users = []
       emails = params[:emails]
       emails.each do |email|
-        user = User.build_default(current_user.company_id, email)
+        user = User.find_by_email(email)
+        user = User.build_default(current_user.company_id, email) if user.blank?
         arr_hash_users << user.transfer_to_json if (user.save rescue false)
       end
       render json: {users: arr_hash_users}
@@ -41,6 +42,29 @@ module Api::V1
       end
     end
 
+    def update_course
+      if (bunch_course = BunchCourse.build(params[:course_id], nil, params[:date_complete], "user", current_user.id) rescue false)
+        render json: bunch_course.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
+    def remove_course
+      current_user.bunch_courses.where({model_type: 'user', course_id: params[:course_id]}).destroy_all
+      render json: {success: true}
+    end
+
+    def update_section
+      section = BunchSection.find(params[:section_id])
+      section.date_complete = Time.parse(params[:date_complete]).end_of_day
+      if(section.save rescue false)
+        render json: section.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def change_password
       current_user.password = params[:password]
       if (current_user.save rescue false)
@@ -49,16 +73,6 @@ module Api::V1
         render_error(500, 'Проверьте данные')
       end
     end
-
-    # def update_avatar
-    #   if params[:avatar].present?
-    #     img = ::ResizeImage.crop(params[:avatar].path)
-    #     img_base64 = Base64.encode64(File.open(img.path, "rb").read)
-    #     render json: { base64: img_base64 }
-    #   else
-    #     render json: { error: "You do not pass the picture" }
-    #   end
-    # end
 
     def update_avatar
       unless params[:avatar].nil?
@@ -76,7 +90,7 @@ module Api::V1
     end
 
     def add_favorite_course
-      favorite_course = FavoriteCourse.new({course_id: params[:course_id], user_id: current_user.id})
+      favorite_course = FavoriteCourse.find_or_create_by({course_id: params[:course_id], user_id: current_user.id})
       if (favorite_course.save rescue false)
         render json: favorite_course.transfer_to_json
       else
@@ -92,7 +106,7 @@ module Api::V1
     private
 
     def find_favorite_course
-      FavoriteCourse.find(params[:favorite_course_id])
+      current_user.favorite_courses.find(params[:favorite_course_id])
     end
 
     def find_user

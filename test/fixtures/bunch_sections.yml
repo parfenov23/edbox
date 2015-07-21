@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_complete: 2015-07-08 15:36:06
+  complete: false
+  section_id: 1
+  bunch_course_id: 1
+
+two:
+  date_complete: 2015-07-08 15:36:06
+  complete: false
+  section_id: 1
+  bunch_course_id: 1

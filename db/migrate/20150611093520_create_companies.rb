@@ -7,3 +7,4 @@ class CreateCompanies < ActiveRecord::Migration
     end
   end
 end
+# /robot.txt

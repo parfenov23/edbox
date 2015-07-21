@@ -1,0 +1,18 @@
+.box.show
+    .item.create-group
+        .top-text
+            p
+                'Для того, чтобы начать обучение сотрудников, вам необходимо создать
+                | группы и пригласить в них пользователей. Далее вы сможете подобрать нужные курсы и составить расписание.
+        .container
+            .container-inner
+                h2 Создать новую группу
+                form.newGroup
+                    .group
+                        input placeholder=("Введите название") type="text" name="group[first_name]"
+                        span.bar
+                    .group
+                        textarea#group-description placeholder="Описание" name="group[description]"
+                        span.bar
+                    .submit-area
+                        .submitBtn.btn Сохранить

@@ -1,7 +1,14 @@
 #header__holder
-  = render "home/header" , {header_top_arr:['notifications']}
-  = render "home/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет' }}
-.content#cabinet
+  = render "home/header/header", {header_top_arr: ['notifications']}
+  = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет'}}
 
-  .cabinet__block
-    |Кабинет
+
+.inner-content
+  .content#cabinet.cabinet__block
+    - if true
+      = render 'home/cabinet/empty_courses'
+    - else
+      = render 'home/cabinet/all_courses'
+= render "home/cabinet/schedule"
+/.adova__btn
+/  i.icon

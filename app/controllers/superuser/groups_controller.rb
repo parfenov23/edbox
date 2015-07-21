@@ -57,7 +57,7 @@ module Superuser
     end
 
     def remove_course
-      find_bunch_course.to_archive
+      find_group.ligament_courses.where(course_id: params[:course_id]).destroy_all
       redirect_to :back
     end
 
@@ -67,20 +67,14 @@ module Superuser
     end
 
     def update_course
-      if (find_bunch_course.nil? rescue true)
-        BunchCourse.build(params[:course_id], params[:id], params[:date_start]).save
-      else
-        find_bunch_course.update({date_start: Time.parse(params[:date_start]),
-                                 course_id: params[:course_id],
-                                 group_id: params[:id]})
-      end
+      BunchCourse.build(params[:course_id], params[:id], params[:date_complete], "group")
       redirect_to edit_superuser_group_path(params[:id], params: {type: "courses"})
     end
 
     private
 
     def find_bunch_course
-      BunchCourse.find(params[:bunch_course_id])
+      find_group.bunch_courses.find_by_course_id(params[:course_id])
     end
 
     def find_group
@@ -88,7 +82,7 @@ module Superuser
     end
 
     def params_group
-      {first_name: params[:first_name], company_id: params[:company_id]}
+      {first_name: params[:first_name], company_id: params[:company_id], description: params[:description]}
     end
 
   end

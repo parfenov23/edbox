@@ -1,0 +1,79 @@
+- schedules = (current_user.schedule rescue [])
+- schedules = (schedules.select { |sc| sc[:date].month == params[:schedule][:month] } rescue []) if params[:schedule].present?
+- current_date = (params[:schedule].present? ? Time.new(Time.now.year, params[:schedule][:month], 1).beginning_of_month : Time.now.beginning_of_month) rescue Time.now
+- current_month = schedule_line[current_date.month-1]
+#js-schedule-cabinet.courses-aside.schedule-cabinet
+    .close-filter.icon Расписание
+    .schedule-list
+        .month_chouse
+            .select.common_select
+                i.icon
+                .select-trigger.titleSelectGroup = current_month[:title]
+                input.selectCurrentMonth name="current_month" type="hidden" value="#{current_month[:month]}" /
+                ul.hidden.listGroup.js__baron style=("display: none;")
+                    - schedule_line.each do |date|
+                        li.js_psevdo-select.selectGroup.selectMonthSchedule data-id="#{date[:month]}" = date[:title]
+
+        ul.month-list
+            / li.item.curr
+            /li.item
+            /    .data
+            /        .week-day ПН
+            /        .date 13
+            /    .box
+            - current_date.end_of_month.day.times do |day|
+                - current_day = current_date + day.day
+                - class_curr = current_day == Time.now.beginning_of_day ? "curr" : ""
+                li.item class="#{class_curr}"
+                    .data
+                        .week-day = Russian.strftime(current_day, "%a")
+                        .date = current_day.day
+                    .box
+                        - schedule_current_day = schedules.select{|sch| sch[:date].day == current_day.day}.last
+                        - if schedule_current_day.present?
+                            - schedule_current_day[:bunch_courses].each do |bunch_course|
+                                - bunch_course = BunchCourse.find(bunch_course)
+                                - course = bunch_course.course
+                                .event-info.mdl-shadow--2dp.director
+                                    .title = course.title
+                                    - if bunch_course.model_type == "user"
+                                        .edit-menu.js__select-calendar
+                                            a.edit-date href="#"
+                                                i.icon-uniE8A3
+                                            .hidden-calendar-wrp
+                                                .hidden-calendar
+                                                    .calendar-header
+                                                        .back.icon
+                                                        |Выбор даты
+                                                    .calendar-holder
+                                                        - ts = "Дата оканчания курса изменена"
+                                                        .selected-value.js_changeDeadLineCourseMy data-text=ts data-course_id=bunch_course.course_id
+                                                            = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Выберите дату")
+                                                        .datapicker__trigger
+                                                ul.hidden-list
+                                                    li data-show = "hidden-calendar" Перенести дату окончания курса
+                                                    - ts = "Курс удален!"
+                                                    li.js_removeCourseMy data-text=ts data-course_id=bunch_course.course_id Удалить
+                            - schedule_current_day[:bunch_sections].each do |bunch_section|
+                                - bunch_section = BunchSection.find(bunch_section)
+                                - section = bunch_section.section
+                                .event-info.mdl-shadow--2dp.director
+                                    .title = section.title
+                                    - if bunch_section.bunch_course.model_type == "user"
+                                        .edit-menu.js__select-calendar
+                                            a.edit-date href="#"
+                                                i.icon-uniE8A3
+                                            .hidden-calendar-wrp
+                                                .hidden-calendar
+                                                    .calendar-header
+                                                        .back.icon
+                                                        |Выбор даты
+                                                    .calendar-holder
+                                                        - ts = "Дата оканчания раздела изменена"
+                                                        .selected-value.js_changeDeadLineSectionMy data-text=ts data-section_id=bunch_section.id
+                                                            = ((l local_time(bunch_section.date_complete), :format => :short_min) rescue "Выберите дату")
+                                                        .datapicker__trigger
+                                                ul.hidden-list
+                                                    li data-show = "hidden-calendar" Перенести дату окончания раздела
+
+.js__backing

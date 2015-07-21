@@ -11,16 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701071855) do
+ActiveRecord::Schema.define(version: 20150720203045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_type_relations", force: true do |t|
+    t.string  "modelable_type"
+    t.integer "modelable_id"
+    t.integer "account_type_id"
+  end
+
+  create_table "account_types", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "answers", force: true do |t|
+    t.integer "question_id"
+    t.string  "text"
+    t.boolean "right"
+  end
 
   create_table "attachments", force: true do |t|
     t.string   "file"
     t.string   "file_type"
     t.string   "attachmentable_type"
     t.integer  "attachmentable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "size"
+    t.text     "title"
+    t.integer  "duration",            default: 0
+  end
+
+  create_table "bunch_attachments", force: true do |t|
+    t.integer  "attachment_id"
+    t.integer  "bunch_section_id"
+    t.boolean  "complete",         default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,12 +58,33 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.datetime "date_start"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "archive",    default: false
+    t.boolean  "archive",            default: false
+    t.string   "model_type"
+    t.integer  "user_id"
+    t.boolean  "complete",           default: false
+    t.integer  "ligament_course_id"
+    t.datetime "date_complete"
   end
 
   create_table "bunch_groups", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bunch_sections", force: true do |t|
+    t.datetime "date_complete"
+    t.boolean  "complete",        default: false
+    t.integer  "section_id"
+    t.integer  "bunch_course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bunch_tags", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,6 +102,7 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "duration"
   end
 
   create_table "favorite_courses", force: true do |t|
@@ -68,6 +117,20 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+  end
+
+  create_table "ligament_courses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "group_id"
+    t.boolean  "process",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.integer "test_id"
+    t.string  "title"
   end
 
   create_table "sections", force: true do |t|
@@ -75,6 +138,23 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test_results", force: true do |t|
+    t.integer "user_id"
+    t.integer "test_id"
+    t.integer "result"
+  end
+
+  create_table "tests", force: true do |t|
+    t.integer "section_id"
+    t.string  "title"
   end
 
   create_table "users", force: true do |t|
@@ -93,6 +173,7 @@ ActiveRecord::Schema.define(version: 20150701071855) do
     t.integer  "group_id"
     t.datetime "last_auth"
     t.boolean  "leading",         default: false
+    t.text     "about_me"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

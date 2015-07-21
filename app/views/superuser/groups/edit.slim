@@ -7,7 +7,7 @@ hr
 ul.nav.nav-tabs
     li.category_active class="#{params[:type].to_s == 'courses' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit?type=courses"
-            = "Курсы (#{@group.bunch_courses.count})"
+            = "Курсы (#{@group.ligament_courses.count})"
 
     li.category_active class="#{params[:type].to_s == '' ? 'active' : ''}" role="presentation"
         a href="/superuser/groups/#{@group.id}/edit"
@@ -35,18 +35,18 @@ ul.nav.nav-tabs
             .list-group-item.col-md-6
                 span
                     = user.first_name
-                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_course?user_id=#{user.id}" style="margin-right: 5px;"
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/add_user?user_id=#{user.id}" style="margin-right: 5px;"
                     | Добавить
 
 - if params[:type] == 'courses'
     .list-group.row
         .list-group-item.active
             a.btn.btn-success href="/superuser/groups/#{@group.id}/add_course?back_url=groups&group_id=#{@group.id}"  Добавить курс
-        - @group.bunch_courses.each do |bunch_course|
-            - course = bunch_course.course
+        - @group.ligament_courses.each do |ligament_course|
+            - course = ligament_course.course
             .list-group-item.col-md-6
                 span
                     = course.title
-                = link_to("Удалить курс", "/superuser/groups/#{@group.id}/remove_course?bunch_course_id=#{bunch_course.id}", class: "btn btn-danger pull-right")
-                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/edit_course?bunch_course_id=#{bunch_course.id}" style="margin-right: 5px;"
+                = link_to("Удалить курс", "/superuser/groups/#{@group.id}/remove_course?course_id=#{course.id}", class: "btn btn-danger pull-right")
+                a.btn.btn-success.pull-right href="/superuser/groups/#{@group.id}/edit_course?course_id=#{course.id}" style="margin-right: 5px;"
                     | Редактировать

@@ -1,20 +1,16 @@
 #js-groups-courses.courses-aside.groups-courses
-  .close-filter.icon Группы
-  .group-item
-    .title Менеджеры отдела продаж
-    .user-qty
-      i.icon
-      |12 пользователей
-    .courses-qty
-      i.icon
-      |3 курса
-      
-  .group-item
-    .title Менеджеры отдела непродаж
-    .user-qty
-      i.icon
-      |0 пользователей
-    .courses-qty
-      i.icon
-      |0 курсов
+    .close-filter.icon Группы
+    - groups = (current_user.company.groups rescue [])
+    - groups.each do |group|
+        .group-item
+            a href="/group?id=#{group.id}"
+                .title = group.first_name
+            .user-qty
+                i.icon
+                - count_users = group.bunch_groups.count
+                = "#{count_users} #{Russian.p(count_users, "пользователь", "пользователя", "пользователей")}"
+            .courses-qty
+                i.icon
+                - count_courses = group.bunch_courses.count
+                = "#{count_courses} #{Russian.p(count_courses, "курс", "курса", "курсов")}"
       
