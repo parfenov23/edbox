@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
 
+  get "video/:id" => "home#video"
   get ":action" => "home#:action"
 
   resources :tests, only: [] do
