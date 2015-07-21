@@ -129,6 +129,11 @@ Rails.application.routes.draw do
         get :remove
       end
     end
+    resources :account_types do
+      member do
+        get :remove
+      end
+    end
     resources :tags do
       member do
         get :remove
