@@ -109,4 +109,20 @@
       }
     }
   }
+  &.current-day {
+    .item {
+      position: relative;
+      &::before {
+          content       : '';
+          display       : block;
+          width         : 4px;
+          height        : 100%;
+          position      : absolute;
+          top           : 0;
+          left          : 0;
+          background    : #FD9348;
+          border-radius : 1px 0 0 1px;
+      }
+    }
+  }
 }
