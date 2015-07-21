@@ -125,15 +125,6 @@
             line-height  : 18px;
             position: relative;
             margin-top: 3px;
-            i {
-                position  : absolute;
-                left      : 0;
-                top       : 0;
-                font-size : 14px;
-                &::before {
-                    content : '\E71F';
-                }
-            }
         }
       }
     }

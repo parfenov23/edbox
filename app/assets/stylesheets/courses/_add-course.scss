@@ -22,7 +22,7 @@
             font-size     : 20px;
             color         : rgba(0, 0, 0, 0.87);
             line-height   : 32px;
-            margin-bottom : 42px;
+            margin-bottom : 44px;
         }
         .section__deadline-title {
           display: none;
@@ -73,7 +73,6 @@
           .section__description {
             display: block;
             padding: 0 24px;
-            border-bottom: 1px solid rgba(0,0,0,0.12);
             padding-bottom: 14px;
           }
           .section__deadline-title {
@@ -85,7 +84,6 @@
             margin-bottom: 32px;
             padding-left: 23px;
             @include clearfix;
-            padding-top: 13px;
             .back {
               float: left;
               margin-right: 15px;
@@ -108,6 +106,9 @@
               min-height: 42px;
               padding: 0 24px;
               border-bottom: 1px solid rgba(0,0,0,0.12);
+              &:first-child {
+                border-top: 1px solid rgba(0,0,0,0.12);
+              }
               .left-part {
                 line-height: 42px;
               }
@@ -118,6 +119,7 @@
                   color: rgba(0,0,0,0.54);
                   line-height: 24px;
                   margin-top: 4px;
+                  margin-right: 8px;
                 }
                 .set-date {
                   position: relative;
@@ -148,8 +150,8 @@
                     height: 32px;
                     top: 0;
                     left: 0;
-                    opacity: 0;
                     z-index: 2;
+                    opacity: 0;
                     background: none;
                     border: none;
                     cursor: pointer;
@@ -182,20 +184,20 @@
         color         : rgba(0, 0, 0, 0.54);
         @include inline-block;
         margin-bottom : 44px;
+        min-height: 26px;
         &.task-type {
-
-            //                    min-width : 128px;
         }
         i {
-            position : absolute;
-            left     : 0;
-            top      : 5px;
-            &::before {
+          position: absolute;
+          left: 0;
+          top: 2px;
+          font-size: 24px;
+          &::before {
                 content : '\E8D6';
             }
         }
         .select-trigger {
-            padding-right : 26px;
+            padding-right : 23px;
             background    : url("arrow-grey.svg") 100% 50% no-repeat;
             white-space   : nowrap;
             font-size     : 15px;
@@ -242,13 +244,13 @@
       position: relative;
       padding-left: 46px;
       color: rgba(0, 0, 0, 0.54);
-      margin-top: 24px;
+      margin-top: 22px;
       cursor: pointer;
       &::before {
         font-family: Icons, sans-serif;
         content: '\E7B6';
         position: absolute;
-        right: 32px;
+        right: -32px;
         top: 50%;
         margin-top: -8px;
         color: #BDBDBD;
@@ -256,6 +258,9 @@
       }
       .title {
         margin-bottom: 4px;
+        font-size: 15px;
+        color: rgba(0,0,0,0.54);
+        line-height: 24px;
       }
       .description {
         font-size: 13px;
@@ -263,9 +268,10 @@
         line-height: 20px;
       }
       i {
-          position : absolute;
-          left     : 0;
-          top      : 5px;
+          position: absolute;
+          left: 0;
+          top: 2px;
+          font-size: 24px;
           &::before {
               content : '\E8AF';
           }
@@ -277,10 +283,12 @@
         position     : relative;
         padding-left : 46px;
         color        : rgba(0, 0, 0, 0.54);
+        min-height: 44px;
         i {
-            position : absolute;
-            left     : 0;
-            top      : 5px;
+          position: absolute;
+          left: 0;
+          top: 2px;
+          font-size: 24px;
             &::before {
                 content : '\E8AF';
             }
@@ -318,4 +326,9 @@
             color      : rgba(0, 0, 0, 0.54);
         }
     }
+
+    &.director__border {
+
+    }
+
 }
