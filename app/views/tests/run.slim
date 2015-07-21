@@ -1,40 +1,36 @@
 #header__holder
-    = render "home/header/header", {header_top_arr: ['notifications']}
-    = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow:{url: "/courses" }}}
-.inner-content                  
-    .content
-        - full = @course.attachments.where(size: 'full').last
-        - if full.present?
-            .image-bg style="background: url('#{full.file.url}')"
-        - else
-            .image-bg style="background: url('/uploads/pic5.png')"
-        .courses-description
-            .image-block style="height: 80px;"
-                .mask
-                .title
-                    |Тест 1
-            .text-block
-                .action-block
-                    .some-action
-                        #wrapper
-                            #steps
-                                form#formElem action="" method="post" name="formElem"
-                                    input name="id" value="#{@test.id}" style="display:none;"
-                                    - step = 0;
-                                    - @test.questions.each do |question|
-                                        - step+=1
-                                        fieldset class="step#{step}"
-                                            legend #{question.title}
-                                            - question.answers.each do |answer|
-                                                p
-                                                    input type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}" #{answer.text}
-
-                        #navigation style="display:none;"
-                            ul.testNav
-                                - step = 0;
-                                - @test.questions.each do |question|
-                                    - step+=1
-                                    li.btnCurrent data-id="#{step}"
-                                        | #{question.title}
-                                li.btnCurrentSubmit#submit
-                                    | Завершить
+    = render "home/header/header", { header_top_arr: ['notifications'] }
+    = render "home/header/header_bottom", { header_bottom: { block: "profile", title: 'Мой профиль', profile_class: "active" } }
+.inner-content
+    form.content#tests
+        .test-info
+            .title
+                .title-text Тест курса «#{@course.description}»
+                .duration #{@course.duration} часа
+            .description #{@test.title}
+            .question-qty Вопросов в тесте: #{@test.questions.count}
+        .test-list
+            input name="id" value="#{@test.id}" style="display:none;"
+            - step = 0;
+            - @test.questions.each do |question|
+                - step+=1
+                .test-item
+                    .title Вопрос #{step}
+                    .description #{question.title}
+                    - correct_answer_count = question.answers.where(right: true).count
+                    - if correct_answer_count == 1
+                        - question.answers.each do |answer|
+                            .answer
+                                .radio
+                                    input id="answer-#{answer.id}" type="radio" name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                                    label for="answer-#{answer.id}"
+                                .text #{answer.text}
+                    - else
+                        - question.answers.each do |answer|
+                            .answer
+                                .check
+                                    input id="answer-#{answer.id}" type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                                    label.icon for="answer-#{answer.id}"
+                                .text #{answer.text}
+        .finish-test
+            .finish-btn#submit ЗАВЕРШИТЬ ТЕСТ
