@@ -50,10 +50,10 @@ class HomeController < ActionController::Base
     render text: html
   end
 
-  def render_group_program
-    html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
-    render text: html
-  end
+  # def render_group_program
+  #   html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
+  #   render text: html
+  # end
 
   def course_description
     @favorite_courses = current_user.favorite_courses

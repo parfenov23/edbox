@@ -16,11 +16,11 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
-  adaptiveTitle = ->
-    $('.adaptive-title').each ->
-      rightWidth = $(@).find('.right-col').width()
-      $(@).find('.left-col').css
-        width: $(@).width() - rightWidth + 'px'
+adaptiveTitle = ->
+  $('.adaptive-title').each ->
+    rightWidth = $(@).find('.right-col').width()
+    $(@).find('.left-col').css
+      width: $(@).width() - rightWidth + 'px'
 
 
 figcaptionTitleEclipses = (el, height) ->
