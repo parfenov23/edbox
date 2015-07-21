@@ -1,0 +1,112 @@
+.schedule-calendar {
+  background: #fff;
+  .schedule-line {
+    display: flex;
+    justify-content: space-around;
+    .item {
+      border-right: 1px solid rgba(0,0,0,0.12);
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+      padding: 12px;
+      height: 191px;
+      width: calc(100% / 7);
+      &:hover {
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.12), 0px 8px 8px 0px rgba(0,0,0,0.24);
+      }
+      .data {
+        margin-bottom: 24px;
+        .weekday {
+          font-size: 11px;
+          color: rgba(0,0,0,0.26);
+          line-height: 16px;
+        }
+        .day {
+          font-size: 34px;
+          color: rgba(0,0,0,0.26);
+          line-height: 34px;
+        }
+      }
+      .day-event {
+        height: 32px;
+        border: 1px solid rgba(0,0,0,0.12);
+        border-radius: 2px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        line-height: 32px;
+        padding: 0 8px 0 12px;
+        margin-bottom: 8px;
+        font-size: 11px;
+        color: rgba(0,0,0,0.54);
+      }
+      .show-more {
+        font-size: 11px;
+        color: rgba(0,0,0,0.26);
+        line-height: 15px;
+      }
+      &.current {
+        .data {
+          .weekday, .day {
+            color: #FD9348;
+          }
+        }
+        .day-event {
+          position: relative;
+          &::before {
+              content       : '';
+              display       : block;
+              width         : 4px;
+              height        : 100%;
+              position      : absolute;
+              top           : 0;
+              left          : 0;
+              background    : #FD9348;
+              border-radius : 1px 0 0 1px;
+          }
+        }
+      }
+    }
+  }
+}
+.aside__schedule-calendar {
+  padding-left: 16px;
+  padding-right: 16px;
+  .course-wrp {
+    background-color: #F5F5F5;
+    padding: 12px 16px 12px 16px;
+    margin-top: 12px;
+    > .title  {
+      font-size: 13px;
+      color: rgba(0,0,0,0.54);
+      line-height: 20px;
+      margin-bottom: 12px;
+    }
+    .item {
+      padding: 16px 145px 16px 24px;
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 2px;
+      margin-bottom: 12px;
+      .title {
+        font-size: 15px;
+        color: rgba(0,0,0,0.87);
+        line-height: 24px;
+      }
+      .duration__with-icon  {
+        position: absolute;
+        top: 16px;
+        right: 100px;
+        font-size: 11px;
+        color: rgba(0,0,0,0.26);
+        line-height: 18px;
+        i {
+          color: rgba(0,0,0,0.26);
+        }
+      }
+      .com__director-btn {
+        position: absolute;
+        top: 16px;
+        right: 32px;
+      }
+    }
+  }
+}
