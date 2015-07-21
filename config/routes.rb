@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'application#index_page'
+  root to: 'home#index_page'
   get :sign_in, to: "enter#sign_in"
   get :sign_up, to: "enter#sign_up"
   get :sign_out, to: "enter#sign_out"
@@ -32,6 +32,13 @@ Rails.application.routes.draw do
           post :registration
           post :recover_password
           get :signout
+        end
+      end
+
+      resources :attachments do
+        member do
+          get :render_file
+          post :complete
         end
       end
       resources :users, only: [] do
@@ -118,6 +125,11 @@ Rails.application.routes.draw do
       end
     end
     resources :answers do
+      member do
+        get :remove
+      end
+    end
+    resources :account_types do
       member do
         get :remove
       end

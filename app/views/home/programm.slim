@@ -15,10 +15,8 @@
                             = rus_case(count_duration, "час", "часа", "часов")
                             i.icon
                     .programm-components.hidden-part
-                        - arr_types = ["text", "audio", "video", "test"]
                         - attachments.each do |attachment|
-                            - type = (arr_types.include? (attachment.file_type)) ? attachment.file_type : "text"
-                            .programm-item.hidden-item class="#{type}"
+                            .programm-item.hidden-item class=attachment.class_type
                                 i.icon
                                 .title = attachment.title
                                 .duration

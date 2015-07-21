@@ -25,6 +25,7 @@ module Superuser
 
     def update
       answer = find_answer
+      # binding.pry
       answer.update(params_answer)
       redirect_to superuser_answers_path + "?question_id=#{answer.question_id}"
     end

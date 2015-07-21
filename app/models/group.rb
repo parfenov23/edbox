@@ -14,4 +14,12 @@ class Group < ActiveRecord::Base
     Course.where(id: bunch_courses.pluck(:course_id).uniq)
   end
 
+  def build_all_course
+    ligament_courses.each do |ligament_course|
+      course = ligament_course.course
+      date_complete = (ligament_course.bunch_courses.last.date_complete.to_s rescue (Time.now + 2.day).to_s )
+      BunchCourse.build(course.id, id, date_complete, 'group', nil)
+    end
+  end
+
 end
