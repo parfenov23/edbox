@@ -9,11 +9,15 @@ class Course < ActiveRecord::Base
 
   def create_all_img(image)
     attachment = Attachment.save_file('Course', id, image, 'full')
-    attachment_img = MiniMagick::Image.open(attachment.file.path)
-    tumb1 = ResizeImage.course_image_resize(attachment_img, 347, 192)
-    Attachment.save_file('Course', id, tumb1, '347x192')
-    tumb2 = ResizeImage.course_image_resize(attachment_img, 920, 377)
-    Attachment.save_file('Course', id, tumb2, '920x377')
+    attachment_wanted_sizes = [
+      {width: 347, height: 192},
+      {width: 920, height: 377}
+    ]
+    attachment_wanted_sizes.each do |size|
+      attachment_img = MiniMagick::Image.open(attachment.file.path)
+      tumb = ResizeImage.course_image_resize(attachment_img, size[:width], size[:height])
+      Attachment.save_file('Course', id, tumb, "#{size[:width]}x#{size[:height]}")
+    end
   end
 
   def get_image_path(size)
