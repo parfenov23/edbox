@@ -6,4 +6,4 @@
     - favorite_courses = current_user.favorite_courses
     .content#courses.courses-list
         - favorite_courses.each do |favorite_course|
-            = render "home/courses/course", {course: favorite_course.course}
+            = render "home/courses/course", {course: favorite_course.course, type: 'favorite'}

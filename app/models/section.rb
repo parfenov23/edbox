@@ -7,4 +7,9 @@ class Section < ActiveRecord::Base
     attachments.map{|at| at.type}.uniq
   end
 
+  def bunch_section(user_id)
+    user = User.find(user_id)
+    user.bunch_courses.joins(:bunch_sections).where({bunch_sections: {section_id: id}}).last
+  end
+
 end

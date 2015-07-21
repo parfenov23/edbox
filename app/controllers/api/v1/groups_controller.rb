@@ -42,6 +42,7 @@ module Api::V1
           end
         end
       end
+      group.build_all_course
       render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
     end
 

@@ -36,18 +36,22 @@ class BunchCourse < ActiveRecord::Base
                                                          ligament_course_id: ligament_course_id})
     bunch_course.date_complete = date_complete
     bunch_course.save
-    # plus_day = 0
     sections.each do |section|
       bunch_section = bunch_course.bunch_sections.find_or_create_by({section_id: section.id, bunch_course_id: bunch_course.id})
-      # bunch_section.date_complete = date_start + plus_day.day
-      # plus_day += 1
       bunch_section.save
+      section.attachments.each do |attachment|
+        BunchAttachment.find_or_create_by({attachment_id: attachment.id, bunch_section_id: bunch_section.id})
+      end
     end
   end
 
   def to_archive
     self.archive = true
     self.save
+  end
+
+  def full_duration
+    "32 часа"
   end
 
   def self.closed

@@ -5,6 +5,14 @@ class HomeController < ActionController::Base
 
   layout "application"
 
+  def index_page
+    unless current_user.nil?
+      redirect_to '/cabinet'
+    else
+      redirect_to '/sign_in'
+    end
+  end
+
   def show
     render :text => "profile"
   end
@@ -38,7 +46,12 @@ class HomeController < ActionController::Base
   end
 
   def render_mini_schedule
-    html = render_to_string 'home/cabinet/_schedule', :layout => false
+    html = render_to_string 'home/cabinet/_schedule', :layout => false, :locals => {params: params}
+    render text: html
+  end
+
+  def render_group_program
+    html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
     render text: html
   end
 

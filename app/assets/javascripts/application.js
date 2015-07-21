@@ -39,6 +39,12 @@ var includeDatePicker = function(){
     });
 }
 
+function pageLoad(action){
+    $(document).ready(function () {
+        $("img:last").load(action);
+    });
+}
+
 
 $(document).ready(function () {
 
@@ -103,12 +109,9 @@ $(document).ready(function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
+    $('.filter-courses, .js__baron').baron();
 
-
-    $('.filter-courses').baron();
-
-
-
+    
     headerUserToggle = function () {
         $(document).on('click', function (e) {
             if ($(e.target).closest('.header__user').length == 0){

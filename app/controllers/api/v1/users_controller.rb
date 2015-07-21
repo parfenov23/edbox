@@ -50,6 +50,21 @@ module Api::V1
       end
     end
 
+    def remove_course
+      current_user.bunch_courses.where({model_type: 'user', course_id: params[:course_id]}).destroy_all
+      render json: {success: true}
+    end
+
+    def update_section
+      section = BunchSection.find(params[:section_id])
+      section.date_complete = Time.parse(params[:date_complete]).end_of_day
+      if(section.save rescue false)
+        render json: section.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def change_password
       current_user.password = params[:password]
       if (current_user.save rescue false)

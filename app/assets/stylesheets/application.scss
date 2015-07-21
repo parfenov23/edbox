@@ -160,6 +160,17 @@ i {
     z-index: 1;
   }
 }
+.adova__btn {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: #FD9348;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  cursor: pointer;
+}
 
 .content#groups{
   @import "pogorelov/group/courses";
