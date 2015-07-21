@@ -4,5 +4,7 @@
 
 .inner-content
   #programm.content.programm-block
-    = render "home/program/empty", {sections: @sections}
-    = render "home/program/my_course", {sections: @sections}
+    - if true
+      = render "home/program/empty", {sections: @sections}
+    - else
+      = render "home/program/my_course", {sections: @sections}
