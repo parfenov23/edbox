@@ -10,6 +10,7 @@ $(document).ready(function () {
                 data   : data,
                 success: function (e) {
                     message = 'Результат: ' + e.result + ' баллов';
+                    history.go(-1);
                     show_error(message, 3000);
                 },
                 error  : function () {

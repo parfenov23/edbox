@@ -1,7 +1,12 @@
 class TestsController < HomeController
   def run
     @test = find_test
-    @course = @test.section.course
+    section = @test.section
+    @course = section.course
+    bunch_section = section.bunch_section(current_user.id)
+    unless bunch_section.present?
+      redirect_to '/'
+    end
   end
 
   def complete

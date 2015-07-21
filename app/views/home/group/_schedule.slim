@@ -33,7 +33,7 @@
                 .fixed-h.adaptive-title.adaptive-title
                   .title.left-col = section.title
                   .additional-info.right-col
-                    - if my_bunch_section.complete
+                    - if my_bunch_section.full_complete?(current_user.id)
                       .compl пройдено
                     - else
                       - if my_bunch_section.date_complete.present?
@@ -75,6 +75,6 @@
                           .overdue-label Пройдено
                         - else
                           .download
-                            a href="javascript:void(0)" Пройти
+                            a href="/tests/#{test.id}/run" Пройти
 - else
   = render 'home/group/no_schedule'
