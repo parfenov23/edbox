@@ -46,7 +46,6 @@
             color         : #FFF;
             line-height   : 18px;
             padding       : 2px 7px;
-            max-width     : 246px;
             overflow      : hidden;
             text-overflow : ellipsis;
             white-space   : nowrap;
@@ -134,10 +133,10 @@
                     content : '\E631';
                 }
             }
-            .schedule {
-                &::before {
-                    content : '\E625';
-                }
+            .schedule{
+              &::before {
+                  content  : '\E8AF';
+              }
             }
             &:hover {
                 width : 95px;

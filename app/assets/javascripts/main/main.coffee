@@ -6,7 +6,6 @@ tabsCorusel = ->
     $('.header__bottom').addClass('carusel for_prev')
 
 headerTabsLine = (elem) ->
-
   if $('.tabs__item').length
     width = $(elem).outerWidth()
     tabs_item_active = $(elem)
@@ -47,6 +46,12 @@ $(document).ready ->
 
 
     $('.js__carusel').jcarousel()
+
+    $('.select-deadline').on 'click', ->
+      $(@).closest('.check_group_added').addClass('section__deadline')
+
+    $('.section__deadline-title .back').on 'click', ->
+      $(@).closest('.check_group_added').removeClass('section__deadline')
 
     $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
       $(this).removeClass 'inactive'

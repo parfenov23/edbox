@@ -9,7 +9,7 @@
   }
   .right-col {
     white-space: nowrap;
-    div {
+    > div {
       @include inline-block;
     }
   }

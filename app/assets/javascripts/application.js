@@ -5,17 +5,18 @@
 //= require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
+//=require main/main
 
 //= require_tree ./core
 
-//=require main/main
+
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
 var includeDatePicker = function(){
-    $('.datapicker__trigger').datepicker({
+    $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
         currentText    : 'Сегодня',
@@ -88,7 +89,7 @@ $(document).ready(function () {
         $(this).closest('.more').removeClass('hidden');
     })
 
-    $('.header__bottom .aside-trigger').on('click', function () {
+    $('.header__bottom .aside-trigger, .schedule-calendar .item ').on('click', function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
@@ -109,9 +110,12 @@ $(document).ready(function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
+
+
     $('.filter-courses, .js__baron').baron();
 
-    
+
+
     headerUserToggle = function () {
         $(document).on('click', function (e) {
             if ($(e.target).closest('.header__user').length == 0){

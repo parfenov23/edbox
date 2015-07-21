@@ -2,8 +2,114 @@
   = render "home/header/header" , {header_top_arr:['notifications']}
   = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', schedule_class:'active' }}
 
+
+
+#js-schedule-calendar.courses-aside.aside__schedule-calendar.current-day
+  .close-filter.icon Расписание
+  .course-wrp
+    .title Курс “Как преодолеть этот нелегкий путь”
+    .item.mdl-shadow--2dp
+      .title  Курс “Преодоление и покорение такого персона секретаря или как можно покорить клиента”
+      .duration__with-icon
+        i.icon
+        |32 часа
+      .com__director-btn.js__select-calendar
+        a.edit-date href="#" 
+          i.icon-uniE8A3
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              .back.icon
+              | Выбор даты
+            .calendar-holder
+              .selected-value  Выберите дату
+              .datapicker__trigger
+          ul.hidden-list
+            li data-show="hidden-calendar"  Перенести дату окончания курса
+            li Удалить
+    .item.mdl-shadow--2dp
+      .title  Курс “Преодоление и покорение такого персона секретаря или как можно покорить клиента”
+      .duration__with-icon
+        i.icon
+        |32 часа
+      .com__director-btn.js__select-calendar
+        a.edit-date href="#" 
+          i.icon-uniE8A3
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              .back.icon
+              | Выбор даты
+            .calendar-holder
+              .selected-value  Выберите дату
+              .datapicker__trigger
+          ul.hidden-list
+            li data-show="hidden-calendar"  Перенести дату окончания курса
+            li Удалить
+
+    .item.mdl-shadow--2dp
+      .title  Курс “Преодоление и покорение такого персона секретаря или как можно покорить клиента”
+      .duration__with-icon
+        i.icon
+        |32 часа
+      .com__director-btn.js__select-calendar
+        a.edit-date href="#" 
+          i.icon-uniE8A3
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              .back.icon
+              | Выбор даты
+            .calendar-holder
+              .selected-value  Выберите дату
+              .datapicker__trigger
+          ul.hidden-list
+            li data-show="hidden-calendar"  Перенести дату окончания курса
+            li Удалить
+
+  .course-wrp
+    .title Курс “Как преодолеть этот нелегкий путь”
+    .item.mdl-shadow--2dp
+      .title  Курс “Преодоление и покорение такого персона секретаря или как можно покорить клиента”
+      .duration__with-icon
+        i.icon
+        |32 часа
+      .com__director-btn.js__select-calendar
+        a.edit-date href="#" 
+          i.icon-uniE8A3
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              .back.icon
+              | Выбор даты
+            .calendar-holder
+              .selected-value  Выберите дату
+              .datapicker__trigger
+          ul.hidden-list
+            li data-show="hidden-calendar"  Перенести дату окончания курса
+            li Удалить
+    .item.mdl-shadow--2dp
+      .title  Курс “Преодоление и покорение такого персона секретаря или как можно покорить клиента”
+      .duration__with-icon
+        i.icon
+        |32 часа
+      .com__director-btn.js__select-calendar
+        a.edit-date href="#" 
+          i.icon-uniE8A3
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              .back.icon
+              | Выбор даты
+            .calendar-holder
+              .selected-value  Выберите дату
+              .datapicker__trigger
+          ul.hidden-list
+            li data-show="hidden-calendar"  Перенести дату окончания курса
+            li Удалить
+
 .inner-content
-  #schedule.content.schedule-block 
+  #schedule.schedule-block
     .schedule-header
       .psevdo-select
         .select-trigger Август
@@ -17,244 +123,104 @@
           li managers
           li managers
           li managers
-      .change-view
-        i.icon
-    .schedule-day-list
-      section.schedule-day.today
-        .date.curr 
-          .day ПН
-          .num 12
-        .group-block
-          .title
-            span> Группа: 
-            |Менеждеры отдела продаж
-            
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title.adaptive-title
-              .title.left-col Курс “Преодоление
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-            .course-components.hidden-part
-              .course-component-item.hidden-item.video
-                i.icon
-                .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.text
-                i.icon
-                .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.audio
-                i.icon
-                .title Аудиофайлы. “Невербальные коммуникации” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.test
-                i.icon
-                .title Чеклист 
-                .duration
-                  |32 часа
-                  i.icon
-          
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title
-              .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-            .course-components.hidden-part
-              .course-component-item.hidden-item.video
-                i.icon
-                .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.text
-                i.icon
-                .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.audio
-                i.icon
-                .title Аудиофайлы. “Невербальные коммуникации” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.test
-                i.icon
-                .title Чеклист 
-                .duration
-                  |32 часа
-                  i.icon
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title
-              .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-                  
-        .group-block
-          .title
-            span> Группа: 
-            |Менеждеры отдела продаж
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title
-              .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-            .course-components.hidden-part
-              .course-component-item.hidden-item.video
-                i.icon
-                .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.text
-                i.icon
-                .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.audio
-                i.icon
-                .title Аудиофайлы. “Невербальные коммуникации” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.test
-                i.icon
-                .title Чеклист 
-                .duration
-                  |32 часа
-                  i.icon
-        hr
-
-      section.schedule-day
-        .date 
-          .day ВТ
-          .num 13
-        .group-block
-          .title
-            span> Группа: 
-            |Менеждеры отдела продаж
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title
-              .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-            .course-components.hidden-part
-              .course-component-item.hidden-item.video
-                i.icon
-                .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.text
-                i.icon
-                .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.audio
-                i.icon
-                .title Аудиофайлы. “Невербальные коммуникации” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.test
-                i.icon
-                .title Чеклист 
-                .duration
-                  |32 часа
-                  i.icon
-
-        .group-block
-          .title
-            span> Группа: 
-            |Менеждеры отдела продаж
-          .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title
-              .title.left-col Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” Курс “Преодоление и покорение такого персона секретаря”. Раздел 2 “Введение” 
-              .additional-info.right-col
-                .duration 
-                  |32 часа
-                  i.icon
-                .action-btn
-                  i.icon
-                  ul.hidden-list
-                    li jbs kbfjh
-                    li Перенести дату окончания курса
-                    li jbs kbfjh
-            .course-components.hidden-part
-              .course-component-item.hidden-item.video
-                i.icon
-                .title Видеоурок 3.1. “Что мы говорим, когда ничего не говорим?” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.text
-                i.icon
-                .title Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м Тест с мултипл­чойс “Невербальные коммуникации и еще какой то текст, чтобы показать как он м 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.audio
-                i.icon
-                .title Аудиофайлы. “Невербальные коммуникации” 
-                .duration
-                  |32 часа
-                  i.icon
-              .course-component-item.hidden-item.test
-                i.icon
-                .title Чеклист 
-                .duration
-                  |32 часа
-        hr
-      section.schedule-day
-        .date 
-          .day СР
-          .num 14
-        hr
+    .schedule-calendar
+      .schedule-line
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 2
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 13
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item.current data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 34
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 3
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+      .schedule-line
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 2
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 13
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 34
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 3
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп
+        .item data-id = "js-schedule-calendar"
+          .data
+            .weekday ПН
+            .day 1
+          .day-event Курс “Как у нас Курс “Как у нас
+          .day-event Менеджеры отдела проМенеджеры отдела про
+          .show-more Еще 12 групп

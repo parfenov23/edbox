@@ -2,9 +2,8 @@
 - first_ligament_course = (ligament_courses.first rescue nil)
 - first_ligament_course = (ligament_courses.find(params[:course_id]) rescue nil) if params[:course_id].present?
 - current_course = (first_ligament_course.course rescue nil)
-
-- if current_course.present?
-  - my_bunch_course = current_course.find_bunch_course(current_user.id, 'group', group.id)
+- my_bunch_course = (current_course.find_bunch_course(current_user.id, 'group', group.id) rescue nil)
+- if current_course.present? && my_bunch_course.present?
   .schedule-block
     .schedule-header
       .left-block

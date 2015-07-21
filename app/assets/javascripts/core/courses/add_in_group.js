@@ -23,7 +23,13 @@ var openPopup = function () {
     } else {
         show_error('У ваc нет групп', 3000);
     }
-};
+    $('.adaptive-title').each(function() {
+      var rightWidth;
+      rightWidth = $(this).find('.right-col').width();
+      return $(this).find('.left-col').css({
+        width: $(this).width() - rightWidth + 'px'
+      });
+    });};
 
 var openEdnPopup = function () {
     var popup = $("#js-add-course-to-shedule");
