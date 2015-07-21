@@ -23,6 +23,12 @@ class HomeController < ActionController::Base
 
   def video
     @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file_type == 'video'
+      @video = attachment
+    else
+      render :error
+    end
   end
 
   def members
