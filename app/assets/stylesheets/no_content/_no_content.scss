@@ -3,13 +3,13 @@
   height: 100vh;
   position: relative;
   .inner  {
-    width: 360px;
+    width: 512px;
     height: 320px;
     position: absolute;
     top: 50%;
     left: 50%;
     margin-top: -160px;
-    margin-left: -180px;
+    margin-left: -256px;
     .icon {
       @include middle-block(150px);
       height: 152px;
@@ -18,7 +18,8 @@
       background: #FFFFFF;
       box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
       text-align: center;
-      padding-top: 29px;
+      padding-top: 35px;
+      margin-bottom: 24px;
     }
     .title {
       text-align: center;
@@ -28,6 +29,7 @@
       margin-bottom: 12px;
     }
     .description {
+      @include middle-block(360px);
       text-align: center;
       font-size: 15px;
       color: #FFFFFF;
