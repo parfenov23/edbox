@@ -4,7 +4,7 @@
 
 .inner-content
   #programm.content.programm-block
-    - if true
+    - unless current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).present?
       = render "home/program/empty", {sections: @sections}
     - else
       = render "home/program/my_course", {sections: @sections}

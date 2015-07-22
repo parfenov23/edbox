@@ -19,7 +19,7 @@ module Api::V1
       bunch_attachment = attachment.find_bunch_attachment(params[:bunch_section_id])
       bunch_attachment.complete = true
       if ((bunch_attachment.save) rescue false )
-        bunch_attachment.bunch_section.full_complete?
+        bunch_attachment.bunch_section.full_complete?(current_user.id)
         render json: bunch_attachment.as_json
       else
         render_error(500, 'Проверьте данные')

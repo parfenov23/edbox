@@ -1,43 +1,29 @@
 .schedule-day-list
   section.schedule-day
     .group-block
-      .schedule-item.closed-state.js__toggle-state.completed
-        .fixed-h.adaptive-title.adaptive-title
-          .title.left-col style=("width: 739px;")  секция 1
-          .additional-info.right-col
-            .compl пройдено
-            .action-btn
-              i.icon
-              ul.hidden-list
-                li Перенести дату окончания раздела
-        .course-components.hidden-part
-          .course-component-item.hidden-item.adaptive-title.text
-            i.icon
-            .title.left-col style=("width: 100px;")  test
-            .right-col
-              .overdue-label Пройдено
-      .schedule-item.closed-state.js__toggle-state.completed
-        .fixed-h.adaptive-title.adaptive-title
-          .title.left-col style=("width: 739px;")  Секция 2
-          .additional-info.right-col
-            .compl пройдено
-            .action-btn
-              i.icon
-              ul.hidden-list
-                li Перенести дату окончания раздела
-        .course-components.hidden-part
-          .course-component-item.hidden-item.adaptive-title.text
-            i.icon
-            .title.left-col style=("width: 100px;")  Задание 2 просмотреть видео
-            .right-col
-              .overdue-label Пройдено
-          .course-component-item.hidden-item.adaptive-title.text
-            i.icon
-            .title.left-col style=("width: 100px;")  Задание 3 просмотреть видео
-            .right-col
-              .overdue-label Пройдено
-          .course-component-item.hidden-item.adaptive-title.text
-            i.icon
-            .title.left-col style=("width: 100px;")  Задание 1 просмотреть видео
-            .right-col
-              .overdue-label Пройдено
+      - sections.each do |section|
+        - bunch_section = section.bunch_section(current_user.id)
+        - attachments = section.attachments
+        - if bunch_section.present? && attachments.present?
+          .schedule-item.closed-state.js__toggle-state
+            .fixed-h.adaptive-title.adaptive-title
+              .title.left-col = section.title
+              .additional-info.right-col
+                - if bunch_section.full_complete?(current_user.id)
+                  .compl пройдено
+                .action-btn
+                  i.icon
+                  ul.hidden-list
+                    li Перенести дату окончания раздела
+            .course-components.hidden-part
+              - attachments.each do |attachment|
+                - bunch_attachment = attachment.find_bunch_attachment(bunch_section.id)
+                .course-component-item.hidden-item.adaptive-title class=attachment.class_type
+                  i.icon
+                  .title.left-col = attachment.title
+                  .right-col
+                    - if bunch_attachment.complete
+                      .overdue-label Пройдено
+                    - else
+                      .download
+                        a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
