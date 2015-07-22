@@ -1,0 +1,38 @@
+.carusel-wrp
+  .title Просроченные курсы
+  .info-box
+    .legend-info
+      p Всего назначено: 24
+      p На изучении: 12
+      p.more
+        a href ="#" СМОТРЕТЬ ВСЕ
+    .course-prev-list
+      - overdue_bunch_courses.each do |overdue_bunch_course|
+        - course = overdue_bunch_course.course
+        figure.corses-prev.compact
+          .image
+            img src="uploads/pic3.png"
+            /.tegs Просроченный
+          figcaption
+            .title.with_btn
+              .inner = course.title
+              .shadow
+              - if overdue_bunch_course.model_type == "user"
+                .com__director-btn.js__select-calendar
+                  a.edit-date href="#"
+                    i.icon-uniE8A3
+                  .hidden-calendar-wrp
+                    .hidden-calendar
+                      .calendar-header
+                        .back.icon
+                        |Выбор даты
+                      .calendar-holder.edit-menu
+                        - text_data = "Установить дату окончания курса"
+                        .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=overdue_bunch_course.course_id Выберите дату
+                        .datapicker__trigger
+                    ul.hidden-list
+                      li data-show = "hidden-calendar" Перенести дату окончания курса
+                      li Удалить
+            .author
+              'Завершить до
+              = ((l local_time(overdue_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
