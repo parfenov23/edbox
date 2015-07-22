@@ -21,6 +21,16 @@ class HomeController < ActionController::Base
     @current_user = current_user
   end
 
+  def video
+    @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file_type == 'video'
+      @video = attachment
+    else
+      render :error
+    end
+  end
+
   def members
     @members = current_user.company.users
   end
@@ -50,10 +60,10 @@ class HomeController < ActionController::Base
     render text: html
   end
 
-  def render_group_program
-    html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
-    render text: html
-  end
+  # def render_group_program
+  #   html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
+  #   render text: html
+  # end
 
   def course_description
     @favorite_courses = current_user.favorite_courses

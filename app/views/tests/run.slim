@@ -1,11 +1,11 @@
 #header__holder
     = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "profile", title: 'Мой профиль', profile_class: "active" } }
+    = render "home/header/header_bottom", { header_bottom: { block: "cabinet", title: 'Мой кабинет', profile_class: "active" } }
 .inner-content
     form.content#tests
         .test-info
             .title
-                .title-text Тест курса «#{@course.description}»
+                .title-text Тест курса «#{@course.title}»
                 .duration #{@course.duration} часа
             .description #{@test.title}
             .question-qty Вопросов в тесте: #{@test.questions.count}

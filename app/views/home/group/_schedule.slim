@@ -1,6 +1,6 @@
 - ligament_courses = group.ligament_courses
 - first_ligament_course = (ligament_courses.first rescue nil)
-- first_ligament_course = (ligament_courses.find(params[:course_id]).course rescue nil) if params[:course_id].present?
+- first_ligament_course = (ligament_courses.find(params[:course_id]) rescue nil) if params[:course_id].present?
 - current_course = (first_ligament_course.course rescue nil)
 - my_bunch_course = (current_course.find_bunch_course(current_user.id, 'group', group.id) rescue nil)
 - if current_course.present? && my_bunch_course.present?
@@ -12,7 +12,7 @@
           ul.hidden-list
             - ligament_courses.each do |ligament_course|
               - course = ligament_course.course
-              li = course.title
+              li.js_selectCourseProgram data-id=ligament_course.id data-group_id=group.id = course.title
       .right-block
         .duration
           'Продолжительность:
@@ -32,9 +32,13 @@
                 .fixed-h.adaptive-title.adaptive-title
                   .title.left-col = section.title
                   .additional-info.right-col
-                    - if my_bunch_section.complete
+                    - if my_bunch_section.full_complete?(current_user.id)
                       .compl пройдено
                     - else
+                      - if my_bunch_section.date_complete.present?
+                        .compl
+                          |Пройти до:
+                          = ((l local_time(my_bunch_section.date_complete), :format => :short_min) rescue "Нет даты")
                       - if (my_bunch_section.date_complete < Time.current rescue false)
                         .overdue-label Раздел просрочен
                       .duration
@@ -60,5 +64,16 @@
                             i.icon
                         - else
                           .overdue-label Пройдено
+                  - my_bunch_section.section.tests.each do |test|
+                    - my_result = current_user.test_results.find_by_test_id(test.id)
+                    .course-component-item.hidden-item.adaptive-title class='test'
+                      i.icon
+                      .title.left-col = test.title
+                      .right-col
+                        - if my_result.present?
+                          .overdue-label Пройдено
+                        - else
+                          .download
+                            a href="/tests/#{test.id}/run" Пройти
 - else
   = render 'home/group/no_schedule'
