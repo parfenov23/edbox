@@ -1,13 +1,14 @@
 .content-video {
-    color: #ffffff;
-    font-family: Roboto;
+    color: #FFFFFF;
     .video-title {
-        font-size: 20px;
-        padding-top: 20px;
+        font-family: ArialMT;
+        font-size: 24px;
+        line-height: 32px;
+        padding-top: 10px;
     }
     .video-author {
+        font-family: Roboto-Regular;
         font-size: 13px;
-        padding-top: 5px;
-
+        line-height: 20px;
     }
 }
