@@ -19,6 +19,31 @@
       padding     : 6px 16px;
       cursor      : pointer;
       white-space: nowrap;
+      position: relative;
+      .datapicker__trigger {
+        background: none;
+        border: none;
+        cursor: pointer;
+        min-width: 244px;
+        line-height: 23px;
+        &::-webkit-input-placeholder {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+        }
+        &::-moz-placeholder {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+        }
+        &:-moz-placeholder {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+        }
+        &:-ms-input-placeholder {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+        }
+
+      }
       &:hover {
           font-size   : 13px;
           color       : #000000;

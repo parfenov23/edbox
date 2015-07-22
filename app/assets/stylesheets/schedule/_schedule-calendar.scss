@@ -9,7 +9,9 @@
       padding: 12px;
       height: 191px;
       width: calc(100% / 7);
+      @include transition;
       &:hover {
+        @include transition;
         box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.12), 0px 8px 8px 0px rgba(0,0,0,0.24);
       }
       .data {
@@ -81,11 +83,16 @@
       margin-bottom: 12px;
     }
     .item {
-      padding: 16px 145px 16px 24px;
+      padding: 14px 145px 18px 24px;
       position: relative;
       background: #FFFFFF;
       border-radius: 2px;
       margin-bottom: 12px;
+      @include transition;
+      &:hover {
+        @include transition;
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.12), 0px 8px 8px 0px rgba(0,0,0,0.24);
+      }
       .title {
         font-size: 15px;
         color: rgba(0,0,0,0.87);
@@ -94,7 +101,7 @@
       .duration__with-icon  {
         position: absolute;
         top: 16px;
-        right: 100px;
+        right: 56px;
         font-size: 11px;
         color: rgba(0,0,0,0.26);
         line-height: 18px;
@@ -104,8 +111,11 @@
       }
       .com__director-btn {
         position: absolute;
-        top: 16px;
-        right: 32px;
+        top: 11px;
+        right: 8px;
+        .edit-date i {
+          font-size: 23px;
+        }
       }
     }
   }

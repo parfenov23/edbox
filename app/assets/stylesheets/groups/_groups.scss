@@ -401,8 +401,9 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
           font-size: 23px;
         }
       }
-      &.icon-uniE8AF{
+      &.icon-uniE625{
         &::before {
+          content: '\E8AF';
           font-family: 'Icons';
           font-size: 23px;
         }

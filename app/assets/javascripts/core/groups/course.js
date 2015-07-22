@@ -88,9 +88,13 @@ var bind_block = function () {
     });
     $('.js__select-calendar').hover((function () {
         $(this).addClass('is__active');
-        return $('.js__backing').addClass('is__active');
+        $('.js__backing').addClass('is__active');
     }), function () {
-        return $(this).removeClass('is__active');
+      if ($('#ui-datepicker-div').is(':hidden')) {
+        console.log(12);
+        $(this).removeClass('is__active');
+      }
+
     });
     includeDatePicker();
 };

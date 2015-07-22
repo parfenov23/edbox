@@ -1,5 +1,8 @@
 #js-favorite-courses.courses-aside.favorite-courses
     .close-filter.icon Избранное
+    .aside_no-content
+      .title У вас еще нет избранных курсов
+      .description Добавьте понравившиеся курсы в избранное для более удобного поиска и быстрой работы с материалом. 
     - favorite_courses.each do |favorite_course|
         = render "home/courses/chosen_one", {favorite_course: favorite_course}
 
