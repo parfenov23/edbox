@@ -1,19 +1,13 @@
 .content-video {
-    color: rgba(0, 0, 0, 0.26);
+    color: #ffffff;
     font-family: Roboto;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 20px;
     .video-title {
-
+        font-size: 20px;
+        padding-top: 20px;
     }
     .video-author {
-        position    : relative;
-        position    : absolute;
-        left        : 0;
-        top         : 40px;
-        font-size   : 20px;
-        color       : #FD9348;
-        line-height : 32px;
+        font-size: 13px;
+        padding-top: 5px;
+
     }
 }
