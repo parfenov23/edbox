@@ -31,7 +31,7 @@ module Api::V1
     def update
       user = current_user
       permit_params = user_params.compact
-      permit_params.delete(:password) if permit_params[:password].to_s.length == 0
+      permit_params.delete(:password) unless permit_params[:password].present?
       permit_params[:director] = user.director
 
       if user.valid?
