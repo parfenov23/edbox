@@ -14,9 +14,7 @@ $(document).ready(function () {
                     url    : '/tests/complete',
                     data   : data,
                     success: function (e) {
-                        message = 'Результат: ' + e.result + ' баллов';
-                        history.go(-1);
-                        show_error(message, 3000);
+                        testResult(e);
                     },
                     error  : function () {
                         show_error('Ошибка', 3000);
@@ -24,6 +22,15 @@ $(document).ready(function () {
                 });
             }
         });
+    });
+});
+
+$(document).ready(function () {
+    $('img:last').load(function () {
+        var result = $('#tests .result-block');
+        if (result.length) {
+            result.hide();
+        }
     });
 });
 
@@ -52,7 +59,11 @@ var warningTestText = function(invalidTestItemsIds){
     return text;
 };
 
-var testResult = function(elem){
-    var title = 'Тест пройдет. Поздравляем вас с окончанием курса!'
-    var text = 'Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопроса из 3 вопросов.'
+var testResult = function(response){
+    var result = $('#tests .result-block');
+    var text = 'Ваш результат прохождения теста ' + response.result + '%. Вы ответили правильно на ' + response.right_answers + ' вопроса из ' + response.all_questions + ' вопросов.'
+    result.find('.description').text(text);
+    var test = $('#tests .test-block');
+    test.hide();
+    result.show();
 }

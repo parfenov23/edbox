@@ -19,16 +19,6 @@ class TestsController < HomeController
     end
   end
 
-  def result
-    @test = find_test
-    section = @test.section
-    @course = section.course
-    bunch_section = section.bunch_section(current_user.id)
-    unless bunch_section.present?
-      redirect_to '/'
-    end
-  end
-
   private
 
   def find_test

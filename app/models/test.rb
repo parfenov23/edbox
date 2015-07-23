@@ -16,27 +16,54 @@ class Test < ActiveRecord::Base
     Answer.where('question_id IN (' + questions_id.join(', ') + ')')
   end
 
+  def get_correct_answers
+    correct_answers = {}
+    questions = self.questions
+    questions.each do |question|
+      answer = question.answers.where(right: true).pluck(:id)
+      correct_answers.merge!({question.id => answer})
+    end
+    correct_answers
+  end
+
+  def self.hash_to_i(hash_old)
+    hash_new = {}
+    hash_old.each do |key, value|
+      if value.class == Array
+        hash_new.merge!({key.to_i => value.map(&:to_i)})
+      else
+        hash_new.merge!({key.to_i => value.to_i})
+      end
+    end
+    hash_new
+  end
+
   def get_result(answer)
-    correct_answer_ids = get_all_answer.where(right: true).pluck(:id)
-    max_point = correct_answer_ids.count
-    user_answer_ids = answer.values.flatten.map(&:to_i)
-    error_point = (correct_answer_ids - user_answer_ids).count + (user_answer_ids - correct_answer_ids).count
-    user_point = max_point - error_point
-    user_point = 0 if user_point < 0
-    user_mark = ((user_point/max_point.to_f)*100).round
+    correct_answers = get_correct_answers.to_a
+    user_answers = Test.hash_to_i(answer).to_a
+    error_answer = correct_answers - user_answers
+
+    question_count = correct_answers.count
+    right_count = correct_answers.count - error_answer.count
+    question_count = 1 if question_count == 0
+    result = ((right_count/question_count.to_f)*100).round
+    {right_answers: right_count, all_questions: question_count, result: result}
   end
 
   def result(user_id, answer)
     if answer.present?
       user_result = get_result(answer)
-    else
-      user_result = 0
-    end
-    result = TestResult.new(user_id: user_id, test_id: id, result: user_result)
-    if result.save
-      result
-    else
-      false
+      result = TestResult.new({
+                                user_id: user_id,
+                                test_id: id,
+                                right_answers: user_result[:right_answers],
+                                all_questions: user_result[:all_questions],
+                                result: user_result[:result]})
+      if result.save
+        result
+      else
+        false
+      end
     end
   end
 end
