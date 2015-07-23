@@ -7,6 +7,15 @@ function confirm(text, action){
     popup.show();
 }
 
+function warning(text, actionText){
+    var popup = $('.pop_up_confirm');
+    popup.find('.inner .description').text(text);
+    popup.find('.action-btn .btn.cancel').attr('style', 'display:none');
+    popup.find('.action-btn .btn.yes').text(actionText);
+    btn_yes_action = defaultConfirm;
+    popup.show();
+}
+
 var closePopupConfirm = function (event) {
     var evt = evt || event;
     var target = evt.target || evt.srcElement;
