@@ -208,6 +208,7 @@ i {
 
 .content#groups{
   @import "pogorelov/group/courses";
+  @import "groups/groups";
 }
 
 @import "elements/rippleAnimation";
@@ -226,7 +227,6 @@ i {
 @import "schedule/schedule";
 @import "schedule/schedule-calendar";
 @import "programm/programm";
-@import "groups/groups";
 @import "groups/courses";
 @import "header/header";
 @import "auth/auth";

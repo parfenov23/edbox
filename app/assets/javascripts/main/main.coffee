@@ -78,6 +78,7 @@ $(document).ready ->
       $(@).find('.js_tooltip').removeClass('is-active')
 
     headerTabsLine('.tabs__item.active')
+    
     $('.header__bottom .tabs .tabs__item').hover ->
       $(@).stop(true).queue 'fx', ->
         headerTabsLine(@)
