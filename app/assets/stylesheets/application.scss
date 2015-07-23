@@ -6,6 +6,7 @@
 @import "mixins/media-queries";
 @import "mixins/clearfix";
 @import "mixins/placeholder";
+@import "mixins/transition";
 
 @font-face {
   font-family : 'Icons';
@@ -219,7 +220,6 @@ i {
 @import "elements/input";
 @import "elements/btns";
 @import "elements/tooltip";
-@import "elements/no_content";
 @import "elements/directors_btn";
 
 @import "courses/courses";
@@ -234,4 +234,5 @@ i {
 @import "members/members";
 @import "cabinet/cabinet";
 @import "tests/tests";
+@import "no_content/no_content";
 @import "attachments/videos";

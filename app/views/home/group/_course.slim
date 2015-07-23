@@ -28,7 +28,9 @@ li.single-course
                 li data-show="hidden-calendar" = text_data
                 li.js_removeCourseToGroup data-id="#{ligament_course.course_id}" data-group_id="#{@group.id}" Удалить
               - if type == "course" # блок в попапе
-                li data-show="hidden-calendar" = text_data
+                li data-show="hidden-calendar" 
+                  
+                  input.datapicker__trigger value == text_data
                 li.js_removeCourseToFavorite Удалить
 
       a.title href="/course_description?id=#{course.id}"

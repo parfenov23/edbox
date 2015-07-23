@@ -42,6 +42,8 @@ Rails.application.routes.draw do
           post :complete
         end
       end
+      resources :courses do
+      end
       resources :users, only: [] do
         collection do
           get :info
@@ -49,6 +51,7 @@ Rails.application.routes.draw do
           post :change_password
           post :update
           post :update_avatar
+          post :update_avatar_string
           post :remove_user
           post :add_favorite_course
           post :remove_favorite_course
