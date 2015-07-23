@@ -74,6 +74,15 @@ module Api::V1
       end
     end
 
+    def update_avatar_string
+      current_user.avatar = params[:base64]
+      if (current_user.save rescue false)
+        render json: {base64: img_base64}
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
     def update_avatar
       unless params[:avatar].nil?
         img = ResizeImage.crop(params[:avatar].path)
