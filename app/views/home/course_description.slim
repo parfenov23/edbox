@@ -30,7 +30,10 @@
             'Продолжительность:
             - duration = (@course.sections.joins(:attachments).sum(attachments: :duration).to_i rescue 0)
             = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
-          .btn.get-course ПОЛУЧИТЬ КУРС
+
+          .btn-area
+            .btn.is__orange.get-course НАЗНАЧИТЬ ГРУППЕ
+            .btn.is__white.get-course ДОБАВИТЬ В ИЗБРАННОЕ
       .text-block
         .description
           = raw @course.description
@@ -39,8 +42,8 @@
           i.icon.audio
           i.icon.video
           i.icon.test
-          div
-            a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
+        .see-program
+          a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
         - user_lead = @course.user
         - if user_lead.present?
           .principals-list
