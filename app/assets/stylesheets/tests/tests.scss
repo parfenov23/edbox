@@ -160,4 +160,16 @@
       bottom: 0;
     }
   }
+  .result-block {
+    margin-bottom: 36px;
+    .title {
+      font-size: 15px;
+      color: rgba(37,37,37,0.87);
+      line-height: 24px;
+      margin-bottom: 8px;
+    }
+    .description {
+      margin-bottom: 24px;
+    }
+  }
 }
