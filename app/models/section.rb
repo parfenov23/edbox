@@ -9,7 +9,9 @@ class Section < ActiveRecord::Base
 
   def bunch_section(user_id)
     user = User.find(user_id)
-    user.bunch_courses.joins(:bunch_sections).where({bunch_sections: {section_id: id}}).last
+    user.bunch_courses.joins(:bunch_sections).
+      where({bunch_sections: {section_id: id}}).last.
+      bunch_sections.where(section_id: id).last rescue nil
   end
 
 end

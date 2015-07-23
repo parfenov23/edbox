@@ -1,7 +1,7 @@
 .programm-block {
     padding-top : 40px;
     .program-item {
-        background    : #FFFFFF;
+        background    : #FFF;
         border-radius : 2px;
         box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
         padding       : 17px 24px;
@@ -33,6 +33,15 @@
                         content : '\E71F';
                     }
                 }
+            }
+        }
+    }
+    .schedule-day-list {
+        .schedule-day {
+            padding-left : 0;
+            .group-block {
+                background : 0;
+                padding    : 0;
             }
         }
     }

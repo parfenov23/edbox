@@ -26,6 +26,8 @@ class HomeController < ActionController::Base
     attachment = (Attachment.find(params[:id]) rescue nil)
     if attachment.present? && attachment.file_type == 'video'
       @video = attachment
+      @section = attachment.attachmentable
+      @author = @section.course.user
     else
       render :error
     end

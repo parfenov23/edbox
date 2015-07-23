@@ -1,106 +1,59 @@
 #js-add-course-to-shedule.add-course-to-shedule style="display:none;"
-    form.inner.check_group_added.director__border
-        .title
-            'Добавить курс в расписание
-            span группы
-        .section__deadline-title 
-          .back.icon
-          |Установка крайнего срока прохождения раздела
-        .section__description Курс “Основная специализация — digital реклама, digital маркетинг, digital продакшн.”
-        ul.section-list.js__baron
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .date-added 12 мар.
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .date-added 12 мар.
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
-          li.section-item.adaptive-title
-            .left-part.left-col Раздел 2. Первый звонок.
-            .right-part.right-col
-              .set-date
-                i.icon
-                input.datapicker__trigger.js__set-date
+  form.inner.check_group_added.director__border
+    .title
+      'Добавить курс в расписание
+      span группы
+    .section__deadline-title
+      .back.icon
+      |Установка крайнего срока прохождения раздела
+    .section__description.js__courseEditTitle
+      |Курс “
+      span Курс
+      |”
+    ul.section-list.js__baron.js_addTemplateSectionLi
+      li style="display:none;"
 
+    - if current_user.corporate && current_user.director
+      .select.group.js_show
+        i.icon
+        .select-trigger.titleSelectGroup Выберите группу
+        input.selectGroupId type='hidden' name='group_id'
+        - groups = current_user.company.groups
+        ul.hidden.listGroup
+          - groups.each do |group|
+            li.js_psevdo-select.selectGroup data-id="#{group.id}"
+              = group.first_name
+    .calendar
+      i.icon
+      .calendar-trigger Установите крайний срок прохождения курса
+      input.datapicker__trigger name='date_complete'
 
-        - if current_user.corporate && current_user.director
-            .select.group.js_show
-                i.icon
-                .select-trigger.titleSelectGroup Выберите группу
-                input.selectGroupId type='hidden' name='group_id'
-                - groups = current_user.company.groups
-                ul.hidden.listGroup
-                    - groups.each do |group|
-                        li.js_psevdo-select.selectGroup data-id="#{group.id}"
-                            = group.first_name
-        .calendar
-            i.icon
-            .calendar-trigger Установите крайний срок прохождения курса
-            input.datapicker__trigger name='date_complete'
-        
-        .select-deadline
-            .title Установите крайний срок прохождения разделов
-            .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.   
-            i.icon 
+    .select-deadline
+      .title Установите крайний срок прохождения разделов
+      .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.
+      i.icon
 
-        input.courseId type="hidden" name="course_id"
-        .action-btn
-          .btn.yes.js_addCourse ДОБАВИТЬ
-          .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
+    input.courseId type="hidden" name="course_id"
+    .action-btn
+      .btn.yes.js_addCourse ДОБАВИТЬ
+      .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
 
-    .inner.end_added
-        - if current_user.corporate && current_user.director
-            .description
-                |Курс “
-                span.courseFirstName
-                    |Имя курса
-                |” добавлен в рассписание группы. Для редактирования дат перейдите на страницу “Расписание”
-            .action-btn
-                .btn.yes.js_goToSchedule ПЕРЕЙТИ В РАСПИСАНИЕ
-                .btn.cancel.btn__noShadow ЗАКРЫТЬ
-        - else
-            .description
-                |Курс “
-                span.courseFirstName
-                    |Имя курса
-                |”добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
-            .action-btn
-                .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/cabinet'" ПЕРЕЙТИ В КАБИНЕТ
-                .btn.cancel.btn__noShadow ЗАКРЫТЬ
+  .inner.end_added
+    - if current_user.corporate && current_user.director
+      .description
+        |Курс “
+        span.courseFirstName
+          |Имя курса
+        |” добавлен в рассписание группы. Для редактирования дат перейдите на страницу “Расписание”
+      .action-btn
+        .btn.yes.js_goToSchedule ПЕРЕЙТИ В РАСПИСАНИЕ
+        .btn.cancel.btn__noShadow ЗАКРЫТЬ
+    - else
+      .description
+        |Курс “
+        span.courseFirstName
+          |Имя курса
+        |”добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
+      .action-btn
+        .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/cabinet'" ПЕРЕЙТИ В КАБИНЕТ
+        .btn.cancel.btn__noShadow ЗАКРЫТЬ

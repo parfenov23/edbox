@@ -1,6 +1,7 @@
 var openPopup = function () {
     var btn = $(this);
     if (! btn.hasClass("noOpenPopup")){
+        courseInfo(btn.data("id"));
         var popup = $("#js-add-course-to-shedule");
         var course_id = btn.data("id");
         popup.find("input.courseId").val(course_id);
@@ -13,23 +14,56 @@ var openPopup = function () {
         if (btn.data('show') != undefined){
             popup.find(btn.data('show')).show();
         }
-        if (btn.data('height') != undefined){
-            popup.find("form").css("height", btn.data('height'));
-        }else{
-            popup.find("form").css("height", "");
-        }
         popup.find(".js_addCourse").data("type", btn.data('type'))
 
     } else {
         show_error('У ваc нет групп', 3000);
     }
-    $('.adaptive-title').each(function() {
-      var rightWidth;
-      rightWidth = $(this).find('.right-col').width();
-      return $(this).find('.left-col').css({
-        width: $(this).width() - rightWidth + 'px'
-      });
-    });};
+    $('.adaptive-title').each(function () {
+        var rightWidth;
+        rightWidth = $(this).find('.right-col').width();
+        return $(this).find('.left-col').css({
+            width: $(this).width() - rightWidth + 'px'
+        });
+    });
+};
+
+var courseInfo = function (course_id) {
+    $.ajax({
+        type: 'get',
+        url : '/api/v1/courses/' + course_id
+    }).success(function (data) {
+        var popup = $("#js-add-course-to-shedule");
+        popup.find(".js__courseEditTitle span").text(data.title);
+        $("ul.js_addTemplateSectionLi").html($(templateLiSection(data)));
+        includeDatePicker();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
+var templateLiSection = function (json_course) {
+    var html = [];
+    $.each(json_course.sections, function (i, obj) {
+        html[i] =
+            '<li class="section-item adaptive-title">' +
+            '<div class="left-part left-col">' +
+            obj.title +
+            '</div>' +
+            '<div class="right-part right-col">' +
+            '<div class="date-added">' +
+            '</div>' +
+            '<div class="set-date">' +
+            '<i class="icon"></i>'+
+            '<input class="datapicker__trigger js__set-date" name="sections['+ obj.id +']"/>' +
+            '</div>' +
+            '</div>' +
+            '</li>';
+    });
+
+    return html.join('');
+};
 
 var openEdnPopup = function () {
     var popup = $("#js-add-course-to-shedule");
@@ -70,7 +104,7 @@ var selectGroup = function () {
     select.find(".listGroup").hide();
 };
 
-var addCourse = function(){
+var addCourse = function () {
     var btn = $(this);
     if (btn.data("type") == "group"){
         addCourseGroup(btn);
