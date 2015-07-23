@@ -77,7 +77,7 @@ module Api::V1
     def update_avatar_string
       current_user.avatar = params[:base64]
       if (current_user.save rescue false)
-        render json: {base64: img_base64}
+        render json: {base64: current_user.avatar}
       else
         render_error(500, 'Проверьте данные')
       end
