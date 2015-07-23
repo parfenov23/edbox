@@ -9,13 +9,14 @@
   }
   .empty-description {
     text-align: center;
-    @include middle-block('744px');
+    @include middle-block(744px);
     font-size: 15px;
     color: rgba(0,0,0,0.54);
     line-height: 24px;
     margin-bottom: 24px;
   }
   .possible__action-list {
+    @include middle-block(920px);
     margin-bottom: 40px;
     .item {
       padding: 24px 256px 16px 144px;
