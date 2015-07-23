@@ -1,4 +1,4 @@
-@import "courses/filter";
+@import "unique/courses/filter";
 
 .new-courses-holder {
     .content-courses {
@@ -43,7 +43,7 @@
 }
 
 .courses-description {
-    @import "courses/description/description";
+    @import "unique/courses/description/description";
     border-radius : 2px;
 
 }
@@ -66,8 +66,8 @@
 
 .courses-list {
     @include clearfix;
-    @import "elements/courses_block";
+    @import "common/elements/courses_block";
 
 }
 
-@import "courses/add-course";
+@import "unique/courses/add-course";

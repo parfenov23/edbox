@@ -4,7 +4,9 @@
     height        : 32px;
     margin-bottom : 21px;
     input {
-        @include placeholder(rgba(0, 0, 0, 0.54), 13px, 20px);
+        @include placeholder(rgba(0, 0, 0, 0.54));
+        font-size: 13px;
+        line-height: 20px;
         display       : block;
         border        : none;
         background    : none;
@@ -22,7 +24,9 @@
         height : auto;
     }
     textarea {
-        @include placeholder(rgba(0, 0, 0, 0.54), 13px, 20px);
+        @include placeholder(rgba(0, 0, 0, 0.54));
+        font-size: 13px;
+        line-height: 20px;
         display       : block;
         border        : none;
         background    : none;

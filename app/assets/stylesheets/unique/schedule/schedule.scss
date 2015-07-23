@@ -24,7 +24,7 @@
             cursor          : pointer;
             background-size : 12px;
         }
-        @import "elements/hidden-list";
+        @import "common/elements/hidden-list";
         .hidden-list {
             top   : -12px;
             right : auto;
@@ -202,7 +202,7 @@
                                 content : '\E8A3';
                             }
                         }
-                        @import "elements/hidden-list";
+                        @import "common/elements/hidden-list";
                     }
                     .download {
                       a {

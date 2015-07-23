@@ -1,12 +1,12 @@
 @import "vendor/material";
 @import "vendor/jquery-ui.min";
-@import "mixins/inline-block";
-@import "mixins/circle-img";
-@import "mixins/middle-block";
-@import "mixins/media-queries";
-@import "mixins/clearfix";
-@import "mixins/placeholder";
-@import "mixins/transition";
+@import "common/mixins/inline-block";
+@import "common/mixins/circle-img";
+@import "common/mixins/middle-block";
+@import "common/mixins/media-queries";
+@import "common/mixins/clearfix";
+@import "common/mixins/placeholder";
+@import "common/mixins/transition";
 
 @font-face {
   font-family : 'Icons';
@@ -207,32 +207,32 @@ i {
 }
 
 .content#groups{
-  @import "pogorelov/group/courses";
-  @import "groups/groups";
+  @import "unique/pogorelov/group/courses";
+  @import "unique/groups/groups";
 }
 
-@import "elements/rippleAnimation";
-@import "elements/checkbox";
-@import "elements/switch";
-@import "elements/calendar";
-@import "elements/toggle-state";
-@import "elements/adaptive_title";
-@import "elements/adaptive_popup";
-@import "elements/input";
-@import "elements/btns";
-@import "elements/tooltip";
-@import "elements/directors_btn";
+@import "common/material__el/rippleAnimation";
+@import "common/material__el/checkbox";
+@import "common/material__el/switch";
+@import "common/elements/calendar";
+@import "common/material__el/toggle-state";
+@import "common/elements/adaptive_title";
+@import "common/elements/adaptive_popup";
+@import "common/material__el/input";
+@import "common/material__el/btns";
+@import "common/material__el/tooltip";
+@import "common/elements/directors_btn";
 
-@import "courses/courses";
-@import "schedule/schedule";
-@import "schedule/schedule-calendar";
-@import "programm/programm";
-@import "groups/courses";
-@import "header/header";
-@import "auth/auth";
-@import "profile/profile";
-@import "members/members";
-@import "cabinet/cabinet";
-@import "tests/tests";
-@import "no_content/no_content";
-@import "attachments/videos";
+@import "unique/courses/courses";
+@import "unique/schedule/schedule";
+@import "unique/schedule/schedule-calendar";
+@import "unique/programm/programm";
+@import "unique/groups/courses";
+@import "common/header/header";
+@import "unique/auth/auth";
+@import "unique/profile/profile";
+@import "unique/members/members";
+@import "unique/cabinet/cabinet";
+@import "unique/tests/tests";
+@import "unique/no_content/no_content";
+@import "unique/attachments/videos";

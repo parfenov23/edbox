@@ -19,7 +19,7 @@
     @include middle-block(920px);
     margin-bottom: 40px;
     .item {
-      padding: 24px 256px 16px 144px;
+      padding: 24px 256px 32px 144px;
       position: relative;
       background-color: #fff;
       min-height: 100px;
@@ -116,7 +116,7 @@
     }
   }
   .actual-courses {
-    @import "elements/courses_block";
+    @import "common/elements/courses_block";
     .corses-prev  {
       margin-bottom: 0;
     }

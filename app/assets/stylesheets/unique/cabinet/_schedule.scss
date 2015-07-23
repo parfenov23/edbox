@@ -1,5 +1,5 @@
 .schedule-cabinet {
-  @import 'elements/select';
+  @import 'common/elements/select';
   .month_chouse {
     margin-bottom: 37px;
   }
@@ -87,7 +87,7 @@
                 z-index: 10;
                 height: 100%;
               .hidden-calendar-wrp{
-                @import 'elements/hidden-list';
+                @import 'common/elements/hidden-list';
                 .hidden-calendar {
                   display: none;
                   min-width: 345px;
