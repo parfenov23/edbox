@@ -34,7 +34,7 @@ var includeDatePicker = function(){
         onSelect       : function (e) {
             var dates = $(this).data('datepicker');
             var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
-            $(this).parent().find('.selected-value').html(selectDate)
+            $(this).parent().find('.selected-value').html(selectDate);
             return $(this).parent().addClass('show');
         }
     });

@@ -37,6 +37,9 @@ var courseInfo = function (course_id) {
         popup.find(".js__courseEditTitle span").text(data.title);
         $("ul.js_addTemplateSectionLi").html($(templateLiSection(data)));
         includeDatePicker();
+        $('.edit-menu .js_changeDateToDatePicker').on('keyup paste input propertychange click change', function () {
+            changeDateToDatePicker($(this));
+        });
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -55,8 +58,8 @@ var templateLiSection = function (json_course) {
             '<div class="date-added">' +
             '</div>' +
             '<div class="set-date">' +
-            '<i class="icon"></i>'+
-            '<input class="datapicker__trigger js__set-date" name="sections['+ obj.id +']"/>' +
+            '<i class="icon"></i>' +
+            '<input class="datapicker__trigger js__set-date js_changeDateToDatePicker" name="sections[' + obj.id + ']"/>' +
             '</div>' +
             '</div>' +
             '</li>';
@@ -149,6 +152,11 @@ var addCourseMySchedule = function (btn) {
         show_error('Произошла ошибка', 3000);
     });
     return true;
+};
+
+var changeDateToDatePicker = function (input) {
+    console.log(123);
+    input.closest(".section-item").find(".date-added").text(input.val());
 };
 
 $(document).ready(function () {
