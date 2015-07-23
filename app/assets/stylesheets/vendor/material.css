@@ -303,10 +303,6 @@ p {
     margin-bottom  : 16px;
 }
 
-a {
-    color       : rgb(255, 64, 129);
-    font-weight : 500;
-}
 
 blockquote {
     font-family    : 'Roboto', 'Helvetica', 'Arial', sans-serif;

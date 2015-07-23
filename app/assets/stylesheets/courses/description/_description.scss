@@ -23,13 +23,14 @@
         z-index       : -1;
         border-radius : 2px 2px 0px 0px;
     }
-    .title {
+    >.title {
         font-size     : 34px;
         color         : #FFFFFF;
         line-height   : 40px;
         margin-bottom : 5px;
         position      : relative;
         z-index       : 1;
+        max-width: 704px;
     }
     .author {
         font-size   : 15px;
@@ -72,13 +73,24 @@
                 margin-bottom : 10px;
             }
         }
-        .get-course {
+
+        .btn-area {
+          margin-left: -8px;
+          .get-course {
+              font-size        : 14px;
+              line-height      : 36px;
+              padding          : 0 8px;
+              @include inline-block;
+              margin: 0 8px;
+          }
+          .is__orange {
             background-color : #FD9348;
-            font-size        : 14px;
             color            : #FFFFFF;
-            line-height      : 36px;
-            padding          : 0 8px;
-            @include inline-block;
+          }
+          .is__white {
+            color : #FD9348;
+            background-color            : #FFFFFF;
+          }
         }
     }
 }
@@ -93,10 +105,12 @@
     }
     .icon-list {
         text-align    : center;
-        margin-bottom : 32px;
+        display: flex;
+        justify-content: center;
         i {
+          display: block;
             color        : rgba(0, 0, 0, 0.54);
-            @include inline-block;
+            width: 32px;
             margin-right : 32px;
             &:last-of-type {
                 margin-right : 0;
@@ -119,7 +133,6 @@
         .video {
             font-size   : 26px;
             margin-top  : 4px;
-            margin-left : -9px;
             &::before {
                 content : '\e602';
             }
@@ -127,20 +140,22 @@
         .test {
             font-size   : 34px;
             margin-top  : -3px;
-            margin-left : -11px;
             &::before {
                 content : '\e601';
             }
         }
-        div {
-            padding-top : 19px;
-        }
-        a {
-            font-family: Roboto, sans-serif;
-            font-size   : 13px;
-            color       : #FD9348;
-            line-height : 20px;
-        }
+
+    }
+    .see-program {
+      padding-top : 19px;
+      text-align: center;
+      margin-bottom : 32px;
+      a {
+          font-family: Roboto, sans-serif;
+          font-size   : 13px;
+          color       : #FD9348;
+          line-height : 20px;
+      }
     }
     .principals-list {
         text-align : center;

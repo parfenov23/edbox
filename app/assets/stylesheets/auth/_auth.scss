@@ -36,19 +36,18 @@
       top            : -64px;
       left           : 0;
       width          : 100%;
-      font           : 300 24px/28px 'Roboto';
-      color          : #FFF;
       text-align     : center;
-      letter-spacing : .7px;
-      text-transform : uppercase;
     }
   }
   .auth__top {
     position : relative;
-    padding  : 32px 24px 104px 24px;
+    padding  : 32px 24px 90px 24px;
+    .auth_agree {
+      padding-top: 13px;
+    }
     .auth__title {
       position      : relative;
-      margin-bottom : 32px;
+      margin-bottom : 36px;
       font-size     : 18px;
       color         : #4A4A4A;
       line-height   : 24px;
@@ -189,6 +188,8 @@
   }
   .input-wrp {
     width : 100%;
+    height: 37px;
+    margin-bottom: 25px;
     &:before {
       position : absolute;
       z-index  : 12;
@@ -216,8 +217,10 @@
       }
     }
     input, textarea {
+      height: 37px;
       position : relative;
       color    : rgba(0, 0, 0, .87);
+      line-height: 22px;
       &:before {
         position : absolute;
       }
@@ -239,7 +242,7 @@
       padding  : 0 0 0 30px;
       font     : 400 13px/20px 'Roboto';
       color    : rgba(0, 0, 0, .54);
-      margin   : 0 0 24px 0;
+      margin   : 0 0 16px 0;
       &:before {
         position : absolute;
         left     : 4px;
@@ -259,9 +262,10 @@
       }
     }
     &-block {
-      margin : 0 0 24px 0;
+      margin : 0 0 36px 0;
     }
     &-select {
+      padding-top: 6px;
       position : relative;
       margin   : 0 0 24px 0;
       &ed {
