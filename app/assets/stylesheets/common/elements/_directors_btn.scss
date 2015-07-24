@@ -1,0 +1,82 @@
+.com__director-btn {
+    position: relative;
+    z-index: 10;
+  .edit-date {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    -webkit-transition: all 0.55s ease;
+            transition: all 0.55s ease;
+    border-radius: 32px;
+        line-height: 41px !important;
+        &:hover {
+          background : #F0F0F0;
+        }
+        i {
+          font-size: 26px;
+          &::before {
+            color: rgba(0, 0, 0, 0.26);
+            font-family: 'Icons';
+            content: "\E8A3";
+            line-height: 32px;
+          }
+          font-size : 26px;
+        }
+  }
+  .hidden-calendar-wrp{
+    @import 'common/elements/hidden-list';
+    .hidden-calendar {
+      display: none;
+      min-width: 345px;
+      background-color: #FFFFFF;
+      padding: 6px 0;
+      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.52);
+      border-radius: 2px;
+      max-height: 236px;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 100;
+      bottom: auto;
+      .calendar-header {
+        font-size: 15px;
+        color: rgba(0,0,0,0.87);
+        line-height: 18px;
+        margin-bottom: 24px;
+        padding-left: 23px;
+        @include clearfix;
+        padding-top: 13px;
+        .back {
+          float: left;
+          margin-right: 15px;
+          font-size: 16px;
+          &::before {
+            color: rgba(0,0,0,0.87);
+            content: '\E893'
+          }
+        }
+      }
+      .selected-value {
+        padding-left: 24px;
+      }
+      .calendar-holder{
+        font-size: 13px;
+        color: rgba(0,0,0,0.54);
+        line-height: 20px;
+        .ui-datepicker {
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+
+  &.is__active {
+    .hidden-calendar-wrp {
+      .hidden-list {
+        display: block !important;
+      }
+    }
+  }
+}

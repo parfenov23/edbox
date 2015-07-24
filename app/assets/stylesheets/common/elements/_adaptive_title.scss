@@ -1,0 +1,14 @@
+.adaptive-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;;
+  .left-col {
+      @include eclipses;
+  }
+  .right-col {
+    white-space: nowrap;
+    > div {
+      @include inline-block;
+    }
+  }
+}

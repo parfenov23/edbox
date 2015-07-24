@@ -1,0 +1,306 @@
+.corses-prev {
+    float         : left;
+    width         : 346px;
+    height        : 408px;
+    margin        : 0 24px 32px 0;
+    @include white__block(1,1);
+    &:nth-child(3) {
+        margin-right : 0;
+    }
+    &:hover {
+        .image .action-btn {
+            // display : block;
+        }
+    }
+    .image {
+        position : relative;
+        height   : 192px;
+        .tegs {
+            position      : absolute;
+            left          : 16px;
+            top           : 8px;
+            font-size     : 12px;
+            color         : #FFF;
+            line-height   : 18px;
+            padding       : 2px 7px;
+            @include eclipses;
+            max-width     : 256px;
+            background    : rgba(0, 0, 0, 0.54);
+            border-radius : 2px;
+        }
+        .course-type {
+            position      : absolute;
+            left          : 16px;
+            bottom        : 16px;
+            border        : 1px solid #FFF;
+            border-radius : 2px;
+            font-size     : 12px;
+            color         : #FFF;
+            line-height   : 18px;
+            padding       : 2px 7px;
+            @include eclipses;
+            max-width     : 256px;
+        }
+        .action-btn {
+            position : absolute;
+            right    : 17px;
+            bottom   : -25px;
+            width    : 50px;
+            height   : 50px;
+            // display  : none;
+            z-index  : 2;
+            &.three {
+                &:hover {
+                    width : 150px;
+                }
+            }
+            &.two:hover {
+                .schedule.icon {
+                    right : 60px !important;
+                }
+            }
+            .add, .favorite, .schedule {
+                &:active {
+                    background-color : #FD9348;
+                    &::before {
+                        color : #FFF;
+                    }
+                }
+            }
+            .add {
+                border-radius : 50%;
+                width         : 50px;
+                height        : 50px;
+                box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
+                background    : #FFF;
+                text-align    : center;
+                cursor        : pointer;
+                position      : absolute;
+                top           : 0;
+                right         : 0;
+                z-index       : 1;
+                &::before {
+                    position    : absolute;
+                    display     : block;
+                    top         : 15px;
+                    left        : 15px;
+                    color       : #FD9348;
+                    font-size   : 30px;
+                    line-height : 10px;
+                    content     : '+';
+                    width       : 20px;
+                    height      : 20px;
+                }
+            }
+            .favorite, .schedule {
+                width         : 36px;
+                height        : 36px;
+                border-radius : 50%;
+                box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
+                background    : #FFF;
+                text-align    : center;
+                cursor        : pointer;
+                position      : absolute;
+                top           : 7px;
+                right         : 7px;
+                z-index       : 0;
+                &::before {
+                    color       : #FD9348;
+                    display     : block;
+                    position    : absolute;
+                    top         : 0;
+                    left        : 0;
+                    line-height : 36px;
+                    text-align  : center;
+                    width       : 100%;
+                }
+                &:hover {
+                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
+                }
+            }
+            .favorite {
+                &::before {
+                    content : '\E631';
+                }
+            }
+            .schedule{
+              &::before {
+                  content  : '\E8AF';
+              }
+            }
+            &:hover {
+                width : 95px;
+                .add {
+                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
+                    &::before {
+                        content     : '\E8D6';
+                        left        : 10px;
+                        top         : 15px;
+                        width       : 30px;
+                        height      : 20px;
+                        line-height : 21px;
+                        font-size   : 24px;
+                        /* Oval 2 Copy 2: */
+                    }
+                }
+                .favorite {
+                    -webkit-transition : all 300ms;
+                    -moz-transition    : all 300ms;
+                    -o-transition      : all 300ms;
+                    transition         : all 300ms;
+                    right              : 60px;
+                }
+                .schedule {
+                    -webkit-transition : all 300ms;
+                    -moz-transition    : all 300ms;
+                    -o-transition      : all 300ms;
+                    transition         : all 300ms;
+                    right              : 108px;
+
+                }
+            }
+        }
+    }
+    figcaption {
+        padding  : 30px 0 16px 0;
+        position : relative;
+    }
+    .title {
+        font-size     : 20px;
+        color         : rgba(0, 0, 0, 0.87);
+        line-height   : 28px;
+        margin-bottom : 16px;
+        cursor        : pointer;
+        min-height    : 83px;
+        padding       : 0 16px;
+        white-space   : normal;
+        &.over-title {
+            position : relative;
+            .inner {
+                height   : 84px;
+                overflow : hidden;
+                position : relative;
+            }
+            .shadow {
+                position   : absolute;
+                bottom     : 0;
+                right      : 16px;
+                height     : 28px;
+                width      : 32px;
+                background : url("white-shadow.png");
+            }
+        }
+        &:hover {
+            color : #FD9348;
+        }
+    }
+    .author {
+        padding       : 0 16px;
+        font-size     : 13px;
+        color         : rgba(0, 0, 0, 0.54);
+        line-height   : 20px;
+        margin-bottom : 28px;
+    }
+
+    @import "unique/courses/info-block";
+
+    &.with_progress-bar {
+        height : 480px;
+        figcaption {
+            height : 288px;
+        }
+        .info-block {
+            position      : static;
+            padding       : 0 16px;
+            margin-bottom : 12px;
+        }
+        .progress-block {
+            border-top : 1px solid #E1E1E1;
+            padding    : 0 16px;
+            .progress-label {
+                display         : flex;
+                justify-content : space-between;
+                font-size       : 15px;
+                color           : rgba(0, 0, 0, 0.54);
+                line-height     : 24px;
+                padding-top     : 15px;
+                margin-bottom   : 10px;
+                .until {
+                    width         : 190px;
+                    @include eclipses;
+
+                }
+                .complite {
+
+                }
+            }
+            .progress-bar {
+                height     : 4px;
+                background : rgba(0, 0, 0, 0.12);
+                position   : relative;
+                .progress-bar_inner {
+                    position         : absolute;
+                    top              : 0;
+                    left             : 0;
+                    height           : 4px;
+                    background-color : #FD9348;
+                }
+            }
+        }
+        &.completed {
+            .progress-label {
+                padding-top : 23px;
+                .complite {
+                    font-size   : 15px;
+                    color       : rgba(0, 0, 0, 0.26);
+                    line-height : 24px;
+                }
+            }
+            .progress-bar {
+                display : none;
+            }
+        }
+    }
+
+    &.compact {
+        height : 264px;
+        width  : 264px;
+        .image {
+            height     : 144px;
+            text-align : center;
+            img {
+                height : 100%;
+            }
+        }
+        figcaption {
+            padding-top : 16px;
+            height      : 120px;
+            .title {
+                font-size     : 15px;
+                color         : rgba(0, 0, 0, 0.87);
+                line-height   : 24px;
+                min-height    : 72px;
+                margin-bottom : 4px;
+                .inner {
+
+                }
+                &.with_btn {
+                    padding-right : 45px;
+                }
+                .com__director-btn {
+                    position : absolute;
+                    top      : 12px;
+                    right    : 8px;
+                }
+                &.over-title {
+                    .inner {
+                        height : 72px;
+                    }
+                    .shadow {
+                        right : 16px;
+                    }
+                }
+            }
+        }
+    }
+}
