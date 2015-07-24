@@ -5,7 +5,12 @@ class BunchCourse < ActiveRecord::Base
   belongs_to :ligament_course
   has_many :bunch_sections, dependent: :destroy
 
+  scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
+  scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
+
   default_scope { where(archive: false) } #unscoped
+
+  default_scope { order("created_at DESC") } #unscoped
 
   def self.build(course_id, group_id, date_complete, type, user_id=nil, sections_hash={})
     case type
@@ -37,7 +42,7 @@ class BunchCourse < ActiveRecord::Base
     bunch_course.date_complete = date_complete
     bunch_course.save
     sections.each do |section|
-      current_section = sections_hash[section.id.to_s]
+      current_section = (sections_hash[section.id.to_s] rescue nil)
       bunch_section = bunch_course.bunch_sections.find_or_create_by({section_id: section.id, bunch_course_id: bunch_course.id})
       bunch_section.date_complete = Time.parse(current_section) if current_section.present?
       bunch_section.save

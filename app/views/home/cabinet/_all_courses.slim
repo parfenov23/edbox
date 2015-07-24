@@ -4,7 +4,9 @@
     .more
       a href = "#" СМОТРЕТЬ ВСЕ
   = render "home/cabinet/current_courses"
-  - overdue_bunch_courses = current_user.bunch_courses.where(["date_complete < ?", Time.now.beginning_of_day])
+  - overdue_bunch_courses = current_user.bunch_courses.overdue
   - if overdue_bunch_courses.present?
-    = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses.first(3)}
-  = render "home/cabinet/assigned_courses"
+    = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
+  - my_bunch_courses = current_user.bunch_courses
+  - if overdue_bunch_courses.present?
+    = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses}

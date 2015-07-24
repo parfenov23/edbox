@@ -2,16 +2,20 @@
   .title Просроченные курсы
   .info-box
     .legend-info
-      p Всего назначено: 24
-      p На изучении: 12
+      p
+        'Просроченно:
+        = overdue_bunch_courses.count
+      p
+        'На изучении:
+        = BunchCourse.where(id: overdue_bunch_courses.ids).in_study.uniq.count
       p.more
         a href ="#" СМОТРЕТЬ ВСЕ
     .course-prev-list
-      - overdue_bunch_courses.each do |overdue_bunch_course|
+      - overdue_bunch_courses.first(3).each do |overdue_bunch_course|
         - course = overdue_bunch_course.course
         figure.corses-prev.compact
           .image
-            img src="uploads/pic3.png"
+            img src=course.get_image_path('347x192')
             /.tegs Просроченный
           figcaption
             .title.with_btn
@@ -19,7 +23,7 @@
               .shadow
               - if overdue_bunch_course.model_type == "user"
                 .com__director-btn.js__select-calendar
-                  a.edit-date href="#"
+                  a.edit-date href="javascript:void(0)"
                     i.icon-uniE8A3
                   .hidden-calendar-wrp
                     .hidden-calendar
