@@ -29,11 +29,11 @@ figure.corses-prev
     .info-block
       .duration
         - duration = (course.duration.to_i rescue 0)
-        = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+        = rus_case(duration, "час", "часа", "часов")
         i.icon
       .qty-lectures
         - section_count = course.sections.count
-        = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
+        = rus_case(section_count, "лекция", "лекции", "лекций")
         i.icon
       .completed-courses
         |Прошли курс

@@ -16,7 +16,8 @@
         figure.corses-prev.compact
           .image
             img src=course.get_image_path('347x192')
-            /.tegs Просроченный
+            - course.bunch_tags.last(1).each do |bunch_tag|
+              .tegs = bunch_tag.tag.title
           figcaption
             .title.with_btn
               .inner = course.title

@@ -10,7 +10,7 @@ class BunchCourse < ActiveRecord::Base
 
   default_scope { where(archive: false) } #unscoped
 
-  default_scope { order("created_at DESC") } #unscoped
+  # default_scope { order("created_at DESC") } #unscoped
 
   def self.build(course_id, group_id, date_complete, type, user_id=nil, sections_hash={})
     case type

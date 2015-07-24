@@ -3,10 +3,14 @@
     .info Текущие курсы (всего 12)
     .more
       a href = "#" СМОТРЕТЬ ВСЕ
-  = render "home/cabinet/current_courses"
+  - bunch_courses_study = current_user.bunch_courses.in_study
+  - if bunch_courses_study.present?
+    = render "home/cabinet/current_courses", {bunch_courses_study: bunch_courses_study}
+
   - overdue_bunch_courses = current_user.bunch_courses.overdue
   - if overdue_bunch_courses.present?
     = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
+
   - my_bunch_courses = current_user.bunch_courses
   - if overdue_bunch_courses.present?
     = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses}
