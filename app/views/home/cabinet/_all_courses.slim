@@ -12,5 +12,5 @@
     = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
 
   - my_bunch_courses = current_user.bunch_courses
-  - if overdue_bunch_courses.present?
+  - if my_bunch_courses.present?
     = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses}
