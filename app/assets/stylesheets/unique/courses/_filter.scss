@@ -204,10 +204,8 @@
                             font-size     : 13px;
                             color         : rgba(0, 0, 0, 0.54);
                             line-height   : 20px;
-                            overflow      : hidden;
+                            @include eclipses;
                             width         : 190px;
-                            text-overflow : ellipsis;
-                            white-space   : nowrap;
                             margin-bottom : 12px;
                             z-index       : 9999;
 

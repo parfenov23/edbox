@@ -42,9 +42,7 @@
         .email {
           float         : left;
           max-width     : calc(100% - 40px);
-          overflow      : hidden;
-          white-space   : nowrap;
-          text-overflow : ellipsis;
+            @include eclipses;
           margin        : 0 16px 0 0;
         }
         .cancel {
@@ -118,18 +116,14 @@
       .name {
         float         : left;
         width         : 25%;
-        overflow      : hidden;
-        white-space   : nowrap;
-        text-overflow : ellipsis;
+        @include eclipses;
         font          : 400 13px/30px 'Roboto';
         color         : #000;
       }
       .email {
         float         : left;
         width         : 30%;
-        overflow      : hidden;
-        white-space   : nowrap;
-        text-overflow : ellipsis;
+        @include eclipses;
         font          : 400 13px/30px 'Roboto';
         color         : rgba(0, 0, 0, .87);
       }

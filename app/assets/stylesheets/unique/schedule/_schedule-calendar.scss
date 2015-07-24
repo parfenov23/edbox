@@ -31,9 +31,7 @@
         height: 32px;
         border: 1px solid rgba(0,0,0,0.12);
         border-radius: 2px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        @include eclipses;
         line-height: 32px;
         padding: 0 8px 0 12px;
         margin-bottom: 8px;

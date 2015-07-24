@@ -1,10 +1,11 @@
-@import "vendor/material";
-@import "vendor/jquery-ui.min";
+@import "common/mixins/variables";
 @import "common/mixins/inline-block";
 @import "common/mixins/circle-img";
 @import "common/mixins/middle-block";
 @import "common/mixins/media-queries";
 @import "common/mixins/clearfix";
+@import "common/mixins/comm__block";
+@import "common/mixins/eclipses";
 @import "common/mixins/placeholder";
 @import "common/mixins/transition";
 
@@ -14,8 +15,6 @@
   src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
-$fontColor : rgba(0, 0, 0, 0.87);
-$bgColor : #ECEFF1;
 
 *, *:before, *:after {
   box-sizing : border-box;
@@ -29,11 +28,11 @@ html {
 }
 
 body {
-  background-color : $bgColor;
+  background-color : #ECEFF1;
   height           : 100%;
   min-height       : 100%;
   height           : auto !important;
-  color            : $fontColor;
+  color            : $black_87;
   font-weight      : 400 !important;
 }
 
@@ -42,7 +41,7 @@ input:focus {
 }
 
 a {
-  color           : $fontColor;
+  color           : $black_87;
   text-decoration : none;
 }
 
@@ -162,10 +161,10 @@ i {
   }
 }
 .adova__btn {
+  @include white__block(1,1);
   position: fixed;
   width: 60px;
   height: 60px;
-  background: #fff;
   border-radius: 50%;
   bottom: 20px;
   right: 20px;
@@ -179,9 +178,6 @@ i {
       font-size: 24px;
       content: '\E899';
     }
-  }
-  &:hover {
-    box-shadow : 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
   }
   &:active {
     background-color: #FD9348;
@@ -214,21 +210,22 @@ i {
 @import "common/material__el/rippleAnimation";
 @import "common/material__el/checkbox";
 @import "common/material__el/switch";
-@import "common/elements/calendar";
-@import "common/material__el/toggle-state";
-@import "common/elements/adaptive_title";
-@import "common/elements/adaptive_popup";
 @import "common/material__el/input";
 @import "common/material__el/btns";
 @import "common/material__el/tooltip";
+@import "common/material__el/toggle-state";
+@import "common/elements/calendar";
+@import "common/elements/adaptive_title";
+@import "common/elements/adaptive_popup";
 @import "common/elements/directors_btn";
+
+@import "common/header/header";
 
 @import "unique/courses/courses";
 @import "unique/schedule/schedule";
 @import "unique/schedule/schedule-calendar";
 @import "unique/programm/programm";
 @import "unique/groups/courses";
-@import "common/header/header";
 @import "unique/auth/auth";
 @import "unique/profile/profile";
 @import "unique/members/members";

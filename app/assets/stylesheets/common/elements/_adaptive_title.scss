@@ -3,9 +3,7 @@
   width: 100%;
   justify-content: space-between;;
   .left-col {
-      overflow      : hidden;
-      white-space   : nowrap;
-      text-overflow : ellipsis;
+      @include eclipses;
   }
   .right-col {
     white-space: nowrap;

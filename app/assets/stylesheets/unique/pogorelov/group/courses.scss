@@ -361,12 +361,10 @@ input[type="submit"] {
     font-size     : 20px;
     font-weight   : 400;
     line-height   : 32px;
-    text-overflow : ellipsis;
     width         : 87%;
-    overflow      : hidden;
     height        : 33px;
     margin-bottom : 9px;
-    white-space   : nowrap;
+    @include eclipses;
     &:hover{
       color: #FD9348;
     }

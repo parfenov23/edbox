@@ -14,7 +14,7 @@
         - when "profile"
             ul.tabs
                 li.tabs__item class="#{header_bottom[:profile_class]}"
-                    a.tabs__item-link href="/app/assets/stylesheets/unique/profile" персональные данные
+                    a.tabs__item-link href="/profile" персональные данные
                 / li.tabs__item
                 /   a.tabs__item-link href="#" уведомления
                 li.tabs__item class="#{header_bottom[:tariff_class]}"
@@ -29,7 +29,7 @@
                 li.tabs__item class="#{header_bottom[:description_class]}"
                     a.tabs__item-link href="/course_description?id=#{@course.id}" Описание
                 li.tabs__item class="#{header_bottom[:programm_class]}"
-                    a.tabs__item-link href="/app/assets/stylesheets/unique/programm?course_id=#{@course.id}" Программа
+                    a.tabs__item-link href="/programm?course_id=#{@course.id}" Программа
 
                 .line
 
@@ -40,13 +40,13 @@
                         a.tabs__item-link href="/group?id=#{(current_user.company.groups.first.id rescue "new")}"
                             |группы
                     li.tabs__item class="#{header_bottom[:members_class]}"
-                        a.tabs__item-link href="/app/assets/stylesheets/unique/members" участники
+                        a.tabs__item-link href="/members" участники
                 - elsif current_user.corporate
                     li.tabs__item class="#{header_bottom[:groups_class]}"
                         a.tabs__item-link href="/group?id=#{(current_user.bunch_groups.first.group.id rescue "no_group")}"
                             |группы
                 li.tabs__item class="#{header_bottom[:schedule_class]}"
-                    a.tabs__item-link href="/app/assets/stylesheets/unique/schedule" расписание
+                    a.tabs__item-link href="/schedule" расписание
                 li.tabs__item class="#{header_bottom[:favorite_class]}"
                     a.tabs__item-link href="/favorite" избранное
                 .line

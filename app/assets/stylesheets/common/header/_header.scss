@@ -442,9 +442,7 @@
         .title-text {
           float         : left;
           max-width     : 350px;
-          overflow      : hidden;
-          white-space   : nowrap;
-          text-overflow : ellipsis;
+          @include eclipses;
         }
         .arrow {
           float  : left;
