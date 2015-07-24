@@ -1,4 +1,9 @@
 - bunch_courses_study_count = bunch_courses_study.count
+.title
+  .info
+    = "Текущие курсы (всего #{bunch_courses_study_count})"
+  .more
+    a href = "/my_course?type=current" СМОТРЕТЬ ВСЕ
 .carusel-wrp
   .jcarousel-wrapper
     .jcarousel.js__carusel
@@ -7,7 +12,6 @@
           - course = bunch_course.course
           - all_sections = bunch_course.bunch_sections
           - complete_proc = (100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f) rescue 0).round
-          = all_sections.count
           li class=(bunch_courses_study_count > 3 ? "carusel-item" : "")
             // completed
             figure.corses-prev.with_progress-bar

@@ -1,8 +1,4 @@
 .actual-courses
-  .title
-    .info Текущие курсы (всего 12)
-    .more
-      a href = "#" СМОТРЕТЬ ВСЕ
   - bunch_courses_study = current_user.bunch_courses.in_study
   - if bunch_courses_study.present?
     = render "home/cabinet/current_courses", {bunch_courses_study: bunch_courses_study}

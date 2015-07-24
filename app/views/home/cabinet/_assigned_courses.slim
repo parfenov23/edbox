@@ -9,11 +9,11 @@
         'На изучении:
         = my_bunch_courses.in_study.count
       p.more
-        a href ="#" СМОТРЕТЬ ВСЕ
+        a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
       - my_bunch_courses.first(3).each do |my_bunch_course|
         - course = my_bunch_course.course
-        figure.corses-prev.compact
+        figure.corses-prev.compact.js__removeCourseMyBlock
           .image
             img src=course.get_image_path('347x192')
             - course.bunch_tags.last(1).each do |bunch_tag|
@@ -37,7 +37,8 @@
                         .datapicker__trigger
                     ul.hidden-list
                       li data-show = "hidden-calendar" Перенести дату окончания курса
-                      li Удалить
+                      - ts = "Курс удален!"
+                      li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id Удалить
             .author
               'Завершить до
               = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")

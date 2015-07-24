@@ -58,6 +58,7 @@ var removeCourseMy = function (btn, text_success) {
         data: {course_id: course_id, date_complete: data_time}
     }).success(function () {
         show_error(text_success, 3000);
+        btn.closest(".js__removeCourseMyBlock").remove();
         loadMySchedule();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
