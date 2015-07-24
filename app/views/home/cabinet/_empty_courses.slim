@@ -1,40 +1,8 @@
-.empty-title
-  = current_user.first_name
-  |, добро пожаловать в Edbox
-.empty-description Теперь вы сможете качественно и быстро получать необходимые знания и профессиональные рекомендации в режиме онлайн. В Edbox вы сами выбираете темы, которые вам нравятся и создаёте уникальное расписание своего обучения. Вы можете начать учиться прямо сейчас.
 
-.possible__action-list
-  .item.for__invite
-    .icon__block
-      i.icon
-    .text__block
-      .title Пригласите ваших коллег
-      .description Отправьте приглашения вашим сотрудникам на email, чтобы они смогли зарегистрироваться в Edbox.
-    .action__block
-      .btn ОТПРАВИТЬ ПРИГЛАШЕНИЯ
-
-  .item.for__groups
-    .icon__block
-      i.icon
-    .text__block
-      .title Создайте группы
-      .description Вы можете разбить участников на группы по интересам или должностям, например: отдел продаж, маркетинг, разработка. Приглашайте участников в уже созданные группы, чтобы они видели тольконужный контент.
-    .action__block
-      .btn СОЗДАТЬ ГРУППУ
-
-  .item.for__schedule
-    .icon__block
-      i.icon
-    .text__block
-      .title Составьте расписание обучения
-      .description Создайте расписание для каждой группы и установите четкий дедлайн прохождения курса. Вы можете установить срок для каждого блока курса, чтобы сотрудники могли видеть ваши рекомендации и проходить обучение в срок. 
-    .action__block
-      .btn СОСТАВИТЬ РАСПИСАНИЕ
-
-.choose-course.mdl-shadow--2dp
-  .description
-    'На данный момент основной план обучения еще не составлен.
-    'Вы можете перейти в библиотеку и выбрать интересующие вас курсы,
-    |сформировать расписание обучения и начать заниматься.
-  .action-block
-    .btn onclick='window.location.href="/courses"' ВЫБРАТЬ КУРС
+= render "home/cabinet/empty/header"
+- if current_user.director
+  = render "home/cabinet/empty/director", {users_count_valid: users_count_valid,
+                                           groups_count_valid: groups_count_valid,
+                                           ligament_count_valid: ligament_count_valid}
+- unless bunch_count_valid
+  = render "home/cabinet/empty/my_schedule"

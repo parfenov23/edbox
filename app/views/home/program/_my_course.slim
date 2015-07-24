@@ -25,5 +25,9 @@
                     - if bunch_attachment.complete
                       .overdue-label Пройдено
                     - else
-                      .download
-                        a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
+                      - if attachment.class_type != "video"
+                        .download
+                          a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
+                      - else
+                        .download
+                          a href = "/video?id=#{attachment.id}" Просмотреть

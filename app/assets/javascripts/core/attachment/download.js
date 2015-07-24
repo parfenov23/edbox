@@ -18,4 +18,7 @@ pageLoad(function () {
         downloadAttachment($(this));
         completeAttachment($(this));
     });
+    $(document).on('click', '.js_completeAttachment', function () {
+        completeAttachment($(this));
+    });
 });

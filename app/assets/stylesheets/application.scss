@@ -9,41 +9,41 @@
 @import "mixins/transition";
 
 @font-face {
-  font-family : 'Icons';
-  src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
-  src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
+    font-family : 'Icons';
+    src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
+    src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
 $fontColor : rgba(0, 0, 0, 0.87);
 $bgColor : #ECEFF1;
 
 *, *:before, *:after {
-  box-sizing : border-box;
+    box-sizing : border-box;
 }
 
 html {
-  position    : relative;
-  font-family : 'Roboto', sans-serif;
-  min-height  : 100%;
-  height      : 100%;
+    position    : relative;
+    font-family : 'Roboto', sans-serif;
+    min-height  : 100%;
+    height      : 100%;
 }
 
 body {
-  background-color : $bgColor;
-  height           : 100%;
-  min-height       : 100%;
-  height           : auto !important;
-  color            : $fontColor;
-  font-weight      : 400 !important;
+    background-color : $bgColor;
+    height           : 100%;
+    min-height       : 100%;
+    height           : auto !important;
+    color            : $fontColor;
+    font-weight      : 400 !important;
 }
 
 input:focus {
-  outline : none;
+    outline : none;
 }
 
 a {
-  color           : $fontColor;
-  text-decoration : none;
+    color           : $fontColor;
+    text-decoration : none;
 }
 
 p {
@@ -78,11 +78,18 @@ i {
 
 .inner-content {
     padding-top : 96px;
+    .content-video {
+        position  : absolute;
+        top       : 50%;
+        left      : 50%;
+        transform : translate(-50%, -50%);
+    }
 }
 
 .new-courses-holder {
     background-color : #F9F9F9;
 }
+
 .color__ripple {
     position      : absolute;
     border-radius : 50%;
@@ -151,64 +158,67 @@ i {
 .content#groups {
     padding-top : 130px;
 }
+
 .js__backing {
-  &.is__active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+    &.is__active {
+        position : fixed;
+        top      : 0;
+        left     : 0;
+        width    : 100%;
+        height   : 100%;
+        z-index  : 1;
+    }
 }
+
 .adova__btn {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border-radius: 50%;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  cursor: pointer;
-  text-align: center;
-  i {
-    color: #FD9348;
-    &::before {
-      line-height: 60px;
-      font-size: 24px;
-      content: '\E899';
-    }
-  }
-  &:hover {
-    box-shadow : 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-  }
-  &:active {
-    background-color: #FD9348;
+    position      : fixed;
+    width         : 60px;
+    height        : 60px;
+    background    : #FFF;
+    border-radius : 50%;
+    bottom        : 20px;
+    right         : 20px;
+    z-index       : 9999;
+    cursor        : pointer;
+    text-align    : center;
     i {
-      color: #fff;
+        color : #FD9348;
+        &::before {
+            line-height : 60px;
+            font-size   : 24px;
+            content     : '\E899';
+        }
     }
-  }
+    &:hover {
+        box-shadow : 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    }
+    &:active {
+        background-color : #FD9348;
+        i {
+            color : #FFF;
+        }
+    }
 }
+
 .duration__with-icon {
-  padding-left: 20px;
-  position: relative;
-  padding-top: 2px;
+    padding-left : 20px;
+    position     : relative;
+    padding-top  : 2px;
     i {
-      position: absolute;
-      left: 0;
-      top: 2px;
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.54);
-      &::before {
+        position  : absolute;
+        left      : 0;
+        top       : 2px;
+        font-size : 14px;
+        color     : rgba(0, 0, 0, 0.54);
+        &::before {
             content : '\E71F';
         }
     }
 }
 
-.content#groups{
-  @import "pogorelov/group/courses";
-  @import "groups/groups";
+.content#groups {
+    @import "pogorelov/group/courses";
+    @import "groups/groups";
 }
 
 @import "elements/rippleAnimation";

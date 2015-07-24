@@ -29,7 +29,7 @@ class HomeController < ActionController::Base
       @section = attachment.attachmentable
       @author = @section.course.user
     else
-      render :error
+      redirect_to "/cabinet"
     end
   end
 

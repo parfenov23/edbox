@@ -16,9 +16,10 @@
     margin-bottom: 24px;
   }
   .possible__action-list {
+    @include middle-block(920px);
     margin-bottom: 40px;
     .item {
-      padding: 24px 256px 16px 144px;
+      padding: 24px 256px 32px 144px;
       position: relative;
       background-color: #fff;
       min-height: 100px;
@@ -241,4 +242,4 @@
     }
   }
 }
-@import "schedule"
+@import "schedule";

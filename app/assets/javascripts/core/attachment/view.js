@@ -12,7 +12,5 @@ $(document).ready(function () {
     if (video.length > 0){
         var body = $("body");
         body.attr("style", "background-color : #252525;");
-        //video.center();
-        $(".content-video").center();
     }
 });
