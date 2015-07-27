@@ -40,6 +40,28 @@
     padding  : 32px 24px 90px 24px;
     .auth_agree {
       padding-top: 13px;
+      .checkbox {
+        input[type=checkbox]:checked + .checkbox-material .check:before {
+          color: #00bcd8 ;
+          animation: checkbox-on $checkbox-animation-check forwards;
+        }
+      }
+      label {
+        .checkbox-material {
+          color: #00bcd8 ;
+
+        }
+        em {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font: 400 13px/20px 'Roboto';
+        color: rgba(0,0,0,0.54);
+        padding-left: 28px;
+        min-height: 16px;
+        }
+      }
     }
     .auth__title {
       position      : relative;
