@@ -2,9 +2,11 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
-//= require ./vendor/material.min
+// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
+//= require ./vendor/material/ripples
+//= require ./vendor/material/material
 //=require main/main
 
 //= require_tree ./core
@@ -51,6 +53,9 @@ function pageLoad(action){
 
 
 $(document).ready(function () {
+
+
+  $.material.init()
 
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
