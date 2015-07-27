@@ -14,3 +14,30 @@ $(document).ready(function () {
         body.attr("style", "background-color : #252525;");
     }
 });
+
+$(document).ready(function () {
+    var video = $(".content-audio audio");
+    if (video.length > 0){
+        $(".content-audio").center();
+    }
+});
+
+//$(document).ready(function () {
+//    $('#audio-play.play').click(function (e) {
+//        $('#audio')[0].play();
+//        var playBtn = e.target;
+//        $(playBtn).removeClass('play');
+//        $(playBtn).addClass('pause');
+//        $(playBtn).text('pause');
+//    })
+//});
+//
+//$(document).ready(function () {
+//    $('#audio-play.pause').click(function (e) {
+//        $('#audio')[0].pause();
+//        var pauseBtn = e.target;
+//        $(pauseBtn).removeClass('pause');
+//        $(pauseBtn).addClass('play');
+//        $(pauseBtn).text('play');
+//    })
+//});
