@@ -33,6 +33,18 @@ class HomeController < ActionController::Base
     end
   end
 
+  def audio
+    @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file_type == 'audio'
+      @audio = attachment
+      @section = attachment.attachmentable
+      @author = @section.course.user
+    else
+      render :error
+    end
+  end
+
   def members
     @members = current_user.company.users
   end

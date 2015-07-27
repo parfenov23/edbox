@@ -1,0 +1,25 @@
+.inner-content {
+    .content-audio {
+        position: relative;
+        overflow: hidden;
+        width: 920px;
+        margin: 0 auto;
+        margin-bottom: 24px;
+        padding: 24px 24px 72px 64px;
+        background: #fff;
+        box-shadow: 0  0    2px 0  rgba(0,0,0,.12),
+        0  2px  6px 0  rgba(0,0,0,.24);
+        border-radius: 2px;
+        .audio-title {
+            font-family : ArialMT;
+            font-size   : 24px;
+            line-height : 32px;
+            padding-top : 10px;
+        }
+        .audio-author {
+            font-family : Roboto-Regular;
+            font-size   : 13px;
+            line-height : 20px;
+        }
+    }
+}
