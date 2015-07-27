@@ -32,8 +32,8 @@
             = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
 
           .btn-area
-            .btn.is__orange.get-course НАЗНАЧИТЬ ГРУППЕ
-            .btn.is__white.get-course ДОБАВИТЬ В ИЗБРАННОЕ
+            .btn.btn-flat.is__orange.get-course НАЗНАЧИТЬ ГРУППЕ
+            .btn.btn-flat.is__white.get-course ДОБАВИТЬ В ИЗБРАННОЕ
       .text-block
         .description
           = raw @course.description
@@ -59,7 +59,7 @@
             .registration
               .title Для того, чтобы начать обучение, вам необходимо зарегистрироваться и выбрать форму подписки
               a href="/signup"
-                .btn.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
+                .btn.btn-flat.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
 
           - else
             .some-action
@@ -67,10 +67,10 @@
               .btn-block
                 - if current_user.director
                   - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
-                  .btn.yes.add-to-group class="#{add_class}" data-type="group" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
+                  .btn.btn-flat.yes.add-to-group class="#{add_class}" data-type="group" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
                 - else
-                  .btn.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
-                .btn.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
+                  .btn.btn-flat.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
+                .btn.btn-flat.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
 
   /.add-info
   /    .title Сейчас вы используете бесплатный аккаунт. Для того, чтобы начать обучение, оформите платную подписку и получите доступ ко всем курсам библиотеки.
