@@ -1,4 +1,5 @@
 class WebsocketController < WebsocketRails::BaseController
+
   def client_connected
     system_msg :new_message, "client #{client_id} connected"
   end
