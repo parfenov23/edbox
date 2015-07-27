@@ -9,6 +9,9 @@
 
 //= require_tree ./core
 
+//= require websocket_rails/main
+//= require_tree ./websocket
+
 
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
@@ -162,3 +165,4 @@ $(document).ready(function () {
     changeAvatar();
 
 });
+

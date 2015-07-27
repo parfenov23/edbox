@@ -9,8 +9,10 @@ Rails.application.routes.draw do
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
-  get ":action" => "home#:action"
-
+  # get ":action" => "home#:action"
+  get "test_websocket" => "home#test_websocket"
+  # get 'nod'
+  match "node/websocket", :to => WebsocketRails::ConnectionManager.new, :via => [:get, :post]
   resources :tests, only: [] do
     collection do
       post :complete
