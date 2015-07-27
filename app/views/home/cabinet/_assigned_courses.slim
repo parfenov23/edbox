@@ -2,35 +2,43 @@
   .title Назначенные курсы
   .info-box
     .legend-info
-      p Всего назначено: 24
-      p На изучении: 12
+      p
+        'Всего назначено:
+        = my_bunch_courses.count
+      p
+        'На изучении:
+        = my_bunch_courses.in_study.count
       p.more
-        a href ="#" СМОТРЕТЬ ВСЕ
+        a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
-      figure.corses-prev.compact
-        .image
-          img src="uploads/pic3.png"
-          .tegs Просроченный
-        figcaption
-          .title
-            .inner  Экономьте ваше время вместе с Favitimer jмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favit
-            .shadow
-          .author Завершить до 25 июля
-      figure.corses-prev.compact
-        .image
-          img src="uploads/pic3.png"
-          .tegs Просроченный
-        figcaption
-          .title
-            .inner  Экономьте ваше время вместе с Favitimer jмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favit
-            .shadow
-          .author Завершить до 25 июля
-      figure.corses-prev.compact
-        .image
-          img src="uploads/pic3.png"
-          .tegs Просроченный
-        figcaption
-          .title
-            .inner  Экономьте ваше время вместе с Favitimer jмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favitмя вместе с Favit
-            .shadow
-          .author Завершить до 25 июля
+      - my_bunch_courses.first(3).each do |my_bunch_course|
+        - course = my_bunch_course.course
+        figure.corses-prev.compact.js__removeCourseMyBlock
+          .image
+            img src=course.get_image_path('347x192')
+            - course.bunch_tags.last(1).each do |bunch_tag|
+              .tegs = bunch_tag.tag.title
+          figcaption
+            .title
+              .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
+              .shadow
+              - if my_bunch_course.model_type == "user"
+                .com__director-btn.js__select-calendar
+                  a.edit-date href="javascript:void(0)"
+                    i.icon-uniE8A3
+                  .hidden-calendar-wrp
+                    .hidden-calendar
+                      .calendar-header
+                        .back.icon
+                        |Выбор даты
+                      .calendar-holder.edit-menu
+                        - text_data = "Установить дату окончания курса"
+                        .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
+                        .datapicker__trigger
+                    ul.hidden-list
+                      li data-show = "hidden-calendar" Перенести дату окончания курса
+                      - ts = "Курс удален!"
+                      li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id Удалить
+            .author
+              'Завершить до
+              = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post :render_mini_schedule, to: "home#render_mini_schedule"
 
   get "video/:id" => "home#video"
+  get "audio/:id" => "home#audio"
   get ":action" => "home#:action"
 
   resources :tests, only: [] do

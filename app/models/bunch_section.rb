@@ -2,6 +2,7 @@ class BunchSection < ActiveRecord::Base
   belongs_to :bunch_course
   belongs_to :section
   has_many :bunch_attachments
+  scope :all_complete, -> { where({complete:  true}) }
 
   def full_complete?(user_id)
     bunch_attachments_valid = bunch_attachments.where(complete: true).count >= bunch_attachments.count
