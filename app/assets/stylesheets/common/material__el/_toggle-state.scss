@@ -1,0 +1,131 @@
+.js__toggle-state {
+  .fixed-h {
+      // display : flex;
+      .title {
+          font-size   : 15px;
+          color       : #000000;
+          line-height : 24px;
+      }
+  }
+  .hidden-part {
+
+  }
+  &.closed-state {
+      height : 56px;
+      .fixed-h {
+          > .title {
+              // white-space   : nowrap;
+              // overflow      : hidden;
+              // text-overflow : ellipsis;
+          }
+
+      }
+      .hidden-part {
+        display: none;
+      }
+  }
+
+
+  &.open-state {
+    margin: 12px -32px 12px -32px;
+    width: calc(100% + 64px);
+    .fixed-h {
+      margin-bottom: 35px;
+    }
+    .hidden-part {
+      .hidden-item {
+        background: #FFFFFF;
+        border-radius: 2px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+        margin-bottom: 16px;
+        padding-left: 71px;
+        //padding-right: 72px; edit max
+        padding-right: 24px;
+        padding-top: 18px;
+        height: 56px;
+        position: relative;
+        &:hover {
+          box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+        }
+        .overdue-label {
+          border: 1px solid #FD9348;
+          border-radius: 2px;
+          padding: 0 8px;
+          line-height: 24px;
+          font-size: 11px;
+          color: #FD9348;
+          margin-top: -2px;
+        }
+        .download {
+          margin-right: 24px;
+          a {
+          font-size: 14px;
+          color: #FD9348;
+          line-height: 16px;
+          text-transform: uppercase;
+          }
+        }
+
+        &.video {
+          >.icon {
+            top: 20px;
+            left: 26px;
+            font-size: 16px;
+            &::before {
+              content: '\e602'
+            }
+          }
+        }
+        &.text {
+          >.icon {
+            top: 16px;
+            font-size: 24px;
+            left: 25px;
+            &::before {
+              content: '\E621'
+            }
+          }
+        }
+        &.audio {
+          >.icon {
+            top: 20px;
+            font-size: 17px;
+            left: 28px;
+            &::before {
+              content: '\e603'
+            }
+          }
+        }
+        &.test {
+          >.icon {
+            font-size: 18px;
+            left: 28px;
+            top: 20px;
+            &::before {
+              content: '\e601'
+            }
+          }
+        }
+        >.icon {
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: #757575;
+        }
+        .title {
+            @include eclipses;
+        }
+        .duration {
+            padding-left : 19px;
+            margin-left  : 16px;
+            font-size    : 11px;
+            color        : rgba(0, 0, 0, 0.26);
+            line-height  : 18px;
+            position: relative;
+            margin-top: 3px;
+        }
+      }
+    }
+  }
+
+}

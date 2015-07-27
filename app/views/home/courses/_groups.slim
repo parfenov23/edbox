@@ -1,16 +1,27 @@
 #js-groups-courses.courses-aside.groups-courses
-    .close-filter.icon Группы
-    - groups = (current_user.company.groups rescue [])
-    - groups.each do |group|
-        .group-item
-            a href="/group?id=#{group.id}"
-                .title = group.first_name
-            .user-qty
-                i.icon
-                - count_users = group.bunch_groups.count
-                = "#{count_users} #{Russian.p(count_users, "пользователь", "пользователя", "пользователей")}"
-            .courses-qty
-                i.icon
-                - count_courses = group.bunch_courses.count
-                = "#{count_courses} #{Russian.p(count_courses, "курс", "курса", "курсов")}"
+  .close-filter.icon Группы
+  - groups = (current_user.company.groups rescue [])
+  - unless groups.present?
+    .aside_no-content
+      .title
+        - if current_user.director
+          |У вас еще нет групп
+        - else
+          |Вас еще не пригласили в группу
+      - if current_user.director
+        .description
+          'Чтобы добавить курсы и составить расписание, вам необходимо создать группу,
+          |которая будет проходить обуение
+  - groups.each do |group|
+    .group-item
+      a href="/group?id=#{group.id}"
+        .title = group.first_name
+      .user-qty
+        i.icon
+        - count_users = group.bunch_groups.count
+        = "#{count_users} #{Russian.p(count_users, "пользователь", "пользователя", "пользователей")}"
+      .courses-qty
+        i.icon
+        - count_courses = group.bunch_courses.count
+        = "#{count_courses} #{Russian.p(count_courses, "курс", "курса", "курсов")}"
       

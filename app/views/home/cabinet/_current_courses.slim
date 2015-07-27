@@ -1,136 +1,51 @@
+- bunch_courses_study_count = bunch_courses_study.count
+.title
+  .info
+    = "Текущие курсы (всего #{bunch_courses_study_count})"
+  .more
+    a href = "/my_course?type=current" СМОТРЕТЬ ВСЕ
 .carusel-wrp
   .jcarousel-wrapper
     .jcarousel.js__carusel
       ul.carusel
-        li.carusel-item
-          figure.corses-prev.with_progress-bar.completed
-            .image
-              img src="uploads/pic3.png" /
-              .course-type Записанный курс
-            figcaption
-              .title
-                .inner 1Теперь вы сможете качественно и быстро получать необходимые знания и профессиональные рекомендации в режиме онлайн. В Edbox вы сами выбираете темы, которые вам нравятся и создаёте уникальное расписание своего обучения. Вы можете начать учиться прямо сейчас.
-                .shadow
-              .author Нет ведущего
-              .info-block
-                .duration
-                  | 23 часа
-                  i.icon
-                .qty-lectures
-                  | 1 лекция
-                  i.icon
-                .completed-courses
-                  | Прошли курс
-                  i.icon
-              .progress-block
-                .progress-label
-                  .until Завершить до 25 июля Завершить до 25 июляЗавершить до 25 июля
-                  .complite Пройдено 100 %
-                .progress-bar
-                  .progress-bar_inner style="width: 30%"
-        li.carusel-item
-          figure.corses-prev.with_progress-bar
-            .image
-              img src="uploads/pic3.png" /
-              .course-type Записанный курс
-            figcaption
-              .title
-                | 123 test
-                .shadow
-              .author Нет ведущего
-              .info-block
-                .duration
-                  | 23 часа
-                  i.icon
-                .qty-lectures
-                  | 1 лекция
-                  i.icon
-                .completed-courses
-                  | Прошли курс
-                  i.icon
-              .progress-block
-                .progress-label
-                  .until Завершить до 25 июля
-                  .complite Пройдено 45 %
-                .progress-bar
-                  .progress-bar_inner style="width: 30%"
-        li.carusel-item
-          figure.corses-prev.with_progress-bar
-            .image
-              img src="uploads/pic3.png" /
-              .course-type Записанный курс
-            figcaption
-              .title
-                | 123 test
-                .shadow
-              .author Нет ведущего
-              .info-block
-                .duration
-                  | 23 часа
-                  i.icon
-                .qty-lectures
-                  | 1 лекция
-                  i.icon
-                .completed-courses
-                  | Прошли курс
-                  i.icon
-              .progress-block
-                .progress-label
-                  .until Завершить до 25 июля
-                  .complite Пройдено 45 %
-                .progress-bar
-                  .progress-bar_inner style="width: 30%"
-        li.carusel-item
-          figure.corses-prev.with_progress-bar
-            .image
-              img src="uploads/pic3.png" /
-              .course-type Записанный курс
-            figcaption
-              .title
-                | 123 test
-                .shadow
-              .author Нет ведущего
-              .info-block
-                .duration
-                  | 23 часа
-                  i.icon
-                .qty-lectures
-                  | 1 лекция
-                  i.icon
-                .completed-courses
-                  | Прошли курс
-                  i.icon
-              .progress-block
-                .progress-label
-                  .until Завершить до 25 июля
-                  .complite Пройдено 45 %
-                .progress-bar
-                  .progress-bar_inner style="width: 30%"
-        li.carusel-item
-          figure.corses-prev.with_progress-bar
-            .image
-              img src="uploads/pic3.png" /
-              .course-type Записанный курс
-            figcaption
-              .title
-                | 123 test
-                .shadow
-              .author Нет ведущего
-              .info-block
-                .duration
-                  | 23 часа
-                  i.icon
-                .qty-lectures
-                  | 1 лекция
-                  i.icon
-                .completed-courses
-                  | Прошли курс
-                  i.icon
-              .progress-block
-                .progress-label
-                  .until Завершить до 25 июля
-                  .complite Пройдено 45 %
-                .progress-bar
-                  .progress-bar_inner style="width: 30%"
-    a.jcarousel-control-prev.icon href="#"
-    a.jcarousel-control-next.icon href="#"
+        - bunch_courses_study.first(6).each do |bunch_course|
+          - course = bunch_course.course
+          - all_sections = bunch_course.bunch_sections
+          - complete_proc = (100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f) rescue 0).round
+          li class=(bunch_courses_study_count > 3 ? "carusel-item" : "")
+            // completed
+            figure.corses-prev.with_progress-bar
+              .image
+                img src=course.get_image_path('347x192')
+                - course.bunch_tags.last(1).each do |bunch_tag|
+                  .tegs = bunch_tag.tag.title
+              figcaption
+                .title
+                  .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
+                  .shadow
+                .author = (course.user.full_name rescue "Нет ведущего")
+                .info-block
+                  .duration
+                    = duration = course.duration_time
+                    = rus_case(duration, "час", "часа", "часов")
+                    i.icon
+                  .qty-lectures
+                    - sections_count = course.sections.count
+                    = rus_case(sections_count, "лекция", "лекции", "лекций")
+                    i.icon
+                  .completed-courses
+                    | Прошли курс
+                    i.icon
+                .progress-block
+                  .progress-label
+                    .until
+                      'Завершить до
+                      = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
+                    .complite
+                      'Пройдено
+                      = "#{complete_proc}%"
+                  .progress-bar
+                    .progress-bar_inner style="width: #{complete_proc}%"
+    - if bunch_courses_study_count > 3
+      a.jcarousel-control-prev.icon href="#"
+      a.jcarousel-control-next.icon href="#"

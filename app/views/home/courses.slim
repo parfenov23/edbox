@@ -5,7 +5,7 @@
 
 
 = render "home/courses/filter"
-- if current_user.director
+- if current_user.corporate
     = render "home/courses/groups"
 = render "home/courses/favorite", {favorite_courses: @favorite_courses}
 

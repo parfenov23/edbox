@@ -1,16 +1,25 @@
 #header__holder
-    = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "video", title: @section.title, profile_class: "active" } }
-.inner-content
+  = render "home/header/header", {header_top_arr: ['notifications']}
+  = render "home/header/header_bottom", {header_bottom: {block: "video", title: @section.title, profile_class: "active"}}
+- section = (@video.attachmentable rescue nil)
+- bunch_section = (section.bunch_section(current_user.id) rescue nil)
+- bunch_attachment = (@video.find_bunch_attachment(bunch_section.id) rescue nil)
+- if bunch_attachment.present?
+  .inner-content
     .content-video
-        video.video-js.vjs-default-skin.vjs-big-play-centered {controls="" data-setup="{'example_option':true}" height="264" poster="http://video-js.zencoder.com/oceans-clip.png" preload="auto" width="640"}
-            source src="#{@video.file.url}" type="video/#{@video.file.file.extension.downcase}"
-            p.vjs-no-js
-                | To view this video please enable JavaScript, and consider upgrading to a web browser that
-                a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
-        p.video-title #{@video.title}
-        p.video-author
-            - if @author.present?
-                = @author.full_name
-            - else
-                = 'Анонимус'
+      video.video-js.vjs-default-skin.vjs-big-play-centered {
+        controls="" data-setup="{'example_option':true}" height="400" poster="http://video-js.zencoder.com/oceans-clip.png" preload="auto" width="800"
+      }
+        source src="#{@video.file.url}" type="video/#{@video.file.file.extension.downcase}"
+        p.vjs-no-js
+          | To view this video please enable JavaScript, and consider upgrading to a web browser that
+          a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
+      p.video-title #{@video.title}
+      p.video-author
+        - if @author.present?
+          = @author.full_name
+        - else
+          = 'Нет ведущего'
+
+  .adova__btn.mdl-shadow--2dp.js_completeAttachment data-id=@video.id data-bunch_section_id=bunch_section.id
+    i.icon

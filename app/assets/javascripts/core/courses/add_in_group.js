@@ -37,9 +37,6 @@ var courseInfo = function (course_id) {
         popup.find(".js__courseEditTitle span").text(data.title);
         $("ul.js_addTemplateSectionLi").html($(templateLiSection(data)));
         includeDatePicker();
-        $('.edit-menu .js_changeDateToDatePicker').on('keyup paste input propertychange click change', function () {
-            changeDateToDatePicker($(this));
-        });
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
