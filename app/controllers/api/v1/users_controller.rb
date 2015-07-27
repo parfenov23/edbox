@@ -75,7 +75,7 @@ module Api::V1
     end
 
     def update_avatar_string
-      current_user.avatar = params[:base64]
+      current_user.avatar = params[:base64].gsub(" ", "+")
       if (current_user.save rescue false)
         render json: {base64: current_user.avatar}
       else
