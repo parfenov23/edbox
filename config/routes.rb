@@ -37,6 +37,11 @@ Rails.application.routes.draw do
           get :signout
         end
       end
+      resources :companies, only: [] do
+        collection do
+          get :info
+        end
+      end
 
       resources :attachments do
         member do
