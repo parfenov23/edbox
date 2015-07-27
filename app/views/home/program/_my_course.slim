@@ -4,7 +4,8 @@
       - sections.each do |section|
         - bunch_section = section.bunch_section(current_user.id)
         - attachments = section.attachments
-        - if bunch_section.present? && attachments.present?
+        - arr_att = attachments.map{|att| true if (attachment.find_bunch_attachment(bunch_section.id).present? rescue false) }.compact
+        - if bunch_section.present? && attachments.present? && arr_att.present?
           .schedule-item.closed-state.js__toggle-state
             .fixed-h.adaptive-title.adaptive-title
               .title.left-col = section.title
