@@ -1,19 +1,21 @@
-tabsCorusel = ->
-  tabsWidth = $('.header__bottom .title .tabs').width()
-  headerWidth = $('.header__bottom').width() - 69
-  titleWidth = $('.header__bottom .title').width()
-  if headerWidth < titleWidth + tabsWidth
-    $('.header__bottom').addClass('carusel for_prev')
-
 headerTabsLine = (elem) ->
-  if $('.tabs__item').length
+  if $('.page__children .item').length
     width = $(elem).outerWidth()
     tabs_item_active = $(elem)
     if tabs_item_active.length > 0
       offset = tabs_item_active.position().left
-      $('.header__bottom .tabs .line').animate(
+      $('.page__children .line').animate(
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
+
+headerSubmenu = ->
+  headerWidth = $('#page__header').width()
+  chPageWidth = $('.page__children').width()
+  titleWidth = $('.page__title ').width()
+  rightWidt = $('.right-col').width()
+  if chPageWidth + titleWidth + 107 > headerWidth- rightWidt
+    $('#page__header .left-col').addClass('is__sooo-long')
+    $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
   $('.adaptive-title').each ->
@@ -43,9 +45,26 @@ $(document).ready ->
     figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
     figcaptionTitleEclipses('.favorite-item .description .title', 56)
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
-
+    $('.js__tooltip').hover (->
+      $(@).addClass('is__visible-tooltip')
+      ), ->
+      $(@).removeClass('is__visible-tooltip')
+    headerSubmenu()
+    $('.is__sooo-long .page__title').on 'click', ->
+      $(@).next().toggle 300
 
     $('.js__carusel').jcarousel()
+
+    $('.is__sooo-long')
+
+    $(window).scroll ->
+      scrollHeight = $('body').scrollTop()
+      if scrollHeight > 1
+        $('#page__header').addClass('is__white')
+      else
+        $('#page__header').removeClass('is__white')
+    $('.js__show-aside-main-nav').on 'click', ->
+      $('.js__left-aside, .js__backing').addClass('is__active')
 
     $('.select-deadline').on 'click', ->
       $(@).closest('.check_group_added').addClass('section__deadline')
@@ -69,22 +88,18 @@ $(document).ready ->
     ).jcarouselControl target: '+=1'
 
 
-
-
-
     $('.js_for-tooltip').hover ->
       $(@).find('.js_tooltip').addClass('is-active')
     , ->
       $(@).find('.js_tooltip').removeClass('is-active')
 
-    headerTabsLine('.tabs__item.active')
-    
-    $('.header__bottom .tabs .tabs__item').hover ->
+
+    $('.page__children .item').hover ->
       $(@).stop(true).queue 'fx', ->
         headerTabsLine(@)
     , ->
       $(@).stop(true).queue 'fx', ->
-        headerTabsLine('.tabs__item.active')
+        headerTabsLine('.page__children .item.active')
 
     $('.carusel .next_arr i').on 'click', ->
       headerWidth = $('.header__bottom').width() - 69
@@ -116,6 +131,7 @@ $(document).ready ->
     $(document).on 'click', '.js__backing', ->
       $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
       $(@).removeClass('is__active')
+      $('.js__left-aside').removeClass('is__active')
 
     $(document).on 'click', '.carusel .prev_arr i', ->
       $('.header__bottom .title').animate
@@ -163,6 +179,6 @@ $(document).ready ->
           hideBlock(el)
           $(document).unbind 'click.dropdown'
 
-
-    tabsCorusel()
+    headerTabsLine('.page__children .item.active')
+    # tabsCorusel()
     testList()

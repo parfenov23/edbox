@@ -84,13 +84,13 @@
     padding: 0 8px;
     border: 0;
     display        : block;
-    min-width      : 88px !important;
+    min-width      : 88px;
     cursor: pointer;
     border-radius: 2px;
     text-transform: uppercase;
     text-decoration: none;
-    height         : 36px !important;
-    text-align     : center !important;
+    height         : 36px;
+    text-align     : center;
     font-size      : 14px;
     line-height    : 36px;
     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);

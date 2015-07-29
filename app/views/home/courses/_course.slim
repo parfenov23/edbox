@@ -1,7 +1,13 @@
 figure.corses-prev
   .image
     img (src="#{course.get_image_path('347x192')}")
-    .course-type Записанный курс
+    .course__type-wrp
+      .course-type Записанный курс
+      .course-type Записанный курс
+      .course-type Записанный курс
+      .course-type Записанный курс
+      .course-type Записанный курс
+      .course-type Записанный курс
     - course_tag = (course.bunch_tags.last.tag rescue nil)
     - if course_tag.present?
       .course-type = (course_tag.title rescue nil)

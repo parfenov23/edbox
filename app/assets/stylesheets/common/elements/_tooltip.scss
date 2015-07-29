@@ -60,3 +60,43 @@
             transform: scale(1);
     opacity: 1;
     visibility: visible; } }
+
+
+.js__tooltip {
+  @include transition;
+  .tooltip {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    background: $black_54;
+    border-radius: 2px;
+    font-size: 11px;
+    color: #FFFFFF;
+    line-height: 13px;
+    line-height: 22px;
+    padding: 0 8px;
+    &.is__bottom {
+      top: 110%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    &.is__right {
+      top: 50%;
+      left: 110%;
+      margin-top: -11px;
+    }
+  }
+  &.is__visible-tooltip {
+    @include transition;
+    .tooltip {
+      @include transition;
+      opacity: 1;
+      width: auto;
+      height: 22px;
+      overflow: visible;
+
+    }
+  }
+}

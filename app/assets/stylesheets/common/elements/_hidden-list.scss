@@ -1,9 +1,7 @@
 .hidden-list {
+  @include white__block(1,0);
   min-width        : 128px;
-  background-color : #FFFFFF;
   padding          : 6px 0;
-  box-shadow       : 0px 2px 5px 0px rgba(0, 0, 0, 0.52);
-  border-radius    : 2px;
   max-height       : 236px;
   position         : absolute;
   top: 100%;

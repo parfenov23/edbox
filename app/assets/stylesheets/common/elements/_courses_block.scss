@@ -1,306 +1,309 @@
 .corses-prev {
-    float         : left;
-    width         : 346px;
-    height        : 408px;
-    margin        : 0 24px 32px 0;
-    @include white__block(1,1);
-    &:nth-child(3) {
-        margin-right : 0;
-    }
-    &:hover {
-        .image .action-btn {
-            // display : block;
-        }
-    }
-    .image {
-        position : relative;
-        height   : 192px;
-        .tegs {
-            position      : absolute;
-            left          : 16px;
-            top           : 8px;
-            font-size     : 12px;
-            color         : #FFF;
-            line-height   : 18px;
-            padding       : 2px 7px;
-            @include eclipses;
-            max-width     : 256px;
-            background    : rgba(0, 0, 0, 0.54);
-            border-radius : 2px;
-        }
-        .course-type {
-            position      : absolute;
-            left          : 16px;
-            bottom        : 16px;
-            border        : 1px solid #FFF;
-            border-radius : 2px;
-            font-size     : 12px;
-            color         : #FFF;
-            line-height   : 18px;
-            padding       : 2px 7px;
-            @include eclipses;
-            max-width     : 256px;
-        }
-        .action-btn {
-            position : absolute;
-            right    : 17px;
-            bottom   : -25px;
-            width    : 50px;
-            height   : 50px;
-            // display  : none;
-            z-index  : 2;
-            &.three {
-                &:hover {
-                    width : 150px;
-                }
-            }
-            &.two:hover {
-                .schedule.icon {
-                    right : 60px !important;
-                }
-            }
-            .add, .favorite, .schedule {
-                &:active {
-                    background-color : #FD9348;
-                    &::before {
-                        color : #FFF;
-                    }
-                }
-            }
-            .add {
-                border-radius : 50%;
-                width         : 50px;
-                height        : 50px;
-                box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
-                background    : #FFF;
-                text-align    : center;
-                cursor        : pointer;
-                position      : absolute;
-                top           : 0;
-                right         : 0;
-                z-index       : 1;
-                &::before {
-                    position    : absolute;
-                    display     : block;
-                    top         : 15px;
-                    left        : 15px;
-                    color       : #FD9348;
-                    font-size   : 30px;
-                    line-height : 10px;
-                    content     : '+';
-                    width       : 20px;
-                    height      : 20px;
-                }
-            }
-            .favorite, .schedule {
-                width         : 36px;
-                height        : 36px;
-                border-radius : 50%;
-                box-shadow    : 0 4px 5px 0 rgba(0, 0, 0, 0.28);
-                background    : #FFF;
-                text-align    : center;
-                cursor        : pointer;
-                position      : absolute;
-                top           : 7px;
-                right         : 7px;
-                z-index       : 0;
-                &::before {
-                    color       : #FD9348;
-                    display     : block;
-                    position    : absolute;
-                    top         : 0;
-                    left        : 0;
-                    line-height : 36px;
-                    text-align  : center;
-                    width       : 100%;
-                }
-                &:hover {
-                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
-                }
-            }
-            .favorite {
-                &::before {
-                    content : '\E631';
-                }
-            }
-            .schedule{
-              &::before {
-                  content  : '\E8AF';
-              }
-            }
-            &:hover {
-                width : 95px;
-                .add {
-                    box-shadow : 0px 3px 8px 0px rgba(0, 0, 0, 0.30), 0px 6px 5px 0px rgba(0, 0, 0, 0.22);
-                    &::before {
-                        content     : '\E8D6';
-                        left        : 10px;
-                        top         : 15px;
-                        width       : 30px;
-                        height      : 20px;
-                        line-height : 21px;
-                        font-size   : 24px;
-                        /* Oval 2 Copy 2: */
-                    }
-                }
-                .favorite {
-                    -webkit-transition : all 300ms;
-                    -moz-transition    : all 300ms;
-                    -o-transition      : all 300ms;
-                    transition         : all 300ms;
-                    right              : 60px;
-                }
-                .schedule {
-                    -webkit-transition : all 300ms;
-                    -moz-transition    : all 300ms;
-                    -o-transition      : all 300ms;
-                    transition         : all 300ms;
-                    right              : 108px;
+  float : left;
+  width : 346px;
+  height: 408px;
+  margin: 0 24px 32px 0;
+  @include white__block(1,1);
+  @import 'unique/courses/info-block';
+  &:nth-child(3) {
+    margin-right: 0;
+  }
+  &:hover {
+    .image .action-btn {
 
-                }
-            }
+      // display : block;
+    }
+  }
+  .image {
+    position: relative;
+    height  : 192px;
+    .tegs {
+      font-size    : 12px;
+      line-height  : 18px;
+      position     : absolute;
+      top          : 8px;
+      left         : 16px;
+      max-width    : 256px;
+      padding      : 2px 7px;
+      color        : #fff;
+      border-radius: 2px;
+      background   : rgba(0, 0, 0, .54);
+      @include eclipses;
+    }
+    .course__type-wrp {
+      position       : absolute;
+      bottom         : 16px;
+      left           : 8px;
+      width: 345px;
+      padding: 0 8px;
+    }
+    .course-type {
+      @include inline-block;
+      font-size    : 12px;
+      line-height  : 18px;
+      max-width    : 256px;
+      padding      : 2px 7px;
+      color        : #fff;
+      border       : 1px solid #fff;
+      border-radius: 2px;
+      @include eclipses;
+      margin: 8px;
+    }
+    .action-btn {
+      position: absolute;
+
+      // display  : none;
+      z-index : 2;
+      right   : 17px;
+      bottom  : -25px;
+      width   : 50px;
+      height  : 50px;
+      &.three {
+        &:hover {
+          width: 150px;
         }
-    }
-    figcaption {
-        padding  : 30px 0 16px 0;
-        position : relative;
-    }
-    .title {
-        font-size     : 20px;
-        color         : rgba(0, 0, 0, 0.87);
-        line-height   : 28px;
-        margin-bottom : 16px;
-        cursor        : pointer;
-        min-height    : 83px;
-        padding       : 0 16px;
-        white-space   : normal;
-        &.over-title {
-            position : relative;
-            .inner {
-                height   : 84px;
-                overflow : hidden;
-                position : relative;
-            }
-            .shadow {
-                position   : absolute;
-                bottom     : 0;
-                right      : 16px;
-                height     : 28px;
-                width      : 32px;
-                background : url("white-shadow.png");
-            }
+      }
+      &.two:hover {
+        .schedule.icon {
+          right: 60px !important;
+        }
+      }
+      .add,
+      .favorite,
+      .schedule {
+        &:active {
+          background-color: #fd9348;
+          &::before {
+            color: #fff;
+          }
+        }
+      }
+      .add {
+        position     : absolute;
+        z-index      : 1;
+        top          : 0;
+        right        : 0;
+        width        : 50px;
+        height       : 50px;
+        cursor       : pointer;
+        text-align   : center;
+        border-radius: 50%;
+        background   : #fff;
+        box-shadow   : 0 4px 5px 0 rgba(0, 0, 0, .28);
+        &::before {
+          font-size  : 30px;
+          line-height: 10px;
+          position   : absolute;
+          top        : 15px;
+          left       : 15px;
+          display    : block;
+          width      : 20px;
+          height     : 20px;
+          content    : '+';
+          color      : #fd9348;
+        }
+      }
+      .favorite,
+      .schedule {
+        position     : absolute;
+        z-index      : 0;
+        top          : 7px;
+        right        : 7px;
+        width        : 36px;
+        height       : 36px;
+        cursor       : pointer;
+        text-align   : center;
+        border-radius: 50%;
+        background   : #fff;
+        box-shadow   : 0 4px 5px 0 rgba(0, 0, 0, .28);
+        &::before {
+          line-height: 36px;
+          position   : absolute;
+          top        : 0;
+          left       : 0;
+          display    : block;
+          width      : 100%;
+          text-align : center;
+          color      : #fd9348;
         }
         &:hover {
-            color : #FD9348;
+          box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .30), 0 6px 5px 0 rgba(0, 0, 0, .22);
         }
+      }
+      .favorite {
+        &::before {
+          content: '\E631';
+        }
+      }
+      .schedule {
+        &::before {
+          content: '\E8AF';
+        }
+      }
+      &:hover {
+        width: 95px;
+        .add {
+          box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .30), 0 6px 5px 0 rgba(0, 0, 0, .22);
+          &::before {
+            font-size  : 24px;
+            line-height: 21px;
+            top        : 15px;
+            left       : 10px;
+            width      : 30px;
+            height     : 20px;
+            content    : '\E8D6';
+            /* Oval 2 Copy 2: */
+          }
+        }
+        .favorite {
+          right             : 60px;
+          -webkit-transition: all 300ms;
+          -moz-transition   : all 300ms;
+          -o-transition     : all 300ms;
+          transition        : all 300ms;
+        }
+        .schedule {
+          right             : 108px;
+          -webkit-transition: all 300ms;
+          -moz-transition   : all 300ms;
+          -o-transition     : all 300ms;
+          transition        : all 300ms;
+        }
+      }
     }
-    .author {
-        padding       : 0 16px;
-        font-size     : 13px;
-        color         : rgba(0, 0, 0, 0.54);
-        line-height   : 20px;
-        margin-bottom : 28px;
+  }
+  figcaption {
+    position: relative;
+    padding : 30px 0 16px;
+  }
+  .title {
+    font-size    : 20px;
+    line-height  : 28px;
+    min-height   : 83px;
+    margin-bottom: 16px;
+    padding      : 0 16px;
+    cursor       : pointer;
+    white-space  : normal;
+    color        : rgba(0, 0, 0, .87);
+    &.over-title {
+      position: relative;
+      .inner {
+        position: relative;
+        overflow: hidden;
+        height  : 84px;
+      }
+      .shadow {
+        position  : absolute;
+        right     : 16px;
+        bottom    : 0;
+        width     : 32px;
+        height    : 28px;
+        background: url("white-shadow.png");
+      }
     }
-
-    @import "unique/courses/info-block";
-
-    &.with_progress-bar {
-        height : 480px;
-        figcaption {
-            height : 288px;
-        }
-        .info-block {
-            position      : static;
-            padding       : 0 16px;
-            margin-bottom : 12px;
-        }
-        .progress-block {
-            border-top : 1px solid #E1E1E1;
-            padding    : 0 16px;
-            .progress-label {
-                display         : flex;
-                justify-content : space-between;
-                font-size       : 15px;
-                color           : rgba(0, 0, 0, 0.54);
-                line-height     : 24px;
-                padding-top     : 15px;
-                margin-bottom   : 10px;
-                .until {
-                    width         : 190px;
-                    @include eclipses;
-
-                }
-                .complite {
-
-                }
-            }
-            .progress-bar {
-                height     : 4px;
-                background : rgba(0, 0, 0, 0.12);
-                position   : relative;
-                .progress-bar_inner {
-                    position         : absolute;
-                    top              : 0;
-                    left             : 0;
-                    height           : 4px;
-                    background-color : #FD9348;
-                }
-            }
-        }
-        &.completed {
-            .progress-label {
-                padding-top : 23px;
-                .complite {
-                    font-size   : 15px;
-                    color       : rgba(0, 0, 0, 0.26);
-                    line-height : 24px;
-                }
-            }
-            .progress-bar {
-                display : none;
-            }
-        }
+    &:hover {
+      color: #fd9348;
     }
+  }
+  .author {
+    font-size    : 13px;
+    line-height  : 20px;
+    margin-bottom: 28px;
+    padding      : 0 16px;
+    color        : rgba(0, 0, 0, .54);
+  }
 
-    &.compact {
-        height : 264px;
-        width  : 264px;
-        .image {
-            height     : 146px;
-            text-align : center;
-            img {
-                height : 100%;
-            }
-        }
-        figcaption {
-            padding-top : 16px;
-            height      : 120px;
-            .title {
-                font-size     : 15px;
-                color         : rgba(0, 0, 0, 0.87);
-                line-height   : 24px;
-                min-height    : 72px;
-                margin-bottom : 4px;
-                .inner {
-
-                }
-                &.with_btn {
-                    padding-right : 45px;
-                }
-                .com__director-btn {
-                    position : absolute;
-                    top      : 12px;
-                    right    : 8px;
-                }
-                &.over-title {
-                    .inner {
-                        height : 72px;
-                    }
-                    .shadow {
-                        right : 16px;
-                    }
-                }
-            }
-        }
+  &.with_progress-bar {
+    height: 480px;
+    figcaption {
+      height: 288px;
     }
+    .info-block {
+      position     : static;
+      margin-bottom: 12px;
+      padding      : 0 16px;
+    }
+    .progress-block {
+      padding   : 0 16px;
+      border-top: 1px solid #e1e1e1;
+      .progress-label {
+        font-size      : 15px;
+        line-height    : 24px;
+        display        : flex;
+        margin-bottom  : 10px;
+        padding-top    : 15px;
+        color          : rgba(0, 0, 0, .54);
+        justify-content: space-between;
+        .until {
+          width: 190px;
+          @include eclipses;
+        }
+      }
+      .progress-bar {
+        position  : relative;
+        height    : 4px;
+        background: rgba(0, 0, 0, .12);
+        .progress-bar_inner {
+          position        : absolute;
+          top             : 0;
+          left            : 0;
+          height          : 4px;
+          background-color: #fd9348;
+        }
+      }
+    }
+    &.completed {
+      .progress-label {
+        padding-top: 23px;
+        .complite {
+          font-size  : 15px;
+          line-height: 24px;
+          color      : rgba(0, 0, 0, .26);
+        }
+      }
+      .progress-bar {
+        display: none;
+      }
+    }
+  }
+
+  &.compact {
+    width : 264px;
+    height: 264px;
+    .image {
+      height    : 146px;
+      text-align: center;
+      img {
+        height: 100%;
+      }
+    }
+    figcaption {
+      height     : 120px;
+      padding-top: 16px;
+      .title {
+        font-size    : 15px;
+        line-height  : 24px;
+        min-height   : 72px;
+        margin-bottom: 4px;
+        color        : rgba(0, 0, 0, .87);
+
+        &.with_btn {
+          padding-right: 45px;
+        }
+        .com__director-btn {
+          position: absolute;
+          top     : 12px;
+          right   : 8px;
+        }
+        &.over-title {
+          .inner {
+            height: 72px;
+          }
+          .shadow {
+            right: 16px;
+          }
+        }
+      }
+    }
+  }
 }
