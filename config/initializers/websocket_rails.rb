@@ -1,3 +1,4 @@
+# $redis = Redis::Namespace.new("site_point", :redis => Redis.new)
 WebsocketRails.setup do |config|
 
   # Uncomment to override the default log level. The log level can be
@@ -20,7 +21,11 @@ WebsocketRails.setup do |config|
   # Change to true to enable channel synchronization between
   # multiple server instances.
   # * Requires Redis.
-  config.synchronize = false
+  config.synchronize = true
+  # config.redis_options = {:host => '127.0.0.1', :port => '6379'}
+  config.redis_options = { host: '127.0.0.1', port: 6379 }
+  # config.thin_options = {:threaded => true}
+  # config.redis_options = {:host => 'redis-host', :port => '1234'}
 
   # Prevent Thin from daemonizing (default is true)
   # config.daemonize = false
@@ -29,7 +34,6 @@ WebsocketRails.setup do |config|
   # Will not be used unless standalone or synchronization mode
   # is enabled.
   # config.redis_options = {:host => 'localhost', :port => '6379'}
-
   # By default, all subscribers in to a channel will be removed
   # when that channel is made private. If you don't wish active
   # subscribers to be removed from a previously public channel

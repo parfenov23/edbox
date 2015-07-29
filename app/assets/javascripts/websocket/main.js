@@ -1,55 +1,79 @@
-(function() {
-    var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+if ($.cookie('user_key') != undefined){
+    (function () {
+        var bind = function (fn, me) { return function () { return fn.apply(me, arguments); }; };
 
-    jQuery(function() {
-        return window.websocketController = new Websocket.Controller($('body').data('uri'), true);
-    });
+        jQuery(function () {
+            return window.websocketController = new Websocket.Controller($('body').data('uri'), true);
+        });
 
-    window.Websocket = {};
+        window.Websocket = {};
 
-    Websocket.User = (function() {
-        function User(user_name) {
-            this.user_name = user_name;
-            this.serialize = bind(this.serialize, this);
-        }
+        Websocket.User = (function () {
+            function User(user_name) {
+                this.user_name = user_name;
+                this.serialize = bind(this.serialize, this);
+            }
 
-        User.prototype.serialize = function() {
-            return {
-                user_name: this.user_name
+            User.prototype.serialize = function () {
+                return {
+                    user_name: this.user_name
+                };
             };
-        };
-        return User;
-    })();
+            return User;
+        })();
+
+        Websocket.Controller = (function () {
+            function Controller(url, useWebSockets) {
+                this.bindEvents = bind(this.bindEvents, this); // вызов всех биндов
+                this.dispatcher = new WebSocketRails(url, useWebSockets);
+                this.dispatcher.on_open = this.createGuestUser;
+                this.updateUserList = bind(this.updateUserList, this);
+                this.notification = bind(this.notification, this);
+                this.consoleAlert = bind(this.consoleAlert, this); // После bind идет вызов метода
+                this.bindEvents();
+            }
+
+            // Binds ===========================
+            Controller.prototype.bindEvents = function () {
+                this.dispatcher.bind('user_list', this.updateUserList);
+                this.dispatcher.bind('alert', this.consoleAlert); // метод на отлов действия с сервера
+                var notif_user = this.dispatcher.subscribe($.cookie('user_key'));
+                notif_user.bind("new", this.notification);
+            };
+
+            Controller.prototype.notification = function (message) { // Уведомления
+                console.log(message);
+                notifyMypush({title: message.title, body: message.body})
+            };
+            //==================================
+
+            // Triggers ========================
+            Controller.prototype.createGuestUser = function () {
+                this.user = new Websocket.User($.cookie('user_key'));
+                var result = this.trigger('new_user', this.user.serialize()); // метод на отправку зопроса серверу
+                $("#testWebsocketJs").text($.cookie('user_key'));
+                return result;
+            };
+            //=================================
+
+            Controller.prototype.updateUserList = function (userList) {
+                console.log(userList);
+            };
+
+            Controller.prototype.updateUserList = function (userList) {
+                //console.log(userList);
+            };
+
+            Controller.prototype.consoleAlert = function (txt_alert) { // вызов функции после bind
+                //console.log(txt_alert);
+            };
 
 
-    Websocket.Controller = (function() {
-        function Controller(url, useWebSockets) {
-            this.bindEvents = bind(this.bindEvents, this);
-            this.dispatcher = new WebSocketRails(url, useWebSockets);
-            this.dispatcher.on_open = this.createGuestUser;
-            this.updateUserList = bind(this.updateUserList, this);
-            this.bindEvents();
-        }
+            return Controller;
 
-        Controller.prototype.updateUserList = function(userList) {
-            console.log(userList);
-        };
+        })
+        ();
 
-        Controller.prototype.createGuestUser = function() {
-            var rand_num;
-            rand_num = Math.floor(Math.random() * 1000);
-            this.user = new Websocket.User("Guest_" + rand_num);
-            console.log(this.user);
-            return this.trigger('new_user', this.user.serialize());
-        };
-
-        Controller.prototype.bindEvents = function() {
-            this.dispatcher.bind('user_list', this.updateUserList);
-        };
-
-        return Controller;
-
-    })();
-
-}).call(this);
-;
+    }).call(this);
+    ;
+}

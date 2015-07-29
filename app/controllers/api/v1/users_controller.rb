@@ -58,7 +58,7 @@ module Api::V1
     def update_section
       section = BunchSection.find(params[:section_id])
       section.date_complete = Time.parse(params[:date_complete]).end_of_day
-      if(section.save rescue false)
+      if (section.save rescue false)
         render json: section.as_json
       else
         render_error(500, 'Проверьте данные')

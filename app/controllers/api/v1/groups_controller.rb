@@ -38,6 +38,7 @@ module Api::V1
           user = User.build_default(current_user.company_id, email) if user.nil?
           if (user.save rescue false)
             BunchGroup.build(user.id, group.id).save
+            user.create_notify(group)
             user.transfer_to_json
           end
         end
