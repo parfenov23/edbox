@@ -5,7 +5,7 @@
     .content-audio
         p.audio-title #{@audio.title}
         audio#audio controls='' preload='auto'
-            source src="#{@audio.file.url}" type="audio/#{@audio.file.file.extension.downcase}"
+            source src="#{@audio.file.url}" type="#{@audio.file.content_type}"
         br
         .adova__btn.mdl-shadow--2dp style='position: relative; float: right;'
             i.icon
