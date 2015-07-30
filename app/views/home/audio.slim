@@ -7,18 +7,5 @@
         audio#audio controls='' preload='auto'
             source src="#{@audio.file.url}" type="audio/#{@audio.file.file.extension.downcase}"
         br
-        /button#audio-play.play play
-        .adova__btn.mdl-shadow--2dp style='position: relative; float: right; top: 100px'
+        .adova__btn.mdl-shadow--2dp style='position: relative; float: right;'
             i.icon
-
-        /video.video-js.vjs-default-skin.vjs-big-play-centered {controls="" data-setup="{'example_option':true}" height="28" preload="auto" width="640"}
-        /    source src="#{@audio.file.url}" type="audio/#{@audio.file.file.extension.downcase}"
-        /    p.vjs-no-js
-        /        | To view this video please enable JavaScript, and consider upgrading to a web browser that
-        /        a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
-        /p.video-title #{@audio.title}
-        /p.video-author
-        /    - if @author.present?
-        /        = @author.full_name
-        /    - else
-        /        = 'Анонимус'
