@@ -16,6 +16,13 @@ i.icon {
     }
   }
 
+
+  &.burger {
+    &::before {
+      content: "\E7FA";
+    }
+  }
+
   &.groups {
     &::before {
       content: "\E8D6";

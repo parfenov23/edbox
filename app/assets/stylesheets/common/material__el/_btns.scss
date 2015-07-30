@@ -94,11 +94,11 @@
     font-size      : 14px;
     line-height    : 36px;
     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    color: #FD9348;
+    color: $primoryColor;
     outline: none !important;
     &.is__orange {
       color: #FFFFFF;
-      background-color: #FD9348;
+      background-color: $primoryColor;
     }
     &.is__blue {
       color: #FFFFFF;
@@ -180,7 +180,7 @@
 //   height         : 36px;
 //   font           : 400 13px/36px 'Roboto';
 //   color          : #FFF;
-//   background     : #FD9348;
+//   background     : $primoryColor;
 //   cursor         : pointer;
 //   text-align     : center;
 //   text-transform : uppercase;
@@ -191,12 +191,12 @@
 // .btn__flat {
 //   display        : block;
 //   font           : 400 14px/1 'Roboto';
-//   color          : #FD9348;
+//   color          : $primoryColor;
 //   text-transform : uppercase;
 // }
 //
 // .is__orange {
-//   background : #FD9348;
+//   background : $primoryColor;
 //   color      : #FFF;
 // }
 //
@@ -226,7 +226,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : #FD9348 !important;
+//     background : $primoryColor !important;
 //   }
 // }
 //
@@ -244,7 +244,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : #FD9348 !important;
+//     background : $primoryColor !important;
 //   }
 // }
 //

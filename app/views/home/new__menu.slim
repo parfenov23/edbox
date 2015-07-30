@@ -1,8 +1,8 @@
 header#page__header
   / .with__img
   .left-col
-    .page__icon
-      i.biblio.icon
+    .page__icon.item
+      i.burger.icon.js__show-aside-main-nav  
       / .ava
           img src="/images/ava.png"
     .page__title Текущие
@@ -15,54 +15,51 @@ header#page__header
       .line
 
 
-  .right-col  
-    .page__action
-      .item.js__tooltip
-        i.search.icon
-        .tooltip.is__bottom Уведомления
-      .item
-        i.schedule.icon
-      .item
-        i.notification.icon
-      .item
-        .notification__with-qty ...
-      .item
-        i.calendar.icon
-      .item
-        i.filter.icon
-      .item
-        i.favorite.icon
-      .item
-        i.groups.icon
+  .page__action
+    .item.js__tooltip
+      i.search.icon
+      .tooltip.is__bottom Уведомления
+    .item.ava
+        img src="/images/ava.png"
+    .item
+      i.schedule.icon
+    .item
+      i.notification.icon
+    .item
+      .notification__with-qty ...
+    .item
+      i.calendar.icon
+    .item
+      i.filter.icon
+    .item
+      i.favorite.icon
+    .item
+      i.groups.icon
 
-.main_nav
-  / .with__img
-  .item.js__tooltip 
-    i.cabinet.icon
-    .tooltip.is__right Кабинет    
-  .item 
-    i.biblio.icon    
-  .item 
-    i.courses.icon    
-  .item 
-    i.groups.icon    
-  .item
-    i.more.icon.js__show-aside-main-nav    
-    
+/ .main_nav
+/   / .with__img
+/   .item.js__tooltip 
+/     i.cabinet.icon
+/     .tooltip.is__right Кабинет    
+/   .item 
+/     i.biblio.icon    
+/   .item 
+/     i.courses.icon    
+/   .item 
+/     i.groups.icon    
+/   .item
+/     i.more.icon.js__show-aside-main-nav    
+/     
     
 .left__aside-main-nav.js__baron.js__left-aside
   .info__block
     .top__logo
-      img src = "/assets/adcons__grey.svg"
-    .profile
-      .ava
-        img src="/images/ava.png"
-      .name Аркадий АркадьевичАркадьевичАркадьевичАркадьевич  
+      img src= "/assets/edbox__bloo.svg"
   .menu__list
     .item
       i.cabinet.icon
       .label Мой кабинет
-    .item
+    .item.is__active
       i.biblio.icon
       .label Библиотека
     .item
@@ -82,7 +79,8 @@ header#page__header
       .label Заметки
       
   .btm__logo
-    img src = "/assets/edbox__grey.svg"
+    img src = "/assets/adcons__grey.svg"
+    
 
 .inner-content
     .content#profile

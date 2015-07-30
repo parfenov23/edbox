@@ -185,7 +185,7 @@ i {
   cursor: pointer;
   text-align: center;
   i {
-    color: #FD9348;
+    color: $primoryColor;
     &::before {
       line-height: 60px;
       font-size: 24px;
@@ -193,7 +193,7 @@ i {
     }
   }
   &:active {
-    background-color: #FD9348;
+    background-color: $primoryColor;
     i {
       color: #fff;
     }
