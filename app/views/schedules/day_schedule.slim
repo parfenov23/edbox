@@ -15,12 +15,12 @@
                         .calendar-header
                             .back.icon
                             | Выбор даты
-                        .calendar-holder
-                            .selected-value  Выберите дату
+                        .calendar-holder.edit-menu
+                            .selected-value.js_changeDeadLineCourseMy data-course_id="#{course.id}" data-no_schedule="true" Выберите дату
                             .datapicker__trigger
                     ul.hidden-list
                         li data-show="hidden-calendar"  Перенести дату окончания курса
-                        li Удалить
+                        li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
 
 - @day_schedule.each do |course_id, section_ids|
     - if section_ids.present?
@@ -43,8 +43,8 @@
                                             .back.icon
                                             | Выбор даты
                                         .calendar-holder
-                                            .selected-value  Выберите дату
+                                            .selected-value.js_changeDeadLineSectionMy data-section_id="#{course.id}" data-no_schedule="true"  Выберите дату
                                             .datapicker__trigger
                                     ul.hidden-list
                                         li data-show="hidden-calendar"  Перенести дату окончания курса
-                                        li Удалить
+                                        li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить

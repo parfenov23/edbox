@@ -9,17 +9,19 @@ $(document).ready(function () {
                     data   : {date: date},
                     success: function (e) {
                         $('#js-schedule-calendar').html(e);
-                        $('.js__select-calendar').hover((function () {
-                            $(this).addClass('is__active');
-                            $('.js__backing').addClass('is__active');
-                        }), function () {
-                            console.log(33);
-                            if ($('#ui-datepicker-div').is(':hidden')) {
-                                console.log(0);
-                                $(this).removeClass('is__active');
-                            }
-                        });
-                        includeDatePicker();
+                        //$('.js__select-calendar').hover((function () {
+                        //    $(this).addClass('is__active');
+                        //    $('.js__backing').addClass('is__active');
+                        //}), function () {
+                        //    if ($('#ui-datepicker-div').is(':hidden')) {
+                        //        $(this).removeClass('is__active');
+                        //    }
+                        //});
+                        //includeDatePicker();
+                        //$('.close-filter').click(function () {
+                        //    $('#js-schedule-calendar').removeClass('show');
+                        //});
+                        bind_block();
                     },
                     error  : function () {
                         show_error('Ошибка', 3000);

@@ -6,7 +6,6 @@ class Calendar
     before_month = begin_of_month.wday - 1
     after_month = 7 - end_of_month.wday
 
-    month = %w'Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'
     week_days = %w'ПН ВТ СР ЧТ ПТ СБ ВС'
 
     days = []
@@ -16,7 +15,6 @@ class Calendar
       days << {
         date: date,
         day: date.day,
-        month: month[date.month - 1],
         week_day: week_days[date.wday - 1]
       }
     end
@@ -26,11 +24,10 @@ class Calendar
       days << {
         date: date,
         day: date.day,
-        month: month[date.month - 1],
         week_day: week_days[date.wday - 1],
         active: true
       }
-      if date.day == DateTime.now.day
+      if date.today?
         days.last.merge!({ today: true })
       end
     end
@@ -40,10 +37,28 @@ class Calendar
       days << {
         date: date,
         day: date.day,
-        month: month[date.month - 1],
         week_day: week_days[date.wday - 1]
       }
     end
     days
+  end
+
+  def self.get_months(count=1)
+    months_rus = %w'Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'
+    now = DateTime.now
+    months = [
+      {
+        date: DateTime.new(now.year, now.month).to_date,
+        month: months_rus[now.month - 1],
+      }
+    ]
+    (count-1).times do |i|
+      day = months.last[:date].next_month
+      months << {
+        date: day.to_date,
+        month: months_rus[day.month - 1],
+      }
+    end
+    months
   end
 end

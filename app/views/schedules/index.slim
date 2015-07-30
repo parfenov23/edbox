@@ -6,12 +6,12 @@
     #schedule.schedule-block
         .schedule-header
             .psevdo-select
-                .select-trigger Август
+                .select-trigger #{@month}
                 ul.hidden-list
-                    li Август
-                    li Август
-                    li Август
-            .psevdo-select
+                    - @months.each do |month|
+                        li
+                            a href="/schedule?date=#{month[:date].to_s}" #{month[:month]}
+            /.psevdo-select
                 .select-trigger Все группы
                 ul.hidden-list
                     li managers
