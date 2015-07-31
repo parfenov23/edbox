@@ -130,8 +130,13 @@ class User < ActiveRecord::Base
     HomeMailer.welcome_latter(self, new_password).deliver
   end
 
-  def create_notify(model)
-    notifications.find_or_create_by({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id})
+  def create_notify(model, type=nil, repeat=false)
+    notifications.find_or_create_by({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) unless repeat
+    notifications.create({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) if repeat
+  end
+
+  def notify_json(type=nil)
+    {}
   end
 
   private

@@ -1,0 +1,87 @@
+i.icon {
+  &.cabinet {
+    &::before {
+      content: '\E8D9';
+    }
+  }
+  &.biblio {
+    &::before {
+      content: "\E8DE";
+    }
+  }
+
+  &.courses {
+    &::before {
+      content: "\E6B2";
+    }
+  }
+
+  &.groups {
+    &::before {
+      content: "\E8D6";
+    }
+  }
+
+  &.more {
+    &::before {
+      content: "\E7BA";
+    }
+  }
+  &.stat {
+    &::before {
+      content: "\E60F";
+    }
+  }
+  &.favorites {
+    &::before {
+      content: "\E619";
+    }
+  }
+  &.notes {
+    &::before {
+      content: "\E67A";
+    }
+  }
+
+  &.search {
+    &::before {
+      content: '\E65F';
+    }
+  }
+
+  &.schedule {
+    &::before {
+      content: '\E8AF';
+    }
+  }
+
+  &.notification {
+    &::before {
+      content: '\E8CF';
+    }
+  }
+
+  &.calendar {
+    &::before {
+      content: '\E892';
+    }
+  }
+
+  &.filter {
+    &::before {
+      content: '\E855';
+    }
+  }
+
+  &.favorite {
+    &::before {
+      content: '\E631';
+    }
+  }
+
+  &.groups {
+    &::before {
+      content: '\E8D6';
+    }
+  }
+}

@@ -45,6 +45,7 @@ $url_3 : url(/images/plus-big-icon-dark.svg);
   -webkit-box-shadow : 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   -moz-box-shadow    : 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
   box-shadow         : 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  margin: 0 8px;
 }
 
 .orange-button:hover {
@@ -223,15 +224,13 @@ input[type="submit"] {
 }
 
 .single-course {
-  background-color : $white;
   float            : left;
   clear            : both;
   width            : 100%;
   margin-top       : 16px;
   //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
-  border-radius    : 2px;
   //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-  box-shadow       : 0 2px 2px $black_24, 0 0 2px $black_12;
+  @include white__block(1, 1);
   .edit-date {
     @extend %extend_3;
     margin : 0 0 0 27px;

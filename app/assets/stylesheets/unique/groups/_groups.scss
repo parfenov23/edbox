@@ -225,13 +225,8 @@
 
 .container {
   max-width          : 920px;
-  background-color   : #FFF;
-  border-radius      : 2px;
   margin-bottom      : 11px;
-  -webkit-box-shadow : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow    : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  box-shadow         : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-
+  @include white__block(1, 0);
 }
 
 .container-inner {

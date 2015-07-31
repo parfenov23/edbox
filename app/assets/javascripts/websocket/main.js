@@ -38,12 +38,21 @@ if ($.cookie('user_key') != undefined){
                 this.dispatcher.bind('user_list', this.updateUserList);
                 this.dispatcher.bind('alert', this.consoleAlert); // метод на отлов действия с сервера
                 var notif_user = this.dispatcher.subscribe($.cookie('user_key'));
-                notif_user.bind("new", this.notification);
+                notif_user.bind("notification", this.notification);
             };
 
             Controller.prototype.notification = function (message) { // Уведомления
-                console.log(message);
-                notifyMypush({title: message.title, body: message.body})
+                notifyMyWeb({
+                    timeClose: message.timeClose,
+                    title: message.title,
+                    description: message.body,
+                    onClose: function(){console.log("close")},
+                    onClick: function(){
+                        childNotifyClose( $(this).closest(".notification") );
+                        if (message.linkGo) window.location.href = message.linkGo
+                    }
+                });
+                //notifyMypush({title: message.title, body: message.body})
             };
             //==================================
 

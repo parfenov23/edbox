@@ -32,18 +32,20 @@ gem 'carrierwave'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
-#=====================
+#===================== websocket
 gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 gem 'hiredis'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'redis-namespace'
 gem "em-synchrony"
 gem 'redis-rails'
-gem 'redis-rack-cache'#
+gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
 gem 'spawnling', '~>2.1'
 #=====================
-
+#======= cron
+gem 'whenever', :require => false
+#======
 group :development do
   gem 'mailcatcher', '0.6.1'
   gem 'sqlite3'

@@ -6,15 +6,9 @@ class Notification < ActiveRecord::Base
   def push
     user = self.user
     type = notifytable_type
-    data_params = case type
-                    when "Group"
-                      {title: "Вас добавили в группу", body: "Директор пригласил вас в группу"}
-                    else
-                      {}
-                  end
+    data_params = notifytable.notify_json(action_type)
     data_params[:type] = type
-    WebsocketRails[user.user_key].trigger 'new', data_params
-
+    Fiber.new{ WebsocketRails[user.user_key].trigger 'notification', data_params }.resume
   end
 
 end

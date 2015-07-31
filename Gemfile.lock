@@ -75,6 +75,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chronic (0.10.2)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -276,6 +277,8 @@ GEM
     websocket-driver (0.6.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     without-rails (1.1.1)
       railties
 
@@ -327,4 +330,5 @@ DEPENDENCIES
   uglifier
   unicorn
   websocket-rails!
+  whenever
   without-rails
