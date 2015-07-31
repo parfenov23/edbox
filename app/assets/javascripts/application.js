@@ -15,6 +15,7 @@
 
 //= require websocket_rails/main
 //= require_tree ./websocket
+
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });

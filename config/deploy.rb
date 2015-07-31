@@ -37,4 +37,13 @@ namespace :deploy do
   task :stop do
     invoke 'unicorn:stop'
   end
+
+  task :websocket_start do
+    `rake websocket:start_server`
+  end
+
+  task :websocket_stop do
+    `rake websocket:stop_server`
+  end
+
 end
