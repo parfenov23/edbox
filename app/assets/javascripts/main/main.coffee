@@ -44,8 +44,6 @@ carusel = ->
   $('.js__carusel').jcarousel(
   )
 
-  console.log 11
-
   $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
     $(this).removeClass 'inactive'
   ).on('jcarouselcontrol:inactive', ->
