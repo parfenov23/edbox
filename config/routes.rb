@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
+  get "pdf/:id" => "home#pdf"
+  get 'schedule', to: "schedules#index"
+  post 'schedule/day', to: "schedules#day_schedule"
   get ":action" => "home#:action"
   # get "test_websocket" => "home#test_websocket"
   # get 'nod'
@@ -36,6 +39,11 @@ Rails.application.routes.draw do
           post :registration
           post :recover_password
           get :signout
+        end
+      end
+      resources :companies, only: [] do
+        collection do
+          get :info
         end
       end
 

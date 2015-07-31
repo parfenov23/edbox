@@ -1,0 +1,45 @@
+#header__holder
+    = render "home/header/header", { header_top_arr: ['notifications'] }
+    = render "home/header/header_bottom", { header_bottom: { block: "cabinet", title: 'Мой кабинет', schedule_class: 'active' } }
+#js-schedule-calendar.courses-aside.aside__schedule-calendar.current-day
+.inner-content
+    #schedule.schedule-block
+        .schedule-header
+            .psevdo-select
+                .select-trigger #{@month}
+                ul.hidden-list
+                    - @months.each do |month|
+                        li
+                            a href="/schedule?date=#{month[:date].to_s}" #{month[:month]}
+            /.psevdo-select
+                .select-trigger Все группы
+                ul.hidden-list
+                    li managers
+                    li managers
+                    li managers
+        .schedule-calendar
+            - @weeks.each do |week|
+                .schedule-line
+                    - week.each do |day|
+                        - clas = 'current' if day[:today].present?
+                        - if day[:active].present? && day[:course_deadline].present?
+                            .item class="#{clas}" data-id = "js-schedule-calendar" data-date = "#{day[:date].to_date}"
+                                .data
+                                    .weekday #{day[:week_day]}
+                                    .day #{day[:day]}
+                                    - if day[:course_deadline].first.present?
+                                        .day-event #{Course.find(day[:course_deadline].first).title}
+                                    - if day[:course_deadline].second.present?
+                                        .day-event #{Course.find(day[:course_deadline].second).title}
+                                    - if day[:course_deadline].count > 2
+                                        .show-more Еще #{day[:course_deadline].count - 2} групп
+                        - elsif day[:active].present?
+                            .item class="#{clas}"
+                                .data
+                                    .weekday #{day[:week_day]}
+                                    .day #{day[:day]}
+                        - else
+                            .item.is-no-active
+                                .data
+                                    .weekday #{day[:week_day]}
+                                    .day #{day[:day]}

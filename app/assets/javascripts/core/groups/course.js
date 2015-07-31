@@ -40,8 +40,12 @@ var changeDeadLineCourseMy = function (btn, text_success) {
         url : '/api/v1/users/update_course',
         data: {course_id: course_id, date_complete: data_time}
     }).success(function () {
-        show_error(text_success, 3000);
-        loadMySchedule();
+        if(btn.data("no_schedule") == true){
+            location.reload();
+        } else {
+            show_error(text_success, 3000);
+            loadMySchedule();
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -75,8 +79,12 @@ var changeDeadLineSectionMy = function (btn, text_success) {
         url : '/api/v1/users/update_section',
         data: {section_id: section_id, date_complete: data_time}
     }).success(function () {
-        show_error(text_success, 3000);
-        loadMySchedule();
+        if(btn.data("no_schedule") == true){
+            location.reload();
+        } else {
+            show_error(text_success, 3000);
+            loadMySchedule();
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });

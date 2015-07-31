@@ -9,6 +9,10 @@ class Company < ActiveRecord::Base
     company
   end
 
+  def transfer_to_json
+    as_json(include: {users:{ only: [:id, :first_name, :last_name, :email]} })
+  end
+
   def course_in_groups(course_id)
     ids_groups = groups.ids
     BunchCourse.where({group_id: ids_groups, course_id: course_id})
