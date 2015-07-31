@@ -1,0 +1,12 @@
+.header__top
+    - link = current_user.present? ? "/cabinet" : "/courses"
+    a href="#{link}"
+        .logo.logo__ed
+            img.logo__img src="/assets/header__edbox.svg"
+    .logo.logo__ad
+        img.logo__img src="/assets/header__adconsult.svg"
+
+    - if current_user.present?
+        = render "home/header/auth", {header_top_arr: header_top_arr}
+    - else
+        = render "home/header/no_auth"

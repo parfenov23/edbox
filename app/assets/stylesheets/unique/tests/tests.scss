@@ -65,7 +65,7 @@
           opacity: 0;
           &:checked + label{
             &::before {
-              background-color: #FD9348;
+              background-color: $primoryColor;
             }
           }
         }
@@ -73,7 +73,7 @@
           display: block;
           width: 14px;
           height: 14px;
-          border: 1px solid #FD9348;
+          border: 1px solid $primoryColor;
           border-radius: 50%;
           top: 0;
           left: 0;
@@ -97,7 +97,7 @@
         input {
           opacity: 0;
           &:checked + label{
-            background-color: #FD9348;
+            background-color: $primoryColor;
             &::before {
               color: #fff;
             }
@@ -107,7 +107,7 @@
           display: block;
           width: 14px;
           height: 14px;
-          border: 1px solid #FD9348;
+          border: 1px solid $primoryColor;
           border-radius: 2px;
           top: 0;
           left: 0;
@@ -145,7 +145,7 @@
     padding-top: 12px;
     .finish-btn {
       font-size: 14px;
-      color: #FD9348;
+      color: $primoryColor;
       line-height: 36px;
       height: 36px;
       padding: 0 8px;

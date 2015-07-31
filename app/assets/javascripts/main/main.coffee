@@ -15,6 +15,7 @@ headerSubmenu = ->
   rightWidt = $('.right-col').width()
   if chPageWidth + titleWidth + 107 > headerWidth- rightWidt
     $('#page__header .left-col').addClass('is__sooo-long')
+    $('#page__header').removeClass('with__children ')
     $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
@@ -39,23 +40,53 @@ testList = ->
       left: parenBlock.offset().left + 'px'
 
 
+carusel = ->
+  $('.js__carusel').jcarousel(
+  )
+
+  console.log 11
+
+  $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
+    $(this).removeClass 'inactive'
+  ).on('jcarouselcontrol:inactive', ->
+    $(this).addClass 'inactive'
+  ).jcarouselControl target: '-=2'
+
+  $('.jcarousel-control-next').on('jcarouselcontrol:active', ->
+    $(this).removeClass 'inactive'
+  ).on('jcarouselcontrol:inactive', ->
+    $(this).addClass 'inactive'
+  ).jcarouselControl target: '+=2'
+
+  # $('.jcarousel').on 'jcarousel:firstin', 'li', (event, carousel) ->
+  #   qty = carousel._items.length
+  #   last = carousel._last
+  #   if $(last).index()+3 == qty
+  #     $('.jcarousel-control-next').addClass 'inactive'
+  #   else
+  #     $('.jcarousel-control-next').removeClass 'inactive'
+  #
+  #   console.log last
+
+
 $(document).ready ->
   $('img:last').load ->
 
     figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
     figcaptionTitleEclipses('.favorite-item .description .title', 56)
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
+
     $('.js__tooltip').hover (->
       $(@).addClass('is__visible-tooltip')
       ), ->
       $(@).removeClass('is__visible-tooltip')
+
     headerSubmenu()
+
+    carusel()
+
     $('.is__sooo-long .page__title').on 'click', ->
       $(@).next().toggle 300
-
-    $('.js__carusel').jcarousel()
-
-    $('.is__sooo-long')
 
     $(window).scroll ->
       scrollHeight = $('body').scrollTop()
@@ -63,6 +94,7 @@ $(document).ready ->
         $('#page__header').addClass('is__white')
       else
         $('#page__header').removeClass('is__white')
+
     $('.js__show-aside-main-nav').on 'click', ->
       $('.js__left-aside, .js__backing').addClass('is__active')
 
@@ -72,27 +104,10 @@ $(document).ready ->
     $('.section__deadline-title .back').on 'click', ->
       $(@).closest('.check_group_added').removeClass('section__deadline')
 
-    $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
-      $(this).removeClass 'inactive'
-      return
-    ).on('jcarouselcontrol:inactive', ->
-      $(this).addClass 'inactive'
-      return
-    ).jcarouselControl target: '-=1'
-    $('.jcarousel-control-next').on('jcarouselcontrol:active', ->
-      $(this).removeClass 'inactive'
-      return
-    ).on('jcarouselcontrol:inactive', ->
-      $(this).addClass 'inactive'
-      return
-    ).jcarouselControl target: '+=1'
-
-
     $('.js_for-tooltip').hover ->
       $(@).find('.js_tooltip').addClass('is-active')
     , ->
       $(@).find('.js_tooltip').removeClass('is-active')
-
 
     $('.page__children .item').hover ->
       $(@).stop(true).queue 'fx', ->
@@ -100,12 +115,6 @@ $(document).ready ->
     , ->
       $(@).stop(true).queue 'fx', ->
         headerTabsLine('.page__children .item.active')
-
-    $('.carusel .next_arr i').on 'click', ->
-      headerWidth = $('.header__bottom').width() - 69
-      $('.header__bottom .title').animate
-        marginLeft: - headerWidth + 'px', 300, ->
-          $('.carusel.for_prev').removeClass('for_prev').addClass('for_next')
 
     $('.js__select-calendar').hover (->
       $(@).addClass('is__active')
@@ -133,14 +142,6 @@ $(document).ready ->
       $(@).removeClass('is__active')
       $('.js__left-aside').removeClass('is__active')
 
-    $(document).on 'click', '.carusel .prev_arr i', ->
-      $('.header__bottom .title').animate
-        marginLeft: 0, 300, ->
-          $('.carusel.for_next').removeClass('for_next').addClass('for_prev')
-
-
-
-
     $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
       $(document).trigger 'click.dropdown'
       list = $(@).find('ul.hidden-list').show()
@@ -161,7 +162,6 @@ $(document).ready ->
       $(@).closest('.select').find('ul.hidden').show()
 
     adaptiveTitle()
-
 
     $('.js__toggle-state .fixed-h .title').on 'click', (e) ->
       $(document).trigger 'click.dropdown'

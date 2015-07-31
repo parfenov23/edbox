@@ -45,11 +45,11 @@
                 float : right;
             }
             .cancel {
-                color : #FD9348;
+                color : $primoryColor;
             }
             .yes {
                 color            : #FFF;
-                background-color : #FD9348;
+                background-color : $primoryColor;
             }
         }
         &.allgood {

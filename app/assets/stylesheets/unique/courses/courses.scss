@@ -8,7 +8,7 @@
             left        : 0;
             top         : 40px;
             font-size   : 20px;
-            color       : #FD9348;
+            color       : $primoryColor;
             line-height : 32px;
         }
         .new-btm-title {
@@ -26,7 +26,7 @@
             font-size        : 13px;
             color            : #FFF;
             line-height      : 18px;
-            background-color : #FD9348;
+            background-color : $primoryColor;
             height           : 32px;
             line-height      : 32px;
             padding          : 0 9px;

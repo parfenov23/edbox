@@ -7,6 +7,7 @@
   width          : 100%;
   height         : 64px;
   justify-content: space-between;
+  @include transition;
   .left-col {
     display        : flex;
     justify-content: flex-start;
@@ -15,12 +16,13 @@
     line-height: 48px;
     width      : 48px;
     height     : 48px;
-    margin     : 16px;
+    margin     : 8px 16px 16px;
     text-align : center;
-    margin-top: 10px;
     i {
       font-size: 24px;
-      color    : $orange;
+      cursor   : pointer;
+      color    : $black_54;
+      // color    : $primoryColor;
     }
     .ava {
       img {
@@ -32,11 +34,14 @@
   }
 
   .page__title {
-    font-size   : 15px;
+    font-size   : 20px;
     line-height : 24px;
-    margin-right: 8px;
+    margin-top  : -2px;
+    margin-right: 24px;
     padding-top : 20px;
     color       : $black_87;
+    max-width: 300px;
+    @include eclipses;
   }
 
   .page__children {
@@ -46,16 +51,16 @@
     justify-content: flex-start;
     .item {
       font-size     : 15px;
+      min-width     : auto;
       text-transform: none;
       color         : $black_87;
-      min-width: auto;
     }
     .line {
       position        : absolute;
       top             : 62px;
       left            : 0;
       height          : 2px;
-      background-color: $orange;
+      background-color: $primoryColor;
     }
   }
 
@@ -97,9 +102,14 @@
           color    : $black_54;
         }
       }
+      &.ava {
+        img {
+          width: 100%;
+          border-radius: 100%;
+        }
+      }
     }
     .notification__with-qty {
-      @include middle-block(24px);
       font-size       : 12px;
       line-height     : 24px;
       height          : 24px;
@@ -107,7 +117,8 @@
       text-align      : center;
       color           : #fff;
       border-radius   : 100%;
-      background-color: #fd9348;
+      background-color: $primoryColor;
+      @include middle-block(24px);
     }
   }
 
@@ -115,9 +126,9 @@
     position: relative;
     overflow: visible;
     .page__title {
-      position: relative;
-      cursor  : pointer;
+      position     : relative;
       padding-right: 32px;
+      cursor       : pointer;
       &::before {
         font-family: Icons, sans-serif;
         font-size  : 23px;
@@ -134,7 +145,7 @@
       left      : 80px;
       display   : none;
       min-width : 320px;
-      max-height: 88vh;;
+      max-height: 88vh;
       padding   : 6px 0;
       cursor    : pointer;
       @include white__block(1,0);
@@ -160,27 +171,26 @@
   }
   &.is__white {
     background-color: #fff;
+    @include transition;
     &.with__img {
       .page__icon i {
-        color      : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__title {
-        color      : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__children .item {
-        color      : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__action .item i::before {
-        color      : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
-
     }
-
   }
   &.with__img {
     .is__sooo-long {
       .page__children .item {
-        color      : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
     }
     .page__icon i {

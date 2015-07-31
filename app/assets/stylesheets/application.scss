@@ -177,30 +177,30 @@ i {
 }
 
 .adova__btn {
-    @include white__block(1, 1);
-    position      : fixed;
-    width         : 60px;
-    height        : 60px;
-    border-radius : 50%;
-    bottom        : 20px;
-    right         : 20px;
-    z-index       : 9999;
-    cursor        : pointer;
-    text-align    : center;
+  @include white__block(1,1);
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  cursor: pointer;
+  text-align: center;
+  i {
+    color: $primoryColor;
+    &::before {
+      line-height: 60px;
+      font-size: 24px;
+      content: '\E899';
+    }
+  }
+  &:active {
+    background-color: $primoryColor;
     i {
-        color : #FD9348;
-        &::before {
-            line-height : 60px;
-            font-size   : 24px;
-            content     : '\E899';
-        }
+      color: #fff;
     }
-    &:active {
-        background-color : #FD9348;
-        i {
-            color : #FFF;
-        }
-    }
+  }
 }
 
 .duration__with-icon {

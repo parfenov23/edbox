@@ -14,10 +14,10 @@
       margin-bottom: 24px;
       &.curr{
         .data {
-          color: #FD9348;
+          color: $primoryColor;
         }
         .box {
-          border-color: #FD9348;
+          border-color: $primoryColor;
           .event-info {
             position: relative;
             &::before {
@@ -25,7 +25,7 @@
               display: block;
               height: 100%;
               width: 4px;
-              background-color: #FD9348;
+              background-color: $primoryColor;
               border-radius: 2px 0 0 2px;
               position: absolute;
               top: 0;

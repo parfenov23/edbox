@@ -1,5 +1,6 @@
 .cabinet__block {
-  width: 1128px;
+  width: 1208px;
+  padding: 0 42px;
   .empty-title {
     text-align: center;
     font-size: 34px;
@@ -83,7 +84,7 @@
         right: 24px;
         .btn {
           font-size: 14px;
-          color: #FD9348;
+          color: $primoryColor;
           line-height: 36px;
           box-shadow: none;
         }
@@ -111,7 +112,7 @@
         font-size: 14px;
         color: #FFFFFF;
         line-height: 36px;
-        background-color: #FD9348;
+        background-color: $primoryColor;
       }
     }
   }
@@ -132,7 +133,7 @@
       .more {
         a {
           font-size: 15px;
-          color: #FD9348;
+          color: $primoryColor;
           line-height: 24px;
         }
       }
@@ -158,7 +159,7 @@
           top: 200px;
           line-height: 80px;
           font-size: 40px;
-          color: 2px solid rgba(0,0,0,0.54);
+          color:  rgba(0,0,0,0.54);
           &:hover {
           background-color: #FBFBFB;
           }
@@ -192,11 +193,18 @@
           }
         }
       }
+      .jcarousel-control-prev.inactive,  .jcarousel-control-next.inactive {
+          display: none;
+      }
+
       .jcarousel {
           position: relative;
           overflow: hidden;
           padding-bottom: 14px;
-      }
+          padding-left: 15px;
+          margin-left: -15px;
+          padding-top: 8px;
+        }
       .jcarousel ul {
           width: 20000em;
           position: relative;
@@ -219,7 +227,7 @@
             line-height: 24px;
             a {
               font-size: 15px;
-              color: #FD9348;
+              color: $primoryColor;
               line-height: 24px;
             }
           }
