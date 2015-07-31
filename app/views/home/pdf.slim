@@ -4,4 +4,5 @@
 .inner-content
     .content-audio
         p.audio-title #{@pdf.title}
-        iframe src="http://docs.google.com/gview?url=#{request.base_url + @pdf.file.url}&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
+        embed src="#{request.base_url + @pdf.file.url}" width="800" height="1200" type='application/pdf'
+
