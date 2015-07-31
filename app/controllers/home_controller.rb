@@ -45,6 +45,17 @@ class HomeController < ActionController::Base
     end
   end
 
+  def pdf
+    @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file.file.extension.downcase == 'pdf'
+      @pdf = attachment
+      @section = attachment.attachmentable
+    else
+      render :error
+    end
+  end
+
   def members
     @members = current_user.company.users
   end
