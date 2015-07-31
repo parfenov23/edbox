@@ -6,6 +6,7 @@
         p.audio-title #{@audio.title}
         audio#audio controls='' preload='auto'
             source src="#{@audio.file.url}" type="#{@audio.file.content_type}"
+            a href="#{request.base_url + @audio.file.url}" Скачать #{@audio.title}
         br
         .adova__btn.mdl-shadow--2dp style='position: relative; float: right;'
             i.icon
