@@ -6,7 +6,7 @@
     padding-top        : 97px;
     background         : #FFFFFF;
     box-shadow         : 0 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-    z-index            : 4;
+    z-index            : 9999;
     height             : 100%;
     padding-left       : 32px;
     overflow-y         : scroll;
@@ -276,4 +276,10 @@
         }
 
     }
+}
+
+
+.notes-courses {
+  right: 0;
+  
 }
