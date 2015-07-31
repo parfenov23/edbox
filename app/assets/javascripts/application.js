@@ -1,15 +1,14 @@
-//= require_tree ./vendor
-// require ./jquery-2.1.3.min
-// require ./vendor/jquery-ui.min
-// require ./vendor/jquery.cookie
-// require ./vendor/zbaron.min
+//= require ./jquery-2.1.3.min
+//= require ./vendor/jquery-ui.min
+//= require ./vendor/jquery.cookie
+//= require ./vendor/zbaron.min
 // require ./vendor/material.min
-// require ./vendor/jquery.jcarousel.min
-// require ./vendor/jquery-migrate-1.2.1.min.js
-// require ./vendor/notifymy.js
+//= require ./vendor/jquery.jcarousel.min
+//= require ./vendor/jquery-migrate-1.2.1.min.js
+//= require ./vendor/notifymy.js
 
-// require ./vendor/material/ripples
-// require ./vendor/material/material
+//= require ./vendor/material/ripples
+//= require ./vendor/material/material
 //= require main/main
 
 //= require_tree ./core
