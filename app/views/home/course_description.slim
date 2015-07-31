@@ -1,86 +1,135 @@
-= render "home/courses/favorite", {favorite_courses: @favorite_courses}
-- if current_user.corporate
-  = render "home/courses/groups"
-#header__holder
-  = render "home/header/header", {header_top_arr: ['notifications']}
-  = render "home/header/header_bottom", {header_bottom: {block: "courses_description", title: @course.title, arrow: {url: "/courses"}, description_class: "active"}}
-.inner-content                  
-  .content
-    .image-bg style="background: url('#{@course.get_image_path('full')}')"
-    .courses-description
-      .image-block
-        .mask
-        img (src="#{@course.get_image_path('920x377')}")
-        .title
-          |Курс “
-          span id="titleCoursePrev#{@course.id}"
-            = @course.title
-          |”
-        .author
-          = (@course.user.full_name rescue "Нет ведущего")
-        ul.tags
-          - course_tags = @course.bunch_tags
-          - course_tags.each do |course_tag|
-            li
-              .tag-itm = (course_tag.tag.title rescue nil)
+.presentation__block
+  img src = "/uploads/pic5.png"
 
-        .info-block
-          p Записанный видеокурс
-          p
-            'Продолжительность:
-            - duration = (@course.sections.joins(:attachments).sum(attachments: :duration).to_i rescue 0)
-            = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+.course__description-content.ох__нихуясе-блок  
+  .tegs__list
+    .item
+      i.icon.teg
+      | Продажи
+    .item
+      i.icon.teg
+      | Продажи
+  .course__title “Покорми секретаря”
+  
+  .progress__block
+    .title.adaptive__title.overdue
+      .left-col Прогресс прохождения курса
+      .right-col Завершить до 25 июля
+    .progress__wrp
+      .bar
+      .completed style ="width: 20%"
+    .info
+      .precent Пройдено 0 %
+      .qty 0 из 15 лекций
 
-          .btn-area
-            .btn.btn-flat.is__orange.get-course НАЗНАЧИТЬ ГРУППЕ
-            .btn.btn-flat.is__white.get-course ДОБАВИТЬ В ИЗБРАННОЕ
-      .text-block
-        .description
-          = raw @course.description
-        .icon-list
-          i.icon.text
-          i.icon.audio
+  .course__info
+    .adaptive__title
+      .left-col
+        .item
+          | 16 лекций
+          i.courses.icon
+        .item
+          | 32 часа
+          i.duration.icon
+        .item
+          | 2000 слушателей
+          i.groups.icon
+      .right-col
+        .item Пивоварение
+        .item Пивоварение
+    .detail__info.is__closed
+      .description
+        p Сотрудник, увлеченный делом, работает более эффективно. Но как быть, если задача не вызывает у него интереса и желания достичь высоких результатов? Как настроить специалиста на продуктивную работу?
+        p Этот курс будет полезен HR-специалистам и руководителям подразделений, а также директорам и владельцам бизнеса, которые уверены, что правильно мотивированные специалисты — важная составляющая успеха.
+        p На курсе вы узнаете, какие виды мотивации существуют и в каких ситуациях использовать каждый из них, как понять, чем заинтересовать сотрудника, и как мотивация поможет раскрыть его потенциал.
+      .leading__list
+        .title Ведущие курса
+        .item
+          .ava
+            img src="/images/ava.png"
+          .info
+            .title Роман Воронежский
+            .description Как ни странно, шизофрения, которую пишет Воронежский, имеет определенные причины. Во-первых, это отчасти подражание Хармсу. Во-вторых, и это важнее, Воронежский много лет работал копирайтером, и многие из воронежек при другом стечении обстоятельств могли оказаться на биллбордах и в зомбоящике, да и еще много где.
+        .item
+          .ava
+            img src="/images/ava.png"
+          .info
+            .title Артём Татьянович
+            .description В славянской мифологии бог, повелевающий дизайном, по совместительству арт-директор Студии Артемия Лебедева, дизайнер сайтов другими дизайнерами, Дизайнер Всея Руси, Великий путешественник, первый русский дизайнер-тролль, урновед, самый здоровый, веселый, и толстый задорный щенок,.
+    .more.is__closed 
+      .btn.btn-flat.for__closed ПОКАЗАТЬ ОПИСАНИЕ        
+      .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ      
+  
+  .study__program.is__closed
+    .title Учебная программа
+    .programm__block
+      .adaptive__title
+        .left-col 1. Учимся писать и считать
+        .right-col Просрочено
+      .item
+        .icon__block
           i.icon.video
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
+         
+      .item.is__completed
+        .icon__block
+          i.icon.audio
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
+         
+      .item.is__completed
+        .icon__block
           i.icon.test
-        .see-program
-          a href="/programm?course_id=#{@course.id}" Посмотреть программу курса
-        - user_lead = @course.user
-        - if user_lead.present?
-          .principals-list
-            .title Ведущий курса
-            .princ-area
-              .principial-item
-                .image
-                  img style="height: 144px;" src ="#{default_img(user_lead.avatar)}"
-                .name = user_lead.full_name
-                .lvl = user_lead.about_me
-        .action-block
-          - if current_user.nil?
-            .registration
-              .title Для того, чтобы начать обучение, вам необходимо зарегистрироваться и выбрать форму подписки
-              a href="/signup"
-                .btn.btn-flat.yes.reg ЗАРЕГИСТРИРОВАТЬСЯ
-
-          - else
-            .some-action
-              .title Добавьте курс в расписание группы или отложите его в избранное
-              .btn-block
-                - if current_user.director
-                  - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
-                  .btn.btn-flat.yes.add-to-group class="#{add_class}" data-type="group" data-id="#{@course.id}" НАЗНАЧИТЬ ГРУППЕ
-                - else
-                  .btn.btn-flat.yes.add-to-shedule ДОБАВИТЬ В РАСПИСАНИЕ
-                .btn.btn-flat.no.add-to-fav data-id="#{@course.id}" ДОБАВИТЬ В ИЗБРАННОЕ
-
-  /.add-info
-  /    .title Сейчас вы используете бесплатный аккаунт. Для того, чтобы начать обучение, оформите платную подписку и получите доступ ко всем курсам библиотеки.
-  /    .addititonal-info
-  /        .info-title Полный доступ к базе знаний
-  /        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
-  /        .price
-  /            |1000 ₽
-  /            span за одного пользователя
-  /        .btn.yes.add-to-group ОФОРМИТЬ
-
-  - if current_user.corporate
-    = render "home/courses/pop_up"
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
+         
+      .item
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
+        
+    .programm__block
+      .adaptive__title
+        .left-col 1. Учимся писать и считать
+        .right-col 
+      .item
+        .icon__block
+          i.icon
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
+      .item
+        .icon__block
+          i.icon
+        .adaptive__title
+          .left-col 1.1 Что будем изучать на этом курсе
+          .right-col 21 ч. 13 мин.
+        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
+  .toggle__view.btn.btn-flat
+    span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
+    span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
+    
+.not__auth-block
+  .inner
+    .title Получайте знания вместе с edbox
+    .info Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Бла-бла-бла.
+    .plans
+      .item
+        .title Личный аккаунт
+        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. 
+        .btn.btn-flat ЗАРЕГИСТРИРОВАТЬСЯ
+      .item
+        .title Личный аккаунт
+        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. 
+        .btn.btn-flat ЗАРЕГИСТРИРОВАТЬСЯ

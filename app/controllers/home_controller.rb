@@ -80,8 +80,8 @@ class HomeController < ActionController::Base
   # end
 
   def course_description
-    @favorite_courses = current_user.favorite_courses
-    @course = Course.find(params[:id])
+    # @favorite_courses = current_user.favorite_courses
+    # @course = Course.find(params[:id])
   end
 
   def group

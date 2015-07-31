@@ -6,7 +6,7 @@
         - attachments = section.attachments
         - if bunch_section.present? && attachments.present?
           .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive-title.adaptive-title
+            .fixed-h.adaptive__title.adaptive__title
               .title.left-col = section.title
               .additional-info.right-col
                 - if bunch_section.full_complete?(current_user.id)
@@ -18,7 +18,7 @@
             .course-components.hidden-part
               - attachments.each do |attachment|
                 - bunch_attachment = attachment.find_bunch_attachment(bunch_section.id)
-                .course-component-item.hidden-item.adaptive-title class=attachment.class_type
+                .course-component-item.hidden-item.adaptive__title class=attachment.class_type
                   i.icon
                   .title.left-col = attachment.title
                   .right-col

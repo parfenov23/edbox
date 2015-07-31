@@ -31,7 +31,7 @@
             - if attachments.present? && my_bunch_section.present?
               // completed
               .schedule-item.closed-state.js__toggle-state class=(my_bunch_section.complete ? 'completed' : '')
-                .fixed-h.adaptive-title.adaptive-title
+                .fixed-h.adaptive__title.adaptive__title
                   .title.left-col = section.title
                   .additional-info.right-col
                     - if my_bunch_section.full_complete?(current_user.id)
@@ -56,7 +56,7 @@
                   - attachments.each do |attachment|
                     - bunch_attachment = attachment.find_bunch_attachment(my_bunch_section.id)
                     - if bunch_attachment.present?
-                      .course-component-item.hidden-item.adaptive-title class=attachment.class_type
+                      .course-component-item.hidden-item.adaptive__title class=attachment.class_type
                         i.icon
                         .title.left-col = attachment.title
                         .right-col
@@ -69,7 +69,7 @@
                             .overdue-label Пройдено
                   - my_bunch_section.section.tests.each do |test|
                     - my_result = current_user.test_results.find_by_test_id(test.id)
-                    .course-component-item.hidden-item.adaptive-title class='test'
+                    .course-component-item.hidden-item.adaptive__title class='test'
                       i.icon
                       .title.left-col = test.title
                       .right-col

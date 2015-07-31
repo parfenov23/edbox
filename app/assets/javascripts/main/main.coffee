@@ -19,7 +19,7 @@ headerSubmenu = ->
     $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
-  $('.adaptive-title').each ->
+  $('.adaptive__title').each ->
     rightWidth = $(@).find('.right-col').width()
     $(@).find('.left-col').css
       width: $(@).width() - rightWidth + 'px'
@@ -84,6 +84,14 @@ $(document).ready ->
     headerSubmenu()
 
     carusel()
+
+    $('.course__info .more').on 'click', ->
+      $('.detail__info').toggleClass('is__closed')
+      $(@).toggleClass('is__closed')
+
+    $('.toggle__view.btn').on 'click', ->
+      $('.study__program').toggleClass('is__closed')
+      $(@).toggleClass('is__closed')
 
     $('.is__sooo-long .page__title').on 'click', ->
       $(@).next().toggle 300

@@ -19,7 +19,7 @@ var openPopup = function () {
     } else {
         show_error('У ваc нет групп', 3000);
     }
-    $('.adaptive-title').each(function () {
+    $('.adaptive__title').each(function () {
         var rightWidth;
         rightWidth = $(this).find('.right-col').width();
         return $(this).find('.left-col').css({
@@ -37,7 +37,7 @@ var courseInfo = function (course_id) {
         popup.find(".js__courseEditTitle span").text(data.title);
         $("ul.js_addTemplateSectionLi").html($(templateLiSection(data)));
         includeDatePicker();
-        $('.adaptive-title').each(function () {
+        $('.adaptive__title').each(function () {
             var rightWidth;
             rightWidth = $(this).find('.right-col').width();
             return $(this).find('.left-col').css({

@@ -16,6 +16,35 @@ i.icon {
     }
   }
 
+  &.video {
+    &::before {
+      content: "\e602";
+    }
+  }
+
+  &.audio {
+    &::before {
+      content: "\e603";
+    }
+  }
+
+  &.text {
+    &::before {
+      content: "\E621";
+    }
+  }
+
+  &.test {
+    &::before {
+      content: "\e601";
+    }
+  }
+
+  &.teg {
+    &::before {
+      content: "\E87A";
+    }
+  }
 
   &.burger {
     &::before {
@@ -34,11 +63,13 @@ i.icon {
       content: "\E7BA";
     }
   }
+
   &.stat {
     &::before {
       content: "\E60F";
     }
   }
+
   &.favorites {
     &::before {
       content: "\E619";
@@ -85,10 +116,10 @@ i.icon {
       content: '\E631';
     }
   }
-
-  &.groups {
+  &.duration {
     &::before {
-      content: '\E8D6';
+      content: '\E71F';
     }
   }
+
 }
