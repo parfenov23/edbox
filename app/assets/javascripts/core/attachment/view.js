@@ -15,9 +15,9 @@ $(document).ready(function () {
     }
 });
 
-$(document).ready(function () {
-    var video = $(".content-audio audio");
-    if (video.length > 0){
-        $(".content-audio").center();
-    }
-});
+//$(document).ready(function () {
+//    var video = $(".content-audio audio");
+//    if (video.length > 0){
+//        $(".content-audio").center();
+//    }
+//});
