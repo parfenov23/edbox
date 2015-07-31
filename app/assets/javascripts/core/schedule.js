@@ -18,9 +18,9 @@ $(document).ready(function () {
                         //    }
                         //});
                         //includeDatePicker();
-                        //$('.close-filter').click(function () {
-                        //    $('#js-schedule-calendar').removeClass('show');
-                        //});
+                        $('.close-filter').click(function () {
+                            $('#js-schedule-calendar').removeClass('show');
+                        });
                         bind_block();
                     },
                     error  : function () {
