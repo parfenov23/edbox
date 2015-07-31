@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
+  get "pdf/:id" => "home#pdf"
   get 'schedule', to: "schedules#index"
   post 'schedule/day', to: "schedules#day_schedule"
   get ":action" => "home#:action"
