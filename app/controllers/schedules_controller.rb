@@ -14,6 +14,7 @@ class SchedulesController < HomeController
 
   def day_schedule
     return unless (params[:date].to_date rescue false)
+    @current_user = current_user
     @day_schedule = get_day_schedule(current_user, params[:date])
     html = render_to_string 'schedules/day_schedule', :layout => false, :locals => {params: params}
     render text: html
