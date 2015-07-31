@@ -4,6 +4,7 @@ class BunchCourse < ActiveRecord::Base
   belongs_to :user
   belongs_to :ligament_course
   has_many :bunch_sections, dependent: :destroy
+  has_many :notifications, :as => :notifytable, :dependent => :destroy
 
   scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
   scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
@@ -22,11 +23,30 @@ class BunchCourse < ActiveRecord::Base
     true
   end
 
+  def full_complete?
+    sections = bunch_sections
+    if sections.where(complete: true).count >= sections.count
+      self.complete = true
+    end
+    self.save
+    if user.corporate
+      push_if_close
+    end
+    complete
+  end
+
+  def push_if_close
+    user.company.directors.each do |user|
+      user.create_notify(self, 'complete')
+    end
+  end
+
   def self.build_to_group(course_id, group_id, date_complete, type, sections_hash)
     group = Group.find(group_id)
     bunch_groups = group.bunch_groups
     ligament_course = LigamentCourse.find_or_create_by({course_id: course_id, group_id: group_id})
     bunch_groups.each do |bunch_group|
+      bunch_group.user.create_notify(ligament_course)
       build_to_user(course_id, bunch_group.user_id, group_id, date_complete, type, ligament_course.id, sections_hash)
     end
   end
@@ -63,6 +83,40 @@ class BunchCourse < ActiveRecord::Base
 
   def self.closed
     with_exclusive_scope { find(:all) }
+  end
+
+  def notify_json(type=nil)
+    case type
+      when "new"
+        {
+          title: "Добавлен новый курс в библиотеку.",
+          body: "В вашей библиотеке, появился новый курс!",
+          timeClose: 0,
+          linkGo: "/courses"
+        }
+      when "complete"
+        user_name = (user.full_name rescue "Нет имени")
+        {
+          title: "Пользователь закончил прохождение курса",
+          body: "#{user_name} прошел курс “#{course.title}”",
+          timeClose: 0,
+          linkGo: "/courses"
+        }
+      when "overdue_course"
+        {
+          title: "Вы просрочили время прохождения.",
+          body: "Вы не успели изучить курс “#{course.title}” в указанный срок",
+          timeClose: 0,
+          linkGo: "/courses"
+        }
+      when "close_overdue_course"
+        {
+          title: "Приближается время дедлайна курса",
+          body: "Сегодня последний день для изучения курса “#{course.title}”",
+          timeClose: 0,
+          linkGo: "/courses"
+        }
+    end
   end
 
 

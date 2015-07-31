@@ -22,6 +22,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log',
 
 set :pty, false
 set :keep_releases, 3
+set :whenever_roles, [:app]
 
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'

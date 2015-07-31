@@ -70,7 +70,7 @@ class HomeController < ActionController::Base
   end
 
   def programm
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:id])
     @sections = @course.sections
     section_ids = @sections.pluck(:id)
     @tests = Test.where(section_id: section_ids)

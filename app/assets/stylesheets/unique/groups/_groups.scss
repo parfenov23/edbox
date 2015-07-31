@@ -76,7 +76,7 @@
 }
 
 .group-menu a:hover [class^="icon-"], .group-menu a:hover [class*=" icon-"] {
-  color : #FD9348;
+  color : $primoryColor;
 }
 
 .icon-uniE8D9:before {
@@ -225,13 +225,8 @@
 
 .container {
   max-width          : 920px;
-  background-color   : #FFF;
-  border-radius      : 2px;
   margin-bottom      : 11px;
-  -webkit-box-shadow : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow    : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-  box-shadow         : 0 0 2px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.24), 0 0 6px rgba(0, 0, 0, 0.12);
-
+  @include white__block(1, 0);
 }
 
 .container-inner {
@@ -295,7 +290,7 @@ input[type="text"]:focus {
   width              : 0;
   bottom             : 0;
   position           : absolute;
-  background         : #FD9348;
+  background         : $primoryColor;
   transition         : 0.2s ease all;
   -moz-transition    : 0.2s ease all;
   -webkit-transition : 0.2s ease all;
@@ -323,7 +318,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 .submitBtn {
   width              : 97px;
   height             : 36px;
-  background-color   : #FD9348;
+  background-color   : $primoryColor;
   font-size          : 14px;
   font-weight        : 500;
   line-height        : 36px;
@@ -504,7 +499,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 }
 
 .group-info li a {
-  color : #FD9348;
+  color : $primoryColor;
 }
 
 .group-info li strong {

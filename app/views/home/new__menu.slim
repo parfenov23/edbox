@@ -1,0 +1,139 @@
+header#page__header
+  / .with__img
+  .left-col
+    .page__icon.item
+      i.burger.icon.js__show-aside-main-nav
+      / .ava
+          img src="/images/ava.png"
+    .page__title Текущие
+    .page__children
+      .item.active.btn.btn-flat Назначенные
+      .item.btn.btn-flat Курсы
+      .item.btn.btn-flat Добавленные
+      .item.btn.btn-flat Отложенные
+      .item.btn.btn-flat Пройденные
+      .line
+
+
+  .page__action
+    .item.js__tooltip
+      i.search.icon
+      .tooltip.is__bottom Уведомления
+    .item.ava
+        img src="/images/ava.png"
+    .item
+      i.schedule.icon
+    .item
+      i.notification.icon
+    .item
+      .notification__with-qty ...
+    .item
+      i.calendar.icon
+    .item
+      i.filter.icon
+    .item
+      i.favorite.icon
+    .item
+      i.groups.icon
+
+/ .main_nav
+/   / .with__img
+/   .item.js__tooltip
+/     i.cabinet.icon
+/     .tooltip.is__right Кабинет
+/   .item
+/     i.biblio.icon
+/   .item
+/     i.courses.icon
+/   .item
+/     i.groups.icon
+/   .item
+/     i.more.icon.js__show-aside-main-nav
+/
+
+.left__aside-main-nav.js__baron.js__left-aside
+  .info__block
+    .top__logo
+      img src= "/assets/edbox__bloo.svg"
+  .menu__list
+    .item
+      i.cabinet.icon
+      .label Мой кабинет
+    .item.is__active
+      i.biblio.icon
+      .label Библиотека
+    .item
+      i.courses.icon
+      .label Курсы
+    .item
+      i.groups.icon
+      .label Группы
+    .item
+      i.stat.icon
+      .label Статистика
+    .item
+      i.favorites.icon
+      .label Закладки
+    .item
+      i.notes.icon
+      .label Заметки
+
+  .btm__logo
+    img src = "/assets/adcons__grey.svg"
+
+
+.inner-content
+    .content#profile
+        form.profile__block.profile__main
+            .avatar
+                img.ava src="#{default_img(current_user.avatar)}"
+                .upload__block
+                    input#imgInp name="ava" type="file"
+            .data
+                .input-wrp.name
+                    input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
+                    hr
+                .input-wrp.name
+                    input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
+                    hr
+                .input-wrp.state
+                    input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
+                    hr
+                .account
+                    span>Ваш персональный ID:
+                    span.number
+                        = current_user.user_key
+                .tets
+                    'Это ваш идентификационный номер в Edbox. Он
+                    'понадобится вам для участия в различных акциях и
+                    |специальных предложениях от Edbox.
+            .btn-holder
+                .btn.btn-raised.is__orange#submit сохранить
+
+
+        form.profile__block.profile__password
+            .title Создание нового пароля
+            .input-wrp.password
+                input type="password" name="password" placeholder="Введите пароль"
+                hr
+            .input-wrp.password
+                input type="password" name="password_repeat" placeholder="Повторите пароль"
+                hr
+            .btn-holder
+                .btn.btn-raised.is__orange#submit сохранить
+
+
+        form.profile__block.profile__account
+            .title Корпоративный аккаунт
+            .description 23 пользователя в компании
+            .btn-holder
+                .btn.btn-raised.is__orange#submit ИЗМЕНИТЬ НА ПЕРСОНАЛЬНЫЙ
+
+
+
+
+
+
+
+
+.js__backing

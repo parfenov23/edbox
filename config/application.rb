@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'rack/fiber_pool'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -25,6 +26,10 @@ module Edbox
     config.i18n.default_locale = :ru
     config.exceptions_app = self.routes
 
+    # config.active_record.whitelist_attributes = true
+    config.cache_store = :redis_store, 'redis://127.0.0.1:6379/0/cache', { expires_in: 90.minutes }
+    # config.middleware.insert_before(ActiveRecord::ConnectionAdapters::ConnectionManagement, Rack::FiberPool)
+    # config.threadsafe!
     # config.time_zone = 'Asia/Yekaterinburg'
     # config.active_record.default_timezone = :local
   end

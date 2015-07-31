@@ -107,7 +107,7 @@
         width         : 30px;
         height        : 30px;
         margin        : 0 24px 0 0;
-        background    : #FD9348;
+        background    : $primoryColor;
         border-radius : 100%;
         font          : 400 13px/30px 'Roboto';
         color         : #FFF;
@@ -159,7 +159,7 @@
           content     : '\e899';
         }
         .authorized {
-          color : #FD9348;
+          color : $primoryColor;
         }
         &.director:hover {
           .delete {

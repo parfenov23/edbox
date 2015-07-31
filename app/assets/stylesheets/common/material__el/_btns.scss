@@ -41,6 +41,10 @@
     border-radius: 2px;
     opacity: 0.1;
 }
+.is__orange {
+
+}
+
 .ripple {
     position: absolute;
     width: 20px;
@@ -69,9 +73,9 @@
     &:active:not(.btn-link) {
         @extend .shadow-z-3;
     }
-    &:hover {
-        @extend .shadow-z-5;
-    }
+    // &:hover {
+    //     @extend .shadow-z-3;
+    // }
 
 }
 
@@ -80,22 +84,31 @@
     padding: 0 8px;
     border: 0;
     display        : block;
-    min-width      : 88px !important;
+    min-width      : 88px;
     cursor: pointer;
     border-radius: 2px;
     text-transform: uppercase;
     text-decoration: none;
-    height         : 36px !important;
-    text-align     : center !important;
+    height         : 36px;
+    text-align     : center;
     font-size      : 14px;
     line-height    : 36px;
     transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    color: $primoryColor;
     outline: none !important;
+    &.is__orange {
+      color: #FFFFFF;
+      background-color: $primoryColor;
+    }
+    &.is__blue {
+      color: #FFFFFF;
+      background-color: #00BCD4;
+    }
     &:hover {
-        @extend .shadow-z-2-hover;
+        // @extend .shadow-z-2-hover;
     }
     &:active {
-        @extend .shadow-z-3;
+        @extend .shadow-z-2;
     }
 }
 
@@ -108,8 +121,10 @@
     &.btn-default:hover {
         background: none;
     }
+    &:active {
+      box-shadow: none !important;
+    }
 }
-
 
 .btn-group, .btn-group-vertical {
     position: relative;
@@ -165,7 +180,7 @@
 //   height         : 36px;
 //   font           : 400 13px/36px 'Roboto';
 //   color          : #FFF;
-//   background     : #FD9348;
+//   background     : $primoryColor;
 //   cursor         : pointer;
 //   text-align     : center;
 //   text-transform : uppercase;
@@ -176,12 +191,12 @@
 // .btn__flat {
 //   display        : block;
 //   font           : 400 14px/1 'Roboto';
-//   color          : #FD9348;
+//   color          : $primoryColor;
 //   text-transform : uppercase;
 // }
 //
 // .is__orange {
-//   background : #FD9348;
+//   background : $primoryColor;
 //   color      : #FFF;
 // }
 //
@@ -211,7 +226,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : #FD9348 !important;
+//     background : $primoryColor !important;
 //   }
 // }
 //
@@ -229,7 +244,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : #FD9348 !important;
+//     background : $primoryColor !important;
 //   }
 // }
 //

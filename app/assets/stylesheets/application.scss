@@ -10,39 +10,38 @@
 @import "common/mixins/transition";
 
 @font-face {
-  font-family : 'Icons';
-  src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
-  src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
+    font-family : 'Icons';
+    src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
+    src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
-
 *, *:before, *:after {
-  box-sizing : border-box;
+    box-sizing : border-box;
 }
 
 html {
-  position    : relative;
-  font-family : 'Roboto', sans-serif;
-  min-height  : 100%;
-  height      : 100%;
+    position    : relative;
+    font-family : 'Roboto', sans-serif;
+    min-height  : 100%;
+    height      : 100%;
 }
 
 body {
-  background-color : #ECEFF1;
-  height           : 100%;
-  min-height       : 100%;
-  height           : auto !important;
-  color            : $black_87;
-  font-weight      : 400 !important;
+    background-color : #ECEFF1;
+    height           : 100%;
+    min-height       : 100%;
+    height           : auto !important;
+    color            : $black_87;
+    font-weight      : 400 !important;
 }
 
 input:focus {
-  outline : none;
+    outline : none;
 }
 
 a {
-  color           : $black_87;
-  text-decoration : none;
+    color           : $black_87;
+    text-decoration : none;
 }
 
 p {
@@ -77,6 +76,7 @@ i {
 
 .inner-content {
     padding-top : 96px;
+    min-width   : 1066px;
     .content-video {
         position  : absolute;
         top       : 50%;
@@ -88,6 +88,7 @@ i {
 .new-courses-holder {
     background-color : #F9F9F9;
 }
+
 .color__ripple {
     position      : absolute;
     border-radius : 50%;
@@ -156,16 +157,25 @@ i {
 .content#groups {
     padding-top : 130px;
 }
-.js__backing {
-  &.is__active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+
+.js__baron {
+    overflow-y : scroll;
+    &::-webkit-scrollbar {
+        width : 0;
+    }
 }
+
+.js__backing {
+    &.is__active {
+        position : fixed;
+        top      : 0;
+        left     : 0;
+        width    : 100%;
+        height   : 100%;
+        z-index  : 1;
+    }
+}
+
 .adova__btn {
   @include white__block(1,1);
   position: fixed;
@@ -178,7 +188,7 @@ i {
   cursor: pointer;
   text-align: center;
   i {
-    color: #FD9348;
+    color: $primoryColor;
     &::before {
       line-height: 60px;
       font-size: 24px;
@@ -186,31 +196,87 @@ i {
     }
   }
   &:active {
-    background-color: #FD9348;
+    background-color: $primoryColor;
     i {
       color: #fff;
     }
   }
 }
+
 .duration__with-icon {
-  padding-left: 20px;
-  position: relative;
-  padding-top: 2px;
+    padding-left : 20px;
+    position     : relative;
+    padding-top  : 2px;
     i {
-      position: absolute;
-      left: 0;
-      top: 2px;
-      font-size: 14px;
-      color: rgba(0, 0, 0, 0.54);
-      &::before {
+        position  : absolute;
+        left      : 0;
+        top       : 2px;
+        font-size : 14px;
+        color     : rgba(0, 0, 0, 0.54);
+        &::before {
             content : '\E71F';
         }
     }
 }
 
-.content#groups{
-  @import "unique/pogorelov/group/courses";
-  @import "unique/groups/groups";
+.notification {
+    position           : fixed;
+    top                : 0px;
+    right              : -50%;
+    z-index            : 10000;
+    width              : 450px;
+    height             : 128px;
+    margin-top         : 16px;
+    margin-right       : 16px;
+    -webkit-transition : all 300ms;
+    transition         : all 300ms;
+    @include white__block(1, 0);
+    &.open {
+        right : 0px;
+    }
+    .img {
+        display : inline-block;
+        float   : left;
+        img {
+            height : 128px;
+        }
+    }
+    .notify_content {
+        padding     : 16px 16px 12px 16px;
+        margin-left : 128px;
+        .title {
+            padding-bottom : 8px;
+            width          : 284px;
+            font-size      : 20px;
+            @include eclipses;
+        }
+        .description {
+            //overflow : auto;
+            font-size : 15px;
+            width     : 284px;
+            height    : 68px;
+            cursor    : pointer;
+        }
+        .close {
+            display         : inline-block;
+            position        : absolute;
+            top             : 8px;
+            right           : 12px;
+            text-shadow     : 0 1px 0 #FFF;
+            text-decoration : none;
+            color           : #777;
+            font            : 20px/100% arial, sans-serif;
+            cursor          : pointer;
+            &:after {
+                content : '×';
+            }
+        }
+    }
+}
+
+.content#groups {
+    @import "unique/pogorelov/group/courses";
+    @import "unique/groups/groups";
 }
 
 @import "common/material__el/rippleAnimation";
@@ -218,9 +284,10 @@ i {
 @import "common/material__el/switch";
 @import "common/material__el/input";
 @import "common/material__el/btns";
-@import "common/material__el/tooltip";
+@import "common/elements/tooltip";
 @import "common/material__el/toggle-state";
 @import "common/elements/calendar";
+@import "common/elements/icons";
 @import "common/elements/adaptive_title";
 @import "common/elements/adaptive_popup";
 @import "common/elements/directors_btn";
@@ -240,3 +307,4 @@ i {
 @import "unique/no_content/no_content";
 @import "unique/attachments/videos";
 @import "attachments/audios";
+

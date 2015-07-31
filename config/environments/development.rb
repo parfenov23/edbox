@@ -42,6 +42,7 @@ Rails.application.configure do
     :address => 'localhost',
     :port => 1025,
   }
+  config.middleware.delete Rack::Lock
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

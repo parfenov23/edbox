@@ -10,8 +10,8 @@ function confirm(text, action){
 function warning(text, actionText){
     var popup = $('.pop_up_confirm');
     popup.find('.inner .description').text(text);
-    popup.find('.action-btn .btn.cancel').attr('style', 'display:none');
-    popup.find('.action-btn .btn.yes').text(actionText);
+    popup.find('.action-btn .js_closePopupConfirmNo').attr('style', 'display:none');
+    popup.find('.action-btn .js_actionYesStart').text(actionText);
     btn_yes_action = defaultConfirm;
     popup.show();
 }
@@ -19,7 +19,7 @@ function warning(text, actionText){
 var closePopupConfirm = function (event) {
     var evt = evt || event;
     var target = evt.target || evt.srcElement;
-    if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("pop_up_confirm") > 0){
+    if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("js_closePopupConfirmNo") > 0 || $(target).hasClass("pop_up_confirm") > 0){
         defaultConfirm();
     }
 };
@@ -31,8 +31,8 @@ var defaultConfirm = function(){
 };
 
 $(document).ready(function () {
-    $(document).on('click', '.pop_up_confirm, .pop_up_confirm .action-btn .btn.cancel', closePopupConfirm);
-    $(document).on('click', '.pop_up_confirm .action-btn .btn.yes', function(){
+    $(document).on('click', '.pop_up_confirm, .pop_up_confirm .action-btn .js_closePopupConfirmNo', closePopupConfirm);
+    $(document).on('click', '.pop_up_confirm .action-btn .js_actionYesStart', function(){
         btn_yes_action();
         defaultConfirm();
     });

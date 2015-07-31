@@ -59,7 +59,7 @@
                     position      : absolute;
                     top           : 0;
                     left          : 0;
-                    background    : #FD9348;
+                    background    : $primoryColor;
                     border-radius : 2px 0 0 2px;
                 }
             }
@@ -81,7 +81,7 @@
             color    : rgba(0, 0, 0, 0.26);
             width    : 60px;
             &.curr {
-                color : #FD9348;
+                color : $primoryColor;
             }
             .day {
                 font-size     : 11px;
@@ -107,7 +107,7 @@
                 margin-bottom : 12px;
                 cursor        : pointer;
                 &:hover {
-                    color : #FD9348;
+                    color : $primoryColor;
                     span {
                         color : rgba(0, 0, 0, 0.26);
                     }
@@ -142,9 +142,9 @@
                       width: 23px;
                       margin-left: 1px;
                       height: 22px;
-                      color: #FD9348;
+                      color: $primoryColor;
                       content: '\E899';
-                      border: 1px solid #FD9348;
+                      border: 1px solid $primoryColor;
                       border-radius: 50%;
                       text-align: center;                    }
                   }
@@ -207,18 +207,18 @@
                     .download {
                       a {
                       font-size: 14px;
-                      color: #FD9348;
+                      color: $primoryColor;
                       line-height: 16px;
                       text-transform: uppercase;
                       }
                     }
                     .overdue-label {
-                      border: 1px solid #FD9348;
+                      border: 1px solid $primoryColor;
                       border-radius: 2px;
                       padding: 0 8px;
                       line-height: 24px;
                       font-size: 11px;
-                      color: #FD9348;
+                      color: $primoryColor;
                       margin-top: -2px;
                     }
                     .duration {

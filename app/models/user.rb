@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :bunch_courses, dependent: :destroy
   has_many :test_results, dependent: :destroy
   has_many :account_type_relations, :as => :modelable, :dependent => :destroy
+  has_many :notifications
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
@@ -127,6 +128,15 @@ class User < ActiveRecord::Base
 
   def welcome_letter(new_password)
     HomeMailer.welcome_latter(self, new_password).deliver
+  end
+
+  def create_notify(model, type=nil, repeat=false)
+    notifications.find_or_create_by({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) unless repeat
+    notifications.create({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) if repeat
+  end
+
+  def notify_json(type=nil)
+    {}
   end
 
   private

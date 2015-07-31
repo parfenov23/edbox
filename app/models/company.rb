@@ -38,4 +38,8 @@ class Company < ActiveRecord::Base
     arr_schedule
   end
 
+  def directors
+    users.where(director: true)
+  end
+
 end

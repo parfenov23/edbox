@@ -1,8 +1,4 @@
-#header__holder
-  = render "home/header/header", {header_top_arr: ['notifications']}
-  = render "home/header/header_bottom", {header_bottom: {block: "cabinet", title: 'Мой кабинет', schedule_block: true}}
-
-
+= render "home/header/header", {namePage: "cabinet", titlePage: "Мой кабинет"}
 .inner-content
   .content#cabinet.cabinet__block
     - users_count_valid, groups_count_valid, ligament_count_valid = true
@@ -12,7 +8,12 @@
       - ligament_count_valid = (LigamentCourse.where(group_id: current_user.company.groups.ids).present? rescue false)
     - bunch_count_valid = (current_user.bunch_courses.where(model_type: 'user').present? rescue false)
 
-    - unless users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
+    / - unless users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
+    /   = render 'home/cabinet/empty_courses', {users_count_valid: users_count_valid,
+    /                                           groups_count_valid: groups_count_valid,
+    /                                           ligament_count_valid: ligament_count_valid,
+    /                                           bunch_count_valid: bunch_count_valid}
+    - if users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
       = render 'home/cabinet/empty_courses', {users_count_valid: users_count_valid,
                                               groups_count_valid: groups_count_valid,
                                               ligament_count_valid: ligament_count_valid,

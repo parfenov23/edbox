@@ -1,6 +1,4 @@
-#header__holder
-    = render "home/header/header", {header_top_arr: ['notifications']}
-    = render "home/header/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', profile_class: "active"}}
+= render "home/header/header", {namePage: "profile", titlePage: "Профиль"}
 .inner-content
     .content#profile
         form.profile__block.profile__main
@@ -27,7 +25,7 @@
                     'понадобится вам для участия в различных акциях и
                     |специальных предложениях от Edbox.
             .btn-holder
-                .btn-default.btn__orange#submit сохранить
+                .btn.btn-raised.is__orange#submit сохранить
 
 
         form.profile__block.profile__password
@@ -39,11 +37,11 @@
                 input type="password" name="password_repeat" placeholder="Повторите пароль"
                 hr
             .btn-holder
-                .btn-default.btn__orange#submit сохранить
+                .btn.btn-raised.is__orange#submit сохранить
 
 
         form.profile__block.profile__account
             .title Корпоративный аккаунт 
             .description 23 пользователя в компании 
             .btn-holder
-                .btn-default.btn__orange#submit ИЗМЕНИТЬ НА ПЕРСОНАЛЬНЫЙ
+                .btn.btn-raised.is__orange#submit ИЗМЕНИТЬ НА ПЕРСОНАЛЬНЫЙ

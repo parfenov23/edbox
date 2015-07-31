@@ -24,7 +24,7 @@
     margin-left : -8px;
     top         : 50%;
     margin-top  : -8px;
-    text-indent: -999px;
+    text-indent: -9999px;
 }
 
 .ui-datepicker .ui-datepicker-title {
@@ -157,7 +157,7 @@
         }
         .ui-datepicker-today {
             a {
-                color : #FD9348;
+                color : $primoryColor;
             }
 
         }

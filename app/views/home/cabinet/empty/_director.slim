@@ -7,7 +7,7 @@
         .title Пригласите ваших коллег
         .description Отправьте приглашения вашим сотрудникам на email, чтобы они смогли зарегистрироваться в Edbox.
       .action__block
-        .btn onclick='window.location.href="/members"' ОТПРАВИТЬ ПРИГЛАШЕНИЯ
+        .btn.btn-flat onclick='window.location.href="/members"' ОТПРАВИТЬ ПРИГЛАШЕНИЯ
   - unless groups_count_valid
     .item.for__groups
       .icon__block
@@ -16,7 +16,7 @@
         .title Создайте группы
         .description Вы можете разбить участников на группы по интересам или должностям, например: отдел продаж, маркетинг, разработка. Приглашайте участников в уже созданные группы, чтобы они видели тольконужный контент.
       .action__block
-        .btn onclick='window.location.href="/group"'  СОЗДАТЬ ГРУППУ
+        .btn.btn-flat onclick='window.location.href="/group"'  СОЗДАТЬ ГРУППУ
 
   - unless ligament_count_valid
     .item.for__schedule
@@ -26,4 +26,4 @@
         .title Составьте расписание обучения
         .description Создайте расписание для каждой группы и установите четкий дедлайн прохождения курса. Вы можете установить срок для каждого блока курса, чтобы сотрудники могли видеть ваши рекомендации и проходить обучение в срок.
       .action__block
-        .btn onclick='window.location.href="/courses"' СОСТАВИТЬ РАСПИСАНИЕ
+        .btn.btn-flat onclick='window.location.href="/courses"' СОСТАВИТЬ РАСПИСАНИЕ

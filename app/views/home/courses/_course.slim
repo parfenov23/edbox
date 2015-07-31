@@ -1,10 +1,9 @@
 figure.corses-prev
   .image
     img (src="#{course.get_image_path('347x192')}")
-    .course-type Записанный курс
-    - course_tag = (course.bunch_tags.last.tag rescue nil)
-    - if course_tag.present?
-      .course-type = (course_tag.title rescue nil)
+    .course__type-wrp
+    - course.bunch_tags.each do |bunch_tag|
+      .course-type = (bunch_tag.tag.title rescue nil)
     - valid_action_btn_type = ["courses", "favorite"]
     - if valid_action_btn_type.include?(type)
       .action-btn class=(current_user.director && type != 'favorite' ? 'three' : 'two')

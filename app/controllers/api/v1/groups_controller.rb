@@ -38,6 +38,7 @@ module Api::V1
           user = User.build_default(current_user.company_id, email) if user.nil?
           if (user.save rescue false)
             BunchGroup.build(user.id, group.id).save
+            user.create_notify(group)
             user.transfer_to_json
           end
         end
@@ -97,6 +98,7 @@ module Api::V1
     def remove_course
       ligament_courses = get_find_group.ligament_courses.where(course_id: params[:course_id])
       if (ligament_courses.destroy_all rescue false)
+        push_if_delete_course(params[:course_id], get_find_group.id)
         render json: {success: true}
       else
         render_error(500, 'Ошибка сервера')
@@ -104,6 +106,12 @@ module Api::V1
     end
 
     private
+
+    def push_if_delete_course(course_id, group_id)
+      Thread.new do
+        `rake user_notify:remove_course[#{course_id},#{group_id}]`
+      end
+    end
 
     def find_bunch_course
       BunchCourse.find(params[:bunch_course_id])
