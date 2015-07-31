@@ -1,6 +1,4 @@
-#header__holder
-  = render "home/header/header", {namePage: "cabinet", titlePage: "Мой кабинет"}
-
+= render "home/header/header", {namePage: "cabinet", titlePage: "Мой кабинет"}
 .inner-content
   .content#cabinet.cabinet__block
     - users_count_valid, groups_count_valid, ligament_count_valid = true

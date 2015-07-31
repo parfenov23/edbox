@@ -11,6 +11,10 @@ module ApplicationHelper
     end
   end
 
+  def current_link
+    request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
+  end
+
   def layout_title
     d = @page_title.nil? ? "" : " | "
     @page_title.to_s + d + "Edbox"

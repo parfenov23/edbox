@@ -117,7 +117,7 @@ $(document).ready(function () {
         $(this).closest('.more').removeClass('hidden');
     })
 
-    $('.header__bottom .aside-trigger, .schedule-calendar .item ').on('click', function () {
+    $('.js_openLeftSideBar').on('click', function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
