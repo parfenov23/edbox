@@ -1,3 +1,4 @@
+//= require_tree ./vendor
 // require ./jquery-2.1.3.min
 // require ./vendor/jquery-ui.min
 // require ./vendor/jquery.cookie
@@ -15,8 +16,6 @@
 
 //= require websocket_rails/main
 //= require_tree ./websocket
-
-//= require_tree ./vendor
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
