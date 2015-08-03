@@ -10,11 +10,12 @@
 set :user, 'edbox'
 server '148.251.233.232', user: 'edbox', roles: %w(web app db)
 set :rails_env, 'production'
-set :branch, :master
+set :branch, :release
 set :application, 'edbox'
 
 set :deploy_to, "/home/edbox/htdocs"
 set :unicorn_pid,  "#{deploy_to}/shared/pids/unicorn.pid"
+set :unicorn_config_path, "#{ fetch :deploy_to }/current/config/unicorn/release.rb"
 
 # role-based syntax
 # ==================
