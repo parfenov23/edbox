@@ -7,6 +7,10 @@ namespace :websocket do
       load "#{Rails.root}/config/events.rb"
 
       options = WebsocketRails.config.thin_options.merge(args)
+      options[:ssl] = true # включаем ssl
+      # options[:ssl_cert_file] = "/etc/nginx/ssl/domain.ru.crt" # абсолютный путь до SSL сертификата
+      # options[:ssl_key_file] = "/etc/nginx/ssl/domain.ru.key" # абсолютный путь к ключу
+      options[:ssl_disable_verify] = true # отключение проверки сертификата
       options[:port] = args[:port]
 
       warn_if_standalone_not_enabled!
