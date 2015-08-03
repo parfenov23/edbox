@@ -32,6 +32,7 @@
 /.idea/*
 /.DS_Store
 */.DS_Store
+/dump.rdb
 
 config/database.yml
 config/secrets.yml
