@@ -15,6 +15,7 @@ set :application, 'beta_edbox'
 
 set :deploy_to, "/home/beta_edbox/htdocs"
 set :unicorn_pid,  "#{deploy_to}/shared/pids/unicorn.pid"
+set :unicorn_config_path, "#{ fetch :deploy_to }/current/config/unicorn/beta.rb"
 
 # role-based syntax
 # ==================
