@@ -11,6 +11,7 @@ set :user, 'beta_edbox'
 server '148.251.233.232', user: 'beta_edbox', roles: %w(web app db)
 set :rails_env, 'production'
 set :branch, :master
+set :application, 'beta_edbox'
 
 set :deploy_to, "/home/beta_edbox/htdocs"
 set :unicorn_pid,  "#{deploy_to}/shared/pids/unicorn.pid"
