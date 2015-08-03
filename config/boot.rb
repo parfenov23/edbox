@@ -20,22 +20,16 @@ if Rails.env.development?
 end
 
 if Rails.env.production?
-  module Rails
-    class Server
-      alias_method :default_restart_websocket, :restart_websocket
 
-      def restart_websocket
-        begin
-          `RAILS_ENV=production bundle exec rake websocket_rails:stop_server`
-        rescue
-          p "Fail"
-        end
-        begin
-          `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
-        rescue
-          p "Fail"
-        end
-      end
-    end
+  begin
+    `RAILS_ENV=production bundle exec rake websocket_rails:stop_server`
+  rescue
+    p "Fail"
   end
+  begin
+    `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
+  rescue
+    p "Fail"
+  end
+
 end
