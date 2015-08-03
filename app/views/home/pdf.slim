@@ -1,6 +1,4 @@
-#header__holder
-    = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "audio", title: @section.title, profile_class: "active" } }
+= render "home/header/header", {namePage: "cabinet", titlePage: @pdf.title}
 .inner-content
     .content-audio
         p.audio-title #{@pdf.title}
