@@ -4,7 +4,7 @@ lock '3.4.0'
 set :rvm_type, '/usr/local/rvm'
 set :rvm_custom_path, '/usr/local/rvm'
 set :rvm_ruby_version, '2.1.0'
-
+set :deploy_via, :remote_cache
 set :application, 'edbox'
 set :repo_url, 'git@bitbucket.org:masshtab/edbox.git'
 set :user, 'edbox'
