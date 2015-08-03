@@ -17,7 +17,7 @@
 <% if Rails.env.production? %>
     <% websocket_url = "#{request.host}:3001/node/websocket" %>
 <% end %>
-<body data-uri="<%= websocket_url %>">
+<body data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
 
 <%= yield %>
 <div id="alert">
