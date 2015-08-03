@@ -7,8 +7,8 @@ set :rvm_ruby_version, '2.1.0'
 # set :deploy_via, :remote_cache
 set :application, 'edbox'
 set :repo_url, 'git@bitbucket.org:masshtab/edbox.git'
-set :user, 'edbox'
-set :deploy_to, "/home/#{ fetch :user }/htdocs"
+# set :user, 'edbox'
+# set :deploy_to, "/home/#{ fetch :user }/htdocs"
 
 set :linked_files, fetch(:linked_files, []).push('config/database.yml',
                                                  'config/secrets.yml')
