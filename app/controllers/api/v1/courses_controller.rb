@@ -5,6 +5,11 @@ module Api::V1
       render json: find_course.as_json(include: :sections)
     end
 
+    def all
+      all_courses = Course.all.map(&:transfer_to_json)
+      render json: all_courses
+    end
+
     private
 
     def find_course
