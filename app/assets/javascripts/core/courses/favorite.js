@@ -5,8 +5,12 @@ var addFavorite = function () {
         type: 'POST',
         url : '/api/v1/users/add_favorite_course',
         data: {course_id: course_id}
-    }).success(function () {
-        show_error('Курс добавлен в избранное', 3000);
+    }).success(function (data) {
+        if (data.success){
+            show_error('Курс добавлен в отложенные курсы', 3000);
+        }else{
+            show_error('Курс уже добавлен в отложенные курсы', 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });

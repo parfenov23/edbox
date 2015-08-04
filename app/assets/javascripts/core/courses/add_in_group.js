@@ -7,7 +7,7 @@ var openPopup = function () {
         popup.find("input.courseId").val(course_id);
         popup.show();
         popup.find(".check_group_added").show();
-        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text())
+        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text());
         if (btn.data('hide') != undefined){
             popup.find(btn.data('hide')).hide();
         }

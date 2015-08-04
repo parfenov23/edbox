@@ -97,9 +97,11 @@ $(document).ready ->
       $('.js__left-aside, .js__backing').addClass('is__active')
 
     $('.select-deadline').on 'click', ->
+      $(@).closest("form").find(".action-btn").hide()
       $(@).closest('.check_group_added').addClass('section__deadline')
 
     $('.section__deadline-title .back').on 'click', ->
+      $(@).closest("form").find(".action-btn").show()
       $(@).closest('.check_group_added').removeClass('section__deadline')
 
     $('.js_for-tooltip').hover ->
