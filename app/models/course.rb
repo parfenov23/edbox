@@ -73,7 +73,7 @@ class Course < ActiveRecord::Base
   end
 
   def json_description
-    ActionView::Base.full_sanitizer.sanitize(description).html_safe
+    ActionView::Base.full_sanitizer.sanitize(description).html_safe.gsub("&nbsp;", " ").gsub("")
   end
 
   def images
