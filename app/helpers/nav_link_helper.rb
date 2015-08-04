@@ -14,6 +14,8 @@ module NavLinkHelper
         course_description_nav_links
       when "profile"
         profile_nav_links
+      when "video"
+        video_nav_links
     end
   end
 
@@ -22,6 +24,10 @@ module NavLinkHelper
   end
 
   def profile_nav_links
+    []
+  end
+
+  def video_nav_links
     []
   end
 
