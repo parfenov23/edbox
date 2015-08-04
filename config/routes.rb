@@ -53,8 +53,13 @@ Rails.application.routes.draw do
           post :complete
         end
       end
+
       resources :courses do
+        collection do
+          get :all
+        end
       end
+
       resources :users, only: [] do
         collection do
           get :info
@@ -78,6 +83,7 @@ Rails.application.routes.draw do
           post :remove_user
           post :remove_course
           post :update_course
+          post :update_section
         end
         collection do
           post :add_course

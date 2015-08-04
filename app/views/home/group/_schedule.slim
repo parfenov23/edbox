@@ -52,8 +52,10 @@
                         ul.hidden-list
                           li.section-item data-show = "hidden-calendar"
                             |Перенести дату окончания раздела
-                            .date-added style="display:none;"
-                            input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker
+                            - ts = "Дата оканчания раздела изменена"
+                            input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionGroup{
+                              data-section_id=section.id data-text=ts data-group_id=@group.id
+                            }
                 .course-components.hidden-part
                   / Бери этот блок  text audio test
                   - attachments.each do |attachment|

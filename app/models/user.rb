@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
-  EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
+  EXCEPT_ATTR = ["password_digest", "created_at", "updated_at", "group_id"]
 
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""

@@ -90,6 +90,13 @@ module Api::V1
       end
     end
 
+    def update_section
+      group = get_find_group
+      all_bunch_sections = group.bunch_courses.find_bunch_sections.where(section_id: params[:section_id])
+      result = all_bunch_sections.update_all({date_complete: Time.parse(params[:date_complete]).end_of_day})
+      render json: {result: result.as_json}
+    end
+
     def all_courses
       bunch_courses = (get_find_group.bunch_courses rescue [])
       render json: bunch_courses.as_json

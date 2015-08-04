@@ -43,6 +43,7 @@ var includeDatePicker = function () {
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
+            $(this).change();
             return $(this).parent().addClass('show');
         }
     });
