@@ -1,10 +1,14 @@
 - title titlePage
 / header#page__header.with__img
-- valid_img_page = ["course_description"]
+- valid_img_page = ["course_description", "other_white"]
 header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
-    .page__icon.item
-      i.burger.icon.js__show-aside-main-nav
+    - unless (btnBack rescue false)
+      .page__icon.item
+        i.burger.icon.js__show-aside-main-nav
+    - else
+      a.page__icon.item href=backUrl
+        i.back.icon
     .page__title = titlePage
     .page__children
       - menu_nav_links(namePage).each do |item|

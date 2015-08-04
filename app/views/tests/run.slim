@@ -1,41 +1,39 @@
-#header__holder
-    = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "cabinet", title: 'Мой кабинет', profile_class: "active" } }
+= render "home/header/header", {namePage: "other", titlePage: @test.title, btnBack: true, backUrl: "/programm?id=#{@course.id}"}
 .inner-content
-    form.content#tests
-        .test-info
-            .title
-                .title-text Тест курса «#{@course.title}»
-                .duration #{@course.duration} часа
-            .description #{@test.title}
-            .question-qty Вопросов в тесте: #{@test.questions.count}
-        .test-block
-            .test-list
-                input name="id" value="#{@test.id}" style="display:none;"
-                - step = 0;
-                - @test.questions.each do |question|
-                    - step+=1
-                    .test-item name="#{step}"
-                        .title Вопрос #{step}
-                        .description #{question.title}
-                        - correct_answer_count = question.answers.where(right: true).count
-                        - if correct_answer_count == 1
-                            - question.answers.each do |answer|
-                                .answer
-                                    .radio
-                                        input id="answer-#{answer.id}" type="radio" name="answer[#{answer.question_id}][]" value="#{answer.id}"
-                                        label for="answer-#{answer.id}"
-                                    .text #{answer.text}
-                        - else
-                            - question.answers.each do |answer|
-                                .answer
-                                    .check
-                                        input id="answer-#{answer.id}" type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}"
-                                        label.icon for="answer-#{answer.id}"
-                                    .text #{answer.text}
-            .finish-test
-                .btn.finish-btn#submit ЗАВЕРШИТЬ ТЕСТ
-        .result-block
-            .test-list
-                .title Тест пройдет. Поздравляем вас с окончанием курса!
-                .description Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопроса из 3 вопросов.
+  form.content#tests
+    .test-info
+      .title
+        .title-text Тест курса «#{@course.title}»
+        .duration #{@course.duration} часа
+      .description #{@test.title}
+      .question-qty Вопросов в тесте: #{@test.questions.count}
+    .test-block
+      .test-list
+        input name="id" value="#{@test.id}" style="display:none;"
+        - step = 0;
+        - @test.questions.each do |question|
+          - step+=1
+          .test-item name="#{step}"
+            .title Вопрос #{step}
+            .description #{question.title}
+            - correct_answer_count = question.answers.where(right: true).count
+            - if correct_answer_count == 1
+              - question.answers.each do |answer|
+                .answer
+                  .radio
+                    input id="answer-#{answer.id}" type="radio" name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                    label for="answer-#{answer.id}"
+                  .text #{answer.text}
+            - else
+              - question.answers.each do |answer|
+                .answer
+                  .check
+                    input id="answer-#{answer.id}" type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                    label.icon for="answer-#{answer.id}"
+                  .text #{answer.text}
+      .finish-test
+        .btn.finish-btn#submit ЗАВЕРШИТЬ ТЕСТ
+    .result-block
+      .test-list
+        .title Тест пройдет. Поздравляем вас с окончанием курса!
+        .description Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопроса из 3 вопросов.
