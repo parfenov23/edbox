@@ -3,13 +3,10 @@
 - first_ligament_course = (ligament_courses.find(params[:course_id]) rescue nil) if params[:course_id].present?
 - current_course = (first_ligament_course.course rescue nil)
 - my_bunch_course = (current_course.find_bunch_course(current_user.id, 'group', group.id) rescue nil)
-= "============="
-= my_bunch_course.blank?
-= current_user.director
-= ligament_courses.ids
 - if my_bunch_course.blank? && current_user.director && current_course.present?
   - my_bunch_course = current_course.bunch_courses.where(model_type: 'group', group_id: group.id).last
-  = my_bunch_course.id
+  = current_course.id
+  = my_bunch_course
 - if current_course.present? && my_bunch_course.present?
   .schedule-block
     .schedule-header
