@@ -1,44 +1,45 @@
 .container-inner
-    - if current_user.director
-        ul.group-edit-menu
-            li
-                a.edit-item.js_openPopupEditGroup href="#openPopup"
-                    i.icon-edit
-            li
-                a.delete-item data-id="#{@group.id}" href="#"
-                    i.icon-uniE620
-    h2 = @group.first_name
-    .data-group-create
-        'Создано:
-        = l @group.created_at, :format => :short_min
-    .group-description
-        p
-            = @group.description
-    .group-info
-        h3 Аналитика
-        h4 Курсы:
-        ul
-            li
-                'Добавлено
-                a href="/group?id=#{@group.id}&type=courses"
-                    - course_count = @group.ligament_courses.count
-                    = rus_case(course_count, "курс", "курса", "курсов")
-            li
-                'Период прохождения курса
-                strong 10 марта – 12 марта
-        h4 Пользователи:
-        ul
-            li
-                - users_group = @group.bunch_groups.includes(:user)
-                - users_no_auth_count = users_group.where(users: {last_auth: nil}).count
-                'Авторизовались
-                a href="/group?id=#{@group.id}&type=user"
-                    =' rus_case(users_no_auth_count, "ползователь", "пользователя", "пользователей")
-                    'из
-                    = users_group.count
-            li
-                'Начали проходить курс
-                strong 6 пользователей
-            li
-                'Пройдено
-                strong 12 занятий из 45
+  - if current_user.director
+    ul.group-edit-menu
+      li
+        a.edit-item.js_openPopupEditGroup href="#openPopup"
+          i.icon-edit
+      li
+        a.delete-item data-id="#{@group.id}" href="#"
+          i.icon-uniE620
+  h2 = @group.first_name
+  .data-group-create
+    'Создано:
+    = l @group.created_at, :format => :short_min
+  .group-description
+    p
+      = @group.description
+  .group-info
+    h3 Аналитика
+    h4 Курсы:
+    ul
+      li
+        'Добавлено
+        a href="/group?id=#{@group.id}&type=courses"
+          - course_count = @group.ligament_courses.count
+          = rus_case(course_count, "курс", "курса", "курсов")
+
+    h4 Пользователи:
+    ul
+      li
+        - users_group = @group.bunch_groups.includes(:user)
+        - users_no_auth_count = users_group.where(users: {last_auth: nil}).count
+        'Авторизовались
+        a href="/group?id=#{@group.id}&type=user"
+          =' rus_case(users_no_auth_count, "ползователь", "пользователя", "пользователей")
+          'из
+          = users_group.count
+      li
+        - count_in_study = @group.bunch_groups.in_study.count
+        =' rus_case_label(count_in_study, "Начал", "Начали", "Начали")
+        'проходить курс
+        strong
+          =' rus_case(count_in_study, "ползователь", "пользователя", "пользователей")
+      /li
+      /  'Пройдено
+      /  strong 12 занятий из 45
