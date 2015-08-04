@@ -71,4 +71,12 @@ class Course < ActiveRecord::Base
   def duration_time
     sections.joins(:attachments).sum("attachments.duration")
   end
+
+  def transfer_to_json
+    as_json({except: [:duration, :main_img], include: [
+              {user: {except: User::EXCEPT_ATTR + ["user_key"]}},
+              {attachments: {except: Attachment::EXCEPT_ATTR}},
+              {sections: {except: Section::EXCEPT_ATTR}}
+            ]})
+  end
 end

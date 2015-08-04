@@ -8,6 +8,7 @@ class BunchCourse < ActiveRecord::Base
 
   scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
   scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
+  scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
 
   default_scope { where(archive: false) } #unscoped
 
