@@ -24,11 +24,20 @@
                     .title.left-col = attachment.title
                     .right-col
                       - if bunch_attachment.complete
-                        .overdue-label Пройдено
+                        .overdue-label style="margin-right: 8px;" Пройдено
+                      - if attachment.class_type != "video"
+                        .download
+                          a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
                       - else
-                        - if attachment.class_type != "video"
-                          .download
-                            a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
-                        - else
-                          .download
-                            a href = "/video?id=#{attachment.id}" Просмотреть
+                        .download
+                          a href = "/video?id=#{attachment.id}" Просмотреть
+              - bunch_section.section.tests.each do |test|
+                - my_result = current_user.test_results.find_by_test_id(test.id)
+                .course-component-item.hidden-item.adaptive-title class='test'
+                  i.icon
+                  .title.left-col = test.title
+                  .right-col
+                    - if my_result.present?
+                      .overdue-label style="margin-right: 8px;" Пройдено
+                    .download
+                      a href="/tests/#{test.id}/run" Пройти

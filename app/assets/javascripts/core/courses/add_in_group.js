@@ -160,7 +160,6 @@ var addCourseMySchedule = function (btn) {
 };
 
 var changeDateToDatePicker = function (input) {
-    console.log(123);
     input.closest(".section-item").find(".date-added").text(input.val());
 };
 

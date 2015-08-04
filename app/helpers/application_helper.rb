@@ -40,4 +40,7 @@ module ApplicationHelper
   def rus_case(count, n1, n2, n3)
     "#{count} #{Russian.p(count, n1, n2, n3)}"
   end
+  def rus_case_label(count, n1, n2, n3)
+    "#{Russian.p(count, n1, n2, n3)}"
+  end
 end
