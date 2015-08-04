@@ -9,7 +9,7 @@ class Attachment < ActiveRecord::Base
   AVAILABLE_AUDIO = ['mp3','wav','m4a']
   AVAILABLE_VIDEO = ['mp4', 'webm', 'ogg', 'm4v', 'mov']
   AVAILABLE_OTHERS = ['pdf', 'txt', 'doc', 'docx', 'zip', 'ppt', 'pptx', 'xls', 'xlsx']
-  EXCEPT_ATTR = ["created_at", "updated_at"]
+  EXCEPT_ATTR = ["created_at", "updated_at", "file"]
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
@@ -38,6 +38,10 @@ class Attachment < ActiveRecord::Base
 
   def full_duration
     duration.to_s + " часа"
+  end
+
+  def file_url
+    file.url
   end
 
   private
