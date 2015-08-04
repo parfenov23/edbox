@@ -29,7 +29,8 @@ namespace :deploy do
   # , 'deploy:websocket_restart'
 
   task :restart do
-    invoke 'unicorn:legacy_restart'
+    # invoke 'unicorn:legacy_restart'
+    invoke 'unicorn:reload'
   end
 
   task :start do
