@@ -25,7 +25,8 @@ set :keep_releases, 3
 set :whenever_roles, [:app]
 
 namespace :deploy do
-  after 'deploy:publishing', 'deploy:restart', 'deploy:websocket_restart'
+  after 'deploy:publishing', 'deploy:restart'
+  # , 'deploy:websocket_restart'
 
   task :restart do
     invoke 'unicorn:legacy_restart'
@@ -39,21 +40,17 @@ namespace :deploy do
     invoke 'unicorn:stop'
   end
 
-  task :websocket_restart do
-    # `ps aux | grep websocket_rails | awk '{print $2}' | xargs kill -9`
-    # `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
-    "ps aux | grep websocket_rails | awk '{print $2}' | xargs kill -9"
-    "RAILS_ENV=production bundle exec rake websocket_rails:start_server"
-  end
-
-  task :websocket_start do
-    # `rake websocket:start_server`
-    "rake websocket:start_server"
-  end
-
-  task :websocket_stop do
-    # `rake websocket:stop_server`
-    "rake websocket:stop_server"
-  end
+  # task :websocket_restart do
+  #   `ps aux | grep websocket_rails | awk '{print $2}' | xargs kill -9`
+  #   `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
+  # end
+  #
+  # task :websocket_start do
+  #   `rake websocket:start_server`
+  # end
+  #
+  # task :websocket_stop do
+  #   `rake websocket:stop_server`
+  # end
 
 end
