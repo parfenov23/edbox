@@ -72,10 +72,22 @@ class Course < ActiveRecord::Base
     sections.joins(:attachments).sum("attachments.duration")
   end
 
+  def json_description
+    ActionView::Base.full_sanitizer.sanitize(description).html_safe
+  end
+
+  def images
+      attachments.map do |att|
+        arr_valid = ["full", "920x377"]
+        if arr_valid.include?(att.size)
+          att.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+        end
+      end.compact!
+  end
+
   def transfer_to_json
-    as_json({except: [:duration, :main_img], include: [
+    as_json({except: [:duration, :main_img, :description], methods: [:json_description, :images], include: [
               {user: {except: User::EXCEPT_ATTR + ["user_key"]}},
-              {attachments: {except: Attachment::EXCEPT_ATTR}},
               {sections: {except: Section::EXCEPT_ATTR}}
             ]})
   end
