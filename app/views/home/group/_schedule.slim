@@ -6,8 +6,7 @@
 = "============="
 = my_bunch_course.blank?
 = current_user.director
-= current_course.present?
-= my_bunch_course.blank? && current_user.director && current_course.present?
+= ligament_courses.ids
 - if my_bunch_course.blank? && current_user.director && current_course.present?
   - my_bunch_course = current_course.bunch_courses.where(model_type: 'group', group_id: group.id).last
   = my_bunch_course.id
