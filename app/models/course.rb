@@ -12,7 +12,8 @@ class Course < ActiveRecord::Base
     attachment = Attachment.save_file('Course', id, image, 'full')
     attachment_wanted_sizes = [
       {width: 347, height: 192},
-      {width: 920, height: 377}
+      {width: 920, height: 377},
+      {width: 160, height: 128}
     ]
     attachment_wanted_sizes.each do |size|
       attachment_img = MiniMagick::Image.open(attachment.file.path)
@@ -39,6 +40,8 @@ class Course < ActiveRecord::Base
           '/uploads/course_default_image_347×192.png'
         when '920x377'
           '/uploads/course_default_image_920×377.png'
+        when ''
+          '/uploads/course_default_image_160×128.png'
         else
           '/uploads/course_default_image_full.png'
       end
