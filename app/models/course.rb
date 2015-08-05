@@ -40,7 +40,7 @@ class Course < ActiveRecord::Base
           '/uploads/course_default_image_347×192.png'
         when '920x377'
           '/uploads/course_default_image_920×377.png'
-        when ''
+        when '160×128'
           '/uploads/course_default_image_160×128.png'
         else
           '/uploads/course_default_image_full.png'
