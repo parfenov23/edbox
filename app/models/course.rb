@@ -72,8 +72,9 @@ class Course < ActiveRecord::Base
     sections.joins(:attachments).sum("attachments.duration")
   end
 
-  def json_description
-    ActionView::Base.full_sanitizer.sanitize(description).html_safe.gsub("&nbsp;", " ").gsub("&quot;", '"')
+  def clear_description
+    ActionView::Base.full_sanitizer.sanitize(description).html_safe.to_s
+      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"')
   end
 
   def images
@@ -90,7 +91,7 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id], methods: [:json_description, :images, :author], include: [
+    as_json({except: [:duration, :main_img, :description, :user_id], methods: [:clear_description, :images, :author], include: [
               {sections: {except: Section::EXCEPT_ATTR}}
             ]})
   end
