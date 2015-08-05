@@ -1,135 +1,134 @@
+= render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
 .presentation__block
-  img src = "/uploads/pic5.png"
-
-.course__description-content.ох__нихуясе-блок  
+  img src = @course.get_image_path('full')
+- course_bunch_tags = @course.bunch_tags
+- bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
+.course__description-content.oh__nihuyase-block
   .tegs__list
-    .item
-      i.icon.teg
-      | Продажи
-    .item
-      i.icon.teg
-      | Продажи
-  .course__title “Покорми секретаря”
-  
-  .progress__block
-    .title.adaptive__title.overdue
-      .left-col Прогресс прохождения курса
-      .right-col Завершить до 25 июля
-    .progress__wrp
-      .bar
-      .completed style ="width: 20%"
-    .info
-      .precent Пройдено 0 %
-      .qty 0 из 15 лекций
+    - course_bunch_tags.each do |bunch_tag|
+      - tag = bunch_tag.tag
+      .item
+        i.icon.teg
+        = tag.title
+
+  .course__title = @course.title
+  - if bunch_course.present?
+    .progress__block
+      - date_complete = bunch_course.date_complete
+      - all_sections = bunch_course.bunch_sections
+      - complete_proc = ((100.0 / (all_sections.count.to_f / all_sections.all_complete.count.to_f)).round) rescue 0
+      .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
+        .left-col Прогресс прохождения курса
+        .right-col = ltime(date_complete, "Завершить до ")
+        .action-btn.drunkenPig.js_actionBtn
+          i.icon.schedule
+          - ts = "Дата оканчания курса изменена"
+          input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
+            data-course_id=@course.id data-text=ts data-no_schedule="true"
+          }
+      .progress__wrp
+        .bar
+        .completed style ="width: #{complete_proc}%"
+      .info
+        .precent Пройдено #{complete_proc} %
+        .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "лекции", "лекций", "лекций")}
 
   .course__info
     .adaptive__title
-      .left-col
+      .left-col style="height: 56px;"
         .item
-          | 16 лекций
+          - section_count = @course.sections.count
+          = rus_case(section_count, "лекция", "лекции", "лекций")
           i.courses.icon
         .item
-          | 32 часа
+          - duration = (@course.full_duration.to_i rescue 0)
+          = rus_case(duration, "час", "часа", "часов")
           i.duration.icon
         .item
-          | 2000 слушателей
+          - audiences = (@course.audiences.count rescue 0)
+          = rus_case(audiences, "слушатель", "слушателя", "слушателей")
           i.groups.icon
       .right-col
-        .item Пивоварение
-        .item Пивоварение
+        - course_bunch_tags.each do |bunch_tag|
+          - tag = bunch_tag.tag
+          .item = tag.title
     .detail__info.is__closed
       .description
-        p Сотрудник, увлеченный делом, работает более эффективно. Но как быть, если задача не вызывает у него интереса и желания достичь высоких результатов? Как настроить специалиста на продуктивную работу?
-        p Этот курс будет полезен HR-специалистам и руководителям подразделений, а также директорам и владельцам бизнеса, которые уверены, что правильно мотивированные специалисты — важная составляющая успеха.
-        p На курсе вы узнаете, какие виды мотивации существуют и в каких ситуациях использовать каждый из них, как понять, чем заинтересовать сотрудника, и как мотивация поможет раскрыть его потенциал.
-      .leading__list
-        .title Ведущие курса
-        .item
-          .ava
-            img src="/images/ava.png"
-          .info
-            .title Роман Воронежский
-            .description Как ни странно, шизофрения, которую пишет Воронежский, имеет определенные причины. Во-первых, это отчасти подражание Хармсу. Во-вторых, и это важнее, Воронежский много лет работал копирайтером, и многие из воронежек при другом стечении обстоятельств могли оказаться на биллбордах и в зомбоящике, да и еще много где.
-        .item
-          .ava
-            img src="/images/ava.png"
-          .info
-            .title Артём Татьянович
-            .description В славянской мифологии бог, повелевающий дизайном, по совместительству арт-директор Студии Артемия Лебедева, дизайнер сайтов другими дизайнерами, Дизайнер Всея Руси, Великий путешественник, первый русский дизайнер-тролль, урновед, самый здоровый, веселый, и толстый задорный щенок,.
-    .more.is__closed 
+        = raw @course.description
+      - leading = @course.user
+      - if leading.present?
+        .leading__list
+          .title Ведущий курса
+          .item
+            .ava
+              img src=default_img(leading.avatar)
+            .info
+              .title = leading.full_name
+              .description = leading.about_me
+    .more.is__closed
       .btn.btn-flat.for__closed ПОКАЗАТЬ ОПИСАНИЕ        
       .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ      
-  
+
   .study__program.is__closed
     .title Учебная программа
-    .programm__block
-      .adaptive__title
-        .left-col 1. Учимся писать и считать
-        .right-col Просрочено
-      .item
-        .icon__block
-          i.icon.video
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
-         
-      .item.is__completed
-        .icon__block
-          i.icon.audio
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
-         
-      .item.is__completed
-        .icon__block
-          i.icon.test
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади 
-         
-      .item
-        .icon__block
-          i.icon.text
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
-        
-    .programm__block
-      .adaptive__title
-        .left-col 1. Учимся писать и считать
-        .right-col 
-      .item
-        .icon__block
-          i.icon
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
-      .item
-        .icon__block
-          i.icon
-        .adaptive__title
-          .left-col 1.1 Что будем изучать на этом курсе
-          .right-col 21 ч. 13 мин.
-        .description Как и большинство объектов в поясе Койпера, Плутон состоит в основном из горных пород и льда и он относительно мал: его масса меньше массы Луны в пять раз, а объём — в три раза. Площадь поверхности Плутона примерно равна площади  
+    - nsec = 0
+    - @course.sections.each do |section|
+      - section_attachments = section.attachments
+      - if section_attachments.present?
+        - natt = 0
+        - if bunch_course.present?
+          - bunch_section = all_sections.where(section_id: section.id).last
+        .programm__block
+          .adaptive__title
+            .left-col #{nsec += 1}. #{section.title}
+            - if bunch_section.present?
+              .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
+              .action-btn.drunkenPig.js_actionBtn
+                i.icon.schedule
+                - ts = "Дата оканчания раздела изменена"
+                input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
+                  data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
+                }
+          - section_attachments.each do |attachment|
+            - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
+            - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
+            - hash_class = {}
+            - if bunch_attachment.present?
+              - if attachment.class_type != "video"
+                - hash_class = {class: ['js_downloadFile'], :'data-id' => attachment.id, :'data-bunch_section_id' => bunch_section.id}
+              - else
+                - hash_class = {onclick: "window.location.href='/video?id=#{attachment.id}'"}
+            .item class=class_block *hash_class
+              .icon__block
+                i.icon class=attachment.class_type
+              .adaptive__title
+                .left-col #{nsec}.#{natt += 1} #{attachment.title}
+                .right-col = attachment.full_duration
+              .description = attachment.title
+          - section.tests.each do |test|
+            .item.is__completed
+              .icon__block
+                i.icon.test
+              .adaptive__title
+                .left-col #{nsec}.#{natt += 1} #{test.title}
+                /.right-col 21 ч. 13 мин.
+              .description = test.title
+
+
   .toggle__view.btn.btn-flat
     span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
     span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
-    
-.not__auth-block
-  .inner
-    .title Получайте знания вместе с edbox
-    .info Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Бла-бла-бла.
-    .plans
-      .item
-        .title Личный аккаунт
-        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. 
-        .btn.btn-flat ЗАРЕГИСТРИРОВАТЬСЯ
-      .item
-        .title Личный аккаунт
-        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. 
-        .btn.btn-flat ЗАРЕГИСТРИРОВАТЬСЯ
+- unless current_user.present?
+  .not__auth-block
+    .inner
+      .title Получайте знания вместе с edbox
+      .info Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+      .plans
+        .item
+          .title Личный аккаунт
+          .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+          a.btn.btn-flat href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
+        .item
+          .title Корпоративнй аккаунт
+          .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+          a.btn.btn-flat href="/sign_up?type=company" ЗАРЕГИСТРИРОВАТЬСЯ

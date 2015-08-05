@@ -9,6 +9,11 @@ i.icon {
       content: "\E8DE";
     }
   }
+  &.back {
+    &::before {
+      content: "\e893";
+    }
+  }
 
   &.courses {
     &::before {

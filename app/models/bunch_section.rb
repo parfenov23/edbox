@@ -13,6 +13,7 @@ class BunchSection < ActiveRecord::Base
       self.complete = false
     end
     save
+    bunch_course.full_complete?
     complete
   end
 

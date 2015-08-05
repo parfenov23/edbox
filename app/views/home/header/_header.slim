@@ -1,12 +1,104 @@
-.header__top
-    - link = current_user.present? ? "/cabinet" : "/courses"
-    a href="#{link}"
-        .logo.logo__ed
-            img.logo__img src="/assets/header__edbox.svg"
-    .logo.logo__ad
-        img.logo__img src="/assets/header__adconsult.svg"
-
-    - if current_user.present?
-        = render "home/header/auth", {header_top_arr: header_top_arr}
+- title titlePage
+/ header#page__header.with__img
+- valid_img_page = ["course_description", "other_white"]
+header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" )
+  .left-col
+    - unless (btnBack rescue false)
+      .page__icon.item
+        i.burger.icon.js__show-aside-main-nav
     - else
-        = render "home/header/no_auth"
+      a.page__icon.item href=backUrl
+        i.back.icon
+    .page__title = titlePage
+    .page__children
+      - menu_nav_links(namePage).each do |item|
+        a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") = item[:title]
+      .line
+
+
+  .page__action
+    /.item.js__tooltip
+    /  i.search.icon
+    /  .tooltip.is__bottom Уведомления
+    /.item
+    /  i.notification.icon
+    /.item
+    /  .notification__with-qty ...
+    - if namePage == "cabinet"
+      .item.js_openLeftSideBar data-id="js-schedule-cabinet"
+        i.schedule.icon
+    - if namePage == "courses"
+      /.item
+      /  i.filter.icon
+      .item.js_openLeftSideBar data-id="js-favorite-courses"
+        i.favorite.icon
+      .item.js_openLeftSideBar data-id="js-groups-courses"
+        i.groups.icon
+    .item.js_openHeaderAppsBtn
+      i.calendar.icon
+      ul.menu__apps
+        li.menu__apps-item.last__row
+          .menu__apps-item-img-holder
+            img.menu__apps-item-img src="/assets/edbox.png"
+          .menu__apps-item-text Доступно с сентября 2015
+
+        li.menu__apps-item.last__row
+          .menu__apps-item-img-holder
+            img.menu__apps-item-img src="/assets/markethub.png"
+          .menu__apps-item-text Доступно с ноября 2015
+
+        li.menu__apps-item.last__row
+          .menu__apps-item-img-holder
+            img.menu__apps-item-img src="/assets/pf.png"
+          .menu__apps-item-text Доступно с декабря 2015
+
+    .item.ava.header__user
+      img src=default_img(current_user.avatar)
+      .menu__user
+        .top
+          .avatar__holder
+            img.avatar src=default_img(current_user.avatar)
+          .text
+            .name = current_user.full_name
+            .login = current_user.email
+
+        ul.menu
+          li.menu__item
+            a.menu__item-link.menu__item-profile href="/profile" Профиль
+
+        .bottom
+          /.btn__raised.add__acc добавить аккаунт
+          a.btn.btn-flat.exit href="/sign_out" выход
+
+.left__aside-main-nav.js__baron.js__left-aside
+  .info__block
+    .top__logo
+      a href="/courses"
+        img src= "/assets/edbox__bloo.svg"
+  .menu__list
+    .item class=(namePage == "cabinet" ? "is__active" : "")
+      i.cabinet.icon
+      a.label href="/cabinet" Мой кабинет
+    .item class=(namePage == "courses" ? "is__active" : "")
+      i.biblio.icon
+      a.label href="/courses" Библиотека
+    .item
+      i.courses.icon
+      .label Курсы
+    - if current_user.corporate
+      .item class=(namePage == "group" ? "is__active" : "")
+        i.groups.icon
+        a.label href="/group" Группы
+  /.item
+  /  i.stat.icon
+  /  .label Статистика
+  /.item
+  /  i.favorites.icon
+  /  .label Закладки
+  /.item
+  /  i.notes.icon
+  /  .label Заметки
+
+  .btm__logo
+    img src = "/assets/adcons__grey.svg"
+

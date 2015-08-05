@@ -2,6 +2,7 @@ class Section < ActiveRecord::Base
   belongs_to :course
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :tests, :dependent => :destroy
+  EXCEPT_ATTR = ["update_at"]
 
   def all_formats
     attachments.map{|at| at.type}.uniq

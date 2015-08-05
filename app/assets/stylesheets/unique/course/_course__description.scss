@@ -11,7 +11,7 @@
   }
 }
 
-.ох__нихуясе-блок {
+.oh__nihuyase-block {
   position: relative;
   z-index: 12;
   @include middle-block(920px);
@@ -212,7 +212,10 @@
           color      : $black_54;
         }
         .right-col {
-          color: #ff1744;
+          color : rgba(0, 0, 0, 0.87);
+          &.overdue {
+            color : #FF1744;
+          }
         }
       }
       .item {

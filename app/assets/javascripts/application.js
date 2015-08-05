@@ -2,21 +2,25 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
+// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
+//= require ./vendor/notifymy.js
+
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
-//=require main/main
+//= require main/main
 
 //= require_tree ./core
 
-
+//= require websocket_rails/main
+//= require_tree ./websocket
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
-var includeDatePicker = function(){
+var includeDatePicker = function () {
     $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
@@ -39,22 +43,39 @@ var includeDatePicker = function(){
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
+            $(this).change();
             return $(this).parent().addClass('show');
         }
     });
 }
 
-function pageLoad(action){
+function pageLoad(action) {
     $(document).ready(function () {
         $("img:last").load(action);
     });
 }
 
+var notifyMypush = function (message) {
+    var options = {
+        icon   : 'http://i.istockimg.com/file_thumbview_approve/46749378/3/stock-illustration-46749378-cute-piglet-icon-animal-icons-series.jpg',
+        body   : message.body,
+        onclick: function () {
+            console.log("Good");
+        },
+        onerror: function () {
+            console.log("On Error Triggered");
+        },
+        onclose: function () {
+            console.log("On Close Triggered");
+        }
+    };
+    NotifyMe.launch(message.title, options);
+}
 
 $(document).ready(function () {
 
 
-  $.material.init()
+    $.material.init()
 
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
@@ -96,7 +117,7 @@ $(document).ready(function () {
         $(this).closest('.more').removeClass('hidden');
     })
 
-    $('.header__bottom .aside-trigger, .schedule-calendar .item ').on('click', function () {
+    $('.js_openLeftSideBar').on('click', function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
@@ -118,9 +139,7 @@ $(document).ready(function () {
     });
 
 
-
     $('.filter-courses, .js__baron').baron();
-
 
 
     headerUserToggle = function () {
@@ -166,3 +185,5 @@ $(document).ready(function () {
     changeAvatar();
 
 });
+
+

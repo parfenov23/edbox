@@ -1,6 +1,7 @@
 class BunchGroup < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
+  scope :in_study, -> { joins(user: [bunch_courses: [bunch_sections: [:bunch_attachments]]]).where({"bunch_attachments.complete" => true}).uniq }
 
   def self.build(user_id, group_id)
     user = User.find(user_id)
@@ -12,4 +13,5 @@ class BunchGroup < ActiveRecord::Base
     end
     result
   end
+
 end

@@ -9,8 +9,13 @@ Rails.application.routes.draw do
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
+  get "pdf/:id" => "home#pdf"
+  get 'schedule', to: "schedules#index"
+  post 'schedule/day', to: "schedules#day_schedule"
   get ":action" => "home#:action"
-
+  # get "test_websocket" => "home#test_websocket"
+  # get 'nod'
+  match "node/websocket", :to => WebsocketRails::ConnectionManager.new, :via => [:get, :post]
   resources :tests, only: [] do
     collection do
       post :complete
@@ -36,6 +41,11 @@ Rails.application.routes.draw do
           get :signout
         end
       end
+      resources :companies, only: [] do
+        collection do
+          get :info
+        end
+      end
 
       resources :attachments do
         member do
@@ -43,8 +53,13 @@ Rails.application.routes.draw do
           post :complete
         end
       end
+
       resources :courses do
+        collection do
+          get :all
+        end
       end
+
       resources :users, only: [] do
         collection do
           get :info
@@ -68,6 +83,7 @@ Rails.application.routes.draw do
           post :remove_user
           post :remove_course
           post :update_course
+          post :update_section
         end
         collection do
           post :add_course

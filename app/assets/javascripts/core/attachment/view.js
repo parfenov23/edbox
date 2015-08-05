@@ -5,7 +5,7 @@ jQuery.fn.center = function () {
     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
     $(window).scrollLeft()) + "px");
     return this;
-}
+};
 
 $(document).ready(function () {
     var video = $(".content-video video");
@@ -21,23 +21,3 @@ $(document).ready(function () {
         $(".content-audio").center();
     }
 });
-
-//$(document).ready(function () {
-//    $('#audio-play.play').click(function (e) {
-//        $('#audio')[0].play();
-//        var playBtn = e.target;
-//        $(playBtn).removeClass('play');
-//        $(playBtn).addClass('pause');
-//        $(playBtn).text('pause');
-//    })
-//});
-//
-//$(document).ready(function () {
-//    $('#audio-play.pause').click(function (e) {
-//        $('#audio')[0].pause();
-//        var pauseBtn = e.target;
-//        $(pauseBtn).removeClass('pause');
-//        $(pauseBtn).addClass('play');
-//        $(pauseBtn).text('play');
-//    })
-//});

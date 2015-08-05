@@ -21,6 +21,7 @@ module Superuser
     def create
       course = Course.new(params_course)
       course.save
+      course.push_if_create
       course.create_all_img(params[:image]) if params[:image]
       redirect_to edit_superuser_course_path(course.id)
     end

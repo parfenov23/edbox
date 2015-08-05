@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150723115555) do
+ActiveRecord::Schema.define(version: 20150730130926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(version: 20150723115555) do
     t.boolean  "process",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "notifytable_type"
+    t.integer  "notifytable_id"
+    t.boolean  "read",             default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "action_type"
   end
 
   create_table "questions", force: true do |t|

@@ -18,3 +18,18 @@ if Rails.env.development?
   end
 
 end
+
+# if Rails.env.production?
+#
+#   begin
+#     `RAILS_ENV=production bundle exec rake websocket_rails:stop_server`
+#   rescue
+#     p "Fail"
+#   end
+#   begin
+#     `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
+#   rescue
+#     p "Fail"
+#   end
+#
+# end

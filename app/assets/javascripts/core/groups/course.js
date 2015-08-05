@@ -33,6 +33,9 @@ var changeDeadLineCourse = function (btn) {
 
 var changeDeadLineCourseMy = function (btn, text_success) {
     var data_time = btn.text();
+    if (!data_time.length){
+        data_time = btn.val();
+    }
     var course_id = btn.data("course_id");
     show_error('Загрузка', 3000);
     $.ajax({
@@ -40,8 +43,15 @@ var changeDeadLineCourseMy = function (btn, text_success) {
         url : '/api/v1/users/update_course',
         data: {course_id: course_id, date_complete: data_time}
     }).success(function () {
-        show_error(text_success, 3000);
-        loadMySchedule();
+        if(btn.data("no_schedule") == true){
+            show_error(text_success, 3000);
+            setTimeout(function(){
+                location.reload();
+            }, 1000);
+        } else {
+            show_error(text_success, 3000);
+            loadMySchedule();
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -68,6 +78,9 @@ var removeCourseMy = function (btn, text_success) {
 
 var changeDeadLineSectionMy = function (btn, text_success) {
     var data_time = btn.text();
+    if (!data_time.length){
+        data_time = btn.val();
+    }
     var section_id = btn.data("section_id");
     show_error('Загрузка', 3000);
     $.ajax({
@@ -75,8 +88,36 @@ var changeDeadLineSectionMy = function (btn, text_success) {
         url : '/api/v1/users/update_section',
         data: {section_id: section_id, date_complete: data_time}
     }).success(function () {
-        show_error(text_success, 3000);
-        loadMySchedule();
+        if(btn.data("no_schedule") == true){
+            show_error(text_success, 3000);
+            setTimeout(function(){
+                location.reload();
+            }, 1000);
+        } else {
+            show_error(text_success, 3000);
+            loadMySchedule();
+        }
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
+var changeDeadLineSectionGroup = function (btn, text_success) {
+    var data_time = btn.val();
+    var section_id = btn.data("section_id");
+    show_error('Загрузка', 3000);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/groups/'+ btn.data('group_id') +'/update_section',
+        data: {section_id: section_id, date_complete: data_time}
+    }).success(function () {
+        if(btn.data("no_schedule") == true){
+            location.reload();
+        } else {
+            show_error(text_success, 3000);
+            loadMySchedule();
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -87,12 +128,12 @@ var bind_block = function () {
     $('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
+
     $('.js__select-calendar').hover((function () {
         $(this).addClass('is__active');
         $('.js__backing').addClass('is__active');
     }), function () {
       if ($('#ui-datepicker-div').is(':hidden')) {
-        console.log(12);
         $(this).removeClass('is__active');
       }
 
@@ -139,6 +180,17 @@ $(document).ready(function () {
 
         $('.edit-menu .js_changeDeadLineSectionMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
             changeDeadLineSectionMy($(this));
+        });
+
+        $('.js_actionBtn .js_changeDeadLineSectionMy').change(function () {
+            changeDeadLineSectionMy($(this), $(this).data("text"));
+        });
+
+        $('.action-btn .js_changeDeadLineSectionGroup').change( function () {
+            changeDeadLineSectionGroup($(this), $(this).data("text"));
+        });
+        $('.js_actionBtn .js_changeDeadLineCourseMy').change( function () {
+            changeDeadLineCourseMy($(this), $(this).data("text"));
         });
 
         $(document).on('click', '.js_removeCourseMy',

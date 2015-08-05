@@ -6,28 +6,47 @@
         - attachments = section.attachments
         - if bunch_section.present? && attachments.present?
           .schedule-item.closed-state.js__toggle-state
-            .fixed-h.adaptive__title.adaptive__title
+            .fixed-h.adaptive-title.adaptive-title
               .title.left-col = section.title
               .additional-info.right-col
                 - if bunch_section.full_complete?(current_user.id)
                   .compl пройдено
+                - elsif bunch_section.date_complete.present?
+                  .compl
+                    'Пройти до:
+                    = ((l local_time(bunch_section.date_complete), :format => :short_min) rescue "Нет даты")
                 .action-btn
                   i.icon
                   ul.hidden-list
-                    li Перенести дату окончания раздела
+                    li.js_actionBtn
+                      |Перенести дату окончания раздела
+                      - ts = "Дата оканчания раздела изменена"
+                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
+                        data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
+                      }
             .course-components.hidden-part
               - attachments.each do |attachment|
                 - bunch_attachment = attachment.find_bunch_attachment(bunch_section.id)
-                .course-component-item.hidden-item.adaptive__title class=attachment.class_type
-                  i.icon
-                  .title.left-col = attachment.title
-                  .right-col
-                    - if bunch_attachment.complete
-                      .overdue-label Пройдено
-                    - else
+                - if bunch_attachment.present?
+                  .course-component-item.hidden-item.adaptive-title class=attachment.class_type
+                    i.icon
+                    .title.left-col = attachment.title
+                    .right-col
+                      - if bunch_attachment.complete
+                        .overdue-label style="margin-right: 8px;" Пройдено
                       - if attachment.class_type != "video"
                         .download
                           a.js_downloadFile data-id=attachment.id data-bunch_section_id=bunch_section.id href = "javascript:void(0)" Скачать
                       - else
                         .download
                           a href = "/video?id=#{attachment.id}" Просмотреть
+              - bunch_section.section.tests.each do |test|
+                - my_result = current_user.test_results.find_by_test_id(test.id)
+                .course-component-item.hidden-item.adaptive-title class='test'
+                  i.icon
+                  .title.left-col = test.title
+                  .right-col
+                    - if my_result.present?
+                      .overdue-label style="margin-right: 8px;" Пройдено
+                    .download
+                      a href="/tests/#{test.id}/run" Пройти

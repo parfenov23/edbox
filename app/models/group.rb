@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   has_many :bunch_groups, :dependent => :destroy
   has_many :bunch_courses, :dependent => :destroy
   has_many :ligament_courses, :dependent => :destroy
+  has_many :notifications, :as => :notifytable, :dependent => :destroy
   EXCEPT_ATTR = ["created_at", "updated_at"]
 
   def transfer_to_json
@@ -20,6 +21,15 @@ class Group < ActiveRecord::Base
       date_complete = (ligament_course.bunch_courses.last.date_complete.to_s rescue (Time.now + 2.day).to_s )
       BunchCourse.build(course.id, id, date_complete, 'group', nil)
     end
+  end
+
+  def notify_json(type=nil)
+    {
+      title: "Вас добавили в группу",
+      body: "Вы добавлены в группу «#{first_name}»",
+      timeClose: 0,
+      linkGo: "/group?id=#{id}"
+    }
   end
 
 end

@@ -11,7 +11,7 @@
         - (bunch_courses_study.first(6)*7).each do |bunch_course|
           - course = bunch_course.course
           - all_sections = bunch_course.bunch_sections
-          - complete_proc = (100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f) rescue 0).round
+          - complete_proc = ((100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f)).round) rescue 0
           li class=(bunch_courses_study_count > 3 ? "carusel-item" : "")
             // completed
             figure.corses-prev.with_progress-bar

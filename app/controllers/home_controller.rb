@@ -45,6 +45,17 @@ class HomeController < ActionController::Base
     end
   end
 
+  def pdf
+    @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file.file.extension.downcase == 'pdf'
+      @pdf = attachment
+      @section = attachment.attachmentable
+    else
+      render :error
+    end
+  end
+
   def members
     @members = current_user.company.users
   end
@@ -59,7 +70,7 @@ class HomeController < ActionController::Base
   end
 
   def programm
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:id])
     @sections = @course.sections
     section_ids = @sections.pluck(:id)
     @tests = Test.where(section_id: section_ids)
@@ -81,7 +92,7 @@ class HomeController < ActionController::Base
 
   def course_description
     # @favorite_courses = current_user.favorite_courses
-    # @course = Course.find(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def group
