@@ -55,7 +55,7 @@ var templateLiSection = function (json_course) {
     var html = [];
     $.each(json_course.sections, function (i, obj) {
         html[i] =
-            '<li class="section-item adaptive-title">' +
+            '<li class="section-item adaptive__title">' +
             '<div class="left-part left-col">' +
             obj.title +
             '</div>' +
