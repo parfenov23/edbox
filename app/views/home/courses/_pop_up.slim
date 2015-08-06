@@ -29,8 +29,13 @@
       input.datapicker__trigger name='date_complete'
 
     .select-deadline
-      .title Установите крайний срок прохождения разделов
-      .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.
+      .not_select_date_time
+        .title Установите крайний срок прохождения разделов
+        .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.
+      .select_date_time
+        .title
+          |Установлены крайние даты для
+          span.count_select … разделов
       i.icon
 
     input.courseId type="hidden" name="course_id"

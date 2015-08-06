@@ -44,6 +44,7 @@ var courseInfo = function (course_id) {
                 width: $(this).width() - rightWidth + 'px'
             });
         });
+        $("#js-add-course-to-shedule .section-item .js_changeDateToDatePicker").change(changeTextSelectSections);
 
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -81,15 +82,15 @@ var openEdnPopup = function () {
 };
 
 var closePopup = function (event) {
-    var evt = evt || event;
-    var target = evt.target || evt.srcElement;
-    if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){
+    //var evt = evt || event;
+    //var target = evt.target || evt.srcElement;
+    //if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){
         var popup = $("#js-add-course-to-shedule");
         popup.hide();
         popup.find(".check_group_added").hide();
         popup.find(".end_added").hide();
         clearPopup();
-    }
+    //}
 };
 
 var clearPopup = function () {
@@ -101,7 +102,7 @@ var clearPopup = function () {
     calendar.removeClass("show");
     calendar.find(".datapicker__trigger").val("");
     popup.find(".courseId").val("");
-
+    installTitleFormPopup(0);
 };
 
 var selectGroup = function () {
@@ -163,11 +164,39 @@ var changeDateToDatePicker = function (input) {
     input.closest(".section-item").find(".date-added").text(input.val());
 };
 
+var changeTextSelectSections = function () {
+
+    var select_not_empty = $(this).closest(".section-list").find("input").filter(function () {
+        return this.value;
+    });
+    var count = select_not_empty.length;
+    installTitleFormPopup(count)
+};
+
+var installTitleFormPopup = function (count) {
+    var from = $("#js-add-course-to-shedule");
+    var selected_title = from.find(".select-deadline .select_date_time");
+    var not_selected_title = from.find(".select-deadline .not_select_date_time");
+
+    if (count){
+        not_selected_title.hide();
+        selected_title.show();
+        if (count == 1){
+            selected_title.find(".title .count_select").text(" " + count + " раздела");
+        } else {
+            selected_title.find(".title .count_select").text(" " + count + " разделов");
+        }
+    } else {
+        not_selected_title.show();
+        selected_title.hide();
+    }
+};
+
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
-    $(document).on('click', '#js-add-course-to-shedule, #js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
+    $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
     $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
 });
