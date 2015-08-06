@@ -21,9 +21,11 @@ WebsocketRails.setup do |config|
   # Change to true to enable channel synchronization between
   # multiple server instances.
   # * Requires Redis.
-  config.synchronize = true
+  config.synchronize = Rails.env.production? ? true : false
   # config.redis_options = {:host => '127.0.0.1', :port => '6379'}
-  config.redis_options = { host: '127.0.0.1', port: 6379 }
+  if Rails.env.production?
+    config.redis_options = {host: '127.0.0.1', port: 6379}
+  end
   # config.thin_options = {:threaded => true}
   # config.redis_options = {:host => 'redis-host', :port => '1234'}
 

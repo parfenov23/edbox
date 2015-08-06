@@ -87,6 +87,7 @@ Rails.application.routes.draw do
         end
         collection do
           post :add_course
+          post :add_courses
         end
       end
     end

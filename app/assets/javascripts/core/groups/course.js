@@ -162,6 +162,36 @@ var selectMonthSchedule = function () {
     loadMySchedule({schedule: {month: number_month} })
 };
 
+var addCoursesFromFavorite = function (){
+    var btn = $(this);
+    var form = btn.closest(".popupFavorite");
+    var courses = form.find(".courses-list .single-course.selected");
+    var group_id = form.find(".courses-list").data("group_id");
+    var hash_params = {};
+    hash_params["courses"] = [];
+    $.each(courses, function(i, block){
+        var course_block = $(block);
+        var course_params = {};
+        course_params["course_id"] = course_block.data("course_id");
+        course_params["group_id"] = group_id;
+        course_params["date_complete"] = course_block.find(".hidden-calendar-wrp .jsValueDatePicker").val();
+        hash_params["courses"][i] = course_params;
+    });
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/groups/add_courses',
+        data: hash_params
+    }).success(function () {
+        show_error('Курсы добавлены в группу', 3000);
+        setTimeout(function(){
+            window.location.href = "/group?id="+ group_id +"&type=courses";
+        }, 1300);
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
 $(document).ready(function () {
     $("img:last").load(function () {
         $(document).on('click', '.hidden-list .js_removeCourseToGroup',
@@ -192,7 +222,7 @@ $(document).ready(function () {
         $('.js_actionBtn .js_changeDeadLineCourseMy').change( function () {
             changeDeadLineCourseMy($(this), $(this).data("text"));
         });
-
+        $(document).on('click', '.js_addCoursesFromFavorite', addCoursesFromFavorite);
         $(document).on('click', '.js_removeCourseMy',
             function () {
                 var btn = $(this);

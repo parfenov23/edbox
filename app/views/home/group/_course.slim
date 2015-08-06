@@ -1,5 +1,5 @@
 - course = ligament_course.course if type == "ligament"
-li.single-course
+li.single-course data-course_id=course.id class=(type == "course" ? "favorite-item" : "")
   .left-image
     img alt="" src=course.get_image_path('347x192') style="width:160px; height:128px"
   .courses-info
@@ -29,9 +29,8 @@ li.single-course
                 li.js_removeCourseToGroup data-id="#{ligament_course.course_id}" data-group_id=@group.id Удалить
               - if type == "course" # блок в попапе
                 li data-show="hidden-calendar"
-
-                  input.datapicker__trigger value = text_data
-                li.js_removeCourseToFavorite Удалить
+                  input.datapicker__trigger.jsValueDatePicker value = text_data name="courses[date_complete]"
+                li.js_removeFavorite data-id=favorite.id Удалить
 
       a.title href="/course_description?id=#{course.id}"
         h3 = course.title

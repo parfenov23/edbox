@@ -82,6 +82,15 @@ module Api::V1
       end
     end
 
+    def add_courses
+      hash_params = params[:courses]
+      hash_params.each do |course|
+        course = course.last
+        BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+      end
+      render json: {success: true}
+    end
+
     def update_course
       if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group", nil, params[:sections]) rescue false)
         render json: bunch_course.as_json

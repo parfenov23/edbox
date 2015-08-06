@@ -76,11 +76,12 @@ function scrollInit() {
     $('.scrollbar-outer, .textarea-scrollbar').scrollbar({
         ignoreOverlay: false
     });
-    $('.md-content .single-course').click(function(){
-        if ($(this).hasClass('selected')) {
-            $(this).removeClass('selected');
+    $('.md-content .single-course .left-image').click(function(){
+        var block = $(this).closest(".single-course");
+        if (block.hasClass('selected')) {
+            block.removeClass('selected');
         } else {
-            $(this).addClass('selected');
+            block.addClass('selected');
         };
     });
 }

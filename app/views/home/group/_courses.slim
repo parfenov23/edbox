@@ -1,39 +1,39 @@
 .courses-lists
-    #box1.box.show
-        .item.courses
-            .container
-                .container-inner
-                    - if current_user.director
-                        a.md-trigger.add-courses href="#modal-3"  Добавить
-                    h2 Курсы
-                    - ligament_courses = @group.ligament_courses
-                    - count_ligament_courses = ligament_courses.count
-                    - if count_ligament_courses > 0
-                        .data-group-create
-                            =' Russian.p(count_ligament_courses, "Добавлен", "Добавленно", "Добавленно")
-                            = rus_case(count_ligament_courses, "курс", "курса", "курсов")
-                        ul.courses-list
-                            - ligament_courses.each do |ligament_course|
-                                = render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
-                    - else
-                        .data-group-create Вы не добавили ни одного курса
-        /! Create dialog
-        #modal-3.md-modal.md-effect-1
-            .md-content.popupFavorite
-                div
-                    .modal-text
-                        h2 Выберите курс из "Избранного"
-                        .scrollbar-outer
-                            ul.courses-list
-                                - current_user.favorite_courses.each do |favorite_course|
-                                    - course = favorite_course.course
-                                    = render "home/group/course", {course: course, type: "course"}
+  #box1.box.show
+    .item.courses
+      .container
+        .container-inner
+          - if current_user.director
+            a.md-trigger.add-courses href="#modal-3"  Добавить
+          h2 Курсы
+          - ligament_courses = @group.ligament_courses
+          - count_ligament_courses = ligament_courses.count
+          - if count_ligament_courses > 0
+            .data-group-create
+              =' Russian.p(count_ligament_courses, "Добавлен", "Добавленно", "Добавленно")
+              = rus_case(count_ligament_courses, "курс", "курса", "курсов")
+            ul.courses-list
+              - ligament_courses.each do |ligament_course|
+                = render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
+          - else
+            .data-group-create Вы не добавили ни одного курса
+    /! Create dialog
+    #modal-3.md-modal.md-effect-1
+      .md-content.popupFavorite
+        div
+          .modal-text
+            h2 Выберите курс из "Избранного"
+            .scrollbar-outer
+              ul.courses-list data-group_id=@group.id
+                - current_user.favorite_courses.each do |favorite_course|
+                  - course = favorite_course.course
+                  = render "home/group/course", {course: course, type: "course", favorite: favorite_course}
 
-                    ul.button-area
-                        li
-                            a.flat-button.button.button-ok.md-close href="#"  Отменить
-                        li
-                            a.orange-button href="#"  Добавить
-        .md-overlay
-    /! modals end
+          ul.button-area
+            li
+              a.flat-button.button.button-ok.md-close href="#"  Отменить
+            li
+              a.orange-button.js_addCoursesFromFavorite href="#"  Добавить
+    .md-overlay
+  /! modals end
 .js__backing
