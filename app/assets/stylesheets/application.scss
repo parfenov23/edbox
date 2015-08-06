@@ -222,7 +222,7 @@ i {
 .notification {
   position           : fixed;
   top                : 0px;
-  right              : -50%;
+  right              : -100%;
   z-index            : 10000;
   width              : 450px;
   height             : 128px;
@@ -231,6 +231,9 @@ i {
   -webkit-transition : all 300ms;
   transition         : all 300ms;
   @include white__block(1, 0);
+  &.visible{
+    visibility  : hidden;
+  }
   &.open {
     right : 0px;
   }
