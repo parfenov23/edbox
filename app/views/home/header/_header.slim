@@ -82,9 +82,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     .item class=(namePage == "courses" ? "is__active" : "")
       i.biblio.icon
       a.label href="/courses" Библиотека
-    .item
+    .item class=(namePage == "my_course" ? "is__active" : "")
       i.courses.icon
-      .label Курсы
+      a.label href="/my_course?type=current" Курсы
     - if current_user.corporate
       .item class=(namePage == "group" ? "is__active" : "")
         i.groups.icon

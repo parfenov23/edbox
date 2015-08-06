@@ -165,7 +165,6 @@ var changeDateToDatePicker = function (input) {
 };
 
 var changeTextSelectSections = function () {
-
     var select_not_empty = $(this).closest(".section-list").find("input").filter(function () {
         return this.value;
     });
@@ -174,17 +173,23 @@ var changeTextSelectSections = function () {
 };
 
 var installTitleFormPopup = function (count) {
-    var from = $("#js-add-course-to-shedule");
-    var selected_title = from.find(".select-deadline .select_date_time");
-    var not_selected_title = from.find(".select-deadline .not_select_date_time");
+    var form = $("#js-add-course-to-shedule");
+    var count_all_inputs = form.find(".section-list input").length;
+    var selected_title = form.find(".select-deadline .select_date_time");
+    var not_selected_title = form.find(".select-deadline .not_select_date_time");
 
     if (count){
         not_selected_title.hide();
         selected_title.show();
+        selected_title.find(".count_select").show();
         if (count == 1){
             selected_title.find(".title .count_select").text(" " + count + " раздела");
         } else {
-            selected_title.find(".title .count_select").text(" " + count + " разделов");
+            if (count < count_all_inputs){
+                selected_title.find(".title .count_select").text(" " + count + " разделов");
+            }else{
+                selected_title.find(".title .count_select").text(" всех разделов");
+            }
         }
     } else {
         not_selected_title.show();

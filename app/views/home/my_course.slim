@@ -1,15 +1,21 @@
-= render "home/header/header", {namePage: "cabinet", titlePage: "Курсы"}
+= render "home/header/header", {namePage: "my_course", titlePage: "Мои курсы"}
+- all_courses = nil
 - case params[:type]
 - when "favorite"
-  - favorite_courses = current_user.favorite_courses
-  - if favorite_courses.present?
-    .inner-content
-        .content#courses.courses-list
-            - favorite_courses.each do |favorite_course|
-                = render "home/courses/course", {course: favorite_course.course, type: params[:type]}
-  - else
-    = render "home/no_content", {title: "Здесь пока ничего нет",
-                                 description: "Вы можете перейти в библиотеку и добавить понравившиеся курсы в избранное. Так вам не придется тратить много времени на поиск курсов."}
+  - all_courses = current_user.favorite_courses
+- when "current"
+  - all_courses = current_user.bunch_courses.in_study
+- when "overdue"
+  - all_courses = current_user.bunch_courses.overdue
+- when "assigned"
+  - all_courses = current_user.bunch_courses
+
+- if all_courses.present?
+  .inner-content
+    .content-courses.courses-list#courses
+      - all_courses.each do |course|
+        = render "home/courses/course", {course: course.course, type: params[:type]}
+  = render "home/courses/pop_up"
 - else
   = render "home/no_content", {title: "Здесь пока ничего нет",
                                description: "Страница не найденна"}

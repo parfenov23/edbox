@@ -8,12 +8,7 @@
       - ligament_count_valid = (LigamentCourse.where(group_id: current_user.company.groups.ids).present? rescue false)
     - bunch_count_valid = (current_user.bunch_courses.where(model_type: 'user').present? rescue false)
 
-    / - unless users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
-    /   = render 'home/cabinet/empty_courses', {users_count_valid: users_count_valid,
-    /                                           groups_count_valid: groups_count_valid,
-    /                                           ligament_count_valid: ligament_count_valid,
-    /                                           bunch_count_valid: bunch_count_valid}
-    - if users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
+    - unless users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
       = render 'home/cabinet/empty_courses', {users_count_valid: users_count_valid,
                                               groups_count_valid: groups_count_valid,
                                               ligament_count_valid: ligament_count_valid,

@@ -16,11 +16,22 @@ module NavLinkHelper
         profile_nav_links
       when "other_white", "other"
         other_nav_links
+      when "my_course"
+        my_course_nav_links
     end
   end
 
   def courses_nav_links
     []
+  end
+
+  def my_course_nav_links
+    [
+      {title: "Текущие", link: "/my_course?type=current"},
+      {title: "Просроченные", link: "/my_course?type=overdue"},
+      {title: "Назначенные", link: "/my_course?type=assigned"},
+      {title: "Отложенные", link: "/my_course?type=favorite"}
+    ]
   end
 
   def profile_nav_links
@@ -33,7 +44,7 @@ module NavLinkHelper
 
   def course_description_nav_links
     [{title: "Описание", link: "/course_description?id=#{params[:id]}"},
-     {title: "Программа", link: "/programm?id=#{params[:id]}"}]
+     {title: "Просроченные", link: "/programm?id=#{params[:id]}"}]
   end
 
   def group_nav_link
