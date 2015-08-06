@@ -75,8 +75,12 @@ module Api::V1
     end
 
     def add_course
-      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
-        render json: bunch_course.as_json
+      if params[:date_complete].present?
+        if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
+          render json: bunch_course.as_json
+        else
+          render_error(500, 'Проверьте данные')
+        end
       else
         render_error(500, 'Проверьте данные')
       end
@@ -92,8 +96,12 @@ module Api::V1
     end
 
     def update_course
-      if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group", nil, params[:sections]) rescue false)
-        render json: bunch_course.as_json
+      if params[:date_complete].present?
+        if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group", nil, params[:sections]) rescue false)
+          render json: bunch_course.as_json
+        else
+          render_error(500, 'Проверьте данные')
+        end
       else
         render_error(500, 'Проверьте данные')
       end
