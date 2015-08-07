@@ -31,7 +31,7 @@
             - if attachments.present? && my_bunch_section.present?
               // completed
               .schedule-item.closed-state.js__toggle-state class=(my_bunch_section.complete ? 'completed' : '')
-                .fixed-h.adaptive__title.adaptive__title
+                .fixed-h.adaptive__title
                   .title.left-col = section.title
                   .additional-info.right-col
                     - if my_bunch_section.full_complete?(current_user.id)

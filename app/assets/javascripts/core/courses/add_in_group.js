@@ -150,7 +150,7 @@ var addCourseMySchedule = function (btn) {
         url : '/api/v1/users/update_course',
         data: data
     }).success(function () {
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/schedule'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в расписание', 3000);
