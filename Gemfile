@@ -13,11 +13,14 @@ gem 'unicorn'
 gem 'faraday'
 gem 'bootstrap-material-design', '~> 0.1.7'
 gem 'faraday_middleware'
-gem "russian"
+gem 'russian'
 gem 'bcrypt'
 gem 'turbolinks'
 gem 'thin', '~> 1.5.0'
 gem 'babosa'
+#===================== webinar
+gem 'bigbluebutton_rails', github: 'mconf/bigbluebutton_rails', branch: 'master'
+#=====================
 
 # Frontend
 gem 'uglifier'
@@ -37,7 +40,7 @@ gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 gem 'hiredis'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'redis-namespace'
-gem "em-synchrony"
+gem 'em-synchrony'
 gem 'redis-rails'
 gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
