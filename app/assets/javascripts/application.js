@@ -9,6 +9,7 @@
 
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
+//= require ./vendor/jquery.phoenix
 //= require main/main
 
 //= require_tree ./core

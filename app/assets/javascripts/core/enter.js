@@ -70,6 +70,29 @@ function fixed_btn_save(){
 }
 
 $(document).ready(function () {
+    if ($("form.js_registrationUser").length){
+        (function() {
+            $('.phoenix-input').phoenix();
+
+            $('[data-phoenix-action]').on('click', function(e) {
+                $('.phoenix-input').phoenix($(this).data('phoenix-action'));
+                e.preventDefault();
+                return e.stopPropagation();
+            });
+
+        }).call(this);
+        var val_inp = $("input[name='company[name]']");
+        var selected = $(".js_registrationUser .auth__reg-selected");
+        var input_corp_name = $(".js_registrationUser .input-wrp.corporate_acc");
+        if (val_inp.count_text_input()){
+            selected.text("Корпоративный аккаунт");
+            input_corp_name.addClass("active");
+        }else{
+            input_corp_name.removeClass("active");
+            selected.text("Персональный аккаунт");
+        }
+    }
+
     $(window).scroll(function () {
         fixed_btn_save();
     });
@@ -245,4 +268,5 @@ $(document).ready(function () {
         }
 
     }
+
 });
