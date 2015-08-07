@@ -42,6 +42,7 @@ if ($.cookie('user_key') != undefined){
             };
 
             Controller.prototype.notification = function (message) { // Уведомления
+                message = JSON.parse(message);
                 notifyMyWeb({
                     timeClose: message.timeClose,
                     title: message.title,

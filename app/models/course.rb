@@ -57,7 +57,7 @@ class Course < ActiveRecord::Base
       when "new"
         {
           title: "Добавлен новый курс в библиотеку.",
-          body: "В библиотеку добавлен новый курс #{title}",
+          body: "В библиотеку добавлен новый курс 123",
           timeClose: 0,
           linkGo: "/courses"
         }

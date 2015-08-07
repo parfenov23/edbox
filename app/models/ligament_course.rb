@@ -2,7 +2,8 @@ class LigamentCourse < ActiveRecord::Base
   has_many :bunch_courses, dependent: :destroy
   belongs_to :course
   belongs_to :group
-  has_many :notifications, :as => :notifytable, :dependent => :destroy
+  has_many :ligament_sections , dependent: :destroy
+  has_many :notifications, :as => :notifytable, dependent: :destroy
 
   def notify_json(type=nil)
     {
