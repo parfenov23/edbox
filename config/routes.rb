@@ -58,6 +58,9 @@ Rails.application.routes.draw do
         collection do
           get :all
         end
+        member do
+          get :info
+        end
       end
 
       resources :users, only: [] do
