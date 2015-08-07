@@ -126,6 +126,10 @@ class User < ActiveRecord::Base
     first_name.to_s + " " + last_name.to_s
   end
 
+  def name
+    first_name.to_s + " " + last_name.to_s
+  end
+
   def welcome_letter(new_password)
     HomeMailer.welcome_latter(self, new_password).deliver
   end

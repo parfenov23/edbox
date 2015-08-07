@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user
-    user_key = request.headers['HTTP_USER_KEY']
+    http_key = request.headers['HTTP_USER_KEY']
+    user_key = http_key.present? ? http_key : session[:user_key]
     @current_user ||= User.find_by(user_key: user_key) if user_key
     @current_user
   end
