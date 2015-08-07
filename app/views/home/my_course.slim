@@ -14,7 +14,9 @@
   .inner-content
     .content-courses.courses-list#courses
       - all_courses.each do |course|
-        = render "home/courses/course", {course: course.course, type: params[:type]}
+        - find_course = course.course
+        - if find_course.present?
+          = render "home/courses/course", {course: , type: params[:type]}
   = render "home/courses/pop_up"
 - else
   = render "home/no_content", {title: "Здесь пока ничего нет",
