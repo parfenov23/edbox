@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
 
+  bigbluebutton_routes :default
+
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
   get "pdf/:id" => "home#pdf"
