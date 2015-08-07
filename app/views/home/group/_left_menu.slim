@@ -1,18 +1,18 @@
 .group-menu
   ul
     li
-      a href="/group?id=#{@group.id}"
+      a href="/group?id=#{@group.id}" class=(params[:type].to_s == "" ? "active" : "")
         i.icon-uniE8D6
         span Описание
     li
-      a href="/group?id=#{@group.id}&type=user"
+      a href="/group?id=#{@group.id}&type=user" class=(params[:type].to_s == "user" ? "active" : "")
         i.icon-uniE8D9
         span Пользователи
     li
-      a href="/group?id=#{@group.id}&type=courses"
+      a href="/group?id=#{@group.id}&type=courses" class=(params[:type].to_s == "courses" ? "active" : "")
         i.icon-uniE6BE
         span Курсы
     li
-      a href="/group?id=#{@group.id}&type=schedule"
+      a href="/group?id=#{@group.id}&type=schedule" class=(params[:type].to_s == "schedule" ? "active" : "")
         i.icon-uniE625
         span Программа

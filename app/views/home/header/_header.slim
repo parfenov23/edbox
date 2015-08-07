@@ -88,10 +88,19 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     .item class=(namePage == "my_course" ? "is__active" : "")
       i.courses.icon
       a.label href="/my_course?type=current" Курсы
+
+    .item class=(namePage == "schedule" ? "is__active" : "")
+      i.schedule.icon
+      a.label href="/schedule" Расписание
     - if current_user.corporate
       .item class=(namePage == "group" ? "is__active" : "")
         i.groups.icon
         a.label href="/group" Группы
+      - if current_user.director
+        .item class=(namePage == "members" ? "is__active" : "")
+          i.groups.icon
+          a.label href="/members" Участники
+
   /.item
   /  i.stat.icon
   /  .label Статистика
