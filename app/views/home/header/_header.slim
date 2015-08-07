@@ -22,6 +22,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /  .tooltip.is__bottom Уведомления
     /.item
     /  i.notification.icon
+    - if namePage == "group"
+      .item.js_openPopupNewGroup
+        i.add.icon
     /.item
     /  .notification__with-qty ...
     - if namePage == "cabinet"
