@@ -46,6 +46,14 @@ class BunchCourse < ActiveRecord::Base
     group = Group.find(group_id)
     bunch_groups = group.bunch_groups
     ligament_course = LigamentCourse.find_or_create_by({course_id: course_id, group_id: group_id})
+    ligament_course.date_complete = Time.parse(date_complete).end_of_day if date_complete.present?
+    ligament_course.save
+    ligament_course.course.sections.each do |section|
+      ligament_section = LigamentSection.find_or_create_by({section_id: section.id, ligament_course_id: ligament_course.id})
+      current_section = (sections_hash[section.id.to_s] rescue nil)
+      ligament_section.date_complete = Time.parse(current_section).end_of_day if current_section.present?
+      ligament_section.save
+    end
     bunch_groups.each do |bunch_group|
       bunch_group.user.create_notify(ligament_course)
       build_to_user(course_id, bunch_group.user_id, group_id, date_complete, type, ligament_course.id, sections_hash)
@@ -64,8 +72,14 @@ class BunchCourse < ActiveRecord::Base
     bunch_course.save
     sections.each do |section|
       current_section = (sections_hash[section.id.to_s] rescue nil)
+      if type == "group"
+        ligament_section = (bunch_course.group
+                              .ligament_course.where(course_id: bunch_course.course_id)
+                              .last.ligament_sections.where(section_id: section.id).last rescue nil)
+        current_section = (ligament_section.date_complete rescue nil)
+      end
       bunch_section = bunch_course.bunch_sections.find_or_create_by({section_id: section.id, bunch_course_id: bunch_course.id})
-      bunch_section.date_complete = Time.parse(current_section) if current_section.present?
+      bunch_section.date_complete = Time.parse(current_section).end_of_day if current_section.present?
       bunch_section.save
       section.attachments.each do |attachment|
         BunchAttachment.find_or_create_by({attachment_id: attachment.id, bunch_section_id: bunch_section.id})
