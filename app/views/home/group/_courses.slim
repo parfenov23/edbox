@@ -27,7 +27,8 @@
               ul.courses-list data-group_id=@group.id
                 - current_user.favorite_courses.each do |favorite_course|
                   - course = favorite_course.course
-                  = render "home/group/course", {course: course, type: "course", favorite: favorite_course}
+                  - if course.present?
+                    = render "home/group/course", {course: course, type: "course", favorite: favorite_course}
 
           ul.button-area
             li
