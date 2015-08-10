@@ -19,7 +19,7 @@ headerSubmenu = ->
     $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
-  $('.adaptive-title').each ->
+  $('.adaptive__title').each ->
     rightWidth = $(@).find('.right-col').width()
     $(@).find('.left-col').css
       width: $(@).width() - rightWidth + 'px'
@@ -83,6 +83,14 @@ $(document).ready ->
 
     carusel()
 
+    $('.course__info .more').on 'click', ->
+      $('.detail__info').toggleClass('is__closed')
+      $(@).toggleClass('is__closed')
+
+    $('.toggle__view.btn').on 'click', ->
+      $('.study__program').toggleClass('is__closed')
+      $(@).toggleClass('is__closed')
+
     $('.is__sooo-long .page__title').on 'click', ->
       $(@).next().toggle 300
 
@@ -97,9 +105,11 @@ $(document).ready ->
       $('.js__left-aside, .js__backing').addClass('is__active')
 
     $('.select-deadline').on 'click', ->
+      $(@).closest("form").find(".action-btn").hide()
       $(@).closest('.check_group_added').addClass('section__deadline')
 
     $('.section__deadline-title .back').on 'click', ->
+      $(@).closest("form").find(".action-btn").show()
       $(@).closest('.check_group_added').removeClass('section__deadline')
 
     $('.js_for-tooltip').hover ->

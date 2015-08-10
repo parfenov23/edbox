@@ -10,6 +10,10 @@ module Api::V1
       render json: all_courses
     end
 
+    def info
+      render json: find_course.transfer_to_json
+    end
+
     private
 
     def find_course

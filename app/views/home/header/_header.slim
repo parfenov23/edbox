@@ -1,10 +1,14 @@
 - title titlePage
 / header#page__header.with__img
-- valid_img_page = ["course_description"]
+- valid_img_page = ["course_description", "other_white"]
 header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
-    .page__icon.item
-      i.burger.icon.js__show-aside-main-nav
+    - unless (btnBack rescue false)
+      .page__icon.item
+        i.burger.icon.js__show-aside-main-nav
+    - else
+      a.page__icon.item href=backUrl
+        i.back.icon
     .page__title = titlePage
     .page__children
       - menu_nav_links(namePage).each do |item|
@@ -18,6 +22,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /  .tooltip.is__bottom Уведомления
     /.item
     /  i.notification.icon
+    - if namePage == "group"
+      .item.js_openPopupNewGroup
+        i.add.icon
     /.item
     /  .notification__with-qty ...
     - if namePage == "cabinet"
@@ -69,8 +76,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
 .left__aside-main-nav.js__baron.js__left-aside
   .info__block
     .top__logo
-      a href="/courses"
-        img src= "/assets/edbox__bloo.svg"
+      img src= "/assets/edbox__bloo.svg"
   .menu__list
     .item class=(namePage == "cabinet" ? "is__active" : "")
       i.cabinet.icon
@@ -78,13 +84,22 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     .item class=(namePage == "courses" ? "is__active" : "")
       i.biblio.icon
       a.label href="/courses" Библиотека
-    .item
+    .item class=(namePage == "my_course" ? "is__active" : "")
       i.courses.icon
-      .label Курсы
+      a.label href="/my_course?type=current" Курсы
+
+    .item class=(namePage == "schedule" ? "is__active" : "")
+      i.schedule.icon
+      a.label href="/schedule" Расписание
     - if current_user.corporate
       .item class=(namePage == "group" ? "is__active" : "")
         i.groups.icon
         a.label href="/group" Группы
+      - if current_user.director
+        .item class=(namePage == "members" ? "is__active" : "")
+          i.groups.icon
+          a.label href="/members" Участники
+
   /.item
   /  i.stat.icon
   /  .label Статистика

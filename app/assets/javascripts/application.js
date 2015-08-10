@@ -9,12 +9,27 @@
 
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
+//= require ./vendor/jquery.phoenix
 //= require main/main
 
 //= require_tree ./core
 
 //= require websocket_rails/main
 //= require_tree ./websocket
+
+$.fn.count_text_input = function () {
+    // .replace(/\W/gi," ")
+    var text_block;
+    var tag_name = $(this).prop("tagName");
+    var valid_tag = ["INPUT", "TEXTAREA"];
+    if ($.inArray(tag_name, valid_tag) > -1 ){
+        text_block = $(this).val();
+    }else{
+        text_block = $(this).text();
+    }
+    var first_input_text = text_block.replace(/\n/, " ").replace(/\s{2,}/gi, " ").replace(/ $/, "").replace(/^ /, "");
+    return first_input_text.length
+};
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));

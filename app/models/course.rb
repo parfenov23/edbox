@@ -22,6 +22,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def audiences
+    bunch_courses.map(&:user_id).uniq
+  end
+
   def push_if_create
     Thread.new do
       `rake user_notify:new_course[#{id}]`
@@ -53,7 +57,7 @@ class Course < ActiveRecord::Base
       when "new"
         {
           title: "Добавлен новый курс в библиотеку.",
-          body: "В библиотеку добавлен новый курс #{title}",
+          body: "В библиотеку добавлен новый курс 123",
           timeClose: 0,
           linkGo: "/courses"
         }
@@ -75,8 +79,13 @@ class Course < ActiveRecord::Base
     sections.joins(:attachments).sum("attachments.duration")
   end
 
-  def json_description
-    ActionView::Base.full_sanitizer.sanitize(description).html_safe
+  def full_duration
+    duration
+  end
+
+  def clear_description
+    ActionView::Base.full_sanitizer.sanitize(description).html_safe.to_s
+      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
   end
 
   def images
@@ -88,9 +97,12 @@ class Course < ActiveRecord::Base
       end.compact!
   end
 
+  def author
+    user.as_json({except: User::EXCEPT_ATTR + ["user_key"]})
+  end
+
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description], methods: [:json_description, :images], include: [
-              {user: {except: User::EXCEPT_ATTR + ["user_key"]}},
+    as_json({except: [:duration, :main_img, :description, :user_id], methods: [:clear_description, :images, :author], include: [
               {sections: {except: Section::EXCEPT_ATTR}}
             ]})
   end

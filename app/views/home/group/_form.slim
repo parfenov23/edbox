@@ -6,7 +6,7 @@
         h2 = text_title
         form
           .group
-            input placeholder=("Введите название") type="text" name="group[first_name]" value=(type == "new" ? '' : group.first_name)
+            input.js_groupNameValidate placeholder=("Введите название") type="text" name="group[first_name]" value=(type == "new" ? '' : group.first_name)
             span.bar
           .group
             .scroll-wrapper.textarea-scrollbar.scrollbar-outer.expand.scroll-textarea style=("position: relative;")
@@ -25,9 +25,10 @@
                   .scroll-element_track
                   .scroll-bar style=("height: 100px;")
             span.bar
-          ul.button-area
+          .button-area
             - if type == 'edit'
               input type='hidden' name='id' value=group.id
             input type='hidden' name='group[company_id]' value=current_user.company_id
-            .mdl-button.mdl-js-button.mdl-js-ripple-effect.js_closePopupFormGroup ОТМЕНИТЬ
-            .mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.is__orange.js_saveGroup data-type=type data-id=(type == "new" ? '' : group.id) СОХРАНИТЬ
+            .action-btn
+              .btn.cancel.js_closePopupFormGroup ОТМЕНИТЬ
+              .btn.is__orange.js_saveGroup data-type=type data-id=(type == "new" ? '' : group.id) СОХРАНИТЬ

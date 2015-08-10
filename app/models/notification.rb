@@ -7,8 +7,10 @@ class Notification < ActiveRecord::Base
     user = self.user
     type = notifytable_type
     data_params = notifytable.notify_json(action_type)
+    data_params[:action_type] = action_type
     data_params[:type] = type
-    Fiber.new{ WebsocketRails[user.user_key].trigger 'notification', data_params }.resume
+    data_params[:type_id] = notifytable_id
+    Fiber.new{ WebsocketRails[user.user_key].trigger 'notification', data_params.to_json }.resume
   end
 
 end

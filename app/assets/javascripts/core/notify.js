@@ -4,6 +4,7 @@ var notifyMyWeb = function (hashParams) {
     var all_child_notify = $(".notification.child_notify");
     var top = 140 * all_child_notify.length;
     new_notify.css("top", top);
+    new_notify.removeClass("visible");
     $("body").append(new_notify);
     childNotifyContent(new_notify, hashParams);
     setTimeout(function(){

@@ -11,6 +11,14 @@ module ApplicationHelper
     end
   end
 
+  def ltime(time, add_text="")
+     ((add_text + (l local_time(time), :format => :short_min)) rescue "Нет даты")
+  end
+
+  def current_time
+    local_time(Time.now)
+  end
+
   def current_link
     request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
   end

@@ -11,10 +11,19 @@
               .additional-info.right-col
                 - if bunch_section.full_complete?(current_user.id)
                   .compl пройдено
+                - elsif bunch_section.date_complete.present?
+                  .compl
+                    'Пройти до:
+                    = ((l local_time(bunch_section.date_complete), :format => :short_min) rescue "Нет даты")
                 .action-btn
                   i.icon
                   ul.hidden-list
-                    li Перенести дату окончания раздела
+                    li.js_actionBtn
+                      |Перенести дату окончания раздела
+                      - ts = "Дата оканчания раздела изменена"
+                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
+                        data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
+                      }
             .course-components.hidden-part
               - attachments.each do |attachment|
                 - bunch_attachment = attachment.find_bunch_attachment(bunch_section.id)

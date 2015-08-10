@@ -99,11 +99,16 @@ module Api::V1
     end
 
     def add_favorite_course
-      favorite_course = FavoriteCourse.find_or_create_by({course_id: params[:course_id], user_id: current_user.id})
-      if (favorite_course.save rescue false)
-        render json: favorite_course.transfer_to_json
+      added_course = current_user.favorite_courses.where(course_id: params[:course_id]).last
+      unless added_course.present?
+        favorite_course = FavoriteCourse.find_or_create_by({course_id: params[:course_id], user_id: current_user.id})
+        if (favorite_course.save rescue false)
+          render json: {favorite_course: favorite_course.transfer_to_json, success: true}
+        else
+          render_error(500, 'Проверьте данные')
+        end
       else
-        render_error(500, 'Проверьте данные')
+        render json: {favorite_course: added_course.transfer_to_json, success: false}
       end
     end
 

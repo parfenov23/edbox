@@ -15,10 +15,16 @@ class Group < ActiveRecord::Base
     Course.where(id: bunch_courses.pluck(:course_id).uniq)
   end
 
+  def find_ligament_section(section_id)
+    ligament_courses.joins(:ligament_sections)
+      .where({"ligament_sections.section_id" => section_id}).first.
+      ligament_sections.where(section_id: section_id).last rescue nil
+  end
+
   def build_all_course
     ligament_courses.each do |ligament_course|
       course = ligament_course.course
-      date_complete = (ligament_course.bunch_courses.last.date_complete.to_s rescue (Time.now + 2.day).to_s )
+      date_complete = (ligament_course.date_complete.to_s rescue (Time.now + 2.day).to_s )
       BunchCourse.build(course.id, id, date_complete, 'group', nil)
     end
   end

@@ -1,6 +1,6 @@
 .actual-courses
   / - bunch_courses_study = current_user.bunch_courses.in_study
-  - bunch_courses_study = current_user.bunch_courses
+  - bunch_courses_study = current_user.bunch_courses.in_study
   - if bunch_courses_study.present?
     = render "home/cabinet/current_courses", {bunch_courses_study: bunch_courses_study}
 

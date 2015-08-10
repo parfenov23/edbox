@@ -60,6 +60,9 @@ Rails.application.routes.draw do
         collection do
           get :all
         end
+        member do
+          get :info
+        end
       end
 
       resources :users, only: [] do
@@ -89,6 +92,7 @@ Rails.application.routes.draw do
         end
         collection do
           post :add_course
+          post :add_courses
         end
       end
     end

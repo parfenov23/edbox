@@ -37,11 +37,12 @@ if ($.cookie('user_key') != undefined){
             Controller.prototype.bindEvents = function () {
                 this.dispatcher.bind('user_list', this.updateUserList);
                 this.dispatcher.bind('alert', this.consoleAlert); // метод на отлов действия с сервера
-                var notif_user = this.dispatcher.subscribe($.cookie('user_key'));
-                notif_user.bind("notification", this.notification);
+                var user_channel = this.dispatcher.subscribe($.cookie('user_key'));
+                user_channel.bind("notification", this.notification);
             };
 
             Controller.prototype.notification = function (message) { // Уведомления
+                message = JSON.parse(message);
                 notifyMyWeb({
                     timeClose: message.timeClose,
                     title: message.title,

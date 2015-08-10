@@ -10,286 +10,300 @@
 @import "common/mixins/transition";
 
 @font-face {
-    font-family : 'Icons';
-    src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
-    src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
+  font-family : 'Icons';
+  src         : url('/font/icomoon.eot'); /* IE9 Compat Modes */
+  src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
 *, *:before, *:after {
-    box-sizing : border-box;
+  box-sizing : border-box;
 }
 
 html {
-    position    : relative;
-    font-family : 'Roboto', sans-serif;
-    min-height  : 100%;
-    height      : 100%;
+  position    : relative;
+  font-family : 'Roboto', sans-serif;
+  min-height  : 100%;
+  height      : 100%;
 }
 
 body {
-    background-color : #ECEFF1;
-    height           : 100%;
-    min-height       : 100%;
-    height           : auto !important;
-    color            : $black_87;
-    font-weight      : 400 !important;
+  background-color : #ECEFF1;
+  height           : 100%;
+  min-height       : 100%;
+  height           : auto !important;
+  color            : $black_87;
+  font-weight      : 400 !important;
 }
 
 input:focus {
-    outline : none;
+  outline : none;
 }
 
 a {
-    color           : $black_87;
-    text-decoration : none;
+  color           : $black_87;
+  text-decoration : none;
 }
 
 p {
-    margin : 0;
+  margin : 0;
 }
 
 ul {
-    margin     : 0;
-    padding    : 0;
-    list-style : none;
+  margin     : 0;
+  padding    : 0;
+  list-style : none;
 }
 
 .icon {
-    font-family : Icons, sans-serif;
+  font-family : Icons, sans-serif;
 }
 
 i {
-    font-style : normal;
+  font-style : normal;
 }
 
 .content-courses {
-    padding : 90px 0 40px 0;
-    width   : 1090px;
-    margin  : 0 auto;
+  padding : 90px 0 40px 0;
+  width   : 1090px;
+  margin  : 0 auto;
 }
 
 .content {
-    padding : 40px 0 40px 0;
-    width   : 920px;
-    margin  : 0 auto;
+  padding : 40px 0 40px 0;
+  width   : 920px;
+  margin  : 0 auto;
 }
 
 .inner-content {
-    padding-top : 96px;
-    min-width   : 1066px;
-    .content-video {
-        position  : absolute;
-        top       : 50%;
-        left      : 50%;
-        transform : translate(-50%, -50%);
-    }
+  padding-top : 96px;
+  min-width   : 1066px;
+  .content-video {
+    position  : absolute;
+    top       : 50%;
+    left      : 50%;
+    transform : translate(-50%, -50%);
+  }
 }
 
 .new-courses-holder {
-    background-color : #F9F9F9;
+  background-color : #F9F9F9;
 }
 
 .color__ripple {
-    position      : absolute;
-    border-radius : 50%;
+  position      : absolute;
+  border-radius : 50%;
 }
 
 .small-ripple {
-    position           : fixed;
-    width              : 0px;
-    height             : 0px;
-    opacity            : 0;
-    border-radius      : 50px;
-    -webkit-transition : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    -moz-transition    : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    -o-transition      : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition         : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    z-index            : 99999;
+  position           : fixed;
+  width              : 0px;
+  height             : 0px;
+  opacity            : 0;
+  border-radius      : 50px;
+  -webkit-transition : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  -moz-transition    : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  -o-transition      : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition         : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  z-index            : 99999;
 }
 
 .small-ripple.animated {
-    width              : 50px;
-    height             : 50px;
-    opacity            : 0.3;
-    -webkit-transition : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    -moz-transition    : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    -o-transition      : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    transition         : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-    margin-left        : -25px;
-    margin-top         : -25px;
+  width              : 50px;
+  height             : 50px;
+  opacity            : 0.3;
+  -webkit-transition : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  -moz-transition    : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  -o-transition      : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition         : all 200ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  margin-left        : -25px;
+  margin-top         : -25px;
 }
 
 .btn-holder {
-    position : absolute;
-    right    : 24px;
-    bottom   : 8px;
-    @include clearfix;
+  position : absolute;
+  right    : 24px;
+  bottom   : 8px;
+  @include clearfix;
 }
 
 #alert {
-    position      : fixed;
-    display       : none;
-    z-index       : 1000;
-    bottom        : 20px;
-    left          : 50%;
-    height        : 52px;
-    padding       : 0 72px 0 16px;
-    transform     : translateX(-50%);
-    background    : rgba(0, 0, 0, .72);
-    border-radius : 4px;
-    font          : 400 14px/52px 'Roboto';
-    color         : #FFF;
-    text-align    : left;
-    .close {
-        position : absolute;
-        top      : 20px;
-        right    : 20px;
-        font     : 400 14px/1 'Roboto';
-        color    : #FFF;
-        cursor   : pointer;
-    }
+  position      : fixed;
+  display       : none;
+  z-index       : 1000;
+  bottom        : 20px;
+  left          : 50%;
+  height        : 52px;
+  padding       : 0 72px 0 16px;
+  transform     : translateX(-50%);
+  background    : rgba(0, 0, 0, .72);
+  border-radius : 4px;
+  font          : 400 14px/52px 'Roboto';
+  color         : #FFF;
+  text-align    : left;
+  .close {
+    position : absolute;
+    top      : 20px;
+    right    : 20px;
+    font     : 400 14px/1 'Roboto';
+    color    : #FFF;
+    cursor   : pointer;
+  }
 }
 
 #menus {
-    display : none;
+  display : none;
 }
 
 .content#groups {
-    padding-top : 130px;
+  padding-top : 130px;
 }
 
 .js__baron {
-    overflow-y : scroll;
-    &::-webkit-scrollbar {
-        width : 0;
-    }
+  overflow-y : scroll;
+  &::-webkit-scrollbar {
+    width : 0;
+  }
 }
 
 .js__backing {
-    &.is__active {
-        position : fixed;
-        top      : 0;
-        left     : 0;
-        width    : 100%;
-        height   : 100%;
-        z-index  : 1;
-    }
+  &.is__active {
+    position : fixed;
+    top      : 0;
+    left     : 0;
+    width    : 100%;
+    height   : 100%;
+    z-index  : 1;
+  }
 }
 
 .adova__btn {
-  @include white__block(1,1);
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  cursor: pointer;
-  text-align: center;
+  @include white__block(1, 1);
+  position      : fixed;
+  width         : 60px;
+  height        : 60px;
+  border-radius : 50%;
+  bottom        : 20px;
+  right         : 20px;
+  z-index       : 9999;
+  cursor        : pointer;
+  text-align    : center;
   i {
-    color: $primoryColor;
+    color : $primoryColor;
     &::before {
-      line-height: 60px;
-      font-size: 24px;
-      content: '\E899';
+      line-height : 60px;
+      font-size   : 24px;
+      content     : '\E899';
     }
   }
   &:active {
-    background-color: $primoryColor;
+    background-color : $primoryColor;
     i {
-      color: #fff;
+      color : #FFF;
     }
   }
 }
 
 .duration__with-icon {
-    padding-left : 20px;
-    position     : relative;
-    padding-top  : 2px;
-    i {
-        position  : absolute;
-        left      : 0;
-        top       : 2px;
-        font-size : 14px;
-        color     : rgba(0, 0, 0, 0.54);
-        &::before {
-            content : '\E71F';
-        }
+  padding-left : 20px;
+  position     : relative;
+  padding-top  : 2px;
+  i {
+    position  : absolute;
+    left      : 0;
+    top       : 2px;
+    font-size : 14px;
+    color     : rgba(0, 0, 0, 0.54);
+    &::before {
+      content : '\E71F';
     }
+  }
 }
 
 .notification {
-    position           : fixed;
-    top                : 0px;
-    right              : -50%;
-    z-index            : 10000;
-    width              : 450px;
-    height             : 128px;
-    margin-top         : 16px;
-    margin-right       : 16px;
-    -webkit-transition : all 300ms;
-    transition         : all 300ms;
-    @include white__block(1, 0);
-    &.open {
-        right : 0px;
+  position           : fixed;
+  top                : 0px;
+  right              : -100%;
+  z-index            : 10000;
+  width              : 450px;
+  height             : 128px;
+  margin-top         : 16px;
+  margin-right       : 16px;
+  -webkit-transition : all 300ms;
+  transition         : all 300ms;
+  @include white__block(1, 0);
+  &.visible{
+    visibility  : hidden;
+  }
+  &.open {
+    right : 0px;
+  }
+  .img {
+    display : inline-block;
+    float   : left;
+    img {
+      height : 128px;
     }
-    .img {
-        display : inline-block;
-        float   : left;
-        img {
-            height : 128px;
-        }
+  }
+  .notify_content {
+    padding     : 16px 16px 12px 16px;
+    margin-left : 128px;
+    .title {
+      padding-bottom : 8px;
+      width          : 284px;
+      font-size      : 20px;
+      @include eclipses;
     }
-    .notify_content {
-        padding     : 16px 16px 12px 16px;
-        margin-left : 128px;
-        .title {
-            padding-bottom : 8px;
-            width          : 284px;
-            font-size      : 20px;
-            @include eclipses;
-        }
-        .description {
-            //overflow : auto;
-            font-size : 15px;
-            width     : 284px;
-            height    : 68px;
-            cursor    : pointer;
-        }
-        .close {
-            display         : inline-block;
-            position        : absolute;
-            top             : 8px;
-            right           : 12px;
-            text-shadow     : 0 1px 0 #FFF;
-            text-decoration : none;
-            color           : #777;
-            font            : 20px/100% arial, sans-serif;
-            cursor          : pointer;
-            &:after {
-                content : '×';
-            }
-        }
+    .description {
+      //overflow : auto;
+      font-size : 15px;
+      width     : 284px;
+      height    : 68px;
+      cursor    : pointer;
     }
+    .close {
+      display         : inline-block;
+      position        : absolute;
+      top             : 8px;
+      right           : 12px;
+      text-shadow     : 0 1px 0 #FFF;
+      text-decoration : none;
+      color           : #777;
+      font            : 20px/100% arial, sans-serif;
+      cursor          : pointer;
+      &:after {
+        content : '×';
+      }
+    }
+  }
 }
 
 .content#groups {
-    @import "unique/pogorelov/group/courses";
-    @import "unique/groups/groups";
+  @import "unique/pogorelov/group/courses";
+  @import "unique/groups/groups";
 }
 
-.hiddenInputDataPicker{
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  opacity: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
+.hiddenInputDataPicker {
+  position   : absolute;
+  width      : 100%;
+  height     : 100%;
+  top        : 0;
+  left       : 0;
+  z-index    : 2;
+  opacity    : 0;
+  background : none;
+  border     : none;
+  cursor     : pointer;
+}
+
+.drunkenPig {
+  width        : 26px;
+  height       : 26px;
+  position     : relative;
+  font-size    : 25px;
+  margin-left  : 14px;
+  margin-right : 6px;
+  margin-top   : -2px;
+  color        : #A7A7A7;
 }
 
 @import "common/material__el/rippleAnimation";
@@ -319,5 +333,6 @@ i {
 @import "unique/tests/tests";
 @import "unique/no_content/no_content";
 @import "unique/attachments/videos";
+@import "unique/course/course__description";
 @import "attachments/audios";
 

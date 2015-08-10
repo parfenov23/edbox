@@ -75,16 +75,33 @@ module Api::V1
     end
 
     def add_course
-      if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
-        render json: bunch_course.as_json
+      if params[:date_complete].present?
+        if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
+          render json: bunch_course.as_json
+        else
+          render_error(500, 'Проверьте данные')
+        end
       else
         render_error(500, 'Проверьте данные')
       end
     end
 
+    def add_courses
+      hash_params = params[:courses]
+      hash_params.each do |course|
+        course = course.last
+        BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+      end
+      render json: {success: true}
+    end
+
     def update_course
-      if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group", nil, params[:sections]) rescue false)
-        render json: bunch_course.as_json
+      if params[:date_complete].present?
+        if (bunch_course = BunchCourse.build(params[:course_id], get_find_group.id, params[:date_complete], "group", nil, params[:sections]) rescue false)
+          render json: bunch_course.as_json
+        else
+          render_error(500, 'Проверьте данные')
+        end
       else
         render_error(500, 'Проверьте данные')
       end
@@ -93,6 +110,11 @@ module Api::V1
     def update_section
       group = get_find_group
       all_bunch_sections = group.bunch_courses.find_bunch_sections.where(section_id: params[:section_id])
+      find_ligament_section = group.find_ligament_section(params[:section_id])
+      if find_ligament_section.present?
+        find_ligament_section.date_complete = Time.parse(params[:date_complete]).end_of_day
+        find_ligament_section.save
+      end
       result = all_bunch_sections.update_all({date_complete: Time.parse(params[:date_complete]).end_of_day})
       render json: {result: result.as_json}
     end
