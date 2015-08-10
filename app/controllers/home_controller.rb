@@ -56,6 +56,10 @@ class HomeController < ActionController::Base
     end
   end
 
+  def tariff
+    @current_user = current_user
+  end
+
   def members
     @members = current_user.company.users
   end

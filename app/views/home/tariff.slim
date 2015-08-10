@@ -1,6 +1,5 @@
 #header__holder
-  = render "home/header/header" , {header_top_arr:['notifications']}
-  = render "home/header/header_bottom", {header_bottom: {block: "profile", title: 'Мой профиль', tariff_class: "active"} }
+  = render "home/header/header", {namePage: 'profile', titlePage: 'Мой профиль'}
 
 .inner-content
   .content#profile
@@ -23,34 +22,6 @@
       .title Корпоративная подписка
       .clearfix
       .text.black
-        |Стоимость каждого пользователя 1 000i в месяц. Подключить подписку вы можете,
+        |Стоимость каждого пользователя 1 000₽ в месяц. Подключить подписку вы можете,
         br
         |связавшись с нашим менеджером по тел.: (343) 745 56 66
-
-    .profile__block.profile__block-tariff.profile__tariff-paid
-      .title Корпоративная подписка
-      .time
-        span> Подключено
-        span 9 мая 2015 года
-      .clearfix
-      / .quantity
-      /   span> 20
-      /   span пользователей
-      ul.info
-        li.info__item
-          .info__item-top Количество пользователей
-          .info__item-bottom 20
-        li.info__item
-          .info__item-top
-            p Стоимость подписки
-            p за 1 пользователя
-          .info__item-bottom
-            span>1 000
-            span ₽
-        li.info__item
-          .info__item-top
-            p Сумма для оплаты за период
-            p 15 мая - 15 июня
-          .info__item-bottom
-            span> 20 000
-            span ₽
