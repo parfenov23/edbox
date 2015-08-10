@@ -4,7 +4,9 @@
     .test-info
       .title
         .title-text Тест курса «#{@course.title}»
-        .duration #{@course.duration} часа
+        - if @test.duration.present?
+          i.duration.icon style="text-align : right"
+          .duration #{@test.duration} часа
       .description #{@test.title}
       .question-qty Вопросов в тесте: #{@test.questions.count}
     .test-block
@@ -35,5 +37,5 @@
         .btn.finish-btn#submit ЗАВЕРШИТЬ ТЕСТ
     .result-block
       .test-list
-        .title Тест пройдет. Поздравляем вас с окончанием курса!
-        .description Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопроса из 3 вопросов.
+        .title Тест пройден. Поздравляем вас с окончанием курса!
+        .description Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопросов из 3.

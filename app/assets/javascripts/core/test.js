@@ -61,7 +61,7 @@ var warningTestText = function(invalidTestItemsIds){
 
 var testResult = function(response){
     var result = $('#tests .result-block');
-    var text = 'Ваш результат прохождения теста ' + response.result + '%. Вы ответили правильно на ' + response.right_answers + ' вопроса из ' + response.all_questions + ' вопросов.'
+    var text = 'Ваш результат прохождения теста ' + response.result + '%. Вы ответили правильно на ' + response.right_answers + ' вопросов из ' + response.all_questions + '.'
     result.find('.description').text(text);
     var test = $('#tests .test-block');
     test.hide();
