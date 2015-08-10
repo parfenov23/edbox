@@ -1,10 +1,10 @@
 .container
     .container-inner
-        h2 Программа группы
+        h2  =(titleText rescue  "Программа группы")
         .timetable-description
-            p Для того, чтобы создать программу, вам необходимо добавить курсы. Вы можете выбрать курсы из «Избранного» или библиотеки. 
+            p =(descriptionText rescue "Для того, чтобы создать программу, вам необходимо добавить курсы. Вы можете выбрать курсы из «Избранного» или библиотеки.")
         ul.button-area
             li
                 a.orange-button href="/courses"  ПОДОБРАТЬ КУРС
             li
-                a.orange-button href="/favorite"  ПЕРЕЙТИ В ИЗБРАННОЕ
+                a.orange-button href="/my_course?type=favorite"  ПЕРЕЙТИ В ИЗБРАННОЕ
