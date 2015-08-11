@@ -15,7 +15,15 @@ form.form-horizontal action="#{action_url}" method="post"
         input.form-control name="account_type[title]" type="text" value="#{@account_type.title}"
     .form-group
         label
-            | Название:
+            | Информация:
         input.form-control name="account_type[info]" type="text" value="#{@account_type.info}"
+    .form-group
+        label
+            | Корпоративный аккаунт?:
+        = check_box('account_type', 'corporate', { checked: @account_type.corporate })
+    .form-group
+        label
+            | Платный аккаунт?:
+        = check_box('account_type', 'paid', { checked: @account_type.paid })
     input type="hidden" name="_method" value="#{method}"
     button.btn.btn-primary type="submit" Сохранить

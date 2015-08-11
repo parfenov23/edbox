@@ -58,6 +58,9 @@ class HomeController < ActionController::Base
 
   def tariff
     @current_user = current_user
+    @account_type =  current_user.get_account_type
+    @offer = AccountType.where(corporate: @account_type.corporate, paid: true).last
+    @user_company = @current_user.company
   end
 
   def members
