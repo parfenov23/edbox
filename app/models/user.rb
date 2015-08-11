@@ -67,9 +67,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_account_type_relation
+    if corporate?
+      company.account_type_relations.last
+    else
+      account_type_relations.last
+    end
+  end
+
   def update_account_type(account_type_id)
     unless account_type_id == (get_real_account_type.id rescue nil)
-      AccountTypeRelation.new({modelable_type: "User", modelable_id: id, account_type_id: account_type_id}).save
+      AccountTypeRelation.new({
+                                modelable_type: "User",
+                                modelable_id: id,
+                                account_type_id: account_type_id,
+                                date: DateTime.now
+                              }).save
     end
   end
 

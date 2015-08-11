@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810121540) do
+ActiveRecord::Schema.define(version: 20150811064308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_type_relations", force: true do |t|
-    t.string  "modelable_type"
-    t.integer "modelable_id"
-    t.integer "account_type_id"
+    t.string   "modelable_type"
+    t.integer  "modelable_id"
+    t.integer  "account_type_id"
+    t.datetime "date"
   end
 
   create_table "account_types", force: true do |t|

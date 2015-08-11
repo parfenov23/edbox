@@ -58,9 +58,10 @@ class HomeController < ActionController::Base
 
   def tariff
     @current_user = current_user
-    @account_type =  current_user.get_account_type
+    @account_type =  @current_user.get_account_type
     @offer = AccountType.where(corporate: @account_type.corporate, paid: true).last
     @user_company = @current_user.company
+    @account_type_date = (@current_user.get_account_type_relation.date rescue nil)
   end
 
   def members
