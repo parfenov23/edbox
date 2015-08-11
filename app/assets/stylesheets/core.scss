@@ -1,3 +1,29 @@
+#js-course-tags {
+  width       : 400px !important;
+  z-index     : 999;
+  padding-top : 0;
+  .all__Tags {
+    .tag {
+      display       : inline-block;
+      margin-right  : 10px;
+      padding       : 2px 10px 2px 10px;
+      border        : 1px solid #D8D8D8;
+      color         : #757575;
+      border-radius : 2px;
+      margin-bottom : 10px;
+      cursor        : pointer;
+      &:hover {
+        color  : #00BCD4;
+        border : 1px solid #00BCD4;
+      }
+      &.active {
+        color  : #00BCD4;
+        border : 1px solid #00BCD4;
+      }
+    }
+  }
+}
+
 .contenter {
   .cabinet__block {
     .actual-courses {
@@ -79,17 +105,20 @@
             content : '×';
           }
         }
-        .tag {
-          position      : relative;
-          display       : inline-block;
-          margin-right  : 10px;
-          padding       : 2px 24px 2px 10px;
-          border        : 1px solid #D8D8D8;
-          color         : #757575;
-          border-radius : 3px;
-          .remove {
-            top   : 2px;
-            right : 5px;
+        .allTagDescriptionCourse {
+          display : inline-block;
+          .tag {
+            position      : relative;
+            display       : inline-block;
+            margin-right  : 10px;
+            padding       : 2px 24px 2px 10px;
+            border        : 1px solid #D8D8D8;
+            color         : #757575;
+            border-radius : 3px;
+            .remove {
+              top   : 2px;
+              right : 5px;
+            }
           }
         }
         .addTag {

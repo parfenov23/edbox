@@ -62,6 +62,8 @@ Rails.application.routes.draw do
         end
         member do
           get :info
+          post :add_tag
+          post :remove_tag
         end
       end
 
