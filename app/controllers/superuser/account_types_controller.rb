@@ -39,7 +39,7 @@ module Superuser
     end
 
     def params_account_type
-      params.require(:account_type).permit(:name)
+      params.require(:account_type).permit(:name, :title, :info, :corporate, :paid)
     end
   end
 end

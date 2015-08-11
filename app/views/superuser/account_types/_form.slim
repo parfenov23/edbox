@@ -7,7 +7,23 @@
 form.form-horizontal action="#{action_url}" method="post"
     .form-group
         label
-            | Название:
+            | Системное имя:
         input.form-control name="account_type[name]" type="text" value="#{@account_type.name}"
+    .form-group
+        label
+            | Название:
+        input.form-control name="account_type[title]" type="text" value="#{@account_type.title}"
+    .form-group
+        label
+            | Информация:
+        input.form-control name="account_type[info]" type="text" value="#{@account_type.info}"
+    .form-group
+        label
+            | Корпоративный аккаунт?:
+        = check_box('account_type', 'corporate', { checked: @account_type.corporate })
+    .form-group
+        label
+            | Платный аккаунт?:
+        = check_box('account_type', 'paid', { checked: @account_type.paid })
     input type="hidden" name="_method" value="#{method}"
     button.btn.btn-primary type="submit" Сохранить

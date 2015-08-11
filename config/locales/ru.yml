@@ -252,6 +252,7 @@ ru:
     formats:
       default: "%a, %d %b %Y, %H:%M:%S %z"
       long: "%d %B %Y, %H:%M"
+      long_without_time: "%d %B %Y"
       short: "%d %b, %H:%M"
       short_min: "%d %b"
     pm: вечера

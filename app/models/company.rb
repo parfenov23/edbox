@@ -24,7 +24,11 @@ class Company < ActiveRecord::Base
 
   def update_account_type(account_type_id)
     unless account_type_id == (get_account_type.id rescue nil)
-      AccountTypeRelation.new({modelable_type: "Company", modelable_id: id, account_type_id: account_type_id}).save
+      AccountTypeRelation.new({modelable_type: "Company",
+                               modelable_id: id,
+                               account_type_id: account_type_id,
+                               date: DateTime.now
+                              }).save
     end
   end
 
