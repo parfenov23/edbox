@@ -23,8 +23,14 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /.item
     /  i.notification.icon
     - if namePage == "group"
-      .item.js_openPopupNewGroup
-        i.add.icon
+      - if current_user.director
+        .item.js_openPopupNewGroup
+          i.add.icon
+
+    - if namePage == "contenter_courses"
+      - if current_user.director
+        a.item href="/contenter/courses/new/edit"
+          i.add.icon
     /.item
     /  .notification__with-qty ...
     - if namePage == "cabinet"

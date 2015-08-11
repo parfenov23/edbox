@@ -12,11 +12,24 @@ module NavLinkHelper
         other_nav_links
       when "my_course"
         my_course_nav_links
+      when "contenter_courses_new"
+        contenter_courses_new_nav_links
+      else
+        other_nav_links
     end
   end
 
   def courses_nav_links
     []
+  end
+
+  def contenter_courses_new_nav_links
+    id = params[:id].present? ? params[:id] : "new"
+    [
+      {title: "Описание", link: "/contenter/courses/#{id}/edit"},
+      {title: "Программа", link: "/contenter/courses/#{id}/program"},
+      {title: "Публикация", link: "/contenter/courses/#{id}/publication"}
+    ]
   end
 
   def my_course_nav_links
