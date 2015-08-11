@@ -173,4 +173,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :contenter do
+    resources :courses do
+      collection do
+        # get :index
+      end
+      member do
+        # get :remove
+      end
+    end
+  end
+
 end

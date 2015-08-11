@@ -16,6 +16,7 @@
 
 //= require websocket_rails/main
 //= require_tree ./websocket
+//= require_tree ./contenter
 
 $.fn.count_text_input = function () {
     // .replace(/\W/gi," ")

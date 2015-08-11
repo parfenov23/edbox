@@ -1,0 +1,6 @@
+= render "home/header/header", {namePage: "contenter_courses", titlePage: "Главная страница"}
+.inner-content.contenter
+  .content#cabinet.cabinet__block
+    = render "contenter/courses/index/info"
+    .actual-courses
+      = render "contenter/courses/index/course", {courses: Course.all, titleCourses: "Мои курсы"}

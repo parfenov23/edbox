@@ -1,0 +1,20 @@
+.title
+  .info
+    = (titleCourses rescue "Неизвестно")
+  .more
+    a href = "/my_course?type=current" СМОТРЕТЬ ВСЕ
+.carusel-wrp
+  .info-box
+    .course-prev-list
+      - courses.first(4).each do |course|
+        figure.corses-prev.compact.js__removeCourseMyBlock
+          .image
+            img src=course.get_image_path('347x192')
+            - course.bunch_tags.last(1).each do |bunch_tag|
+              .tegs = bunch_tag.tag.title
+          figcaption
+            .title.with_btn
+              .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
+              .shadow
+            .author
+              |Денис Баталин
