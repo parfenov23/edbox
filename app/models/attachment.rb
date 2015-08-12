@@ -1,4 +1,5 @@
 require 'carrierwave/orm/activerecord'
+require 'video_proc'
 class Attachment < ActiveRecord::Base
   AUDIO_FILE = 'audio'
   IMAGE_FILE = 'image'
@@ -42,6 +43,10 @@ class Attachment < ActiveRecord::Base
 
   def file_url
     file.url
+  end
+
+  def video_info
+    VideoProc.video_info(file.file)
   end
 
   private

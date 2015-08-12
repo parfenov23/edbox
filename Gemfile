@@ -32,6 +32,7 @@ gem 'skim', '~> 0.9.3'
 gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
+gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
