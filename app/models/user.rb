@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   def get_account_type
     if corporate?
-      company.get_account_type
+      (company.get_account_type rescue nil)
     else
       get_real_account_type
     end
