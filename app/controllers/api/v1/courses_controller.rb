@@ -40,6 +40,21 @@ module Api::V1
       render json: tag.as_json
     end
 
+    def add_leading
+      course = find_course
+      ligament_leading = course.ligament_leads.find_or_create_by({user_id: params[:leading_id]})
+      render json: ligament_leading.user.transfer_to_json
+    end
+
+    def remove_leading
+      course = find_course
+      ligament_leading = course.ligament_leads.where({user_id: params[:leading_id]}).last
+      user = ligament_leading.user.transfer_to_json
+      ligament_leading.destroy
+      render json: user
+    end
+
+
     private
 
     def find_course

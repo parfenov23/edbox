@@ -64,6 +64,8 @@ Rails.application.routes.draw do
           get :info
           post :add_tag
           post :remove_tag
+          post :add_leading
+          post :remove_leading
         end
       end
 
@@ -178,10 +180,9 @@ Rails.application.routes.draw do
   namespace :contenter do
     resources :courses do
       collection do
-        # get :index
       end
       member do
-        # get :remove
+        get :program
       end
     end
   end

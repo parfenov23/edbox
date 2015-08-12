@@ -12,7 +12,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     .page__title = titlePage
     .page__children
       - menu_nav_links(namePage).each do |item|
-        a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") = item[:title]
+        - add_params = item[:add_params].present? ? item[:add_params] : {}
+        a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") *add_params
+          = item[:title]
       .line
 
 
