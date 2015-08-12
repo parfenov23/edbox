@@ -1,32 +1,46 @@
 = render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
-- @course = Course.last
+- course = params[:id] == "new" ? Course.new : Course.find(params[:id])
+#js-course-tags.courses-aside.favorite-courses
+  .close-filter.icon Теги
+  .all__Tags
+    - course_bunch_tags = course.bunch_tags
+    - Tag.all.each do |tag|
+      .tag.js__contenterAddTagToCourse data-id=tag.id class=(course_bunch_tags.where(tag_id: tag.id).present? ? "active" : "") = tag.title
+
 .contenter
   .presentation__block
-    img src = @course.get_image_path('full')
+    img src = course.get_image_path('full')
 
-  form.course__description-content.oh__nihuyase-block
-    input type="hidden" name="course[id]" value="new"
-    input.course__title.js_onChangeEditCourse placeholder="Введите название курса" name="course[title]"
+  form.course__description-content.oh__nihuyase-block.js_courseContenter
+    input type="hidden" name="course[id]" value=params[:id]
+    input type="hidden" name="course[user_id]" value=current_user.id
+    input.course__title.js_onChangeEditCourse placeholder="Введите название курса" name="course[title]" value=course.title
     .course__info
       .adaptive__title
         .left-col style="height: 56px;"
           .item
-            |10 леций
+            - sections_count = course.sections.count
+            = rus_case(sections_count, "лекция", "лекции", "лекций")
             i.courses.icon
           .item
-            |5 часов
+            - course_duration = course.duration.to_i
+            = rus_case(course_duration, "минута", "минуты", "минут")
             i.duration.icon
       .detail__info
         .description
-          textarea placeholder="Введите описание курса" name="course[description]"
+          textarea.js_onChangeEditCourse placeholder="Введите описание курса" name="course[description]"
+            = course.description
       .itemDetailInfo
         .title__Item Теги
         .description__Item
-          .tag
-            |Бесплатно
-            .remove
-          .addTag
-            .btn.btn-flat ДОБАВИТЬ ТЕГ
+          .allTagDescriptionCourse
+            - course.bunch_tags.each do |bunch_tag|
+              - tag = bunch_tag.tag
+              .tag
+                = tag.title
+                .remove.js_removeBunchTagFromCourse data-id=tag.id
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
       .itemDetailInfo.detail__info
         .title__Item Ведущие курса
         .leading__list
