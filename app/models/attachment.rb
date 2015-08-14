@@ -1,4 +1,5 @@
 require 'carrierwave/orm/activerecord'
+require 'video_proc'
 class Attachment < ActiveRecord::Base
   AUDIO_FILE = 'audio'
   IMAGE_FILE = 'image'
@@ -15,6 +16,7 @@ class Attachment < ActiveRecord::Base
   before_save :set_file_type
   has_many :bunch_attachments
 
+  default_scope { where(archive: false) } #unscoped
 
   def self.save_file(type, id, file, size=nil)
     class_name = type
@@ -24,6 +26,12 @@ class Attachment < ActiveRecord::Base
     attachment.file = file
     attachment.size  = size
     attachment.save
+    if (attachment.file_type == VIDEO_FILE) && (attachment.size == nil)
+      Thread.new do
+        attachment.video_decode
+        attachment.to_archive
+      end
+    end
     attachment
   end
 
@@ -42,6 +50,29 @@ class Attachment < ActiveRecord::Base
 
   def file_url
     file.url
+  end
+
+  def self.all_with_archive
+    with_exclusive_scope { find(:all) }
+  end
+
+  def to_archive
+    self.archive = true
+    self.save
+  end
+
+  def video_decode
+    new_file_name = file.file.basename + '-' + Time.now.to_i.to_s + '-min.mp4'
+    new_file_path = Rails.root.to_s + '/tmp/video/' + new_file_name
+    VideoProc.decode(file.file, new_file_path)
+    if File.exist?(new_file_path)
+      new_file = File.open(new_file_path)
+      attachment = Attachment.save_file(self.attachmentable_type, self.attachmentable_id, new_file, size='720p')
+      attachment.title = self.title
+      attachment.duration = self.duration
+      attachment.save
+      File.delete(new_file_path)
+    end
   end
 
   private
