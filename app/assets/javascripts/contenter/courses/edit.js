@@ -155,7 +155,6 @@ var removeLigamentLeadFromCourse = function () {
     });
 };
 
-
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);

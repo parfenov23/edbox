@@ -18,14 +18,32 @@
 //= require_tree ./websocket
 //= require_tree ./contenter
 
+(function($) {
+    $.fn.serializefiles = function() {
+        var obj = $(this);
+        /* ADD FILE TO PARAM AJAX */
+        var formData = new FormData();
+        $.each($(obj).find("input[type='file']"), function(i, tag) {
+            $.each($(tag)[0].files, function(i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+        var params = $(obj).serializeArray();
+        $.each(params, function (i, val) {
+            formData.append(val.name, val.value);
+        });
+        return formData;
+    };
+})(jQuery);
+
 $.fn.count_text_input = function () {
     // .replace(/\W/gi," ")
     var text_block;
     var tag_name = $(this).prop("tagName");
     var valid_tag = ["INPUT", "TEXTAREA"];
-    if ($.inArray(tag_name, valid_tag) > -1 ){
+    if ($.inArray(tag_name, valid_tag) > - 1){
         text_block = $(this).val();
-    }else{
+    } else {
         text_block = $(this).text();
     }
     var first_input_text = text_block.replace(/\n/, " ").replace(/\s{2,}/gi, " ").replace(/ $/, "").replace(/^ /, "");
@@ -88,8 +106,26 @@ var notifyMypush = function (message) {
     NotifyMe.launch(message.title, options);
 }
 
-$(document).ready(function () {
+var adaptiveTitle = function () {
+    return $('.adaptive__title').each(function () {
+        var rightWidth;
+        rightWidth = $(this).find('.right-col').width();
+        return $(this).find('.left-col').css({
+            width: $(this).width() - rightWidth + 'px'
+        });
+    });
+};
 
+$(document).ready(function () {
+    jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+        var offset = this.offsetHeight - this.clientHeight;
+
+        var resizeTextarea = function(el) {
+            jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+        };
+        resizeTextarea(this);
+        jQuery(this).on('keyup input click', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+    });
 
     $.material.init()
 

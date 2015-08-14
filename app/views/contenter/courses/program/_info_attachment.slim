@@ -1,0 +1,13 @@
+.info_attachment
+  .icon__block
+    i.icon class=attachment.class_type
+  .adaptive__title
+    .fixed-h
+      - title = attachment.title
+      .left-col.title = title.present? ? title : "Нет заголовка"
+    .right-col
+      - duration = attachment.duration
+      = rus_case(duration, "минута", "минуты", "минут") if duration > 0
+      .remove.js_removeAttachmentToSection data-id=attachment.id
+  - description = attachment.description
+  .description = description.present? ? description : "Нет описания"

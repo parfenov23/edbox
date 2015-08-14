@@ -53,6 +53,15 @@ Rails.application.routes.draw do
         member do
           get :render_file
           post :complete
+          post :remove
+          post :attachment_contenter_html
+          post :set_type
+        end
+      end
+      resources :sections do
+        member do
+          post :contenter_html
+          post :remove
         end
       end
 

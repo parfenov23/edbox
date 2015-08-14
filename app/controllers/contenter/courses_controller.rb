@@ -5,11 +5,9 @@ module Contenter
     layout "application"
 
     def index
-      
     end
 
     def edit
-
     end
 
   end
