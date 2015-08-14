@@ -63,7 +63,9 @@ class Attachment < ActiveRecord::Base
 
   def video_decode
     new_file_name = file.file.basename + '-' + Time.now.to_i.to_s + '-min.mp4'
-    new_file_path = Rails.root.to_s + '/tmp/video/' + new_file_name
+    storage_path = Rails.root.to_s + '/tmp/video/'
+    Dir.mkdir(storage_path) unless File.exists?(storage_path + '/tmp/video/')
+    new_file_path = storage_path + new_file_name
     VideoProc.decode(file.file, new_file_path)
     if File.exist?(new_file_path)
       new_file = File.open(new_file_path)
