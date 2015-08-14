@@ -13,7 +13,7 @@ headerSubmenu = ->
   chPageWidth = $('.page__children').width()
   titleWidth = $('.page__title ').width()
   rightWidt = $('.right-col').width()
-  if chPageWidth + titleWidth + 107 > headerWidth- rightWidt
+  if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
     $('#page__header .left-col').addClass('is__sooo-long')
     $('#page__header').removeClass('with__children ')
     $('#page__header .page__children').addClass('js__baron')
@@ -56,27 +56,26 @@ carusel = ->
     $(this).addClass 'inactive'
   ).jcarouselControl target: '+=2'
 
-  # $('.jcarousel').on 'jcarousel:firstin', 'li', (event, carousel) ->
-  #   qty = carousel._items.length
-  #   last = carousel._last
-  #   if $(last).index()+3 == qty
-  #     $('.jcarousel-control-next').addClass 'inactive'
-  #   else
-  #     $('.jcarousel-control-next').removeClass 'inactive'
-  #
-  #   console.log last
+# $('.jcarousel').on 'jcarousel:firstin', 'li', (event, carousel) ->
+#   qty = carousel._items.length
+#   last = carousel._last
+#   if $(last).index()+3 == qty
+#     $('.jcarousel-control-next').addClass 'inactive'
+#   else
+#     $('.jcarousel-control-next').removeClass 'inactive'
+#
+#   console.log last
 
 
 $(document).ready ->
   $('img:last').load ->
-
     figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
     figcaptionTitleEclipses('.favorite-item .description .title', 56)
     figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
 
     $('.js__tooltip').hover (->
       $(@).addClass('is__visible-tooltip')
-      ), ->
+    ), ->
       $(@).removeClass('is__visible-tooltip')
 
     headerSubmenu()
@@ -127,7 +126,7 @@ $(document).ready ->
     $('.js__select-calendar').hover (->
       $(@).addClass('is__active')
       $('.js__backing').addClass('is__active')
-      ), ->
+    ), ->
       if $('#ui-datepicker-div').is(':hidden')
         console.log 12
         $(@).removeClass('is__active')
@@ -150,7 +149,7 @@ $(document).ready ->
       $(@).removeClass('is__active')
       $('.js__left-aside').removeClass('is__active')
 
-    $('.schedule-item .additional-info .action-btn').on 'click',(e) ->
+    $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
       $(document).trigger 'click.dropdown'
       list = $(@).find('ul.hidden-list').show()
       $('body').bind 'click.dropdown', (ev) ->
@@ -158,7 +157,7 @@ $(document).ready ->
           list.hide()
           $(document).unbind 'click.dropdown'
 
-    $('.schedule-header .select-trigger').on 'click',(e) ->
+    $('.schedule-header .select-trigger').on 'click', (e) ->
       $(document).trigger 'click.dropdown'
       list = $(@).closest('.psevdo-select').find('ul.hidden-list').show()
       $('body').bind 'click.dropdown', (ev) ->
@@ -171,21 +170,25 @@ $(document).ready ->
 
     adaptiveTitle()
 
-    $('.js__toggle-state .fixed-h .title').on 'click', (e) ->
+    hideBlock = (elem) ->
+      $(elem).removeClass('open-state').addClass 'closed-state'
+
+    $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
       $(document).trigger 'click.dropdown'
       el = $(@).closest('.js__toggle-state')
-      hideBlock = (elem) ->
-        $(elem).removeClass('open-state').addClass 'closed-state'
       if el.hasClass('closed-state')
         hideBlock('.js__toggle-state')
         el.removeClass('closed-state').addClass 'open-state'
         adaptiveTitle()
       else
         hideBlock(el)
-      $('body').bind 'click.dropdown', (ev) ->
-        unless e.target.closest('.js__toggle-state') == ev.target.closest('.js__toggle-state')
-          hideBlock(el)
-          $(document).unbind 'click.dropdown'
+        adaptiveTitle()
+
+    $('body').bind 'click.dropdown', (ev) ->
+      unless $(ev.target.closest('.js__toggle-state')).length
+        hideBlock($('.js__toggle-state'))
+        adaptiveTitle()
+        $(document).unbind 'click.dropdown'
 
     headerTabsLine('.page__children .item.active')
     # tabsCorusel()

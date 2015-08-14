@@ -1,7 +1,13 @@
 = render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
 - course = params[:id] == "new" ? Course.new : Course.find(params[:id])
 .contenter#contenterCourseProgram
-  .inner-content
-    .programs
-      .section
-        |1111
+  .inner-content.oh__nihuyase-block
+    .programs.study__program.js_parentClosestSection
+      .allSectionsProgram
+        - course.sections.order("created_at ASC").each do |section|
+          = render "contenter/courses/program/section", {section: section, course: course}
+
+      .section.add_new
+        .btn.btn-flat.js_createSectionToSection data-course_id=course.id ДОБАВИТЬ РАЗДЕЛ
+      .section.add_new
+        .btn.btn-flat ДОБАВИТЬ ФИНАЛЬНЫЙ ТЕСТ

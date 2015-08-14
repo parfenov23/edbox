@@ -277,6 +277,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
+    streamio-ffmpeg (1.0.0)
     temple (0.6.10)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
@@ -358,6 +359,7 @@ DEPENDENCIES
   spawnling (~> 2.1)
   sqlite3
   sqlite3_ar_regexp (~> 2.1)
+  streamio-ffmpeg
   thin (~> 1.5.0)
   turbolinks
   uglifier
