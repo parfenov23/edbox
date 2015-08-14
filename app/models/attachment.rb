@@ -3,12 +3,14 @@ class Attachment < ActiveRecord::Base
   AUDIO_FILE = 'audio'
   IMAGE_FILE = 'image'
   VIDEO_FILE = 'video'
+  PDF_FILE = 'pdf'
   OTHER_FILE = 'other'
 
   AVAILABLE_IMAGES = ['jpg', 'jpeg', 'gif', 'png']
-  AVAILABLE_AUDIO = ['mp3','wav','m4a']
+  AVAILABLE_AUDIO = ['mp3', 'wav', 'm4a']
   AVAILABLE_VIDEO = ['mp4', 'webm', 'ogg', 'm4v', 'mov']
-  AVAILABLE_OTHERS = ['pdf', 'txt', 'doc', 'docx', 'zip', 'ppt', 'pptx', 'xls', 'xlsx']
+  AVAILABLE_OTHERS = ['txt', 'doc', 'docx', 'zip', 'ppt', 'pptx', 'xls', 'xlsx']
+  AVAILABLE_PDF = ['pdf']
   EXCEPT_ATTR = ["created_at", "updated_at", "file"]
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
@@ -22,7 +24,7 @@ class Attachment < ActiveRecord::Base
     attachmentable = class_name.classify.constantize.find(id)
     attachment = attachmentable.attachments.build
     attachment.file = file
-    attachment.size  = size
+    attachment.size = size
     attachment.save
     attachment
   end
@@ -44,20 +46,27 @@ class Attachment < ActiveRecord::Base
     file.url
   end
 
+  def transfer_to_json
+    as_json
+  end
+
   private
+
   def set_file_type
-    extension = file.file.extension.downcase
-    type = OTHER_FILE
+    if file.present?
+      extension = file.file.extension.downcase
+      type = OTHER_FILE
 
-    if AVAILABLE_IMAGES.include?(extension)
-      type = IMAGE_FILE
-    elsif AVAILABLE_AUDIO.include?(extension)
-      type = AUDIO_FILE
-    elsif AVAILABLE_VIDEO.include?(extension)
-      type = VIDEO_FILE
+      if AVAILABLE_IMAGES.include?(extension)
+        type = IMAGE_FILE
+      elsif AVAILABLE_AUDIO.include?(extension)
+        type = AUDIO_FILE
+      elsif AVAILABLE_VIDEO.include?(extension)
+        type = VIDEO_FILE
+      end
+
+      self.file_type = type
     end
-
-    self.file_type = type
   end
 
 end

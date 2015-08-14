@@ -8,6 +8,10 @@ class Section < ActiveRecord::Base
     attachments.map{|at| at.type}.uniq
   end
 
+  def transfer_to_json
+    as_json
+  end
+
   def bunch_section(user_id)
     user = User.find(user_id)
     user.bunch_courses.joins(:bunch_sections).

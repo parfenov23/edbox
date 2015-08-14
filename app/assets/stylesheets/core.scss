@@ -198,13 +198,190 @@
   }
 }
 
+//////////
 .contenter#contenterCourseProgram {
-  .programs {
-    .section {
-      width            : 984px;
-      margin           : 0 auto;
-      background-color : #EEE;
-    }
-
+  .oh__nihuyase-block {
+    margin-top : 0px;
   }
+  .inner-content {
+    padding-top : 128px;
+    .programs {
+      .section {
+        width            : 984px;
+        margin           : 0 auto;
+        background-color : #E0E0E0;
+        margin-bottom    : 24px;
+        border-radius    : 2px;
+        .title.input_section {
+          position      : relative;
+          padding       : 8px 12px 8px 12px;
+          border-bottom : 1px solid #D0D0D0;
+          margin-bottom : 0px;
+          font-size     : 15px;
+          .remove {
+            display         : inline-block;
+            position        : absolute;
+            top             : 8px;
+            right           : 12px;
+            text-shadow     : 0 1px 0 #FFF;
+            text-decoration : none;
+            color           : #777;
+            font            : 20px/100% arial, sans-serif;
+            cursor          : pointer;
+            &:after {
+              content : '×';
+            }
+          }
+          .numberSection {
+            color : #757575;
+          }
+          .section_title {
+            width            : 95%;
+            background-color : rgba(255, 255, 255, 0);
+            border           : 0;
+            outline          : none;
+          }
+        }
+        .descriptionSection {
+          padding : 16px;
+          .add_attachment {
+            @include white__block(1, 1);
+          }
+          .attachment {
+            @include white__block(1, 1);
+            margin-bottom : 16px;
+            .adaptive__title {
+              .right-col {
+                .remove {
+                  display         : inline-block;
+                  position        : relative;
+                  top             : -2px;
+                  text-shadow     : 0 1px 0 #FFF;
+                  text-decoration : none;
+                  color           : #777;
+                  font            : 20px/100% arial, sans-serif;
+                  cursor          : pointer;
+                  margin-left     : 10px;
+                  &:after {
+                    content : '×';
+                  }
+                }
+              }
+              .left-col {
+                margin-bottom : 0px;
+              }
+            }
+            .edit_attachment {
+              display : none;
+            }
+            &.open-state {
+              height  : 100%;
+              width   : calc(100% + 176px);
+              margin  : 12px -88px 12px -88px;
+              padding : 13px 16px 16px 64px;
+              .info_attachment {
+                display : none;
+              }
+              .edit_attachment {
+                display : block;
+                .form_edit {
+                  width : 904px;
+                  .remove {
+                    display         : inline-block;
+                    position        : absolute;
+                    top             : 18px;
+                    right           : 35px;
+                    text-shadow     : 0 1px 0 #FFF;
+                    text-decoration : none;
+                    color           : #777;
+                    font            : 20px/100% arial, sans-serif;
+                    cursor          : pointer;
+                    &:after {
+                      content : '×';
+                    }
+                  }
+                  .form_group {
+                    &.fixedHeight {
+                      height : 181px;
+                    }
+                    .titleEdit {
+                      font-size     : 12px;
+                      color         : #757575;
+                      margin-bottom : 12px;
+                    }
+                    .input_title {
+                      .numberSection {
+                        margin-right : 5px;
+                      }
+                      .attachmentInput {
+                        width            : 95%;
+                        background-color : rgba(255, 255, 255, 0);
+                        border           : 0;
+                        outline          : none;
+                        resize           : none;
+                      }
+                      textarea.attachmentInput {
+                        width      : 100%;
+                        max-height : 120px;
+                        min-height : 42px;
+                        //height: 120px;
+                      }
+
+                    }
+                    hr {
+                      border           : none;
+                      color            : rgba(0, 0, 0, 0.26);
+                      background-color : rgba(0, 0, 0, 0.26);
+                      height           : 1px;
+                    }
+                    .validateMaxCount {
+                      text-align : right;
+                      font-size  : 12px;
+                      color      : rgba(0, 0, 0, 0.26);
+                    }
+                  }
+                  .upload_attachments {
+                    height : 120px;
+                    .uploadFileInput {
+                      width    : 0;
+                      height   : 0;
+                      position : absolute;
+                      opacity  : 0;
+                    }
+                    .selectAttachment {
+                      margin-right  : 16px;
+                      display       : inline-block;
+                      text-align    : center;
+                      color         : #777;
+                      padding       : 32px 5px 5px 5px;
+                      border        : 1px solid #777;
+                      border-radius : 4px;
+                      width         : 128px;
+                      height        : 120px;
+                      float         : left;
+                      cursor        : pointer;
+                      &:hover {
+                        background-color : #F7F7F7;
+                      }
+                      &.active {
+                        background-color : #F7F7F7;
+                      }
+                      i.icon {
+                        font-size : 36px;
+                      }
+                      .selectText {
+                        margin-top : 8px;
+                        font-size  : 13px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
