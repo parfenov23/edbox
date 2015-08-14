@@ -1,0 +1,20 @@
+= render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
+#contenterPublication
+  .basic_block
+    form.type_course
+      h2 Тип курса
+      .type_course_radio_block
+        .radio_btn
+          input type="radio" name="publication" id="sub_id" checked=""
+          label for="sub_id"
+            span По подписке
+        .radio_btn
+          input type="radio" name="publication" id="free_id"
+          label for="free_id"
+            span Бесплатный
+    .type_course_ready_publication_block
+      span Курс не готов к пубикации:
+      .info  заполнены не все данные
+      /.activate
+      .btn.btn-flat ОПУБЛИКОВАТЬ
+      /.btn.btn-flat.activate ОПУБЛИКОВАТЬ

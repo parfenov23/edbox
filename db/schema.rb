@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150814094854) do
     t.integer  "duration",            default: 0
     t.text     "description"
     t.boolean  "download",            default: false
+    t.boolean  "archive",             default: false
   end
 
   create_table "bigbluebutton_meetings", force: true do |t|
