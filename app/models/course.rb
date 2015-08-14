@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
   has_many :ligament_courses, dependent: :destroy
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
+  has_many :ligament_leads, :dependent => :destroy
   belongs_to :user
 
   def create_all_img(image)

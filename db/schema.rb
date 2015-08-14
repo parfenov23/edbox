@@ -257,6 +257,13 @@ ActiveRecord::Schema.define(version: 20150814070158) do
     t.datetime "date_complete"
   end
 
+  create_table "ligament_leads", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ligament_sections", force: true do |t|
     t.integer  "section_id"
     t.datetime "date_complete"
