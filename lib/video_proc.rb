@@ -1,6 +1,5 @@
-require 'streamio-ffmpeg'
 module VideoProc
-  def self.video_info(file)
+  def self.info(file)
     movie = FFMPEG::Movie.new(file.path)
     movie_info = {}
     if movie.valid?
@@ -24,5 +23,18 @@ module VideoProc
       }
     end
     movie_info
+  end
+
+  def self.decode(file, new_file_path)
+    movie = FFMPEG::Movie.new(file.path)
+    if movie.valid?
+      options = { resolution: '1280x720',
+                  frame_rate: 30,
+                  video_codec: 'h264',
+                  audio_codec: 'aac',
+                  custom: '-strict experimental'
+      }
+      movie.transcode(new_file_path, options)
+    end
   end
 end
