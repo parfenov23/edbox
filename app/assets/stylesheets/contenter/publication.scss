@@ -1,33 +1,26 @@
 #contenterPublication {
-  .basic_block {
+  .block__publication {
     border: 1px solid rgba(0, 0, 0, 0.12);
     width: 744px;
-    height: 240px;
     margin-top: 128px;
-    display: block;
-    background: #FFFFFF;
-    right: 0;
-    bottom: 0;
-    left: 0;
     margin-left: auto;
-    margin-bottom: auto;
     margin-right: auto;
     @include white__block(1, 0);
 
-    .type_course {
-      display: block;
-      height: 135.5px;
+    .publication__type__course {
+      padding-bottom:18px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      margin-top: 32px;
       h2 {
         font-size: 24px;
         font-weight: 400;
         margin-left: 48px;
-        margin-top: 32px;
         margin-bottom: 24px;
+        line-height: 32px;
       }
-      .type_course_radio_block {
-        .radio_btn {
-          padding-bottom: 17px;
+      .type__course__radio__block {
+        .radio__btn {
+          padding-bottom: 16px;
           padding-left: 64px;
           overflow: auto;
           input {
@@ -60,31 +53,31 @@
             }
             span {
               font-size: 15px;
-              color: rgba(38, 38, 38, 0.87);
+              color: rgba(37, 37, 37, 0.87);
               margin-left: 31px;
               width: 107px;
               position: absolute;
               cursor: pointer;
-              margin-top:-2px;
+              margin-top:-5px;
+              line-height: 24px;
+              letter-spacing:0.2px;
             }
           }
 
         }
       }
     }
-    .type_course_ready_publication_block {
-      height: 70px;
-      padding-top: 24.5px;
+    .type__course__ready__publication__block {
+      padding-top: 20px;
+      padding-bottom:50px;
       .btn.btn-flat {
         font-size: 14px;
         background-color: rgba(0, 0, 0, 0.12);
         color: rgba(0, 0, 0, 0.26);
-        height: 36px;
-        margin-right: 24px;
+        margin-right: 23px;
         float: right;
-        margin-bottom: 16px;
-        text-align: center;
-        margin-top:-5px;
+        line-height: 17px;
+        padding-top:10px;
         &.activate {
           background-color: #00BCD4;
           color: #FFFFFF;
@@ -96,12 +89,15 @@
         font-size: 15px;
         margin-left: 48px;
         padding-right: 5px;
+        line-height: 24px;
+        letter-spacing:0.6px;
       }
       .info {
         float: left;
         color: #F50057;
         font-size: 15px;
-        font-weight: 400;
+        line-height: 24px;
+        letter-spacing:0.3px;
       }
     }
   }
