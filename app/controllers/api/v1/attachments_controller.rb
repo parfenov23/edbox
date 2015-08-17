@@ -65,7 +65,7 @@ module Api::V1
     end
 
     def params_attachment
-      params.require(:attachment).permit(:title, :description, :file).compact.select{|k,v| v != ""} rescue {}
+      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration).compact.select{|k,v| v != ""} rescue {}
     end
 
     def find_user

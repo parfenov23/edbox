@@ -82,7 +82,7 @@ class Attachment < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json
+    as_json.merge({file_name: file.file.original_filename, file_size: file.file.size})
   end
 
   private

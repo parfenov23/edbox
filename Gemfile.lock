@@ -289,8 +289,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     tins (1.5.4)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -361,12 +359,8 @@ DEPENDENCIES
   sqlite3_ar_regexp (~> 2.1)
   streamio-ffmpeg
   thin (~> 1.5.0)
-  turbolinks
   uglifier
   unicorn
   websocket-rails!
   whenever
   without-rails
-
-BUNDLED WITH
-   1.10.6
