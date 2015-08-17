@@ -15,7 +15,7 @@
         - course = overdue_bunch_course.course
         figure.corses-prev.compact.js__removeCourseMyBlock
           .image
-            img src=course.get_image_path('347x192')
+            img src=course.get_image_path(694, 384) style="width:347px; height:192px"
             - course.bunch_tags.last(1).each do |bunch_tag|
               .tegs = bunch_tag.tag.title
           figcaption

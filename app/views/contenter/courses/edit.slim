@@ -4,7 +4,7 @@
 = render "contenter/courses/edit/right_bar/leadings", {course: course}
 .contenter
   .presentation__block
-    img src = course.get_image_path('full')
+    img src = course.get_image_path
   form.course__description-content.oh__nihuyase-block.js_courseContenter
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id

@@ -10,17 +10,9 @@ class Course < ActiveRecord::Base
   belongs_to :user
 
   def create_img(image_path, width, height)
-    # attachment = Attachment.save_file('Course', id, image, 'full')
-    # attachment_wanted_sizes = [
-    #   {width: 347, height: 192},
-    #   {width: 920, height: 377},
-    #   {width: 160, height: 128}
-    # ]
-    # attachment_wanted_sizes.each do |size|
-      attachment_img = MiniMagick::Image.open(image_path)
-      tumb = ResizeImage.course_image_resize(attachment_img, width, height)
-      Attachment.save_file('Course', id, tumb, nil, width, height)
-    # end
+    attachment_img = MiniMagick::Image.open(image_path)
+    tumb = ResizeImage.course_image_resize(attachment_img, width, height)
+    Attachment.save_file('Course', id, tumb, nil, width, height)
   end
 
   def audiences
@@ -33,7 +25,7 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def get_image_path(width, height)
+  def get_image_path(width=nil, height=nil)
     attachment = attachments.where(file_type: 'image', width: width, height: height).last
     if attachment.present?
       path = attachment.file.url
