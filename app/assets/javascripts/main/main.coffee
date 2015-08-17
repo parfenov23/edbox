@@ -68,128 +68,128 @@ carusel = ->
 
 
 $(document).ready ->
-  $('img:last').load ->
-    figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
-    figcaptionTitleEclipses('.favorite-item .description .title', 56)
-    figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
+#  $('img:last').load ->
+  figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
+  figcaptionTitleEclipses('.favorite-item .description .title', 56)
+  figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
 
-    $('.js__tooltip').hover (->
-      $(@).addClass('is__visible-tooltip')
-    ), ->
-      $(@).removeClass('is__visible-tooltip')
+  $('.js__tooltip').hover (->
+    $(@).addClass('is__visible-tooltip')
+  ), ->
+    $(@).removeClass('is__visible-tooltip')
 
-    headerSubmenu()
+  headerSubmenu()
 
-    carusel()
+  carusel()
 
-    $('.course__info .more').on 'click', ->
-      $('.detail__info').toggleClass('is__closed')
-      $(@).toggleClass('is__closed')
+  $('.course__info .more').on 'click', ->
+    $('.detail__info').toggleClass('is__closed')
+    $(@).toggleClass('is__closed')
 
-    $('.toggle__view.btn').on 'click', ->
-      $('.study__program').toggleClass('is__closed')
-      $(@).toggleClass('is__closed')
+  $('.toggle__view.btn').on 'click', ->
+    $('.study__program').toggleClass('is__closed')
+    $(@).toggleClass('is__closed')
 
-    $('.is__sooo-long .page__title').on 'click', ->
-      $(@).next().toggle 300
+  $('.is__sooo-long .page__title').on 'click', ->
+    $(@).next().toggle 300
 
-    $(window).scroll ->
-      scrollHeight = $('body').scrollTop()
-      if scrollHeight > 1
-        $('#page__header').addClass('is__white')
-      else
-        $('#page__header').removeClass('is__white')
+  $(window).scroll ->
+    scrollHeight = $('body').scrollTop()
+    if scrollHeight > 1
+      $('#page__header').addClass('is__white')
+    else
+      $('#page__header').removeClass('is__white')
 
-    $('.js__show-aside-main-nav').on 'click', ->
-      $('.js__left-aside, .js__backing').addClass('is__active')
+  $('.js__show-aside-main-nav').on 'click', ->
+    $('.js__left-aside, .js__backing').addClass('is__active')
 
-    $('.select-deadline').on 'click', ->
-      $(@).closest("form").find(".action-btn").hide()
-      $(@).closest('.check_group_added').addClass('section__deadline')
+  $('.select-deadline').on 'click', ->
+    $(@).closest("form").find(".action-btn").hide()
+    $(@).closest('.check_group_added').addClass('section__deadline')
 
-    $('.section__deadline-title .back').on 'click', ->
-      $(@).closest("form").find(".action-btn").show()
-      $(@).closest('.check_group_added').removeClass('section__deadline')
+  $('.section__deadline-title .back').on 'click', ->
+    $(@).closest("form").find(".action-btn").show()
+    $(@).closest('.check_group_added').removeClass('section__deadline')
 
-    $('.js_for-tooltip').hover ->
-      $(@).find('.js_tooltip').addClass('is-active')
-    , ->
-      $(@).find('.js_tooltip').removeClass('is-active')
+  $('.js_for-tooltip').hover ->
+    $(@).find('.js_tooltip').addClass('is-active')
+  , ->
+    $(@).find('.js_tooltip').removeClass('is-active')
 
-    $('.page__children .item').hover ->
-      $(@).stop(true).queue 'fx', ->
-        headerTabsLine(@)
-    , ->
-      $(@).stop(true).queue 'fx', ->
-        headerTabsLine('.page__children .item.active')
+  $('.page__children .item').hover ->
+    $(@).stop(true).queue 'fx', ->
+      headerTabsLine(@)
+  , ->
+    $(@).stop(true).queue 'fx', ->
+      headerTabsLine('.page__children .item.active')
 
-    $('.js__select-calendar').hover (->
-      $(@).addClass('is__active')
-      $('.js__backing').addClass('is__active')
-    ), ->
-      if $('#ui-datepicker-div').is(':hidden')
-        console.log 12
-        $(@).removeClass('is__active')
-
-    $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
-      parenBlock = undefined
-      showId = undefined
-      showId = $(this).data('show')
-      parenBlock = $(this).closest('.hidden-calendar-wrp')
-      parenBlock.find('.hidden-list').hide()
-      parenBlock.find('.' + showId + ' ').show()
-
-    $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
-      parenBlock = $(@).closest('.hidden-calendar-wrp')
-      parenBlock.find('.hidden-calendar').hide()
-      parenBlock.find('.hidden-list').show()
-
-    $(document).on 'click', '.js__backing', ->
-      $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+  $('.js__select-calendar').hover (->
+    $(@).addClass('is__active')
+    $('.js__backing').addClass('is__active')
+  ), ->
+    if $('#ui-datepicker-div').is(':hidden')
+      console.log 12
       $(@).removeClass('is__active')
-      $('.js__left-aside').removeClass('is__active')
 
-    $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
-      $(document).trigger 'click.dropdown'
-      list = $(@).find('ul.hidden-list').show()
-      $('body').bind 'click.dropdown', (ev) ->
-        unless e.target.closest('.action-btn') == ev.target.closest('.action-btn')
-          list.hide()
-          $(document).unbind 'click.dropdown'
+  $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
+    parenBlock = undefined
+    showId = undefined
+    showId = $(this).data('show')
+    parenBlock = $(this).closest('.hidden-calendar-wrp')
+    parenBlock.find('.hidden-list').hide()
+    parenBlock.find('.' + showId + ' ').show()
 
-    $('.schedule-header .select-trigger').on 'click', (e) ->
-      $(document).trigger 'click.dropdown'
-      list = $(@).closest('.psevdo-select').find('ul.hidden-list').show()
-      $('body').bind 'click.dropdown', (ev) ->
-        unless e.target.closest('.psevdo-select') == ev.target.closest('.psevdo-select')
-          list.hide()
-          $(document).unbind 'click.dropdown'
+  $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
+    parenBlock = $(@).closest('.hidden-calendar-wrp')
+    parenBlock.find('.hidden-calendar').hide()
+    parenBlock.find('.hidden-list').show()
 
-    $('#js-add-course-to-shedule .select-trigger').on 'click', ->
-      $(@).closest('.select').find('ul.hidden').show()
+  $(document).on 'click', '.js__backing', ->
+    $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+    $(@).removeClass('is__active')
+    $('.js__left-aside').removeClass('is__active')
 
-    adaptiveTitle()
-
-    hideBlock = (elem) ->
-      $(elem).removeClass('open-state').addClass 'closed-state'
-
-    $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
-      $(document).trigger 'click.dropdown'
-      el = $(@).closest('.js__toggle-state')
-      if el.hasClass('closed-state')
-        hideBlock('.js__toggle-state')
-        el.removeClass('closed-state').addClass 'open-state'
-        adaptiveTitle()
-      else
-        hideBlock(el)
-        adaptiveTitle()
-
+  $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
+    $(document).trigger 'click.dropdown'
+    list = $(@).find('ul.hidden-list').show()
     $('body').bind 'click.dropdown', (ev) ->
-      unless $(ev.target.closest('.js__toggle-state')).length
-        hideBlock($('.js__toggle-state'))
-        adaptiveTitle()
+      unless e.target.closest('.action-btn') == ev.target.closest('.action-btn')
+        list.hide()
         $(document).unbind 'click.dropdown'
 
-    headerTabsLine('.page__children .item.active')
-    # tabsCorusel()
-    testList()
+  $('.schedule-header .select-trigger').on 'click', (e) ->
+    $(document).trigger 'click.dropdown'
+    list = $(@).closest('.psevdo-select').find('ul.hidden-list').show()
+    $('body').bind 'click.dropdown', (ev) ->
+      unless e.target.closest('.psevdo-select') == ev.target.closest('.psevdo-select')
+        list.hide()
+        $(document).unbind 'click.dropdown'
+
+  $('#js-add-course-to-shedule .select-trigger').on 'click', ->
+    $(@).closest('.select').find('ul.hidden').show()
+
+  adaptiveTitle()
+
+  hideBlock = (elem) ->
+    $(elem).removeClass('open-state').addClass 'closed-state'
+
+  $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
+    $(document).trigger 'click.dropdown'
+    el = $(@).closest('.js__toggle-state')
+    if el.hasClass('closed-state')
+      hideBlock('.js__toggle-state')
+      el.removeClass('closed-state').addClass 'open-state'
+      adaptiveTitle()
+    else
+      hideBlock(el)
+      adaptiveTitle()
+
+  $('body').bind 'click.dropdown', (ev) ->
+    unless $(ev.target.closest('.js__toggle-state')).length
+      hideBlock($('.js__toggle-state'))
+      adaptiveTitle()
+      $(document).unbind 'click.dropdown'
+
+  headerTabsLine('.page__children .item.active')
+  # tabsCorusel()
+  testList()
