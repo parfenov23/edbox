@@ -9,18 +9,10 @@ class Course < ActiveRecord::Base
   has_many :ligament_leads, :dependent => :destroy
   belongs_to :user
 
-  def create_all_img(image)
-    attachment = Attachment.save_file('Course', id, image, 'full')
-    attachment_wanted_sizes = [
-      {width: 347, height: 192},
-      {width: 920, height: 377},
-      {width: 160, height: 128}
-    ]
-    attachment_wanted_sizes.each do |size|
-      attachment_img = MiniMagick::Image.open(attachment.file.path)
-      tumb = ResizeImage.course_image_resize(attachment_img, size[:width], size[:height])
-      Attachment.save_file('Course', id, tumb, "#{size[:width]}x#{size[:height]}")
-    end
+  def create_img(image_path, width, height)
+    attachment_img = MiniMagick::Image.open(image_path)
+    tumb = ResizeImage.course_image_resize(attachment_img, width, height)
+    Attachment.save_file('Course', id, tumb, nil, width, height)
   end
 
   def audiences
@@ -33,24 +25,20 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def get_image_path(size)
-    attachment = attachments.where(size: size).last
+  def get_image_path(width=nil, height=nil)
+    attachment = attachments.where(file_type: 'image', width: width, height: height).last
     if attachment.present?
-      attachment.file.url
+      path = attachment.file.url
     else
-      case size
-        when 'full'
-          '/uploads/course_default_image_full.png'
-        when '347x192'
-          '/uploads/course_default_image_347×192.png'
-        when '920x377'
-          '/uploads/course_default_image_920×377.png'
-        when '160×128'
-          '/uploads/course_default_image_160×128.png'
-        else
-          '/uploads/course_default_image_full.png'
+      attachment_full = attachments.where(file_type: 'image', size: 'full').last
+      if attachment_full.present?
+        new_attachment = create_img(attachment_full.file.path, width, height)
+      else
+        new_attachment = create_img(Rails.root + '/public/uploads/course_default_image.png', width, height)
       end
+      path = new_attachment.file.url
     end
+    path
   end
 
   def notify_json(type=nil)

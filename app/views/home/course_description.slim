@@ -1,6 +1,6 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
 .presentation__block
-  img src = @course.get_image_path('full')
+  img src = @course.get_image_path
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
 .course__description-content.oh__nihuyase-block
