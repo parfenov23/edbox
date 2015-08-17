@@ -375,6 +375,50 @@
                       }
                     }
                   }
+                  .editFileUpload {
+                    margin-bottom : 48px;
+                    .itemFile {
+                      display : none;
+                      &.addedFileInfo {
+                        .fileInfo {
+                          display : inline-table;
+                          padding : 12px;
+                          @include white__block(1, 0);
+                          width   : 184px;
+                          .titleName {
+                            font-size     : 12px;
+                            color         : #757575;
+                            margin-bottom : 12px;
+                          }
+                          .fileType {
+                            margin-top : 16px;
+                            .typeName {
+                              margin-left : 12px;
+                            }
+                          }
+                        }
+                        .fileDuration {
+                          position    : relative;
+                          top         : -10px;
+                          display     : inline-table;
+                          margin-left : 16px;
+                          .titleDuration {
+                            font-size     : 12px;
+                            color         : #757575;
+                            margin-bottom : 13px;
+                            display       : inline-block;
+                          }
+                          .inputDuration {
+                            outline       : none;
+                            border        : 0;
+                            border-bottom : 1px solid #BCBCBC;
+                            margin-left   : 12px;
+                            width         : 40px;
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

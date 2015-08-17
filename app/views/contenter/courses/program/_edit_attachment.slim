@@ -22,7 +22,7 @@
         span.max_count
           |/500
     .upload_attachments
-      input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]"
+      input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
       .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
         i.icon.text
         .selectText Написать текст
@@ -50,3 +50,17 @@
       .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="test"
         i.icon.test
         .selectText Добавить тест
+
+    .editFileUpload
+      .addedTxtDescription.itemFile data-type="description"
+        textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
+          = attachment.full_text
+      .addedFileInfo.itemFile data-type="file"
+        .fileInfo
+          .titleName R_jHSSaMiO8.mp3
+          .fileType
+            i.icon.audio
+            span.typeName Аудио
+        .fileDuration
+          .titleDuration Продолжительность материала в минутах
+          input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]"

@@ -15,7 +15,7 @@ gem 'bootstrap-material-design', '~> 0.1.7'
 gem 'faraday_middleware'
 gem 'russian'
 gem 'bcrypt'
-gem 'turbolinks'
+# gem 'turbolinks'
 gem 'thin', '~> 1.5.0'
 gem 'babosa'
 #===================== webinar
