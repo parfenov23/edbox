@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814094854) do
+ActiveRecord::Schema.define(version: 20150817095206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,11 @@ ActiveRecord::Schema.define(version: 20150814094854) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
+    t.boolean  "archive",             default: false
     t.text     "description"
-<<<<<<< HEAD
-    t.boolean  "archive",             default: false
     t.boolean  "download",            default: false
-=======
-    t.boolean  "download",            default: false
-    t.boolean  "archive",             default: false
->>>>>>> da4b5d4fbc8fac1f8ab4a9f6b8041fcdec54abf9
+    t.integer  "width"
+    t.integer  "height"
   end
 
   create_table "bigbluebutton_meetings", force: true do |t|
