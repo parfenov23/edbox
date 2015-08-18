@@ -84,9 +84,7 @@ var includeDatePicker = function () {
 }
 
 function pageLoad(action) {
-    $(document).ready(function () {
-        $("img:last").load(action);
-    });
+    $(document).ready(action);
 }
 
 var notifyMypush = function (message) {

@@ -250,7 +250,7 @@ var selectAttachment = function () {
 //    console.log(123);
 //};
 
-pageLoad(function () {
+$(document).ready(function () {
     loadBindOnChangeInput();
     $(document).on("click", "#contenterCourseProgram .js_createAttachmentToSection", createAttachmentToSection);
     $(document).on("click", "#contenterCourseProgram .js_removeAttachmentToSection", removeAttachmentToSection);

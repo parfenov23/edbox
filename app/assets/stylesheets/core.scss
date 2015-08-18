@@ -1,3 +1,20 @@
+@mixin btnRemove {
+  .remove {
+    display         : inline-block;
+    position        : absolute;
+    top             : 8px;
+    right           : 12px;
+    text-shadow     : 0 1px 0 #FFF;
+    text-decoration : none;
+    color           : #777;
+    font            : 20px/100% arial, sans-serif;
+    cursor          : pointer;
+    &:after {
+      content : '×';
+    }
+  }
+}
+
 #js-course-leading {
   width       : 400px !important;
   z-index     : 999;
@@ -127,20 +144,7 @@
         padding-bottom : 30px;
       }
       .description__Item {
-        .remove {
-          display         : inline-block;
-          position        : absolute;
-          top             : 8px;
-          right           : 12px;
-          text-shadow     : 0 1px 0 #FFF;
-          text-decoration : none;
-          color           : #777;
-          font            : 20px/100% arial, sans-serif;
-          cursor          : pointer;
-          &:after {
-            content : '×';
-          }
-        }
+        @include btnRemove;
         .allTagDescriptionCourse {
           display : inline-block;
           .tag {
@@ -196,6 +200,7 @@
 
     }
   }
+
 }
 
 //////////
@@ -218,20 +223,7 @@
           border-bottom : 1px solid #D0D0D0;
           margin-bottom : 0px;
           font-size     : 15px;
-          .remove {
-            display         : inline-block;
-            position        : absolute;
-            top             : 8px;
-            right           : 12px;
-            text-shadow     : 0 1px 0 #FFF;
-            text-decoration : none;
-            color           : #777;
-            font            : 20px/100% arial, sans-serif;
-            cursor          : pointer;
-            &:after {
-              content : '×';
-            }
-          }
+          @include btnRemove;
           .numberSection {
             color : #757575;
           }
@@ -252,19 +244,12 @@
             margin-bottom : 16px;
             .adaptive__title {
               .right-col {
+                @include btnRemove;
                 .remove {
-                  display         : inline-block;
-                  position        : relative;
-                  top             : -2px;
-                  text-shadow     : 0 1px 0 #FFF;
-                  text-decoration : none;
-                  color           : #777;
-                  font            : 20px/100% arial, sans-serif;
-                  cursor          : pointer;
-                  margin-left     : 10px;
-                  &:after {
-                    content : '×';
-                  }
+                  position    : relative;
+                  top         : -2px;
+                  right       : auto;
+                  margin-left : 10px;
                 }
               }
               .left-col {
@@ -286,19 +271,10 @@
                 display : block;
                 .form_edit {
                   width : 904px;
+                  @include btnRemove;
                   .remove {
-                    display         : inline-block;
-                    position        : absolute;
-                    top             : 18px;
-                    right           : 35px;
-                    text-shadow     : 0 1px 0 #FFF;
-                    text-decoration : none;
-                    color           : #777;
-                    font            : 20px/100% arial, sans-serif;
-                    cursor          : pointer;
-                    &:after {
-                      content : '×';
-                    }
+                    top   : 18px;
+                    right : 35px;
                   }
                   .form_group {
                     &.fixedHeight {
@@ -379,8 +355,8 @@
                     margin-bottom : 48px;
                     .itemFile {
                       display : none;
-                      &.attachmentShow{
-                        display: block;
+                      &.attachmentShow {
+                        display : block;
                       }
                       &.addedFileInfo {
                         .fileInfo {
@@ -419,6 +395,29 @@
                             width         : 40px;
                           }
                         }
+                      }
+                      &.addedTest {
+                        border-top  : 1px solid rgba(0, 0, 0, 0.26);;
+                        padding-top : 24px;
+                        .testHolder {
+                          .testIssue {
+                            .input_title {
+                              position      : relative;
+                              @include btnRemove;
+                              padding-bottom: 5px;
+                              border-bottom : 1px solid #D0D0D0;
+                              .remove{
+                                top: 2px;
+                              }
+                              .issueInput {
+                                border  : 0;
+                                outline : none;
+
+                              }
+                            }
+                          }
+                        }
+
                       }
                     }
                   }
