@@ -2,7 +2,6 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
-// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 //= require ./vendor/notifymy.js
@@ -237,5 +236,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-

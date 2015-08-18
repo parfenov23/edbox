@@ -193,3 +193,7 @@ $(document).ready ->
     headerTabsLine('.page__children .item.active')
     # tabsCorusel()
     testList()
+
+    $('body').on 'click', (e) ->
+      console.log e.target
+      console.log 12

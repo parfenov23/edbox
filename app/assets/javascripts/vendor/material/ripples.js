@@ -46,7 +46,7 @@
   Ripples.prototype.init = function() {
     var $element  = this.element;
 
-    $element.on("mousedown touchstart", function(event) {
+    $element.on("click", function(event) {
       /**
        * Verify if the user is just touching on a device and return if so
        */
