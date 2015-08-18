@@ -16,7 +16,7 @@
             // completed
             figure.corses-prev.with_progress-bar
               .image
-                img src=course.get_image_path(694, 384) style="width:347px; height:192px"
+                img src=course.get_image_path(694, 384)
                 - course.bunch_tags.last(1).each do |bunch_tag|
                   .tegs = bunch_tag.tag.title
               figcaption

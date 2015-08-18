@@ -64,6 +64,15 @@
     background-size: cover !important;
 }
 
+.corses-prev {
+    .image {
+        img {
+            width: 347px;
+            height: 192px;
+        }
+    }
+}
+
 .courses-list {
     @include clearfix;
     @import "common/elements/courses_block";

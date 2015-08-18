@@ -2,14 +2,18 @@ require 'calendar'
 class SchedulesController < HomeController
   def index
     @current_user = current_user
-    today = DateTime.now
-    today = params[:date].to_date if (params[:date].to_date rescue false)
-    days = Calendar.get_calendar(today.year, today.month)
-    days = add_schedule_to_calendar(@current_user, days)
-    @weeks = days.each_slice(7).to_a
-    @months = Calendar.get_months(5)
-    months_rus = %w'Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'
-    @month = months_rus[today.month - 1]
+    if @current_user.corporate? && @current_user.director?
+      today = DateTime.now
+      today = params[:date].to_date if (params[:date].to_date rescue false)
+      days = Calendar.get_calendar(today.year, today.month)
+      days = add_schedule_to_calendar(@current_user, days)
+      @weeks = days.each_slice(7).to_a
+      @months = Calendar.get_months(5)
+      months_rus = %w'Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь'
+      @month = months_rus[today.month - 1]
+    else
+      render '/home/error'
+    end
   end
 
   def day_schedule
