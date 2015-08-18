@@ -218,9 +218,11 @@ $(document).ready(function () {
     $('.action-btn .js_changeDeadLineSectionGroup').change(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
+
     $('.js_actionBtn .js_changeDeadLineCourseMy').change(function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
+
     $(document).on('click', '.js_addCoursesFromFavorite', addCoursesFromFavorite);
     $(document).on('click', '.js_removeCourseMy',
         function () {

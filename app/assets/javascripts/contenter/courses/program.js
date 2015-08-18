@@ -237,7 +237,13 @@ var loadBindOnChangeInput = function () {
     $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
     $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
     $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
-    init_tiny();
+    try {
+        init_tiny();
+    }
+    catch(err) {
+        console.log("no initTiny");
+    }
+
 };
 
 var selectAttachment = function () {
