@@ -11,8 +11,12 @@ class Course < ActiveRecord::Base
 
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
-    tumb = ResizeImage.course_image_resize(attachment_img, width, height)
-    Attachment.save_file('Course', id, tumb, nil, width, height)
+    if (width == nil) && (height == nil)
+      Attachment.save_file('Course', id, attachment_img, 'full', nil, nil)
+    else
+      tumb = ResizeImage.course_image_resize(attachment_img, width, height)
+      Attachment.save_file('Course', id, tumb, nil, width, height)
+    end
   end
 
   def audiences
@@ -34,7 +38,7 @@ class Course < ActiveRecord::Base
       if attachment_full.present?
         new_attachment = create_img(attachment_full.file.path, width, height)
       else
-        new_attachment = create_img(Rails.root + '/public/uploads/course_default_image.png', width, height)
+        new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
       end
       path = new_attachment.file.url
     end
