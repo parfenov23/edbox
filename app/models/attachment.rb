@@ -22,7 +22,6 @@ class Attachment < ActiveRecord::Base
 
   def self.save_file(type, id, file, size=nil, width=nil, height=nil)
     class_name = type
-    id = id
     attachmentable = class_name.classify.constantize.find(id)
     attachment = attachmentable.attachments.build
     attachment.file = file
