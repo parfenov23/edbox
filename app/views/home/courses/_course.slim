@@ -1,6 +1,9 @@
 figure.corses-prev
   .image
-    img src = course.get_image_path(694, 384) style="width:347px; height:192px"
+    - if (course.get_image_path(694, 384) rescue nil).present?
+      img src = course.get_image_path(694, 384) style="width:347px; height:192px"
+    - else
+      = course
     .course__type-wrp
     - course.bunch_tags.each do |bunch_tag|
       .course-type = (bunch_tag.tag.title rescue nil)
