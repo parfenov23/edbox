@@ -34,7 +34,7 @@ class Course < ActiveRecord::Base
       if attachment_full.present?
         new_attachment = create_img(attachment_full.file.path, width, height)
       else
-        new_attachment = create_img(Rails.root + '/public/uploads/course_default_image.png', width, height)
+        new_attachment = create_img(Rails.root.to_s + '/public/uploads/course_default_image.png', width, height)
       end
       path = new_attachment.file.url
     end
