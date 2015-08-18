@@ -379,6 +379,9 @@
                     margin-bottom : 48px;
                     .itemFile {
                       display : none;
+                      &.attachmentShow{
+                        display: block;
+                      }
                       &.addedFileInfo {
                         .fileInfo {
                           display : inline-table;

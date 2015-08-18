@@ -43,7 +43,7 @@ testList = ->
 carusel = ->
   $('.js__carusel').jcarousel(
   )
-
+  
   $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
     $(this).removeClass 'inactive'
   ).on('jcarouselcontrol:inactive', ->

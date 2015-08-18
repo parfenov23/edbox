@@ -82,7 +82,20 @@ class Attachment < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json.merge({file_name: file.file.original_filename, file_size: file.file.size})
+    as_json.merge({file_name: (file.file.original_filename rescue nil), file_size: (file.file.size rescue nil)})
+  end
+
+  def uploadType
+    case file_type
+      when "audio"
+        'audio/*'
+      when "video"
+        'video/*'
+      when "pdf"
+        'application/pdf'
+      when "other"
+        ''
+    end
   end
 
   private

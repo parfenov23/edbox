@@ -40,7 +40,7 @@ var setAttachmentType = function () {
 var openEditFileAfterUpload = function (btn) {
     var type = btn.data("type");
     var form = btn.closest("form.form_edit");
-    var block_show = form.find(".editFileUpload .itemFile[data-type='" + type + "']")
+    var block_show = form.find(".editFileUpload .itemFile[data-type='" + type + "']");
     btn.closest(".upload_attachments").hide();
     block_show.show();
     return block_show;
@@ -80,7 +80,6 @@ var ajaxUploadFileAttachment = function (file) {
 
 function uploadProgress(evt) {
     if (evt.lengthComputable){
-        console.log(evt);
         var percentComplete = Math.round(evt.loaded * 100 / evt.total);
         show_error('Загрузка: ' + percentComplete.toString() + '%', 3000);
     }
@@ -91,7 +90,11 @@ function uploadProgress(evt) {
 
 function uploadComplete(evt, form) {
     var input_file = form.find("input[name='attachment[file]']");
+    var response = JSON.parse(evt.target.response);
     var block_fileInfo = openEditFileAfterUpload(input_file);
+    block_fileInfo.find(".fileInfo .titleName").text(response.file_name);
+    block_fileInfo.find(".fileInfo .fileType .icon").attr("class", "icon content");
+    block_fileInfo.find(".fileInfo .fileType .icon").addClass(response.file_type);
     show_error('Згруженно!', 3000);
 }
 
@@ -114,7 +117,6 @@ var onChangeEditAttachment = function (input_incl) {
     } else {
         input = input_incl
     }
-    ;
     var block_info = input.closest(".attachment.item").find(".info_attachment");
     var form = input.closest("form");
     var input_file = form.find("input[name='attachment[file]']");
@@ -132,6 +134,7 @@ var onChangeEditAttachment = function (input_incl) {
     }
 
     if (input.attr("name") == "attachment[file]"){
+        show_error('Идет загрузка файла', 3000);
         ajaxUploadFileAttachment(input);
     } else {
         ajaxUpdateSection('attachments', input);
@@ -234,6 +237,7 @@ var loadBindOnChangeInput = function () {
     $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
     $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
     $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
+    init_tiny();
 };
 
 var selectAttachment = function () {

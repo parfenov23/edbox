@@ -1,0 +1,37 @@
+i.icon.content {
+  &.video {
+    &::after {
+      content     : "Видео";
+      margin-left : 12px;
+    }
+  }
+
+  &.audio {
+    &::after {
+      content     : "Аудио";
+      margin-left : 12px;
+    }
+  }
+
+  &.other {
+    &::after {
+      content     : "Файл";
+      margin-left : 12px;
+    }
+  }
+
+  &.text {
+    &::after {
+      content     : "Текст";
+      margin-left : 12px;
+    }
+  }
+
+  &.test {
+    &::after {
+      content     : "Тест";
+      margin-left : 12px;
+    }
+  }
+
+}
