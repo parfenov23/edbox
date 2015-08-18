@@ -8,8 +8,9 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
     .form-group
         label
             | Превью:
-        .image
-            img src = @course.get_image_path(347, 192)
+        - unless @course.id.nil?
+            .image
+                img src = @course.get_image_path(347, 192)
         input name="image" type="file"
     .form-group
         label
