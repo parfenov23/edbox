@@ -94,51 +94,6 @@
       justify-content: space-between;
         .form__col {
           width: 312px;
-          .item {
-            position: relative;
-            height: 66px;
-            margin-bottom: 6px;
-            hr {
-              position: absolute;
-              top: 19px;
-              left: 0;
-              height: 1px;
-              border: none;
-              border-bottom: 1px solid $primoryColor;
-              display: block;
-              width: 100%;
-            }
-            &.empty {
-              hr {
-                border-bottom: 1px solid rgba(0,0,0,0.26);
-              }
-            }
-          }
-          input {
-            margin-bottom: 6px;
-            margin-bottom: 40px;
-            width        : 100%;
-            line-height: 24px;
-            position: absolute;
-            top: -6px;
-            left: 0;
-            border-bottom: none;
-          }
-          input:not(.empty) {
-            border-color: $primoryColor;
-          }
-          input:not(.empty) ~ .floating-label {
-            font-size  : 12px;
-            line-height: 16px;
-            color      : $primoryColor;
-            top: -27px;
-          }
-          .floating-label {
-            font-size  : 15px;
-            color      : rgba(0,0,0,0.26);
-            line-height: 24px;
-            top: -6px;
-          }
         }
 
       .form__legend {
