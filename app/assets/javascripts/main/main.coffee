@@ -43,7 +43,7 @@ testList = ->
 carusel = ->
   $('.js__carusel').jcarousel(
   )
-  
+
   $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
     $(this).removeClass 'inactive'
   ).on('jcarouselcontrol:inactive', ->
@@ -147,6 +147,7 @@ $(document).ready ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
     $(@).removeClass('is__active')
     $('.js__left-aside').removeClass('is__active')
+    $('.courses-aside').removeClass('show')
 
   $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
     $(document).trigger 'click.dropdown'

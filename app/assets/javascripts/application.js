@@ -177,10 +177,12 @@ $(document).ready(function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
         else {
             $('.courses-aside:visible').removeClass('show');
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
     })
 
