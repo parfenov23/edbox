@@ -1,0 +1,138 @@
+= render "home/header/header", {namePage: "other", titlePage: '2.1 Тест: Жарим, парим, варим'}
+
+
+.presentation__block
+  img src="/uploads/course_default_image_full.png" 
+
+.auth.is__course-description
+  .auth__box
+    .logo
+      img src="/assets/logo.svg" 
+    .auth__title-top
+      img.logo__img src="/assets/logo_auth.svg"
+    form.auth__top.auth__enter.js_registrationUser
+      .auth__title Регистрация
+      .auth__reg-block
+        .auth__reg-title.auth__reg-data Персональные данные
+        .input-wrp
+          input.validInput.phoenix-input name="user[last_name]" placeholder="Фамилия" type="text" 
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="user[first_name]" placeholder="Имя" type="text" 
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="user[email]" placeholder="Email" type="text" 
+          hr
+      .auth__reg-block
+        .auth__reg-title.auth__reg-secutity Безопасность
+        .input-wrp
+          input.pass.validInput.phoenix-input name="user[password]" placeholder="Пароль" type="password" 
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="password_repeat" placeholder=("Повторите пароль") type="password" 
+          hr
+      .auth__reg-block
+        .auth__reg-title.auth__reg-type Выберите тип аккаунта
+        .auth__reg-select
+          .auth__reg-selected Персональный аккаунт
+          .auth__reg-select-list
+            .auth__reg-select-list-item.personal Персональный аккаунт
+            .auth__reg-select-list-item.corporate Корпоративный аккаунт
+        .input-wrp.corporate_acc
+          input.phoenix-input name="company[name]" placeholder=("Напишите название компании") type="text" 
+          hr
+      .auth_agree.checkbox__holder
+        input#checkbox1.checkbox name="agreed" type="checkbox" 
+        label.label for="checkbox1" 
+          i.check
+          i.ripple-effect.ripple-check
+            i.ripple-effect.ripple-uncheck
+          | ознакомлен с
+            a.auth_agree-link href="/oferta"  договором оферты&nbsp;
+          | принимаю условия договора
+      .have__acc
+        a.auth__what href="/sign_in"  У меня уже есть аккаунт
+      .btn-holder
+        #submit.btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect data-phoenix-action="remove"  Создать аккаунт
+
+
+.course__description-content.oh__nihuyase-block
+  .tegs__list
+  .course__title 123 test
+  .progress__block
+    .title.adaptive__title.overdue
+      .left-col  Прогресс прохождения курса
+      .right-col Завершить до 09 июля
+      .action-btn.drunkenPig.js_actionBtn
+        i.icon.schedule
+    .progress__wrp
+      .bar
+      .completed style=("width: 0%") 
+    .info
+      .precent Пройдено 0 %
+      .qty 0 из 2 лекций
+  .course__info
+    .adaptive__title
+      .left-col
+        .item
+          | 2 лекции
+          i.courses.icon
+        .item
+          | 23 часа
+          i.duration.icon
+        .item
+          | 2 слушателя
+          i.groups.icon
+      .right-col
+    .detail__info.is__closed
+      .description
+    .more.is__closed
+      .btn.btn-flat.for__closed
+        | ПОКАЗАТЬ ОПИСАНИЕ
+      .btn.btn-flat.for__open
+        | СКРЫТЬ ОПИСАНИЕ
+  .study__program.is__closed
+    .title Учебная программа
+    .programm__block
+      .adaptive__title
+        .left-col  1. 123 sec
+        .right-col.overdue Нет даты
+        .action-btn.drunkenPig.js_actionBtn
+          i.icon.schedule
+      .item.js_downloadFile 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col  1.1 Material
+          .right-col 5 часа
+        .description Material
+      .item.js_downloadFile 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col   1.2 Task 2
+          .right-col 5 часа
+        .description Task 2
+      .item.is__completed
+        .icon__block
+          i.icon.test
+        .adaptive__title
+          .left-col   1.3 Trest
+        .description Trest
+    .programm__block
+      .adaptive__title
+        .left-col  2. lolopo
+        .right-col.overdue Завершить до 07 июля
+        .action-btn.drunkenPig.js_actionBtn
+          i.icon.schedule
+          input.datapicker__trigger.js__set-date
+      .item 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col 2.1 ууу
+          .right-col 567 часа
+        .description ууу
+  .toggle__view.btn.btn-flat
+    span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
+    span.for__open ПОЛНАЯ ПРОГРАММА КУРСА

@@ -139,7 +139,8 @@
 .icon-edit {
   width   : 14px;
   height  : 14px;
-  display : inline-block;
+  display : inline;
+  line-height: 32px;
   &::before {
     font-family : 'Icons';
     content     : "\E706";

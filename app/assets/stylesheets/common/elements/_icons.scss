@@ -14,6 +14,7 @@ i.icon {
       content: "\e893";
     }
   }
+
   &.add {
     &::before {
       content: "\e6fb";
@@ -21,6 +22,12 @@ i.icon {
   }
 
   &.courses {
+    &::before {
+      content: "\E6B2";
+    }
+  }
+
+  &.other {
     &::before {
       content: "\E6B2";
     }

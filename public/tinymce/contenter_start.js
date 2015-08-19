@@ -20,7 +20,3 @@ function init_tiny() {
         }
     });
 }
-
-$(document).ready(function(){
-    init_tiny();
-});

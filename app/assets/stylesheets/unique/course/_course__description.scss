@@ -1,19 +1,168 @@
 .presentation__block {
-  height: 536px;
+  height  : 536px;
   overflow: hidden;
   position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
+  z-index : 1;
+  top     : 0;
+  left    : 0;
+  width   : 100%;
   img {
     width: 100%;
   }
 }
 
+.auth.is__course-description {
+  .offer__box {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -468px;
+    width      : 936px;
+    padding    : 32px 96px 48px;
+    > .title {
+      font-size    : 34px;
+      color        : $black_87;
+      line-height  : 40px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    > .description {
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    .plane__list {
+      display        : flex;
+      justify-content: space-between;
+      .item {
+        border       : 1px solid rgba(0,0,0,0.54);
+        border-radius: 4px;
+        width        : 360px;
+        text-align   : center;
+        padding      : 24px 24px 16px;
+        .title {
+          font-size    : 24px;
+          color        : $black_87;
+          line-height  : 32px;
+          margin-bottom: 16px;
+        }
+        .description {
+          font-size    : 13px;
+          color        : $black_87;
+          line-height  : 20px;
+          margin-bottom: 18px;
+          height       : 60px;
+          overflow     : hidden;
+        }
+        .price {
+          span {
+            font-size   : 24px;
+            color       : $black_87;
+            line-height : 32px;
+            margin-right: 15px;
+          }
+          .btn {
+            @include inline-block;
+          }
+        }
+      }
+    }
+  }
+  .subscribe {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -396px;
+    width      : 792px;
+    padding    : 32px 32px 24px;
+    .title {
+      font-size  : 24px;
+      color      : $black_87;
+      line-height: 32px;
+      text-align : center;
+      margin-bottom: 45px;
+      .back {
+
+      }
+    }
+    .form__holder {
+      display        : flex;
+      justify-content: space-between;
+        .form__col {
+          width: 312px;
+          .item {
+            position: relative;
+            height: 66px;
+            margin-bottom: 6px;
+            hr {
+              position: absolute;
+              top: 19px;
+              left: 0;
+              height: 1px;
+              border: none;
+              border-bottom: 1px solid $primoryColor;
+              display: block;
+              width: 100%;
+            }
+            &.empty {
+              hr {
+                border-bottom: 1px solid rgba(0,0,0,0.26);
+              }
+            }
+          }
+          input {
+            margin-bottom: 6px;
+            margin-bottom: 40px;
+            width        : 100%;
+            line-height: 24px;
+            position: absolute;
+            top: -6px;
+            left: 0;
+            border-bottom: none;
+          }
+          input:not(.empty) {
+            border-color: $primoryColor;
+          }
+          input:not(.empty) ~ .floating-label {
+            font-size  : 12px;
+            line-height: 16px;
+            color      : $primoryColor;
+            top: -27px;
+          }
+          .floating-label {
+            font-size  : 15px;
+            color      : rgba(0,0,0,0.26);
+            line-height: 24px;
+            top: -6px;
+          }
+        }
+
+      .form__legend {
+        width      : 342px;
+        font-size  : 15px;
+        color      : $black_87;
+        line-height: 24px;
+        padding-top: 7px;
+      }
+    }
+    .action__block   {
+      @include clearfix;
+      .btn {
+        color: #FFF;
+        float: right;
+        background-color: #00BCD4;
+      }
+    }
+  }
+}
+
 .oh__nihuyase-block {
-  position: relative;
-  z-index: 12;
+  position  : relative;
+  z-index   : 12;
   @include middle-block(920px);
   margin-top: 312px;
   .tegs__list {
@@ -212,9 +361,9 @@
           color      : $black_54;
         }
         .right-col {
-          color : rgba(0, 0, 0, 0.87);
+          color: rgba(0, 0, 0, 0.87);
           &.overdue {
-            color : #FF1744;
+            color: #ff1744;
           }
         }
       }
@@ -238,7 +387,8 @@
             &.text {
               font-size: 36px;
             }
-            &.audio, &.test {
+            &.audio,
+            &.test {
               font-size: 33px;
             }
           }
@@ -293,11 +443,20 @@
       }
     }
     &.is__closed {
-      width: calc(100% + 32px);
+      width      : calc(100% + 32px);
       margin-left: -16px;
-      height: 315px;
-      padding: 0 16px;
-      overflow: hidden;
+      height     : 315px;
+      padding    : 0 16px;
+      overflow   : hidden;
+      .prgr-wrp {
+        .programm__block:nth-child(1){
+          display: block;
+        }
+        .programm__block {
+          display: none;
+        }
+
+      }
     }
   }
   .toggle__view.btn {
@@ -321,46 +480,46 @@
 }
 .not__auth-block {
   background-color: #fff;
-  padding: 48px 0 36px 0;
+  padding         : 48px 0 36px;
   .inner {
     @include middle-block(750px);
     > .title {
-      font-size: 34px;
-      color: $black_87;
-      line-height: 40px;
+      font-size    : 34px;
+      color        : $black_87;
+      line-height  : 40px;
       margin-bottom: 24px;
-      text-align: center;
+      text-align   : center;
     }
     .info {
-      font-size: 15px;
-      color: $black_87;
-      line-height: 24px;
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
       margin-bottom: 24px;
-      text-align: center;
+      text-align   : center;
     }
   }
   .plans {
-    display: flex;
+    display        : flex;
     justify-content: center;
     .item {
-      border: 1px solid $black_54;
+      border       : 1px solid $black_54;
       border-radius: 4px;
-      padding: 32px 24px 24px 24px;
-      &:first-child{
+      padding      : 32px 24px 24px;
+      &:first-child {
         margin-right: 24px;
       }
       .title {
-        font-size: 24px;
-        color: $black_87;
-        line-height: 28px;
-        text-align: center;
+        font-size    : 24px;
+        color        : $black_87;
+        line-height  : 28px;
+        text-align   : center;
         margin-bottom: 24px;
       }
       .description {
-        text-align: center;
-        font-size: 13px;
-        color: $black_54;
-        line-height: 20px;
+        text-align   : center;
+        font-size    : 13px;
+        color        : $black_54;
+        line-height  : 20px;
         margin-bottom: 28px;
       }
     }

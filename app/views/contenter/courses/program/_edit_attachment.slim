@@ -21,46 +21,59 @@
         span.current_count 500
         span.max_count
           |/500
-    .upload_attachments
+    .upload_attachments style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" );
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
-      .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
-        i.icon.text
-        .selectText Написать текст
+      - unless attachment.file.file.present? || attachment.file_type == "description"
+        .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
+          i.icon.text
+          .selectText Написать текст
 
-      - add_class = attachment.file_type == "video" ? "active" : ""
-      .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'video/*')" class=add_class
-        i.icon.video
-        .selectText Вставить видео
+        - add_class = attachment.file_type == "video" ? "active" : ""
+        .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'video/*')" class=add_class
+          i.icon.video
+          .selectText Вставить видео
 
-      - add_class = attachment.file_type == "audio" ? "active" : ""
-      .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'audio/*')" class=add_class
-        i.icon.audio
-        .selectText Вставить аудио
+        - add_class = attachment.file_type == "audio" ? "active" : ""
+        .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'audio/*')" class=add_class
+          i.icon.audio
+          .selectText Вставить аудио
 
-      - add_class = attachment.file_type == "pdf" ? "active" : ""
-      .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'application/pdf')"
-        i.icon.courses
-        .selectText Вставить PDF
+        - add_class = attachment.file_type == "pdf" ? "active" : ""
+        .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'application/pdf')"
+          i.icon.courses
+          .selectText Вставить PDF
 
-      - add_class = attachment.download ? "active" : ""
-      .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{attachment.id}', '')" data-type="download" data-id=attachment.id class=add_class
-        i.icon.add
-        .selectText Прикрепить файл для скачивания
+        - add_class = attachment.download ? "active" : ""
+        .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{attachment.id}', '')" data-type="download" data-id=attachment.id class=add_class
+          i.icon.add
+          .selectText Прикрепить файл для скачивания
 
-      .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="test"
-        i.icon.test
-        .selectText Добавить тест
+        .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="test"
+          i.icon.test
+          .selectText Добавить тест
 
     .editFileUpload
-      .addedTxtDescription.itemFile data-type="description"
+      .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
         textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
           = attachment.full_text
-      .addedFileInfo.itemFile data-type="file"
-        .fileInfo
-          .titleName R_jHSSaMiO8.mp3
+      .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
+        .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
+          .titleName = (attachment.file.file.original_filename rescue "Без имени")
           .fileType
-            i.icon.audio
-            span.typeName Аудио
+            i.icon.content class=attachment.class_type
         .fileDuration
           .titleDuration Продолжительность материала в минутах
-          input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]"
+          input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]" value=attachment.duration
+
+      .addedTest.itemFile data-type="test"
+        .testHolder
+          .testIssue
+            .input_title
+              span.numberSection 1.
+              input.issueInput placeholder="Введите вопрос"
+              .remove
+            .qustion
+              .auth_agree.checkbox__holder
+                input#checkbox123.checkbox name="agreed" type="checkbox"
+                label.label for="checkbox123"
+                  i.check

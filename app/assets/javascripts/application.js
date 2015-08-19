@@ -2,7 +2,6 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
-// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 //= require ./vendor/notifymy.js
@@ -84,9 +83,7 @@ var includeDatePicker = function () {
 }
 
 function pageLoad(action) {
-    $(document).ready(function () {
-        $("img:last").load(action);
-    });
+    $(document).ready(action);
 }
 
 var notifyMypush = function (message) {
@@ -161,7 +158,14 @@ $(document).ready(function () {
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
-        $('.auth').css({'height': windowHeight + 'px'});
+        var bodyHeight = $('body').outerHeight();
+        if ($('.auth').hasClass('is__course-description')) {
+          $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+          console.log(bodyHeight);
+        }
+        else {
+          $('.auth').css({'height': windowHeight + 'px'});
+        }
     }, 100);
 
 
@@ -173,10 +177,12 @@ $(document).ready(function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
         else {
             $('.courses-aside:visible').removeClass('show');
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
     })
 
@@ -237,5 +243,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-
