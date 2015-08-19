@@ -128,7 +128,6 @@ $(document).ready ->
       $('.js__backing').addClass('is__active')
     ), ->
       if $('#ui-datepicker-div').is(':hidden')
-        console.log 12
         $(@).removeClass('is__active')
 
     $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
@@ -193,7 +192,3 @@ $(document).ready ->
     headerTabsLine('.page__children .item.active')
     # tabsCorusel()
     testList()
-
-    $('body').on 'click', (e) ->
-      console.log e.target
-      console.log 12

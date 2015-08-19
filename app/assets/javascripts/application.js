@@ -160,7 +160,14 @@ $(document).ready(function () {
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
-        $('.auth').css({'height': windowHeight + 'px'});
+        var bodyHeight = $('body').outerHeight();
+        if ($('.auth').hasClass('is__course-description')) {
+          $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+          console.log(bodyHeight);
+        }
+        else {
+          $('.auth').css({'height': windowHeight + 'px'});
+        }
     }, 100);
 
 

@@ -46,7 +46,7 @@
   Ripples.prototype.init = function() {
     var $element  = this.element;
 
-    $element.on("click", function(event) {
+    $element.click(function(event) {
       /**
        * Verify if the user is just touching on a device and return if so
        */
@@ -134,13 +134,12 @@
       /**
        * Detect when the user leaves the element
        */
-      $element.on("mouseup mouseleave touchend", function() {
-        $ripple.data("mousedown", "off");
+       $ripple.data("mousedown", "off");
 
-        if($ripple.data("animating") === "off") {
-          self.rippleOut($ripple);
-        }
-      });
+       if($ripple.data("animating") === "off") {
+         self.rippleOut($ripple);
+       }
+
 
     });
   };
