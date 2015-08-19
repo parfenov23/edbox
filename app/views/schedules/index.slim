@@ -8,20 +8,20 @@
                 ul.hidden-list
                     - @months.each do |month|
                         li
-                            a href="/schedule?date=#{month[:date].to_s}" #{month[:month]}
-            /.psevdo-select
-                .select-trigger Все группы
+                            a href="/schedule?date=#{month[:date].to_s}&group=#{@group.id}" #{month[:month]}
+            .psevdo-select
+                .select-trigger #{@group.first_name}
                 ul.hidden-list
-                    li managers
-                    li managers
-                    li managers
+                    - @groups.each do |group|
+                        li
+                            a href="/schedule?date=#{@today.to_date.to_s}&group=#{group.id.to_s}" #{group.first_name}
         .schedule-calendar
             - @weeks.each do |week|
                 .schedule-line
                     - week.each do |day|
                         - clas = 'current' if day[:today].present?
                         - if day[:active].present? && day[:course_deadline].present?
-                            .item class="#{clas}" data-id = "js-schedule-calendar" data-date = "#{day[:date].to_date}"
+                            .item class="#{clas} js_openLeftSideBar" data-id = "js-schedule-calendar" data-date = "#{day[:date].to_date}" data-group = "#{@group.id}"
                                 .data
                                     .weekday #{day[:week_day]}
                                     .day #{day[:day]}

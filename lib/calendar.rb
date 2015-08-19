@@ -3,13 +3,12 @@ class Calendar
     current = DateTime.new(year, month)
     begin_of_month = current.beginning_of_month
     end_of_month = current.end_of_month
-    before_month = begin_of_month.wday - 1
-    after_month = 7 - end_of_month.wday
+    before_month = ((begin_of_month.wday + 6) % 7)
+    after_month = 6 - ((end_of_month.wday + 6) % 7)
 
     week_days = %w'ПН ВТ СР ЧТ ПТ СБ ВС'
 
     days = []
-
     before_month.times do |day|
       date = begin_of_month - (before_month - day).day
       days << {
