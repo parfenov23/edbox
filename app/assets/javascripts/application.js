@@ -2,7 +2,6 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
-// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 //= require ./vendor/notifymy.js
@@ -159,7 +158,14 @@ $(document).ready(function () {
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
-        $('.auth').css({'height': windowHeight + 'px'});
+        var bodyHeight = $('body').outerHeight();
+        if ($('.auth').hasClass('is__course-description')) {
+          $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+          console.log(bodyHeight);
+        }
+        else {
+          $('.auth').css({'height': windowHeight + 'px'});
+        }
     }, 100);
 
 
@@ -235,5 +241,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-

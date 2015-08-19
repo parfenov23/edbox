@@ -123,13 +123,12 @@ $(document).ready ->
     $(@).stop(true).queue 'fx', ->
       headerTabsLine('.page__children .item.active')
 
-  $('.js__select-calendar').hover (->
-    $(@).addClass('is__active')
-    $('.js__backing').addClass('is__active')
-  ), ->
-    if $('#ui-datepicker-div').is(':hidden')
-      console.log 12
-      $(@).removeClass('is__active')
+    $('.js__select-calendar').hover (->
+      $(@).addClass('is__active')
+      $('.js__backing').addClass('is__active')
+    ), ->
+      if $('#ui-datepicker-div').is(':hidden')
+        $(@).removeClass('is__active')
 
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
     parenBlock = undefined

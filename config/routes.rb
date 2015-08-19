@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'schedule', to: "schedules#index"
   post 'schedule/day', to: "schedules#day_schedule"
   get ":action" => "home#:action"
+  get "makeup/:action" => "makeup#:action"
   # get "test_websocket" => "home#test_websocket"
   # get 'nod'
   match "node/websocket", :to => WebsocketRails::ConnectionManager.new, :via => [:get, :post]

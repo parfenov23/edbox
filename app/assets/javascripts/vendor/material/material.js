@@ -114,8 +114,10 @@
         var $this = $(this);
         if ($this.val() === "" && (typeof $this[0].checkValidity != "undefined" && $this[0].checkValidity())) {
           $this.addClass("empty");
+          $this.closest('.item').addClass("empty");
         } else {
           $this.removeClass("empty");
+          $this.closest('.item').removeClass("empty");
         }
       })
       .on("focus", ".form-control-wrapper.fileinput", function() {
