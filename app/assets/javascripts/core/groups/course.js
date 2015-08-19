@@ -143,6 +143,18 @@ var bind_block = function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
 
+    $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineCourse($(this), $(this).data("text"));
+    });
+
+    $('.edit-menu .js_changeDeadLineSectionGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineSectionGroup($(this), $(this).data("text"));
+    });
+
+    $('.edit-menu .js_removeCourseToGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        removeCourseToGroup($(this), $(this).data("text"));
+    });
+
     $('.js__select-calendar').hover((function () {
         $(this).addClass('is__active');
         $('.js__backing').addClass('is__active');
