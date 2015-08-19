@@ -22,7 +22,11 @@ module Superuser
       course = Course.new(params_course)
       course.save
       course.push_if_create
-      course.create_all_img(params[:image]) if params[:image]
+      # course.create_all_img(params[:image]) if params[:image]
+      if params[:image]
+        course.attachments.where(file_type: 'image').destroy_all
+        Attachment.save_file('Course', course.id, params[:image], 'full')
+      end
       redirect_to edit_superuser_course_path(course.id)
     end
 
@@ -31,7 +35,11 @@ module Superuser
       course.update(params_course)
       course.bunch_tags.destroy_all
       course.bunch_tags.create((params[:tags].map { |t| {tag_id: t} } rescue []) )
-      course.create_all_img(params[:image]) if params[:image]
+      # course.create_all_img(params[:image]) if params[:image]
+      if params[:image]
+        course.attachments.where(file_type: 'image').destroy_all
+        Attachment.save_file('Course', course.id, params[:image], 'full')
+      end
       redirect_to :back
     end
 

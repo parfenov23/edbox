@@ -20,13 +20,14 @@ class Attachment < ActiveRecord::Base
 
   default_scope { where(archive: false) } #unscoped
 
-  def self.save_file(type, id, file, size=nil)
+  def self.save_file(type, id, file, size=nil, width=nil, height=nil)
     class_name = type
-    id = id
     attachmentable = class_name.classify.constantize.find(id)
     attachment = attachmentable.attachments.build
     attachment.file = file
     attachment.size = size
+    attachment.width = width
+    attachment.height = height
     attachment.save
     if (attachment.file_type == VIDEO_FILE) && (attachment.size == nil)
       Thread.new do
@@ -80,7 +81,20 @@ class Attachment < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json
+    as_json.merge({file_name: (file.file.original_filename rescue nil), file_size: (file.file.size rescue nil)})
+  end
+
+  def uploadType
+    case file_type
+      when "audio"
+        'audio/*'
+      when "video"
+        'video/*'
+      when "pdf"
+        'application/pdf'
+      when "other"
+        ''
+    end
   end
 
   private

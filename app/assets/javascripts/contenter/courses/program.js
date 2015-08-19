@@ -31,32 +31,94 @@ var setAttachmentType = function () {
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
+    if (btn.data("type") != "download"){
+        openEditFileAfterUpload(btn);
+    }
     return true;
+};
+
+var openEditFileAfterUpload = function (btn) {
+    var type = btn.data("type");
+    var form = btn.closest("form.form_edit");
+    var block_show = form.find(".editFileUpload .itemFile[data-type='" + type + "']");
+    btn.closest(".upload_attachments").hide();
+    block_show.show();
+    return block_show;
 };
 
 var ajaxUpdateSection = function (type, btn) {
     var form = btn.closest("form");
     $.ajax({
-        type: 'PUT',
-        url : '/api/v1/' + type + '/' + form.data("id"),
+        type       : 'PUT',
+        url        : '/api/v1/' + type + '/' + form.data("id"),
         processData: false,
         contentType: false,
         cache      : false,
-        data: form.serializefiles()
+        data       : form.serializefiles()
     }).success(function (data) {
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
 };
 
+var ajaxUploadFileAttachment = function (file) {
+    var form = file.closest("form");
+    var formdata = new FormData();
+    file = file[0].files[0];
+    formdata.append("attachment[file]", file);
+    var xhr = new XMLHttpRequest();
+    xhr.upload.addEventListener("progress", uploadProgress, false);
+    xhr.addEventListener("load", function(e) {
+        uploadComplete(e, form);
+    }, false);
+    xhr.addEventListener("error", uploadFailed, false);
+    xhr.addEventListener("abort", uploadCanceled, false);
+
+    xhr.open('PUT', '/api/v1/attachments/' + form.data("id"), true);
+    xhr.send(formdata);
+};
+
+function uploadProgress(evt) {
+    if (evt.lengthComputable){
+        var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+        show_error('Загрузка: ' + percentComplete.toString() + '%', 3000);
+    }
+    else {
+        console.log('unable to compute');
+    }
+}
+
+function uploadComplete(evt, form) {
+    var input_file = form.find("input[name='attachment[file]']");
+    var response = JSON.parse(evt.target.response);
+    var block_fileInfo = openEditFileAfterUpload(input_file);
+    block_fileInfo.find(".fileInfo .titleName").text(response.file_name);
+    block_fileInfo.find(".fileInfo .fileType .icon").attr("class", "icon content");
+    block_fileInfo.find(".fileInfo .fileType .icon").addClass(response.file_type);
+    show_error('Згруженно!', 3000);
+}
+
+function uploadFailed(evt) {
+    show_error('Произошла ошибка', 3000);
+}
+
+function uploadCanceled(evt) {
+    console.log("The upload has been canceled by the user or the browser dropped the connection.");
+}
+
 var onChangeEditSection = function () {
     ajaxUpdateSection('sections', $(this));
 };
 
-var onChangeEditAttachment = function () {
-    var input = $(this);
+var onChangeEditAttachment = function (input_incl) {
+    var input;
+    if (input_incl.type == "change"){
+        input = $(this);
+    } else {
+        input = input_incl
+    }
     var block_info = input.closest(".attachment.item").find(".info_attachment");
-    var form = input.closest("form")
+    var form = input.closest("form");
     var input_file = form.find("input[name='attachment[file]']");
 
     if (input.attr("name") == "attachment[title]"){
@@ -67,8 +129,17 @@ var onChangeEditAttachment = function () {
         block_info.find(".description").text(input.val());
         input_file.attr("name", "");
     }
-    ajaxUpdateSection('attachments', input);
-    input_file.attr("name", "attachment[file]");
+    if (input.attr("name") == "attachment[full_text]"){
+        input_file.attr("name", "");
+    }
+
+    if (input.attr("name") == "attachment[file]"){
+        show_error('Идет загрузка файла', 3000);
+        ajaxUploadFileAttachment(input);
+    } else {
+        ajaxUpdateSection('attachments', input);
+        input_file.attr("name", "attachment[file]");
+    }
 };
 
 var createAttachmentToSection = function () {
@@ -166,9 +237,16 @@ var loadBindOnChangeInput = function () {
     $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
     $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
     $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
+    try {
+        init_tiny();
+    }
+    catch(err) {
+        console.log("no initTiny");
+    }
+
 };
 
-var selectAttachment = function(){
+var selectAttachment = function () {
     var btn = $(this);
     btn.closest(".upload_attachments").find(".selectAttachment").removeClass("active");
     btn.addClass("active");
@@ -178,7 +256,7 @@ var selectAttachment = function(){
 //    console.log(123);
 //};
 
-pageLoad(function () {
+$(document).ready(function () {
     loadBindOnChangeInput();
     $(document).on("click", "#contenterCourseProgram .js_createAttachmentToSection", createAttachmentToSection);
     $(document).on("click", "#contenterCourseProgram .js_removeAttachmentToSection", removeAttachmentToSection);

@@ -163,19 +163,17 @@ addSearchMember = function () {
 };
 
 $(document).ready(function () {
-    $("img:last").load(function () {
-        invitedEmpty();
-        invitedMemberDelete();
-        inviteMember();
+    invitedEmpty();
+    invitedMemberDelete();
+    inviteMember();
 
-        sendInvintations();
-        sendInvintationsInGroup();
+    sendInvintations();
+    sendInvintationsInGroup();
 
-        deleteInvitedMember();
-        deleteMemberToGroup();
+    deleteInvitedMember();
+    deleteMemberToGroup();
 
-        searchMember();
-        addSearchMember();
-    });
+    searchMember();
+    addSearchMember();
 
 });

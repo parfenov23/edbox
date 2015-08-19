@@ -13,6 +13,10 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  if Rails.root.to_s.scan('beta_edbox').present?
+    config.consider_all_requests_local       = true
+    config.action_controller.perform_caching = false
+  end
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
