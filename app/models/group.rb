@@ -29,6 +29,34 @@ class Group < ActiveRecord::Base
     end
   end
 
+  # def schedule
+  #   bunch_courses_and_sections = bunch_courses.joins(:bunch_sections)
+  #   all_dates = bunch_courses_and_sections.pluck(:date_complete, "bunch_sections.date_complete").flatten.uniq.compact
+  #   arr_schedule = all_dates.map do |date|
+  #     bunch_courses = self.bunch_courses.where({date_complete: date}).uniq
+  #     bunch_sections_ids = bunch_courses_and_sections
+  #                            .where(bunch_sections: {date_complete: date})
+  #                            .pluck("bunch_sections.id").uniq
+  #
+  #     {date: date, bunch_courses: bunch_courses.ids, bunch_sections: bunch_sections_ids}
+  #   end
+  #   arr_schedule
+  # end
+
+  def schedule
+    ligament_courses_and_sections = ligament_courses.joins(:ligament_sections)
+    all_dates = ligament_courses_and_sections.pluck(:date_complete, "ligament_sections.date_complete").flatten.uniq.compact
+    arr_schedule = all_dates.map do |date|
+      ligament_courses = self.ligament_courses.where({date_complete: date}).uniq
+      ligament_sections_ids = ligament_courses_and_sections
+                             .where(ligament_sections: {date_complete: date})
+                             .pluck("ligament_sections.id").uniq
+
+      {date: date, ligament_courses: ligament_courses.ids, ligament_sections: ligament_sections_ids}
+    end
+    arr_schedule
+  end
+
   def notify_json(type=nil)
     {
       title: "Вас добавили в группу",

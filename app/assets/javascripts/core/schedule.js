@@ -2,11 +2,15 @@ $(document).ready(function () {
     $('img:last').load(function () {
         $('.schedule-calendar .item').on('click', function () {
             var date = $(this).data('date');
+            var group = $(this).data('group');
             if (typeof date != 'undefined'){
                 $.ajax({
                     type   : 'POST',
                     url    : '/schedule/day',
-                    data   : {date: date},
+                    data   : {
+                        date: date,
+                        group: group
+                    },
                     success: function (e) {
                         $('#js-schedule-calendar').html(e);
                         //$('.js__select-calendar').hover((function () {

@@ -27,27 +27,27 @@
 - @day_schedule.each do |course_id, section_ids|
     - if section_ids.present?
         - course = Course.find(course_id)
-            .course-wrp
-                a.title href="/course_description?id=#{course.id}" Курс “#{course.title}”
-                - section_ids.each do |section_id|
-                    - section = Section.find(section_id)
-                        .item.mdl-shadow--2dp
-                            a.title href="/course_description?id=#{course.id}" Курс “#{section.title}”
-                            /.duration__with-icon
-                                i.icon
-                                |32 часа
-                            - if @current_user.director? || !@current_user.corporate?
-                                .com__director-btn.js__select-calendar
-                                    a.edit-date href="#"
-                                        i.icon-uniE8A3
-                                    .hidden-calendar-wrp
-                                        .hidden-calendar
-                                            .calendar-header
-                                                .back.icon
-                                                | Выбор даты
-                                            .calendar-holder
-                                                .selected-value.js_changeDeadLineSectionMy data-section_id="#{course.id}" data-no_schedule="true"  Выберите дату
-                                                .datapicker__trigger
-                                        ul.hidden-list
-                                            li data-show="hidden-calendar"  Перенести дату окончания курса
-                                            li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
+        .course-wrp
+            a.title href="/course_description?id=#{course.id}" Курс “#{course.title}”
+            - section_ids.each do |section_id|
+                - section = Section.find(section_id)
+                .item.mdl-shadow--2dp
+                    a.title href="/course_description?id=#{course.id}" Курс “#{section.title}”
+                    /.duration__with-icon
+                        i.icon
+                        |32 часа
+                    - if @current_user.director? || !@current_user.corporate?
+                        .com__director-btn.js__select-calendar
+                            a.edit-date href="#"
+                                i.icon-uniE8A3
+                            .hidden-calendar-wrp
+                                .hidden-calendar
+                                    .calendar-header
+                                        .back.icon
+                                        | Выбор даты
+                                    .calendar-holder
+                                        .selected-value.js_changeDeadLineSectionMy data-section_id="#{course.id}" data-no_schedule="true"  Выберите дату
+                                        .datapicker__trigger
+                                ul.hidden-list
+                                    li data-show="hidden-calendar"  Перенести дату окончания курса
+                                    li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
