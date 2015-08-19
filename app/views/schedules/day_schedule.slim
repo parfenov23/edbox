@@ -18,7 +18,8 @@
                                 .back.icon
                                 | Выбор даты
                             .calendar-holder.edit-menu
-                                .selected-value.js_changeDeadLineCourseMy data-course_id="#{course.id}" data-no_schedule="true" Выберите дату
+                                .selected-value.js_changeDeadLineCourse data-id="#{course.id}" data-group_id="#{@group.id}" data-no_schedule="true" Выберите дату
+                                /.selected-value.js_changeDeadLineCourseMy data-course_id="#{course.id}" data-no_schedule="true" Выберите дату
                                 .datapicker__trigger
                         ul.hidden-list
                             li data-show="hidden-calendar"  Перенести дату окончания курса
@@ -46,8 +47,9 @@
                                         .back.icon
                                         | Выбор даты
                                     .calendar-holder
-                                        .selected-value.js_changeDeadLineSectionMy data-section_id="#{course.id}" data-no_schedule="true"  Выберите дату
+                                        .selected-value.js_changeDeadLineSectionGroup data-section_id=section.id data-group_id=@group.id data-no_schedule="true"  Выберите дату
+                                        /.selected-value.js_changeDeadLineSectionMy data-section_id="#{course.id}" data-no_schedule="true"  Выберите дату
                                         .datapicker__trigger
                                 ul.hidden-list
-                                    li data-show="hidden-calendar"  Перенести дату окончания курса
-                                    li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
+                                    li data-show="hidden-calendar"  Перенести дату окончания раздела
+                                    /li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
