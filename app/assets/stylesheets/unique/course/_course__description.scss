@@ -448,6 +448,15 @@
       height     : 315px;
       padding    : 0 16px;
       overflow   : hidden;
+      .prgr-wrp {
+        .programm__block:nth-child(1){
+          display: block;
+        }
+        .programm__block {
+          display: none;
+        }
+
+      }
     }
   }
   .toggle__view.btn {
