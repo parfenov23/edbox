@@ -144,7 +144,7 @@ var bind_block = function () {
     });
 
     $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-        changeDeadLineCourse($(this), $(this).data("text"));
+        changeDeadLineCourse($(this));
     });
 
     $('.edit-menu .js_changeDeadLineSectionGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
@@ -152,7 +152,7 @@ var bind_block = function () {
     });
 
     $('.edit-menu .js_removeCourseToGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-        removeCourseToGroup($(this), $(this).data("text"));
+        removeCourseToGroup($(this));
     });
 
     $('.js__select-calendar').hover((function () {
