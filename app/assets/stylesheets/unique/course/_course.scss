@@ -12,9 +12,61 @@
       font-size: 15px;
       color: #262626;
       line-height: 24px;
+      margin-bottom: 18px;
     }
     .icon__block {
-
+      i {
+        @include inline-block;
+        margin-right: 24px;
+        &.is__not-active {
+          opacity: 0.26;
+        }
+        &::before {
+          font-size: 20px;
+          color: $black_87;
+        }
+        &::after {
+          font-size: 13px;
+          color: $black_87;
+          line-height: 13px;
+          display: inline-block;
+          margin-left: 10px;
+          vertical-align: text-top;
+        }
+      }
+      .file {
+        &::before {
+        }
+        &::after {
+          content: "Файл для скачивания";
+        }
+      }
+      .pdf {
+        margin-top: -3px;
+        &::before {
+          font-size: 26px;
+        }
+        &::after {
+          content: "PDF";
+          vertical-align: super;
+        }
+      }
+      .audio{
+        &::before {
+          font-size: 20px;
+        }
+        &::after {
+          content: "Аудио";
+        }
+      }
+      .video {
+        &::before {
+          font-size: 20px;
+        }
+        &::after {
+          content: "Видео"
+        }
+      }
     }
   }
   .text__content {
@@ -52,6 +104,15 @@
         content: "\E89F";
         font-size: 32px;
       }
+    }
+  }
+
+  .audio__content {
+    audio {
+      @include middle-block(584px);
+      @include white__block(1, 0);
+      height: 72px;
+      vertical-align: middle;
     }
   }
 }
