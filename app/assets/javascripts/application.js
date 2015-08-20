@@ -9,6 +9,7 @@
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
+//= require ./vendor/fullscrn
 //= require main/main
 
 //= require_tree ./core
@@ -112,8 +113,10 @@ var adaptiveTitle = function () {
         });
     });
 };
-
 $(document).ready(function () {
+
+
+
     jQuery.each(jQuery('textarea[data-autoresize]'), function() {
         var offset = this.offsetHeight - this.clientHeight;
 
