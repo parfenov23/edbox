@@ -114,6 +114,10 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
           i.groups.icon
           a.label href="/members" Участники
 
+        .item class=(namePage == "schedule" ? "is__active" : "")
+          i.schedule.icon
+          a.label href="/schedule" Расписание
+
     - if current_user.contenter
       .item class=(namePage == "contenter_admin" ? "is__active" : "")
         i.schedule.icon

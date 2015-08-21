@@ -1,7 +1,7 @@
 #js-course-leading.courses-aside.favorite-courses
   .close-filter.icon Добавление ведущих
   .leading__list
-    - User.all.each do |user|
+    - User.where(leading: true).each do |user|
       .item.js__contenterAddLeadingToCourse data-id=user.id class=(course.ligament_leads.where(user_id: user.id).present? ? "active" : "")
         .ava
           img src=default_img(user.avatar)
