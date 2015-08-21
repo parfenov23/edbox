@@ -38,6 +38,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     - if namePage == "cabinet"
       .item.js_openLeftSideBar data-id="js-schedule-cabinet"
         i.schedule.icon
+    - if namePage == "courseMaterial"
+      .item.js_openLeftSideBar data-id="js-notification-courses"
+        i.notes.icon
     - if namePage == "courses"
       /.item
       /  i.filter.icon
@@ -66,6 +69,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     - if (comment rescue false)
       .item
         i.calendar.icon.js_openLeftSideBar data-id="js-comment"
+
     .item.ava.header__user
       img src=default_img(current_user.avatar)
       .menu__user

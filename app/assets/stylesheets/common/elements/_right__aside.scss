@@ -30,14 +30,14 @@
         font-size     : 24px;
         color         : rgba(0, 0, 0, 0.54);
         line-height   : 32px;
-        margin-bottom : 68px;
-        padding-top   : 32px;
+        margin-bottom : 42px;
+        padding-top   : 16px;
         cursor        : pointer;
         &::before {
             position  : absolute;
             display   : block;
             content   : '\E702';
-            top       : 35px;
+            top       : 16px;
             left      : 0;
             font-size : 26px;
         }
@@ -275,4 +275,121 @@
         }
 
     }
+}
+
+.notes__course {
+  padding-bottom: 160px;
+  .notes__content {
+    width: 512px;
+    margin-left: -32px;
+    height: calc(100% - 92px);
+    > .item {
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+      padding: 0 32px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      padding-top: 6px;
+      &.is__shot {
+        .description {
+          overflow: hidden;
+          height: 80px;
+        }
+        .toggle-viewport {
+          display: block;
+          &::before {
+            content: "\E7B4";
+          }
+        }
+      }
+      .title {
+        margin-bottom: 8px;
+        position: relative;
+        padding-right: 40px;
+        .date {
+          font-size: 13px;
+          color: $black_54;
+          line-height: 20px;
+        }
+        .edit {
+          width: 32px;
+          height: 36px;
+          position: absolute;
+          top: -6px;
+          right: -20px;
+          cursor: pointer;
+          &:hover {
+            .hidden-list{
+              display: block;
+            }
+          }
+          i {
+            display: block;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            &:hover {
+              background-color: #F3F3F3;
+              border-radius: 50%;
+            }
+            &::before {
+              content: "\E8A3";
+              line-height: 32px;
+              font-size: 24px;
+            }
+          }
+          .hidden-list {
+            position: absolute;
+            top: 36px;
+            right: 0;
+            li.item {
+              font-size: 15px;
+              color: rgba(0,0,0,0.87);
+              line-height: 24px;
+
+            }
+          }
+        }
+      }
+      .description {
+        font-size: 13px;
+        color: $black_87;
+        line-height: 20px;
+        margin-bottom: 12px;
+      }
+      .toggle-viewport {
+        display: none;
+        color: rgba(0,0,0,0.26);
+        cursor: pointer;
+        &.for__less {
+          display: block;
+          &::before {
+            content: "\E7B7";
+          }
+        }
+      }
+    }
+  }
+  .notes__edit {
+    width: 512px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 160px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    textarea {
+      @include middle-block(344px);
+      height: 100px;
+      @include placeholder($black_26);
+      border: none;
+      resize: none;
+    }
+    .actions__block {
+      @include clearfix;
+      padding-top: 6px;
+      .btn {
+        float: right;
+      }
+    }
+  }
 }
