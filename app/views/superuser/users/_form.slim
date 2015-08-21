@@ -37,6 +37,11 @@ form.form-horizontal action="#{action_url}" method="post"
       = check_box("user", "director", {checked: check})
     .form-group
       label
+        | Шеф контет?:
+      - check = @user.contenter
+      = check_box("user", "contenter", {checked: check})
+    .form-group
+      label
         | Корпоративный аккаунт?:
       - check = !@user.id.nil? ? @user.corporate : false
       = check_box("user", "corporate", {checked: check})

@@ -68,7 +68,7 @@ var ajaxUploadFileAttachment = function (file) {
     formdata.append("attachment[file]", file);
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", uploadProgress, false);
-    xhr.addEventListener("load", function(e) {
+    xhr.addEventListener("load", function (e) {
         uploadComplete(e, form);
     }, false);
     xhr.addEventListener("error", uploadFailed, false);
@@ -233,35 +233,229 @@ var removeSectionToCourse = function () {
     confirm("Вы действительно хотите удалить секцию?", remove);
 };
 
-var loadBindOnChangeInput = function () {
-    $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
-    $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
-    $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
-    try {
-        init_tiny();
-    }
-    catch(err) {
-        console.log("no initTiny");
-    }
-
-};
-
 var selectAttachment = function () {
     var btn = $(this);
     btn.closest(".upload_attachments").find(".selectAttachment").removeClass("active");
     btn.addClass("active");
 };
 
-//var uploadFileInput = function(){
-//    console.log(123);
-//};
+var createAttachmentTest = function () {
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/tests',
+        data: {test: {testable_id: btn.data("id"), testable_type: "Attachment"}, type: "html"}
+    }).success(function (data) {
+        btn.closest("form").find(".editFileUpload .addedTest").append($(data));
+        loadBindOnChangeInput();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var createQuestionToTest = function () {
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/questions',
+        data: {question: {test_id: btn.data("id")}, type: "html"}
+    }).success(function (data) {
+        btn.closest(".addedTest").find(".testHolder").append($(data));
+        loadBindOnChangeInput();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var changeQuestionInput = function () {
+    var btn = $(this);
+    var form = btn.closest("form");
+    $.ajax({
+        type: 'PUT',
+        url : '/api/v1/questions/' + btn.closest(".currentQuestionId").data("id"),
+        data: btn.closest("form").serialize()
+    }).success(function (data) {
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var changeAnswerInput = function () {
+    var btn = $(this);
+    var form = btn.closest("form");
+    setTimeout(function () {
+        var checked_input = btn.closest(".questionItem").find(".auth_agree input.checkbox");
+        var checked = false;
+        if (checked_input.attr("checked") == "checked"){
+            checked = true;
+        }
+        $.ajax({
+            type: 'PUT',
+            url : '/api/v1/answers/' + btn.data("id"),
+            data: {answer: {text: btn.val(), right: checked}}
+        }).success(function (data) {
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    }, 100);
+
+};
+
+var getCloneQuestion = function (input) {
+    var parentBlock = input.closest(".questionItem");
+    var next_block = parentBlock.next();
+    if (next_block.length){
+        SetCaretAtEnd(next_block.find(".questionInput")[0])
+    } else {
+        createAnswerToQuestion(parentBlock);
+    }
+};
+
+var createAnswerToQuestion = function (parentBlock) {
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/answers',
+        data: {answer: {question_id: parentBlock.closest(".currentQuestionId").data("id")}, type: "html"}
+    }).success(function (data) {
+        parentBlock.closest(".questions").append($(data));
+        SetCaretAtEnd(parentBlock.closest(".questions").find(".questionItem .questionInput:last")[0]);
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var removeQuestionToTest = function () {
+    var btn = $(this);
+    confirm("Вы действительно хотите удалить ответ на вопрос?", function () {
+        btn.closest('.attachment.item').removeClass("closed-state").addClass("open-state");
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/questions/' + btn.data("id") + '/remove'
+        }).success(function (data) {
+            btn.closest(".testIssue").remove();
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    });
+
+};
+
+var removeAnswerToQuestion = function (input) {
+    if (! input.val().length){
+        var block = input.closest(".questionItem");
+        var prev_block = block.prev();
+        var blocks = block.closest(".questions").find(".questionItem");
+        if (blocks.length > 2){
+            $.ajax({
+                type: 'POST',
+                url : '/api/v1/answers/' + input.data("id") + "/remove"
+            }).success(function (data) {
+                block.remove();
+                SetCaretAtEnd(prev_block.find(".questionInput")[0]);
+            }).error(function () {
+                show_error('Произошла ошибка', 3000);
+            });
+        } else {
+            SetCaretAtEnd(prev_block.find(".questionInput")[0]);
+        }
+    }
+};
+
+var addTestToCourse = function () {
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/tests',
+        data: {test: {testable_id: btn.data("id"), testable_type: "Course"}, type: "html", file_name: "_final_test"}
+    }).success(function (data) {
+        $("#finalTestCourse").append($(data));
+        btn.hide();
+        $("#finalTestCourse").removeClass("closed-state").addClass("open-state");
+        loadBindOnChangeInput();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var loadBindOnChangeInput = function () {
+    $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
+    $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
+    $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
+    $('#contenterCourseProgram .js_changeQuestionInput').change(changeQuestionInput);
+    $('#contenterCourseProgram .js_changeAnswerInput').change(changeAnswerInput);
+    removeExtraElement();
+    try{
+        init_tiny();
+    }
+    catch (err){
+    }
+
+};
+
+var removeExtraElement = function () {
+    $.each($(".questions"), function (n, el) {
+        $.each($(el).find(".questionItem"), function (num, el) {
+            if (num <= 1){
+                $(el).find(".remove.js_removeAnswerToQuestion").remove();
+            }
+        })
+    })
+};
+
+var removeTestToCourse = function () {
+    var btn = $(this);
+    confirm("Вы действительно хотите удалить финальный тест?", function () {
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/tests/' + btn.data("id") + "/remove"
+        }).success(function (data) {
+            $(".section.add_new.js_addTestToCourse").removeClass("hideBtnFinalTest").show();
+            $("#finalTestCourse .parentFinalTest").remove();
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    });
+};
+
 
 $(document).ready(function () {
     loadBindOnChangeInput();
-    $(document).on("click", "#contenterCourseProgram .js_createAttachmentToSection", createAttachmentToSection);
-    $(document).on("click", "#contenterCourseProgram .js_removeAttachmentToSection", removeAttachmentToSection);
-    $(document).on("click", "#contenterCourseProgram .js_createSectionToSection", createSectionToSection);
-    $(document).on("click", "#contenterCourseProgram .js_removeSectionToCourse", removeSectionToCourse);
-    $(document).on("click", "#contenterCourseProgram .js_setAttachmentType", setAttachmentType);
-    $(document).on("click", "#contenterCourseProgram .selectAttachment", selectAttachment);
+    bindEventDocument({
+        nameAction: 'click', parentBlock: '#contenterCourseProgram',
+        arrElem   : [
+            ".js_createAttachmentToSection",
+            ".js_removeAttachmentToSection",
+            ".js_createSectionToSection",
+            ".js_removeQuestionToTest",
+            ".js_removeSectionToCourse",
+            ".js_setAttachmentType",
+            ".selectAttachment",
+            ".js_createAttachmentTest",
+            ".js_changeAnswerInput",
+            ".js_addTestToCourse",
+            ".js_removeTestToCourse",
+            ".js_createQuestionToTest"
+        ]
+    });
+
+    $(document).on("click", "#contenterCourseProgram .js_removeAnswerToQuestion", function () {
+        var btn = $(this);
+        var input = btn.closest(".questionItem").find(".questionInput");
+        confirm("Вы действительно хотите удалить ответ на вопрос?", function () {
+            input.val('');
+            input.closest('.attachment.item').removeClass("closed-state").addClass("open-state");
+            removeAnswerToQuestion(input);
+        });
+
+    });
+    $(document).on("keydown", "#contenterCourseProgram .js_getCloneQuestion", function (evt) {
+        var keycode = (evt.keyCode?evt.keyCode:evt.which);
+        if (keycode == '13'){
+            getCloneQuestion($(this))
+        }
+        if (keycode == 8){
+            removeAnswerToQuestion($(this));
+        }
+    });
+    removeExtraElement();
 });

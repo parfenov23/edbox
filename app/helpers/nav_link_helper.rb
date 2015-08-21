@@ -14,6 +14,8 @@ module NavLinkHelper
         my_course_nav_links
       when "contenter_courses_new"
         contenter_courses_new_nav_links
+      when "contenter_admin"
+        contenter_admin_nav_links
       else
         other_nav_links
     end
@@ -21,6 +23,14 @@ module NavLinkHelper
 
   def courses_nav_links
     []
+  end
+
+  def contenter_admin_nav_links
+    [
+      {title: "Категории", link: "/contenter/admin/categories"},
+      {title: "Теги", link: "/contenter/admin/tags"},
+      {title: "Ведущие", link: "/contenter/admin/members"}
+    ]
   end
 
   def contenter_courses_new_nav_links

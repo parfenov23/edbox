@@ -1,0 +1,36 @@
+= render "home/header/header", {namePage: "contenter_admin", titlePage: "Администрирование"}
+.content#membersAdminLeading
+  .container
+    .members.ingroups
+
+      .members__invite
+        ul.invited
+        .form
+          input.input.searchMember type="text" placeholder="Email участника"
+          .plane.js_inviteLeadingUser
+
+      ul.members__in_system style="display:none;"
+        - User.all.each do |member|
+          li.members__in_system-item.js_addSearchMember data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
+            .ava = member.full_name.first
+            .name = member.full_name
+            .email = member.email
+
+  .container.members
+    ul.members__in_system.director
+      - User.where(leading: true).each do |user|
+        - member = user
+        li.members__in_system-item
+          .ava = member.full_name.first
+          .name = member.full_name
+          .email = member.email
+          .status class="#{current_user.director ? 'director' : ''}"
+            .delete.js_removeUserToLeading data-id="#{member.id}" ×
+            - unless member.auth?
+              .send
+                .date = "#{time_ago_in_words(member.created_at)} назад"
+                .text Отправлено:
+            - else
+              .authorized
+                .date = "#{time_ago_in_words(member.last_auth)} назад"
+                .text Авторизован:

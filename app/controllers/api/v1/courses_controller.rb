@@ -54,6 +54,14 @@ module Api::V1
       render json: user
     end
 
+    def update_type
+      course = find_course
+      account_type = AccountTypeRelation.new({modelable_id: course.id, modelable_type: "Course"})
+      account_type.account_type_id = params[:account_type_id]
+      account_type.save
+      course.update({account_type_id: params[:account_type_id]});
+      render json: {success: true}
+    end
 
     private
 
@@ -62,7 +70,7 @@ module Api::V1
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration) rescue {}
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public).compact.select { |k, v| v != "" } rescue {}
     end
   end
 

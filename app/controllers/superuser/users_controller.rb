@@ -98,7 +98,7 @@ module Superuser
     end
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :leading, :about_me)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :leading, :about_me, :contenter)
     end
 
   end
