@@ -1,0 +1,111 @@
+= render "home/header/header", {namePage: "other", titlePage: '2.1 Тест: Жарим, парим, варим'}
+
+
+.presentation__block
+  img src="/uploads/course_default_image_full.png" 
+
+.auth.is__course-description
+  .auth__box
+    .logo
+      img src="/assets/logo.svg" 
+    .auth__title-top
+      img.logo__img src="/assets/logo_auth.svg"
+
+  .offer__box
+    .title Регистрация прошла успешно!
+    .description Для дальнейшей работы в системе Edbox вам необходимо выбрать тип подписки. Вы можете оформить бесплатный аккаунт с ограниченным количеством материалов, или выбрать платную подписку с полным доступом ко всей базе знаний Edbox. 
+    .plane__list
+      .item
+        .title Доступ к бесплатным  материалам
+        .description Ограниченный доступ к библиотеке знаний. В подписку входят только бесплатные курсы и материалы.
+        .price
+          span Бесплатно
+          a.btn.btn-flat href="#" ОФОРМИТЬ
+      .item
+        .title Полный доступ к базе знаний
+        .description Неограниченный доступ ко всем курсам, материалам и обновлениям Edbox. 
+        .price
+          span 1000 ₽/мес
+          .btn.btn-flat ОФОРМИТЬ
+
+
+.course__description-content.oh__nihuyase-block
+  .tegs__list
+  .course__title 123 test
+  .progress__block
+    .title.adaptive__title.overdue
+      .left-col  Прогресс прохождения курса
+      .right-col Завершить до 09 июля
+      .action-btn.drunkenPig.js_actionBtn
+        i.icon.schedule
+    .progress__wrp
+      .bar
+      .completed style=("width: 0%") 
+    .info
+      .precent Пройдено 0 %
+      .qty 0 из 2 лекций
+  .course__info
+    .adaptive__title
+      .left-col
+        .item
+          | 2 лекции
+          i.courses.icon
+        .item
+          | 23 часа
+          i.duration.icon
+        .item
+          | 2 слушателя
+          i.groups.icon
+      .right-col
+    .detail__info.is__closed
+      .description
+    .more.is__closed
+      .btn.btn-flat.for__closed
+        | ПОКАЗАТЬ ОПИСАНИЕ
+      .btn.btn-flat.for__open
+        | СКРЫТЬ ОПИСАНИЕ
+  .study__program.is__closed
+    .title Учебная программа
+    .programm__block
+      .adaptive__title
+        .left-col  1. 123 sec
+        .right-col.overdue Нет даты
+        .action-btn.drunkenPig.js_actionBtn
+          i.icon.schedule
+      .item.js_downloadFile 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col  1.1 Material
+          .right-col 5 часа
+        .description Material
+      .item.js_downloadFile 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col   1.2 Task 2
+          .right-col 5 часа
+        .description Task 2
+      .item.is__completed
+        .icon__block
+          i.icon.test
+        .adaptive__title
+          .left-col   1.3 Trest
+        .description Trest
+    .programm__block
+      .adaptive__title
+        .left-col  2. lolopo
+        .right-col.overdue Завершить до 07 июля
+        .action-btn.drunkenPig.js_actionBtn
+          i.icon.schedule
+          input.datapicker__trigger.js__set-date
+      .item 
+        .icon__block
+          i.icon.text
+        .adaptive__title
+          .left-col 2.1 ууу
+          .right-col 567 часа
+        .description ууу
+  .toggle__view.btn.btn-flat
+    span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
+    span.for__open ПОЛНАЯ ПРОГРАММА КУРСА

@@ -1,6 +1,7 @@
 figure.corses-prev
   .image
     img src = course.get_image_path(694, 384)
+    .fade
     .course__type-wrp
     - course.bunch_tags.each do |bunch_tag|
       .course-type = (bunch_tag.tag.title rescue nil)

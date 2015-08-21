@@ -1,396 +1,397 @@
 #page__header {
-  position        : fixed;
-  z-index         : 200;
-  top             : 0;
-  left            : 0;
-  display         : flex;
-  width           : 100%;
-  height          : 64px;
-  justify-content : space-between;
+  position       : fixed;
+  z-index        : 200;
+  top            : 0;
+  left           : 0;
+  display        : flex;
+  width          : 100%;
+  height         : 64px;
+  justify-content: space-between;
   @include transition;
   .left-col {
-    display         : flex;
-    justify-content : flex-start;
+    display        : flex;
+    justify-content: flex-start;
   }
   .page__icon {
-    line-height : 48px;
-    width       : 48px;
-    height      : 48px;
-    margin      : 8px 16px 16px;
-    text-align  : center;
+    line-height: 48px;
+    width      : 48px;
+    height     : 48px;
+    margin     : 8px 16px 16px;
+    text-align : center;
     i {
-      font-size : 24px;
-      cursor    : pointer;
-      color     : $black_54;
+      font-size: 24px;
+      cursor   : pointer;
+      color    : $black_54;
+
       // color    : $primoryColor;
     }
     .ava {
       img {
-        width         : 32px;
-        height        : 32px;
-        border-radius : 50%;
+        width        : 32px;
+        height       : 32px;
+        border-radius: 50%;
       }
     }
   }
 
   .page__title {
-    font-size    : 20px;
-    line-height  : 24px;
-    margin-top   : -2px;
-    margin-right : 24px;
-    padding-top  : 20px;
-    color        : $black_87;
-    max-width    : 300px;
+    font-size   : 20px;
+    line-height : 24px;
+    margin-top  : -2px;
+    margin-right: 24px;
+    padding-top : 20px;
+    color       : $black_87;
+    max-width   : 300px;
     @include eclipses;
   }
 
   .page__children {
-    position        : relative;
-    display         : flex;
-    padding-top     : 14px;
-    justify-content : flex-start;
+    position       : relative;
+    display        : flex;
+    padding-top    : 14px;
+    justify-content: flex-start;
     .item {
-      font-size      : 15px;
-      min-width      : auto;
-      text-transform : none;
-      color          : $black_87;
+      font-size     : 15px;
+      min-width     : auto;
+      text-transform: none;
+      color         : $black_87;
+      max-width     : 228px;
+      @include eclipses;
     }
     .line {
-      position         : absolute;
-      top              : 62px;
-      left             : 0;
-      height           : 2px;
-      background-color : $primoryColor;
+      position        : absolute;
+      top             : 62px;
+      left            : 0;
+      height          : 2px;
+      background-color: $primoryColor;
     }
   }
 
   .page__action {
-    display         : flex;
-    padding-top     : 19px;
-    justify-content : flex-start;
+    display        : flex;
+    padding-top    : 19px;
+    justify-content: flex-start;
     .item {
-      position     : relative;
-      width        : 32px;
-      height       : 32px;
-      margin-right : 16px;
+      position    : relative;
+      width       : 32px;
+      height      : 32px;
+      margin-right: 16px;
       &::before {
-        position      : absolute;
-        z-index       : -1;
-        top           : -9px;
-        left          : -8px;
-        display       : block;
-        width         : 48px;
-        height        : 48px;
-        content       : '';
-        border-radius : 100%;
+        position     : absolute;
+        z-index      : -1;
+        top          : -9px;
+        left         : -8px;
+        display      : block;
+        width        : 48px;
+        height       : 48px;
+        content      : '';
+        border-radius: 100%;
       }
       &:active {
         &::before {
-          -webkit-animation : rippleAnimation 0.5s ease-out;
-          background        : rgba(0, 0, 0, .12);
+          -webkit-animation: rippleAnimation 0.5s ease-out;
+          background       : rgba(0, 0, 0, .12);
         }
       }
       i {
-        line-height : 32px;
-        display     : block;
-        width       : 32px;
-        height      : 32px;
-        cursor      : pointer;
-        text-align  : center;
+        line-height: 32px;
+        display    : block;
+        width      : 32px;
+        height     : 32px;
+        cursor     : pointer;
+        text-align : center;
         &::before {
-          font-size : 24px;
-          color     : $black_54;
+          font-size: 24px;
+          color    : $black_54;
         }
       }
       &.ava {
         img {
-          width         : 100%;
-          border-radius : 100%;
+          width        : 100%;
+          border-radius: 100%;
         }
       }
     }
     .notification__with-qty {
-      font-size        : 12px;
-      line-height      : 24px;
-      height           : 24px;
-      margin-top       : 3px;
-      text-align       : center;
-      color            : #FFF;
-      border-radius    : 100%;
-      background-color : $primoryColor;
+      font-size       : 12px;
+      line-height     : 24px;
+      height          : 24px;
+      margin-top      : 3px;
+      text-align      : center;
+      color           : #fff;
+      border-radius   : 100%;
+      background-color: $primoryColor;
       @include middle-block(24px);
     }
   }
 
   .is__sooo-long {
-    position : relative;
-    overflow : visible;
+    position: relative;
+    overflow: visible;
     .page__title {
-      position      : relative;
-      padding-right : 32px;
-      cursor        : pointer;
+      position     : relative;
+      padding-right: 32px;
+      cursor       : pointer;
       &::before {
-        font-family : Icons, sans-serif;
-        font-size   : 23px;
-        position    : absolute;
-        top         : 22px;
-        right       : 0;
-        content     : '\E7B4';
+        font-family: Icons, sans-serif;
+        font-size  : 23px;
+        position   : absolute;
+        top        : 22px;
+        right      : 0;
+        content    : '\E7B4';
       }
     }
     .page__children {
-      position   : absolute;
-      z-index    : 99;
-      top        : 64px;
-      left       : 80px;
-      display    : none;
-      min-width  : 320px;
-      max-height : 88vh;
-      padding    : 6px 0;
-      cursor     : pointer;
+      position  : absolute;
+      z-index   : 99;
+      top       : 64px;
+      left      : 80px;
+      display   : none;
+      min-width : 320px;
+      max-height: 88vh;
+      padding   : 6px 0;
+      cursor    : pointer;
       @include white__block(1, 0);
       .line {
-        display : none;
+        display: none;
       }
       .item {
-        font-size   : 15px;
-        line-height : 36px;
-        position    : relative;
-        height      : 48px;
-        padding     : 6px 16px;
-        cursor      : pointer;
-        text-align  : left;
-        white-space : nowrap;
-        color       : rgba(0, 0, 0, .54);
+        font-size  : 15px;
+        line-height: 36px;
+        position   : relative;
+        height     : 48px;
+        padding    : 6px 16px;
+        cursor     : pointer;
+        text-align : left;
+        white-space: nowrap;
+        color      : rgba(0, 0, 0, .54);
         &:hover {
-          color      : #000;
-          background : rgba(0, 0, 0, .12);
+          color     : #000;
+          background: rgba(0, 0, 0, .12);
         }
       }
     }
   }
   &.is__white {
-    background-color : #FFF;
+    background-color: #fff;
     @include transition;
     @include white__block(1, 0);
     &.with__img {
       .page__icon i {
-        color : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__title {
-        color : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__children .item {
-        color : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
       .page__action .item i::before {
-        color : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
     }
   }
   &.with__img {
     .is__sooo-long {
       .page__children .item {
-        color : rgba(0, 0, 0, .54);
+        color: rgba(0, 0, 0, .54);
       }
     }
     .page__icon i {
-      color : #FFF;
+      color: #fff;
     }
     .page__title {
-      color : #FFF;
+      color: #fff;
     }
     .page__children .item {
-      color : #FFF;
+      color: #fff;
     }
     .page__action .item i::before {
-      color : #FFF;
+      color: #fff;
     }
   }
   .menu__user {
-    position      : absolute;
-    display       : none;
-    top           : 40px;
-    right         : 0;
-    width         : 320px;
-    background    : #FFF;
-    border-radius : 2px;
-    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, .12),
-    0 2px 6px 0 rgba(0, 0, 0, .24);
-    cursor        : default;
+    position     : absolute;
+    display      : none;
+    top          : 40px;
+    right        : 0;
+    width        : 320px;
+    background   : #fff;
+    border-radius: 2px;
+    box-shadow   : 0 0 2px 0 rgba(0, 0, 0, .12), 0 2px 6px 0 rgba(0, 0, 0, .24);
+    cursor       : default;
     &.active {
-      display : block;
+      display: block;
     }
     &:before {
-      position      : absolute;
-      display       : block;
-      top           : -13px;
-      right         : 10px;
-      width         : 0;
-      height        : 0;
-      border        : 5px solid transparent;
-      border-bottom : 8px solid #FFF;
-      content       : '';
+      position     : absolute;
+      display      : block;
+      top          : -13px;
+      right        : 10px;
+      width        : 0;
+      height       : 0;
+      border       : 5px solid transparent;
+      border-bottom: 8px solid #fff;
+      content      : '';
     }
     .top {
-      overflow      : hidden;
-      padding       : 24px;
-      border-bottom : 1px solid rgba(0, 0, 0, .12);
+      overflow     : hidden;
+      padding      : 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
       .avatar__holder {
-        float  : left;
-        width  : 48px;
-        height : 48px;
-        margin : 0 24px 0 0;
+        float : left;
+        width : 48px;
+        height: 48px;
+        margin: 0 24px 0 0;
         .avatar {
-          max-width     : 100%;
-          max-height    : 100%;
-          border-radius : 100%;
+          max-width    : 100%;
+          max-height   : 100%;
+          border-radius: 100%;
         }
       }
       .text {
-        float : left;
+        float: left;
         .name {
-          font   : 400 13px/20px 'Roboto';
-          color  : rgba(0, 0, 0, .87);
-          margin : 0 0 6px 0;
+          font  : 400 13px/20px 'Roboto';
+          color : rgba(0, 0, 0, .87);
+          margin: 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px 'Roboto';
-          color : rgba(0, 0, 0, .54);
+          font : 400 13px/20px 'Roboto';
+          color: rgba(0, 0, 0, .54);
         }
       }
     }
     .menu {
-      padding       : 8px 0;
-      border-bottom : 1px solid rgba(0, 0, 0, .12);
+      padding      : 8px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
       &__item {
         &-link {
-          position    : relative;
-          display     : block;
-          height      : 48px;
-          line-height : 48px;
-          font        : 400 13px/48px 'Roboto';
-          color       : #767676;
-          padding     : 0 24px 0 80px;
+          position   : relative;
+          display    : block;
+          height     : 48px;
+          line-height: 48px;
+          font       : 400 13px/48px 'Roboto';
+          color      : #767676;
+          padding    : 0 24px 0 80px;
           &:hover {
-            background : rgba(0, 0, 0, .03);
+            background: rgba(0, 0, 0, .03);
           }
           &:before {
-            position : absolute;
-            left     : 24px;
-            top      : 14px;
-            font     : 20px/1 'Icons';
-            color    : #767676;
+            position: absolute;
+            left    : 24px;
+            top     : 14px;
+            font    : 20px/1 'Icons';
+            color   : #767676;
           }
           &.menu__item-schedule:before {
-            content : '\e640';
+            content: '\e640';
           }
           &.menu__item-profile:before {
-            content : '\e660';
+            content: '\e660';
           }
           &.menu__item-company:before {
-            content : '\e8ca';
+            content: '\e8ca';
           }
           &.menu__item-groups:before {
-            content : '\e8d6';
+            content: '\e8d6';
           }
           &.menu__item-courses:before {
-            content : '\e6b2';
+            content: '\e6b2';
           }
         }
       }
     }
     .account {
-      overflow      : hidden;
-      padding       : 24px;
-      border-bottom : 1px solid rgba(0, 0, 0, .12);
+      overflow     : hidden;
+      padding      : 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
       .avatar {
-        float  : left;
-        width  : 48px;
-        height : 48px;
-        margin : 0 24px 0 0;
+        float : left;
+        width : 48px;
+        height: 48px;
+        margin: 0 24px 0 0;
       }
       .text {
-        float : left;
+        float: left;
         .name {
-          font   : 400 13px/20px 'Roboto';
-          color  : rgba(0, 0, 0, .87);
-          margin : 0 0 6px 0;
+          font  : 400 13px/20px 'Roboto';
+          color : rgba(0, 0, 0, .87);
+          margin: 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px 'Roboto';
-          color : rgba(0, 0, 0, .54);
+          font : 400 13px/20px 'Roboto';
+          color: rgba(0, 0, 0, .54);
         }
       }
     }
     .bottom {
-      overflow : hidden;
-      padding  : 12px 16px 12px 16px;
+      overflow: hidden;
+      padding : 12px 16px;
       .add__acc {
-        float : left;
+        float: left;
       }
       .exit {
-        float       : right;
-        line-height : 36px;
+        float      : right;
+        line-height: 36px;
       }
     }
   }
   .menu__apps {
-    position      : absolute;
-    display       : none;
-    top           : 39px;
-    right         : -4px;
-    padding       : 24px 24px 16px 24px;
-    width         : 282px;
-    border-radius : 2px;
-    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-    background    : #FFF;
-    cursor        : default;
+    position     : absolute;
+    display      : none;
+    top          : 39px;
+    right        : -4px;
+    padding      : 24px 24px 16px;
+    width        : 282px;
+    border-radius: 2px;
+    box-shadow   : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+    background   : #fff;
+    cursor       : default;
     &.lower {
-      top : 76px;
+      top: 76px;
     }
     &.active {
-      display : block;
+      display: block;
     }
     &:before {
-      position      : absolute;
-      display       : block;
-      top           : -13px;
-      right         : 10px;
-      width         : 0;
-      height        : 0;
-      border        : 5px solid transparent;
-      border-bottom : 8px solid #FFF;
-      content       : '';
+      position     : absolute;
+      display      : block;
+      top          : -13px;
+      right        : 10px;
+      width        : 0;
+      height       : 0;
+      border       : 5px solid transparent;
+      border-bottom: 8px solid #fff;
+      content      : '';
     }
     &-item {
-      float      : left;
-      width      : 54px;
-      text-align : center;
-      margin     : 0 36px 24px 0;
+      float     : left;
+      width     : 54px;
+      text-align: center;
+      margin    : 0 36px 24px 0;
       &:nth-child(3n) {
-        margin : 0 0 24px 0;
+        margin: 0 0 24px;
       }
       &.last__row {
-        margin : 0 36px 0 0;
+        margin: 0 36px 0 0;
         &:nth-child(3n) {
-          margin : 0;
+          margin: 0;
         }
       }
       &-img {
-        max-width  : 100%;
-        max-height : 100%;
+        max-width : 100%;
+        max-height: 100%;
         &-holder {
-          margin        : 0 0 12px 0;
-          border-radius : 8px;
+          margin       : 0 0 12px;
+          border-radius: 8px;
         }
       }
       &-text {
-        font  : 400 8px/12px 'Roboto';
-        color : rgba(0, 0, 0, .54);
+        font : 400 8px/12px 'Roboto';
+        color: rgba(0, 0, 0, .54);
       }
     }
   }
 }
-
 @import 'common/header/main__nav';

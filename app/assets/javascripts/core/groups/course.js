@@ -7,8 +7,15 @@ var removeCourseToGroup = function (btn) {
         url : '/api/v1/groups/' + group_id + '/remove_course',
         data: {course_id: course_id}
     }).success(function (data) {
-        btn.closest("li.single-course").remove();
-        show_error('Курс удален из группы', 3000);
+        if(btn.data("no_schedule") == true){
+            show_error(text_success, 3000);
+            setTimeout(function(){
+                location.reload();
+            }, 1000);
+        } else {
+            btn.closest("li.single-course").remove();
+            show_error('Курс удален из группы', 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -25,7 +32,14 @@ var changeDeadLineCourse = function (btn) {
         url : '/api/v1/groups/' + group_id + '/update_course',
         data: {course_id: course_id, date_complete: data_time}
     }).success(function (data) {
-        show_error('Дата оканчания курса изменена', 3000);
+        if(btn.data("no_schedule") == true){
+            show_error(text_success, 3000);
+            setTimeout(function(){
+                location.reload();
+            }, 1000);
+        } else {
+            show_error('Дата оканчания курса изменена', 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -127,6 +141,18 @@ var changeDeadLineSectionGroup = function (btn, text_success) {
 var bind_block = function () {
     $('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
+    });
+
+    $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineCourse($(this));
+    });
+
+    $('.edit-menu .js_changeDeadLineSectionGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineSectionGroup($(this), $(this).data("text"));
+    });
+
+    $('.edit-menu .js_removeCourseToGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        removeCourseToGroup($(this));
     });
 
     $('.js__select-calendar').hover((function () {

@@ -8,6 +8,9 @@ headerTabsLine = (elem) ->
         'width': width + 'px'
         'left': offset + 'px').dequeue 'fx'
 
+hideBlock = (elem) ->
+  $(elem).removeClass('open-state').addClass 'closed-state'
+
 headerSubmenu = ->
   headerWidth = $('#page__header').width()
   chPageWidth = $('.page__children').width()
@@ -43,7 +46,7 @@ testList = ->
 carusel = ->
   $('.js__carusel').jcarousel(
   )
-  
+
   $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
     $(this).removeClass 'inactive'
   ).on('jcarouselcontrol:inactive', ->
@@ -56,31 +59,63 @@ carusel = ->
     $(this).addClass 'inactive'
   ).jcarouselControl target: '+=2'
 
-# $('.jcarousel').on 'jcarousel:firstin', 'li', (event, carousel) ->
-#   qty = carousel._items.length
-#   last = carousel._last
-#   if $(last).index()+3 == qty
-#     $('.jcarousel-control-next').addClass 'inactive'
-#   else
-#     $('.jcarousel-control-next').removeClass 'inactive'
-#
-#   console.log last
+showHideToggleBtn = ->
+  $('.js__showHideToggleBtn').each ->
+    descriptionHeight = $(@).find('.description').height()
+    if descriptionHeight > 80
+      $(@).addClass('is__shot')
+
+
+toggleNotesAsideHeight = ->
+  $('.toggle-viewport').on 'click', ->
+    if $(@).hasClass 'for__less'
+      $(@).removeClass('for__less').closest('.item').addClass('is__shot')
+    else
+      $(@).addClass('for__less').closest('.item').removeClass('is__shot')
+
 
 
 $(document).ready ->
-#  $('img:last').load ->
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
   figcaptionTitleEclipses('.favorite-item .description .title', 56)
   figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
+  headerTabsLine('.page__children .item.active')
+  testList()
+  headerSubmenu()
+  carusel()
+  adaptiveTitle()
+  showHideToggleBtn()
+  toggleNotesAsideHeight()
+
+
 
   $('.js__tooltip').hover (->
     $(@).addClass('is__visible-tooltip')
   ), ->
     $(@).removeClass('is__visible-tooltip')
 
-  headerSubmenu()
+  if $('.js__toTogglescreen').length
+    fsButton = document.getElementById('js__toTogglescreen')
+    fsElement = document.getElementById('js__text-content')
+    if window.fullScreenApi.supportsFullScreen
+      console.log 'YES: Your browser supports FullScreen'
+      console.log 'fullScreenSupported'
+      fsButton.addEventListener 'click', (->
+        window.fullScreenApi.requestFullScreen fsElement
+        return
+      ), true
+      fsElement.addEventListener fullScreenApi.fullScreenEventName, (->
+        if fullScreenApi.isFullScreen()
+          console.log 'Whoa, you went fullscreen'
+          $('.text__content').addClass("is__fullscrn")
+        else
+          console.log 'Back to normal'
+          $('.text__content').removeClass("is__fullscrn")
 
-  carusel()
+        return
+      ), true
+    else
+      console.log 'SORRY: Your browser does not support FullScreen'
 
   $('.course__info .more').on 'click', ->
     $('.detail__info').toggleClass('is__closed')
@@ -123,13 +158,12 @@ $(document).ready ->
     $(@).stop(true).queue 'fx', ->
       headerTabsLine('.page__children .item.active')
 
-  $('.js__select-calendar').hover (->
-    $(@).addClass('is__active')
-    $('.js__backing').addClass('is__active')
-  ), ->
-    if $('#ui-datepicker-div').is(':hidden')
-      console.log 12
-      $(@).removeClass('is__active')
+    $('.js__select-calendar').hover (->
+      $(@).addClass('is__active')
+      $('.js__backing').addClass('is__active')
+    ), ->
+      if $('#ui-datepicker-div').is(':hidden')
+        $(@).removeClass('is__active')
 
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
     parenBlock = undefined
@@ -148,6 +182,7 @@ $(document).ready ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
     $(@).removeClass('is__active')
     $('.js__left-aside').removeClass('is__active')
+    $('.courses-aside').removeClass('show')
 
   $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
     $(document).trigger 'click.dropdown'
@@ -168,11 +203,6 @@ $(document).ready ->
   $('#js-add-course-to-shedule .select-trigger').on 'click', ->
     $(@).closest('.select').find('ul.hidden').show()
 
-  adaptiveTitle()
-
-  hideBlock = (elem) ->
-    $(elem).removeClass('open-state').addClass 'closed-state'
-
   $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
     $(document).trigger 'click.dropdown'
     el = $(@).closest('.js__toggle-state')
@@ -189,7 +219,3 @@ $(document).ready ->
       hideBlock($('.js__toggle-state'))
       adaptiveTitle()
       $(document).unbind 'click.dropdown'
-
-  headerTabsLine('.page__children .item.active')
-  # tabsCorusel()
-  testList()

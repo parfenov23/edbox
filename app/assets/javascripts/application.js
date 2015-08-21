@@ -2,7 +2,6 @@
 //= require ./vendor/jquery-ui.min
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
-// require ./vendor/material.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 //= require ./vendor/notifymy.js
@@ -10,6 +9,7 @@
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
+//= require ./vendor/fullscrn
 //= require main/main
 
 //= require_tree ./core
@@ -146,7 +146,6 @@ var adaptiveTitle = function () {
         });
     });
 };
-
 $(document).ready(function () {
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
@@ -192,7 +191,14 @@ $(document).ready(function () {
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
-        $('.auth').css({'height': windowHeight + 'px'});
+        var bodyHeight = $('body').outerHeight();
+        if ($('.auth').hasClass('is__course-description')) {
+          $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+          console.log(bodyHeight);
+        }
+        else {
+          $('.auth').css({'height': windowHeight + 'px'});
+        }
     }, 100);
 
 
@@ -204,10 +210,12 @@ $(document).ready(function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
         else {
             $('.courses-aside:visible').removeClass('show');
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
     })
 

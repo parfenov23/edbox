@@ -139,4 +139,16 @@ i.icon {
     }
   }
 
+  &.file {
+    &::before {
+      content: '\E614';
+    }
+  }
+
+  &.pdf {
+    &::before {
+      content: '\E78F';
+    }
+  }
+
 }

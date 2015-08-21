@@ -29,6 +29,21 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def schedule
+    ligament_courses_and_sections = ligament_courses.joins(:ligament_sections)
+    all_dates = ligament_courses_and_sections.pluck(:date_complete, "ligament_sections.date_complete").flatten.compact.map{|elem| elem.to_date}.uniq
+
+    arr_schedule = all_dates.map do |date|
+      ligament_courses = self.ligament_courses.where('date_complete BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day).uniq
+      ligament_sections_ids = ligament_courses_and_sections
+                             .where('ligament_sections.date_complete BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)
+                             .pluck("ligament_sections.id").uniq
+
+      {date: date, ligament_courses: ligament_courses.ids, ligament_sections: ligament_sections_ids}
+    end
+    arr_schedule
+  end
+
   def notify_json(type=nil)
     {
       title: "Вас добавили в группу",
