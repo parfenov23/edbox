@@ -16,7 +16,7 @@
           - case params[:type]
           - when "user"
             = render "home/group/users"
-          - when "schedule"
+          /- when "schedule"
             = render "home/group/schedule", {group: @group}
           - when "courses"
             = render "home/group/courses"
