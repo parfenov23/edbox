@@ -38,6 +38,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     - if namePage == "cabinet"
       .item.js_openLeftSideBar data-id="js-schedule-cabinet"
         i.schedule.icon
+    - if namePage == "courseMaterial"
+      .item.js_openLeftSideBar data-id="js-notification-courses"
+        i.notes.icon
     - if namePage == "courses"
       /.item
       /  i.filter.icon
@@ -62,6 +65,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /      .menu__apps-item-img-holder
     /        img.menu__apps-item-img src="/assets/pf.png"
     /      .menu__apps-item-text Доступно с декабря 2015
+
 
     .item.ava.header__user
       img src=default_img(current_user.avatar)
@@ -123,4 +127,3 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
 
   .btm__logo
     img src = "/assets/adcons__grey.svg"
-
