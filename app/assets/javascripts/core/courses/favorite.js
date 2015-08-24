@@ -7,9 +7,9 @@ var addFavorite = function () {
         data: {course_id: course_id}
     }).success(function (data) {
         if (data.success){
-            show_error('Курс добавлен в отложенные курсы', 3000);
+            show_error('Курс добавлен в избранные курсы', 3000);
         }else{
-            show_error('Курс уже добавлен в отложенные курсы', 3000);
+            show_error('Курс уже добавлен в избранные курсы', 3000);
         }
     }).error(function () {
         show_error('Произошла ошибка', 3000);

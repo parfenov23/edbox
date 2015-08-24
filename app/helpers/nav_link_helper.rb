@@ -52,7 +52,7 @@ module NavLinkHelper
       {title: "Текущие", link: "/my_course?type=current"},
       {title: "Просроченные", link: "/my_course?type=overdue"},
       {title: "Назначенные", link: "/my_course?type=assigned"},
-      {title: "Отложенные", link: "/my_course?type=favorite"}
+      {title: "Избранное", link: "/my_course?type=favorite"}
     ]
   end
 

@@ -71,6 +71,17 @@ var openPopupEditGroup = function () {
     $("#infoGroup .form_group").show().find(".formGroup-edit").show();
 };
 
+var groupNameValidate = function () {
+    var input = $(this);
+    var max_length = 300;
+    if (input.count_text_input() > max_length){
+        input.closest(".group").addClass("error");
+        input.val(input.val().substr(0, max_length));
+    } else {
+        input.closest(".group").removeClass("error");
+    }
+};
+
 $(document).ready(function () {
     $(document).on('click', '#groups .newGroup .submit-area .submitBtn',
         function () {
@@ -80,4 +91,5 @@ $(document).ready(function () {
     $(document).on('click', '.js_openPopupEditGroup', openPopupEditGroup);
     $(document).on('click', '.form_group .js_closePopupFormGroup', closePopupFormGroup);
     $(document).on('click', '.form_group .js_saveGroup', saveGroup);
+    $(document).on('keyup paste input propertychange click', '.form_group .js_groupNameValidate', groupNameValidate);
 });
