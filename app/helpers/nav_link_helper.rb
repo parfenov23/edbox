@@ -8,7 +8,7 @@ module NavLinkHelper
         group_nav_link
       when "programm"
         course_description_nav_links
-      when "other_white", "other", "members", "schedule", "cabinet", "profile"
+      when "other_white", "other", "members", "schedule", "cabinet"
         other_nav_links
       when "my_course"
         my_course_nav_links
@@ -16,6 +16,8 @@ module NavLinkHelper
         contenter_courses_new_nav_links
       when "contenter_admin"
         contenter_admin_nav_links
+      when "profile"
+        profile_nav_links
       else
         other_nav_links
     end
@@ -23,6 +25,13 @@ module NavLinkHelper
 
   def courses_nav_links
     []
+  end
+
+  def profile_nav_links
+    [
+      {title: "Профиль", link: "/profile"},
+      {title: "Тариф", link: "/tariff"}
+    ]
   end
 
   def contenter_admin_nav_links

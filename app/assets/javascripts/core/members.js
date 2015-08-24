@@ -67,7 +67,7 @@ sendInvintations = function () {
                 data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                setTimeout(function(){
+                setTimeout(function () {
                     location.reload();
                 }, 1500);
             }).error(function () {
@@ -90,7 +90,7 @@ sendInvintationsInGroup = function () {
                 data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                setTimeout(function(){
+                setTimeout(function () {
                     location.reload();
                 }, 1500);
             }).error(function () {
@@ -103,16 +103,19 @@ sendInvintationsInGroup = function () {
 
 deleteInvitedMember = function () {
     $('.members__in_system .members__in_system-item .js_removeUser').click(function () {
-        var number = $(this).attr('data-id');
-        $(this).closest('.members__in_system-item').remove();
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/users/remove_user',
-            data: {id: number}
-        }).success(function () {
-            show_error('Пользователь удален', 3000);
-        }).error(function () {
-            show_error('Произошла ошибка', 3000);
+        var btn = $(this);
+        confirm("Вы действительно хотите удалить пользователя?", function () {
+            var number = btn.attr('data-id');
+            $.ajax({
+                type: 'POST',
+                url : '/api/v1/users/remove_user',
+                data: {id: number}
+            }).success(function () {
+                btn.closest('.members__in_system-item').remove();
+                show_error('Пользователь удален', 3000);
+            }).error(function () {
+                show_error('Произошла ошибка', 3000);
+            });
         });
     });
 };
