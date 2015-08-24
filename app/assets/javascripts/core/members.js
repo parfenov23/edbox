@@ -43,7 +43,7 @@ inviteMember = function () {
     $('.members__invite .input').focus(function () {
         $(window).keydown(function (e) {
             code = e.keyCode || e.which;
-            if (code == 32){
+            if (code == 32 || code == 13){
                 e.preventDefault();
                 var member = $('.members__invite .input').val();
                 regexpEmailParse(member);
@@ -53,20 +53,17 @@ inviteMember = function () {
 };
 
 addedValidMember = function () {
-
     $('.members__invite .input').on('paste', function () {
         var input = $(this);
         setTimeout(function () {
             var email_texts = input.val();
             regexpEmailParse(email_texts);
         }, 100);
-
     });
 };
 
 var regexpEmailParse = function (text) {
-    var arr_emails = [];
-    arr_emails = extractEmails(text);
+    var arr_emails = extractEmails(text);
     if (arr_emails){
         arr_emails = arr_emails.getUnique();
         $.each(arr_emails, function (n, obj) {
@@ -85,6 +82,7 @@ sendInvintations = function () {
             var data = $.map($('.members__invite .invited__item .email'), function (el) {
                 return $(el).text();
             });
+            show_error('Идет приглашение участников', 10000);
             $.ajax({
                 type: 'POST',
                 url : '/api/v1/users/invite',
@@ -97,7 +95,7 @@ sendInvintations = function () {
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
-        }else{
+        } else {
             show_error('Введите корректный Email', 3000);
         }
     });

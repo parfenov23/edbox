@@ -100,6 +100,7 @@ var includeDatePicker = function () {
         dateFormat     : 'dd.mm.yy',
         firstDay       : 1,
         isRTL          : false,
+        minDate: new Date(),
         beforeShow     : function () {
             return $('#ui-datepicker-div').addClass('hide');
         },
