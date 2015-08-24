@@ -20,7 +20,10 @@
         - @group.bunch_groups.each do |bunch_group|
             - member = bunch_group.user
             li.members__in_system-item
-                .ava = member.full_name.first
+                - if member.avatar.present?
+                  img.ava src=default_img(member.avatar)
+                - else
+                  .ava = member.full_name.first
                 .name = member.full_name
                 .email = member.email
                 .status class="#{current_user.director ? 'director' : ''}"
