@@ -67,6 +67,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_account_paid
+    if self.get_account_type.present?
+      account_paid = self.get_account_type.paid
+    else
+      account_paid = false
+    end
+    account_paid
+  end
+
   def get_account_type_relation
     if corporate?
       company.account_type_relations.last
