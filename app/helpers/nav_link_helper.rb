@@ -42,7 +42,8 @@ module NavLinkHelper
       {title: "Программа", link: "/contenter/courses/#{id}/program",
        add_params: {class: "contenter_courses_programm"}
       },
-      {title: "Публикация", link: "/contenter/courses/#{id}/publication", add_params: {}}
+      {title: "Публикация", link: "/contenter/courses/#{id}/publication",
+       add_params: {class: "contenter_courses_public"}}
     ]
   end
 
