@@ -253,6 +253,19 @@
 .group {
   position      : relative;
   margin-bottom : 19px;
+  &.error{
+    .bar:before, .bar:after{
+      background: #F50057;
+    }
+  }
+}
+
+
+.group textarea {
+  resize   : none;
+  overflow : hidden;
+  outline  : none;
+  height   : 41px;
 }
 
 .group textarea,
@@ -266,13 +279,6 @@
   font-weight   : 400;
   line-height   : 20px;
   border-bottom : 2px solid rgba(0, 0, 0, 0.26);
-}
-
-.group textarea {
-  resize   : none;
-  overflow : hidden;
-  outline  : none;
-  height   : 41px;
 }
 
 input[type="text"]:focus {

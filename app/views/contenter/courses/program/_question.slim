@@ -1,0 +1,8 @@
+.testIssue.currentQuestionId data-id=question.id
+  .input_title
+    span.numberSection 1.
+    input.issueInput.js_changeQuestionInput placeholder="Введите вопрос" name="question[title]" value=question.title
+    .remove.js_removeQuestionToTest data-id=question.id
+  .questions
+    - question.answers.each do |answer|
+      = render "contenter/courses/program/answer", {test: test, question: question, answer: answer}

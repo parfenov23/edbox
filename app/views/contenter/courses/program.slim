@@ -11,5 +11,11 @@
 
       .section.add_new
         .btn.btn-flat.js_createSectionToSection data-course_id=course.id ДОБАВИТЬ РАЗДЕЛ
-      .section.add_new
+      - test = course.test
+
+      .section.add_new.js_addTestToCourse data-id=course.id class=(test.present? ? "hideBtnFinalTest" : "")
         .btn.btn-flat ДОБАВИТЬ ФИНАЛЬНЫЙ ТЕСТ
+
+      .test_block.js__toggle-state.programm__block.closed-state#finalTestCourse
+        - if test.present?
+          = render "contenter/courses/program/final_test", {test: test}

@@ -17,6 +17,7 @@ class Attachment < ActiveRecord::Base
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
   has_many :bunch_attachments
+  has_one :test, :as => :testable, :dependent => :destroy
 
   default_scope { where(archive: false) } #unscoped
 

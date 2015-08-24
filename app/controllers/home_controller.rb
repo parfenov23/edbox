@@ -71,7 +71,7 @@ class HomeController < ActionController::Base
   end
 
   def courses
-    all_courses = Course.all
+    all_courses = Course.all.where(public: true)
     time = Time.now
     @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
                      .order("created_at ASC")
@@ -133,6 +133,10 @@ class HomeController < ActionController::Base
 
   def is_corporate?
     redirect_to "/" unless current_user.corporate
+  end
+
+  def is_contenter?
+    redirect_to "/courses" if !current_user.contenter
   end
 
 end

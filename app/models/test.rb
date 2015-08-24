@@ -2,13 +2,11 @@ class Test < ActiveRecord::Base
   belongs_to :section
   has_many :questions, :dependent => :destroy
   has_many :test_results, dependent: :destroy
+  belongs_to :testable, :polymorphic => true
+  default_scope { order("id ASC") }
 
   def transfer_to_json
-    {
-      id: id,
-      title: title,
-      questions: questions.map(&:transfer_to_json)
-    }
+    as_json.merge(questions: questions.map(&:transfer_to_json))
   end
 
   def get_all_answer
@@ -24,6 +22,14 @@ class Test < ActiveRecord::Base
       correct_answers.merge!({question.id => answer})
     end
     correct_answers
+  end
+
+  def build_default
+    new_question = questions.new
+    2.times do
+      new_question.answers.new.save
+    end
+    new_question.save
   end
 
   def self.hash_to_i(hash_old)

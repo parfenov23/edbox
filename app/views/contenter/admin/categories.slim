@@ -1,0 +1,10 @@
+= render "home/header/header", {namePage: "contenter_admin", titlePage: "Администрирование"}
+.content#categoriesContenterAdmin
+  .container
+    .title Добавление и редактирование категорий
+    .count_tags
+      'Всего категорий:
+      span = @categories.count
+    .allTags
+      - @categories.each do |c_category|
+        = render "contenter/admin/category", {category: c_category}

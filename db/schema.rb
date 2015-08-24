@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817100048) do
+ActiveRecord::Schema.define(version: 20150821105632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.integer  "modelable_id"
     t.integer  "account_type_id"
     t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "account_types", force: true do |t|
@@ -47,8 +49,8 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.text     "description"
     t.boolean  "archive",             default: false
+    t.text     "description"
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
@@ -185,6 +187,13 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.datetime "updated_at"
   end
 
+  create_table "bunch_categories", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "bunch_courses", force: true do |t|
     t.integer  "course_id"
     t.integer  "group_id"
@@ -222,6 +231,12 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "companies", force: true do |t|
     t.string   "first_name"
     t.datetime "created_at"
@@ -236,6 +251,8 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "duration"
+    t.boolean  "public",          default: false
+    t.integer  "account_type_id"
   end
 
   create_table "favorite_courses", force: true do |t|
@@ -338,6 +355,7 @@ ActiveRecord::Schema.define(version: 20150817100048) do
     t.datetime "last_auth"
     t.boolean  "leading",         default: false
     t.text     "about_me"
+    t.boolean  "contenter",       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
