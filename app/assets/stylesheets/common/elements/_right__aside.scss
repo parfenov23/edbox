@@ -28,7 +28,7 @@
         padding-left  : 45px;
         position      : relative;
         font-size     : 24px;
-        color         : rgba(0, 0, 0, 0.54);
+        color         : $black_54;
         line-height   : 32px;
         margin-bottom : 42px;
         padding-top   : 16px;
@@ -389,6 +389,91 @@
       padding-top: 6px;
       .btn {
         float: right;
+      }
+    }
+  }
+}
+
+.programm__course {
+  .programm__content {
+    width: 512px;
+    margin-left: -32px;
+    .section {
+      > .title {
+        padding: 0 32px;
+        background-color: #F5F5F5;
+        padding-top: 40px;
+        padding-bottom: 13px;
+        .term {
+          font-size: 12px;
+          color: $black_54;
+          line-height: 16px;
+          margin-bottom: 8px;
+          &.error {
+            color: #F50057;
+          }
+        }
+      }
+      .material__list {
+        .item {
+          padding-left: 56px;
+          border-bottom: 1px solid rgba(0,0,0,0.12);
+          position: relative;
+          background-color: #fff;
+          padding-top: 16px;
+          padding-bottom: 16px;
+          &.current {
+            .title, .description, .icon {
+              color: $primoryColor;
+            }
+          }
+          &.done {
+            .icon {
+              color: $primoryColor;
+              &::before {
+                content: "\E899";
+              }
+            }
+          }
+          .icon {
+            position: absolute;
+            top: 17px;
+            left: 19px;
+            color: rgba(0,0,0,0.54);
+            font-size: 20px;
+            &.file {
+              font-size: 22px;
+            }
+            &.text {
+
+            }
+            &.test {
+
+            }
+            &.video {
+              font-size: 15px;
+              top: 21px;
+            }
+            &.audio {
+
+            }
+          }
+          .title {
+            font-size: 13px;
+            color: $black_87;
+            line-height: 20px;
+            font-weight: 500;
+            @include eclipses;
+            margin-bottom: 11px;
+          }
+          .description {
+            font-size: 13px;
+            color: $black_87;
+            line-height: 20px;
+            height: 40px;
+            overflow: hidden;
+          }
+        }
       }
     }
   }
