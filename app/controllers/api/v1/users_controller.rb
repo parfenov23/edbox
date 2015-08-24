@@ -24,12 +24,8 @@ module Api::V1
     end
 
     def remove_user
-      user = find_user
-      user.company_id = nil
-      user.corporate = false
-      user.director = false
-      user.save
-      render json: {user: user.transfer_to_json}
+      find_user.destroy
+      render json: {success: true}
     end
 
     def remove_user_leading

@@ -38,7 +38,9 @@ class BunchCourse < ActiveRecord::Base
 
   def push_if_close
     user.company.directors.each do |user|
-      user.create_notify(self, 'complete')
+      unless user.id != user_id
+        user.create_notify(self, 'complete')
+      end
     end
   end
 
