@@ -1,4 +1,4 @@
-= render "home/header/header", {namePage: "other_white", titlePage: @section.title, btnBack: true, backUrl: "/course_description?id=#{@section.course_id}"}
+= render "home/header/header", {namePage: "other_white", titlePage: @section.title, btnBack: true, backUrl: "/course_description?id=#{@section.course_id}", comment: true}
 - section = (@video.attachmentable rescue nil)
 - bunch_section = (section.bunch_section(current_user.id) rescue nil)
 - bunch_attachment = (@video.find_bunch_attachment(bunch_section.id) rescue nil)

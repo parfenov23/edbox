@@ -9,6 +9,7 @@
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
+//= require ./vendor/fullscrn
 //= require main/main
 
 //= require_tree ./core
@@ -17,13 +18,46 @@
 //= require_tree ./websocket
 //= require_tree ./contenter
 
-(function($) {
-    $.fn.serializefiles = function() {
+function SetCaretAtEnd(elem) {
+    var elemLen = elem.value.length;
+    // For IE Only
+    if (document.selection){
+        // Set focus
+        elem.focus();
+        // Use IE Ranges
+        var oSel = document.selection.createRange();
+        // Reset position to 0 & then set at end
+        oSel.moveStart('character', - elemLen);
+        oSel.moveStart('character', elemLen);
+        oSel.moveEnd('character', 0);
+        oSel.select();
+    }
+    else if (elem.selectionStart || elem.selectionStart == '0'){
+        // Firefox/Chrome
+        elem.selectionStart = elemLen;
+        elem.selectionEnd = elemLen;
+        elem.focus();
+    } // if
+}
+
+function bindEventDocument(hash) {
+    $.each(hash.arrElem, function (n, elem) {
+        var func_name = elem.replace(".js_", "").replace(".js__", "").replace(".", "");
+        var parent_block = '';
+        if (hash.parentBlock != undefined){
+            parent_block = hash.parentBlock
+        }
+        $(document).on(hash.nameAction, parent_block + ' ' + elem, eval(func_name));
+    });
+}
+
+(function ($) {
+    $.fn.serializefiles = function () {
         var obj = $(this);
         /* ADD FILE TO PARAM AJAX */
         var formData = new FormData();
-        $.each($(obj).find("input[type='file']"), function(i, tag) {
-            $.each($(tag)[0].files, function(i, file) {
+        $.each($(obj).find("input[type='file']"), function (i, tag) {
+            $.each($(tag)[0].files, function (i, file) {
                 formData.append(tag.name, file);
             });
         });
@@ -112,16 +146,15 @@ var adaptiveTitle = function () {
         });
     });
 };
-
 $(document).ready(function () {
-    jQuery.each(jQuery('textarea[data-autoresize]'), function() {
+    jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
 
-        var resizeTextarea = function(el) {
+        var resizeTextarea = function (el) {
             jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
         };
         resizeTextarea(this);
-        jQuery(this).on('keyup input click', function() { resizeTextarea(this); }).removeAttr('data-autoresize');
+        jQuery(this).on('keyup input click', function () { resizeTextarea(this); }).removeAttr('data-autoresize');
     });
 
     $.material.init()
@@ -243,3 +276,5 @@ $(document).ready(function () {
     changeAvatar();
 
 });
+
+

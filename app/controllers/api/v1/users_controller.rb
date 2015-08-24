@@ -13,7 +13,11 @@ module Api::V1
       emails = params[:emails]
       emails.each do |email|
         user = User.find_by_email(email)
-        user = User.build_default(current_user.company_id, email) if user.blank?
+        if user.blank?
+          company_id = params[:leading].blank? ? current_user.company_id : nil
+          user = User.build_default(company_id, email)
+        end
+        user.leading = params[:leading] if params[:leading].present?
         arr_hash_users << user.transfer_to_json if (user.save rescue false)
       end
       render json: {users: arr_hash_users}
@@ -26,6 +30,12 @@ module Api::V1
       user.director = false
       user.save
       render json: {user: user.transfer_to_json}
+    end
+
+    def remove_user_leading
+      user = find_user
+      user.update({leading: false})
+      render json: {success: true}
     end
 
     def update
@@ -128,7 +138,7 @@ module Api::V1
     end
 
     def is_director
-      render_error(401, 'Недостаточно прав') unless current_user.director
+      render_error(401, 'Недостаточно прав') unless current_user.director || current_user.contenter
     end
 
     def user_params

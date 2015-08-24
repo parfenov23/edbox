@@ -38,6 +38,11 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     - if namePage == "cabinet"
       .item.js_openLeftSideBar data-id="js-schedule-cabinet"
         i.schedule.icon
+    - if namePage == "courseMaterial"
+      .item.js_openLeftSideBar data-id="js-notification-courses"
+        i.notes.icon
+      .item.js_openLeftSideBar data-id="js-programm-courses"
+        i.programm.icon
     - if namePage == "courses"
       /.item
       /  i.filter.icon
@@ -62,6 +67,10 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /      .menu__apps-item-img-holder
     /        img.menu__apps-item-img src="/assets/pf.png"
     /      .menu__apps-item-text Доступно с декабря 2015
+
+    - if (comment rescue false)
+      .item
+        i.calendar.icon.js_openLeftSideBar data-id="js-comment"
 
     .item.ava.header__user
       img src=default_img(current_user.avatar)
@@ -102,6 +111,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       .item class=(namePage == "schedule" ? "is__active" : "")
         i.schedule.icon
         a.label href="/schedule" Расписание
+
     - if current_user.corporate
       .item class=(namePage == "group" ? "is__active" : "")
         i.groups.icon
@@ -110,6 +120,18 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
         .item class=(namePage == "members" ? "is__active" : "")
           i.groups.icon
           a.label href="/members" Участники
+
+        .item class=(namePage == "schedule" ? "is__active" : "")
+          i.schedule.icon
+          a.label href="/schedule" Расписание
+
+    - if current_user.contenter
+      .item class=(namePage == "contenter_admin" ? "is__active" : "")
+        i.schedule.icon
+        a.label href="/contenter/admin/categories" Администрирование
+      .item class=(namePage == "schedule" ? "is__active" : "")
+        i.schedule.icon
+        a.label href="/contenter/courses" Шеф Контент
 
   /.item
   /  i.stat.icon
@@ -124,3 +146,17 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
   .btm__logo
     img src = "/assets/adcons__grey.svg"
 
+- if (comment rescue false)
+  #js-comment.courses-aside
+    .close-filter.icon Комментарии
+    #disqus_thread
+    javascript:
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'edbox';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();

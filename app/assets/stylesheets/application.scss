@@ -316,6 +316,8 @@ i {
 @import "common/material__el/toggle-state";
 @import "common/elements/calendar";
 @import "common/elements/icons";
+@import "common/elements/hidden-list";
+@import "common/elements/right__aside";
 @import "common/elements/adaptive_title";
 @import "common/elements/adaptive_popup";
 @import "common/elements/directors_btn";
@@ -335,8 +337,8 @@ i {
 @import "unique/no_content/no_content";
 @import "unique/attachments/videos";
 @import "unique/course/course__description";
+@import "unique/course/course";
 @import "attachments/audios";
 @import "core";
 @import "contenter/publication";
 @import "contenter/icons_text";
-

@@ -1,0 +1,9 @@
+.questionItem
+  .auth_agree.checkbox__holder
+    - hash_check = {}
+    - hash_check = {checked: "checked"} if answer.right
+    input.checkbox type="checkbox" name="checkbox" id="checkbox_id_#{test.id}_#{answer.id}" *hash_check
+    label.label.js_changeAnswerInput for="checkbox_id_#{test.id}_#{answer.id}" data-id=answer.id
+      i.check
+  input.questionInput.js_getCloneQuestion.js_changeAnswerInput placeholder="Введите ответ и нажмите Enter" value=answer.text data-id=answer.id
+  .remove.js_removeAnswerToQuestion

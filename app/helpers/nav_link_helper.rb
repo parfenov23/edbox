@@ -14,6 +14,8 @@ module NavLinkHelper
         my_course_nav_links
       when "contenter_courses_new"
         contenter_courses_new_nav_links
+      when "contenter_admin"
+        contenter_admin_nav_links
       else
         other_nav_links
     end
@@ -21,6 +23,14 @@ module NavLinkHelper
 
   def courses_nav_links
     []
+  end
+
+  def contenter_admin_nav_links
+    [
+      {title: "Категории", link: "/contenter/admin/categories"},
+      {title: "Теги", link: "/contenter/admin/tags"},
+      {title: "Ведущие", link: "/contenter/admin/members"}
+    ]
   end
 
   def contenter_courses_new_nav_links
@@ -32,7 +42,8 @@ module NavLinkHelper
       {title: "Программа", link: "/contenter/courses/#{id}/program",
        add_params: {class: "contenter_courses_programm"}
       },
-      {title: "Публикация", link: "/contenter/courses/#{id}/publication", add_params: {}}
+      {title: "Публикация", link: "/contenter/courses/#{id}/publication",
+       add_params: {class: "contenter_courses_public"}}
     ]
   end
 
@@ -41,7 +52,7 @@ module NavLinkHelper
       {title: "Текущие", link: "/my_course?type=current"},
       {title: "Просроченные", link: "/my_course?type=overdue"},
       {title: "Назначенные", link: "/my_course?type=assigned"},
-      {title: "Отложенные", link: "/my_course?type=favorite"}
+      {title: "Избранное", link: "/my_course?type=favorite"}
     ]
   end
 

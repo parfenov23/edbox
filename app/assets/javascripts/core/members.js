@@ -67,7 +67,9 @@ sendInvintations = function () {
                 data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                location.reload();
+                setTimeout(function(){
+                    location.reload();
+                }, 1500);
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
@@ -85,10 +87,12 @@ sendInvintationsInGroup = function () {
             $.ajax({
                 type: 'POST',
                 url : '/api/v1/groups/' + btn.data("group_id") + '/invite',
-                data: {emails: data},
+                data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                location.reload();
+                setTimeout(function(){
+                    location.reload();
+                }, 1500);
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
@@ -104,7 +108,7 @@ deleteInvitedMember = function () {
         $.ajax({
             type: 'POST',
             url : '/api/v1/users/remove_user',
-            data: {id: number},
+            data: {id: number}
         }).success(function () {
             show_error('Пользователь удален', 3000);
         }).error(function () {

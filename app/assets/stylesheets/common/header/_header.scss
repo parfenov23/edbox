@@ -56,6 +56,7 @@
       text-transform: none;
       color         : $black_87;
       max-width     : 228px;
+      @include eclipses;
     }
     .line {
       position        : absolute;

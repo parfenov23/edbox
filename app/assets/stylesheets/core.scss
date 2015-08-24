@@ -211,6 +211,9 @@
   .inner-content {
     padding-top : 128px;
     .programs {
+      .hideBtnFinalTest {
+        display : none;
+      }
       .section {
         width            : 984px;
         margin           : 0 auto;
@@ -397,27 +400,11 @@
                         }
                       }
                       &.addedTest {
-                        border-top  : 1px solid rgba(0, 0, 0, 0.26);;
-                        padding-top : 24px;
-                        .testHolder {
-                          .testIssue {
-                            .input_title {
-                              position      : relative;
-                              @include btnRemove;
-                              padding-bottom: 5px;
-                              border-bottom : 1px solid #D0D0D0;
-                              .remove{
-                                top: 2px;
-                              }
-                              .issueInput {
-                                border  : 0;
-                                outline : none;
-
-                              }
-                            }
+                        .input_title {
+                          .remove {
+                            top : 2px;
                           }
                         }
-
                       }
                     }
                   }
@@ -426,8 +413,152 @@
             }
           }
         }
+
+      }
+      .addedTest {
+        border-top  : 1px solid rgba(0, 0, 0, 0.26);
+        padding-top : 24px;
+        .testHolder {
+          .testIssue {
+            padding-bottom : 24px;
+            .input_title {
+              position       : relative;
+              @include btnRemove;
+              padding-bottom : 5px;
+              border-bottom  : 1px solid #D0D0D0;
+              .remove {
+                top : 2px;
+              }
+              .issueInput {
+                border  : 0;
+                outline : none;
+                width   : 90%;
+              }
+            }
+            .questions {
+              margin-top : 24px;
+              .questionItem {
+                padding-bottom : 16px;
+                position       : relative;
+                .auth_agree {
+                  display : inline-block;
+                  top     : 2px;
+                }
+                .questionInput {
+                  border         : 0;
+                  outline        : none;
+                  width          : 90%;
+                  border-bottom  : 1px solid #D0D0D0;
+                  padding-bottom : 5px;
+                }
+                @include btnRemove;
+                .remove {
+                  top   : 1px;
+                  right : 36px;
+                }
+              }
+
+            }
+          }
+        }
+        .addedTestIssue {
+          display       : inline-block;
+          padding       : 5px;
+          border        : 1px solid #8E8E8E;
+          color         : #8E8E8E;
+          border-radius : 4px;
+          margin-top    : 24px;
+          cursor        : pointer;
+        }
+      }
+      .test_block {
+        width  : 960px;
+        height : 100%;
+        margin : 0 auto;
+        .info_test {
+          @include white__block(1, 1);
+          padding  : 13px 16px 16px 120px;
+          position : relative;
+          @include btnRemove;
+          .adaptive__title {
+            .title {
+              margin-bottom : 0;
+            }
+          }
+        }
+        .description_test {
+          display : none;
+        }
+        &.open-state {
+          height  : 100%;
+          width   : calc(100% + 64px);
+          margin  : 12px -64px 12px -64px;
+          padding : 13px 16px 16px 64px;
+          .info_test {
+            display : none;
+          }
+          .description_test {
+            display  : block;
+            @include white__block(1, 0);
+            padding  : 13px 16px 64px 13px;
+            position : relative;
+            @include btnRemove;
+            .titleSectionTest {
+              padding : 16px 12px 16px 24px;
+            }
+            .testIssue {
+              padding-left  : 64px;
+              padding-right : 64px;
+            }
+            .addedTestIssue {
+              margin-left : 64px;
+              margin-top  : 0;
+            }
+          }
+        }
       }
     }
   }
 
+}
+
+.content#membersAdminLeading {
+  padding-top : 130px;
+  .members__invite {
+    @include white__block(1, 0);
+  }
+}
+
+.content#tagsContenterAdmin, .content#categoriesContenterAdmin {
+  padding-top : 130px;
+  .container {
+    @include white__block(1, 0);
+    padding : 24px;
+    .title {
+      font-size      : 24px;
+      padding-bottom : 20px;
+    }
+    .allTags {
+      padding-top : 24px;
+      .tag {
+        border-bottom  : 1px solid;
+        padding-bottom : 8px;
+        width          : 550px;
+        position       : relative;
+        margin-bottom  : 24px;
+        @include btnRemove;
+        .remove {
+          top   : 2px;
+          right : 2px;
+        }
+        .titleTagName {
+          width            : 95%;
+          background-color : rgba(255, 255, 255, 0);
+          border           : 0;
+          outline          : none;
+          resize           : none;
+        }
+      }
+    }
+  }
 }

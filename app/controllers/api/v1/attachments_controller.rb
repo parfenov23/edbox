@@ -39,7 +39,8 @@ module Api::V1
 
     def attachment_contenter_html
       attachment_html = render_to_string "contenter/courses/program/_attachment", :layout => false, :locals => {attachment: find_attachment,
-                                                                                                                class_state: params[:class_state]}
+                                                                                                                class_state: params[:class_state],
+                                                                                                                section: find_attachment.attachmentable}
       render text: attachment_html
     end
 

@@ -9,6 +9,9 @@ class Course < ActiveRecord::Base
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
   belongs_to :user
+  belongs_to :account_type
+  has_one :test, :as => :testable, :dependent => :destroy
+  has_one :account_type_relation, :as => :modelable, :dependent => :destroy
 
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
@@ -24,6 +27,10 @@ class Course < ActiveRecord::Base
     bunch_courses.map(&:user_id).uniq
   end
 
+  # def get_type
+  #   account_type_relation.account_type rescue nil
+  # end
+
   def push_if_create
     Thread.new do
       `rake user_notify:new_course[#{id}]`
@@ -31,19 +38,21 @@ class Course < ActiveRecord::Base
   end
 
   def get_image_path(width=nil, height=nil)
-    attachment = attachments.where(file_type: 'image', width: width, height: height).last
-    if attachment.present?
-      path = attachment.file.url
-    else
-      attachment_full = attachments.where(file_type: 'image', size: 'full').last
-      if attachment_full.present?
-        new_attachment = create_img(attachment_full.file.path, width, height)
+    # if id.present?
+      attachment = attachments.where(file_type: 'image', width: width, height: height).last
+      if attachment.present?
+        path = attachment.file.url
       else
-        new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        attachment_full = attachments.where(file_type: 'image', size: 'full').last
+        if attachment_full.present?
+          new_attachment = create_img(attachment_full.file.path, width, height)
+        else
+          new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        end
+        path = new_attachment.file.url
       end
-      path = new_attachment.file.url
-    end
-    path
+      path
+    # end
   end
 
   def notify_json(type=nil)
@@ -83,12 +92,12 @@ class Course < ActiveRecord::Base
   end
 
   def images
-      attachments.map do |att|
-        arr_valid = ["full", "920x377"]
-        if arr_valid.include?(att.size)
-          att.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
-        end
-      end.compact!
+    attachments.map do |att|
+      arr_valid = ["full", "920x377"]
+      if arr_valid.include?(att.size)
+        att.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+      end
+    end.compact!
   end
 
   def author

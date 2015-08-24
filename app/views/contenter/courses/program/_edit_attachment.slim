@@ -23,7 +23,7 @@
           |/500
     .upload_attachments style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" );
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
-      - unless attachment.file.file.present? || attachment.file_type == "description"
+      - unless attachment.file.file.present? || ["description", "test"].include?(attachment.file_type)
         .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
           i.icon.text
           .selectText Написать текст
@@ -48,7 +48,7 @@
           i.icon.add
           .selectText Прикрепить файл для скачивания
 
-        .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="test"
+        .selectAttachment.js_setAttachmentType.js_createAttachmentTest data-id=attachment.id data-type="test"
           i.icon.test
           .selectText Добавить тест
 
@@ -65,15 +65,6 @@
           .titleDuration Продолжительность материала в минутах
           input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]" value=attachment.duration
 
-      .addedTest.itemFile data-type="test"
-        .testHolder
-          .testIssue
-            .input_title
-              span.numberSection 1.
-              input.issueInput placeholder="Введите вопрос"
-              .remove
-            .qustion
-              .auth_agree.checkbox__holder
-                input#checkbox123.checkbox name="agreed" type="checkbox"
-                label.label for="checkbox123"
-                  i.check
+      .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
+        - if attachment.test.present?
+          = render "contenter/courses/program/test", {test: attachment.test}

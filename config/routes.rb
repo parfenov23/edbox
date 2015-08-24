@@ -34,8 +34,34 @@ Rails.application.routes.draw do
         member do
           get :get_test
           post :result
+          post :remove
         end
       end
+
+      resources :questions do
+        member do
+          post :remove
+        end
+      end
+
+      resources :answers do
+        member do
+          post :remove
+        end
+      end
+
+      resources :tags do
+        member do
+          post :remove
+        end
+      end
+
+      resources :categories do
+        member do
+          post :remove
+        end
+      end
+
       resources :sessions, only: [] do
         collection do
           post :auth
@@ -76,6 +102,7 @@ Rails.application.routes.draw do
           post :remove_tag
           post :add_leading
           post :remove_leading
+          post :update_type
         end
       end
 
@@ -93,6 +120,9 @@ Rails.application.routes.draw do
           post :update_course
           post :remove_course
           post :update_section
+        end
+        member do
+          post :remove_user_leading
         end
       end
       resources :groups do
@@ -194,6 +224,15 @@ Rails.application.routes.draw do
       member do
         get :program
         get :publication
+      end
+    end
+    resources :admin do
+      collection do
+        get :tags
+        get :members
+        get :categories
+      end
+      member do
       end
     end
   end
