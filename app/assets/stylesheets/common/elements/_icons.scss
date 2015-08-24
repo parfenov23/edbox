@@ -151,4 +151,10 @@ i.icon {
     }
   }
 
+  &.programm {
+    &::before {
+      content: '\E625';
+    }
+  }
+
 }
