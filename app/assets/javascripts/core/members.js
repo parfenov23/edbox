@@ -46,16 +46,40 @@ inviteMember = function () {
             if (code == 32){
                 e.preventDefault();
                 var member = $('.members__invite .input').val();
-                appendMember(member);
+                regexpEmailParse(member);
             }
         });
     });
 };
 
+addedValidMember = function () {
+
+    $('.members__invite .input').on('paste', function () {
+        var input = $(this);
+        setTimeout(function () {
+            var email_texts = input.val();
+            regexpEmailParse(email_texts);
+        }, 100);
+
+    });
+};
+
+var regexpEmailParse = function (text) {
+    var arr_emails = [];
+    arr_emails = extractEmails(text);
+    if (arr_emails){
+        arr_emails = arr_emails.getUnique();
+        $.each(arr_emails, function (n, obj) {
+            appendMember(obj);
+        });
+    }
+    return arr_emails;
+};
+
 sendInvintations = function () {
     $('.members__invite .js_inviteUser').click(function () {
         var member = $('.members__invite .input').val();
-        appendMember(member);
+        regexpEmailParse(member);
         $('.invited__item').hide().closest(".invited").hide();
         if (! $('.invited__item').length == 0){
             var data = $.map($('.members__invite .invited__item .email'), function (el) {
@@ -73,6 +97,8 @@ sendInvintations = function () {
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
+        }else{
+            show_error('Введите корректный Email', 3000);
         }
     });
 };
@@ -182,5 +208,5 @@ $(document).ready(function () {
 
     searchMember();
     addSearchMember();
-
+    addedValidMember();
 });

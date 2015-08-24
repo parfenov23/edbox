@@ -146,6 +146,23 @@ var adaptiveTitle = function () {
         });
     });
 };
+
+function extractEmails(text) {
+    return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+}
+
+Array.prototype.getUnique = function () {
+    var u = {}, a = [];
+    for (var i = 0, l = this.length; i < l; ++ i){
+        if (u.hasOwnProperty(this[i])){
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+}
+
 $(document).ready(function () {
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
@@ -192,12 +209,12 @@ $(document).ready(function () {
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
         var bodyHeight = $('body').outerHeight();
-        if ($('.auth').hasClass('is__course-description')) {
-          $('.auth').css({'height': (bodyHeight + 312) + 'px'});
-          console.log(bodyHeight);
+        if ($('.auth').hasClass('is__course-description')){
+            $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+            console.log(bodyHeight);
         }
         else {
-          $('.auth').css({'height': windowHeight + 'px'});
+            $('.auth').css({'height': windowHeight + 'px'});
         }
     }, 100);
 
