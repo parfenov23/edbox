@@ -103,7 +103,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       a.label href="/courses" Библиотека
     .item class=(namePage == "my_course" ? "is__active" : "")
       i.courses.icon
-      a.label href="/my_course?type=current" Курсы
+      a.label href="/my_course?type=assigned" Курсы
 
     - if current_user.corporate? && current_user.director?
       .item class=(namePage == "schedule" ? "is__active" : "")
