@@ -100,7 +100,7 @@ var includeDatePicker = function () {
         dateFormat     : 'dd.mm.yy',
         firstDay       : 1,
         isRTL          : false,
-        minDate: new Date(),
+        minDate        : new Date(),
         beforeShow     : function () {
             return $('#ui-datepicker-div').addClass('hide');
         },
@@ -108,6 +108,7 @@ var includeDatePicker = function () {
             var dates = $(this).data('datepicker');
             var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
             $(this).parent().find('.selected-value').html(selectDate);
+            console.log($(this))
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
@@ -163,8 +164,35 @@ Array.prototype.getUnique = function () {
     }
     return a;
 }
+var optionDatePicker = function () {
+    var btn = $(this);
+    //setTimeout(function(){
+    var bl_dt = $('.datapicker__trigger');
+    btn.datepicker("destroy");
+    includeDatePicker();
+    if (btn.data('min-date')){
+        btn.datepicker("option", "minDate", new Date(btn.data('min-date')));
+    } else {
+        btn.datepicker("option", "minDate", new Date());
+    }
+    if (btn.data('max-date')){
+        btn.datepicker("option", "maxDate", new Date(btn.data('max-date')));
+    } else {
+        btn.datepicker("option", "maxDate", null);
+    }
+    console.log(btn.data('max-date'))
+    btn.datepicker();
+    //}, 3000)
+}
+
+function parseDate(input) {
+    var parts = input.split('.');
+    // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[2], parts[1]-1, parts[0]); // Note: months are 0-based
+}
 
 $(document).ready(function () {
+    $(document).on('click', '.datapicker__trigger', optionDatePicker);
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
 
@@ -241,7 +269,7 @@ $(document).ready(function () {
     $('.ui-state-default').on('click', function (e) {
     })
 
-    includeDatePicker()
+    //includeDatePicker()
 
     $(document).on('click', '.datapicker__trigger', function () {
         $('#ui-datepicker-div').removeClass('hide');
