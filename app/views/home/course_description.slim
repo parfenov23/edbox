@@ -116,12 +116,13 @@
                   .right-col = attachment.full_duration
                 .description = attachment.title
             - section.tests.each do |test|
-              .item.is__completed
+              .item onclick = "window.location.href='/tests/#{test.id}/run'"
                 .icon__block
                   i.icon.test
                 .adaptive__title
                   .left-col #{nsec}.#{natt += 1} #{test.title}
-                  /.right-col 21 ч. 13 мин.
+                  - if test.duration.present?
+                    .right-col #{test.duration.to_s + ' часа'}
                 .description = test.title
 
 
