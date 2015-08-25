@@ -58,7 +58,9 @@
         - course_bunch_tags.each do |bunch_tag|
           - tag = bunch_tag.tag
           .item = tag.title
-    .detail__info.is__closed
+    - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study
+    - in_study = true
+    .detail__info class = "#{'is__closed' if in_study}"
       .description
         = raw @course.description
       - leading = @course.user
@@ -71,9 +73,10 @@
             .info
               .title = leading.full_name
               .description = leading.about_me
-    .more.is__closed
-      .btn.btn-flat.for__closed ПОКАЗАТЬ ОПИСАНИЕ        
-      .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ      
+    - if in_study
+      .more.is__closed
+        .btn.btn-flat.for__closed ПОКАЗАТЬ ОПИСАНИЕ
+        .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ
 
   .study__program.is__closed
     .title Учебная программа
