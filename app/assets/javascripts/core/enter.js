@@ -253,20 +253,19 @@ $(document).ready(function () {
                 }
             }
         });
+
         if (! $('input.checkbox').is(':checked')){
             $('input.checkbox').addClass('error');
         }
         var inputPass = $("input[name='user[password]']");
         var inputRePass = $("input[name='password_repeat']");
 
-        if(inputPass.val() != inputRePass.val()){
+        if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)) {
             inputPass.addClass("error");
             inputRePass.addClass("error");
         }else{
             inputPass.removeClass("error");
             inputRePass.removeClass("error");
         }
-
     }
-
 });
