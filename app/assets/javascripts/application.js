@@ -197,7 +197,6 @@ $(document).ready(function () {
           console.log(bodyHeight);
         }
         else {
-          $('.auth').css({'height': windowHeight + 'px'});
         }
     }, 100);
 
@@ -276,5 +275,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-
