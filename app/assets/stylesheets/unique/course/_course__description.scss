@@ -323,6 +323,9 @@
       padding         : 24px;
       width           : calc(100% + 48px);
       margin-left     : -24px;
+      &.finalTest{
+        background: none;
+      }
       > .adaptive__title {
         margin-bottom: 16px;
         .left-col {

@@ -136,7 +136,20 @@
                   .left-col #{nsec}.#{natt += 1} #{attachment.title}
                   .right-col = attachment.full_duration
                 .description = attachment.title
-
+          - final_test = @course.test
+          - if final_test.present?
+            - hash_class ={}
+            - if bunch_course.complete
+              - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
+            - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
+            .programm__block.finalTest *hash_class
+              .item class=class_block
+                .icon__block
+                  i.icon.test
+                .adaptive__title
+                  .left-col Тест для завершения курса
+                  .right-col
+                .description Станет доступным после прохождения всех материалов курса
 / .toggle__view.btn.btn-flat
 /   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
 /   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА

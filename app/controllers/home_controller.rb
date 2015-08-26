@@ -116,7 +116,7 @@ class HomeController < ActionController::Base
     test_final = @course.test
     if test_final.present?
       test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
-      if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank?
+      if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank? && params[:attachment_id].present?
         redirect_to "/tests/#{test_final.id}/run"
       end
     end
