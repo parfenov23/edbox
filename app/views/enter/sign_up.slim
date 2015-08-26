@@ -32,8 +32,8 @@
                 .auth__reg-select
                     .auth__reg-selected Персональный аккаунт
                     .auth__reg-select-list
-                        .auth__reg-select-list-item.personal Персональный аккаунт
-                        .auth__reg-select-list-item.corporate Корпоративный аккаунт
+                        .auth__reg-select-list-item.personal.ya_acc_type_sign_in Персональный аккаунт
+                        .auth__reg-select-list-item.corporate.ya_acc_type_sign_in Корпоративный аккаунт
 
                 .input-wrp.corporate_acc
                     input.phoenix-input placeholder='Напишите название компании' type='text' name='company[name]'
@@ -55,4 +55,4 @@
             .have__acc
                 a.auth__what href='/sign_in' У меня уже есть аккаунт
             .btn-holder
-                .btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect#submit data-phoenix-action="remove" Создать аккаунт
+                .btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.ya_reg_sign_in#submit data-phoenix-action="remove" Создать аккаунт

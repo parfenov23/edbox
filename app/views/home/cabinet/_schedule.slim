@@ -23,7 +23,7 @@
           .data
             .week-day = Russian.strftime(current_day, "%a")
             .date = current_day.day
-          .box
+          .box.ya_schedule_panel_course_click
             - schedule_current_day = schedules.select { |sch| sch[:date].day == current_day.day }.last
             - if schedule_current_day.present?
               - schedule_current_day[:bunch_courses].each do |bunch_course|
