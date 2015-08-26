@@ -29,9 +29,9 @@
     .calendar
       i.icon
       .calendar-trigger Установите крайний срок прохождения курса
-      input.datapicker__trigger name='date_complete'
+      input.datapicker__trigger.parentDatePickerTime name='date_complete' data-type='max-date'
 
-    .select-deadline
+    .select-deadline.js_optionDatePicker
       .not_select_date_time
         .title Установите крайний срок прохождения разделов
         .description Вышим сотруникам будет назначенно время прохождения каждого раздела. Эта настройка не обязательна.

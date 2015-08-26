@@ -27,7 +27,7 @@ html {
 }
 
 body {
-  background-color : #ECEFF1;
+  background-color : #F5F5F5;
   height           : 100%;
   min-height       : 100%;
   height           : auto !important;
@@ -324,6 +324,7 @@ i {
 @import "common/header/header";
 
 @import "unique/courses/courses";
+
 @import "unique/schedule/schedule";
 @import "unique/schedule/schedule-calendar";
 @import "unique/programm/programm";
@@ -339,6 +340,6 @@ i {
 @import "unique/course/course__description";
 @import "unique/course/course";
 @import "attachments/audios";
-@import "core";
+@import "core/core";
 @import "contenter/publication";
 @import "contenter/icons_text";

@@ -43,36 +43,60 @@ inviteMember = function () {
     $('.members__invite .input').focus(function () {
         $(window).keydown(function (e) {
             code = e.keyCode || e.which;
-            if (code == 32){
+            if (code == 32 || code == 13){
                 e.preventDefault();
                 var member = $('.members__invite .input').val();
-                appendMember(member);
+                regexpEmailParse(member);
             }
         });
     });
 };
 
+addedValidMember = function () {
+    $('.members__invite .input').on('paste', function () {
+        var input = $(this);
+        setTimeout(function () {
+            var email_texts = input.val();
+            regexpEmailParse(email_texts);
+        }, 100);
+    });
+};
+
+var regexpEmailParse = function (text) {
+    var arr_emails = extractEmails(text);
+    if (arr_emails){
+        arr_emails = arr_emails.getUnique();
+        $.each(arr_emails, function (n, obj) {
+            appendMember(obj);
+        });
+    }
+    return arr_emails;
+};
+
 sendInvintations = function () {
     $('.members__invite .js_inviteUser').click(function () {
         var member = $('.members__invite .input').val();
-        appendMember(member);
+        regexpEmailParse(member);
         $('.invited__item').hide().closest(".invited").hide();
         if (! $('.invited__item').length == 0){
             var data = $.map($('.members__invite .invited__item .email'), function (el) {
                 return $(el).text();
             });
+            show_error('Идет приглашение участников', 10000);
             $.ajax({
                 type: 'POST',
                 url : '/api/v1/users/invite',
                 data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                setTimeout(function(){
+                setTimeout(function () {
                     location.reload();
                 }, 1500);
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
+        } else {
+            show_error('Введите корректный Email', 3000);
         }
     });
 };
@@ -90,7 +114,7 @@ sendInvintationsInGroup = function () {
                 data: {emails: data}
             }).success(function () {
                 show_error('Приглашения отправлены', 3000);
-                setTimeout(function(){
+                setTimeout(function () {
                     location.reload();
                 }, 1500);
             }).error(function () {
@@ -103,16 +127,19 @@ sendInvintationsInGroup = function () {
 
 deleteInvitedMember = function () {
     $('.members__in_system .members__in_system-item .js_removeUser').click(function () {
-        var number = $(this).attr('data-id');
-        $(this).closest('.members__in_system-item').remove();
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/users/remove_user',
-            data: {id: number}
-        }).success(function () {
-            show_error('Пользователь удален', 3000);
-        }).error(function () {
-            show_error('Произошла ошибка', 3000);
+        var btn = $(this);
+        confirm("Вы действительно хотите удалить пользователя?", function () {
+            var number = btn.attr('data-id');
+            $.ajax({
+                type: 'POST',
+                url : '/api/v1/users/remove_user',
+                data: {id: number}
+            }).success(function () {
+                btn.closest('.members__in_system-item').remove();
+                show_error('Пользователь удален', 3000);
+            }).error(function () {
+                show_error('Произошла ошибка', 3000);
+            });
         });
     });
 };
@@ -179,5 +206,5 @@ $(document).ready(function () {
 
     searchMember();
     addSearchMember();
-
+    addedValidMember();
 });

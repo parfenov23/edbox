@@ -139,8 +139,12 @@ $(document).ready ->
     $('.js__left-aside, .js__backing').addClass('is__active')
 
   $('.select-deadline').on 'click', ->
-    $(@).closest("form").find(".action-btn").hide()
-    $(@).closest('.check_group_added').addClass('section__deadline')
+    form = $(@).closest('form')
+    if form.find('.parentDatePickerTime').val().length > 0
+      $(@).closest("form").find(".action-btn").hide()
+      $(@).closest('.check_group_added').addClass('section__deadline')
+    else
+      show_error('Установите крайний срок прохождения курса', 3000);
 
   $('.section__deadline-title .back').on 'click', ->
     $(@).closest("form").find(".action-btn").show()

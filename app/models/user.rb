@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :bunch_courses, dependent: :destroy
   has_many :test_results, dependent: :destroy
   has_many :account_type_relations, :as => :modelable, :dependent => :destroy
-  has_many :notifications
+  has_many :notifications, :dependent => :destroy
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
@@ -65,6 +65,15 @@ class User < ActiveRecord::Base
     else
       get_real_account_type
     end
+  end
+
+  def get_account_paid
+    if self.get_account_type.present?
+      account_paid = self.get_account_type.paid
+    else
+      account_paid = false
+    end
+    account_paid
   end
 
   def get_account_type_relation

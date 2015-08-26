@@ -65,7 +65,7 @@ var templateLiSection = function (json_course) {
             '</div>' +
             '<div class="set-date">' +
             '<i class="icon"></i>' +
-            '<input class="datapicker__trigger js__set-date js_changeDateToDatePicker" name="sections[' + obj.id + ']"/>' +
+            '<input class="datapicker__trigger js__set-date js_changeDateToDatePicker childDatePickerTime" name="sections[' + obj.id + ']"/>' +
             '</div>' +
             '</div>' +
             '</li>';
@@ -85,11 +85,11 @@ var closePopup = function (event) {
     //var evt = evt || event;
     //var target = evt.target || evt.srcElement;
     //if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){
-        var popup = $("#js-add-course-to-shedule");
-        popup.hide();
-        popup.find(".check_group_added").hide();
-        popup.find(".end_added").hide();
-        clearPopup();
+    var popup = $("#js-add-course-to-shedule");
+    popup.hide();
+    popup.find(".check_group_added").hide();
+    popup.find(".end_added").hide();
+    clearPopup();
     //}
 };
 
@@ -187,13 +187,24 @@ var installTitleFormPopup = function (count) {
         } else {
             if (count < count_all_inputs){
                 selected_title.find(".title .count_select").text(" " + count + " разделов");
-            }else{
+            } else {
                 selected_title.find(".title .count_select").text(" всех разделов");
             }
         }
     } else {
         not_selected_title.show();
         selected_title.hide();
+    }
+};
+
+var optionDatePickerCourse = function (btn) {
+    var form = btn.closest("form");
+    var date_picker = form.find(".parentDatePickerTime");
+    var child_date_picker = form.find(".childDatePickerTime");
+    if (date_picker.val().length){
+        $.each(child_date_picker, function(n, el){
+            $(el).data(date_picker.data('type'), parseDate(date_picker.val()));
+        });
     }
 };
 
@@ -204,4 +215,5 @@ $(document).ready(function () {
     $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
     $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
+    $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
 });
