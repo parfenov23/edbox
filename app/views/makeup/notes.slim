@@ -1,0 +1,11 @@
+= render "home/header/header", {namePage: "other", titlePage: '2.1 Тест: Жарим, парим, варим'}
+
+= render "makeup/notes/aside__note"
+
+
+.inner-content
+  #notes.notes__content
+    - 7.times do
+      = render "makeup/notes/item"
+    
+            
