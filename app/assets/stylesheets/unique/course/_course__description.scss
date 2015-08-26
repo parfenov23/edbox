@@ -9,6 +9,14 @@
   img {
     width: 100%;
   }
+  .shadow {
+    background-image: linear-gradient(-179deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.50) 100%);
+    position        : absolute;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    height          : 100%;
+  }
 }
 
 .auth.is__course-description {
@@ -80,10 +88,10 @@
     width      : 792px;
     padding    : 32px 32px 24px;
     .title {
-      font-size  : 24px;
-      color      : $black_87;
-      line-height: 32px;
-      text-align : center;
+      font-size    : 24px;
+      color        : $black_87;
+      line-height  : 32px;
+      text-align   : center;
       margin-bottom: 45px;
       .back {
 
@@ -92,9 +100,9 @@
     .form__holder {
       display        : flex;
       justify-content: space-between;
-        .form__col {
-          width: 312px;
-        }
+      .form__col {
+        width: 312px;
+      }
 
       .form__legend {
         width      : 342px;
@@ -104,12 +112,12 @@
         padding-top: 7px;
       }
     }
-    .action__block   {
+    .action__block {
       @include clearfix;
       .btn {
-        color: #FFF;
-        float: right;
-        background-color: #00BCD4;
+        color           : #fff;
+        float           : right;
+        background-color: #00bcd4;
       }
     }
   }
@@ -282,6 +290,9 @@
       }
     }
     .more {
+      .btn {
+        text-transform: none;
+      }
       &.is__closed {
         .for__closed {
           @include inline-block;
@@ -307,7 +318,11 @@
       color        : $black_87;
     }
     .programm__block {
-      margin-bottom: 40px;
+      margin-bottom   : 40px;
+      background-color: #eee;
+      padding         : 24px;
+      width           : calc(100% + 48px);
+      margin-left     : -24px;
       > .adaptive__title {
         margin-bottom: 16px;
         .left-col {
@@ -319,6 +334,83 @@
           color: rgba(0, 0, 0, 0.87);
           &.overdue {
             color: #ff1744;
+          }
+        }
+
+        .edit-menu {
+          position: relative;
+          z-index : 8;
+          width   : 44px;
+          margin-top: -7px;
+          .edit-date {
+            line-height: 41px !important;
+            text-align : center;
+            cursor     : pointer;
+            i {
+              font-size: 26px;
+              &::before {
+                font-family: 'Icons';
+                line-height: 32px;
+                content    : '\E8A3';
+                color      : rgba(0, 0, 0, .26);
+              }
+            }
+          }
+
+          .hidden-calendar-wrp {
+            @import 'common/elements/hidden-list';
+            .hidden-calendar {
+              display         : none;
+              min-width       : 345px;
+              background-color: #fff;
+              padding         : 6px 0;
+              box-shadow      : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+              border-radius   : 2px;
+              max-height      : 236px;
+              position        : absolute;
+              top             : 100%;
+              right           : 0;
+              z-index         : 100;
+              bottom          : auto;
+              .calendar-header {
+                font-size    : 15px;
+                color        : rgba(0,0,0,0.87);
+                line-height  : 18px;
+                margin-bottom: 24px;
+                padding-left : 23px;
+                @include clearfix;
+                padding-top  : 13px;
+                .back {
+                  float       : left;
+                  margin-right: 15px;
+                  font-size   : 16px;
+                  cursor      : pointer;
+                  &::before {
+                    color  : rgba(0,0,0,0.87);
+                    content: '\E893';
+                  }
+                }
+              }
+              .selected-value {
+                padding-left: 24px;
+              }
+              .calendar-holder {
+                font-size  : 13px;
+                color      : rgba(0,0,0,0.54);
+                line-height: 20px;
+                .ui-datepicker {
+                  padding-top: 10px;
+                }
+              }
+            }
+          }
+
+          &.is__active {
+            .hidden-calendar-wrp {
+              .hidden-list {
+                display: block !important;
+              }
+            }
           }
         }
       }
@@ -380,7 +472,7 @@
               display    : block;
               width      : 100%;
               content    : '\E899';
-              color      : #21cf69;
+              color      : $primoryColor;
             }
             i {
               color: $black_26;
@@ -404,13 +496,12 @@
       padding    : 0 16px;
       overflow   : hidden;
       .prgr-wrp {
-        .programm__block:nth-child(1){
+        .programm__block:nth-child(1) {
           display: block;
         }
         .programm__block {
           display: none;
         }
-
       }
     }
   }
