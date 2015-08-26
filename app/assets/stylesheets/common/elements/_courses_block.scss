@@ -5,7 +5,7 @@
   margin: 0 24px 32px 0;
   @include white__block(1,1);
   @import 'unique/courses/info-block';
-  &:nth-child(3) {
+  &:nth-child(3n) {
     margin-right: 0;
   }
   &:hover {

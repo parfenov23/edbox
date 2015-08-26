@@ -1,5 +1,6 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
 .presentation__block
+  .shadow
   img src = @course.get_image_path
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
@@ -58,7 +59,9 @@
         - course_bunch_tags.each do |bunch_tag|
           - tag = bunch_tag.tag
           .item = tag.title
-    .detail__info.is__closed
+    - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study
+    - in_study = true
+    .detail__info class = "#{'is__closed' if in_study}"
       .description
         = raw @course.description
       - leading = @course.user
@@ -71,11 +74,12 @@
             .info
               .title = leading.full_name
               .description = leading.about_me
-    .more.is__closed
-      .btn.btn-flat.for__closed ПОКАЗАТЬ ОПИСАНИЕ        
-      .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ      
+    - if in_study
+      .more.is__closed
+        .btn.btn-flat.for__closed Показать описание
+        .btn.btn-flat.for__open Скрыть описание СКРЫТЬ ОПИСАНИЕ
 
-  .study__program.is__closed
+  .study__program
     .title Учебная программа
     .prgr-wrp
       - nsec = 0
@@ -91,12 +95,32 @@
               - if !@course.paid || (@course.paid && current_user.get_account_paid)
                 - if bunch_section.present?
                   .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
-                  .action-btn.drunkenPig.js_actionBtn
-                    i.icon.schedule
-                    - ts = "Дата оканчания раздела изменена"
-                    input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
-                      data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
-                    }
+                  
+                  
+                  
+                  .edit-menu.js__select-calendar
+                    .edit-date href="#" 
+                      i.icon-uniE8A3
+                    .hidden-calendar-wrp
+                      .hidden-calendar
+                        .calendar-header
+                          .back.icon
+                          |Выбор даты
+                        .calendar-holder
+                          .selected-value  Выберите дату
+                          .datapicker__trigger
+                      ul.hidden-list
+                        li data-show="hidden-calendar" Перенести дату окончания курса
+                        li.js_removeFavorite Удалить
+                  
+                  
+                  
+                  / .action-btn.drunkenPig.js_actionBtn
+                  /   i.icon.schedule
+                  /   - ts = "Дата оканчания раздела изменена"
+                  /   input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
+                  /     data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
+                  /   }
             - section_attachments.each do |attachment|
               - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
               - class_block = ""
@@ -113,9 +137,9 @@
                   .right-col = attachment.full_duration
                 .description = attachment.title
 
-  .toggle__view.btn.btn-flat
-    span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
-    span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
+/ .toggle__view.btn.btn-flat
+/   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
+/   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
 - unless current_user.present?
   .not__auth-block
     .inner
