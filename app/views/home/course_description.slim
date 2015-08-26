@@ -4,6 +4,15 @@
   img src = @course.get_image_path
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
+
+- if current_user.present?
+  - if bunch_course.present?
+    .ya_course_signed_visit style = 'display: none'
+  - else
+    .ya_course_unsigned_visit style = 'display: none'
+- else
+  .ya_course_not_auth_visit style = 'display: none'
+
 .course__description-content.oh__nihuyase-block
   .tegs__list
     - course_bunch_tags.each do |bunch_tag|
@@ -60,8 +69,7 @@
           - tag = bunch_tag.tag
           .item = tag.title
     - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study
-    - in_study = true
-    .detail__info class = "#{'is__closed' if in_study}"
+    .detail__info class = "#{'is__closed' if in_study.present?}"
       .description
         = raw @course.description
       - leading = @course.user
@@ -79,6 +87,8 @@
         .btn.btn-flat.for__closed Показать описание
         .btn.btn-flat.for__open Скрыть описание СКРЫТЬ ОПИСАНИЕ
 
+  - ya_class = ''
+  - ya_class = 'ya_course_begin' if (current_user.bunch_courses.where(course_id: @course.id).present? && !in_study.present?)
   .study__program
     .title Учебная программа
     .prgr-wrp
@@ -129,7 +139,7 @@
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
                   - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
-              .item class=class_block *hash_class
+              .item class=class_block class=ya_class *hash_class
                 .icon__block
                   i.icon class=attachment.class_type
                 .adaptive__title
