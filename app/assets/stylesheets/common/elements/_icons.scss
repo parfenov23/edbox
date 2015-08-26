@@ -157,4 +157,16 @@ i.icon {
     }
   }
 
+  &.edit {
+    &::before {
+      content: "\E706";
+    }
+  }
+  &.delete {
+    &::before {
+      content: "\E620";
+    }
+  }
+
+
 }
