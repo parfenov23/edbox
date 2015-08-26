@@ -4,7 +4,7 @@
 header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
     - unless (btnBack rescue false)
-      .page__icon.item
+      .page__icon.item.ya_burger_click
         i.burger.icon.js__show-aside-main-nav
     - else
       a.page__icon.item href=backUrl
@@ -36,7 +36,7 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
     /.item
     /  .notification__with-qty ...
     - if namePage == "cabinet"
-      .item.js_openLeftSideBar data-id="js-schedule-cabinet"
+      .item.js_openLeftSideBar.ya_schedule_icon_click data-id="js-schedule-cabinet"
         i.schedule.icon
     - if namePage == "courseMaterial"
       .item.js_openLeftSideBar data-id="js-notification-courses"

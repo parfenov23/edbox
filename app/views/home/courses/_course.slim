@@ -12,17 +12,17 @@ figure.corses-prev
           - if current_user.director
             - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
             - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
-            .add.icon.js_for-tooltip.js_openPopup data-id="#{course.id}" class="#{add_class}" *hash_params
+            .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Расписание группы
           - else
-            .add.user_schedule.js_openPopup.icon.js_for-tooltip data-id="#{course.id}" data-height="224px" data-type="user"
+            .add.user_schedule.js_openPopup.icon.js_for-tooltip.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user"
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
           - if type == 'courses'
-            .favorite.icon.js_for-tooltip data-id="#{course.id}"
+            .favorite.icon.js_for-tooltip.ya_add_to_favorite data-id="#{course.id}"
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Избранное
           - if current_user.director
             - hash_params = {'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule"}
-            .schedule.icon.js_for-tooltip.js_openPopup data-id="#{course.id}" data-height="224px" data-type="user" *hash_params
+            .schedule.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user" *hash_params
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
     - else
       - if valid_action_btn_type.include?(type)
