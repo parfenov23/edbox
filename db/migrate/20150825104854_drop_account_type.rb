@@ -1,10 +1,10 @@
 class DropAccountType < ActiveRecord::Migration
   def up
-    begin
+    if table_exists? :account_type_relations
       drop_table :account_type_relations
+    end
+    if table_exists? :account_type
       drop_table :account_type
-    rescue
-      nil
     end
   end
 end
