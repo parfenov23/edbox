@@ -87,6 +87,14 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
+var goToProgramAttachment = function(){
+    var block = $(".js_goToProgramAttachment");
+    if ( block.length ){
+        var block_scroll = $('.js_blockAttachmentInProgram[data-id="' + block.data('id') + '"]');
+        $('body, html').scrollTop( block_scroll.position().top );
+    }
+}
+
 var includeDatePicker = function () {
     $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
@@ -192,6 +200,7 @@ function parseDate(input) {
 }
 
 $(document).ready(function () {
+    goToProgramAttachment();
     $(document).on('click', '.datapicker__trigger', optionDatePicker);
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;

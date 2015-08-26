@@ -1,4 +1,6 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
+- if params[:attachment_id].present?
+  input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
   .shadow
   img src = @course.get_image_path
@@ -129,7 +131,7 @@
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
                   - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
-              .item class=class_block *hash_class
+              .item.js_blockAttachmentInProgram data-id=attachment.id class=class_block *hash_class
                 .icon__block
                   i.icon class=attachment.class_type
                 .adaptive__title
