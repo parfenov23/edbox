@@ -33,6 +33,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       - if current_user.director
         a.item href="/contenter/courses/new/edit"
           i.add.icon
+        .item.js_openLeftSideBar data-id="js-help"
+          i.help.icon
+  
     /.item
     /  .notification__with-qty ...
     - if namePage == "cabinet"

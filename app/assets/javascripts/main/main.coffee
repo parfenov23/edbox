@@ -88,6 +88,10 @@ $(document).ready ->
   toggleNotesAsideHeight()
 
 
+  $('.help__wrp .item > i.icon').on 'click', ->
+    $(@).closest('.item').find('.hidden__block').addClass('is__active')
+  $('.help__wrp .item .hidden__block .title').on 'click', ->
+    $(@).closest('.item').find('.hidden__block').removeClass('is__active')
 
   $('.js__tooltip').hover (->
     $(@).addClass('is__visible-tooltip')
