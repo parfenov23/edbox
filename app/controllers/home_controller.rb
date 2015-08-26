@@ -33,6 +33,15 @@ class HomeController < ActionController::Base
     end
   end
 
+  def attachment
+    @attachment = Attachment.where(id: params[:id]).last
+    @section = @attachment.attachmentable rescue nil
+    @course = @section.course rescue nil
+    unless @attachment.present? && (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+      redirect_to "/"
+    end
+  end
+
   def audio
     @current_user = current_user
     attachment = (Attachment.find(params[:id]) rescue nil)
@@ -58,7 +67,7 @@ class HomeController < ActionController::Base
 
   def tariff
     @current_user = current_user
-    @account_type =  @current_user.get_account_type
+    @account_type = @current_user.get_account_type
     if @account_type.present?
       @offer = AccountType.where(corporate: @account_type.corporate, paid: true).last
       @user_company = @current_user.company
@@ -103,6 +112,14 @@ class HomeController < ActionController::Base
   def course_description
     # @favorite_courses = current_user.favorite_courses
     @course = Course.find(params[:id])
+    bunch_course = current_user.bunch_courses.where(course_id: @course.id).last
+    test_final = @course.test
+    if test_final.present?
+      test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
+      if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank?
+        redirect_to "/tests/#{test_final.id}/run"
+      end
+    end
   end
 
   def group

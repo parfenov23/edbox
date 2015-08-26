@@ -79,8 +79,8 @@
     .title Учебная программа
     .prgr-wrp
       - nsec = 0
-      - @course.sections.each do |section|
-        - section_attachments = section.attachments
+      - @course.sections.not_empty.each do |section|
+        - section_attachments = section.attachments.not_empty
         - if section_attachments.present?
           - natt = 0
           - if bunch_course.present?
@@ -101,13 +101,10 @@
               - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
               - class_block = ""
               - hash_class = {}
-              - if !@course.paid || (@course.paid && current_user.get_account_paid)
+              - if current_user.view_course?(@course)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
-                  - if attachment.class_type != "video"
-                    - hash_class = {class: ['js_downloadFile'], :'data-id' => attachment.id, :'data-bunch_section_id' => bunch_section.id}
-                  - else
-                    - hash_class = {onclick: "window.location.href='/video?id=#{attachment.id}'"}
+                  - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
               .item class=class_block *hash_class
                 .icon__block
                   i.icon class=attachment.class_type
@@ -115,15 +112,6 @@
                   .left-col #{nsec}.#{natt += 1} #{attachment.title}
                   .right-col = attachment.full_duration
                 .description = attachment.title
-            - section.tests.each do |test|
-              .item onclick = "window.location.href='/tests/#{test.id}/run'"
-                .icon__block
-                  i.icon.test
-                .adaptive__title
-                  .left-col #{nsec}.#{natt += 1} #{test.title}
-                  - if test.duration.present?
-                    .right-col #{test.duration.to_s + ' часа'}
-                .description = test.title
 
 
   .toggle__view.btn.btn-flat

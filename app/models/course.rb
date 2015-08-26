@@ -78,6 +78,7 @@ class Course < ActiveRecord::Base
     bunch_courses.where({course_id: id, user_id: user_id, group_id: group_id, model_type: type}).last
   end
 
+
   def duration_time
     sections.joins(:attachments).sum("attachments.duration")
   end

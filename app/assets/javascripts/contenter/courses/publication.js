@@ -3,7 +3,7 @@ var updateTypeCourse = function () {
     $.ajax({
         type: 'POST',
         url : '/api/v1/courses/' + btn.data('id') + '/update_type',
-        data: {account_type_id: btn.data("type_id")}
+        data: {type: btn.data("type_id")}
     }).success(function (data) {
     }).error(function () {
         show_error('Произошла ошибка', 3000);
