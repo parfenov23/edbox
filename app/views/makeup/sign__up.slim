@@ -1,0 +1,58 @@
+.auth__new
+  .edbox__logo
+    img src="/assets/header__edbox.svg"
+  .adc__logo
+    img src="/assets/header__adconsult.svg"
+  .auth__wrp
+    .title Регистрация
+    .col__wrp
+      .col
+        .title Персональные данные
+        .com__input-item.item.empty
+          input.form-control.floating-label name="name" type="text" placeholder="Имя"
+          hr
+        .com__input-item.item.empty
+          input.form-control.floating-label name="sname" type="text" placeholder="Фамилия"
+          hr
+        .com__input-item.item.empty
+          input.form-control.floating-label name="email" type="email" placeholder="Email"
+          hr
+        .title Безопасность
+        .com__input-item.item.empty.error.lvl-2 
+          input.form-control.floating-label name="pass1" type="password" placeholder="Пароль"
+          hr
+          .error__msg ой все
+        .com__input-item.item.empty
+          input.form-control.floating-label name="pass2" type="password" placeholder="Подтверждение пароля"
+          hr
+        .offert.check
+          input#ch-1 type="checkbox"
+          label for="ch-1"
+            i.icon
+            .text
+              |Я ознакомлен 
+              a href="#"  с договором оферты 
+              | и принимаю условия договора 
+
+      .col
+        .title Тип аккаунта
+        .type__acc-item
+          .radio
+            input#r-1 type="radio" name="type_acc"
+            label for="r-1"
+              i
+              .text Персональный аккаунт
+          .description Получите доступ к библиотеке курсов Edbox и начните самостоятельное регулярное обучение самым актуальным знаниям в области маркетинга и продаж.
+        .type__acc-item
+          .radio
+            input#r-2 type="radio" name="type_acc"
+            label for="r-2"
+              i
+              .text Корпоративный аккаунт
+          .description Зарегистрируйте корпоративный аккаунт и пригласите ваших сотрудников в Edbox. Назначайте курсы, просматривайте аналитику обучения и развивайте компетенции всех сотрудников компании. 
+        .company.com__input-item.item.empty
+          input.form-control.floating-label name="pass2" type="password" placeholder="Название компании"
+          hr
+    .action__block
+      .btn.btn-flat У МЕНЯ ЕСТЬ АККАУНТ
+      .btn.btn-flat.is__blue СОЗДАТЬ АККАУНТ

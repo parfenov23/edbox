@@ -116,7 +116,6 @@ var includeDatePicker = function () {
             var dates = $(this).data('datepicker');
             var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
             $(this).parent().find('.selected-value').html(selectDate);
-            console.log($(this))
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
@@ -252,7 +251,7 @@ $(document).ready(function () {
             console.log(bodyHeight);
         }
         else {
-            $('.auth').css({'height': windowHeight + 'px'});
+          
         }
     }, 100);
 
@@ -331,5 +330,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-
