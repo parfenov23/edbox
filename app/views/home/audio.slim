@@ -1,24 +1,10 @@
-#header__holder
-    = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "audio", title: @section.title, profile_class: "active" } }
+= render "home/header/header", {namePage: "Audio", titlePage: @section.title, btnBack: true, backUrl: "/"}
 .inner-content
     .content-audio
         p.audio-title #{@audio.title}
         audio#audio controls='' preload='auto'
-            source src="#{@audio.file.url}" type="audio/#{@audio.file.file.extension.downcase}"
+            source src="#{@audio.file.url}" type="#{@audio.file.content_type}"
+            a.btn.flat style="display: inline-block" href="#{request.base_url + @audio.file.url}" Скачать #{@audio.title}
         br
-        /button#audio-play.play play
-        .adova__btn.mdl-shadow--2dp style='position: relative; float: right; top: 100px'
+        .adova__btn.mdl-shadow--2dp style='position: relative; float: right;'
             i.icon
-
-        /video.video-js.vjs-default-skin.vjs-big-play-centered {controls="" data-setup="{'example_option':true}" height="28" preload="auto" width="640"}
-        /    source src="#{@audio.file.url}" type="audio/#{@audio.file.file.extension.downcase}"
-        /    p.vjs-no-js
-        /        | To view this video please enable JavaScript, and consider upgrading to a web browser that
-        /        a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
-        /p.video-title #{@audio.title}
-        /p.video-author
-        /    - if @author.present?
-        /        = @author.full_name
-        /    - else
-        /        = 'Анонимус'

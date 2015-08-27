@@ -1,36 +1,41 @@
 figure.corses-prev
   .image
-    img (src="#{course.get_image_path('347x192')}")
+    img src = course.get_image_path(694, 384)
+    .fade
     .course__type-wrp
-      .course-type Записанный курс
-      .course-type Записанный курс
-      .course-type Записанный курс
-      .course-type Записанный курс
-      .course-type Записанный курс
-      .course-type Записанный курс
-    - course_tag = (course.bunch_tags.last.tag rescue nil)
-    - if course_tag.present?
-      .course-type = (course_tag.title rescue nil)
+    - course.bunch_tags.each do |bunch_tag|
+      .course-type = (bunch_tag.tag.title rescue nil)
     - valid_action_btn_type = ["courses", "favorite"]
-    - if valid_action_btn_type.include?(type)
-      .action-btn class=(current_user.director && type != 'favorite' ? 'three' : 'two')
-        - if current_user.director
-          - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
-          .add.icon.js_for-tooltip.js_openPopup data-id="#{course.id}" class="#{add_class}" data-show=".select, .title span" data-type="group"
-            .mdl-shadow-2dp.com-top-tooltip.js_tooltip Расписание группы
-        - else
-          .add.user_schedule.js_openPopup.icon.js_for-tooltip data-id="#{course.id}" data-height="224px" data-type="user"
-            .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
-        - if type == 'courses'
-          .favorite.icon.js_for-tooltip data-id="#{course.id}"
-            .mdl-shadow-2dp.com-top-tooltip.js_tooltip Избранное
-        - if current_user.director
-          .schedule.icon.js_for-tooltip.js_openPopup data-id="#{course.id}" data-hide=".select, .title span" data-height="224px" data-type="user"
-            .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
+    - if !course.paid || (course.paid && current_user.get_account_paid)
+      - if valid_action_btn_type.include?(type)
+        .action-btn class=(current_user.director && type != 'favorite' ? 'three' : 'two')
+          - if current_user.director
+            - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
+            - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
+            .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
+              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Расписание группы
+          - else
+            .add.user_schedule.js_openPopup.icon.js_for-tooltip.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user"
+              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
+          - if type == 'courses'
+            .favorite.icon.js_for-tooltip.ya_add_to_favorite data-id="#{course.id}"
+              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Избранное
+          - if current_user.director
+            - hash_params = {'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule"}
+            .schedule.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user" *hash_params
+              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
+    - else
+      - if valid_action_btn_type.include?(type)
+        .action-btn class=(current_user.director && type != 'favorite' ? 'three' : 'two')
+          - if type == 'courses'
+            .favorite.icon.js_for-tooltip data-id="#{course.id}"
+              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Избранное
   figcaption
     a href="/course_description?id=#{course.id}"
       .title id="titleCoursePrev#{course.id}"
         = course.title
+        - unless course.paid
+          |  (бесплатный)
         .shadow
     .author
       = (course.user.full_name rescue "Нет ведущего")

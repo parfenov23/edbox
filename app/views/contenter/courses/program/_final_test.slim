@@ -1,0 +1,16 @@
+.parentFinalTest
+  .info_test.item
+    .icon__block
+      i.icon.test
+    .adaptive__title
+      .fixed-h
+        .left-col.title Тест для завершения курса
+      .right-col
+    .remove.js_removeTestToCourse data-id=test.id
+    - count_questions = test.questions.count
+    .description = rus_case(count_questions, "вопрос", "вопроса", "вопросов")
+  .description_test
+    .titleSectionTest Тест для завершения курса
+    form.addedTest
+      = render "contenter/courses/program/test", {test: test}
+    .remove.js_removeTestToCourse data-id=test.id

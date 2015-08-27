@@ -11,6 +11,10 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Название:
         input.form-control name="tests[title]" type="text" value="#{@test.title}"
+    .form-group
+        label
+            | Длительность:
+        input.form-control name="tests[duration]" type="text" value="#{@test.duration}"
     input type="hidden" name="_method" value="#{method}"
     input type="hidden" name="tests[section_id]" value="#{section_id}"
     - if section_id.present?

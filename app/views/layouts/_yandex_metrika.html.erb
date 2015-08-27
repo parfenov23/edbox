@@ -1,0 +1,111 @@
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try{
+                w.yaCounter31766016 = new Ya.Metrika({
+                    id                 : 31766016,
+                    clickmap           : true,
+                    trackLinks         : true,
+                    accurateTrackBounce: true,
+                    webvisor           : true
+                });
+            }catch (e){
+            }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]"){
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>
+  <div><img src="https://mc.yandex.ru/watch/31766016" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+
+<script type="text/javascript">
+    pageLoad(function(){
+        $(document).on('click', '.ya_auth_sign_in', function () {
+            yaCounter31766016.reachGoal('AUTH_SIGN_IN'); //кнопка авторизации
+        });
+
+        $(document).on('click', '.ya_reg_sign_in', function () {
+            yaCounter31766016.reachGoal('REG_SIGN_IN'); //кнопка регистрации
+        });
+
+        $(document).on('click', '.ya_acc_type_sign_in', function () {
+            yaCounter31766016.reachGoal('ACC_TYPE_SIGN_IN'); //выбор типа аккаунта при регистрации
+        });
+
+        $(document).on('click', '.ya_burger_click', function () {
+            yaCounter31766016.reachGoal('BURGER_CLICK'); //нажатие на бургер
+        });
+
+        $(document).on('click', '.ya_schedule_icon_click', function () {
+            yaCounter31766016.reachGoal('SCHEDULE_ICON_CLICK'); //нажатие на иконку расписания
+        });
+
+        $(document).on('click', '.ya_schedule_panel_course_click', function () {
+            yaCounter31766016.reachGoal('SCHEDULE_PANEL_COURSE_CLICK'); //переход на курсы из бокового расписания
+        });
+
+        if ($('.ya_course_unsigned_visit').length != 0) {
+            yaCounter31766016.reachGoal('COURSE_UNSIGNED_VISIT'); //посещение страницы курса когда пользователь на него не подписан
+        }
+
+        if ($('.ya_course_signed_visit').length != 0) {
+            yaCounter31766016.reachGoal('COURSE_SIGNED_VISIT'); //посещение страницы курса когда пользователь на него подписан
+        }
+
+        if ($('.ya_course_not_auth_visit').length != 0) {
+            yaCounter31766016.reachGoal('COURSE_NOT_AUTH_VISIT'); //посещение страницы курса не авторизованным пользователем
+        }
+
+        $(document).on('click', '.ya_profile_update', function () {
+            yaCounter31766016.reachGoal('PROFILE_UPDATE'); //сохранение данных профиля
+        });
+
+        $(document).on('click', '.ya_add_to_favorite', function () {
+            yaCounter31766016.reachGoal('ADD_TO_FAVORITE'); //добавление в избранное
+        });
+
+        $(document).on('click', '.ya_add_to_schedule_private', function () {
+            yaCounter31766016.reachGoal('ADD_TO_SCHEDULE_PRIVATE'); //добавление в расписание личное
+        });
+
+        $(document).on('click', '.ya_add_to_schedule_part_private', function () {
+            if (($("[name = 'group_id']") != 0) && ($("[name = 'group_id']").val().length == 0)) {
+                yaCounter31766016.reachGoal('ADD_TO_SCHEDULE_PART_PRIVATE'); //добавление в расписание личное (разделов или раздела)
+            }
+        });
+
+        $(document).on('click', '.ya_add_to_schedule_corp', function () {
+            yaCounter31766016.reachGoal('ADD_TO_SCHEDULE_CORP'); //добавление в расписание корпоративное
+        });
+
+        $(document).on('click', '.ya_add_to_schedule_part_corp', function () {
+            if (($("[name = 'group_id']") != 0) && ($("[name = 'group_id']").val().length > 0)) {
+                yaCounter31766016.reachGoal('ADD_TO_SCHEDULE_PART_CORP'); //добавление в расписание корпоративное (разделов или раздела)
+            }
+        });
+
+        $(document).on('click', '.ya_course_begin', function () {
+            yaCounter31766016.reachGoal('COURSE_BEGIN'); //добавление в расписание корпоративное
+        });
+
+        //TODO
+        $(document).on('click', '.ya_course_end', function () {
+            yaCounter31766016.reachGoal('COURSE_END'); //завершил курс
+        });
+    });
+</script>

@@ -1,0 +1,16 @@
+- back_url = "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}"
+= render "home/header/header", {namePage: "courseMaterial", titlePage: @attachment.title, btnBack: true, backUrl: back_url}
+= render "home/course_program/right_sidebar/notes_aside"
+= render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
+- unless @attachment.download
+  - case @attachment.file_type
+  - when "audio", "video", "description", "pdf"
+    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+    .adova__btn.mdl-shadow--2dp.js_completeAttachment data-course_id=@course.id data-id=@attachment.id data-bunch_section_id=@section.bunch_section(current_user.id).id
+      i.icon
+  - when "test"
+    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+- else
+  = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
+  .adova__btn.mdl-shadow--2dp.js_completeAttachment data-course_id=@course.id data-id=@attachment.id data-bunch_section_id=@section.bunch_section(current_user.id).id
+    i.icon

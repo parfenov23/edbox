@@ -1,0 +1,5 @@
+.testHolder
+  - questions = test.questions
+  - questions.each do |question|
+    = render "contenter/courses/program/question", {test: test, question: question}
+.addedTestIssue.js_createQuestionToTest data-id=test.id Добавить вопрос

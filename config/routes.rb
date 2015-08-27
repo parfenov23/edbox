@@ -7,10 +7,18 @@ Rails.application.routes.draw do
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
 
+  bigbluebutton_routes :default
+
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
+  get "pdf/:id" => "home#pdf"
+  get 'schedule', to: "schedules#index"
+  post 'schedule/day', to: "schedules#day_schedule"
   get ":action" => "home#:action"
-
+  get "makeup/:action" => "makeup#:action"
+  # get "test_websocket" => "home#test_websocket"
+  # get 'nod'
+  match "node/websocket", :to => WebsocketRails::ConnectionManager.new, :via => [:get, :post]
   resources :tests, only: [] do
     collection do
       post :complete
@@ -26,8 +34,34 @@ Rails.application.routes.draw do
         member do
           get :get_test
           post :result
+          post :remove
         end
       end
+
+      resources :questions do
+        member do
+          post :remove
+        end
+      end
+
+      resources :answers do
+        member do
+          post :remove
+        end
+      end
+
+      resources :tags do
+        member do
+          post :remove
+        end
+      end
+
+      resources :categories do
+        member do
+          post :remove
+        end
+      end
+
       resources :sessions, only: [] do
         collection do
           post :auth
@@ -36,15 +70,42 @@ Rails.application.routes.draw do
           get :signout
         end
       end
+      resources :companies, only: [] do
+        collection do
+          get :info
+        end
+      end
 
       resources :attachments do
         member do
           get :render_file
           post :complete
+          post :remove
+          post :attachment_contenter_html
+          post :set_type
         end
       end
-      resources :courses do
+      resources :sections do
+        member do
+          post :contenter_html
+          post :remove
+        end
       end
+
+      resources :courses do
+        collection do
+          get :all
+        end
+        member do
+          get :info
+          post :add_tag
+          post :remove_tag
+          post :add_leading
+          post :remove_leading
+          post :update_type
+        end
+      end
+
       resources :users, only: [] do
         collection do
           get :info
@@ -60,6 +121,9 @@ Rails.application.routes.draw do
           post :remove_course
           post :update_section
         end
+        member do
+          post :remove_user_leading
+        end
       end
       resources :groups do
         member do
@@ -68,9 +132,11 @@ Rails.application.routes.draw do
           post :remove_user
           post :remove_course
           post :update_course
+          post :update_section
         end
         collection do
           post :add_course
+          post :add_courses
         end
       end
     end
@@ -147,6 +213,26 @@ Rails.application.routes.draw do
     resources :attachments do
       member do
         get :remove
+      end
+    end
+  end
+
+  namespace :contenter do
+    resources :courses do
+      collection do
+      end
+      member do
+        get :program
+        get :publication
+      end
+    end
+    resources :admin do
+      collection do
+        get :tags
+        get :members
+        get :categories
+      end
+      member do
       end
     end
   end

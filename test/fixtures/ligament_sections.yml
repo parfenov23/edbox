@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section_id: 1
+  date_complete: 2015-08-07 13:37:05
+  ligament_course_id: 1
+
+two:
+  section_id: 1
+  date_complete: 2015-08-07 13:37:05
+  ligament_course_id: 1

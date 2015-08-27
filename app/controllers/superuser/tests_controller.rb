@@ -45,7 +45,7 @@ module Superuser
     end
 
     def params_test
-      params.require(:tests).permit(:title, :section_id)
+      params.require(:tests).permit(:title, :duration, :section_id)
     end
 
   end

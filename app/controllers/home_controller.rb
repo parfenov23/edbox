@@ -33,6 +33,15 @@ class HomeController < ActionController::Base
     end
   end
 
+  def attachment
+    @attachment = Attachment.where(id: params[:id]).last
+    @section = @attachment.attachmentable rescue nil
+    @course = @section.course rescue nil
+    unless @attachment.present? && (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+      redirect_to "/"
+    end
+  end
+
   def audio
     @current_user = current_user
     attachment = (Attachment.find(params[:id]) rescue nil)
@@ -45,12 +54,33 @@ class HomeController < ActionController::Base
     end
   end
 
+  def pdf
+    @current_user = current_user
+    attachment = (Attachment.find(params[:id]) rescue nil)
+    if attachment.present? && attachment.file.file.extension.downcase == 'pdf'
+      @pdf = attachment
+      @section = attachment.attachmentable
+    else
+      render :error
+    end
+  end
+
+  def tariff
+    @current_user = current_user
+    @account_type = @current_user.get_account_type
+    if @account_type.present?
+      @offer = AccountType.where(corporate: @account_type.corporate, paid: true).last
+      @user_company = @current_user.company
+      @account_type_date = (@current_user.get_account_type_relation.date rescue nil)
+    end
+  end
+
   def members
     @members = current_user.company.users
   end
 
   def courses
-    all_courses = Course.all
+    all_courses = Course.all.where(public: true)
     time = Time.now
     @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
                      .order("created_at ASC")
@@ -59,7 +89,7 @@ class HomeController < ActionController::Base
   end
 
   def programm
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:id])
     @sections = @course.sections
     section_ids = @sections.pluck(:id)
     @tests = Test.where(section_id: section_ids)
@@ -81,7 +111,15 @@ class HomeController < ActionController::Base
 
   def course_description
     # @favorite_courses = current_user.favorite_courses
-    # @course = Course.find(params[:id])
+    @course = Course.find(params[:id])
+    bunch_course = current_user.bunch_courses.where(course_id: @course.id).last
+    test_final = @course.test
+    if test_final.present?
+      test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
+      if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank? && params[:attachment_id].present?
+        redirect_to "/tests/#{test_final.id}/run"
+      end
+    end
   end
 
   def group
@@ -112,6 +150,10 @@ class HomeController < ActionController::Base
 
   def is_corporate?
     redirect_to "/" unless current_user.corporate
+  end
+
+  def is_contenter?
+    redirect_to "/courses" if !current_user.contenter
   end
 
 end

@@ -1,0 +1,75 @@
+.notes__content {
+  @include middle-block(1134px);
+  .item {
+    @include inline-block;
+    @include white__block(1, 1);
+    margin-right : 20px;
+    margin-bottom: 24px;
+    width        : 360px;
+    height       : 344px;
+    padding      : 11px 24px;
+    padding-right: 20px;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+    .title {
+      margin-bottom: 22px;
+      position     : relative;
+      padding-right: 80px;
+      padding-left : 26px;
+      @include eclipses;
+      i.icon {
+        cursor: pointer;
+      }
+      >i.icon {
+        position : absolute;
+        top      : 4px;
+        font-size: 20px;
+        left     : 0;
+        &::before {
+          content: "\E70D";
+        }
+      }
+      span {
+        font-size  : 15px;
+        line-height: 28px;
+        &:hover {
+          color: $primoryColor;
+        }
+      }
+      .action__block {
+        position: absolute;
+        top     : 1px;
+        right   : -8px;
+        i {
+          color       : $black_26;
+          font-size   : 22px;
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .info {
+      margin-bottom: 8px;
+      span {
+        display    : block;
+        font-size  : 13px;
+        color      : rgba(0,0,0,0.54);
+        line-height: 20px;
+      }
+    }
+    .description {
+      height       : 160px;
+      overflow     : hidden;
+      margin-bottom: 8px;
+      font-size    : 13px;
+      line-height  : 20px;
+    }
+    .more {
+      font-size  : 13px;
+      line-height: 20px;
+      color      : $primoryColor;
+      cursor     : pointer;
+    }
+  }
+}

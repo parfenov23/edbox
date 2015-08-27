@@ -1,41 +1,27 @@
-#header__holder
-    = render "home/header/header", { header_top_arr: ['notifications'] }
-    = render "home/header/header_bottom", { header_bottom: { block: "cabinet", title: 'Мой кабинет', profile_class: "active" } }
+= render "home/header/header", {namePage: "other", titlePage: "Финальный тест", btnBack: true, backUrl: "/course_description?id=#{@course.id}"}
+- test = @test
 .inner-content
-    form.content#tests
-        .test-info
+  form#tests data-id=test.id data-course_id=@course.id data-att_id=''
+    - if test.present?
+      .test-list
+        - questions = test.questions.where.not(title: [nil, ""])
+        - count_q = 0
+        - questions.each do |question|
+          .test-item name="Вопрос #{count_q += 1}"
             .title
-                .title-text Тест курса «#{@course.title}»
-                .duration #{@course.duration} часа
-            .description #{@test.title}
-            .question-qty Вопросов в тесте: #{@test.questions.count}
-        .test-block
-            .test-list
-                input name="id" value="#{@test.id}" style="display:none;"
-                - step = 0;
-                - @test.questions.each do |question|
-                    - step+=1
-                    .test-item name="#{step}"
-                        .title Вопрос #{step}
-                        .description #{question.title}
-                        - correct_answer_count = question.answers.where(right: true).count
-                        - if correct_answer_count == 1
-                            - question.answers.each do |answer|
-                                .answer
-                                    .radio
-                                        input id="answer-#{answer.id}" type="radio" name="answer[#{answer.question_id}][]" value="#{answer.id}"
-                                        label for="answer-#{answer.id}"
-                                    .text #{answer.text}
-                        - else
-                            - question.answers.each do |answer|
-                                .answer
-                                    .check
-                                        input id="answer-#{answer.id}" type="checkbox" name="answer[#{answer.question_id}][]" value="#{answer.id}"
-                                        label.icon for="answer-#{answer.id}"
-                                    .text #{answer.text}
-            .finish-test
-                .btn.finish-btn#submit ЗАВЕРШИТЬ ТЕСТ
-        .result-block
-            .test-list
-                .title Тест пройдет. Поздравляем вас с окончанием курса!
-                .description Ваш результат прохождения теста 86%. Вы ответили правильно на 2 вопроса из 3 вопросов.
+              = "Вопрос #{count_q}"
+            /span Неверно
+            .description = question.title
+            - answers = question.answers.where.not(text: [nil, ""])
+            - valid_answers = answers.where(right: true)
+            - type_block = (valid_answers.count >= 2 ? 'checkbox' : 'radio')
+            - answers.each do |answer|
+              .answer
+                div class=type_block.gsub("box", "")
+                  // input#an-2-1 type="checkbox"
+                  input id="an-#{question.id}-#{answer.id}" type=type_block name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                  label for="an-#{question.id}-#{answer.id}"
+                    i
+                    .text = answer.text
+    .adova__btn.mdl-shadow--2dp.js_submitFormTest
+      i.icon

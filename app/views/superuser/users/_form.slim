@@ -37,6 +37,11 @@ form.form-horizontal action="#{action_url}" method="post"
       = check_box("user", "director", {checked: check})
     .form-group
       label
+        | Шеф контет?:
+      - check = @user.contenter
+      = check_box("user", "contenter", {checked: check})
+    .form-group
+      label
         | Корпоративный аккаунт?:
       - check = !@user.id.nil? ? @user.corporate : false
       = check_box("user", "corporate", {checked: check})
@@ -52,7 +57,7 @@ form.form-horizontal action="#{action_url}" method="post"
       label
         | Тип индивидуального аккаунта:
       - arr_account_type = [["не назначен", nil]]
-      - AccountType.all.map { |account_type| arr_account_type << [account_type.name, account_type.id] }
+      - AccountType.all.map { |account_type| arr_account_type << [account_type.title, account_type.id] }
       = select_tag 'account_type', options_for_select(arr_account_type.collect { |ac| [ac.first, ac.last] }, (@user.get_real_account_type.id rescue nil)), {:class => 'form-control'}
 
   input type="hidden" name="_method" value="#{method}"

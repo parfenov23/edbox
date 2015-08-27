@@ -26,10 +26,47 @@ module Api::V1
       end
     end
 
+    def update
+      attachment = find_attachment
+      attachment.update(params_attachment)
+      render json: attachment.transfer_to_json
+    end
+
+    def remove
+      find_attachment.destroy
+      render json: {success: true}
+    end
+
+    def attachment_contenter_html
+      attachment_html = render_to_string "contenter/courses/program/_attachment", :layout => false, :locals => {attachment: find_attachment,
+                                                                                                                class_state: params[:class_state],
+                                                                                                                section: find_attachment.attachmentable}
+      render text: attachment_html
+    end
+
+    def create
+      attachment = Attachment.new({attachmentable_id: params[:attachmentable_id],
+                                   attachmentable_type: params[:attachmentable_type]})
+      attachment.save
+      render json: attachment.transfer_to_json
+    end
+
+    def set_type
+      attachment= find_attachment
+      hash = {file_type: params[:type], download: false}
+      hash = {download: params[:type], download: true} if params[:type] == "download"
+      attachment.update(hash)
+      render json: attachment.transfer_to_json
+    end
+
     private
 
     def find_attachment
       Attachment.find(params[:id])
+    end
+
+    def params_attachment
+      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration).compact.select{|k,v| v != ""} rescue {}
     end
 
     def find_user

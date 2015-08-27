@@ -1,0 +1,174 @@
+#course {
+  @include middle-block(936px);
+  .text__description {
+    margin-bottom : 64px;
+    .title {
+      font-size     : 24px;
+      color         : #4A4A4A;
+      line-height   : 32px;
+      margin-bottom : 32px;
+    }
+    .description {
+      font-size     : 15px;
+      color         : #262626;
+      line-height   : 24px;
+      margin-bottom : 18px;
+    }
+    .icon__block {
+      i {
+        @include inline-block;
+        margin-right : 24px;
+        &.is__not-active {
+          opacity : 0.26;
+        }
+        &::before {
+          font-size : 20px;
+          color     : $black_87;
+        }
+        &::after {
+          font-size      : 13px;
+          color          : $black_87;
+          line-height    : 13px;
+          display        : inline-block;
+          margin-left    : 10px;
+          vertical-align : text-top;
+        }
+      }
+      .file {
+        &::before {
+
+        }
+        &::after {
+          content : "Файл для скачивания";
+        }
+      }
+      .pdf {
+        margin-top : -3px;
+        &::before {
+          font-size : 26px;
+        }
+        &::after {
+          content        : "PDF";
+          vertical-align : super;
+        }
+      }
+      .text{
+        &::after {
+          content : "Текст";
+        }
+      }
+      .audio {
+        &::before {
+          font-size : 20px;
+        }
+        &::after {
+          content : "Аудио";
+        }
+      }
+      .video {
+        &::before {
+          font-size : 20px;
+        }
+        &::after {
+          content : "Видео";
+        }
+      }
+    }
+  }
+  .text__content {
+    @include white__block(1, 0);
+    padding  : 64px;
+    position : relative;
+    &.is__fullscrn {
+      background : $black_87;
+      .toggle__screen {
+        &::before {
+          content : "\E8A0";
+        }
+      }
+      .text__inner {
+        @include middle-block(941px);
+        background-color : #FFF;
+        padding          : 64px;
+      }
+    }
+    h2 {
+      font-size     : 20px;
+      color         : #4A4A4A;
+      line-height   : 24px;
+      margin-bottom : 24px;
+      font-weight   : 400;
+    }
+    p {
+      margin-bottom : 24px;
+    }
+    .toggle__screen {
+      position : absolute;
+      left     : 100%;
+      top      : 0;
+      &::before {
+        content   : "\E89F";
+        font-size : 32px;
+      }
+    }
+  }
+
+  .audio__content {
+    audio {
+      @include middle-block(584px);
+      @include white__block(1, 0);
+      height         : 72px;
+      vertical-align : middle;
+    }
+  }
+
+  .file__content {
+    @include middle-block(240px);
+    height           : 192px;
+    background-color : #D8D8D8;
+    padding-top      : 32px;
+    .file__wrp {
+      @include middle-block(177px);
+      height     : 112px;
+      background : url("file__holder.svg") 50% 50% no-repeat;
+      .file__holder {
+        padding       : 16px;
+        margin-bottom : 11px;
+        .title {
+          overflow    : hidden;
+          height      : 40px;
+          font-size   : 13px;
+          color       : $black_87;
+          line-height : 20px;
+        }
+        .weight {
+          font-size   : 12px;
+          color       : $black_54;
+          line-height : 20px;
+        }
+        .type {
+          padding-left : 21px;
+          position     : relative;
+          font-size    : 12px;
+          color        : rgba(0, 0, 0, 0.54);
+          line-height  : 20px;
+          &::before {
+            position    : absolute;
+            top         : 0;
+            left        : 0;
+            content     : '\E78F';
+            font-family : Icons, sans-serif;
+          }
+        }
+      }
+      .action__holder {
+        @include clearfix;
+        margin-bottom : 10px;
+        margin-right  : -20px;
+        .btn {
+          float : right;
+        }
+      }
+    }
+  }
+}

@@ -4,19 +4,98 @@
 //= require ./vendor/zbaron.min
 //= require ./vendor/jquery.jcarousel.min
 //= require ./vendor/jquery-migrate-1.2.1.min.js
+//= require ./vendor/notifymy.js
+
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
-//=require main/main
+//= require ./vendor/jquery.phoenix
+//= require ./vendor/fullscrn
+//= require main/main
 
 //= require_tree ./core
 
+//= require websocket_rails/main
+//= require_tree ./websocket
+//= require_tree ./contenter
 
+function SetCaretAtEnd(elem) {
+    var elemLen = elem.value.length;
+    // For IE Only
+    if (document.selection){
+        // Set focus
+        elem.focus();
+        // Use IE Ranges
+        var oSel = document.selection.createRange();
+        // Reset position to 0 & then set at end
+        oSel.moveStart('character', - elemLen);
+        oSel.moveStart('character', elemLen);
+        oSel.moveEnd('character', 0);
+        oSel.select();
+    }
+    else if (elem.selectionStart || elem.selectionStart == '0'){
+        // Firefox/Chrome
+        elem.selectionStart = elemLen;
+        elem.selectionEnd = elemLen;
+        elem.focus();
+    } // if
+}
+
+function bindEventDocument(hash) {
+    $.each(hash.arrElem, function (n, elem) {
+        var func_name = elem.replace(".js_", "").replace(".js__", "").replace(".", "");
+        var parent_block = '';
+        if (hash.parentBlock != undefined){
+            parent_block = hash.parentBlock
+        }
+        $(document).on(hash.nameAction, parent_block + ' ' + elem, eval(func_name));
+    });
+}
+
+(function ($) {
+    $.fn.serializefiles = function () {
+        var obj = $(this);
+        /* ADD FILE TO PARAM AJAX */
+        var formData = new FormData();
+        $.each($(obj).find("input[type='file']"), function (i, tag) {
+            $.each($(tag)[0].files, function (i, file) {
+                formData.append(tag.name, file);
+            });
+        });
+        var params = $(obj).serializeArray();
+        $.each(params, function (i, val) {
+            formData.append(val.name, val.value);
+        });
+        return formData;
+    };
+})(jQuery);
+
+$.fn.count_text_input = function () {
+    // .replace(/\W/gi," ")
+    var text_block;
+    var tag_name = $(this).prop("tagName");
+    var valid_tag = ["INPUT", "TEXTAREA"];
+    if ($.inArray(tag_name, valid_tag) > - 1){
+        text_block = $(this).val();
+    } else {
+        text_block = $(this).text();
+    }
+    var first_input_text = text_block.replace(/\n/, " ").replace(/\s{2,}/gi, " ").replace(/ $/, "").replace(/^ /, "");
+    return first_input_text.length
+};
 
 $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
-var includeDatePicker = function(){
+var goToProgramAttachment = function(){
+    var block = $(".js_goToProgramAttachment");
+    if ( block.length ){
+        var block_scroll = $('.js_blockAttachmentInProgram[data-id="' + block.data('id') + '"]');
+        $('body, html').scrollTop( block_scroll.position().top );
+    }
+}
+
+var includeDatePicker = function () {
     $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
@@ -29,6 +108,7 @@ var includeDatePicker = function(){
         dateFormat     : 'dd.mm.yy',
         firstDay       : 1,
         isRTL          : false,
+        minDate        : new Date(),
         beforeShow     : function () {
             return $('#ui-datepicker-div').addClass('hide');
         },
@@ -39,22 +119,99 @@ var includeDatePicker = function(){
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
+            $(this).change();
             return $(this).parent().addClass('show');
         }
     });
 }
 
-function pageLoad(action){
-    $(document).ready(function () {
-        $("img:last").load(action);
-    });
+function pageLoad(action) {
+    $(document).ready(action);
 }
 
+var notifyMypush = function (message) {
+    var options = {
+        icon   : 'http://i.istockimg.com/file_thumbview_approve/46749378/3/stock-illustration-46749378-cute-piglet-icon-animal-icons-series.jpg',
+        body   : message.body,
+        onclick: function () {
+            console.log("Good");
+        },
+        onerror: function () {
+            console.log("On Error Triggered");
+        },
+        onclose: function () {
+            console.log("On Close Triggered");
+        }
+    };
+    NotifyMe.launch(message.title, options);
+}
+
+var adaptiveTitle = function () {
+    return $('.adaptive__title').each(function () {
+        var rightWidth;
+        rightWidth = $(this).find('.right-col').width();
+        return $(this).find('.left-col').css({
+            width: $(this).width() - rightWidth + 'px'
+        });
+    });
+};
+
+function extractEmails(text) {
+    return text.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
+}
+
+Array.prototype.getUnique = function () {
+    var u = {}, a = [];
+    for (var i = 0, l = this.length; i < l; ++ i){
+        if (u.hasOwnProperty(this[i])){
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+}
+var optionDatePicker = function () {
+    var btn = $(this);
+    //setTimeout(function(){
+    var bl_dt = $('.datapicker__trigger');
+    btn.datepicker("destroy");
+    includeDatePicker();
+    if (btn.data('min-date')){
+        btn.datepicker("option", "minDate", new Date(btn.data('min-date')));
+    } else {
+        btn.datepicker("option", "minDate", new Date());
+    }
+    if (btn.data('max-date')){
+        btn.datepicker("option", "maxDate", new Date(btn.data('max-date')));
+    } else {
+        btn.datepicker("option", "maxDate", null);
+    }
+    console.log(btn.data('max-date'))
+    btn.datepicker();
+    //}, 3000)
+}
+
+function parseDate(input) {
+    var parts = input.split('.');
+    // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+    return new Date(parts[2], parts[1]-1, parts[0]); // Note: months are 0-based
+}
 
 $(document).ready(function () {
+    goToProgramAttachment();
+    $(document).on('click', '.datapicker__trigger', optionDatePicker);
+    jQuery.each(jQuery('textarea[data-autoresize]'), function () {
+        var offset = this.offsetHeight - this.clientHeight;
 
+        var resizeTextarea = function (el) {
+            jQuery(el).css('height', 'auto').css('height', el.scrollHeight + offset);
+        };
+        resizeTextarea(this);
+        jQuery(this).on('keyup input click', function () { resizeTextarea(this); }).removeAttr('data-autoresize');
+    });
 
-  $.material.init()
+    $.material.init()
 
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
@@ -88,7 +245,14 @@ $(document).ready(function () {
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
-        $('.auth').css({'height': windowHeight + 'px'});
+        var bodyHeight = $('body').outerHeight();
+        if ($('.auth').hasClass('is__course-description')){
+            $('.auth').css({'height': (bodyHeight + 312) + 'px'});
+            console.log(bodyHeight);
+        }
+        else {
+          
+        }
     }, 100);
 
 
@@ -96,14 +260,16 @@ $(document).ready(function () {
         $(this).closest('.more').removeClass('hidden');
     })
 
-    $('.header__bottom .aside-trigger, .schedule-calendar .item ').on('click', function () {
+    $('.js_openLeftSideBar').on('click', function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
         else {
             $('.courses-aside:visible').removeClass('show');
             $('#' + id + '').toggleClass('show');
+            $('.js__backing').toggleClass('is__active');
         }
     })
 
@@ -111,16 +277,14 @@ $(document).ready(function () {
     $('.ui-state-default').on('click', function (e) {
     })
 
-    includeDatePicker()
+    //includeDatePicker()
 
     $(document).on('click', '.datapicker__trigger', function () {
         $('#ui-datepicker-div').removeClass('hide');
     });
 
 
-
     $('.filter-courses, .js__baron').baron();
-
 
 
     headerUserToggle = function () {

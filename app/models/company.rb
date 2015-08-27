@@ -9,6 +9,10 @@ class Company < ActiveRecord::Base
     company
   end
 
+  def transfer_to_json
+    as_json(include: {users:{ only: [:id, :first_name, :last_name, :email]} })
+  end
+
   def course_in_groups(course_id)
     ids_groups = groups.ids
     BunchCourse.where({group_id: ids_groups, course_id: course_id})
@@ -20,7 +24,11 @@ class Company < ActiveRecord::Base
 
   def update_account_type(account_type_id)
     unless account_type_id == (get_account_type.id rescue nil)
-      AccountTypeRelation.new({modelable_type: "Company", modelable_id: id, account_type_id: account_type_id}).save
+      AccountTypeRelation.new({modelable_type: "Company",
+                               modelable_id: id,
+                               account_type_id: account_type_id,
+                               date: DateTime.now
+                              }).save
     end
   end
 
@@ -32,6 +40,10 @@ class Company < ActiveRecord::Base
       [{date: date, groups: date_group.ids}]
     end
     arr_schedule
+  end
+
+  def directors
+    users.where(director: true)
   end
 
 end

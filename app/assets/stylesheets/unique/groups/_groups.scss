@@ -139,7 +139,8 @@
 .icon-edit {
   width   : 14px;
   height  : 14px;
-  display : inline-block;
+  display : inline;
+  line-height: 32px;
   &::before {
     font-family : 'Icons';
     content     : "\E706";
@@ -224,8 +225,8 @@
 }
 
 .container {
-  max-width          : 920px;
-  margin-bottom      : 11px;
+  max-width     : 920px;
+  margin-bottom : 11px;
   @include white__block(1, 0);
 }
 
@@ -235,7 +236,7 @@
 }
 
 .manage-group .container-inner {
-  padding: 21px 21px 32px 32px;
+  padding : 21px 21px 32px 32px;
 }
 
 .top-text {
@@ -252,6 +253,19 @@
 .group {
   position      : relative;
   margin-bottom : 19px;
+  &.error{
+    .bar:before, .bar:after{
+      background: #F50057;
+    }
+  }
+}
+
+
+.group textarea {
+  resize   : none;
+  overflow : hidden;
+  outline  : none;
+  height   : 41px;
 }
 
 .group textarea,
@@ -265,13 +279,6 @@
   font-weight   : 400;
   line-height   : 20px;
   border-bottom : 2px solid rgba(0, 0, 0, 0.26);
-}
-
-.group textarea {
-  resize   : none;
-  overflow : hidden;
-  outline  : none;
-  height   : 41px;
 }
 
 input[type="text"]:focus {
@@ -333,30 +340,35 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 
 .manage-group {
   position : relative;
-  .schedule-block  {
-    width: 888px;
-    margin-left: 40px;
-    padding-top: 20px;
+  .schedule-block {
+    width       : 888px;
+    margin-left : 40px;
+    padding-top : 20px;
   }
 }
 
 /* Group left menu */
 
 .group-menu {
-  position: absolute;
-  top: 11px;
-  left: -160px;
+  position : absolute;
+  top      : 11px;
+  left     : -160px;
   li {
     list-style     : none;
     text-align     : right;
     vertical-align : middle;
     margin-bottom  : 18px;
     &:first-child {
-      margin-bottom: 14px;
+      margin-bottom : 14px;
     }
     a {
-      display: block;
+      display : block;
       @include clearfix;
+      &.active {
+        i:before {
+          color : #00BCD4;
+        }
+      }
     }
     span {
       float                 : right;
@@ -381,32 +393,31 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
     }
     i {
       float : right;
-      &.icon-uniE8D6{
+      &.icon-uniE8D6 {
         &::before {
-          font-size: 23px;
+          font-size : 23px;
         }
       }
-      &.icon-uniE8D9{
+      &.icon-uniE8D9 {
         &::before {
-          font-size: 23px;
+          font-size : 23px;
         }
       }
-      &.icon-uniE6BE{
+      &.icon-uniE6BE {
         &::before {
-          font-size: 23px;
+          font-size : 23px;
         }
       }
-      &.icon-uniE625{
+      &.icon-uniE625 {
         &::before {
-          content: '\E8AF';
-          font-family: 'Icons';
-          font-size: 23px;
+          content     : '\E8AF';
+          font-family : 'Icons';
+          font-size   : 23px;
         }
       }
     }
   }
 }
-
 
 .group-menu li a:hover span {
   opacity : 1;
@@ -562,34 +573,35 @@ h2 {
 @viewport {
   width : device-width;
 }
+
 .manage-group {
   .schedule-block {
     .schedule-header {
-      margin-left: 0;
-      padding-right: 20px;
-      display: flex;
-      justify-content: space-between;
+      margin-left     : 0;
+      padding-right   : 20px;
+      display         : flex;
+      justify-content : space-between;
       &::before {
-        content: none;
+        content : none;
       }
       &::after {
-        content: none;
+        content : none;
       }
       .left-block {
-        .psevdo-select{
+        .psevdo-select {
           @include inline-block;
-          float: none;
+          float : none;
         }
       }
       .right-block {
-        font-size: 13px;
-        color: rgba(0,0,0,0.26);
-        line-height: 20px;
-        padding-top: 7px;
+        font-size   : 13px;
+        color       : rgba(0, 0, 0, 0.26);
+        line-height : 20px;
+        padding-top : 7px;
         div {
           @include inline-block;
           &:first-child {
-            margin-right: 24px;
+            margin-right : 24px;
           }
         }
       }
@@ -597,11 +609,11 @@ h2 {
   }
   .schedule-day-list {
     .schedule-day {
-    padding-left: 0;
+      padding-left : 0;
     }
     .group-block {
-      background: none;
-      padding-left: 0;
+      background   : none;
+      padding-left : 0;
     }
   }
 }

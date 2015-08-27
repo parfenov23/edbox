@@ -8,15 +8,15 @@
   .jcarousel-wrapper
     .jcarousel.js__carusel
       ul.carusel
-        - (bunch_courses_study.first(6)*7).each do |bunch_course|
+        - bunch_courses_study.first(6).each do |bunch_course|
           - course = bunch_course.course
           - all_sections = bunch_course.bunch_sections
-          - complete_proc = (100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f) rescue 0).round
+          - complete_proc = ((100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f)).round) rescue 0
           li class=(bunch_courses_study_count > 3 ? "carusel-item" : "")
             // completed
             figure.corses-prev.with_progress-bar
               .image
-                img src=course.get_image_path('347x192')
+                img src=course.get_image_path(694, 384)
                 - course.bunch_tags.last(1).each do |bunch_tag|
                   .tegs = bunch_tag.tag.title
               figcaption
@@ -46,6 +46,6 @@
                       = "#{complete_proc}%"
                   .progress-bar
                     .progress-bar_inner style="width: #{complete_proc}%"
-    - if bunch_courses_study_count > 0
+    - if bunch_courses_study_count > 3
       .jcarousel-control-prev.icon.inactive 
       .jcarousel-control-next.icon 

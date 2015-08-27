@@ -24,7 +24,7 @@ profilePasswordChangeValidation = function () {
         } else {
             if (pass_repeat.length){
                 $('#profile input[name=password_repeat]').addClass('error');
-            }else{
+            } else {
                 $('#profile input[name=password_repeat]').removeClass('error');
             }
         }
@@ -46,10 +46,8 @@ profilePasswordChange = function () {
     });
 };
 
-$(document).ready(function(){
-    $("img:last").load(function(){
-        profileDataChange();
-        profilePasswordChangeValidation();
-        profilePasswordChange();
-    })
+$(document).ready(function () {
+    profileDataChange();
+    profilePasswordChangeValidation();
+    profilePasswordChange();
 });

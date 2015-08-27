@@ -1,10 +1,9 @@
 class TestsController < HomeController
   def run
     @test = find_test
-    section = @test.section
-    @course = section.course
-    bunch_section = section.bunch_section(current_user.id)
-    unless bunch_section.present?
+    @course = @test.testable
+    bunch_course = current_user.bunch_courses.where(course_id: @course.id).last
+    unless (bunch_course.present? ? bunch_course.complete : false)
       redirect_to '/'
     end
   end

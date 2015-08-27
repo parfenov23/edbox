@@ -1,0 +1,9 @@
+.description__Item.block__lead.item
+  .ava
+    img src=default_img(user.avatar)
+  .info
+    .title
+      = user.full_name
+    .description
+      = user.about_me
+  .remove.js_removeLigamentLeadFromCourse data-id=user.id

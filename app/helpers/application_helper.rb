@@ -11,6 +11,31 @@ module ApplicationHelper
     end
   end
 
+  def ltime(time, add_text="", format='short_min')
+     ((add_text + (l local_time(time), :format => format.to_sym)) rescue "Нет даты")
+  end
+
+  def current_time
+    local_time(Time.now)
+  end
+
+  def current_link
+    request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
+  end
+
+  def layout_title
+    d = @page_title.nil? ? "" : " | "
+    @page_title.to_s + d + "Edbox"
+  end
+
+  def title(page_title)
+    @page_title = page_title
+  end
+
+  def page_title(default_title = '')
+    @page_title || default_title
+  end
+
   def schedule_line
     [{month: 1, title: "Январь"}, {month: 2, title: "Февраль"},
      {month: 3, title: "Март"}, {month: 4, title: "Апрель"},
@@ -22,5 +47,9 @@ module ApplicationHelper
 
   def rus_case(count, n1, n2, n3)
     "#{count} #{Russian.p(count, n1, n2, n3)}"
+  end
+
+  def rus_case_label(count, n1, n2, n3)
+    "#{Russian.p(count, n1, n2, n3)}"
   end
 end

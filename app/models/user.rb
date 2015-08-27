@@ -1,16 +1,18 @@
 class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :group
+  belongs_to :action_type
   has_many :bunch_groups, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
   has_many :test_results, dependent: :destroy
   has_many :account_type_relations, :as => :modelable, :dependent => :destroy
+  has_many :notifications, :dependent => :destroy
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
-  EXCEPT_ATTR = ["password_digest", "created_at", "updated_at"]
+  EXCEPT_ATTR = ["password_digest", "created_at", "updated_at", "group_id"]
 
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
@@ -54,21 +56,43 @@ class User < ActiveRecord::Base
     result
   end
 
-  def get_real_account_type
-    account_type_relations.last.account_type
-  end
-
   def get_account_type
     if corporate?
-      company.get_account_type
+      (company.paid rescue false)
     else
-      get_real_account_type
+      paid
+    end
+  end
+
+  def view_course?(course)
+    !course.paid || (course.paid && get_account_paid)
+  end
+
+  def get_account_paid
+    if self.get_account_type.present?
+      account_paid = self.get_account_type.paid
+    else
+      account_paid = false
+    end
+    account_paid
+  end
+
+  def get_account_type_relation
+    if corporate?
+      company.account_type_relations.last
+    else
+      account_type_relations.last
     end
   end
 
   def update_account_type(account_type_id)
     unless account_type_id == (get_real_account_type.id rescue nil)
-      AccountTypeRelation.new({modelable_type: "User", modelable_id: id, account_type_id: account_type_id}).save
+      AccountTypeRelation.new({
+                                modelable_type: "User",
+                                modelable_id: id,
+                                account_type_id: account_type_id,
+                                date: DateTime.now
+                              }).save
     end
   end
 
@@ -125,8 +149,21 @@ class User < ActiveRecord::Base
     first_name.to_s + " " + last_name.to_s
   end
 
+  def name
+    first_name.to_s + " " + last_name.to_s
+  end
+
   def welcome_letter(new_password)
     HomeMailer.welcome_latter(self, new_password).deliver
+  end
+
+  def create_notify(model, type=nil, repeat=false)
+    notifications.find_or_create_by({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) unless repeat
+    notifications.create({user_id: id, notifytable_type: model.class.to_s, notifytable_id: model.id, action_type: type}) if repeat
+  end
+
+  def notify_json(type=nil)
+    {}
   end
 
   private

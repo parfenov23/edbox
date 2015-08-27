@@ -7,7 +7,7 @@ var openPopup = function () {
         popup.find("input.courseId").val(course_id);
         popup.show();
         popup.find(".check_group_added").show();
-        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text())
+        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text());
         if (btn.data('hide') != undefined){
             popup.find(btn.data('hide')).hide();
         }
@@ -44,6 +44,7 @@ var courseInfo = function (course_id) {
                 width: $(this).width() - rightWidth + 'px'
             });
         });
+        $("#js-add-course-to-shedule .section-item .js_changeDateToDatePicker").change(changeTextSelectSections);
 
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -55,7 +56,7 @@ var templateLiSection = function (json_course) {
     var html = [];
     $.each(json_course.sections, function (i, obj) {
         html[i] =
-            '<li class="section-item adaptive-title">' +
+            '<li class="section-item adaptive__title">' +
             '<div class="left-part left-col">' +
             obj.title +
             '</div>' +
@@ -64,7 +65,7 @@ var templateLiSection = function (json_course) {
             '</div>' +
             '<div class="set-date">' +
             '<i class="icon"></i>' +
-            '<input class="datapicker__trigger js__set-date js_changeDateToDatePicker" name="sections[' + obj.id + ']"/>' +
+            '<input class="datapicker__trigger js__set-date js_changeDateToDatePicker childDatePickerTime" name="sections[' + obj.id + ']"/>' +
             '</div>' +
             '</div>' +
             '</li>';
@@ -81,15 +82,15 @@ var openEdnPopup = function () {
 };
 
 var closePopup = function (event) {
-    var evt = evt || event;
-    var target = evt.target || evt.srcElement;
-    if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){
-        var popup = $("#js-add-course-to-shedule");
-        popup.hide();
-        popup.find(".check_group_added").hide();
-        popup.find(".end_added").hide();
-        clearPopup();
-    }
+    //var evt = evt || event;
+    //var target = evt.target || evt.srcElement;
+    //if ($(target).closest("#js-add-course-to-shedule").length == 0 || $(target).hasClass("cancel") > 0 || $(target).hasClass("add-course-to-shedule") > 0){
+    var popup = $("#js-add-course-to-shedule");
+    popup.hide();
+    popup.find(".check_group_added").hide();
+    popup.find(".end_added").hide();
+    clearPopup();
+    //}
 };
 
 var clearPopup = function () {
@@ -101,7 +102,7 @@ var clearPopup = function () {
     calendar.removeClass("show");
     calendar.find(".datapicker__trigger").val("");
     popup.find(".courseId").val("");
-
+    installTitleFormPopup(0);
 };
 
 var selectGroup = function () {
@@ -149,7 +150,7 @@ var addCourseMySchedule = function (btn) {
         url : '/api/v1/users/update_course',
         data: data
     }).success(function () {
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/schedule'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в расписание', 3000);
@@ -160,15 +161,59 @@ var addCourseMySchedule = function (btn) {
 };
 
 var changeDateToDatePicker = function (input) {
-    console.log(123);
     input.closest(".section-item").find(".date-added").text(input.val());
+};
+
+var changeTextSelectSections = function () {
+    var select_not_empty = $(this).closest(".section-list").find("input").filter(function () {
+        return this.value;
+    });
+    var count = select_not_empty.length;
+    installTitleFormPopup(count)
+};
+
+var installTitleFormPopup = function (count) {
+    var form = $("#js-add-course-to-shedule");
+    var count_all_inputs = form.find(".section-list input").length;
+    var selected_title = form.find(".select-deadline .select_date_time");
+    var not_selected_title = form.find(".select-deadline .not_select_date_time");
+
+    if (count){
+        not_selected_title.hide();
+        selected_title.show();
+        selected_title.find(".count_select").show();
+        if (count == 1){
+            selected_title.find(".title .count_select").text(" " + count + " раздела");
+        } else {
+            if (count < count_all_inputs){
+                selected_title.find(".title .count_select").text(" " + count + " разделов");
+            } else {
+                selected_title.find(".title .count_select").text(" всех разделов");
+            }
+        }
+    } else {
+        not_selected_title.show();
+        selected_title.hide();
+    }
+};
+
+var optionDatePickerCourse = function (btn) {
+    var form = btn.closest("form");
+    var date_picker = form.find(".parentDatePickerTime");
+    var child_date_picker = form.find(".childDatePickerTime");
+    if (date_picker.val().length){
+        $.each(child_date_picker, function(n, el){
+            $(el).data(date_picker.data('type'), parseDate(date_picker.val()));
+        });
+    }
 };
 
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
-    $(document).on('click', '#js-add-course-to-shedule, #js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
+    $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
     $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
+    $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
 });

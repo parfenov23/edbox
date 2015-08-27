@@ -1,0 +1,29 @@
+- test = attachment.test
+.inner-content
+  form#tests data-id=test.id  data-course_id=course.id data-att_id=attachment.id
+    .test-info
+      .title = attachment.title
+      .description = attachment.description
+    - if test.present?
+      .test-list
+        - questions = test.questions.where.not(title: [nil, ""])
+        - count_q = 0
+        - questions.each do |question|
+          .test-item name="Вопрос #{count_q += 1}"
+            .title
+              = "Вопрос #{count_q}"
+              /span Неверно
+            .description = question.title
+            - answers = question.answers.where.not(text: [nil, ""])
+            - valid_answers = answers.where(right: true)
+            - type_block = (valid_answers.count >= 2 ? 'checkbox' : 'radio')
+            - answers.each do |answer|
+              .answer
+                div class=type_block.gsub("box", "")
+                  // input#an-2-1 type="checkbox"
+                  input id="an-#{question.id}-#{answer.id}" type=type_block name="answer[#{answer.question_id}][]" value="#{answer.id}"
+                  label for="an-#{question.id}-#{answer.id}"
+                    i
+                    .text = answer.text
+    .adova__btn.mdl-shadow--2dp.js_submitFormTest
+      i.icon

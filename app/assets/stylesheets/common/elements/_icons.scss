@@ -9,8 +9,25 @@ i.icon {
       content: "\E8DE";
     }
   }
+  &.back {
+    &::before {
+      content: "\e893";
+    }
+  }
+
+  &.add {
+    &::before {
+      content: "\e6fb";
+    }
+  }
 
   &.courses {
+    &::before {
+      content: "\E6B2";
+    }
+  }
+
+  &.other {
     &::before {
       content: "\E6B2";
     }
@@ -121,5 +138,41 @@ i.icon {
       content: '\E71F';
     }
   }
+
+  &.file {
+    &::before {
+      content: '\E614';
+    }
+  }
+
+  &.pdf {
+    &::before {
+      content: '\E78F';
+    }
+  }
+
+  &.programm {
+    &::before {
+      content: '\E625';
+    }
+  }
+
+  &.edit {
+    &::before {
+      content: "\E706";
+    }
+  }
+  &.delete {
+    &::before {
+      content: "\E620";
+    }
+  }
+
+  &.help {
+    &::before {
+      content: "\E639";
+    }
+  }
+
 
 }

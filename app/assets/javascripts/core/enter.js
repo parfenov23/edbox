@@ -70,6 +70,29 @@ function fixed_btn_save(){
 }
 
 $(document).ready(function () {
+    if ($("form.js_registrationUser").length){
+        (function() {
+            $('.phoenix-input').phoenix();
+
+            $('[data-phoenix-action]').on('click', function(e) {
+                $('.phoenix-input').phoenix($(this).data('phoenix-action'));
+                e.preventDefault();
+                return e.stopPropagation();
+            });
+
+        }).call(this);
+        var val_inp = $("input[name='company[name]']");
+        var selected = $(".js_registrationUser .auth__reg-selected");
+        var input_corp_name = $(".js_registrationUser .input-wrp.corporate_acc");
+        if (val_inp.count_text_input()){
+            selected.text("Корпоративный аккаунт");
+            input_corp_name.addClass("active");
+        }else{
+            input_corp_name.removeClass("active");
+            selected.text("Персональный аккаунт");
+        }
+    }
+
     $(window).scroll(function () {
         fixed_btn_save();
     });
@@ -230,19 +253,19 @@ $(document).ready(function () {
                 }
             }
         });
+
         if (! $('input.checkbox').is(':checked')){
             $('input.checkbox').addClass('error');
         }
         var inputPass = $("input[name='user[password]']");
         var inputRePass = $("input[name='password_repeat']");
 
-        if(inputPass.val() != inputRePass.val()){
+        if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)) {
             inputPass.addClass("error");
             inputRePass.addClass("error");
         }else{
             inputPass.removeClass("error");
             inputRePass.removeClass("error");
         }
-
     }
 });

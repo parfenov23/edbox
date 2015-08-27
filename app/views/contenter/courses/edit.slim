@@ -1,0 +1,51 @@
+= render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
+- course = params[:id] == "new" ? Course.new : Course.find(params[:id])
+= render "contenter/courses/edit/right_bar/tags", {course: course}
+= render "contenter/courses/edit/right_bar/leadings", {course: course}
+.contenter
+  .presentation__block
+    img src = (course.get_image_path rescue "/uploads/course_default_image.png")
+  form.course__description-content.oh__nihuyase-block.js_courseContenter
+    input type="hidden" name="course[id]" value=params[:id]
+    input type="hidden" name="course[user_id]" value=current_user.id
+    input.course__title.js_onChangeEditCourse placeholder="Введите название курса" name="course[title]" value=course.title
+    .course__info
+      .adaptive__title
+        .left-col style="height: 56px;"
+          .item
+            - sections_count = course.sections.count
+            = rus_case(sections_count, "лекция", "лекции", "лекций")
+            i.courses.icon
+          .item
+            - course_duration = course.duration.to_i
+            = rus_case(course_duration, "минута", "минуты", "минут")
+            i.duration.icon
+      .detail__info
+        .description
+          textarea.js_onChangeEditCourse placeholder="Введите описание курса" name="course[description]"
+            = course.description
+      .itemDetailInfo
+        .title__Item Теги
+        .description__Item
+          .allTagDescriptionCourse
+            - course.bunch_tags.each do |bunch_tag|
+              - tag = bunch_tag.tag
+              .tag
+                = tag.title
+                .remove.js_removeBunchTagFromCourse data-id=tag.id
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+      .itemDetailInfo.detail__info
+        .title__Item Ведущие курса
+        .leading__list
+          .all_leading
+            - course.ligament_leads.each do |ligament_lead|
+              - user = ligament_lead.user
+              = render "contenter/courses/edit/leading", {user: user}
+
+          .description__Item.block__lead.js_clickFromCreateCourseContenter
+            .addLead.js_openLeftSideBar data-id="js-course-leading"
+              .titleLead
+                i.icon.cabinet
+              .descriptionLead
+                |Добавить ведущего

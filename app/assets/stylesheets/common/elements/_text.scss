@@ -1,0 +1,49 @@
+.text__content {
+  @include middle-block(936px);
+  @include white__block(1, 0);
+  h1 {
+    margin: 32px 0 48px 0;
+    font-size: 34px;
+    color: $black_87;
+    line-height: 40px;
+    font-weight: 400;
+  }
+  h2 {
+    font-size: 24px;
+    color: #000000;
+    line-height: 32px;
+    font-weight: 400;
+    margin: 48px 0 32px 0;
+  }
+  p {
+    font-size: 15px;
+    color: $black_87;
+    line-height: 24px;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+  img {
+    width: 100%;
+    @include inline-block;
+    margin: 32px 0;
+  }
+  ul, ol {
+    margin-bottom: 24px;
+    li {
+      margin-bottom: 8px;
+      ul, ol {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  ul {
+
+    li {
+
+    }
+  }
+  ol{
+    li {
+    }
+  }
+}

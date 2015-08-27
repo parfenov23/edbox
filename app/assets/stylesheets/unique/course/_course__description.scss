@@ -1,19 +1,131 @@
 .presentation__block {
-  height: 536px;
+  height  : 536px;
   overflow: hidden;
   position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
+  z-index : 1;
+  top     : 0;
+  left    : 0;
+  width   : 100%;
   img {
     width: 100%;
   }
+  .shadow {
+    background-image: linear-gradient(-179deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.50) 100%);
+    position        : absolute;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    height          : 100%;
+  }
 }
 
-.ох__нихуясе-блок {
-  position: relative;
-  z-index: 12;
+.auth.is__course-description {
+  .offer__box {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -468px;
+    width      : 936px;
+    padding    : 32px 96px 48px;
+    > .title {
+      font-size    : 34px;
+      color        : $black_87;
+      line-height  : 40px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    > .description {
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    .plane__list {
+      display        : flex;
+      justify-content: space-between;
+      .item {
+        border       : 1px solid rgba(0,0,0,0.54);
+        border-radius: 4px;
+        width        : 360px;
+        text-align   : center;
+        padding      : 24px 24px 16px;
+        .title {
+          font-size    : 24px;
+          color        : $black_87;
+          line-height  : 32px;
+          margin-bottom: 16px;
+        }
+        .description {
+          font-size    : 13px;
+          color        : $black_87;
+          line-height  : 20px;
+          margin-bottom: 18px;
+          height       : 60px;
+          overflow     : hidden;
+        }
+        .price {
+          span {
+            font-size   : 24px;
+            color       : $black_87;
+            line-height : 32px;
+            margin-right: 15px;
+          }
+          .btn {
+            @include inline-block;
+          }
+        }
+      }
+    }
+  }
+  .subscribe {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -396px;
+    width      : 792px;
+    padding    : 32px 32px 24px;
+    .title {
+      font-size  : 24px;
+      color      : $black_87;
+      line-height: 32px;
+      text-align : center;
+      margin-bottom: 45px;
+      .back {
+
+      }
+    }
+    .form__holder {
+      display        : flex;
+      justify-content: space-between;
+        .form__col {
+          width: 312px;
+        }
+
+      .form__legend {
+        width      : 342px;
+        font-size  : 15px;
+        color      : $black_87;
+        line-height: 24px;
+        padding-top: 7px;
+      }
+    }
+    .action__block   {
+      @include clearfix;
+      .btn {
+        color: #FFF;
+        float: right;
+        background-color: #00BCD4;
+      }
+    }
+  }
+}
+
+.oh__nihuyase-block {
+  position  : relative;
+  z-index   : 12;
   @include middle-block(920px);
   margin-top: 312px;
   .tegs__list {
@@ -178,6 +290,9 @@
       }
     }
     .more {
+      .btn {
+        text-transform: none;
+      }
       &.is__closed {
         .for__closed {
           @include inline-block;
@@ -203,7 +318,14 @@
       color        : $black_87;
     }
     .programm__block {
-      margin-bottom: 40px;
+      margin-bottom   : 40px;
+      background-color: #eee;
+      padding         : 24px;
+      width           : calc(100% + 48px);
+      margin-left     : -24px;
+      &.finalTest{
+        background: none;
+      }
       > .adaptive__title {
         margin-bottom: 16px;
         .left-col {
@@ -212,7 +334,87 @@
           color      : $black_54;
         }
         .right-col {
-          color: #ff1744;
+          color: rgba(0, 0, 0, 0.87);
+          &.overdue {
+            color: #ff1744;
+          }
+        }
+
+        .edit-menu {
+          position: relative;
+          z-index : 8;
+          width   : 44px;
+          margin-top: -7px;
+          .edit-date {
+            line-height: 41px !important;
+            text-align : center;
+            cursor     : pointer;
+            i {
+              font-size: 26px;
+              &::before {
+                font-family: 'Icons';
+                line-height: 32px;
+                content    : '\E8A3';
+                color      : rgba(0, 0, 0, .26);
+              }
+            }
+          }
+
+          .hidden-calendar-wrp {
+            @import 'common/elements/hidden-list';
+            .hidden-calendar {
+              display         : none;
+              min-width       : 345px;
+              background-color: #fff;
+              padding         : 6px 0;
+              box-shadow      : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+              border-radius   : 2px;
+              max-height      : 236px;
+              position        : absolute;
+              top             : 100%;
+              right           : 0;
+              z-index         : 100;
+              bottom          : auto;
+              .calendar-header {
+                font-size    : 15px;
+                color        : rgba(0,0,0,0.87);
+                line-height  : 18px;
+                margin-bottom: 24px;
+                padding-left : 23px;
+                @include clearfix;
+                padding-top  : 13px;
+                .back {
+                  float       : left;
+                  margin-right: 15px;
+                  font-size   : 16px;
+                  cursor      : pointer;
+                  &::before {
+                    color  : rgba(0,0,0,0.87);
+                    content: '\E893';
+                  }
+                }
+              }
+              .selected-value {
+                padding-left: 24px;
+              }
+              .calendar-holder {
+                font-size  : 13px;
+                color      : rgba(0,0,0,0.54);
+                line-height: 20px;
+                .ui-datepicker {
+                  padding-top: 10px;
+                }
+              }
+            }
+          }
+
+          &.is__active {
+            .hidden-calendar-wrp {
+              .hidden-list {
+                display: block !important;
+              }
+            }
+          }
         }
       }
       .item {
@@ -235,7 +437,8 @@
             &.text {
               font-size: 36px;
             }
-            &.audio, &.test {
+            &.audio,
+            &.test {
               font-size: 33px;
             }
           }
@@ -272,7 +475,7 @@
               display    : block;
               width      : 100%;
               content    : '\E899';
-              color      : #21cf69;
+              color      : $primoryColor;
             }
             i {
               color: $black_26;
@@ -290,11 +493,19 @@
       }
     }
     &.is__closed {
-      width: calc(100% + 32px);
+      width      : calc(100% + 32px);
       margin-left: -16px;
-      height: 315px;
-      padding: 0 16px;
-      overflow: hidden;
+      height     : 315px;
+      padding    : 0 16px;
+      overflow   : hidden;
+      .prgr-wrp {
+        .programm__block:nth-child(1) {
+          display: block;
+        }
+        .programm__block {
+          display: none;
+        }
+      }
     }
   }
   .toggle__view.btn {
@@ -318,46 +529,46 @@
 }
 .not__auth-block {
   background-color: #fff;
-  padding: 48px 0 36px 0;
+  padding         : 48px 0 36px;
   .inner {
     @include middle-block(750px);
     > .title {
-      font-size: 34px;
-      color: $black_87;
-      line-height: 40px;
+      font-size    : 34px;
+      color        : $black_87;
+      line-height  : 40px;
       margin-bottom: 24px;
-      text-align: center;
+      text-align   : center;
     }
     .info {
-      font-size: 15px;
-      color: $black_87;
-      line-height: 24px;
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
       margin-bottom: 24px;
-      text-align: center;
+      text-align   : center;
     }
   }
   .plans {
-    display: flex;
+    display        : flex;
     justify-content: center;
     .item {
-      border: 1px solid $black_54;
+      border       : 1px solid $black_54;
       border-radius: 4px;
-      padding: 32px 24px 24px 24px;
-      &:first-child{
+      padding      : 32px 24px 24px;
+      &:first-child {
         margin-right: 24px;
       }
       .title {
-        font-size: 24px;
-        color: $black_87;
-        line-height: 28px;
-        text-align: center;
+        font-size    : 24px;
+        color        : $black_87;
+        line-height  : 28px;
+        text-align   : center;
         margin-bottom: 24px;
       }
       .description {
-        text-align: center;
-        font-size: 13px;
-        color: $black_54;
-        line-height: 20px;
+        text-align   : center;
+        font-size    : 13px;
+        color        : $black_54;
+        line-height  : 20px;
         margin-bottom: 28px;
       }
     }

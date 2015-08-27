@@ -5,8 +5,12 @@ var addFavorite = function () {
         type: 'POST',
         url : '/api/v1/users/add_favorite_course',
         data: {course_id: course_id}
-    }).success(function () {
-        show_error('Курс добавлен в избранное', 3000);
+    }).success(function (data) {
+        if (data.success){
+            show_error('Курс добавлен в избранные курсы', 3000);
+        }else{
+            show_error('Курс уже добавлен в избранные курсы', 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -36,6 +40,6 @@ var closeAsideFavorite = function(){
 $(document).ready(function () {
     $(document).on('click', '.corses-prev .action-btn .favorite, ' +
         '.courses-description .text-block .action-block .add-to-fav', addFavorite);
-    $(document).on('click', '.favorite-item .header .delete', removeFavorite);
+    $(document).on('click', '.favorite-item .header .delete, .js_removeFavorite', removeFavorite);
     $(document).on('click', '#js-favorite-courses .close-filter', closeAsideFavorite);
 });

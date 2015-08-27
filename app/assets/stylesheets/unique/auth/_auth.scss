@@ -1,3 +1,258 @@
+.auth__new {
+  background      : url('auth_bg.jpg') no-repeat 50% 50%;
+  background-size: cover;
+  min-height: 100vh;
+  .edbox__logo {
+    text-align: center;
+    padding-top: 64px;
+    margin-bottom: 8px;
+    img {
+      width: 80px;
+    }
+  }
+  .adc__logo {
+    text-align: center;
+    margin-bottom: 27px;
+    img {
+      width: 205px;
+    }
+  }
+  .auth__wrp {
+    @include white__block(1,0);
+    @include middle-block(792px);
+    padding: 32px 32px 24px 32px;
+    &.offer__box {
+      @include middle-block(936px);
+      padding    : 32px 96px 48px;
+    }
+    &.sign__in {
+      width: 408px;
+      >.title {
+        margin-bottom: 67px;
+        font-size: 20px;
+        color: #000000;
+        line-height: 28px;
+      }
+      .item {
+        width: 312px;
+      }
+      .forget__pass {
+        margin-bottom: 27px;
+        margin-top: -22px;
+        a {
+          font-size: 15px;
+          color: #00BCD4;
+          line-height: 24px;
+        }
+      }
+      &.forgot {
+        height: 364px;
+        >.title {
+          text-align: left;
+          margin-bottom: 37px;
+        }
+        .item {
+          margin-bottom: 86px;
+        }
+      }
+    }
+    > .title {
+      font-size: 24px;
+      line-height: 32px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .col__wrp {
+      display: flex;
+      justify-content: flex-start;
+      .col {
+        width: 50%;
+        padding-left: 5px;
+        &:first-child{
+          padding-left: 0;
+          .title {
+            margin-bottom: 45px;
+            padding-left: 0;
+          }
+        }
+        > .title {
+          font-size: 15px;
+          color: $black_54;
+          line-height: 24px;
+          margin-bottom: 16px;
+          padding-left: 6px;
+        }
+        .item {
+          width: 312px;
+          &:nth-child(4) {
+            margin-bottom: 15px;
+          }
+          &:nth-child(6) {
+            margin-bottom: 15px;
+          }
+        }
+        .offert {
+          width: 265px;
+          margin-top: -5px;
+          margin-left: -8px;
+          a {
+            color: $primoryColor;
+          }
+        }
+        .type__acc-item {
+          margin-bottom: 40px;
+          .radio {
+            margin-bottom: 12px;
+          }
+          .description {
+            padding-left: 40px;
+            font-size: 13px;
+            line-height: 20px;
+          }
+        }
+        .company {
+          margin-left: 40px;
+        }
+      }
+    }
+    .action__block {
+      display: flex;
+      justify-content: flex-end;
+      .btn{
+
+      }
+    }
+
+  }
+  &.is__course-description {
+    position: absolute;
+    overflow: visible;
+    top             : 0;
+    left            : 0;
+    z-index: 9999;
+    background: $black_54;
+    height: auto;
+    width: 100%;
+    .offer__box {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -468px;
+    width      : 936px;
+    padding    : 32px 96px 48px;
+    }
+    .logo {
+      position   : absolute;
+      top        : -90px;
+      left       : 0;
+      width      : 100%;
+      text-align : center;
+    }
+    .auth__title-top {
+      position       : absolute;
+      top            : -64px;
+      left           : 0;
+      width          : 100%;
+      text-align     : center;
+    }
+  }
+  .offer__box {
+    > .title {
+      font-size    : 34px;
+      color        : $black_87;
+      line-height  : 40px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    > .description {
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
+      text-align   : center;
+      margin-bottom: 24px;
+    }
+    .plane__list {
+      display        : flex;
+      justify-content: space-between;
+      .item {
+        border       : 1px solid rgba(0,0,0,0.54);
+        border-radius: 4px;
+        width        : 360px;
+        text-align   : center;
+        padding      : 24px 24px 16px;
+        .title {
+          font-size    : 24px;
+          color        : $black_87;
+          line-height  : 32px;
+          margin-bottom: 16px;
+        }
+        .description {
+          font-size    : 13px;
+          color        : $black_87;
+          line-height  : 20px;
+          margin-bottom: 18px;
+          height       : 60px;
+          overflow     : hidden;
+        }
+        .price {
+          span {
+            font-size   : 24px;
+            color       : $black_87;
+            line-height : 32px;
+            margin-right: 15px;
+          }
+          .btn {
+            @include inline-block;
+          }
+        }
+      }
+    }
+  }
+  .subscribe {
+    @include white__block(1,0);
+    position   : absolute;
+    top        : 160px;
+    left       : 50%;
+    margin-left: -396px;
+    width      : 792px;
+    padding    : 32px 32px 24px;
+    .title {
+      font-size  : 24px;
+      color      : $black_87;
+      line-height: 32px;
+      text-align : center;
+      margin-bottom: 45px;
+      .back {
+
+      }
+    }
+    .form__holder {
+      display        : flex;
+      justify-content: space-between;
+        .form__col {
+          width: 312px;
+        }
+
+      .form__legend {
+        width      : 342px;
+        font-size  : 15px;
+        color      : $black_87;
+        line-height: 24px;
+        padding-top: 7px;
+      }
+    }
+    .action__block   {
+      @include clearfix;
+      .btn {
+        color: #FFF;
+        float: right;
+        background-color: #00BCD4;
+      }
+    }
+  }
+}
+
 .auth {
   // position: absolute;
   top             : 0;
@@ -41,15 +296,11 @@
     .auth_agree {
       padding-top: 13px;
       .checkbox {
-        input[type=checkbox]:checked + .checkbox-material .check:before {
-          color: #00bcd8 ;
-          animation: checkbox-on $checkbox-animation-check forwards;
-        }
+
       }
       label {
         .checkbox-material {
-          color: #00bcd8 ;
-
+          color: #00bcd8;
         }
         em {
         display: block;
@@ -107,6 +358,7 @@
       }
       .btn.btn-flat {
         &:hover {
+          background : none !important;
         }
       }
       .btn {

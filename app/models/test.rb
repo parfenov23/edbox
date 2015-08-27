@@ -2,13 +2,11 @@ class Test < ActiveRecord::Base
   belongs_to :section
   has_many :questions, :dependent => :destroy
   has_many :test_results, dependent: :destroy
+  belongs_to :testable, :polymorphic => true
+  default_scope { order("id ASC") }
 
   def transfer_to_json
-    {
-      id: id,
-      title: title,
-      questions: questions.map(&:transfer_to_json)
-    }
+    as_json.merge(questions: questions.map(&:transfer_to_json))
   end
 
   def get_all_answer
@@ -24,6 +22,14 @@ class Test < ActiveRecord::Base
       correct_answers.merge!({question.id => answer})
     end
     correct_answers
+  end
+
+  def build_default
+    new_question = questions.new
+    2.times do
+      new_question.answers.new.save
+    end
+    new_question.save
   end
 
   def self.hash_to_i(hash_old)
@@ -53,17 +59,20 @@ class Test < ActiveRecord::Base
   def result(user_id, answer)
     if answer.present?
       user_result = get_result(answer)
-      result = TestResult.new({
+      result = self.test_results.new({
                                 user_id: user_id,
-                                test_id: id,
                                 right_answers: user_result[:right_answers],
                                 all_questions: user_result[:all_questions],
                                 result: user_result[:result]})
-      if result.save
-        result
-      else
-        false
+      if testable_type == "Attachment"
+        bunch_attachment = testable.bunch_attachment(user_id)
+        if bunch_attachment.present?
+          bunch_attachment.complete = true
+          bunch_attachment.save
+          bunch_attachment.bunch_section.full_complete?(user_id)
+        end
       end
+      result.save ? result : false
     end
   end
 end

@@ -1,10 +1,4 @@
-#header__holder
-  = render "home/header/header", {header_top_arr: ['notifications']}
-  - unless @group.present?
-    - params_header = {block: "cabinet", title: 'Мой кабинет', groups_class: 'active'}
-  - else
-    - params_header = {block: "groups", arrow: {url: "/cabinet"}, title: 'Мои группы', group1_class: 'active'}
-  = render "home/header/header_bottom", {header_bottom: params_header}
+= render "home/header/header", {namePage: "group", titlePage: "Группы"}
 .content#groups
   - unless @group.present?
     - if current_user.director
@@ -22,7 +16,7 @@
           - case params[:type]
           - when "user"
             = render "home/group/users"
-          - when "schedule"
+          /- when "schedule"
             = render "home/group/schedule", {group: @group}
           - when "courses"
             = render "home/group/courses"

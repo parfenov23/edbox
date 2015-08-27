@@ -1,0 +1,426 @@
+fieldset[disabled] .form-control,
+.form-control-wrapper .form-control,
+.form-control {
+  &,
+  &:focus,
+  &.focus {
+    &:not(textarea) {
+      height: 28px;
+    }
+    padding      : 0;
+    float        : none;
+    border       : 0;
+    box-shadow   : none;
+    border-radius: 0;
+    background   : transparent;
+    &:disabled {
+      border-style: dashed;
+    }
+  }
+}
+
+select[multiple].form-control {
+  &,
+  &:focus,
+  &.focus {
+    height: 85px;
+  }
+}
+
+.form-control-wrapper {
+  position: relative;
+
+  .form-control:focus,
+  .form-control.focus {
+    outline: none;
+  }
+
+  .floating-label {
+    position      : absolute;
+    pointer-events: none;
+    left          : 0;
+    top           : 5px;
+    transition    : 0.2s ease all;
+    opacity       : 0;
+    font-size     : 15px;
+    color         : rgba(0,0,0,0.87);
+    line-height   : 24px;
+  }
+  .form-control:not(.empty) ~ .floating-label {
+    top        : -20px;
+    opacity    : 1;
+    font-size  : 12px;
+    color      : #1fc4d9;
+    line-height: 16px;
+  }
+  .form-control:not(.empty) {
+    border-color: $primoryColor;
+  }
+  .form-control:focus:invalid ~ .floating-label,
+  .form-control.focus:invalid ~ .floating-label {
+
+  }
+  .form-control:focus ~ .material-input:after,
+  .form-control.focus ~ .material-input:after {
+
+  }
+  .form-control:focus:invalid ~ .material-input,
+  .form-control.focus:invalid ~ .material-input {
+    &:before,
+    &:after {
+
+    }
+  }
+  .form-control.empty ~ .floating-label {
+    opacity: 1;
+  }
+  .material-input:before {
+    position  : absolute;
+    content   : "";
+    width     : 100%;
+    left      : 0;
+    height    : 2px;
+    bottom    : -1px;
+    transform : scaleX(0);
+    transition: transform 0s;
+  }
+  .form-control:focus ~ .material-input:before,
+  .form-control.focus ~ .material-input:before {
+    transform : scaleX(1);
+    transition: transform 0.2s ease-out;
+  }
+  .material-input:after {
+    content         : "";
+    position        : absolute;
+    height          : 18px;
+    width           : 100px;
+    margin-top      : -1px;
+    top             : 7px;
+    left            : 0;
+    pointer-events  : none;
+    opacity         : 0.9;
+    transform-origin: left;
+  }
+  .input-lg ~ .material-input:after {
+    height: 26px;
+  }
+  textarea {
+    resize: none;
+  }
+  textarea ~ .form-control-highlight {
+    margin-top: -11px;
+  }
+
+  /* active state */
+  .form-control:focus ~ .material-input:after,
+  .form-control.focus ~ .material-input:after {
+    animation          : input-highlight 0.3s ease;
+    animation-fill-mode: forwards;
+    opacity            : 0;
+  }
+
+  select ~ .material-input:after {
+    display: none;
+  }
+}
+
+.input-group {
+  .form-control-wrapper {
+    .form-control {
+      float: none;
+    }
+    margin-right: 5px;
+    margin-left : 5px;
+    bottom      : -10px;
+  }
+  .input-group-addon {
+    border: 0;
+  }
+  .input-group-btn .btn {
+    border-radius: 4px;
+  }
+}
+
+select.form-control {
+  border       : 0;
+  box-shadow   : none;
+  border-radius: 0;
+  &:focus,
+  &.focus {
+    box-shadow  : none;
+    border-color: #757575;
+  }
+}
+
+@mixin keyframe-input-highlight() {
+  0% {
+    left     : 20%;
+    transform: scaleX(20%);
+  }
+  99% {
+    transform: scaleX(0);
+    left     : 0;
+    opacity  : 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes input-highlight {
+  @include keyframe-input-highlight()
+}
+
+// Input files (kinda hack)
+.form-control-wrapper input[type=file] {
+  opacity : 0;
+  position: absolute;
+  top     : 0;
+  right   : 0;
+  bottom  : 0;
+  left    : 0;
+  width   : 100%;
+  height  : 100%;
+  z-index : 100;
+}
+
+// float label
+.com__input-item {
+  position     : relative;
+  height       : 66px;
+  margin-bottom: 6px;
+  &.error {
+    hr {
+      border-bottom: 1px solid #f50057 !important;
+    }
+    .error__msg {
+      display : block;
+      position: absolute;
+      top     : 36px;
+      right: 0;
+      font-size: 11px;
+      color: #F50057;
+      line-height: 16px;
+    }
+    &.lvl-2 {
+      hr {
+        border-color: #AB47BC !important;
+      }
+      .error__msg, .floating-label {
+        color: #AB47BC;
+      }
+    }
+    &.lvl-3 {
+      hr {
+        border-color: #1E88E5 !important;
+      }
+      .error__msg, .floating-label {
+        color: #1E88E5;
+      }
+    }
+    &.lvl-4 {
+      hr {
+        border-color: $primoryColor !important;
+      }
+      .error__msg {
+        color: $primoryColor;
+      }
+    }
+  }
+  .error__msg {
+    display: none;
+  }
+  hr {
+    position     : absolute;
+    top          : 19px;
+    left         : 0;
+    height       : 1px;
+    border       : none;
+    border-bottom: 1px solid $primoryColor;
+    display      : block;
+    width        : 100%;
+  }
+  &.empty {
+    hr {
+      border-bottom: 1px solid rgba(0,0,0,0.26);
+    }
+  }
+  input {
+    margin-bottom: 6px;
+    margin-bottom: 40px;
+    width        : 100%;
+    line-height  : 24px;
+    position     : absolute;
+    top          : -6px;
+    left         : 0;
+    border-bottom: none;
+  }
+  input:not(.empty) {
+    border-color: $primoryColor;
+  }
+  input:not(.empty) ~ .floating-label {
+    font-size  : 12px;
+    line-height: 16px;
+    color      : $primoryColor;
+    top        : -27px;
+  }
+  .floating-label {
+    font-size  : 15px;
+    color      : rgba(0,0,0,0.26);
+    line-height: 24px;
+    top        : -6px;
+  }
+}
+
+
+
+.input-wrp {
+    width         : 256px;
+    position      : relative;
+    height        : 32px;
+    margin-bottom : 21px;
+    input {
+        @include placeholder(rgba(0, 0, 0, 0.54));
+        font-size: 13px;
+        line-height: 20px;
+        display       : block;
+        border        : none;
+        background    : none;
+        height        : 32px;
+        width         : 100%;
+        border-bottom : 1px solid #E0E0E0;
+        position      : relative;
+        z-index       : 10;
+        &:focus + hr {
+            width : 100%;
+            left  : 0;
+        }
+    }
+    &.textarea {
+        height : auto;
+    }
+    textarea {
+        @include placeholder(rgba(0, 0, 0, 0.54));
+        font-size: 13px;
+        line-height: 20px;
+        display       : block;
+        border        : none;
+        background    : none;
+        height        : 144px;
+        width         : 100%;
+        resize        : none;
+        border-bottom : 1px solid #E0E0E0;
+        position      : relative;
+        z-index       : 10;
+        &:focus + hr {
+            width : 100%;
+            left  : 0;
+        }
+    }
+    hr {
+        border             : none;
+        margin             : 0 auto;
+        display            : block;
+        position           : absolute;
+        left               : 50%;
+        bottom             : 0;
+        -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        z-index            : 11;
+        width              : 0;
+    }
+    input:focus + hr {
+        border-bottom : 2px solid #00BCD8;
+    }
+    input.error {
+        border-bottom : 1px solid #F50057;
+    }
+    input.error:focus + hr {
+        border-bottom : 2px solid #F50057;
+    }
+}
+
+
+.radio, .check {
+  height  : 100%;
+  position: relative;
+  input {
+    opacity: 0;
+    position: absolute;
+  }
+  label {
+    padding-left : 40px;
+    display: block;
+    position: relative;
+    i {
+      display      : block;
+      width        : 16px;
+      height       : 16px;
+      top          : 0;
+      left         : 0;
+      margin       : 3px 0 0 6px;
+      position     : absolute;
+      cursor       : pointer;
+    }
+    .text {
+      font-size  : 13px;
+      color      : rgba(37,37,37,0.87);
+      line-height: 20px;
+      cursor: pointer;
+    }
+  }
+}
+.radio {
+  input {
+    &:checked + label {
+      i {
+      &::before {
+        background-color: $primoryColor;
+      }
+      }
+    }
+  }
+  i {
+    border       : 2px solid $primoryColor;
+    border-radius: 50%;
+    &::before {
+      display         : block;
+      width           : 8px;
+      height          : 8px;
+      position        : absolute;
+      top             : 2px;
+      left            : 2px;
+      border-radius   : 50%;
+      content         : " ";
+      background-color: #fff;
+    }
+  }
+}
+.check {
+  input {
+    &:checked + label {
+      i {
+        background-color: $primoryColor;
+        &::before {
+          color: #fff;
+        }
+      }
+    }
+  }
+  i {
+    border       : 2px solid $primoryColor;
+    border-radius: 2px;
+    &::before {
+      font-size    : 13px;
+      line-height  : 14px;
+      border-radius: 50%;
+      content      : "\E899";
+      position     : absolute;
+      color        : #fff;
+      top          : 0;
+      left         : 0px;
+    }
+  }
+}
