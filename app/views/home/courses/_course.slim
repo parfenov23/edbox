@@ -21,7 +21,8 @@ figure.corses-prev
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
           - else
             - clB = find_bunch_course_group.blank? ? "" : "noAddedMyCourse"
-            .add.user_schedule.js_openPopup.icon.js_for-tooltip.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user" class=clB
+            - hash_params = {'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", class: clB}
+            .add.user_schedule.js_openPopup.icon.js_for-tooltip.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user" *hash_params
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
           - if type == 'courses'
             .favorite.icon.js_for-tooltip.ya_add_to_favorite data-id="#{course.id}"
