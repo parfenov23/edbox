@@ -76,6 +76,7 @@ toggleNotesAsideHeight = ->
 
 
 $(document).ready ->
+  
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
   figcaptionTitleEclipses('.favorite-item .description .title', 56)
   figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
