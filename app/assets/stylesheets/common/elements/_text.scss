@@ -1,49 +1,76 @@
 .text__content {
   @include middle-block(936px);
   @include white__block(1, 0);
+  padding: 0 48px 48px;
+  .separator {
+    margin-bottom: 47px;
+    height       : 1px;
+  }
   h1 {
-    margin: 32px 0 48px 0;
-    font-size: 34px;
-    color: $black_87;
+    margin     : 32px 0 48px;
+    font-size  : 34px;
+    color      : $black_87;
     line-height: 40px;
     font-weight: 400;
   }
   h2 {
-    font-size: 24px;
-    color: #000000;
+    font-size  : 24px;
+    color      : #000;
     line-height: 32px;
     font-weight: 400;
-    margin: 48px 0 32px 0;
+    margin     : 48px 0 32px;
   }
   p {
-    font-size: 15px;
-    color: $black_87;
+    font-size  : 15px;
+    color      : $black_87;
     line-height: 24px;
-    margin: 0;
-    margin-bottom: 24px;
+    margin     : 0 0 24px;
+    a {
+      color: $primoryColor;
+    }
   }
   img {
-    width: 100%;
+    width : 100%;
     @include inline-block;
     margin: 32px 0;
   }
-  ul, ol {
+  ul,
+  ol {
+    margin       : 0;
+    padding      : 0 0 0 31px;
     margin-bottom: 24px;
+    margin-left: -8px;
     li {
-      margin-bottom: 8px;
-      ul, ol {
-        margin-bottom: 8px;
+      margin-bottom: 10px;
+      padding-left : 10px;
+      font-size: 15px;
+      color: $black_87;
+      line-height: 24px;
+      ul,
+      ol {
+        margin-top   : 8px;
+        margin-bottom: 17px;
+        margin-left: 7px;
       }
     }
   }
   ul {
-
-    li {
-
+    // margin-left: -13px;
+    // margin-top: -3px;
+    > li {
+      // font-size: 9px;
+      list-style-type: disc;
+      margin-bottom: 9px;
+      // span {
+      //   font-size: 15px;
+      //   color: $black_87;
+      //   line-height: 24px;
+      // }
     }
   }
-  ol{
+  ol {
     li {
+
     }
   }
 }
