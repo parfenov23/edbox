@@ -10,6 +10,7 @@ class BunchCourse < ActiveRecord::Base
   scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
   scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
+  scope :uniq_by_course_id, -> { select('distinct on (course_id) *') }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -34,6 +35,12 @@ class BunchCourse < ActiveRecord::Base
       end
     end
     self.save
+    if self.complete == true
+      BunchCourse.where(user_id: 4, course_id: 4, complete: false).each do |bunch_course|
+        bunch_course.complete = true
+        bunch_course.save
+      end
+    end
     complete
   end
 

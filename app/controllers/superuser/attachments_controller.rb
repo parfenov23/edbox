@@ -27,7 +27,6 @@ module Superuser
 
     def update
       find_attachment.update(params_attachment.compact)
-      binding.pry
       redirect_to :back
     end
 
@@ -45,6 +44,5 @@ module Superuser
     def params_attachment
       params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title, :duration)
     end
-
   end
 end
