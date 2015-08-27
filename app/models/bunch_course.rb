@@ -35,6 +35,12 @@ class BunchCourse < ActiveRecord::Base
       end
     end
     self.save
+    if self.complete == true
+      BunchCourse.where(user_id: 4, course_id: 4, complete: false).each do |bunch_course|
+        bunch_course.complete = true
+        bunch_course.save
+      end
+    end
     complete
   end
 

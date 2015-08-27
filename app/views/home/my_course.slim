@@ -4,11 +4,11 @@
 - when "favorite"
   - all_courses = current_user.favorite_courses
 - when "current"
-  - all_courses = current_user.bunch_courses.in_study
+  - all_courses = current_user.bunch_courses.uniq_by_course_id.in_study
 - when "overdue"
-  - all_courses = current_user.bunch_courses.overdue
+  - all_courses = current_user.bunch_courses.uniq_by_course_id.overdue
 - when "assigned"
-  - all_courses = current_user.bunch_courses
+  - all_courses = current_user.bunch_courses.uniq_by_course_id
 
 - if all_courses.present?
   .inner-content
