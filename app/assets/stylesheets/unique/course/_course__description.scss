@@ -88,10 +88,10 @@
     width      : 792px;
     padding    : 32px 32px 24px;
     .title {
-      font-size    : 24px;
-      color        : $black_87;
-      line-height  : 32px;
-      text-align   : center;
+      font-size  : 24px;
+      color      : $black_87;
+      line-height: 32px;
+      text-align : center;
       margin-bottom: 45px;
       .back {
 
@@ -100,9 +100,9 @@
     .form__holder {
       display        : flex;
       justify-content: space-between;
-      .form__col {
-        width: 312px;
-      }
+        .form__col {
+          width: 312px;
+        }
 
       .form__legend {
         width      : 342px;
@@ -112,12 +112,12 @@
         padding-top: 7px;
       }
     }
-    .action__block {
+    .action__block   {
       @include clearfix;
       .btn {
-        color           : #fff;
-        float           : right;
-        background-color: #00bcd4;
+        color: #FFF;
+        float: right;
+        background-color: #00BCD4;
       }
     }
   }
