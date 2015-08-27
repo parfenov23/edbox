@@ -56,10 +56,7 @@ module Api::V1
 
     def update_type
       course = find_course
-      account_type = AccountTypeRelation.new({modelable_id: course.id, modelable_type: "Course"})
-      account_type.account_type_id = params[:account_type_id]
-      account_type.save
-      course.update({account_type_id: params[:account_type_id]});
+      course.update({paid: params[:type]})
       render json: {success: true}
     end
 

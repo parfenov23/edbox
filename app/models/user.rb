@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :group
+  belongs_to :action_type
   has_many :bunch_groups, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
@@ -55,16 +56,16 @@ class User < ActiveRecord::Base
     result
   end
 
-  def get_real_account_type
-    account_type_relations.last.account_type
-  end
-
   def get_account_type
     if corporate?
-      (company.get_account_type rescue nil)
+      (company.paid rescue false)
     else
-      get_real_account_type
+      paid
     end
+  end
+
+  def view_course?(course)
+    !course.paid || (course.paid && get_account_paid)
   end
 
   def get_account_paid

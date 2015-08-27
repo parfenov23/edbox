@@ -1,0 +1,27 @@
+#js-programm-courses.courses-aside.programm__course
+  .close-filter.icon Программа
+  .programm__content.js__baron
+    - course.sections.not_empty.each do |section|
+      - bunch_section = section.bunch_section(current_user.id)
+      - if bunch_section.present?
+        .section
+          .title
+            - date_complete = bunch_section.date_complete
+            - if date_complete.present?
+              - if local_time(date_complete) < local_time(Time.now)
+                .term.error Просрочено
+              - else
+                .term = "Завершить до #{date_complete.strftime('%d.%m.%y')}"
+            = section.title
+          ul.material__list
+            - bunch_attachments = bunch_section.bunch_attachments
+            - section.attachments.not_empty.each do |section_attachment|
+              - bunch_attachment = bunch_attachments.where(attachment_id: section_attachment.id).last
+              - if bunch_attachment.present?
+                - class_item = (section_attachment.id == attachment.id) ? "current" : ""
+                - class_item += bunch_attachment.complete ? " done" : ""
+                - hash_item = {onclick: "window.location.href = '/attachment?id=#{section_attachment.id}'"}
+                li.item class=class_item *hash_item
+                  i.icon class=section_attachment.find_type
+                  .title = section_attachment.title
+                  .description = section_attachment.description

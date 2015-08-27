@@ -2,10 +2,11 @@ class Section < ActiveRecord::Base
   belongs_to :course
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :tests, :dependent => :destroy
+  scope :not_empty, -> { where.not(title: [nil, ""]) }
   EXCEPT_ATTR = ["update_at"]
 
   def all_formats
-    attachments.map{|at| at.type}.uniq
+    attachments.map { |at| at.type }.uniq
   end
 
   def transfer_to_json

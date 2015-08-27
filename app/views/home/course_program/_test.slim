@@ -1,7 +1,9 @@
-= render "home/header/header", {namePage: "other", titlePage: "Финальный тест", btnBack: true, backUrl: "/course_description?id=#{@course.id}"}
-- test = @test
+- test = attachment.test
 .inner-content
-  form#tests data-id=test.id data-course_id=@course.id data-att_id=''
+  form#tests data-id=test.id  data-course_id=course.id data-att_id=attachment.id
+    .test-info
+      .title = attachment.title
+      .description = attachment.description
     - if test.present?
       .test-list
         - questions = test.questions.where.not(title: [nil, ""])
@@ -10,7 +12,7 @@
           .test-item name="Вопрос #{count_q += 1}"
             .title
               = "Вопрос #{count_q}"
-            /span Неверно
+              /span Неверно
             .description = question.title
             - answers = question.answers.where.not(text: [nil, ""])
             - valid_answers = answers.where(right: true)

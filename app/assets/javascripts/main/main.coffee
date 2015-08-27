@@ -99,7 +99,7 @@ $(document).ready ->
   ), ->
     $(@).removeClass('is__visible-tooltip')
 
-  if $('.js__toTogglescreen').length
+  if $('#js__toTogglescreen').length
     fsButton = document.getElementById('js__toTogglescreen')
     fsElement = document.getElementById('js__text-content')
     if window.fullScreenApi.supportsFullScreen

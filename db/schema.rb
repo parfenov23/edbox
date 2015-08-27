@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824075200) do
+ActiveRecord::Schema.define(version: 20150825105924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "account_type_relations", force: true do |t|
-    t.string   "modelable_type"
-    t.integer  "modelable_id"
-    t.integer  "account_type_id"
-    t.datetime "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "account_types", force: true do |t|
     t.string  "name"
@@ -49,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150824075200) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.text     "description"
     t.boolean  "archive",             default: false
+    t.text     "description"
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
@@ -241,6 +232,7 @@ ActiveRecord::Schema.define(version: 20150824075200) do
     t.string   "first_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "paid",       default: false
   end
 
   create_table "courses", force: true do |t|
@@ -357,6 +349,7 @@ ActiveRecord::Schema.define(version: 20150824075200) do
     t.boolean  "leading",         default: false
     t.text     "about_me"
     t.boolean  "contenter",       default: false
+    t.boolean  "paid",            default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

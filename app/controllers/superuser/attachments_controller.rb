@@ -27,6 +27,7 @@ module Superuser
 
     def update
       find_attachment.update(params_attachment.compact)
+      binding.pry
       redirect_to :back
     end
 

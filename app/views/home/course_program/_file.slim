@@ -1,0 +1,22 @@
+.inner-content
+  #course
+    .text__description
+      .title = attachment.title
+      .description = attachment.description
+      .icon__block
+        i.icon.file
+
+    .file__content
+      .file__wrp
+        .file__holder
+          .title =(attachment.file.file.original_filename rescue "Без имени")
+          .weight
+            =' (attachment.file.file.size/1024)/1024
+            |MB
+          .type = attachment.file_type
+        .action__holder
+          .btn.btn-flat.js_downloadFile data-id=attachment.id СКАЧАТЬ
+      
+    
+
+            

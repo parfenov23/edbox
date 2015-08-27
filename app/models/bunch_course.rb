@@ -9,6 +9,7 @@ class BunchCourse < ActiveRecord::Base
   scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
   scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
   scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
+  scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -28,11 +29,11 @@ class BunchCourse < ActiveRecord::Base
     sections = bunch_sections
     if sections.where(complete: true).count >= sections.count
       self.complete = true
+      if user.corporate
+        push_if_close
+      end
     end
     self.save
-    if user.corporate
-      push_if_close
-    end
     complete
   end
 
@@ -50,7 +51,7 @@ class BunchCourse < ActiveRecord::Base
     ligament_course = LigamentCourse.find_or_create_by({course_id: course_id, group_id: group_id})
     ligament_course.date_complete = Time.parse(date_complete).end_of_day if date_complete.present?
     ligament_course.save
-    ligament_course.course.sections.each do |section|
+    ligament_course.course.sections.not_empty.each do |section|
       ligament_section = LigamentSection.find_or_create_by({section_id: section.id, ligament_course_id: ligament_course.id})
       current_section = (sections_hash[section.id.to_s] rescue nil)
       ligament_section.date_complete = Time.parse(current_section).end_of_day if current_section.present?
@@ -65,7 +66,7 @@ class BunchCourse < ActiveRecord::Base
   def self.build_to_user(course_id, user_id, group_id, date_complete, type, ligament_course_id=nil, sections_hash)
     date_complete = Time.parse(date_complete).end_of_day
     course = Course.find(course_id)
-    sections = course.sections
+    sections = course.sections.not_empty
     user = User.find(user_id)
     bunch_course = user.bunch_courses.find_or_create_by({course_id: course_id, user_id: user.id,
                                                          model_type: type, group_id: group_id,
@@ -83,7 +84,7 @@ class BunchCourse < ActiveRecord::Base
       bunch_section = bunch_course.bunch_sections.find_or_create_by({section_id: section.id, bunch_course_id: bunch_course.id})
       bunch_section.date_complete = Time.parse(current_section).end_of_day if current_section.present?
       bunch_section.save
-      section.attachments.each do |attachment|
+      section.attachments.not_empty.each do |attachment|
         BunchAttachment.find_or_create_by({attachment_id: attachment.id, bunch_section_id: bunch_section.id})
       end
     end

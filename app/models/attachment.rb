@@ -18,6 +18,7 @@ class Attachment < ActiveRecord::Base
   before_save :set_file_type
   has_many :bunch_attachments
   has_one :test, :as => :testable, :dependent => :destroy
+  scope :not_empty, -> { where.not(title: [nil, ""]) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -48,8 +49,12 @@ class Attachment < ActiveRecord::Base
     bunch_attachments.find_by_bunch_section_id(bunch_section_id)
   end
 
+  def bunch_attachment(user_id)
+    User.find(user_id).bunch_courses.find_bunch_attachments.where(attachment_id: id).last rescue nil
+  end
+
   def full_duration
-    duration.to_s + " часа"
+    duration.to_s + " минут"
   end
 
   def file_url
@@ -98,6 +103,11 @@ class Attachment < ActiveRecord::Base
     end
   end
 
+  def find_type
+    arr_text_type = ["description"]
+    arr_text_type.include?(file_type) ? "text" : file_type
+  end
+
   private
 
   def set_file_type
@@ -111,8 +121,9 @@ class Attachment < ActiveRecord::Base
         type = AUDIO_FILE
       elsif AVAILABLE_VIDEO.include?(extension)
         type = VIDEO_FILE
+      elsif AVAILABLE_PDF.include?(extension)
+        type = PDF_FILE
       end
-
       self.file_type = type
     end
   end

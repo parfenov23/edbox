@@ -1,4 +1,6 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
+- if params[:attachment_id].present?
+  input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
   .shadow
   img src = @course.get_image_path
@@ -93,8 +95,8 @@
     .title Учебная программа
     .prgr-wrp
       - nsec = 0
-      - @course.sections.each do |section|
-        - section_attachments = section.attachments
+      - @course.sections.not_empty.each do |section|
+        - section_attachments = section.attachments.not_empty
         - if section_attachments.present?
           - natt = 0
           - if bunch_course.present?
@@ -135,31 +137,31 @@
               - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
               - class_block = ""
               - hash_class = {}
-              - if !@course.paid || (@course.paid && current_user.get_account_paid)
+              - if current_user.view_course?(@course)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
-                  - if attachment.class_type != "video"
-                    - hash_class = {class: ['js_downloadFile'], :'data-id' => attachment.id, :'data-bunch_section_id' => bunch_section.id}
-                  - else
-                    - hash_class = {onclick: "window.location.href='/video?id=#{attachment.id}'"}
-              .item class=class_block class=ya_class *hash_class
+                  - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
+              .item.js_blockAttachmentInProgram data-id=attachment.id class=(class_block + ' ' + ya_class) *hash_class
                 .icon__block
                   i.icon class=attachment.class_type
                 .adaptive__title
                   .left-col #{nsec}.#{natt += 1} #{attachment.title}
                   .right-col = attachment.full_duration
                 .description = attachment.title
-            - section.tests.each do |test|
-              .item onclick = "window.location.href='/tests/#{test.id}/run'"
+          - final_test = @course.test
+          - if final_test.present?
+            - hash_class ={}
+            - if bunch_course.complete
+              - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
+            - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
+            .programm__block.finalTest *hash_class
+              .item class=class_block
                 .icon__block
                   i.icon.test
                 .adaptive__title
-                  .left-col #{nsec}.#{natt += 1} #{test.title}
-                  - if test.duration.present?
-                    .right-col #{test.duration.to_s + ' часа'}
-                .description = test.title
-
-
+                  .left-col Тест для завершения курса
+                  .right-col
+                .description Станет доступным после прохождения всех материалов курса
 / .toggle__view.btn.btn-flat
 /   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
 /   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА

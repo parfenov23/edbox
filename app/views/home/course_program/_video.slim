@@ -1,0 +1,19 @@
+.inner-content
+  #course
+    .text__description
+      .title = attachment.title
+      .description = attachment.description
+      .icon__block
+        i.icon.video
+      
+    .video__content
+      video.video-js.vjs-default-skin.vjs-big-play-centered controls="" preload="auto"
+        source src="#{attachment.file.url}"
+        p.vjs-no-js
+          | To view this video please enable JavaScript, and consider upgrading to a web browser that
+          a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
+
+      
+    
+
+            
