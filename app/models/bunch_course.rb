@@ -75,9 +75,16 @@ class BunchCourse < ActiveRecord::Base
     course = Course.find(course_id)
     sections = course.sections.not_empty
     user = User.find(user_id)
-    bunch_course = user.bunch_courses.find_or_create_by({course_id: course_id, user_id: user.id,
-                                                         model_type: type, group_id: group_id,
-                                                         ligament_course_id: ligament_course_id})
+    bunch_course = user.bunch_courses.where({course_id: course_id, model_type: 'user'}).last
+    if bunch_course.present?
+      bunch_course.update({course_id: course_id, user_id: user.id,
+                           group_id: group_id, model_type: type,
+                           ligament_course_id: ligament_course_id})
+    else
+      bunch_course = user.bunch_courses.find_or_create_by({course_id: course_id, user_id: user.id,
+                                                           group_id: group_id, model_type: type,
+                                                           ligament_course_id: ligament_course_id})
+    end
     bunch_course.date_complete = date_complete
     bunch_course.save
     sections.each do |section|

@@ -1,6 +1,6 @@
 - back_url = "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}"
 = render "home/header/header", {namePage: "courseMaterial", titlePage: @attachment.title, btnBack: true, backUrl: back_url}
-- render "home/course_program/right_sidebar/notes_aside"
+= render "home/course_program/right_sidebar/notes_aside"
 = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
 - unless @attachment.download
   - case @attachment.file_type

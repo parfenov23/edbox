@@ -87,6 +87,14 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
+var goToProgramAttachment = function(){
+    var block = $(".js_goToProgramAttachment");
+    if ( block.length ){
+        var block_scroll = $('.js_blockAttachmentInProgram[data-id="' + block.data('id') + '"]');
+        $('body, html').scrollTop( block_scroll.position().top );
+    }
+}
+
 var includeDatePicker = function () {
     $('.datapicker__trigger, .js__set-date').datepicker({
         prevText       : '&#x3c;Пред',
@@ -108,7 +116,6 @@ var includeDatePicker = function () {
             var dates = $(this).data('datepicker');
             var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
             $(this).parent().find('.selected-value').html(selectDate);
-            console.log($(this))
             if ($(this).hasClass("js_changeDateToDatePicker")){
                 changeDateToDatePicker($(this));
             }
@@ -192,6 +199,7 @@ function parseDate(input) {
 }
 
 $(document).ready(function () {
+    goToProgramAttachment();
     $(document).on('click', '.datapicker__trigger', optionDatePicker);
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;
@@ -243,7 +251,7 @@ $(document).ready(function () {
             console.log(bodyHeight);
         }
         else {
-            $('.auth').css({'height': windowHeight + 'px'});
+          
         }
     }, 100);
 
@@ -322,5 +330,3 @@ $(document).ready(function () {
     changeAvatar();
 
 });
-
-

@@ -168,5 +168,11 @@ i.icon {
     }
   }
 
+  &.help {
+    &::before {
+      content: "\E639";
+    }
+  }
+
 
 }

@@ -1,10 +1,11 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
+- if params[:attachment_id].present?
+  input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
   .shadow
   img src = @course.get_image_path
 - course_bunch_tags = @course.bunch_tags
-- bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
-
+- bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last
 - if current_user.present?
   - if bunch_course.present?
     .ya_course_signed_visit style = 'display: none'
@@ -87,8 +88,7 @@
         .btn.btn-flat.for__closed Показать описание
         .btn.btn-flat.for__open Скрыть описание СКРЫТЬ ОПИСАНИЕ
 
-  - ya_class = ''
-  - ya_class = 'ya_course_begin' if (current_user.bunch_courses.where(course_id: @course.id).present? && !in_study.present?)
+  - ya_class = (current_user.bunch_courses.where(course_id: @course.id).present? && !in_study.present?) ? 'ya_course_begin' : ''
   .study__program
     .title Учебная программа
     .prgr-wrp
@@ -105,9 +105,7 @@
               - if !@course.paid || (@course.paid && current_user.get_account_paid)
                 - if bunch_section.present?
                   .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
-                  
-                  
-                  
+
                   .edit-menu.js__select-calendar
                     .edit-date href="#" 
                       i.icon-uniE8A3
@@ -121,10 +119,8 @@
                           .datapicker__trigger
                       ul.hidden-list
                         li data-show="hidden-calendar" Перенести дату окончания курса
-                        li.js_removeFavorite Удалить
-                  
-                  
-                  
+                        /li.js_removeFavorite Удалить
+
                   / .action-btn.drunkenPig.js_actionBtn
                   /   i.icon.schedule
                   /   - ts = "Дата оканчания раздела изменена"
@@ -139,7 +135,7 @@
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
                   - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
-              .item class=class_block class=ya_class *hash_class
+              .item.js_blockAttachmentInProgram data-id=attachment.id class=(class_block + ' ' + ya_class) *hash_class
                 .icon__block
                   i.icon class=attachment.class_type
                 .adaptive__title
@@ -149,11 +145,11 @@
           - final_test = @course.test
           - if final_test.present?
             - hash_class ={}
-            - if bunch_course.complete
+            - if (bunch_course.complete rescue false)
               - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
-            - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
+              - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
             .programm__block.finalTest *hash_class
-              .item class=class_block
+              .item class=(class_block rescue '')
                 .icon__block
                   i.icon.test
                 .adaptive__title
