@@ -15,15 +15,14 @@ module Api::V1
     end
 
     def complete
-      attachment = find_attachment
-      bunch_attachment = attachment.find_bunch_attachment(params[:bunch_section_id])
-      bunch_attachment.complete = true
-      if ((bunch_attachment.save) rescue false )
-        bunch_attachment.bunch_section.full_complete?(current_user.id)
-        render json: bunch_attachment.as_json
-      else
-        render_error(500, 'Проверьте данные')
+      bunch_attachments = current_user.bunch_courses.find_bunch_attachments.where(attachment_id: params[:id])
+      bunch_attachments.each do |bunch_attachment|
+        bunch_attachment.complete = true
+        if ((bunch_attachment.save) rescue false)
+          bunch_attachment.bunch_section.full_complete?(current_user.id)
+        end
       end
+      render json: bunch_attachments.map(&:as_json)
     end
 
     def update
@@ -66,7 +65,7 @@ module Api::V1
     end
 
     def params_attachment
-      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration).compact.select{|k,v| v != ""} rescue {}
+      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration).compact.select { |k, v| v != "" } rescue {}
     end
 
     def find_user

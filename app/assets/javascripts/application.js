@@ -187,8 +187,16 @@ var optionDatePicker = function () {
     } else {
         btn.datepicker("option", "maxDate", null);
     }
-    console.log(btn.data('max-date'))
-    btn.datepicker();
+    btn.datepicker('show');
+    var dp = $("#ui-datepicker-div");
+    var dp_top = dp.position().top;
+    var px_block = view_px_block(dp);
+    var style = dp.attr('style');
+    //style += "display: block !important; opacity: 1;"
+    dp.attr('style', style);
+    if (px_block < dp.outerHeight()){
+        dp.css('top', (dp_top - ( dp.outerHeight() - px_block ) + 30))
+    }
     //}, 3000)
 }
 

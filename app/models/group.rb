@@ -24,7 +24,8 @@ class Group < ActiveRecord::Base
   def build_all_course
     ligament_courses.each do |ligament_course|
       course = ligament_course.course
-      date_complete = (ligament_course.date_complete.to_s rescue (Time.now + 2.day).to_s )
+      date_complete_ligament = ligament_course.date_complete.to_s rescue nil
+      date_complete = date_complete_ligament.present? ? date_complete_ligament : (Time.now + 2.day).to_s
       BunchCourse.build(course.id, id, date_complete, 'group', nil)
     end
   end

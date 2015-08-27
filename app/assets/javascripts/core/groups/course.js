@@ -51,25 +51,27 @@ var changeDeadLineCourseMy = function (btn, text_success) {
         data_time = btn.val();
     }
     var course_id = btn.data("course_id");
-    show_error('Загрузка', 3000);
-    $.ajax({
-        type: 'POST',
-        url : '/api/v1/users/update_course',
-        data: {course_id: course_id, date_complete: data_time}
-    }).success(function () {
-        if (btn.data("no_schedule") == true){
-            show_error(text_success, 3000);
-            setTimeout(function () {
-                location.reload();
-            }, 1000);
-        } else {
-            show_error(text_success, 3000);
-            loadMySchedule();
-        }
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
-    return true;
+    if (data_time.length){
+        show_error('Загрузка', 3000);
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/users/update_course',
+            data: {course_id: course_id, date_complete: data_time}
+        }).success(function () {
+            if (btn.data("no_schedule") == true){
+                show_error(text_success, 3000);
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
+            } else {
+                show_error(text_success, 3000);
+                loadMySchedule();
+            }
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+        return true;
+    }
 };
 
 var removeCourseMy = function (btn, text_success) {
@@ -96,25 +98,27 @@ var changeDeadLineSectionMy = function (btn, text_success) {
         data_time = btn.val();
     }
     var section_id = btn.data("section_id");
-    show_error('Загрузка', 3000);
-    $.ajax({
-        type: 'POST',
-        url : '/api/v1/users/update_section',
-        data: {section_id: section_id, date_complete: data_time}
-    }).success(function () {
-        if (btn.data("no_schedule") == true){
-            show_error(text_success, 3000);
-            setTimeout(function () {
-                location.reload();
-            }, 1000);
-        } else {
-            show_error(text_success, 3000);
-            loadMySchedule();
-        }
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
-    return true;
+    if (data_time.length){
+        show_error('Загрузка', 3000);
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/users/update_section',
+            data: {section_id: section_id, date_complete: data_time}
+        }).success(function () {
+            if (btn.data("no_schedule") == true){
+                show_error(text_success, 3000);
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
+            } else {
+                show_error(text_success, 3000);
+                loadMySchedule();
+            }
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+        return true;
+    }
 };
 
 var changeDeadLineSectionGroup = function (btn, text_success) {
@@ -139,9 +143,9 @@ var changeDeadLineSectionGroup = function (btn, text_success) {
 };
 
 var bind_block = function () {
-    $('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-        changeDeadLineCourseMy($(this), $(this).data("text"));
-    });
+    //$('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+    //    changeDeadLineCourseMy($(this), $(this).data("text"));
+    //});
 
     $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
@@ -164,7 +168,7 @@ var bind_block = function () {
         }
 
     });
-    includeDatePicker();
+    //includeDatePicker();
 };
 
 var loadMySchedule = function (data) {

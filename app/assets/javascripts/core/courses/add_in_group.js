@@ -1,31 +1,36 @@
 var openPopup = function () {
     var btn = $(this);
-    if (! btn.hasClass("noOpenPopup")){
-        courseInfo(btn.data("id"));
-        var popup = $("#js-add-course-to-shedule");
-        var course_id = btn.data("id");
-        popup.find("input.courseId").val(course_id);
-        popup.show();
-        popup.find(".check_group_added").show();
-        popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text());
-        if (btn.data('hide') != undefined){
-            popup.find(btn.data('hide')).hide();
-        }
-        if (btn.data('show') != undefined){
-            popup.find(btn.data('show')).show();
-        }
-        popup.find(".js_addCourse").data("type", btn.data('type'))
+    if(!btn.hasClass('noAddedMyCourse')){
+        if (! btn.hasClass("noOpenPopup")){
+            courseInfo(btn.data("id"));
+            var popup = $("#js-add-course-to-shedule");
+            var course_id = btn.data("id");
+            popup.find("input.courseId").val(course_id);
+            popup.show();
+            popup.find(".check_group_added").show();
+            popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text());
+            if (btn.data('hide') != undefined){
+                popup.find(btn.data('hide')).hide();
+            }
+            if (btn.data('show') != undefined){
+                popup.find(btn.data('show')).show();
+            }
+            popup.find(".js_addCourse").data("type", btn.data('type'))
 
-    } else {
-        show_error('У ваc нет групп', 3000);
-    }
-    $('.adaptive__title').each(function () {
-        var rightWidth;
-        rightWidth = $(this).find('.right-col').width();
-        return $(this).find('.left-col').css({
-            width: $(this).width() - rightWidth + 'px'
+        } else {
+            show_error('У ваc нет групп', 3000);
+        }
+        $('.adaptive__title').each(function () {
+            var rightWidth;
+            rightWidth = $(this).find('.right-col').width();
+            return $(this).find('.left-col').css({
+                width: $(this).width() - rightWidth + 'px'
+            });
         });
-    });
+    }else{
+        show_error('Нельзя добавить курс в личное расписание, так как курс добавленн в группу', 3000)
+    }
+
 };
 
 var courseInfo = function (course_id) {
