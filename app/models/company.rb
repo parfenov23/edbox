@@ -1,7 +1,6 @@
 class Company < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   has_many :groups, :dependent => :destroy
-  has_many :account_type_relations, :as => :modelable, :dependent => :destroy
 
   def self.build(params)
     company = new
