@@ -17,131 +17,131 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
           = item[:title]
       .line
 
-
-  .page__action
-    /.item.js__tooltip
-    /  i.search.icon
-    /  .tooltip.is__bottom Уведомления
-    /.item
-    /  i.notification.icon
-    - if namePage == "group"
-      - if current_user.director
-        .item.js_openPopupNewGroup
-          i.add.icon
-
-    - if namePage == "contenter_courses"
-      - if current_user.director
-        a.item href="/contenter/courses/new/edit"
-          i.add.icon
-        .item.js_openLeftSideBar data-id="js-help"
-          i.help.icon
-  
-    /.item
-    /  .notification__with-qty ...
-    - if namePage == "cabinet"
-      .item.js_openLeftSideBar.ya_schedule_icon_click data-id="js-schedule-cabinet"
-        i.schedule.icon
-    - if namePage == "courseMaterial"
-      .item.js_openLeftSideBar data-id="js-notification-courses"
-       i.notes.icon
-      .item.js_openLeftSideBar data-id="js-programm-courses"
-        i.programm.icon
-    - if namePage == "courses"
+  - if current_user.present?
+    .page__action
+      /.item.js__tooltip
+      /  i.search.icon
+      /  .tooltip.is__bottom Уведомления
       /.item
-      /  i.filter.icon
-      .item.js_openLeftSideBar data-id="js-favorite-courses"
-        i.favorite.icon
+      /  i.notification.icon
+      - if namePage == "group"
+        - if current_user.director
+          .item.js_openPopupNewGroup
+            i.add.icon
+
+      - if namePage == "contenter_courses"
+        - if current_user.director
+          a.item href="/contenter/courses/new/edit"
+            i.add.icon
+          .item.js_openLeftSideBar data-id="js-help"
+            i.help.icon
+
+      /.item
+      /  .notification__with-qty ...
+      - if namePage == "cabinet"
+        .item.js_openLeftSideBar.ya_schedule_icon_click data-id="js-schedule-cabinet"
+          i.schedule.icon
+      - if namePage == "courseMaterial"
+        .item.js_openLeftSideBar data-id="js-notification-courses"
+          i.notes.icon
+        .item.js_openLeftSideBar data-id="js-programm-courses"
+          i.programm.icon
+      - if namePage == "courses"
+        /.item
+        /  i.filter.icon
+        .item.js_openLeftSideBar data-id="js-favorite-courses"
+          i.favorite.icon
       /.item.js_openLeftSideBar data-id="js-groups-courses"
       /  i.groups.icon
-    /.item.js_openHeaderAppsBtn
-    /  i.calendar.icon
-    /  ul.menu__apps
-    /    li.menu__apps-item.last__row
-    /      .menu__apps-item-img-holder
-    /        img.menu__apps-item-img src="/assets/edbox.png"
-    /      .menu__apps-item-text Доступно с сентября 2015
-    /
-    /    li.menu__apps-item.last__row
-    /      .menu__apps-item-img-holder
-    /        img.menu__apps-item-img src="/assets/markethub.png"
-    /      .menu__apps-item-text Доступно с ноября 2015
-    /
-    /    li.menu__apps-item.last__row
-    /      .menu__apps-item-img-holder
-    /        img.menu__apps-item-img src="/assets/pf.png"
-    /      .menu__apps-item-text Доступно с декабря 2015
+      /.item.js_openHeaderAppsBtn
+      /  i.calendar.icon
+      /  ul.menu__apps
+      /    li.menu__apps-item.last__row
+      /      .menu__apps-item-img-holder
+      /        img.menu__apps-item-img src="/assets/edbox.png"
+      /      .menu__apps-item-text Доступно с сентября 2015
+      /
+      /    li.menu__apps-item.last__row
+      /      .menu__apps-item-img-holder
+      /        img.menu__apps-item-img src="/assets/markethub.png"
+      /      .menu__apps-item-text Доступно с ноября 2015
+      /
+      /    li.menu__apps-item.last__row
+      /      .menu__apps-item-img-holder
+      /        img.menu__apps-item-img src="/assets/pf.png"
+      /      .menu__apps-item-text Доступно с декабря 2015
 
-    - if (comment rescue false)
-      .item
-        i.calendar.icon.js_openLeftSideBar data-id="js-comment"
+      - if (comment rescue false)
+        .item
+          i.calendar.icon.js_openLeftSideBar data-id="js-comment"
 
-    .item.ava.header__user
-      img src=default_img(current_user.avatar)
-      .menu__user
-        .top
-          .avatar__holder
-            img.avatar src=default_img(current_user.avatar)
-          .text
-            .name = current_user.full_name
-            .login = current_user.email
+      .item.ava.header__user
+        img src=default_img(current_user.avatar)
+        .menu__user
+          .top
+            .avatar__holder
+              img.avatar src=default_img(current_user.avatar)
+            .text
+              .name = current_user.full_name
+              .login = current_user.email
 
-        ul.menu
-          li.menu__item
-            a.menu__item-link.menu__item-profile href="/profile" Профиль
+          ul.menu
+            li.menu__item
+              a.menu__item-link.menu__item-profile href="/profile" Профиль
 
-        .bottom
-          /.btn__raised.add__acc добавить аккаунт
-          a.btn.btn-flat.exit href="/sign_out" выход
+          .bottom
+            /.btn__raised.add__acc добавить аккаунт
+            a.btn.btn-flat.exit href="/sign_out" выход
+- if current_user.present?
+  .left__aside-main-nav.js__baron.js__left-aside
+    .info__block
+      .top__logo
+        img src= "/assets/edbox__bloo.svg"
+    .menu__list
+      .item class=(namePage == "cabinet" ? "is__active" : "")
+        i.cabinet.icon
+        a.label href="/cabinet" Мой кабинет
+      .item class=(namePage == "courses" ? "is__active" : "")
+        i.biblio.icon
+        a.label href="/courses" Библиотека
+      .item class=(namePage == "my_course" ? "is__active" : "")
+        i.courses.icon
+        a.label href="/my_course?type=assigned" Курсы
 
-.left__aside-main-nav.js__baron.js__left-aside
-  .info__block
-    .top__logo
-      img src= "/assets/edbox__bloo.svg"
-  .menu__list
-    .item class=(namePage == "cabinet" ? "is__active" : "")
-      i.cabinet.icon
-      a.label href="/cabinet" Мой кабинет
-    .item class=(namePage == "courses" ? "is__active" : "")
-      i.biblio.icon
-      a.label href="/courses" Библиотека
-    .item class=(namePage == "my_course" ? "is__active" : "")
-      i.courses.icon
-      a.label href="/my_course?type=assigned" Курсы
+      - if current_user.corporate? && current_user.director?
+        .item class=(namePage == "schedule" ? "is__active" : "")
+          i.schedule.icon
+          a.label href="/schedule" Расписание
 
-    - if current_user.corporate? && current_user.director?
-      .item class=(namePage == "schedule" ? "is__active" : "")
-        i.schedule.icon
-        a.label href="/schedule" Расписание
-
-    - if current_user.corporate
-      .item class=(namePage == "group" ? "is__active" : "")
-        i.groups.icon
-        a.label href="/group" Группы
-      - if current_user.director
-        .item class=(namePage == "members" ? "is__active" : "")
+      - if current_user.corporate
+        .item class=(namePage == "group" ? "is__active" : "")
           i.groups.icon
-          a.label href="/members" Участники
+          a.label href="/group" Группы
+        - if current_user.director
+          .item class=(namePage == "members" ? "is__active" : "")
+            i.groups.icon
+            a.label href="/members" Участники
 
-    - if current_user.contenter
-      .item class=(namePage == "contenter_admin" ? "is__active" : "")
-        i.schedule.icon
-        a.label href="/contenter/admin/categories" Администрирование
-      .item class=(namePage == "contenter" ? "is__active" : "")
-        i.schedule.icon
-        a.label href="/contenter/courses" Шеф Контент
+      - if current_user.contenter
+        .item class=(namePage == "contenter_admin" ? "is__active" : "")
+          i.schedule.icon
+          a.label href="/contenter/admin/categories" Администрирование
+        .item class=(namePage == "contenter" ? "is__active" : "")
+          i.schedule.icon
+          a.label href="/contenter/courses" Шеф Контент
 
-  /.item
-  /  i.stat.icon
-  /  .label Статистика
-  /.item
-  /  i.favorites.icon
-  /  .label Закладки
-  /.item
-  /  i.notes.icon
-  /  .label Заметки
+    /.item
+    /  i.stat.icon
+    /  .label Статистика
+    /.item
+    /  i.favorites.icon
+    /  .label Закладки
+    /.item
+    /  i.notes.icon
+    /  .label Заметки
 
-  .btm__logo
-    img src = "/assets/adcons__grey.svg"
+    .btm__logo
+      img src = "/assets/adcons__grey.svg"
 
 - if (comment rescue false)
   #js-comment.courses-aside
@@ -152,8 +152,10 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       var disqus_shortname = 'edbox';
 
       /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      (function () {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
       })();

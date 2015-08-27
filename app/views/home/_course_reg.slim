@@ -1,0 +1,63 @@
+.auth.is__course-description#formCourseRegPopUp style="display:none;"
+  .auth__box
+    .logo
+      img src="/assets/logo.svg"
+    .auth__title-top
+      img.logo__img src="/assets/logo_auth.svg"
+    form.auth__top.auth__enter.js_registrationUser
+      .auth__title Регистрация
+      .auth__reg-block
+        .auth__reg-title.auth__reg-data Персональные данные
+        .input-wrp
+          input.validInput.phoenix-input name="user[last_name]" placeholder="Фамилия" type="text"
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="user[first_name]" placeholder="Имя" type="text"
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="user[email]" placeholder="Email" type="text"
+          hr
+      .auth__reg-block
+        .auth__reg-title.auth__reg-secutity Безопасность
+        .input-wrp
+          input.pass.validInput.phoenix-input name="user[password]" placeholder="Пароль" type="password"
+          hr
+        .input-wrp
+          input.validInput.phoenix-input name="password_repeat" placeholder=("Повторите пароль") type="password"
+          hr
+      .auth__reg-block
+        .auth__reg-title.auth__reg-type Выберите тип аккаунта
+        .auth__reg-select
+          .auth__reg-selected Персональный аккаунт
+          .auth__reg-select-list
+            .auth__reg-select-list-item.personal Персональный аккаунт
+            .auth__reg-select-list-item.corporate Корпоративный аккаунт
+        .input-wrp.corporate_acc
+          input.phoenix-input name="company[name]" placeholder=("Напишите название компании") type="text"
+          hr
+      .auth_agree.checkbox__holder
+        input#checkbox1.checkbox name="agreed" type="checkbox"
+        label.label for="checkbox1"
+          i.check
+          i.ripple-effect.ripple-check
+            i.ripple-effect.ripple-uncheck
+          'Я ознакомлен с
+          a.auth_agree-link href="/oferta" target='_blank' договором оферты&nbsp;
+          | принимаю условия договора
+      .have__acc
+        a.auth__what href="/sign_in"  У меня уже есть аккаунт
+      .btn-holder
+        #submit.btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.ya_reg_sign_in data-phoenix-action="remove"  Создать аккаунт
+.not__auth-block
+  .inner
+    .title Получайте знания вместе с edbox
+    .info Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+    .plans
+      .item
+        .title Личный аккаунт
+        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+        .btn.btn-flat.js_openFormRegistration ЗАРЕГИСТРИРОВАТЬСЯ
+      .item
+        .title Корпоративнй аккаунт
+        .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
+        .btn.btn-flat.js_openFormRegistration data-type="corp" ЗАРЕГИСТРИРОВАТЬСЯ

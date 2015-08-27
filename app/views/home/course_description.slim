@@ -5,7 +5,7 @@
   .shadow
   img src = @course.get_image_path
 - course_bunch_tags = @course.bunch_tags
-- bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last
+- bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
 - if current_user.present?
   - if bunch_course.present?
     .ya_course_signed_visit style = 'display: none'
@@ -78,7 +78,7 @@
         - course_bunch_tags.each do |bunch_tag|
           - tag = bunch_tag.tag
           .item = tag.title
-    - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study
+    - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study rescue nil
     .detail__info class = "#{'is__closed' if in_study.present?}"
       .description
         = raw @course.description
@@ -97,7 +97,7 @@
         .btn.btn-flat.for__closed Показать описание
         .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ
 
-  - ya_class = (current_user.bunch_courses.where(course_id: @course.id).present? && !in_study.present?) ? 'ya_course_begin' : ''
+  - ya_class = ( (current_user.bunch_courses.where(course_id: @course.id).present? && !in_study.present?) rescue false) ? 'ya_course_begin' : ''
   .study__program
     .title Учебная программа
     .prgr-wrp
@@ -142,7 +142,7 @@
               - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
               - class_block = ""
               - hash_class = {}
-              - if current_user.view_course?(@course)
+              - if (current_user.view_course?(@course) rescue false)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - if bunch_attachment.present?
                   - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
@@ -171,16 +171,4 @@
 /   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
 /   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
 - unless current_user.present?
-  .not__auth-block
-    .inner
-      .title Получайте знания вместе с edbox
-      .info Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
-      .plans
-        .item
-          .title Личный аккаунт
-          .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
-          a.btn.btn-flat href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
-        .item
-          .title Корпоративнй аккаунт
-          .description Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox. Используйте платную подписку для полного доступа ко всем курсам, обновлениям и библиотеке знаний Edbox.
-          a.btn.btn-flat href="/sign_up?type=company" ЗАРЕГИСТРИРОВАТЬСЯ
+  = render "home/course_reg"
