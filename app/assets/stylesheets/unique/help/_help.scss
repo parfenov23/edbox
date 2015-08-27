@@ -1,0 +1,53 @@
+.help-content {
+  @include middle-block(936px);
+  > .item {
+    border-bottom : 1px solid rgba(0,0,0,0.12);
+    padding-bottom: 30px;
+    margin-bottom : 40px;
+    .title {
+      font-size  : 34px;
+      line-height: 40px;
+      margin-bottom: 24px;
+    }
+    .wrp {
+      display: flex;
+      justify-content: space-between;
+      .description {
+        font-size  : 15px;
+        color      : $black_54;
+        line-height: 24px;
+        width      : 360px;
+      }
+      .list {
+        @include white__block(1, 0);
+        width           : 552px;
+        .item {
+          display      : block;
+          border-bottom: 1px solid rgba(0,0,0,0.12);
+          padding      : 22px 72px 26px 24px;
+          position     : relative;
+          font-size: 15px;
+          color: #000000;
+          line-height: 24px;
+
+          &:hover {
+            background-color: #fafafa;
+          }
+          i {
+            position  : absolute;
+            top       : 50%;
+            right     : 25px;
+            margin-top: -13px;
+            cursor    : pointer;
+            display   : block;
+            &::before {
+              color    : $black_54;
+              content  : "\E7B6";
+              font-size: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
