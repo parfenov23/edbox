@@ -7,6 +7,7 @@
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: 'user'}).last
 
+<<<<<<< .merge_file_pnQziN
 - if current_user.present?
   - if bunch_course.present?
     .ya_course_signed_visit style = 'display: none'
@@ -16,6 +17,40 @@
   .ya_course_not_auth_visit style = 'display: none'
 
 .course__description-content.oh__nihuyase-block
+=======
+#js-notes-courses.courses-aside.notes-courses
+  .close-filter.icon Заметки
+  .notes__list
+    .item
+      .title
+        .date 15 января 2015, 12:38
+        .action__btn
+          .hidden-list
+            li Редактировать
+            li Удалить
+      .description Дорогой дневник, сегодня я оплатил Эдбокс. Это были последние деньги компании и я не знаю, что будет дальше. За оплаченные мною три месяца я надеюсь научиться грамотному управлению компанией. Мои работники сейчас массово скупают доширак в АШАНе и интересуются съедобностью домашних мокриц, потому что зарплаты им не видать ешё долго. Дневник, это нормально забирать у работников паспорта?
+      .btn.btn-flat.show__more
+        span.for__closed Показать полностью
+        span.for__open Скрыть
+    .item
+      .title
+        .date 15 января 2015, 12:38
+        .action__btn
+          .hidden-list
+            li Редактировать
+            li Удалить
+      .description Дорогой дневник, сегодня я оплатил Эдбокс. Это были последние деньги компании и я не знаю, что будет дальше. За оплаченные мною три месяца я надеюсь научиться грамотному управлению компанией. Мои работники сейчас массово скупают доширак в АШАНе и интересуются съедобностью домашних мокриц, потому что зарплаты им не видать ешё долго. Дневник, это нормально забирать у работников паспорта?
+      .btn.btn-flat.show__more
+        span.for__closed Показать полностью
+        span.for__open Скрыть
+
+  .edit__area
+    textarea 
+    .action
+      .btn.is__blue ДОБАВИТЬ
+
+.course__description-content.ох__нихуясе-блок  
+>>>>>>> .merge_file_W7hPcJ
   .tegs__list
     - course_bunch_tags.each do |bunch_tag|
       - tag = bunch_tag.tag
