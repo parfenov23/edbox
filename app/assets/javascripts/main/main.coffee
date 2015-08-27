@@ -181,6 +181,7 @@ $(document).ready ->
     parenBlock = $(this).closest('.hidden-calendar-wrp')
     parenBlock.find('.hidden-list').hide()
     parenBlock.find('.' + showId + ' ').show()
+    installPositionBlock(parenBlock.find('.hidden-calendar'))
 
   $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
     parenBlock = $(@).closest('.hidden-calendar-wrp')

@@ -95,8 +95,8 @@ var goToProgramAttachment = function(){
     }
 }
 
-var includeDatePicker = function () {
-    $('.datapicker__trigger, .js__set-date').datepicker({
+var includeDatePicker = function (block) {
+    block.datepicker({
         prevText       : '&#x3c;Пред',
         nextText       : 'След&#x3e;',
         currentText    : 'Сегодня',
@@ -176,7 +176,7 @@ var optionDatePicker = function () {
     //setTimeout(function(){
     var bl_dt = $('.datapicker__trigger');
     btn.datepicker("destroy");
-    includeDatePicker();
+    includeDatePicker($('.datapicker__trigger, .js__set-date'));
     if (btn.data('min-date')){
         btn.datepicker("option", "minDate", new Date(btn.data('min-date')));
     } else {
@@ -188,16 +188,16 @@ var optionDatePicker = function () {
         btn.datepicker("option", "maxDate", null);
     }
     btn.datepicker('show');
-    var dp = $("#ui-datepicker-div");
-    var dp_top = dp.position().top;
-    var px_block = view_px_block(dp);
-    var style = dp.attr('style');
-    //style += "display: block !important; opacity: 1;"
-    dp.attr('style', style);
-    if (px_block < dp.outerHeight()){
-        dp.css('top', (dp_top - ( dp.outerHeight() - px_block ) + 30))
-    }
+    installPositionBlock($("#ui-datepicker-div"))
     //}, 3000)
+}
+
+var installPositionBlock = function(block){
+    var dp_top = block.offset().top;
+    var px_block = view_px_block(block);
+    if (px_block < block.outerHeight()){
+        block.css('top', (dp_top - ( block.outerHeight() - px_block ) + 30))
+    }
 }
 
 function parseDate(input) {
@@ -208,6 +208,7 @@ function parseDate(input) {
 
 $(document).ready(function () {
     goToProgramAttachment();
+    includeDatePicker($('.datapicker__trigger.incDocumentReady'));
     $(document).on('click', '.datapicker__trigger', optionDatePicker);
     jQuery.each(jQuery('textarea[data-autoresize]'), function () {
         var offset = this.offsetHeight - this.clientHeight;

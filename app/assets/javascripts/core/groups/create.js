@@ -73,7 +73,7 @@ var openPopupEditGroup = function () {
 
 var groupNameValidate = function () {
     var input = $(this);
-    var max_length = 300;
+    var max_length = 250;
     if (input.count_text_input() > max_length){
         input.closest(".group").addClass("error");
         input.val(input.val().substr(0, max_length));
