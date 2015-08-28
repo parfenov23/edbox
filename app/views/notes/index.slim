@@ -1,0 +1,10 @@
+= render "home/header/header", {namePage: "other", titlePage: 'Заметки'}
+
+#js-notes-courses.courses-aside.note__course
+
+.inner-content
+  #notes.notes__content
+    - @notes.each do |note|
+      = render "notes/item", {note: note}
+    
+            

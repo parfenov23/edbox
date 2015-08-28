@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :test_results, dependent: :destroy
   has_many :account_type_relations, :as => :modelable, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
+  has_many :notes, :dependent => :destroy
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }

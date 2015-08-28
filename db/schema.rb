@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825105924) do
+ActiveRecord::Schema.define(version: 20150827094107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150825105924) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.text     "description"
     t.boolean  "archive",             default: false
+    t.text     "description"
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
@@ -283,6 +283,14 @@ ActiveRecord::Schema.define(version: 20150825105924) do
     t.integer  "section_id"
     t.datetime "date_complete"
     t.integer  "ligament_course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "attachment_id"
+    t.text     "text",          default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
