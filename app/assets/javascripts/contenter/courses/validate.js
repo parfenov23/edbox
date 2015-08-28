@@ -1,11 +1,11 @@
-var installErrorBlock = function(arr_errors, block, valid){
+var installErrorBlock = function (arr_errors, block, valid) {
     if (arr_errors.length){
         block.addClass("error");
         block.find(".helpError .js_tooltip").html(arr_errors.join("<br/>"))
-    }else{
+    } else {
         block.removeClass("error");
     }
-    if(valid != false){
+    if (valid != false){
         validateAttachment();
     }
 };
@@ -18,7 +18,7 @@ var validateTestQuestion = function () {
         var title_length = question.find(".js_changeQuestionInput").count_text_input();
         var answers = question.find(".questionItem");
 
-        if (!title_length){
+        if (! title_length){
             arr_errors[arr_errors.length] = "Введите заголовок вопроса";
         }
 
@@ -34,15 +34,15 @@ var validateTestQuestion = function () {
     //validateAttachment();
 };
 
-var validateTitleAttachment = function(){
+var validateTitleAttachment = function () {
     var blocks = $(".formGroupAttachmentTitle.includeValidateForm");
-    $.each(blocks, function(n, elem){
+    $.each(blocks, function (n, elem) {
         var block = $(elem);
         var arr_errors = [];
         var inputs = block.find(".attachmentInput");
-        $.each(inputs, function(n, elem){
+        $.each(inputs, function (n, elem) {
             var input = $(elem);
-            if (!input.count_text_input()){
+            if (! input.count_text_input()){
                 if (input.closest(".form_group").data('type') == 'title'){
                     arr_errors[arr_errors.length] = "Введите заголовок материала";
                 }
@@ -56,15 +56,15 @@ var validateTitleAttachment = function(){
     });
 };
 
-var validateAttachment = function(){
+var validateAttachment = function () {
     //var error_blocks = $(".includeValidateForm.error");
     var parent_validBlock = $(".parentValidAttachment");
-    $.each(parent_validBlock, function(n, elem){
+    $.each(parent_validBlock, function (n, elem) {
         var block = $(elem);
         var arr_errors = [];
         var error_blocks = block.find(".includeValidateForm.error");
         if (error_blocks.length){
-            $.each(error_blocks, function(n, elem_err){
+            $.each(error_blocks, function (n, elem_err) {
                 var block_err = $(elem_err);
                 if (block_err.data('validate') == "test"){
                     arr_errors[arr_errors.length] = "Проверьте тест"
@@ -76,20 +76,22 @@ var validateAttachment = function(){
         }
         installErrorBlock(arr_errors, block.find(".info_attachment"), false);
     });
-    if(!$(".info_attachment.error").length){
-        $(".contenter_courses_programm").removeClass("error");
-    }else{
-        $(".contenter_courses_programm").addClass("error");
+    if ($("#contenterCourseProgram").length){
+        if (! $(".info_attachment.error").length){
+            $(".contenter_courses_programm").removeClass("error");
+        } else {
+            $(".contenter_courses_programm").addClass("error");
+        }
     }
 };
 
-var allValidateForms = function(){
+var allValidateForms = function () {
     validateTestQuestion();
     validateTitleAttachment();
     validateAttachment();
 };
 
-pageLoad(function(){
+pageLoad(function () {
     allValidateForms();
-    $(document).on('click','#contenterCourseProgram', allValidateForms);
+    $(document).on('click', '#contenterCourseProgram', allValidateForms);
 });
