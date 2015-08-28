@@ -1,0 +1,16 @@
+- course = (@note.attachment.attachmentable.course rescue nil)
+- if course.present?
+  .close-filter.icon onclick="window.location.href = '/course_description?id=#{course.id}'" Курс «#{course.title}»
+.action__block
+  /i.icon.edit
+  i.icon.delete.js_noteDestroy data-note_id = @note.id
+.info
+  span
+    = ltime(@note.created_at, '', 'long')
+  span
+    = @note.attachment.title
+textarea.text__content data-autoresize=""
+  = @note.text
+
+.btns__block
+  .btn.btn-flat СОХРАНИТЬ
