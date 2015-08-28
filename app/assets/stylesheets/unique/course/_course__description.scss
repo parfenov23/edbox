@@ -29,7 +29,7 @@
     width      : 936px;
     padding    : 32px 96px 48px;
     > .title {
-      font-size    : 34px;
+      font-size    : 24px;
       color        : $black_87;
       line-height  : 40px;
       text-align   : center;
@@ -93,9 +93,20 @@
       line-height: 32px;
       text-align : center;
       margin-bottom: 45px;
+      position     : relative;
       .back {
-
-      }
+        position: absolute;
+        top     : -1px;
+        left    : -1px;
+        cursor  : pointer;
+        i {
+          color    : $black_54;
+          font-size: 24px;
+          &::before {
+            content: "\E893";
+          }
+        }
+      }  
     }
     .form__holder {
       display        : flex;
