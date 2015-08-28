@@ -9,7 +9,6 @@
   - all_courses = current_user.bunch_courses.uniq_by_course_id.overdue
 - when "assigned"
   - all_courses = current_user.bunch_courses.uniq_by_course_id
-
 - if all_courses.present?
   .inner-content
     .content-courses.courses-list#courses

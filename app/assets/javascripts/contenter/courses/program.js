@@ -9,9 +9,9 @@ var createCourseContenterProgram = function (action) {
         $("#contenterCourseProgram .js_createSectionToSection").data("course_id", data.id);
         history.pushState({}, '', "/contenter/courses/" + data.id + "/program");
         var header = $("#page__header .page__children");
-        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/'+ data.id +'/edit');
-        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/'+ data.id +'/program');
-        header.find(".contenter_courses_public").attr('href', '/contenter/courses/'+ data.id +'/publication');
+        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
+        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
+        header.find(".contenter_courses_public").attr('href', '/contenter/courses/' + data.id + '/publication');
         action()
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -283,11 +283,12 @@ var changeQuestionInput = function () {
         show_error('Произошла ошибка', 3000);
     });
 };
-
+var setTimeoutChangeAnswer;
 var changeAnswerInput = function () {
     var btn = $(this);
-    var form = btn.closest("form");
-    setTimeout(function () {
+    clearTimeout(setTimeoutChangeAnswer);
+    setTimeoutChangeAnswer = setTimeout(function () {
+        var form = btn.closest("form");
         var checked_input = btn.closest(".questionItem").find(".auth_agree input.checkbox");
         var checked = false;
         if (checked_input.attr("checked") == "checked"){
@@ -301,7 +302,8 @@ var changeAnswerInput = function () {
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
-    }, 100);
+    }, 300);
+
 
 };
 
@@ -322,7 +324,9 @@ var createAnswerToQuestion = function (parentBlock) {
         data: {answer: {question_id: parentBlock.closest(".currentQuestionId").data("id")}, type: "html"}
     }).success(function (data) {
         parentBlock.closest(".questions").append($(data));
-        SetCaretAtEnd(parentBlock.closest(".questions").find(".questionItem .questionInput:last")[0]);
+        var input = parentBlock.closest(".questions").find(".questionItem .questionInput:last");
+        SetCaretAtEnd(input[0]);
+        input.focus();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -452,6 +456,8 @@ $(document).ready(function () {
         });
 
     });
+
+    $(document).on('keyup paste input propertychange', '#contenterCourseProgram .js_changeAnswerInput', changeAnswerInput);
     $(document).on("keydown", "#contenterCourseProgram .js_getCloneQuestion", function (evt) {
         var keycode = (evt.keyCode?evt.keyCode:evt.which);
         if (keycode == '13'){

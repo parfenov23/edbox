@@ -18,8 +18,8 @@
       padding-right: 80px;
       padding-left : 26px;
       @include eclipses;
+      cursor: pointer;
       i.icon {
-        cursor: pointer;
       }
       >i.icon {
         position : absolute;

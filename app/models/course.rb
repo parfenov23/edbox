@@ -9,9 +9,7 @@ class Course < ActiveRecord::Base
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
   belongs_to :user
-  belongs_to :account_type
   has_one :test, :as => :testable, :dependent => :destroy
-  has_one :account_type_relation, :as => :modelable, :dependent => :destroy
 
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
