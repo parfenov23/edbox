@@ -22,22 +22,29 @@
     transition         : all 300ms;
     right              : 0;
   }
+  &.is__scrolled {
+    .close-filter {
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+  }
   .close-filter {
+    width: 400px;
     margin-left   : 5px;
-    padding-left  : 45px;
+    padding-left  : 77px;
     position      : relative;
     font-size     : 24px;
     color         : $black_54;
     line-height   : 32px;
-    margin-bottom : 42px;
+    padding-bottom : 16px;
     padding-top   : 16px;
     cursor        : pointer;
+    margin-left: -32px;
     &::before {
       position  : absolute;
       display   : block;
       content   : '\E702';
       top       : 16px;
-      left      : 0;
+      left      : 26px;
       font-size : 26px;
     }
   }
@@ -502,10 +509,13 @@
 .note__course {
   padding-right: 32px;
   padding-bottom: 40px;
+  .note-holder {
+    height: calc(100%);
+  }
   .action__block {
     position: absolute;
     top: 22px;
-    right: 32px;
+    right: 19px;
     i {
       color       : $black_26;
       font-size   : 22px;
@@ -516,9 +526,37 @@
       }
     }
   }
+  &.is__scrolled {
+    &.is__edit {
+      .note-holder {
+        height: calc(100% - 75px);
+      }
+    }
+    .close-filter {
+      @include eclipses;
+      -webkit-transition : all 3000ms;
+      -moz-transition    : all 3000ms;
+      -o-transition      : all 3000ms;
+      transition         : all 3000ms;
+    }
+  }
+  &.is__edit {
+    .note-holder {
+      height: calc(100% - 114px);
+    }
+    .text__content {
+      cursor: text;
+    }
+    .btns__block {
+      display: block;
+    }
+  }
   .close-filter {
     padding-right: 64px;
-    @include eclipses;
+    -webkit-transition : all 3000ms;
+    -moz-transition    : all 3000ms;
+    -o-transition      : all 3000ms;
+    transition         : all 3000ms;
   }
   .info {
     margin-bottom: 8px;
@@ -536,11 +574,13 @@
     border: none;
     background: none;
     resize: none;
+    cursor: default;
     &:focus{
       outline: none;
     }
   }
   .btns__block {
+    display: none;
     @include clearfix;
     position: absolute;
     bottom: 8px;
