@@ -258,6 +258,7 @@ var createAttachmentTest = function () {
 };
 
 var createQuestionToTest = function () {
+    validateTestQuestion();
     var btn = $(this);
     $.ajax({
         type: 'POST',
@@ -288,6 +289,7 @@ var changeAnswerInput = function () {
     var btn = $(this);
     clearTimeout(setTimeoutChangeAnswer);
     setTimeoutChangeAnswer = setTimeout(function () {
+        validateTestQuestion();
         var form = btn.closest("form");
         var checked_input = btn.closest(".questionItem").find(".auth_agree input.checkbox");
         var checked = false;
@@ -425,6 +427,17 @@ var removeTestToCourse = function () {
     });
 };
 
+var attachmentNameValidate = function () {
+    var input = $(this);
+    var max_length = input.data('max_length');
+    input.closest(".form_group").find(".validateMaxCount .current_count").text(input.count_text_input())
+    if (input.count_text_input() > max_length && input.data('valid')){
+        input.closest(".form_group").addClass("error");
+        input.val(input.val().substr(0, max_length));
+    } else {
+        input.closest(".form_group").removeClass("error");
+    }
+};
 
 $(document).ready(function () {
     loadBindOnChangeInput();
@@ -456,6 +469,8 @@ $(document).ready(function () {
         });
 
     });
+
+    $(document).on('keyup paste input propertychange click', '.form_group .js_onChangeEditAttachment', attachmentNameValidate);
 
     $(document).on('keyup paste input propertychange', '#contenterCourseProgram .js_changeAnswerInput', changeAnswerInput);
     $(document).on("keydown", "#contenterCourseProgram .js_getCloneQuestion", function (evt) {

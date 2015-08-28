@@ -337,5 +337,4 @@ $(document).ready(function () {
 
     headerUserToggle();
     changeAvatar();
-
 });

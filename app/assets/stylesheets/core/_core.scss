@@ -15,6 +15,31 @@
   }
 }
 
+@mixin blockHelpError {
+  .helpError {
+    i.icon.help {
+      display   : none;
+      position  : absolute;
+      left      : -35px;
+      top       : 2px;
+      font-size : 18px;
+      color     : red;
+    }
+  }
+  &.error {
+    .helpError {
+      .com-top-tooltip {
+        bottom     : auto;
+        left       : -10px;
+        text-align : left;
+      }
+      i.icon.help {
+        display : block;
+      }
+    }
+  }
+}
+
 #js-course-leading {
   width       : 400px !important;
   z-index     : 999;
@@ -83,7 +108,8 @@
       .carusel-wrp {
         .course-prev-list {
           .corses-prev {
-            margin-right : 10px;
+            margin-right  : 10px;
+            margin-bottom : 10px;
             &:nth-child(3) {
               margin-right : 10px;
             }
@@ -259,6 +285,28 @@
                 margin-bottom : 0px;
               }
             }
+            .info_attachment {
+              .helpError {
+                display     : none;
+                position    : absolute;
+                left        : 100%;
+                top         : 36px;
+                margin-left : -36px;
+                font-size   : 24px;
+                color       : red;
+                .com-top-tooltip {
+                  left        : 100%;
+                  bottom      : auto;
+                  text-align  : left;
+                  margin-left : 8px;
+                }
+              }
+              &.error {
+                .helpError {
+                  display : block;
+                }
+              }
+            }
             .edit_attachment {
               display : none;
             }
@@ -278,6 +326,10 @@
                   .remove {
                     top   : 18px;
                     right : 35px;
+                  }
+                  .formGroupAttachmentTitle {
+                    position : relative;
+                    @include blockHelpError;
                   }
                   .form_group {
                     &.fixedHeight {
@@ -318,6 +370,15 @@
                       font-size  : 12px;
                       color      : rgba(0, 0, 0, 0.26);
                     }
+                    &.error {
+                      hr {
+                        background-color : red;
+                      }
+                      .validateMaxCount {
+                        color : red;
+                      }
+                    }
+
                   }
                   .upload_attachments {
                     height : 120px;
@@ -421,6 +482,8 @@
         .testHolder {
           .testIssue {
             padding-bottom : 24px;
+            position       : relative;
+            @include blockHelpError;
             .input_title {
               position       : relative;
               @include btnRemove;

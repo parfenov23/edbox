@@ -1,26 +1,32 @@
 .edit_attachment
   form.form_edit data-id=attachment.id enctype="multipart/form-data"
     .remove.js_removeAttachmentToSection data-id=attachment.id
-    .form_group
-      .titleEdit Название материала
-      .input_title
-        span.numberSection 1.0
-        input.attachmentInput.js_onChangeEditAttachment placeholder="Введите название материала" value=attachment.title name="attachment[title]"
-      hr
-      .validateMaxCount
-        span.current_count 50
-        span.max_count
-          |/100
-    .form_group.fixedHeight
-      .titleEdit Краткое описание
-      .input_title
-        textarea.attachmentInput.js_onChangeEditAttachment data-autoresize="" placeholder="Введите описание материала"  name="attachment[description]"
-          = attachment.description
-      hr
-      .validateMaxCount
-        span.current_count 500
-        span.max_count
-          |/500
+    .formGroupAttachmentTitle.includeValidateForm data-validate="attachment_title"
+      .helpError.js_for-tooltip
+        .mdl-shadow-2dp.com-top-tooltip.js_tooltip
+        i.icon.help
+      .form_group data-type="title"
+        .titleEdit Название материала
+        .input_title
+          span.numberSection 1.0
+          - hash_data = {'data-valid' => 'true', 'data-max_length' => 100}
+          input.attachmentInput.js_onChangeEditAttachment placeholder="Введите название материала" value=attachment.title name="attachment[title]" *hash_data
+        hr
+        .validateMaxCount
+          span.current_count = attachment.title.to_s.length
+          span.max_count
+            |/100
+      .form_group.fixedHeight data-type="description"
+        .titleEdit Краткое описание
+        .input_title
+          - hash_data = {'data-valid' => 'true', 'data-max_length' => 500}
+          textarea.attachmentInput.js_onChangeEditAttachment data-autoresize="" placeholder="Введите описание материала" name="attachment[description]" *hash_data
+            = attachment.description
+        hr
+        .validateMaxCountr
+          span.current_count = attachment.description.to_s.length
+          span.max_count
+            |/500
     .upload_attachments style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" );
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
       - unless attachment.file.file.present? || ["description", "test"].include?(attachment.file_type)
