@@ -126,6 +126,18 @@
     }
 }
 
+.btn.btn-flat:hover:not(.btn-ink),
+.btn-default.btn-flat:hover:not(.btn-ink) {
+  background-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0,187,211,0.08);
+}
+
+
+.btn:hover:not(.btn-link):not(.btn-flat):not(.btn-fab) {
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
+
 .btn-group, .btn-group-vertical {
     position: relative;
     border-radius: 4px;

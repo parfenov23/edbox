@@ -8,8 +8,9 @@
     .col__wrp
       .col
         .title Персональные данные
-        .com__input-item.item.empty
+        .com__input-item.item.empty.error
           input.form-control.floating-label name="name" type="text" placeholder="Имя"
+          .error__msg ой все
           hr
         .com__input-item.item.empty
           input.form-control.floating-label name="sname" type="text" placeholder="Фамилия"
@@ -38,21 +39,21 @@
         .title Тип аккаунта
         .type__acc-item
           .radio
-            input#r-1 type="radio" name="type_acc"
+            input#r-1 type="radio" name="type_acc" checked=""
             label for="r-1"
               i
               .text Персональный аккаунт
           .description Получите доступ к библиотеке курсов Edbox и начните самостоятельное регулярное обучение самым актуальным знаниям в области маркетинга и продаж.
         .type__acc-item
-          .radio
+          .radio.corp__acc
             input#r-2 type="radio" name="type_acc"
             label for="r-2"
               i
               .text Корпоративный аккаунт
           .description Зарегистрируйте корпоративный аккаунт и пригласите ваших сотрудников в Edbox. Назначайте курсы, просматривайте аналитику обучения и развивайте компетенции всех сотрудников компании. 
-        .company.com__input-item.item.empty
-          input.form-control.floating-label name="pass2" type="password" placeholder="Название компании"
+        .company.js__company-name.com__input-item.item.empty
+          input.form-control.floating-label type="text" placeholder=""
           hr
     .action__block
       .btn.btn-flat У МЕНЯ ЕСТЬ АККАУНТ
-      .btn.btn-flat.is__blue СОЗДАТЬ АККАУНТ
+      .btn.is__blue СОЗДАТЬ АККАУНТ
