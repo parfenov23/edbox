@@ -74,9 +74,19 @@ toggleNotesAsideHeight = ->
       $(@).addClass('for__less').closest('.item').removeClass('is__shot')
 
 
+authCorpAcc =->
+  $('.type__acc-item input').on 'click', ->
+    if $('.type__acc-item .corp__acc input').is(':checked')
+      $('.auth__wrp .js__company-name').addClass('is__active')
+      $('.auth__wrp .js__company-name').removeClass('is__NOactive')
+      $('.auth__wrp .js__company-name input').attr("placeholder", "Название компании").focus()
+    else
+      $('.auth__wrp .js__company-name').removeClass('is__active')
+      $('.auth__wrp .js__company-name').addClass('is__Noactive')
+      $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
 $(document).ready ->
-  
+
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
   figcaptionTitleEclipses('.favorite-item .description .title', 56)
   figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
@@ -87,7 +97,18 @@ $(document).ready ->
   adaptiveTitle()
   showHideToggleBtn()
   toggleNotesAsideHeight()
+  authCorpAcc()
 
+  $('.courses-aside .js__baron').on 'scroll', ->
+    scrollHeight = $(@).scrollTop()
+    parentBlock = $(@).closest('.courses-aside')
+    if scrollHeight > 10
+      parentBlock.addClass('is__scrolled')
+    else
+      parentBlock.removeClass('is__scrolled')
+
+  $('.note-holder .action__block .edit').on 'click', ->
+    $(@).closest('.courses-aside').addClass('is__edit')
 
   $('.help__wrp .item > i.icon').on 'click', ->
     $(@).closest('.item').find('.hidden__block').addClass('is__active')

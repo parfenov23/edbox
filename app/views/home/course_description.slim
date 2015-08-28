@@ -92,7 +92,7 @@
             .info
               .title = leading.full_name
               .description = leading.about_me
-    - if in_study
+    - if in_study.present?
       .more.is__closed
         .btn.btn-flat.for__closed Показать описание
         .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ
@@ -156,7 +156,7 @@
           - final_test = @course.test
           - if final_test.present?
             - hash_class ={}
-            - if (bunch_course.complete rescue false)
+            - if (bunch_course.complete rescue false) && (current_user.view_course?(@course) rescue false)
               - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
               - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
             .programm__block.finalTest *hash_class
