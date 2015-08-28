@@ -74,6 +74,16 @@ toggleNotesAsideHeight = ->
       $(@).addClass('for__less').closest('.item').removeClass('is__shot')
 
 
+authCorpAcc =->
+  $('.type__acc-item input').on 'click', ->
+    if $('.type__acc-item .corp__acc input').is(':checked')
+      $('.auth__wrp .js__company-name').addClass('is__active')
+      $('.auth__wrp .js__company-name').removeClass('is__NOactive')
+      $('.auth__wrp .js__company-name input').attr("placeholder", "Название компании").focus()
+    else
+      $('.auth__wrp .js__company-name').removeClass('is__active')
+      $('.auth__wrp .js__company-name').addClass('is__Noactive')
+      $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
 $(document).ready ->
 
@@ -87,7 +97,7 @@ $(document).ready ->
   adaptiveTitle()
   showHideToggleBtn()
   toggleNotesAsideHeight()
-
+  authCorpAcc()
 
   $('.courses-aside .js__baron').on 'scroll', ->
     scrollHeight = $(@).scrollTop()
