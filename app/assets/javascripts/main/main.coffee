@@ -76,7 +76,7 @@ toggleNotesAsideHeight = ->
 
 
 $(document).ready ->
-  
+
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
   figcaptionTitleEclipses('.favorite-item .description .title', 56)
   figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
@@ -88,6 +88,17 @@ $(document).ready ->
   showHideToggleBtn()
   toggleNotesAsideHeight()
 
+
+  $('.courses-aside .js__baron').on 'scroll', ->
+    scrollHeight = $(@).scrollTop()
+    parentBlock = $(@).closest('.courses-aside')
+    if scrollHeight > 10
+      parentBlock.addClass('is__scrolled')
+    else
+      parentBlock.removeClass('is__scrolled')
+
+  $('.note-holder .action__block .edit').on 'click', ->
+    $(@).closest('.courses-aside').addClass('is__edit')
 
   $('.help__wrp .item > i.icon').on 'click', ->
     $(@).closest('.item').find('.hidden__block').addClass('is__active')

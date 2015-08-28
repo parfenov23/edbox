@@ -259,7 +259,7 @@ $(document).ready(function () {
             console.log(bodyHeight);
         }
         else {
-          
+
         }
     }, 100);
 
