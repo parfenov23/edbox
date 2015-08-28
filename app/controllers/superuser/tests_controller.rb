@@ -1,6 +1,5 @@
 module Superuser
-  class TestsController < ActionController::Base
-    layout "superuser"
+  class TestsController < SuperuserController
 
     def index
       @tests = Test.where(section_id: params[:section_id])

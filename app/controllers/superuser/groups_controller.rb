@@ -1,7 +1,5 @@
 module Superuser
-  class GroupsController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class GroupsController < SuperuserController
 
     def index
       @group = Group.all

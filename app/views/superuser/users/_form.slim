@@ -29,6 +29,14 @@ form.form-horizontal action="#{action_url}" method="post"
       | Ведущий?:
     - check = params[:leading].nil? ? @user.leading : (params[:leading].to_s == "true" ? true : false)
     = check_box("user", "leading", {checked: check})
+  .form-group
+    label
+      | Оплачено?:
+    = check_box("user", "paid", {checked: @user.paid})
+  .form-group
+    label
+      | Superuser?:
+    = check_box("user", "superuser", {checked: @user.superuser})
   - unless @user.leading || params[:leading].to_s == "true"
     .form-group
       label
@@ -44,7 +52,7 @@ form.form-horizontal action="#{action_url}" method="post"
       label
         | Корпоративный аккаунт?:
       - check = !@user.id.nil? ? @user.corporate : false
-      = check_box("user", "corporate", {checked: check})
+      = check_box("user", "corporate", {checked: check})    .form-group
     .form-group
       label
         | Компания:
@@ -52,13 +60,6 @@ form.form-horizontal action="#{action_url}" method="post"
       - Company.all.map { |company| arr_companies << [company.first_name, company.id] }
       - company_id = params[:company_id].present? ? params[:company_id] : @user.company_id
       = select_tag 'user[company_id]', options_for_select(arr_companies.collect { |ac| [ac.first, ac.last] }, company_id), {:class => 'form-control'}
-  - unless @user.corporate?
-    .form-group
-      label
-        | Тип индивидуального аккаунта:
-      - arr_account_type = [["не назначен", nil]]
-      - AccountType.all.map { |account_type| arr_account_type << [account_type.title, account_type.id] }
-      = select_tag 'account_type', options_for_select(arr_account_type.collect { |ac| [ac.first, ac.last] }, (@user.get_real_account_type.id rescue nil)), {:class => 'form-control'}
 
   input type="hidden" name="_method" value="#{method}"
   input type="hidden" name="company_id" value="#{params[:company_id]}"

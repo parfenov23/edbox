@@ -1,7 +1,5 @@
 module Superuser
-  class TagsController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class TagsController < SuperuserController
 
     def index
       @tags = Tag.all
