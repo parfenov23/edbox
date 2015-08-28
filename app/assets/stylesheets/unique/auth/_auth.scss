@@ -40,6 +40,8 @@
       .forget__pass {
         margin-bottom: 27px;
         margin-top   : -22px;
+        position: relative;
+        z-index: 1;
         a {
           font-size  : 15px;
           color      : #00bcd4;
@@ -55,7 +57,22 @@
         .item {
           margin-bottom: 86px;
         }
+        .description {
+          font-size: 15px;
+          line-height: 24px;
+          margin-bottom: 162px;
+        }
+
+        &.succ {
+          .title {
+            margin-bottom: 10px;
+          }
+          .action__block {
+            margin-right: -8px;
+          }
+        }
       }
+
     }
     > .title {
       font-size    : 24px;
