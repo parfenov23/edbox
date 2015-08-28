@@ -92,7 +92,7 @@
             .info
               .title = leading.full_name
               .description = leading.about_me
-    - if in_study
+    - if in_study.present?
       .more.is__closed
         .btn.btn-flat.for__closed Показать описание
         .btn.btn-flat.for__open СКРЫТЬ ОПИСАНИЕ
