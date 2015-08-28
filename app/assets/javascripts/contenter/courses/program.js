@@ -291,6 +291,7 @@ var changeAnswerInput = function () {
     setTimeoutChangeAnswer = setTimeout(function () {
         validateTestQuestion();
         var form = btn.closest("form");
+        var input = btn.closest(".questionItem").find(".questionInput");
         var checked_input = btn.closest(".questionItem").find(".auth_agree input.checkbox");
         var checked = false;
         if (checked_input.attr("checked") == "checked"){
@@ -299,7 +300,7 @@ var changeAnswerInput = function () {
         $.ajax({
             type: 'PUT',
             url : '/api/v1/answers/' + btn.data("id"),
-            data: {answer: {text: btn.val(), right: checked}}
+            data: {answer: {text: input.val(), right: checked}}
         }).success(function (data) {
         }).error(function () {
             show_error('Произошла ошибка', 3000);
