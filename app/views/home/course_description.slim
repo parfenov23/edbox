@@ -28,7 +28,7 @@
     - date_complete = bunch_course.date_complete
     - all_sections = bunch_course.bunch_sections
     - complete_proc = ((100.0 / (all_sections.count.to_f / all_sections.all_complete.count.to_f)).round) rescue 0
-    - if !@course.paid || (@course.paid && current_user.get_account_paid)
+    - if !@course.paid || (@course.paid && current_user.get_account_type)
       .progress__block
         .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
           .left-col Прогресс прохождения курса
@@ -111,7 +111,7 @@
           .programm__block
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
-              - if !@course.paid || (@course.paid && current_user.get_account_paid)
+              - if !@course.paid || (@course.paid && current_user.get_account_type)
                 - if bunch_section.present?
                   .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
                   - if bunch_course.model_type == "user"
