@@ -1,6 +1,5 @@
 module Superuser
-  class HomeController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class HomeController < SuperuserController
+
   end
 end

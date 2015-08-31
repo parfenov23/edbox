@@ -16,13 +16,13 @@ function warning(text, actionText){
     popup.show();
 }
 
-var closePopupConfirm = function (event) {
-    var evt = evt || event;
-    var target = evt.target || evt.srcElement;
-    if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("js_closePopupConfirmNo") > 0 || $(target).hasClass("pop_up_confirm") > 0){
-        defaultConfirm();
-    }
-};
+//var closePopupConfirm = function (event) {
+//    var evt = evt || event;
+//    var target = evt.target || evt.srcElement;
+//    if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("js_closePopupConfirmNo") > 0 || $(target).hasClass("pop_up_confirm") > 0){
+//        defaultConfirm();
+//    }
+//};
 
 var defaultConfirm = function(){
     var popup = $(".pop_up_confirm");
@@ -31,7 +31,7 @@ var defaultConfirm = function(){
 };
 
 $(document).ready(function () {
-    $(document).on('click', '.pop_up_confirm, .pop_up_confirm .action-btn .js_closePopupConfirmNo', closePopupConfirm);
+    $(document).on('click', '.pop_up_confirm, .pop_up_confirm .action-btn .js_closePopupConfirmNo', defaultConfirm);
     $(document).on('click', '.pop_up_confirm .action-btn .js_actionYesStart', function(){
         btn_yes_action();
         defaultConfirm();

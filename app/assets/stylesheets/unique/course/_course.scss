@@ -22,8 +22,8 @@
           opacity : 0.26;
         }
         &::before {
-          font-size : 20px;
-          color     : $black_87;
+          font-size : 24px;
+          color     : $black_54;
         }
         &::after {
           font-size      : 13px;
@@ -101,6 +101,8 @@
     }
     p {
       margin-bottom : 24px;
+      font-size: 15px;
+      line-height: 24px;
     }
     .toggle__screen {
       position : absolute;
@@ -125,7 +127,7 @@
   .file__content {
     @include middle-block(240px);
     height           : 192px;
-    background-color : #D8D8D8;
+    background-color : #EFEFEF;
     padding-top      : 32px;
     .file__wrp {
       @include middle-block(177px);
@@ -153,6 +155,7 @@
           color        : rgba(0, 0, 0, 0.54);
           line-height  : 20px;
           &::before {
+            font-size: 16px;
             position    : absolute;
             top         : 0;
             left        : 0;

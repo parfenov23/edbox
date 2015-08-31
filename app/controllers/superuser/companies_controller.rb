@@ -1,7 +1,5 @@
 module Superuser
-  class CompaniesController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class CompaniesController < SuperuserController
 
     def index
       @companies = Company.all

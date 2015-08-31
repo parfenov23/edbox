@@ -5,7 +5,7 @@
     input.section_title.js_onChangeEditSection placeholder="Введите название раздела" value=section.title name="section[title]"
     .remove.js_removeSectionToCourse data-id=section.id
   .descriptionSection
-    .allAttachmentsSection
+    .allAttachmentsSection.connectedSortable
       - section.attachments.each do |attachment|
         = render "contenter/courses/program/attachment", {attachment: attachment, course: course, section: section, class_state: "closed"}
 

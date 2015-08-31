@@ -1,7 +1,5 @@
 module Superuser
-  class QuestionsController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class QuestionsController < SuperuserController
 
     def index
       @questions = Question.where(test_id: params[:test_id])

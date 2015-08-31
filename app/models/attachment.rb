@@ -41,6 +41,24 @@ class Attachment < ActiveRecord::Base
     attachment
   end
 
+  def validate
+    valid_title = title.present? && description.present?
+    valid_file = (!["test", "description"].include?(file_type)) ? file.present? : valid_other
+    valid_title && valid_file
+  end
+
+  def valid_other
+    case file_type
+      when "test"
+        test.present? ? test.validate : false
+      when "description"
+        # full_text.present?
+        true
+      else
+        true
+    end
+  end
+
   def class_type
     arr_types = ["text", "audio", "video", "test"]
     (arr_types.include? (file_type)) ? file_type : "text"

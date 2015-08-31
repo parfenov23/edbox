@@ -1,8 +1,6 @@
 require 'resize_image'
 module Superuser
-  class CoursesController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class CoursesController < SuperuserController
 
     def index
       @courses = Course.all
