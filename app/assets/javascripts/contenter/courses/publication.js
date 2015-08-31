@@ -36,10 +36,4 @@ var publicationCourse = function (){
 pageLoad(function(){
     $(document).on('click', '#contenterPublication .js_updateTypeCourse', updateTypeCourse);
     $(document).on('click', '#contenterPublication .js_publicationCourse', publicationCourse);
-    $(".connectedSortable").sortable({
-        connectWith: ".connectedSortable",
-        update: function( event, ui ) {
-            console.log(123);
-        }
-    }).disableSelection();
 });

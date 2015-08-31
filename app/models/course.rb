@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   has_many :bunch_courses, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
   has_many :bunch_tags, dependent: :destroy
+  has_many :bunch_categories, dependent: :destroy
   has_many :ligament_courses, dependent: :destroy
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
@@ -30,12 +31,10 @@ class Course < ActiveRecord::Base
   end
 
   def description_validate
-    true
+    title.present? && description.present? && bunch_categories.present?
   end
 
   def program_validate
-    p sections.map{|section| [((!section.attachments.map(&:validate).include?(false)) rescue false), section.attachments.map(&:id), section.id] }
-    p "============="
     (!sections.map{|section| (!section.attachments.map(&:validate).include?(false)) rescue false }.include?(false))
   end
 

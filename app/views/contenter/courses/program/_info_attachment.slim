@@ -11,7 +11,4 @@
       .remove.js_removeAttachmentToSection data-id=attachment.id
   - description = attachment.description
   .description = description.present? ? description : "Нет описания"
-  .helpError.js_for-tooltip
-    .mdl-shadow-2dp.com-top-tooltip.js_tooltip
-      |ssss
-    i.icon.help
+  = render "contenter/courses/help_error"

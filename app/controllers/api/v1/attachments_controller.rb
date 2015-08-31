@@ -58,6 +58,19 @@ module Api::V1
       render json: attachment.transfer_to_json
     end
 
+    def update_positions
+      ids_sections = params[:ids_sections]
+      n = -1
+      ids_sections.each do |id_section|
+        position = 0
+        params[:ids_attachments][(n+=1).to_s].each do |id_attachment|
+          attachment = Attachment.find(id_attachment)
+          attachment.update({position: (position+=1), attachmentable_type: "Section", attachmentable_id: id_section})
+        end
+      end
+      render json: {success: true}
+    end
+
     private
 
     def find_attachment

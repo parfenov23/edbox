@@ -76,12 +76,12 @@
   }
 }
 
-#js-course-tags {
+#js-course-tags, #js-course-categories {
   width       : 400px !important;
   z-index     : 999;
   padding-top : 0;
   .all__Tags {
-    .tag {
+    .tag, .category {
       display       : inline-block;
       margin-right  : 10px;
       padding       : 2px 10px 2px 10px;
@@ -141,6 +141,12 @@
     }
   }
   .oh__nihuyase-block {
+    @include blockHelpError;
+    .helpError {
+      i.icon.help {
+        top : 14px;
+      }
+    }
     .course__title {
       width            : 100%;
       background-color : rgba(255, 255, 255, 0);
@@ -162,6 +168,13 @@
       }
     }
     .itemDetailInfo {
+      position   : relative;
+      @include blockHelpError;
+      .helpError {
+        i.icon.help {
+          top : 28px;
+        }
+      }
       padding    : 24px 0px 24px 0px;
       border-top : 1px solid #E8E8E8;
       .title__Item {
@@ -171,9 +184,9 @@
       }
       .description__Item {
         @include btnRemove;
-        .allTagDescriptionCourse {
+        .allTagDescriptionCourse, .allCategoriesDescriptionCourse {
           display : inline-block;
-          .tag {
+          .tag, .category {
             position      : relative;
             display       : inline-block;
             margin-right  : 10px;
@@ -190,6 +203,10 @@
         .addTag {
           display : inline-block;
           width   : 118px;
+        }
+        .addCategory {
+          display : inline-block;
+          width   : 176px;
         }
         &.block__lead {
           cursor        : pointer;
@@ -286,24 +303,13 @@
               }
             }
             .info_attachment {
+              @include blockHelpError;
               .helpError {
-                display     : none;
-                position    : absolute;
-                left        : 100%;
-                top         : 36px;
-                margin-left : -36px;
-                font-size   : 24px;
-                color       : red;
-                .com-top-tooltip {
-                  left        : 100%;
-                  bottom      : auto;
-                  text-align  : left;
-                  margin-left : 8px;
-                }
-              }
-              &.error {
-                .helpError {
-                  display : block;
+                left     : 100%;
+                top      : 36px;
+                position : absolute;
+                i.icon.help {
+                  font-size : 24px;
                 }
               }
             }
@@ -381,7 +387,9 @@
 
                   }
                   .upload_attachments {
-                    height : 120px;
+                    height   : 120px;
+                    position : relative;
+                    @include blockHelpError;
                     .uploadFileInput {
                       width    : 0;
                       height   : 0;
@@ -416,7 +424,9 @@
                     }
                   }
                   .editFileUpload {
+                    position: relative;
                     margin-bottom : 48px;
+                    @include blockHelpError;
                     .itemFile {
                       display : none;
                       &.attachmentShow {
@@ -484,6 +494,9 @@
             padding-bottom : 24px;
             position       : relative;
             @include blockHelpError;
+            .helpError {
+              position : absolute;
+            }
             .input_title {
               position       : relative;
               @include btnRemove;
@@ -546,6 +559,18 @@
           .adaptive__title {
             .title {
               margin-bottom : 0;
+            }
+          }
+        }
+        .parentFinalTest {
+          position : relative;
+          @include blockHelpError;
+          .helpError {
+            position : absolute;
+            left     : 100%;
+            top      : 36px;
+            i {
+              font-size : 24px !important;
             }
           }
         }

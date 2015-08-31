@@ -1,14 +1,16 @@
 = render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
 - course = params[:id] == "new" ? Course.new : Course.find(params[:id])
 = render "contenter/courses/edit/right_bar/tags", {course: course}
+= render "contenter/courses/edit/right_bar/categories", {course: course}
 = render "contenter/courses/edit/right_bar/leadings", {course: course}
-.contenter
+.contenter#courseEditContenter
   .presentation__block
     img src = (course.get_image_path rescue "/uploads/course_default_image.png")
-  form.course__description-content.oh__nihuyase-block.js_courseContenter
+  form.course__description-content.oh__nihuyase-block.js_courseContenter.validateFormCourse
+    = render "contenter/courses/help_error"
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id
-    input.course__title.js_onChangeEditCourse placeholder="Введите название курса" name="course[title]" value=course.title
+    input.course__title.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название курса" name="course[title]" value=course.title
     .course__info
       .adaptive__title
         .left-col style="height: 56px;"
@@ -22,8 +24,20 @@
             i.duration.icon
       .detail__info
         .description
-          textarea.js_onChangeEditCourse placeholder="Введите описание курса" name="course[description]"
+          textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание курса" name="course[description]"
             = course.description
+      .itemDetailInfo.validateCourseCategories.validateFormCourse
+        = render "contenter/courses/help_error"
+        .title__Item Категории
+        .description__Item
+          .allCategoriesDescriptionCourse
+            - course.bunch_categories.each do |bunch_category|
+              - category = bunch_category.category
+              .category
+                = category.title
+                .remove.js_removeBunchCategoryFromCourse data-id=category.id
+          .addCategory.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ДОБАВИТЬ КАТЕГОРИЮ
       .itemDetailInfo
         .title__Item Теги
         .description__Item
