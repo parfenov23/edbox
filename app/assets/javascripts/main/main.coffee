@@ -85,6 +85,7 @@ authCorpAcc =->
       $('.auth__wrp .js__company-name').addClass('is__Noactive')
       $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -99,6 +100,11 @@ $(document).ready ->
   toggleNotesAsideHeight()
   authCorpAcc()
 
+
+
+
+
+
   $('.courses-aside .js__baron').on 'scroll', ->
     scrollHeight = $(@).scrollTop()
     parentBlock = $(@).closest('.courses-aside')
@@ -110,10 +116,10 @@ $(document).ready ->
   $('.note-holder .action__block .edit').on 'click', ->
     $(@).closest('.courses-aside').addClass('is__edit')
 
-  $('.help__wrp .item > i.icon').on 'click', ->
+  $('.help__wrp .item .wrp').on 'click', ->
     $(@).closest('.item').find('.hidden__block').addClass('is__active')
-  $('.help__wrp .item .hidden__block .title').on 'click', ->
-    $(@).closest('.item').find('.hidden__block').removeClass('is__active')
+  $('.help__wrp .item .hidden__block >.title').on 'click', ->
+    $(@).parent().removeClass('is__active')
 
   $('.js__tooltip').hover (->
     $(@).addClass('is__visible-tooltip')
