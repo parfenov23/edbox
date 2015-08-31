@@ -1,10 +1,15 @@
 .text__content_inner {
   @include middle-block(936px);
   @include white__block(1, 0);
-  padding: 0 48px 48px;
+  padding      : 0 48px 48px;
+  margin-bottom: 40px;
   .separator {
     margin-bottom: 47px;
     height       : 1px;
+  }
+  .video {
+    margin    : 0 0 32px;
+    text-align: center;
   }
   h1 {
     margin     : 32px 0 48px;
@@ -43,24 +48,27 @@
     li {
       margin-bottom: 10px;
       padding-left : 10px;
-      font-size: 15px;
-      color: $black_87;
-      line-height: 24px;
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
       ul,
       ol {
         margin-top   : 8px;
         margin-bottom: 17px;
-        margin-left: 7px;
+        margin-left  : 7px;
       }
     }
   }
   ul {
+
     // margin-left: -13px;
     // margin-top: -3px;
     > li {
+
       // font-size: 9px;
       list-style-type: disc;
-      margin-bottom: 9px;
+      margin-bottom  : 9px;
+
       // span {
       //   font-size: 15px;
       //   color: $black_87;
@@ -71,6 +79,90 @@
   ol {
     li {
 
+.text__content_inner {
+  @include middle-block(936px);
+  @include white__block(1, 0);
+  padding      : 0 48px 48px;
+  margin-bottom: 40px;
+  .separator {
+    margin-bottom: 47px;
+    height       : 1px;
+  }
+  .video {
+    margin    : 0 0 32px;
+    text-align: center;
+  }
+  h1 {
+    margin     : 32px 0 48px;
+    font-size  : 34px;
+    color      : $black_87;
+    line-height: 40px;
+    font-weight: 400;
+  }
+  h2 {
+    font-size  : 24px;
+    color      : #000;
+    line-height: 32px;
+    font-weight: 400;
+    margin     : 48px 0 32px;
+  }
+  p {
+    font-size  : 15px;
+    color      : $black_87;
+    line-height: 24px;
+    margin     : 0 0 24px;
+    a {
+      color: $primoryColor;
+    }
+  }
+  img {
+    width : 100%;
+    @include inline-block;
+    margin: 32px 0;
+  }
+  ul,
+  ol {
+    margin       : 0;
+    padding      : 0 0 0 31px;
+    margin-bottom: 24px;
+    margin-left: -8px;
+    li {
+      margin-bottom: 10px;
+      padding-left : 10px;
+      font-size    : 15px;
+      color        : $black_87;
+      line-height  : 24px;
+      ul,
+      ol {
+        margin-top   : 8px;
+        margin-bottom: 17px;
+        margin-left  : 7px;
+      }
+    }
+  }
+  ul {
+
+    // margin-left: -13px;
+    // margin-top: -3px;
+    > li {
+
+      // font-size: 9px;
+      list-style-type: disc;
+      margin-bottom  : 9px;
+
+      // span {
+      //   font-size: 15px;
+      //   color: $black_87;
+      //   line-height: 24px;
+      // }
+    }
+  }
+  ol {
+    li {
+
+    }
+  }
+}
     }
   }
 }
