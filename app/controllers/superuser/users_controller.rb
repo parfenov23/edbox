@@ -1,8 +1,5 @@
 module Superuser
-  class UsersController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
-
+  class UsersController < SuperuserController
     def index
       @users = User.all
     end
@@ -43,7 +40,6 @@ module Superuser
       permit_params = user_params
       permit_params.delete(:password) if permit_params[:password].to_s.length == 0
       user = find_user
-      user.update_account_type(params[:account_type].to_i) if params[:user][:corporate].to_i == 0
       if user.valid?
         user.update(permit_params)
         if params[:company_id].to_s != ""
@@ -98,7 +94,10 @@ module Superuser
     end
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :leading, :about_me, :contenter)
+      params.require(:user).permit(:email, :first_name, :last_name,
+                                   :password, :director, :corporate,
+                                   :company_id, :leading, :about_me,
+                                   :contenter, :superuser, :paid).compact.select { |k, v| v != "" } rescue {}
     end
 
   end

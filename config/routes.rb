@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get "pdf/:id" => "home#pdf"
   get 'schedule', to: "schedules#index"
   post 'schedule/day', to: "schedules#day_schedule"
-  get ":action" => "home#:action"
   get "makeup/:action" => "makeup#:action"
   # get "test_websocket" => "home#test_websocket"
   # get 'nod'
@@ -27,6 +26,17 @@ Rails.application.routes.draw do
       get :run
     end
   end
+
+  resources :notes, only: [:index, :destroy] do
+    collection do
+      post 'update'
+    end
+    member do
+      post :info
+    end
+  end
+
+  get ":action" => "home#:action"
 
   namespace :api do
     namespace :v1 do

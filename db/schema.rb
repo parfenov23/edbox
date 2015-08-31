@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825105924) do
+ActiveRecord::Schema.define(version: 20150828142806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20150825105924) do
     t.text     "title"
     t.integer  "duration",            default: 0
     t.text     "description"
-    t.boolean  "archive",             default: false
     t.boolean  "download",            default: false
+    t.boolean  "archive",             default: false
+    t.text     "full_text"
     t.integer  "width"
     t.integer  "height"
-    t.text     "full_text"
   end
 
   create_table "bigbluebutton_meetings", force: true do |t|
@@ -287,6 +287,14 @@ ActiveRecord::Schema.define(version: 20150825105924) do
     t.datetime "updated_at"
   end
 
+  create_table "notes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "attachment_id"
+    t.text     "text",          default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
     t.string   "notifytable_type"
@@ -350,6 +358,7 @@ ActiveRecord::Schema.define(version: 20150825105924) do
     t.text     "about_me"
     t.boolean  "contenter",       default: false
     t.boolean  "paid",            default: false
+    t.boolean  "superuser",       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

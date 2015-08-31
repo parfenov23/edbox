@@ -17,6 +17,7 @@ class Attachment < ActiveRecord::Base
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
   has_many :bunch_attachments
+  has_many :notes, :dependent => :destroy
   has_one :test, :as => :testable, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
 
@@ -38,6 +39,24 @@ class Attachment < ActiveRecord::Base
       end
     end
     attachment
+  end
+
+  def validate
+    valid_title = title.present? && description.present?
+    valid_file = (!["test", "description"].include?(file_type)) ? file.present? : valid_other
+    valid_title && valid_file
+  end
+
+  def valid_other
+    case file_type
+      when "test"
+        test.present? ? test.validate : false
+      when "description"
+        # full_text.present?
+        true
+      else
+        true
+    end
   end
 
   def class_type

@@ -14,6 +14,10 @@ class Test < ActiveRecord::Base
     Answer.where('question_id IN (' + questions_id.join(', ') + ')')
   end
 
+  def validate
+    !questions.map(&:validate).include?(false)
+  end
+
   def get_correct_answers
     correct_answers = {}
     questions = self.questions

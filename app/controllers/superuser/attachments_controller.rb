@@ -1,7 +1,5 @@
 module Superuser
-  class AttachmentsController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class AttachmentsController < SuperuserController
 
     def index
       @group = Attachment.all
