@@ -85,12 +85,6 @@ authCorpAcc =->
       $('.auth__wrp .js__company-name').addClass('is__Noactive')
       $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
-bodyScrollBlocker = (el) ->
-  windowHeight = $(window).height()
-  $(el).on 'mouseover', ->
-    $('.inner-content').css('height', (windowHeight + 1) + 'px').addClass 'is__noScroll'
-  $(el).on 'mouseout', ->
-    $('.inner-content').css('height', 'auto').removeClass 'is__noScroll'
 
 $(document).ready ->
 
@@ -105,7 +99,6 @@ $(document).ready ->
   showHideToggleBtn()
   toggleNotesAsideHeight()
   authCorpAcc()
-  bodyScrollBlocker('.courses-aside')
 
 
 
