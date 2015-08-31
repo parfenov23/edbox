@@ -3,32 +3,27 @@
 
 .inner-content
   .content#profile
-    - if @account_type.present?
-      .profile__block.profile__block-tariff.profile__tariff-free
-        .title #{@account_type.title}
-        -if @account_type_date.present?
-          .time
-            span>
-            span #{ltime(@account_type_date, 'Подключено ', 'long_without_time')}
+    .profile__block.profile__block-tariff.profile__tariff-free
+      .title #{@current_user.get_account_type_name}
+      .time
+        span>
+        span #{ltime(@current_user.updated_at, 'Подключено ', 'long_without_time')}
+      .clearfix
+      - if @current_user.company.present?
+        .quantity
+          - users_count = @current_user.company.users.count
+          span> #{users_count}
+          span #{rus_case_label(users_count, 'пользователь', 'пользователя', 'пользователей')}
+    - unless @current_user.get_account_type
+      .profile__block.profile__block-tariff.profile__tariff-buy
+        .text
+          |Подключите платную подписку и вам будут доступны более #{rus_case(Course.all.count, 'курса', 'курсов', 'курсов')} и #{rus_case(Attachment.all.count, 'материала', 'материалов', 'материалов')}
+          br
+          |от ведущих тренеров
+          b< Adconsult
+        .title #{@offer_account_type_name}
         .clearfix
-        - if @user_company.present?
-          .quantity
-            - users_count = @user_company.users.count
-            span> #{users_count}
-            span #{rus_case_label(users_count, 'пользователь', 'пользователя', 'пользователей')}
-      - unless @account_type.paid?
-        .profile__block.profile__block-tariff.profile__tariff-buy
-          .text
-            |Подключите платную подписку и вам будут доступны более #{rus_case(Course.all.count, 'курса', 'курсов', 'курсов')} и #{rus_case(Attachment.all.count, 'материала', 'материалов', 'материалов')}
-            br
-            |от ведущих тренеров
-            b< Adconsult
-          .title #{@offer.title}
-          .clearfix
-          .text.black
-            |Стоимость каждого пользователя 1 000₽ в месяц. Подключить подписку вы можете,
-            br
-            |связавшись с нашим менеджером по тел.: (343) 745 56 66
-    - else
-      .profile__block.profile__block-tariff.profile__tariff-free
-        .title Тариф не задан
+        .text.black
+          |Стоимость каждого пользователя 1 000₽ в месяц. Подключить подписку вы можете,
+          br
+          |связавшись с нашим менеджером по тел.: (343) 745 56 66

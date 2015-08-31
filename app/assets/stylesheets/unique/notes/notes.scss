@@ -19,6 +19,11 @@
       padding-left : 26px;
       @include eclipses;
       cursor: pointer;
+      &:hover {
+        i, span {
+          color: $primoryColor;
+        }
+      }
       i.icon {
       }
       >i.icon {
@@ -34,7 +39,6 @@
         font-size  : 15px;
         line-height: 28px;
         &:hover {
-          color: $primoryColor;
         }
       }
       .action__block {

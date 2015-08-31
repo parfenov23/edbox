@@ -52,7 +52,7 @@ form.form-horizontal action="#{action_url}" method="post"
       label
         | Корпоративный аккаунт?:
       - check = !@user.id.nil? ? @user.corporate : false
-      = check_box("user", "corporate", {checked: check})    .form-group
+      = check_box("user", "corporate", {checked: check})
     .form-group
       label
         | Компания:

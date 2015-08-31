@@ -7,7 +7,7 @@ figure.corses-prev
       .course-type = (bunch_tag.tag.title rescue nil)
     - valid_action_btn_type = ["courses", "favorite"]
     - find_bunch_course_group = current_user.bunch_courses.where(model_type: "group", course_id: course.id)
-    - if !course.paid || (course.paid && current_user.get_account_paid)
+    - if !course.paid || (course.paid && current_user.get_account_type)
       - if valid_action_btn_type.include?(type)
         .action-btn class=(current_user.director && type != 'favorite' ? 'three' : 'two')
           - if current_user.director

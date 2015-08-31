@@ -4,6 +4,9 @@
     border-bottom : 1px solid rgba(0,0,0,0.12);
     padding-bottom: 30px;
     margin-bottom : 40px;
+    &:last-child {
+      border: none;
+    }
     .title {
       font-size  : 34px;
       line-height: 40px;
