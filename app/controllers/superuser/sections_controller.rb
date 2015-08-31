@@ -1,7 +1,5 @@
 module Superuser
-  class SectionsController < ActionController::Base
-    layout "superuser"
-    skip_before_action :authorize
+  class SectionsController < SuperuserController
 
     def index
       @sections = Section.all

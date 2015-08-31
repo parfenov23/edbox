@@ -263,6 +263,8 @@ $(document).ready(function () {
         if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)) {
             inputPass.addClass("error");
             inputRePass.addClass("error");
+            show_error('Короткий пароль', 3000);
+            $("#alert").css("z-index", "9999");
         }else{
             inputPass.removeClass("error");
             inputRePass.removeClass("error");

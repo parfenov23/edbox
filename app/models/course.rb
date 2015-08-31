@@ -25,6 +25,20 @@ class Course < ActiveRecord::Base
     bunch_courses.map(&:user_id).uniq
   end
 
+  def validate
+    {description: description_validate, program: program_validate}
+  end
+
+  def description_validate
+    true
+  end
+
+  def program_validate
+    p sections.map{|section| [((!section.attachments.map(&:validate).include?(false)) rescue false), section.attachments.map(&:id), section.id] }
+    p "============="
+    (!sections.map{|section| (!section.attachments.map(&:validate).include?(false)) rescue false }.include?(false))
+  end
+
   # def get_type
   #   account_type_relation.account_type rescue nil
   # end
