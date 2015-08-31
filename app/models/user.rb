@@ -57,44 +57,48 @@ class User < ActiveRecord::Base
   end
 
   def get_account_type
-    if corporate?
-      (company.paid rescue false)
-    else
-      paid
-    end
+    corporate? ? (company.paid rescue false) : paid
+  end
+
+  def get_account_type_name
+    account_type_name = ''
+    account_type_name += (get_account_type ? 'Платная' : 'Беcплатная')
+    account_type_name += (corporate? ? ' корпоративная' : ' индивидуальная')
+    account_type_name += ' подписка'
+    account_type_name
   end
 
   def view_course?(course)
     !course.paid || (course.paid && get_account_paid)
   end
 
-  def get_account_paid
-    if self.get_account_type.present?
-      account_paid = self.get_account_type.paid
-    else
-      account_paid = false
-    end
-    account_paid
-  end
-
-  def get_account_type_relation
-    if corporate?
-      company.account_type_relations.last
-    else
-      account_type_relations.last
-    end
-  end
-
-  def update_account_type(account_type_id)
-    unless account_type_id == (get_real_account_type.id rescue nil)
-      AccountTypeRelation.new({
-                                modelable_type: "User",
-                                modelable_id: id,
-                                account_type_id: account_type_id,
-                                date: DateTime.now
-                              }).save
-    end
-  end
+  # def get_account_paid
+  #   if self.get_account_type.present?
+  #     account_paid = self.get_account_type.paid
+  #   else
+  #     account_paid = false
+  #   end
+  #   account_paid
+  # end
+  #
+  # def get_account_type_relation
+  #   if corporate?
+  #     company.account_type_relations.last
+  #   else
+  #     account_type_relations.last
+  #   end
+  # end
+  #
+  # def update_account_type(account_type_id)
+  #   unless account_type_id == (get_real_account_type.id rescue nil)
+  #     AccountTypeRelation.new({
+  #                               modelable_type: "User",
+  #                               modelable_id: id,
+  #                               account_type_id: account_type_id,
+  #                               date: DateTime.now
+  #                             }).save
+  #   end
+  # end
 
   def all_groups
     company.groups
