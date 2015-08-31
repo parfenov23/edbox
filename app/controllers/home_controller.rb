@@ -67,12 +67,8 @@ class HomeController < ActionController::Base
 
   def tariff
     @current_user = current_user
-    @account_type = @current_user.get_account_type
-    if @account_type.present?
-      @offer = AccountType.where(corporate: @account_type.corporate, paid: true).last
-      @user_company = @current_user.company
-      @account_type_date = (@current_user.get_account_type_relation.date rescue nil)
-    end
+    @account_type_name = @current_user.get_account_type_name
+    @offer_account_type_name = @account_type_name.gsub('Беcплатная', 'Платная')
   end
 
   def members
