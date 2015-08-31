@@ -93,7 +93,7 @@
     text-align     : center;
     font-size      : 14px;
     line-height    : 36px;
-    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     color: $primoryColor;
     outline: none !important;
     &.is__orange {
