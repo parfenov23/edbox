@@ -13,19 +13,23 @@
         input.selectCurrentMonth name="current_month" type="hidden" value="#{current_month[:month]}" /
         ul.hidden.listGroup.js__baron style=("display: none;")
           - schedule_line.each do |date|
-            li.js_psevdo-select.selectGroup.selectMonthSchedule data-id="#{date[:month]}" = date[:title]
+            - if (date[:month] >= DateTime.now.month)
+              li.js_psevdo-select.selectGroup.selectMonthSchedule data-id="#{date[:month]}" = date[:title]
 
     ul.month-list
       - current_date.end_of_month.day.times do |day|
         - current_day = current_date + day.day
         - class_curr = current_day == Time.now.beginning_of_day ? "curr" : ""
-        li.item class="#{class_curr}"
-          .data
-            .week-day = Russian.strftime(current_day, "%a")
-            .date = current_day.day
-          .box.ya_schedule_panel_course_click
-            - schedule_current_day = schedules.select { |sch| sch[:date].day == current_day.day }.last
-            - if schedule_current_day.present?
+
+        - schedule_current_day = schedules.select { |sch| sch[:date].day == current_day.day }.last
+        - if schedule_current_day.present?
+
+          li.item class="#{class_curr}"
+            .data
+              .week-day = Russian.strftime(current_day, "%a")
+              .date = current_day.day
+            .box.ya_schedule_panel_course_click
+
               - schedule_current_day[:bunch_courses].each do |bunch_course|
                 - bunch_course = BunchCourse.find(bunch_course)
                 - course = bunch_course.course
@@ -73,4 +77,3 @@
                             .datapicker__trigger
                         ul.hidden-list
                           li data-show = "hidden-calendar" Перенести дату окончания раздела
-
