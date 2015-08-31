@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150828142806) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.text     "description"
     t.boolean  "archive",             default: false
+    t.text     "description"
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
