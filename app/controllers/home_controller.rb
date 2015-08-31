@@ -7,7 +7,11 @@ class HomeController < ActionController::Base
 
   def index_page
     unless current_user.nil?
-      redirect_to '/cabinet'
+      unless current_user.contenter
+        redirect_to '/cabinet'
+      else
+        redirect_to '/contenter/courses'
+      end
     else
       redirect_to '/sign_in'
     end
