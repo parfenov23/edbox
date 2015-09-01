@@ -213,12 +213,19 @@ var optionDatePickerCourse = function (btn) {
     }
 };
 
+var closeSelectDeadLineSections = function(){
+    $(this).closest("form").find(".action-btn").show();
+    $(this).closest("form").find(".action-btn.actionSectionDeadLine").hide();
+    return $(this).closest('.check_group_added').removeClass('section__deadline');
+};
+
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
     $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
-    $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
+    $(document).on('click', '#js-add-course-to-shedule form .action-btn.sendAction .btn.yes.js_addCourse', addCourse);
     $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
+    $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
 });

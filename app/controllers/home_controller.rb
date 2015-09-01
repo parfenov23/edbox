@@ -84,11 +84,11 @@ class HomeController < ActionController::Base
   end
 
   def courses
-    all_courses = Course.all.where(public: true)
-    time = Time.now
-    @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
-                     .order("created_at ASC")
-    @courses = all_courses.where.not({id: @new_courses.ids})
+    all_courses = Course.all.publication
+    # time = Time.now
+    # @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
+    #                  .order("created_at ASC")
+    @courses = all_courses
     @favorite_courses = current_user.favorite_courses
   end
 
