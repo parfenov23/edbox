@@ -174,13 +174,15 @@ $(document).ready ->
     form = $(@).closest('form')
     if form.find('.parentDatePickerTime').val().length > 0
       $(@).closest("form").find(".action-btn").hide()
+      $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
       show_error('Установите крайний срок прохождения курса', 3000);
 
-  $('.section__deadline-title .back').on 'click', ->
-    $(@).closest("form").find(".action-btn").show()
-    $(@).closest('.check_group_added').removeClass('section__deadline')
+#  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
+#    $(@).closest("form").find(".action-btn").show()
+#    $(@).closest("form").find(".action-btn.actionSectionDeadLine").hide()
+#    $(@).closest('.check_group_added').removeClass('section__deadline')
 
   $('.js_for-tooltip').hover ->
     $(@).find('.js_tooltip').addClass('is-active')

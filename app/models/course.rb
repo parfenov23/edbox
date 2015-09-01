@@ -11,6 +11,7 @@ class Course < ActiveRecord::Base
   has_many :ligament_leads, :dependent => :destroy
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
+  scope :publication, -> { where(public: true) }
 
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)

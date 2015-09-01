@@ -1,5 +1,6 @@
 .carusel-wrp
-  .title Назначенные курсы
+  - title = current_user.corporate ? "Назначенные курсы" : "Мои курсы"
+  .title = title
   .info-box
     .legend-info
       p
@@ -8,10 +9,10 @@
       p
         'На изучении:
         = my_bunch_courses.in_study.count
-      p.more
-        a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
+      /p.more
+      /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
-      - my_bunch_courses.first(3).each do |my_bunch_course|
+      - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
         figure.corses-prev.compact.js__removeCourseMyBlock
           .image
