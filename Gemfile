@@ -53,7 +53,10 @@ gem 'whenever', :require => false
 
 group :production do
   path = `pwd`
-  gem 'better_errors' if (path.scan('beta_edbox').length  != 0)
+  if (path.scan('beta_edbox').length  != 0)
+    gem 'better_errors'
+    gem 'binding_of_caller'
+  end
 end
 
 group :development do
