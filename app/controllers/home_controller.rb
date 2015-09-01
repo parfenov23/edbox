@@ -100,6 +100,7 @@ class HomeController < ActionController::Base
   end
 
   def cabinet
+    @favorite_courses = current_user.favorite_courses
     # redirect_to "/schedule" unless current_user.director
   end
 

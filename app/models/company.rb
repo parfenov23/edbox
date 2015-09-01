@@ -14,7 +14,7 @@ class Company < ActiveRecord::Base
 
   def course_in_groups(course_id)
     ids_groups = groups.ids
-    BunchCourse.where({group_id: ids_groups, course_id: course_id})
+    BunchCourse.where({group_id: ids_groups, course_id: course_id}).select(:group_id).distinct
   end
 
   def get_account_type

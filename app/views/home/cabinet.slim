@@ -13,6 +13,7 @@
                                               groups_count_valid: groups_count_valid,
                                               ligament_count_valid: ligament_count_valid,
                                               bunch_count_valid: bunch_count_valid}
-    - else
-      = render 'home/cabinet/all_courses'
+    = render 'home/cabinet/all_courses'
 = render "home/cabinet/schedule"
+= render "home/courses/favorite", {favorite_courses: @favorite_courses}
+= render "home/courses/pop_up"
