@@ -98,22 +98,23 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       .top__logo
         img src= "/assets/edbox__bloo.svg"
     .menu__list
-      .item class=(namePage == "cabinet" ? "is__active" : "")
-        i.cabinet.icon
-        a.label href="/cabinet" Мой кабинет
-      .item class=(namePage == "courses" ? "is__active" : "")
-        i.biblio.icon
-        a.label href="/courses" Библиотека
-      .item class=(namePage == "my_course" ? "is__active" : "")
-        i.courses.icon
-        a.label href="/my_course?type=assigned" Курсы
+      - unless current_user.contenter
+        .item class=(namePage == "cabinet" ? "is__active" : "")
+          i.cabinet.icon
+          a.label href="/cabinet" Мой кабинет
+        .item class=(namePage == "courses" ? "is__active" : "")
+          i.biblio.icon
+          a.label href="/courses" Библиотека
+        .item class=(namePage == "my_course" ? "is__active" : "")
+          i.courses.icon
+          a.label href="/my_course?type=assigned" Курсы
 
-      - if current_user.corporate? && current_user.director?
+      - if current_user.corporate? && current_user.director? && !current_user.contenter
         .item class=(namePage == "schedule" ? "is__active" : "")
           i.schedule.icon
           a.label href="/schedule" Расписание
 
-      - if current_user.corporate
+      - if current_user.corporate && !current_user.contenter
         .item class=(namePage == "group" ? "is__active" : "")
           i.groups.icon
           a.label href="/group" Группы

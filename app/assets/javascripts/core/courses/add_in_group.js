@@ -137,7 +137,7 @@ var addCourseGroup = function (btn) {
         data: data
     }).success(function () {
         var group_id = form.find(".selectGroupId").val();
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=schedule'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в группу', 3000);
@@ -155,7 +155,7 @@ var addCourseMySchedule = function (btn) {
         url : '/api/v1/users/update_course',
         data: data
     }).success(function () {
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/schedule'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в расписание', 3000);

@@ -94,6 +94,9 @@ Rails.application.routes.draw do
           post :attachment_contenter_html
           post :set_type
         end
+        collection do
+          post :update_positions
+        end
       end
       resources :sections do
         member do
@@ -109,7 +112,9 @@ Rails.application.routes.draw do
         member do
           get :info
           post :add_tag
+          post :add_category
           post :remove_tag
+          post :remove_category
           post :add_leading
           post :remove_leading
           post :update_type
