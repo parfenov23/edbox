@@ -1,42 +1,42 @@
 - course = (favorite_course.course rescue nil)
 - if course.present?
-    .favorite-item
-        .image
-            img src=course.get_image_path(160, 376) style="width:80px; height:188px"
-        .description
-            .header
-                - if current_user.corporate
-                    - course_added_groups = current_user.company.course_in_groups(course.id)
-                    - if course_added_groups.present?
-                        .ingroup
-                            'Добавлен
-                            span
-                                - count_group = course_added_groups.count
-                                = "#{count_group} #{Russian.p(count_group, "группой", "группами", "группами")}"
-                            ul.group-list.hidden
-                                - course_added_groups.each do |course_added_group|
-                                    - group = course_added_group.group
-                                    li = group.first_name
-                - if !course.paid || (course.paid && current_user.get_account_type)
-                  - if current_user.director
-                      - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
-                      .add-group.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" data-show=".select, .title span, .groupAddedTitle" data-type="group"
-                          i.icon
-                .delete data-id="#{favorite_course.id}"
-                    i.icon
-            .title
-                = course.title
-                .shadow
-            .author = (course.user.full_name rescue "Нет ведущего")
-            .info-block
-                .duration
-                    - duration = (course.duration.to_i rescue 0)
-                    = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
-                    i.icon
-                .qty-lectures
-                    - section_count = course.sections.count
-                    = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
-                    i.icon
-                .completed-courses
-                    |Прошли курс
-                    i.icon
+  .favorite-item
+    .image
+      img src=course.get_image_path(160, 376) style="width:80px; height:188px"
+    .description
+      .header
+        - if current_user.corporate
+          - course_added_groups = current_user.company.course_in_groups(course.id).uniq
+          - if course_added_groups.present?
+            .ingroup
+              'Добавлен
+              span
+                - count_group = course_added_groups.count
+                = "#{count_group} #{Russian.p(count_group, "группой", "группами", "группами")}"
+              ul.group-list.hidden
+                - course_added_groups.each do |course_added_group|
+                  - group = course_added_group.group
+                  li = group.first_name
+        - if !course.paid || (course.paid && current_user.get_account_type)
+          - if current_user.director
+            - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
+            .add-group.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" data-show=".select, .title span, .groupAddedTitle" data-type="group"
+              i.icon
+        .delete data-id="#{favorite_course.id}"
+          i.icon
+      .title
+        = course.title
+        .shadow
+      .author = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
+      .info-block
+        .duration
+          - duration = (course.duration.to_i rescue 0)
+          = "#{duration} #{Russian.p(duration, "час", "часа", "часов")}"
+          i.icon
+        .qty-lectures
+          - section_count = course.sections.count
+          = "#{section_count} #{Russian.p(section_count, "лекция", "лекции", "лекций")}"
+          i.icon
+        .completed-courses
+          |Прошли курс
+          i.icon
