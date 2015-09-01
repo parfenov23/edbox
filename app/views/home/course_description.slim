@@ -27,7 +27,8 @@
   - if bunch_course.present?
     - date_complete = bunch_course.date_complete
     - all_sections = bunch_course.bunch_sections
-    - complete_proc = ((100.0 / (all_sections.count.to_f / all_sections.all_complete.count.to_f)).round) rescue 0
+    - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
+    - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
     - if !@course.paid || (@course.paid && current_user.get_account_type)
       .progress__block
         .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
