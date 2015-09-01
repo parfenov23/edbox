@@ -2,9 +2,7 @@
   form.form_edit data-id=attachment.id enctype="multipart/form-data"
     .remove.js_removeAttachmentToSection data-id=attachment.id
     .formGroupAttachmentTitle.includeValidateForm data-validate="attachment_title"
-      .helpError.js_for-tooltip
-        .mdl-shadow-2dp.com-top-tooltip.js_tooltip
-        i.icon.help
+      = render "contenter/courses/help_error"
       .form_group data-type="title"
         .titleEdit Название материала
         .input_title
@@ -23,12 +21,15 @@
           textarea.attachmentInput.js_onChangeEditAttachment data-autoresize="" placeholder="Введите описание материала" name="attachment[description]" *hash_data
             = attachment.description
         hr
-        .validateMaxCountr
+        .validateMaxCount
           span.current_count = attachment.description.to_s.length
           span.max_count
             |/500
-    .upload_attachments style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" );
+    - hP = {'data-validate' => "present_file"}
+    .upload_attachments.includeValidateForm style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" ); *hP
+      = render "contenter/courses/help_error"
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
+      input.validateAttachmentFileType type="hidden" value=attachment.file_type
       - unless attachment.file.file.present? || ["description", "test"].include?(attachment.file_type)
         .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
           i.icon.text
@@ -58,7 +59,8 @@
           i.icon.test
           .selectText Добавить тест
 
-    .editFileUpload
+    .editFileUpload.includeValidateForm data-validate= "present_file"
+      = render "contenter/courses/help_error"
       .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
         textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
           = attachment.full_text

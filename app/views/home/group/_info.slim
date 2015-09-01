@@ -31,7 +31,7 @@
         - users_no_auth_count = users_group.where(users: {last_auth: nil}).count
         'Авторизовались
         a href="/group?id=#{@group.id}&type=user"
-          =' rus_case(users_no_auth_count, "ползователь", "пользователя", "пользователей")
+          =' rus_case((users_group.count - users_no_auth_count), "ползователь", "пользователя", "пользователей")
           'из
           = users_group.count
       li
@@ -42,4 +42,4 @@
           =' rus_case(count_in_study, "ползователь", "пользователя", "пользователей")
       /li
       /  'Пройдено
-      /  strong 12 занятий из 45
+      /  strong 12 занятий из 45s

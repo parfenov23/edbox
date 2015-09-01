@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828142806) do
+ActiveRecord::Schema.define(version: 20150828153318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150828142806) do
     t.integer  "width"
     t.integer  "height"
     t.text     "full_text"
+    t.integer  "position"
   end
 
   create_table "bigbluebutton_meetings", force: true do |t|

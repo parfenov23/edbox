@@ -32,12 +32,26 @@ module Api::V1
       render json: bunch_tag.tag.as_json
     end
 
+    def add_category
+      course = find_course
+      bunch_category = course.bunch_categories.find_or_create_by({category_id: params[:category_id]})
+      render json: bunch_category.category.as_json
+    end
+
     def remove_tag
       course = find_course
       bunch_tag = course.bunch_tags.where({tag_id: params[:tag_id]}).last
       tag = bunch_tag.tag.as_json
       bunch_tag.destroy
       render json: tag.as_json
+    end
+
+    def remove_category
+      course = find_course
+      bunch_category = course.bunch_categories.where({category_id: params[:category_id]}).last
+      category = bunch_category.category.as_json
+      bunch_category.destroy
+      render json: category.as_json
     end
 
     def add_leading

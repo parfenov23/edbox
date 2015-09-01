@@ -18,9 +18,10 @@
             span Бесплатный
 
     .type__course__ready__publication__block
+      - text_btn = @course.public ? "СНЯТЬ С ПУБЛИКАЦИИ" : "ОПУБЛИКОВАТЬ"
       - if @course.validate.select{|k, v| v == false}.present?
         span Курс не готов к пубикации:
         .info  заполнены не все данные
+        .btn.btn-flat = text_btn
       - else
-        - text_btn = @course.public ? "СНЯТЬ С ПУБЛИКАЦИИ" : "ОПУБЛИКОВАТЬ"
         .btn.btn-flat.activate.js_publicationCourse data-id=@course.id data-type=(!@course.public).to_s = text_btn

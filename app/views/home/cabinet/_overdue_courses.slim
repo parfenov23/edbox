@@ -8,10 +8,10 @@
       p
         'На изучении:
         = BunchCourse.where(id: overdue_bunch_courses.ids).in_study.uniq.count
-      p.more
-        a href ="/my_course?type=overdue" СМОТРЕТЬ ВСЕ
+      /p.more
+      /  a href ="/my_course?type=overdue" СМОТРЕТЬ ВСЕ
     .course-prev-list
-      - overdue_bunch_courses.first(3).each do |overdue_bunch_course|
+      - overdue_bunch_courses.each do |overdue_bunch_course|
         - course = overdue_bunch_course.course
         figure.corses-prev.compact.js__removeCourseMyBlock
           .image

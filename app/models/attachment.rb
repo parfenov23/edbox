@@ -22,6 +22,7 @@ class Attachment < ActiveRecord::Base
   scope :not_empty, -> { where.not(title: [nil, ""]) }
 
   default_scope { where(archive: false) } #unscoped
+  default_scope { order("position ASC") } #unscoped
 
   def self.save_file(type, id, file, size=nil, width=nil, height=nil)
     class_name = type
@@ -52,8 +53,7 @@ class Attachment < ActiveRecord::Base
       when "test"
         test.present? ? test.validate : false
       when "description"
-        # full_text.present?
-        true
+        full_text.present?
       else
         true
     end
