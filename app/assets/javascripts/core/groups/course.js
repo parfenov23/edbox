@@ -142,6 +142,22 @@ var changeDeadLineSectionGroup = function (btn, text_success) {
     return true;
 };
 
+var removeDeadLineSectionMy = function (btn, text_success) {
+    var bunch_section_id = btn.data("bunch_section_id");
+    show_error('Загрузка', 3000);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/remove_section_deadline',
+        data: {bunch_section_id: bunch_section_id}
+    }).success(function () {
+        show_error(text_success, 3000);
+        loadMySchedule();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
 var bind_block = function () {
     //$('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
     //    changeDeadLineCourseMy($(this), $(this).data("text"));
@@ -223,6 +239,16 @@ var addCoursesFromFavorite = function () {
 };
 
 $(document).ready(function () {
+    $(document).on('click', '.edit-menu .js_removeDeadLineSectionMy',
+        function () {
+            var btn = $(this);
+            confirm("Вы действительно хотите удалить раздел?",
+                function () {
+                    removeDeadLineSectionMy(btn, btn.data("text"));
+                }
+            )
+        });
+
     $(document).on('click', '.hidden-list .js_removeCourseToGroup',
         function () {
             var btn = $(this);
