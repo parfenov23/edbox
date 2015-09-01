@@ -51,6 +51,8 @@ gem 'spawnling', '~>2.1'
 gem 'whenever', :require => false
 #======
 group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'mailcatcher', '0.6.1'
   gem 'sqlite3'
   gem 'sqlite3_ar_regexp', '~> 2.1'
