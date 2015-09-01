@@ -42,9 +42,11 @@
       i.icon
 
     input.courseId type="hidden" name="course_id"
-    .action-btn
+    .action-btn.sendAction
       .btn.yes.js_addCourse ДОБАВИТЬ
       .btn.cancel.btn__noShadow.btn__noShadow ОТМЕНИТЬ
+    .action-btn.actionSectionDeadLine style="display:none;"
+      .btn.yes СОХРАНИТЬ
 
   .inner.end_added
     - if current_user.corporate && current_user.director
@@ -57,7 +59,7 @@
           |в расписание группы
         |. Для редактирования перейдите на страницу “Расписание”
       .action-btn
-        .btn.yes.js_goToSchedule ПЕРЕЙТИ В РАСПИСАНИЕ
+        .btn.yes.js_goToSchedule ПЕРЕЙТИ В КАБИНЕТ
         .btn.cancel.btn__noShadow ЗАКРЫТЬ
     - else
       .description
@@ -66,5 +68,6 @@
           |Имя курса
         |”добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
       .action-btn
-        .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/schedule'" ПЕРЕЙТИ В КАБИНЕТ
+        .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/cabinet'" ПЕРЕЙТИ В КАБИНЕТ
         .btn.cancel.btn__noShadow ЗАКРЫТЬ
+

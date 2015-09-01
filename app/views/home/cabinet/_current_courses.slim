@@ -2,13 +2,13 @@
 .title
   .info
     = "Текущие курсы (всего #{bunch_courses_study_count})"
-  .more
-    a href = "/my_course?type=current" СМОТРЕТЬ ВСЕ
+  /.more
+  /  a href = "/my_course?type=current" СМОТРЕТЬ ВСЕ
 .carusel-wrp
   .jcarousel-wrapper
     .jcarousel.js__carusel
       ul.carusel
-        - bunch_courses_study.first(6).each do |bunch_course|
+        - bunch_courses_study.each do |bunch_course|
           - course = bunch_course.course
           - all_sections = bunch_course.bunch_sections
           - complete_proc = ((100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f)).round) rescue 0

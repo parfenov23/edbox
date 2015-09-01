@@ -96,33 +96,35 @@ var goToProgramAttachment = function(){
 }
 
 var includeDatePicker = function (block) {
-    block.datepicker({
-        prevText       : '&#x3c;Пред',
-        nextText       : 'След&#x3e;',
-        currentText    : 'Сегодня',
-        monthNames     : ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-        monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-        dayNames       : ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
-        dayNamesShort  : ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
-        dayNamesMin    : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        dateFormat     : 'dd.mm.yy',
-        firstDay       : 1,
-        isRTL          : false,
-        minDate        : new Date(),
-        beforeShow     : function () {
-            return $('#ui-datepicker-div').addClass('hide');
-        },
-        onSelect       : function (e) {
-            var dates = $(this).data('datepicker');
-            var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
-            $(this).parent().find('.selected-value').html(selectDate);
-            if ($(this).hasClass("js_changeDateToDatePicker")){
-                changeDateToDatePicker($(this));
+    if (block != undefined){
+        block.datepicker({
+            prevText       : '&#x3c;Пред',
+            nextText       : 'След&#x3e;',
+            currentText    : 'Сегодня',
+            monthNames     : ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames       : ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort  : ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin    : ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            dateFormat     : 'dd.mm.yy',
+            firstDay       : 1,
+            isRTL          : false,
+            minDate        : new Date(),
+            beforeShow     : function () {
+                return $('#ui-datepicker-div').addClass('hide');
+            },
+            onSelect       : function (e) {
+                var dates = $(this).data('datepicker');
+                var selectDate = dates.currentDay + '/' + (dates.currentMonth + 1) + '/' + dates.currentYear
+                $(this).parent().find('.selected-value').html(selectDate);
+                if ($(this).hasClass("js_changeDateToDatePicker")){
+                    changeDateToDatePicker($(this));
+                }
+                $(this).change();
+                return $(this).parent().addClass('show');
             }
-            $(this).change();
-            return $(this).parent().addClass('show');
-        }
-    });
+        });
+    }
 }
 
 function pageLoad(action) {

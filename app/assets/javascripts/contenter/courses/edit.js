@@ -36,6 +36,7 @@ var formInputIdCourse = function () {
 };
 
 var updateCourseContenter = function (data, id) {
+    validateCourse();
     $.ajax({
         type: 'PUT',
         url : '/api/v1/courses/' + id,
@@ -54,6 +55,16 @@ var contenterAddTagToCourse = function () {
         addBunchTagFromCourse(btn.data("id"), courseLoadTags);
     }
 };
+
+var contenterAddCategoriesToCourse = function () {
+    var btn = $(this);
+    validateCourseCategories();
+    if (! btn.hasClass("active")){
+        btn.addClass("active");
+        addBunchCategoryFromCourse(btn.data("id"), courseLoadCategories);
+    }
+};
+
 var addBunchTagFromCourse = function (id, action) {
     var input_id = formInputIdCourse();
     if (input_id.val() != "new"){
@@ -65,6 +76,26 @@ var addBunchTagFromCourse = function (id, action) {
             action(data);
         }).error(function () {
             show_error('Произошла ошибка', 3000);
+        });
+        return true;
+    } else {
+        show_error('Произошла ошибка', 3000);
+    }
+};
+
+var addBunchCategoryFromCourse = function (id, action) {
+    var input_id = formInputIdCourse();
+    if (input_id.val() != "new"){
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/courses/' + input_id.val() + "/add_category",
+            data: {category_id: id}
+        }).success(function (data) {
+            action(data);
+            validateCourseCategories();
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+            validateCourseCategories();
         });
         return true;
     } else {
@@ -87,11 +118,35 @@ var removeBunchTagFromCourse = function () {
     });
 };
 
+var removeBunchCategoryFromCourse = function () {
+    var input_id = formInputIdCourse();
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/courses/' + input_id.val() + "/remove_category",
+        data: {category_id: btn.data("id")}
+    }).success(function (data) {
+        btn.closest(".category").remove();
+        $("#js-course-categories .all__Tags .category[data-id=" + data.id + "]").removeClass("active");
+        validateCourseCategories();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
 var courseLoadTags = function (data) {
     var block_tags = $(".itemDetailInfo .description__Item .allTagDescriptionCourse");
     var html = $('<div class="tag">' + data.title +
         '<div class="remove js_removeBunchTagFromCourse" data-id="' + data.id + '"></div>' +
-        '</div>')
+        '</div>');
+    block_tags.append(html);
+};
+
+var courseLoadCategories = function (data) {
+    var block_tags = $(".itemDetailInfo .description__Item .allCategoriesDescriptionCourse");
+    var html = $('<div class="category">' + data.title +
+        '<div class="remove js_removeBunchCategoryFromCourse" data-id="' + data.id + '"></div>' +
+        '</div>');
     block_tags.append(html);
 };
 
@@ -163,7 +218,9 @@ pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
     $(document).on('click', ".js__contenterAddTagToCourse", contenterAddTagToCourse);
+    $(document).on('click', ".js__contenterAddCategoryToCourse", contenterAddCategoriesToCourse);
     $(document).on('click', ".allTagDescriptionCourse .js_removeBunchTagFromCourse", removeBunchTagFromCourse);
+    $(document).on('click', ".allCategoriesDescriptionCourse .js_removeBunchCategoryFromCourse", removeBunchCategoryFromCourse);
 
     $(document).on('click', "#js-course-leading .js__contenterAddLeadingToCourse", contenterAddLeadingToCourse);
     $(document).on('click', ".js_courseContenter .js_removeLigamentLeadFromCourse", removeLigamentLeadFromCourse);

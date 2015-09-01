@@ -16,3 +16,5 @@
     - else
       = render 'home/cabinet/all_courses'
 = render "home/cabinet/schedule"
+= render "home/courses/favorite", {favorite_courses: @favorite_courses}
+= render "home/courses/pop_up"

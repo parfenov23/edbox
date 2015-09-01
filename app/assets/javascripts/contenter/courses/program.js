@@ -379,6 +379,7 @@ var addTestToCourse = function () {
         url : '/api/v1/tests',
         data: {test: {testable_id: btn.data("id"), testable_type: "Course"}, type: "html", file_name: "_final_test"}
     }).success(function (data) {
+        $("#finalTestCourse").show();
         $("#finalTestCourse").append($(data));
         btn.hide();
         $("#finalTestCourse").removeClass("closed-state").addClass("open-state");
@@ -422,6 +423,7 @@ var removeTestToCourse = function () {
         }).success(function (data) {
             $(".section.add_new.js_addTestToCourse").removeClass("hideBtnFinalTest").show();
             $("#finalTestCourse .parentFinalTest").remove();
+            $("#finalTestCourse").hide();
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -438,6 +440,30 @@ var attachmentNameValidate = function () {
     } else {
         input.closest(".form_group").removeClass("error");
     }
+};
+
+var updatePositionAttachment = function(){
+    var data_hash = {ids_sections: [], ids_attachments: []};
+    var sections = $(".allAttachmentsSection.connectedSortable");
+    $.each(sections, function(){
+        var section = $(this);
+        data_hash.ids_sections[data_hash.ids_sections.length] = section.data('id');
+        var attachments = section.find(".attachment.item");
+        var arr_attachments = [];
+        $.each(attachments, function(){
+            var attachment = $(this);
+            arr_attachments[arr_attachments.length] = attachment.data('id');
+        });
+        data_hash.ids_attachments[data_hash.ids_attachments.length] = arr_attachments;
+    });
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/attachments/update_positions',
+        data: data_hash
+    }).success(function (data) {
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
 };
 
 $(document).ready(function () {
@@ -484,4 +510,11 @@ $(document).ready(function () {
         }
     });
     removeExtraElement();
+    $(".connectedSortable").sortable({
+        connectWith: ".connectedSortable",
+        update: function( event, ui ) {
+            updatePositionAttachment();
+            //console.log($(ui.item) );
+        }
+    }).disableSelection();
 });

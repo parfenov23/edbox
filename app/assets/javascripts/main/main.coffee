@@ -17,6 +17,8 @@ headerSubmenu = ->
   titleWidth = $('.page__title ').width()
   rightWidt = $('.right-col').width()
   if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
+    if( $("#namePageGroup").length)
+      $(".page__title").text($("#namePageGroup").val())
     $('#page__header .left-col').addClass('is__sooo-long')
     $('#page__header').removeClass('with__children ')
     $('#page__header .page__children').addClass('js__baron')
@@ -174,13 +176,15 @@ $(document).ready ->
     form = $(@).closest('form')
     if form.find('.parentDatePickerTime').val().length > 0
       $(@).closest("form").find(".action-btn").hide()
+      $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
       show_error('Установите крайний срок прохождения курса', 3000);
 
-  $('.section__deadline-title .back').on 'click', ->
-    $(@).closest("form").find(".action-btn").show()
-    $(@).closest('.check_group_added').removeClass('section__deadline')
+#  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
+#    $(@).closest("form").find(".action-btn").show()
+#    $(@).closest("form").find(".action-btn.actionSectionDeadLine").hide()
+#    $(@).closest('.check_group_added').removeClass('section__deadline')
 
   $('.js_for-tooltip').hover ->
     $(@).find('.js_tooltip').addClass('is-active')

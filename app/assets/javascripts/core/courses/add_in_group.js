@@ -137,7 +137,7 @@ var addCourseGroup = function (btn) {
         data: data
     }).success(function () {
         var group_id = form.find(".selectGroupId").val();
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=schedule'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в группу', 3000);
@@ -155,7 +155,7 @@ var addCourseMySchedule = function (btn) {
         url : '/api/v1/users/update_course',
         data: data
     }).success(function () {
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/schedule'");
+        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
         openEdnPopup();
         clearPopup();
         show_error('Курс добавлен в расписание', 3000);
@@ -213,12 +213,19 @@ var optionDatePickerCourse = function (btn) {
     }
 };
 
+var closeSelectDeadLineSections = function(){
+    $(this).closest("form").find(".action-btn").show();
+    $(this).closest("form").find(".action-btn.actionSectionDeadLine").hide();
+    return $(this).closest('.check_group_added').removeClass('section__deadline');
+};
+
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
     $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
-    $(document).on('click', '#js-add-course-to-shedule form .action-btn .btn.yes.js_addCourse', addCourse);
+    $(document).on('click', '#js-add-course-to-shedule form .action-btn.sendAction .btn.yes.js_addCourse', addCourse);
     $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
+    $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
 });

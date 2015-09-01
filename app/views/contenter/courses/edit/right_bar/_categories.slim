@@ -1,0 +1,6 @@
+#js-course-categories.courses-aside.favorite-courses
+  .close-filter.icon Теги
+  .all__Tags
+    - course_bunch_tags = course.bunch_categories
+    - Category.all.each do |category|
+      .category.js__contenterAddCategoryToCourse data-id=category.id class=(course_bunch_tags.where(category_id: category.id).present? ? "active" : "") = category.title
