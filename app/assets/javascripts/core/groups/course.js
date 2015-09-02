@@ -279,6 +279,11 @@ $(document).ready(function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
 
+    $(document).on('click', '.js_loadMySchedule',
+        function() {
+            loadMySchedule({schedule: {month: 9}});
+        }
+    );
     $(document).on('click', '.js_addCoursesFromFavorite', addCoursesFromFavorite);
     $(document).on('click', '.js_removeCourseMy',
         function () {
