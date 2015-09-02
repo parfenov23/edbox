@@ -1,0 +1,50 @@
+= render "home/header/header", {namePage: "other", titlePage: 'Help'}
+
+
+
+
+.inner-content
+  .profile__new
+    .profile__section.personal__info
+      .title Персональные данные
+      .section__content
+        .ava__wrp
+          .ava
+            img src="/uploads/ava.png"
+        .info__list
+          .com__input-item.item.empty
+            input.form-control.floating-label name="email" type="text" placeholder="Имя"
+            hr
+
+          .com__input-item.item.empty
+            input.form-control.floating-label name="email" type="text" placeholder="Фамилия"
+            hr
+
+          .com__input-item.item.empty
+            input.form-control.floating-label name="email" type="email" placeholder="Должность"
+            hr
+          .text__item.profile__description
+              p
+                |Ваш персональный ID: 
+                span KLI55233DF4
+              p Это ваш идентификационный номер в Edbox. Он понадобится вам для участия в различных акциях и специальных предложениях от Edbox.
+            
+      .action__block
+        .btn.btn-flat СОХРАНИТЬ
+    .profile__section.change__pass
+      .title Смена пароля
+      .section__content
+        .com__input-item.item.empty
+          input.form-control.floating-label name="old__pass" type="password" placeholder="Введите текущий пароль"
+          hr
+          .error__msg ой все
+        .com__input-item.item.empty
+          input.form-control.floating-label name="pass1" type="password" placeholder="Введите новый пароль"
+          hr
+          .error__msg ой все
+        .com__input-item.item.empty
+          input.form-control.floating-label name="pass2" type="password" placeholder="Повторите новый пароль"
+          hr
+          .error__msg ой все
+      .action__block
+        .btn.btn-flat СОХРАНИТЬ
