@@ -61,8 +61,13 @@ GEM
       json
     babosa (1.0.2)
     bcrypt (3.1.10)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     bigbluebutton-api-ruby (1.4.0)
       xml-simple (>= 1.1.1)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-material-design (0.1.7)
       bootstrap-sass (~> 3.0)
     bootstrap-sass (3.3.5.1)
@@ -101,6 +106,7 @@ GEM
     coffee-script-source (1.9.1.1)
     connection_pool (2.2.0)
     daemons (1.2.3)
+    debug_inspector (0.0.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     em-synchrony (1.0.4)
@@ -320,7 +326,9 @@ DEPENDENCIES
   autoprefixer-rails
   babosa
   bcrypt
+  better_errors
   bigbluebutton_rails!
+  binding_of_caller
   bootstrap-material-design (~> 0.1.7)
   capistrano (~> 3.0)
   capistrano-bundler (~> 1.1)
@@ -364,3 +372,6 @@ DEPENDENCIES
   websocket-rails!
   whenever
   without-rails
+
+BUNDLED WITH
+   1.10.4
