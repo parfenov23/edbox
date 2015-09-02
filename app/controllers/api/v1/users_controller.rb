@@ -63,7 +63,16 @@ module Api::V1
 
     def update_section
       section = BunchSection.find(params[:section_id])
-      section.date_complete = Time.parse(params[:date_complete]).end_of_day
+      if (section.save rescue false)
+        render json: section.as_json
+      else
+        render_error(500, 'Проверьте данные')
+      end
+    end
+
+    def remove_section_deadline
+      section = BunchSection.find(params[:bunch_section_id])
+      section.date_complete = nil
       if (section.save rescue false)
         render json: section.as_json
       else

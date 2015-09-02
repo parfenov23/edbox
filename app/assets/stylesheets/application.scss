@@ -27,7 +27,7 @@ html {
 }
 
 body {
-  background-color : #F5F5F5;
+  background-color : #f7f7f7;
   height           : 100%;
   min-height       : 100%;
   height           : auto !important;
@@ -298,6 +298,7 @@ i {
 @import "common/elements/adaptive_title";
 @import "common/elements/adaptive_popup";
 @import "common/elements/directors_btn";
+@import "common/elements/welcome_scenario";
 
 @import "common/header/header";
 
