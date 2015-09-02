@@ -1,10 +1,11 @@
 .container
-    .container-inner
-        h2  =(titleText rescue  "Программа группы")
-        .timetable-description
-            p =(descriptionText rescue "Для того, чтобы создать программу, вам необходимо добавить курсы. Вы можете выбрать курсы из «Избранного» или библиотеки.")
-        ul.button-area
-            li
-                a.orange-button href="/courses"  ПОДОБРАТЬ КУРС
-            li
-                a.orange-button href="/my_course?type=favorite"  ПЕРЕЙТИ В ИЗБРАННОЕ
+  .container-inner
+    h2 =(titleText rescue "Программа группы")
+    .timetable-description
+      p =(descriptionText rescue "Для того, чтобы создать программу, вам необходимо добавить курсы. Вы можете выбрать курсы из «Избранного» или библиотеки.")
+    - if current_user.director
+      ul.button-area
+        li
+          a.orange-button href="/courses"  ПОДОБРАТЬ КУРС
+        li
+          a.orange-button href="/my_course?type=favorite"  ПЕРЕЙТИ В ИЗБРАННОЕ

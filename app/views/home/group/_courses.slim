@@ -37,5 +37,6 @@
       .md-overlay
     /! modals end
 - else
-  - dt = "На данный момент в этой группе нет курсов. Вы можете выбрать курсы из «Избранного» или библиотеки."
+  - dt = "На данный момент в этой группе нет курсов."
+  - dt += " Вы можете выбрать курсы из «Избранного» или библиотеки." if current_user.director
   = render "home/group/no_schedule", {titleText: "Курсы", descriptionText: dt}

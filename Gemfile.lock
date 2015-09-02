@@ -372,6 +372,3 @@ DEPENDENCIES
   websocket-rails!
   whenever
   without-rails
-
-BUNDLED WITH
-   1.10.4
