@@ -141,10 +141,19 @@
     }
   }
   .oh__nihuyase-block {
-    @include blockHelpError;
     .helpError {
       i.icon.help {
         top : 14px;
+      }
+    }
+    .form_group {
+      position : relative;
+      @include blockHelpError;
+      .helpError {
+        position: absolute;
+        i.icon.help {
+          top : 14px;
+        }
       }
     }
     .course__title {
@@ -206,7 +215,7 @@
         }
         .addCategory {
           display : inline-block;
-          width   : 176px;
+          width   : 190px;
         }
         &.block__lead {
           cursor        : pointer;
@@ -338,6 +347,13 @@
                     @include blockHelpError;
                   }
                   .form_group {
+                    @include blockHelpError;
+                    .helpError {
+                      position: absolute;
+                      i.icon.help {
+                        top : 14px;
+                      }
+                    }
                     &.fixedHeight {
                       height : 181px;
                     }
@@ -424,7 +440,7 @@
                     }
                   }
                   .editFileUpload {
-                    position: relative;
+                    position      : relative;
                     margin-bottom : 48px;
                     @include blockHelpError;
                     .itemFile {

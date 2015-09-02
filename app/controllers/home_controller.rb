@@ -10,7 +10,7 @@ class HomeController < ActionController::Base
       unless current_user.contenter
         redirect_to '/cabinet'
       else
-        redirect_to '/contenter/courses'
+        (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
     else
       redirect_to '/sign_in'
