@@ -17,6 +17,7 @@
 
 @mixin blockHelpError {
   .helpError {
+    cursor : default;
     i.icon.help {
       display   : none;
       position  : absolute;
@@ -150,7 +151,7 @@
       position : relative;
       @include blockHelpError;
       .helpError {
-        position: absolute;
+        position : absolute;
         i.icon.help {
           top : 14px;
         }
@@ -272,7 +273,21 @@
         background-color : #E0E0E0;
         margin-bottom    : 24px;
         border-radius    : 2px;
+        &.add_new{
+          position: relative;
+          @include blockHelpError;
+        }
         .title.input_section {
+          @include blockHelpError;
+          .helpError {
+            .com-top-tooltip {
+              left : 5px !important;
+            }
+            i.icon.help {
+              left : -16px;
+              top  : 8px;
+            }
+          }
           position      : relative;
           padding       : 8px 12px 8px 12px;
           border-bottom : 1px solid #D0D0D0;
@@ -294,10 +309,15 @@
           .add_attachment {
             @include white__block(1, 1);
           }
+          .allAttachmentsSection {
+            min-height : 10px;
+          }
           .attachment {
             @include white__block(1, 1);
             margin-bottom : 16px;
+            cursor        : move;
             .adaptive__title {
+              cursor : pointer;
               .right-col {
                 @include btnRemove;
                 .remove {
@@ -313,6 +333,9 @@
             }
             .info_attachment {
               @include blockHelpError;
+              .icon__block {
+                cursor : pointer;
+              }
               .helpError {
                 left     : 100%;
                 top      : 36px;
@@ -349,7 +372,7 @@
                   .form_group {
                     @include blockHelpError;
                     .helpError {
-                      position: absolute;
+                      position : absolute;
                       i.icon.help {
                         top : 14px;
                       }
@@ -507,11 +530,18 @@
         padding-top : 24px;
         .testHolder {
           .testIssue {
+            @include blockHelpError;
             padding-bottom : 24px;
             position       : relative;
-            @include blockHelpError;
             .helpError {
               position : absolute;
+            }
+            &.error {
+              .helpError {
+                i.icon.help {
+                  display : block !important;
+                }
+              }
             }
             .input_title {
               position       : relative;
@@ -568,14 +598,20 @@
         height : 100%;
         margin : 0 auto;
         .info_test {
+          @include blockHelpError;
           @include white__block(1, 1);
           padding  : 13px 16px 16px 120px;
           position : relative;
+          cursor   : move;
           @include btnRemove;
           .adaptive__title {
+            cursor : pointer;
             .title {
               margin-bottom : 0;
             }
+          }
+          .icon__block {
+            cursor : pointer;
           }
         }
         .parentFinalTest {

@@ -215,6 +215,8 @@ var removeAttachmentToSection = function () {
             url : '/api/v1/attachments/' + btn.data("id") + '/remove'
         }).success(function (data) {
             btn.closest(".attachment.item").remove();
+            allValidateForms();
+            updatePositionAttachment();
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -230,6 +232,8 @@ var removeSectionToCourse = function () {
             url : '/api/v1/sections/' + btn.data("id") + '/remove'
         }).success(function (data) {
             btn.closest(".section").remove();
+            allValidateForms();
+            updatePositionAttachment();
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -305,7 +309,7 @@ var changeAnswerInput = function () {
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
-    }, 300);
+    }, 150);
 
 
 };
@@ -384,6 +388,7 @@ var addTestToCourse = function () {
         btn.hide();
         $("#finalTestCourse").removeClass("closed-state").addClass("open-state");
         loadBindOnChangeInput();
+        allValidateForms();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -424,6 +429,7 @@ var removeTestToCourse = function () {
             $(".section.add_new.js_addTestToCourse").removeClass("hideBtnFinalTest").show();
             $("#finalTestCourse .parentFinalTest").remove();
             $("#finalTestCourse").hide();
+            allValidateForms();
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -514,6 +520,7 @@ $(document).ready(function () {
         connectWith: ".connectedSortable",
         update: function( event, ui ) {
             updatePositionAttachment();
+            allValidateForms();
             //console.log($(ui.item) );
         }
     }).disableSelection();

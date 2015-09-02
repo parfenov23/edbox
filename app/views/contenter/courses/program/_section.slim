@@ -1,7 +1,8 @@
-.section.programm__block
-  form.title.input_section data-id=section.id
+.section.programm__block.validateSections
+  form.title.input_section.validateSection data-id=section.id
+    = render "contenter/courses/help_error"
     input type="hidden" name="section[course_id]" value=course.id
-    span.numberSection 1.
+    span.numberSection = "#{section.position}."
     input.section_title.js_onChangeEditSection placeholder="Введите название раздела" value=section.title name="section[title]"
     .remove.js_removeSectionToCourse data-id=section.id
   .descriptionSection
