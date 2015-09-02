@@ -1,152 +1,345 @@
+.profile__new {
+  .profile__section {
+    @include white__block(1,0);
+    @include middle-block(936px);
+    margin-bottom: 16px;
+    padding      : 32px 16px 16px 32px;
+
+    > .title {
+      font-size    : 24px;
+      line-height  : 32px;
+      margin-bottom: 32px;
+    }
+
+    .profile__description {
+      p {
+        font-size    : 15px;
+        line-height  : 24px;
+        margin-bottom: 6px;
+
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .free__type {
+      margin-bottom: 64px;
+    }
+
+    .subscribe__type {
+      border-bottom  : 1px solid $black_12;
+      display        : flex;
+      justify-content: space-between;
+      font-size: 15px;
+      line-height: 24px;
+      margin-right: 15px;
+      padding-bottom: 27px;
+      margin-bottom: 21px;
+      .left {
+        width: 250px;
+
+        span {
+          font-weight: 500;
+        }
+      }
+
+      .right {
+        width     : 310px;
+        text-align: right;
+      }
+    }
+
+    .tariff__list {
+      padding-right: 16px;
+      .item {
+        border: 1px solid $black_54;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        padding: 20px 16px 14px 24px;
+        .title {
+          font-size: 24px;
+          color: $black_87;
+          line-height: 32px;
+          margin-bottom: 16px;
+        }
+        .description {
+          font-size: 13px;
+          color: $black_87;
+          line-height: 20px;
+          margin-bottom: 8px;
+        }
+        .price__block {
+          display: flex;
+          justify-content: space-between;
+          .price {
+            font-size: 24px;
+            color: $black_87;
+            line-height: 32px;
+          }
+        }
+      }
+    }
+
+    .action__block {
+      @include clearfix;
+      .btn {
+        float: right;
+      }
+    }
+    &.company__name-profile {
+      .section__content {
+        .com__input-item {
+          width: 312px;
+        }
+      }
+
+    }
+    &.company__payment-detail {
+      
+    }
+    &.personal__info {
+      .section__content {
+        display        : flex;
+        justify-content: flex-start;
+        margin-bottom  : 23px;
+
+        .ava__wrp {
+          width       : 144px;
+          margin-top  : 2px;
+          margin-left : 17px;
+          margin-right: 72px;
+
+          .ava {
+            img {
+              display: block;
+              width  : 100%;
+              @include circle-img;
+            }
+          }
+        }
+
+        .info__list {
+          width      : 491px;
+          padding-top: 27px;
+
+          .item {
+            width: 311px;
+          }
+
+          .text__item {
+            margin-top: -13px;
+          }
+        }
+      }
+    }
+
+    &.change__pass {
+      .section__content {
+        padding-top: 27px;
+
+        .item {
+          width        : 312px;
+          margin-bottom: 14px;
+        }
+      }
+
+      .action__block {
+        margin-top: -25px;
+      }
+    }
+  }
+  .h__mBtm18px {
+    margin-bottom: 18px !important;
+  }
+  .h__w640 {
+    width: 640px  !important;
+  }
+  .h__pBtm28 {
+    padding-bottom: 28px !important;
+    margin-bottom : 32px !important;
+  }
+  .h__mBtm21 {
+    margin-bottom: 21px !important;
+  }
+  .h__mBtm32 {
+    margin-bottom: 32px !important;
+  }
+}
+
 #profile {
   .profile__block {
     position: relative;
     @include clearfix;
     @include white__block(1, 0);
-    width: 920px;
-    margin: 0 auto;
-    margin-bottom: 24px;
-    padding: 24px 24px 72px 64px;
+    width   : 920px;
+    margin  : 0 auto 24px;
+    padding : 24px 24px 72px 64px;
   }
+
   .profile__main {
     .avatar {
-      position: relative;
-      float: left;
-      width: 128px;
-      height: 128px;
-      margin: 0 32px 0 0;
+      position     : relative;
+      float        : left;
+      width        : 128px;
+      height       : 128px;
+      margin       : 0 32px 0 0;
       border-radius: 100%;
+
       .ava {
-        max-width: 100%;
-        min-width: 100%;
+        max-width    : 100%;
+        min-width    : 100%;
         border-radius: 100%;
       }
+
       input {
-        display : none;
+        display: none;
       }
+
       &:hover {
         .upload__block {
-          position      : absolute;
-          top           : 0;
-          left          : 0;
-          width         : 128px;
-          height        : 128px;
-          border-radius : 50%;
-          overflow      : hidden;
-          background    : url("ava-upload.png") 50% 50% no-repeat;
-          z-index       : 2;
-          cursor        : pointer;
+          position     : absolute;
+          top          : 0;
+          left         : 0;
+          width        : 128px;
+          height       : 128px;
+          border-radius: 50%;
+          overflow     : hidden;
+          background   : url("ava-upload.png") 50% 50% no-repeat;
+          z-index      : 2;
+          cursor       : pointer;
+
           input {
-            display     : block;
-            width       : 300px;
-            margin-left : -170px;
-            position    : absolute;
-            z-index     : 3;
-            cursor      : pointer;
-            height      : 128px;
-            opacity     : 0;
+            display    : block;
+            width      : 300px;
+            margin-left: -170px;
+            position   : absolute;
+            z-index    : 3;
+            cursor     : pointer;
+            height     : 128px;
+            opacity    : 0;
           }
         }
       }
     }
+
     .data {
       float: left;
       width: 450px;
+
       .name {
-        font: 400 18px/1 'Roboto';
-        color: rgba(0,0,0,.87);
-        margin: 0 0 12px 0;
+        font  : 400 18px/1 'Roboto';
+        color : rgba(0,0,0,.87);
+        margin: 0 0 12px;
       }
+
       .state {
-        font: 400 13px/1 'Roboto';
-        color: rgba(0,0,0,.87);
-        margin: 0 0 24px 0;
+        font  : 400 13px/1 'Roboto';
+        color : rgba(0,0,0,.87);
+        margin: 0 0 24px;
       }
+
       .account {
-        font: 400 13px/1 'Roboto';
-        color: rgba(0,0,0,.54);
+        font         : 400 13px/1 'Roboto';
+        color        : rgba(0,0,0,.54);
         margin-bottom: 8px;
+
         .number {
           color: rgba(0,0,0,.87);
         }
       }
+
       .tets {
-        font-size: 13px;
-        color: rgba(0,0,0,0.54);
-        line-height: 20px;      }
+        font-size  : 13px;
+        color      : rgba(0,0,0,0.54);
+        line-height: 20px;
+      }
     }
   }
 
-
   .profile__password {
     padding: 24px 24px 72px 32px;
+
     .title {
-      font: 400 18px/18px 'Roboto';
-      color: rgba(0,0,0,.54);
-      margin: 0 0 32px 0;
+      font  : 400 18px/18px 'Roboto';
+      color : rgba(0,0,0,.54);
+      margin: 0 0 32px;
     }
+
     .password {
-      margin: 0 0 12px 0;
-      font: 400 13px/13px 'Roboto';
-      color: rgba(0,0,0,.26);
+      margin: 0 0 12px;
+      font  : 400 13px/13px 'Roboto';
+      color : rgba(0,0,0,.26);
     }
   }
 
   .profile__block-tariff {
     &.profile__tariff-free {
-      padding: 32px 32px 48px 32px;
+      padding: 32px 32px 48px;
     }
+
     &.profile__tariff-buy {
-      padding: 32px;
-      background: #FFF3EB;
+      padding   : 32px;
+      background: #fff3eb;
+
       .text {
-        font: 400 13px/18px 'Roboto';
-        color: rgba(0,0,0,.54);
-        margin: 0 0 20px 0;
+        font  : 400 13px/18px 'Roboto';
+        color : rgba(0,0,0,.54);
+        margin: 0 0 20px;
+
         &:last-child {
           margin: 0;
         }
+
         &.black {
           color: rgba(0,0,0,.87);
         }
       }
     }
+
     &.profile__tariff-paid {
       padding: 32px;
     }
     overflow: hidden;
+
     .title {
-      float: left;
-      width: 70%;
-      font: 400 18px/24px 'Roboto';
-      color: rgba(0,0,0,.87);
+      float : left;
+      width : 70%;
+      font  : 400 18px/24px 'Roboto';
+      color : rgba(0,0,0,.87);
       margin: 0 5% 8px 0;
     }
+
     .time {
-      float: right;
-      width: 25%;
-      font: 400 13px/18px 'Roboto';
-      color: rgba(0,0,0,.54);
-      margin: 0 0 8px 0;
+      float     : right;
+      width     : 25%;
+      font      : 400 13px/18px 'Roboto';
+      color     : rgba(0,0,0,.54);
+      margin    : 0 0 8px;
       text-align: right;
     }
+
     .quantity {
-      font: 400 13px/20px 'Roboto';
+      font : 400 13px/20px 'Roboto';
       color: rgba(0,0,0,.87);
     }
+
     .info {
-      border-top: 1px solid #E0E0E0;
-      overflow: hidden;
-      margin: 24px 0 0 0;
-      padding: 24px 0 0 0;
+      border-top: 1px solid #e0e0e0;
+      overflow  : hidden;
+      margin    : 24px 0 0;
+      padding   : 24px 0 0;
+
       &__item {
         float: left;
         width: calc(100%/3);
-        font: 400 13px/18px 'Roboto';
+        font : 400 13px/18px 'Roboto';
         color: rgba(0,0,0,.54);
+
         &-top {
-          margin: 0 0 24px 0;
+          margin: 0 0 24px;
         }
+
         &-bottom {
 
         }
@@ -156,15 +349,17 @@
 
   .profile__account {
     padding: 24px 24px 72px 32px;
+
     .title {
-      font-size: 18px;
-      color: rgba(0,0,0,0.87);
-      line-height: 24px;
+      font-size    : 18px;
+      color        : rgba(0,0,0,0.87);
+      line-height  : 24px;
       margin-bottom: 8px;
     }
+
     .description {
-      font-size: 13px;
-      color: rgba(0,0,0,0.54);
+      font-size  : 13px;
+      color      : rgba(0,0,0,0.54);
       line-height: 18px;
     }
   }
