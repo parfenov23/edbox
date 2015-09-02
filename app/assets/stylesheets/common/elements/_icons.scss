@@ -173,6 +173,11 @@ i.icon {
       content: "\E639";
     }
   }
+  &.next {
+    &::before {
+      content: "\E897"
+    }
+  }
 
 
 }

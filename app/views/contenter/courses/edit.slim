@@ -6,11 +6,12 @@
 .contenter#courseEditContenter
   .presentation__block
     img src = (course.get_image_path rescue "/uploads/course_default_image.png")
-  form.course__description-content.oh__nihuyase-block.js_courseContenter.validateFormCourse
-    = render "contenter/courses/help_error"
+  form.course__description-content.oh__nihuyase-block.js_courseContenter
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id
-    input.course__title.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название курса" name="course[title]" value=course.title
+    .form_group.validateFormCourse.titleCourse
+      = render "contenter/courses/help_error"
+      input.course__title.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название курса" name="course[title]" value=course.title
     .course__info
       .adaptive__title
         .left-col style="height: 56px;"
@@ -22,7 +23,8 @@
             - course_duration = course.duration.to_i
             = rus_case(course_duration, "минута", "минуты", "минут")
             i.duration.icon
-      .detail__info
+      .form_group.detail__info.validateFormCourse
+        = render "contenter/courses/help_error"
         .description
           textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание курса" name="course[description]"
             = course.description
@@ -37,7 +39,7 @@
                 = category.title
                 .remove.js_removeBunchCategoryFromCourse data-id=category.id
           .addCategory.js_clickFromCreateCourseContenter
-            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ДОБАВИТЬ КАТЕГОРИЮ
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
       .itemDetailInfo
         .title__Item Теги
         .description__Item
