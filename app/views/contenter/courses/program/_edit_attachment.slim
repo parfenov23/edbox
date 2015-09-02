@@ -1,9 +1,9 @@
 .edit_attachment
   form.form_edit data-id=attachment.id enctype="multipart/form-data"
     .remove.js_removeAttachmentToSection data-id=attachment.id
-    .formGroupAttachmentTitle.includeValidateForm data-validate="attachment_title"
-      = render "contenter/courses/help_error"
-      .form_group data-type="title"
+    .formGroupAttachmentTitle data-validate="attachment_title"
+      .form_group.includeValidateForm data-type="title" data-validate="attachment_title"
+        = render "contenter/courses/help_error"
         .titleEdit Название материала
         .input_title
           span.numberSection 1.0
@@ -14,7 +14,8 @@
           span.current_count = attachment.title.to_s.length
           span.max_count
             |/100
-      .form_group.fixedHeight data-type="description"
+      .form_group.fixedHeight.includeValidateForm data-type="description" data-validate="attachment_description"
+        = render "contenter/courses/help_error"
         .titleEdit Краткое описание
         .input_title
           - hash_data = {'data-valid' => 'true', 'data-max_length' => 500}

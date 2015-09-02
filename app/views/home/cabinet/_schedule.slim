@@ -3,7 +3,8 @@
 - current_date = (params[:schedule].present? ? Time.new(Time.now.year, params[:schedule][:month], 1).beginning_of_month : Time.now.beginning_of_month) rescue Time.now
 - current_month = schedule_line[current_date.month-1]
 
-#js-schedule-cabinet.courses-aside.schedule-cabinet
+/#js-schedule-cabinet.courses-aside.schedule-cabinet
+div
   .close-filter.icon Расписание
   .schedule-list
     .month_chouse

@@ -1,14 +1,18 @@
+var setTimeoutChangeCategory;
 var changeCategoryInput = function(){
     var btn = $(this);
-    $.ajax({
-        type: 'PUT',
-        url : '/api/v1/categories/' + btn.data("id"),
-        data: {category: {title: btn.val()}}
-    }).success(function (data) {
-        loadBindOnChangeInputAdminCategory();
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
+    clearTimeout(setTimeoutChangeCategory);
+    setTimeoutChangeCategory = setTimeout(function () {
+        $.ajax({
+            type: 'PUT',
+            url : '/api/v1/categories/' + btn.data("id"),
+            data: {category: {title: btn.val()}}
+        }).success(function (data) {
+            loadBindOnChangeInputAdminCategory();
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    }, 150);
 };
 
 var removeCategoryInAdmin = function(btn){
@@ -65,6 +69,7 @@ var createCategoryInAdmin = function(){
 
 pageLoad(function(){
     loadBindOnChangeInputAdminCategory();
+    $(document).on('keyup paste input propertychange', '#categoriesContenterAdmin .js_changeCategoryInput', changeCategoryInput);
     $(document).on("keydown", "#categoriesContenterAdmin .js_getCloneCategory", function (evt) {
         var keycode = (evt.keyCode?evt.keyCode:evt.which);
         if (keycode == '13'){

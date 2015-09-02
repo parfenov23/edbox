@@ -60,6 +60,7 @@ var contenterAddCategoriesToCourse = function () {
     var btn = $(this);
     validateCourseCategories();
     if (! btn.hasClass("active")){
+        btn.closest(".all__Tags").find(".category").removeClass("active");
         btn.addClass("active");
         addBunchCategoryFromCourse(btn.data("id"), courseLoadCategories);
     }
@@ -147,6 +148,7 @@ var courseLoadCategories = function (data) {
     var html = $('<div class="category">' + data.title +
         '<div class="remove js_removeBunchCategoryFromCourse" data-id="' + data.id + '"></div>' +
         '</div>');
+    block_tags.find(".category").remove();
     block_tags.append(html);
 };
 

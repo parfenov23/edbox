@@ -35,12 +35,13 @@ var validateTestQuestion = function () {
 };
 
 var validateTitleAttachment = function () {
-    var blocks = $(".formGroupAttachmentTitle.includeValidateForm");
+    var blocks = $(".form_group.includeValidateForm");
     $.each(blocks, function (n, elem) {
         var block = $(elem);
-        var arr_errors = [];
         var inputs = block.find(".attachmentInput");
         $.each(inputs, function (n, elem) {
+            var arr_errors = [];
+
             var input = $(elem);
             if (! input.count_text_input()){
                 if (input.closest(".form_group").data('type') == 'title'){
@@ -51,8 +52,8 @@ var validateTitleAttachment = function () {
                 }
 
             }
+            installErrorBlock(arr_errors, input.closest(".form_group"));
         });
-        installErrorBlock(arr_errors, block);
     });
 };
 
@@ -69,8 +70,9 @@ validatePresentFile = function(){
         }else{
             block_error_view = blockEditFile;
             if (input.val() == "description"){
-
-                if (!blockEditFile.find(".addedTxtDescription textarea").count_text_input()){
+                var textarea = blockEditFile.find(".addedTxtDescription textarea");
+                textarea.val(textarea.val().replace('<p><br data-mce-bogus="1"></p>', ''));
+                if (!textarea.count_text_input()){
                     arr_errors[arr_errors.length] = "Текст не может быть пустым";
                 }
             }
@@ -96,7 +98,10 @@ var validateAttachment = function () {
                     arr_errors[arr_errors.length] = "Проверьте тест"
                 }
                 if (block_err.data('validate') == "attachment_title"){
-                    arr_errors[arr_errors.length] = "Проверьте название и описание материала"
+                    arr_errors[arr_errors.length] = "Проверьте название материала"
+                }
+                if (block_err.data('validate') == "attachment_description"){
+                    arr_errors[arr_errors.length] = "Проверьте описание материала"
                 }
                 if (block_err.data('validate') == "present_file"){
                     arr_errors[arr_errors.length] = "Проверьте материал"
@@ -147,8 +152,8 @@ var validateCourseCategories = function (){
 
 var validateCourseTitle = function () {
     var inputs = $(".js_validateCourseTitle");
-    var arr_errors = [];
     $.each(inputs, function (n, elem) {
+        var arr_errors = [];
         var block = $(elem);
         if (! block.count_text_input()){
             if (block.attr('name') == "course[title]"){
@@ -158,8 +163,8 @@ var validateCourseTitle = function () {
                 arr_errors[arr_errors.length] = "Введите описание курса"
             }
         }
+        installErrorBlock(arr_errors, block.closest(".validateFormCourse"), false);
     });
-    installErrorBlock(arr_errors, inputs.closest(".course__description-content"), false);
 };
 
 var allValidateForms = function () {

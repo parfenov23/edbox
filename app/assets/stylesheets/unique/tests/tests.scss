@@ -27,7 +27,7 @@
       color        : $black_87;
       line-height  : 24px;
       margin-bottom: 10px;
-      font-weight: 400;
+      font-weight: 500;
       position: relative;
       @include inline-block;
       padding-right: 24px;
@@ -38,7 +38,7 @@
         font-size: 15px;
         color: #F50057;
         line-height: 24px;
-
+        font-weight: 400;
       }
     }
     .description {
@@ -51,7 +51,7 @@
       margin-bottom: 16px;
       position     : relative;
       min-height   : 32px;
-    
+
     }
 
     &.is__not-activ {

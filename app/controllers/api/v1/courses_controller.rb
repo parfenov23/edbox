@@ -34,7 +34,8 @@ module Api::V1
 
     def add_category
       course = find_course
-      bunch_category = course.bunch_categories.find_or_create_by({category_id: params[:category_id]})
+      course.bunch_categories.destroy_all
+      bunch_category = course.bunch_categories.create({category_id: params[:category_id]})
       render json: bunch_category.category.as_json
     end
 
@@ -81,7 +82,7 @@ module Api::V1
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public).compact.select { |k, v| v != "" } rescue {}
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public).compact rescue {}
     end
   end
 
