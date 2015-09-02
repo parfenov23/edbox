@@ -90,6 +90,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
           z-index: 9;
           background-color: #fff;
           bottom: 0;
+          opacity: 0;
           .main__action-tooltip {
             right: 64px;
           }
@@ -106,9 +107,13 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
       .hidden__actions {
         .item {
           @include transition;
+          opacity: 1;
         }
         .item.frst {
           bottom       : 64px;
+        }
+        .item.scnd {
+          bottom       : 110px;
         }
       }
     }
