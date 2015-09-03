@@ -88,6 +88,22 @@ authCorpAcc =->
       $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
 
+adjustHeight = (textarea) ->
+  console.log textarea.value
+  if textarea.value
+    if textarea.scrollHeight < 110
+      dif = textarea.scrollHeight - (textarea.clientHeight)
+      if dif
+        if isNaN(parseInt(textarea.style.height))
+          textarea.style.height = textarea.scrollHeight + 'px'
+        else
+          textarea.style.height = parseInt(textarea.style.height) + dif + 'px'
+    else
+      textarea.style.height = '95px'
+  else
+    $(textarea).css 'height': '26px'
+
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -103,6 +119,8 @@ $(document).ready ->
   authCorpAcc()
 
 
+  $('.com__input-item textarea').on 'keyup onpaste', (e) ->
+    adjustHeight(e.target)
 
 
 

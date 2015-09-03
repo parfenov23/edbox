@@ -1,7 +1,35 @@
 = render "home/header/header", {namePage: "other", titlePage: 'Help'}
 
 
+.pop_up_confirm.is__active
+  .inner.allgood.profile__popup
+    .title Задать вопрос
+    .profile__popup-inner
+      .left
+        .com__input-item.item.empty
+          input.form-control.floating-label name="" type="text" placeholder="Имя"
+          hr
 
+        .com__input-item.item.empty
+          input.form-control.floating-label name="" type="text" placeholder="Фамилия"
+          hr
+
+        .com__input-item.item.empty
+          input.form-control.floating-label name="" type="email" placeholder="Email"
+          hr
+
+        .com__input-item.item.empty
+          input.form-control.floating-label name="" type="tel" placeholder="Телефон"
+          hr
+
+      .right.withText
+        .com__input-item.item.empty.is__textarea
+          textarea.form-control.floating-label style="height: 26px;" name="email" type="text" placeholder="Введите вопрос"
+          hr
+
+    .action__block
+      .btn.btn-flat ОТМЕНИТЬ
+      .btn.is__blue ОТПРАВИТЬ ЗАЯВКУ
 
 .inner-content
   .profile__new
@@ -11,19 +39,17 @@
         .ava__wrp
           .ava
             img src="/uploads/ava.png"
-            input type="file"
-            .shadow.icon
         .info__list
           .com__input-item.item.empty
-            input.form-control.floating-label name="email" type="text" placeholder="Имя"
+            input.form-control.floating-label name="" type="text" placeholder="Имя"
             hr
 
           .com__input-item.item.empty
-            input.form-control.floating-label name="email" type="text" placeholder="Фамилия"
+            input.form-control.floating-label name="" type="text" placeholder="Фамилия"
             hr
 
           .com__input-item.item.empty
-            input.form-control.floating-label name="email" type="email" placeholder="Должность"
+            input.form-control.floating-label name="" type="text" placeholder="Должность"
             hr
           .text__item.profile__description
               p
@@ -50,3 +76,4 @@
           .error__msg ой все
       .action__block
         .btn.btn-flat СОХРАНИТЬ
+        

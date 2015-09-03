@@ -31,7 +31,7 @@ var defaultConfirm = function(){
 };
 
 $(document).ready(function () {
-    $(document).on('click', '.pop_up_confirm, .pop_up_confirm .action-btn .js_closePopupConfirmNo', defaultConfirm);
+    $(document).on('click', '.pop_up_confirm .action-btn .js_closePopupConfirmNo', defaultConfirm);
     $(document).on('click', '.pop_up_confirm .action-btn .js_actionYesStart', function(){
         btn_yes_action();
         defaultConfirm();
