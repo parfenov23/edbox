@@ -223,6 +223,7 @@ $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
     $(document).on('click', '.corses-prev .action-btn .js_openPopup', openPopup);
+    $(document).on('click', '.main__action .js_openPopup', openPopup); // course description
     $(document).on('click', '#js-add-course-to-shedule .action-btn .btn.cancel', closePopup);
     $(document).on('click', '#js-add-course-to-shedule .listGroup .selectGroup', selectGroup);
     $(document).on('click', '#js-add-course-to-shedule form .action-btn.sendAction .btn.yes.js_addCourse', addCourse);
