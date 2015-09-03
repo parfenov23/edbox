@@ -119,6 +119,12 @@
         background-color : rgba(0, 0, 0, 0.3);
         display          : inline-block;
         margin-right     : 16px;
+        color            : white;
+        #inputFile_teaserImg, #inputFile_teaserVideo {
+          width   : 1px;
+          opacity : 0;
+          height  : 1px;
+        }
         .icon {
           font-size : 36px;
         }
@@ -138,6 +144,7 @@
       right        : 0;
       margin-right : 24px;
       .addedTeaser {
+        display          : none;
         position         : relative;
         @include btnRemove;
         cursor           : pointer;
@@ -145,6 +152,10 @@
         margin-bottom    : 16px;
         border-radius    : 4px;
         padding          : 5px 34px 5px 14px;
+        color            : white;
+        &.show {
+          display : block;
+        }
       }
     }
   }
@@ -206,7 +217,7 @@
       background-color : rgba(255, 255, 255, 0);
       border           : 0;
       border-bottom    : 1px solid #949494;
-      color            : #757575;
+      color            : white;
       outline          : none;
     }
     .detail__info {
