@@ -59,6 +59,13 @@ class Attachment < ActiveRecord::Base
     end
   end
 
+  def install_position
+    positions_max = (attachmentable.attachments.map(&:position).compact.max rescue 0)
+    positions_max = positions_max.present? ? positions_max : 0
+    self.position = positions_max + 1
+    save
+  end
+
   def class_type
     arr_types = ["text", "audio", "video", "test"]
     (arr_types.include? (file_type)) ? file_type : "text"
@@ -106,7 +113,8 @@ class Attachment < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json.merge({file_name: (file.file.original_filename rescue nil), file_size: (file.file.size rescue nil)})
+    as_json.merge({file_name: (file.file.original_filename rescue nil),
+                   file_size: (file.file.size rescue nil), file_url: file.url})
   end
 
   def uploadType

@@ -47,6 +47,7 @@ module Api::V1
       attachment = Attachment.new({attachmentable_id: params[:attachmentable_id],
                                    attachmentable_type: params[:attachmentable_type]})
       attachment.save
+      attachment.install_position
       render json: attachment.transfer_to_json
     end
 
@@ -61,11 +62,16 @@ module Api::V1
     def update_positions
       ids_sections = params[:ids_sections]
       n = -1
+      position_s = 0
       ids_sections.each do |id_section|
+        Section.find(id_section).update({position: (position_s += 1)})
         position = 0
-        params[:ids_attachments][(n+=1).to_s].each do |id_attachment|
-          attachment = Attachment.find(id_attachment)
-          attachment.update({position: (position+=1), attachmentable_type: "Section", attachmentable_id: id_section})
+        arr_ids = params[:ids_attachments][(n+=1).to_s]
+        if arr_ids.present?
+          arr_ids.each do |id_attachment|
+            attachment = Attachment.find(id_attachment)
+            attachment.update({position: (position+=1), attachmentable_type: "Section", attachmentable_id: id_section})
+          end
         end
       end
       render json: {success: true}

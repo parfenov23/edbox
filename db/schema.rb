@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828153318) do
+ActiveRecord::Schema.define(version: 20150902082133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150828153318) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.text     "description"
     t.boolean  "archive",             default: false
+    t.text     "description"
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(version: 20150828153318) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "tags", force: true do |t|

@@ -1,0 +1,40 @@
+- user = current_user
+- if user.present?
+  = render "home/courses/pop_up"
+  - course_favorite = course.favorite_courses.find_by(user_id: user.id).present?
+  - course_assigned = course.bunch_courses.find_by(user_id: 1).present?
+  - if user.corporate? && user.director?
+    .main__action.multi__action
+      .inner__wrp
+        - add_class = user.company.groups.present? ? "" : "noOpenPopup"
+        - hash_params = { 'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule" }
+        .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_openPopup data-id="#{course.id}" class="#{add_class}" *hash_params
+          i.icon.groups
+          .main__action-tooltip Добавить в групповое расписание
+
+        .hidden__actions.is__visible
+          - unless course_favorite
+            .item.frst.main__action-tooltip-wrp.main__action-shadow.js_addFavorite data-id="#{course.id}"
+              i.icon.star
+              .main__action-tooltip В избранное
+
+          - unless course_assigned
+            - ass_class = (course_favorite ? 'frst' : 'scnd')
+            - hash_params = { 'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", 'data-type' => "user"}
+            .item.main__action-tooltip-wrp.main__action-shadow.js_openPopup class = ass_class data-id="#{course.id}" *hash_params
+              i.icon.schedule
+              .main__action-tooltip В личное расписание
+  - else
+    - unless course_assigned
+      .main__action.multi__action
+        .inner__wrp
+          - hash_params = { 'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", 'data-type' => "user"}
+          .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_openPopup data-id="#{course.id}" *hash_params
+            i.icon.schedule
+            .main__action-tooltip Добавить в личное расписание
+
+        - unless course_favorite
+          .hidden__actions.is__visible
+            .item.frst.main__action-tooltip-wrp.main__action-shadow.js_addFavorite data-id="#{course.id}"
+              i.icon.star
+              .main__action-tooltip В избранное

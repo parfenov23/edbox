@@ -13,7 +13,8 @@
         .btn.btn-flat.js_createSectionToSection data-course_id=course.id ДОБАВИТЬ РАЗДЕЛ
       - test = course.test
 
-      .section.add_new.js_addTestToCourse data-id=course.id class=(test.present? ? "hideBtnFinalTest" : "")
+      .section.add_new.js_addTestToCourse.validateTest data-id=course.id class=(test.present? ? "hideBtnFinalTest" : "")
+        = render "contenter/courses/help_error"
         .btn.btn-flat ДОБАВИТЬ ФИНАЛЬНЫЙ ТЕСТ
 
       .test_block.js__toggle-state.programm__block.closed-state.parentValidAttachment#finalTestCourse style=(test.present? ? "" : "display:none;")

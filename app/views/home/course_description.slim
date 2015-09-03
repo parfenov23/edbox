@@ -171,5 +171,8 @@
 / .toggle__view.btn.btn-flat
 /   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
 /   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
+
+= render "home/course_program/sink_button", {course: @course}
+
 - unless current_user.present?
   = render "home/course_reg"

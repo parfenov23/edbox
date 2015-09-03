@@ -216,6 +216,30 @@ var removeLigamentLeadFromCourse = function () {
     });
 };
 
+var changeTeaserCourse = function(){
+    var input = $(this);
+    var form = input.closest('form');
+    var presentation_block = input.closest('.presentation__block');
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/courses/' + input.data('id') + "/update_teaser",
+        processData: false,
+        contentType: false,
+        cache      : false,
+        data: form.serializefiles()
+    }).success(function (data) {
+        if (data.file_type == "image"){
+            presentation_block.find(".teaserImageChange").attr('src', data.file_url);
+            input.closest(".teaserImage").hide();
+            var img_info = presentation_block.find(".noEmptyAddedAction .addedTeaser.teaserImage");
+            img_info.addClass('show');
+            img_info.find(".fileName").text(data.file_name);
+        }
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
@@ -230,4 +254,6 @@ pageLoad(function () {
     $(document).on('click', ".courses-aside .close-filter", function () {
         $(this).closest(".courses-aside").removeClass("show");
     });
+
+    $('#courseEditContenter #inputFile_teaserImg').change(changeTeaserCourse);
 });
