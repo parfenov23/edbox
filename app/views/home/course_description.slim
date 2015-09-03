@@ -172,16 +172,7 @@
 /   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
 /   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
 
-.main__action.multi__action
-  .inner__wrp
-    .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow
-      i.icon.schedule
-      .main__action-tooltip Добавить в расписание
-
-    .hidden__actions.is__visible
-      .item.frst.main__action-tooltip-wrp.main__action-shadow
-        i.icon.star
-        .main__action-tooltip В избранное
+= render "home/course_program/sink_button", {course: @course}
 
 - unless current_user.present?
   = render "home/course_reg"
