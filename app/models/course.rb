@@ -36,7 +36,9 @@ class Course < ActiveRecord::Base
   end
 
   def program_validate
-    (!sections.map{|section| (!section.attachments.map(&:validate).include?(false)) rescue false }.include?(false))
+    sections_validate = (!sections.where(title: [nil, ""]).present?) ? !sections.map(&:validate).include?(false) : false
+    test_validate = test.present? ? test.validate : false
+    sections_validate && test_validate
   end
 
   # def get_type
@@ -51,19 +53,19 @@ class Course < ActiveRecord::Base
 
   def get_image_path(width=nil, height=nil)
     # if id.present?
-      attachment = attachments.where(file_type: 'image', width: width, height: height).last
-      if attachment.present?
-        path = attachment.file.url
+    attachment = attachments.where(file_type: 'image', width: width, height: height).last
+    if attachment.present?
+      path = attachment.file.url
+    else
+      attachment_full = attachments.where(file_type: 'image', size: 'full').last
+      if attachment_full.present?
+        new_attachment = create_img(attachment_full.file.path, width, height)
       else
-        attachment_full = attachments.where(file_type: 'image', size: 'full').last
-        if attachment_full.present?
-          new_attachment = create_img(attachment_full.file.path, width, height)
-        else
-          new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
-        end
-        path = new_attachment.file.url
+        new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
       end
-      path
+      path = new_attachment.file.url
+    end
+    path
     # end
   end
 

@@ -18,7 +18,7 @@ headerSubmenu = ->
   rightWidt = $('.right-col').width()
   if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
     if( $("#namePageGroup").length)
-      $(".page__title").text($("#namePageGroup").val())
+      $("page__title")
     $('#page__header .left-col').addClass('is__sooo-long')
     $('#page__header').removeClass('with__children ')
     $('#page__header .page__children').addClass('js__baron')

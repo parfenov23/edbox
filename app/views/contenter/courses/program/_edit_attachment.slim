@@ -6,7 +6,7 @@
         = render "contenter/courses/help_error"
         .titleEdit Название материала
         .input_title
-          span.numberSection 1.0
+          span.numberSection = "#{section.position}.#{attachment.position}"
           - hash_data = {'data-valid' => 'true', 'data-max_length' => 100}
           input.attachmentInput.js_onChangeEditAttachment placeholder="Введите название материала" value=attachment.title name="attachment[title]" *hash_data
         hr

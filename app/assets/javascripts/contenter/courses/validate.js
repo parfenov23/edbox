@@ -57,27 +57,27 @@ var validateTitleAttachment = function () {
     });
 };
 
-validatePresentFile = function(){
+validatePresentFile = function () {
     var inputs_file_type = $(".validateAttachmentFileType");
     $.each(inputs_file_type, function (n, elem) {
         var input = $(elem);
         var arr_errors = [];
         var blockEditFile = input.closest(".form_edit").find(".editFileUpload");
         var block_error_view = input.closest(".upload_attachments");
-        if (!input.count_text_input()){
+        if (! input.count_text_input()){
             input.closest(".upload_attachments").addClass("error");
             arr_errors[arr_errors.length] = "Добавьте материал";
-        }else{
+        } else {
             block_error_view = blockEditFile;
             if (input.val() == "description"){
                 var textarea = blockEditFile.find(".addedTxtDescription textarea");
                 textarea.val(textarea.val().replace('<p><br data-mce-bogus="1"></p>', ''));
-                if (!textarea.count_text_input()){
+                if (! textarea.count_text_input()){
                     arr_errors[arr_errors.length] = "Текст не может быть пустым";
                 }
             }
         }
-        if (!arr_errors.length){
+        if (! arr_errors.length){
             block_error_view.removeClass("error");
         }
         installErrorBlock(arr_errors, block_error_view, false);
@@ -108,11 +108,11 @@ var validateAttachment = function () {
                 }
             });
         }
-        installErrorBlock(arr_errors, block.find(".info_attachment, .parentFinalTest"), false);
+        installErrorBlock(arr_errors.getUnique(), block.find(".info_attachment, .parentFinalTest .info_test"), false);
     });
 
     if ($("#contenterCourseProgram").length){
-        if (! $(".info_attachment.error").length){
+        if (! $(".info_attachment.error, .validateSection.error, .validateTest.error").length){
             $(".contenter_courses_programm").removeClass("error");
         } else {
             $(".contenter_courses_programm").addClass("error");
@@ -120,29 +120,38 @@ var validateAttachment = function () {
     }
 };
 
-var validateCourse = function(){
+var validateFinalTest = function (){
+    if ($("#contenterCourseProgram").length && !$(".parentFinalTest").length ){
+        var block = $(".section.add_new.js_addTestToCourse");
+        var arr_errors = [];
+        arr_errors[arr_errors.length] = "Добавьте финальный тест";
+        installErrorBlock(arr_errors, block, false);
+    }
+};
+
+var validateCourse = function () {
     validateCourseTitle();
     validateCourseCategories();
     installErrorHeader();
 };
 
-var installErrorHeader = function(){
+var installErrorHeader = function () {
     if ($("#courseEditContenter").length){
-        if($(".validateFormCourse.error").length){
+        if ($(".validateFormCourse.error").length){
             $(".contenter_courses_edit").addClass("error");
-        }else{
+        } else {
             $(".contenter_courses_edit").removeClass("error");
         }
     }
 };
 
-var validateCourseCategories = function (){
+var validateCourseCategories = function () {
     var block = $(".itemDetailInfo.validateCourseCategories");
-    var categories = block.find(".description__Item .allCategoriesDescriptionCourse .category")
+    var categories = block.find(".description__Item .allCategoriesDescriptionCourse .category");
     var arr_errors = [];
     if (categories.length){
         block.removeClass("error");
-    }else{
+    } else {
         arr_errors[arr_errors.length] = "Выберете категорию";
         block.addClass("error");
     }
@@ -167,15 +176,39 @@ var validateCourseTitle = function () {
     });
 };
 
+var validateSections = function(){
+    var sections = $(".validateSections");
+    $.each(sections, function (n, elem) {
+        var arr_errors = [];
+        var section = $(elem);
+        var input_title = section.find(".input_section input.section_title");
+        var attachments = section.find(".descriptionSection .allAttachmentsSection .attachment.item");
+        if (!input_title.count_text_input()){
+            arr_errors[arr_errors.length] = "Введите заголовок раздела"
+        }
+        if (!attachments.length){
+            arr_errors[arr_errors.length] = "Добавьте хотя бы один материал"
+        }
+        installErrorBlock(arr_errors, section.find(".input_section"), false);
+    });
+};
+
 var allValidateForms = function () {
     validateTestQuestion();
     validateTitleAttachment();
     validatePresentFile();
+    validateSections();
+    validateFinalTest();
     validateAttachment();
+    ////
     validateCourse();
+    for_tooltip();
 };
 
 pageLoad(function () {
-    allValidateForms();
-    $(document).on('click', '#contenterCourseProgram, #courseEditContenter', allValidateForms);
+    var blocks_valid = "#contenterCourseProgram, #courseEditContenter";
+    if( $(blocks_valid).length ){
+        allValidateForms();
+        $(document).on('click', blocks_valid, allValidateForms);
+    }
 });

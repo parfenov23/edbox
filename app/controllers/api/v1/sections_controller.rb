@@ -9,6 +9,7 @@ module Api::V1
 
     def create
       section = Section.create(params_section)
+      section.install_position
       render json: section.transfer_to_json
     end
 

@@ -13,6 +13,17 @@ class Section < ActiveRecord::Base
     as_json
   end
 
+  def install_position
+    positions_max = (course.sections.map(&:position).compact.max rescue 0)
+    positions_max = positions_max.present? ? positions_max : 0
+    self.position = positions_max + 1
+    save
+  end
+
+  def validate
+   attachments.present? ? ((!attachments.map(&:validate).include?(false)) rescue false) : false
+  end
+
   def bunch_section(user_id)
     user = User.find(user_id)
     user.bunch_courses.joins(:bunch_sections).
