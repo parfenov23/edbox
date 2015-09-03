@@ -5,7 +5,7 @@ fieldset[disabled] .form-control,
   &:focus,
   &.focus {
     &:not(textarea) {
-      height: 28px;
+      // height: 28px;
     }
     padding      : 0;
     float        : none;
@@ -187,7 +187,7 @@ select.form-control {
 // float label
 .com__input-item {
   position     : relative;
-  height       : 66px;
+  // height       : 66px;
   margin-bottom: 6px;
   &.error {
     hr {
@@ -232,7 +232,7 @@ select.form-control {
   }
   hr {
     position     : absolute;
-    top          : 19px;
+    bottom:           29px;
     left         : 0;
     height       : 1px;
     border       : none;
@@ -250,11 +250,25 @@ select.form-control {
     margin-bottom: 40px;
     width        : 100%;
     line-height  : 24px;
-    position     : absolute;
+    // position     : absolute;
     top          : -6px;
     left         : 0;
+    position: relative;
+    height: 26px;
     border-bottom: none;
   }
+  textarea {
+    margin-bottom: 6px;
+    margin-bottom: 40px;
+    width        : 100%;
+    line-height  : 24px;
+    top          : -6px;
+    left         : 0;
+    position: relative;
+    border-bottom: none;
+    height: 26px;
+  }
+
   input:not(.empty) {
     border-color: $primoryColor;
   }
@@ -301,17 +315,18 @@ select.form-control {
     }
     textarea {
         @include placeholder(rgba(0, 0, 0, 0.54));
+        position: relative;
         font-size: 13px;
         line-height: 20px;
         display       : block;
         border        : none;
         background    : none;
-        height        : 144px;
         width         : 100%;
         resize        : none;
         border-bottom : 1px solid #E0E0E0;
         position      : relative;
         z-index       : 10;
+        min-height: 26px;
         &:focus + hr {
             width : 100%;
             left  : 0;
