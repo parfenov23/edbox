@@ -104,6 +104,50 @@
 }
 
 .contenter {
+  .presentation__block {
+    .addedActionBlock {
+      position : absolute;
+      top      : 108px;
+      left     : calc(50% - 144px);
+      .addedTeaser {
+        cursor           : pointer;
+        padding          : 32px 5px 5px 5px;
+        text-align       : center;
+        width            : 128px;
+        height           : 120px;
+        border-radius    : 4px;
+        background-color : rgba(0, 0, 0, 0.3);
+        display          : inline-block;
+        margin-right     : 16px;
+        .icon {
+          font-size : 36px;
+        }
+        .contentText {
+          margin-top : 8px;
+          font-size  : 13px;
+        }
+        &:hover {
+          background-color : rgba(0, 0, 0, 0.5);
+          display          : inline-block;
+        }
+      }
+    }
+    .noEmptyAddedAction {
+      position     : absolute;
+      top          : 108px;
+      right        : 0;
+      margin-right : 24px;
+      .addedTeaser {
+        position         : relative;
+        @include btnRemove;
+        cursor           : pointer;
+        background-color : rgba(0, 0, 0, 0.3);
+        margin-bottom    : 16px;
+        border-radius    : 4px;
+        padding          : 5px 34px 5px 14px;
+      }
+    }
+  }
   .cabinet__block {
     .actual-courses {
       .carusel-wrp {
@@ -273,8 +317,8 @@
         background-color : #E0E0E0;
         margin-bottom    : 24px;
         border-radius    : 2px;
-        &.add_new{
-          position: relative;
+        &.add_new {
+          position : relative;
           @include blockHelpError;
         }
         .title.input_section {

@@ -6,6 +6,28 @@
 .contenter#courseEditContenter
   .presentation__block
     img src = (course.get_image_path rescue "/uploads/course_default_image.png")
+    .addedActionBlock
+      .addedTeaser
+        i.icon.add
+        .contentText Добавить обложку
+      .addedTeaser
+        i.icon.video
+        .contentText Добавить тизер
+    .noEmptyAddedAction
+      .addedTeaser
+        /i.icon.add
+        .contentUpload
+          .contentText Обложка
+          .fileName rS_3241sad.png
+        .remove
+      .addedTeaser
+        /i.icon.add
+        .contentUpload
+          .contentText Тизер
+          .fileName rS_3241sad.mp4
+        .remove
+
+
   form.course__description-content.oh__nihuyase-block.js_courseContenter
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id
