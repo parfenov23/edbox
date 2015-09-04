@@ -120,7 +120,9 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id], methods: [:clear_description, :images, :author], include: [
+    as_json({except: [:duration, :main_img, :description, :user_id],
+             methods: [:clear_description, :images, :author],
+             include: [
               {sections: {except: Section::EXCEPT_ATTR}}
             ]})
   end

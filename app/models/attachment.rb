@@ -130,6 +130,10 @@ class Attachment < ActiveRecord::Base
     end
   end
 
+  def user_upload?
+    file.file.original_filename.include?("mini_magick")
+  end
+
   def find_type
     arr_text_type = ["description"]
     arr_text_type.include?(file_type) ? "text" : file_type
