@@ -95,6 +95,31 @@ var goToProgramAttachment = function(){
     }
 }
 
+var elemFullScreen = function(elem, btn){
+    var fsButton = btn,
+        fsElement = elem;
+    if (window.fullScreenApi.supportsFullScreen) {
+        //console.log('YES: Your browser supports FullScreen');
+        //console.log('fullScreenSupported');
+
+        // handle button click
+        fsButton.addEventListener('click', function() {
+            window.fullScreenApi.requestFullScreen(fsElement);
+        }, true);
+
+        fsElement.addEventListener(fullScreenApi.fullScreenEventName, function() {
+            if (fullScreenApi.isFullScreen()) {
+                //console.log('Whoa, you went fullscreen');
+            } else {
+                elem.pause();
+            }
+        }, true);
+
+    } else {
+        //console.log('SORRY: Your browser does not support FullScreen');
+    }
+}
+
 var includeDatePicker = function (block) {
     if (block != undefined){
         block.datepicker({

@@ -102,7 +102,7 @@ class Course < ActiveRecord::Base
   end
 
   def clear_description
-    ActionView::Base.full_sanitizer.sanitize(description.to_s).html_safe.to_s
+    ActionView::Base.full_sanitizer.sanitize(description.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
       .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
   end
 
@@ -115,13 +115,23 @@ class Course < ActiveRecord::Base
     end.compact!
   end
 
-  def author
-    user.as_json({except: User::EXCEPT_ATTR + ["user_key"]})
+  def creator
+    user.as_json({except: User::EXCEPT_ATTR + ["user_key", "avatar"]})
+  end
+
+  def leadings
+    ligament_leads.map { |ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]}) }
   end
 
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id], methods: [:clear_description, :images, :author], include: [
-              {sections: {except: Section::EXCEPT_ATTR}}
-            ]})
+    as_json({except: [:duration, :main_img, :description, :user_id],
+             methods: [:clear_description, :images, :creator, :leadings, :audiences],
+             include: [
+               {sections: {except: Section::EXCEPT_ATTR,
+                           include: [{attachments: Attachment::INCLUDE_TEST}]
+               },
+                test: {include: [questions: {include: :answers}]}
+               }
+             ]})
   end
 end

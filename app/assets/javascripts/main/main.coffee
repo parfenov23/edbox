@@ -88,6 +88,26 @@ authCorpAcc =->
       $('.auth__wrp .js__company-name input').attr("placeholder", "")
 
 
+adjustHeight = (textarea) ->
+  textareaHeight = $(textarea).data('maxheight')
+  
+  if typeof textareaHeight == 'undefined'
+    textareaHeight = 110
+
+  if textarea.value
+    if textarea.scrollHeight < textareaHeight
+      dif = textarea.scrollHeight - (textarea.clientHeight)
+      if dif
+        if isNaN(parseInt(textarea.style.height))
+          textarea.style.height = textarea.scrollHeight + 'px'
+        else
+          textarea.style.height = parseInt(textarea.style.height) + dif + 'px'
+    else
+      textarea.style.height = textareaHeight +  'px'
+  else
+    $(textarea).css 'height': '26px'
+
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -103,6 +123,8 @@ $(document).ready ->
   authCorpAcc()
 
 
+  $('.com__input-item textarea').on 'keyup onpaste', (e) ->
+    adjustHeight(e.target)
 
 
 
@@ -256,7 +278,7 @@ $(document).ready ->
       adaptiveTitle()
 
   $('body').bind 'click.dropdown', (ev) ->
-    unless $(ev.target.closest('.js__toggle-state')).length
+    unless $(ev.target).closest('.js__toggle-state').length
       hideBlock($('.js__toggle-state'))
       adaptiveTitle()
       $(document).unbind 'click.dropdown'

@@ -75,6 +75,20 @@ module Api::V1
       render json: {success: true}
     end
 
+    def update_teaser
+      course = find_course
+      course.attachments.where(file_type: params[:type_teaser]).destroy_all
+      size = params[:type_teaser] == "image" ? "full" : nil
+      attachment = Attachment.save_file('Course', course.id, params[:file], size)
+      render json: attachment.transfer_to_json
+    end
+
+    def remove_teaser
+      course = find_course
+      course.attachments.where(file_type: params[:type]).destroy_all
+      render json: {success: true}
+    end
+
     private
 
     def find_course
