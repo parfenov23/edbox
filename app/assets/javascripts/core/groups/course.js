@@ -46,6 +46,7 @@ var changeDeadLineCourse = function (btn) {
 };
 
 var changeDeadLineCourseMy = function (btn, text_success) {
+    console.log(btn);
     var data_time = btn.text();
     if (! data_time.length){
         data_time = btn.val();
@@ -142,7 +143,7 @@ var changeDeadLineSectionGroup = function (btn, text_success) {
     return true;
 };
 
-var removeDeadLineSectionMy = function (btn, text_success) {
+var removeDeadLineSectionMy = function () {
     var bunch_section_id = btn.data("bunch_section_id");
     show_error('Загрузка', 3000);
     $.ajax({
@@ -158,10 +159,21 @@ var removeDeadLineSectionMy = function (btn, text_success) {
     return true;
 };
 
+//var openDataPicker = function () {
+//    var btn = $(this);
+//    var parent = btn.closest('.edit-menu');
+//    var datepicker = parent.find('.datapicker__trigger');
+//    includeDatePicker(datepicker);
+//    var selected_value = parent.find('.js_changeDeadLineCourseMy');
+//    $(selected_value).bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+//        changeDeadLineCourseMy($(this), $(this).data("text"));
+//    });
+//};
+
 var bind_block = function () {
-    //$('.edit-menu .js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-    //    changeDeadLineCourseMy($(this), $(this).data("text"));
-    //});
+    $('.js_changeDeadLineCourseMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineCourseMy($(this), $(this).data("text"));
+    });
 
     $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
@@ -249,6 +261,8 @@ $(document).ready(function () {
             )
         });
 
+    //$(document).on('click', '.edit-menu .js_openDataPicker', openDataPicker);
+
     $(document).on('click', '.hidden-list .js_removeCourseToGroup',
         function () {
             var btn = $(this);
@@ -275,13 +289,14 @@ $(document).ready(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
 
-    $('.js_actionBtn .js_changeDeadLineCourseMy').change(function () {
-        changeDeadLineCourseMy($(this), $(this).data("text"));
-    });
+    //$('.js_actionBtn .js_changeDeadLineCourseMy').change(function () {
+    //    changeDeadLineCourseMy($(this), $(this).data("text"));
+    //});
 
     $(document).on('click', '.js_loadMySchedule',
         function() {
-            loadMySchedule({schedule: {month: 9}});
+            var date = new Date
+            loadMySchedule({schedule: {month: (date.getMonth() + 1)}});
         }
     );
     $(document).on('click', '.js_addCoursesFromFavorite', addCoursesFromFavorite);

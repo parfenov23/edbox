@@ -39,12 +39,13 @@ div
                 - onclick = "window.location.href = '#{link}'"
                 .event-info.mdl-shadow--2dp.director
                   .title onclick=onclick = course.title
+
                   - if bunch_course.model_type == "user"
                     .edit-menu.js__select-calendar
-                      a.edit-date href="#"
+                      .edit-date href="#"
                         i.icon-uniE8A3
                       .hidden-calendar-wrp
-                        .hidden-calendar
+                        .hidden-calendar.show
                           .calendar-header
                             .back.icon
                             |Выбор даты
@@ -52,11 +53,12 @@ div
                             - ts = "Дата оканчания курса изменена"
                             .selected-value.js_changeDeadLineCourseMy data-text=ts data-course_id=bunch_course.course_id
                               = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Выберите дату")
-                            .datapicker__trigger
+                              .datapicker__trigger
                         ul.hidden-list
-                          li data-show = "hidden-calendar" Перенести дату окончания курса
+                          li.js_openDataPicker data-show = "hidden-calendar" Перенести дату окончания курса
                           - ts = "Курс удален!"
                           li.js_removeCourseMy data-text=ts data-course_id=bunch_course.course_id Удалить
+
               - schedule_current_day[:bunch_sections].each do |bunch_section|
                 - bunch_section = BunchSection.find(bunch_section)
                 - section = bunch_section.section

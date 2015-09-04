@@ -26,19 +26,33 @@
                 .com__director-btn.js__select-calendar
                   a.edit-date href="javascript:void(0)"
                     i.icon-uniE8A3
+                  /.hidden-calendar-wrp
+                  /  .hidden-calendar
+                  /    .calendar-header
+                  /      .back.icon
+                  /      |Выбор даты
+                  /    .calendar-holder.edit-menu
+                  /      - text_data = "Установить дату окончания курса"
+                  /      .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=overdue_bunch_course.course_id Выберите дату
+                  /      .datapicker__trigger
+                  /  ul.hidden-list
+                  /    li data-show = "hidden-calendar" Перенести дату окончания курса
+                  /    - ts = "Курс удален!"
+                  /    li.js_removeCourseMy data-text=ts data-course_id=overdue_bunch_course.course_id Удалить
                   .hidden-calendar-wrp
                     .hidden-calendar
                       .calendar-header
                         .back.icon
                         |Выбор даты
-                      .calendar-holder.edit-menu
+                      .calendar-holder
                         - text_data = "Установить дату окончания курса"
                         .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=overdue_bunch_course.course_id Выберите дату
-                        .datapicker__trigger
+                      .datapicker__trigger.incDocumentReady
                     ul.hidden-list
-                      li data-show = "hidden-calendar" Перенести дату окончания курса
+                      - text_data = "Установить дату окончания курса"
+                      li data-show="hidden-calendar" Перенести дату окончания курса
                       - ts = "Курс удален!"
-                      li.js_removeCourseMy data-text=ts data-course_id=overdue_bunch_course.course_id Удалить
+                      li.js_removeCourseMy data-text=ts data-course_id=overdue_bunch_course.course_id  Удалить
             .author
               'Завершить до
               = ((l local_time(overdue_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
