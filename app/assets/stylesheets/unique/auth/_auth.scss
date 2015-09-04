@@ -3,63 +3,78 @@
   background-size: cover;
   min-height     : 100vh;
   padding-bottom : 40px;
+
   .edbox__logo {
     text-align   : center;
     padding-top  : 64px;
     margin-bottom: 8px;
+
     img {
       width: 80px;
     }
   }
+
   .adc__logo {
     text-align   : center;
     margin-bottom: 27px;
+
     img {
       width: 205px;
     }
   }
+
   .auth__wrp {
     @include white__block(1,0);
     @include middle-block(792px);
     padding: 32px 32px 24px;
+
     &.offer__box {
       @include middle-block(936px);
       padding: 32px 96px 48px;
     }
+
     &.sign__in {
       width: 408px;
+
       >.title {
         margin-bottom: 67px;
         font-size    : 20px;
         color        : #000;
         line-height  : 28px;
       }
+
       .item {
         width: 312px;
       }
+
       .forget__pass {
         margin-bottom: 27px;
         margin-top   : -22px;
-        position: relative;
-        z-index: 1;
+        position     : relative;
+        z-index      : 1;
+
         a {
           font-size  : 15px;
           color      : #00bcd4;
           line-height: 24px;
         }
       }
+
       &.forgot {
         height: 364px;
+
         >.title {
           text-align   : left;
           margin-bottom: 37px;
         }
+
         .item {
           margin-bottom: 86px;
         }
+
         .description {
-          font-size: 15px;
-          line-height: 24px;
+          font-size    : 15px;
+          line-height  : 24px;
           margin-bottom: 162px;
         }
 
@@ -67,32 +82,38 @@
           .title {
             margin-bottom: 10px;
           }
+
           .action__block {
             margin-right: -8px;
           }
         }
       }
-
     }
+
     > .title {
       font-size    : 24px;
       line-height  : 32px;
       text-align   : center;
       margin-bottom: 40px;
     }
+
     .col__wrp {
       display        : flex;
       justify-content: flex-start;
+
       .col {
         width       : 50%;
         padding-left: 5px;
+
         &:first-child {
           padding-left: 0;
+
           .title {
             margin-bottom: 45px;
             padding-left : 0;
           }
         }
+
         > .title {
           font-size    : 15px;
           color        : $black_54;
@@ -100,56 +121,70 @@
           margin-bottom: 16px;
           padding-left : 6px;
         }
+
         .item {
           width: 312px;
+
           input[type=password] {
             font-size     : 30px;
             letter-spacing: 2px;
           }
+
           &:nth-child(4) {
             margin-bottom: 15px;
           }
+
           &:nth-child(6) {
             margin-bottom: 15px;
           }
         }
+
         .offert {
           width      : 265px;
           margin-top : -5px;
           margin-left: -8px;
+
           a {
             color: $primoryColor;
           }
         }
+
         .type__acc-item {
           margin-bottom: 40px;
+
           .text {
             font-size  : 15px;
             line-height: 24px;
           }
+
           .radio {
             margin-bottom: 8px;
           }
+
           .description {
             padding-left: 40px;
             font-size   : 13px;
             line-height : 20px;
           }
         }
+
         .company {
           margin-left: 40px;
-          opacity: 0;
-          width: 1px;
-          overflow: hidden;
+          opacity    : 0;
+          width      : 1px;
+          overflow   : hidden;
+
           input {
             @include transition;
             opacity    : 0;
             margin-left: 30px;
           }
+
           &.is__active {
-            opacity: 1;
-            width: auto;
+            opacity : 1;
+            width   : auto;
             overflow: visible;
+
             input {
               @include transition;
               opacity    : 1;
@@ -159,14 +194,17 @@
         }
       }
     }
+
     .action__block {
       display        : flex;
       justify-content: flex-end;
+
       .btn {
         margin-right: 8px;
       }
     }
   }
+
   &.is__course-description {
     position  : absolute;
     overflow  : visible;
@@ -176,6 +214,7 @@
     background: $black_54;
     height    : auto;
     width     : 100%;
+
     .offer__box {
       @include white__block(1,0);
       position   : absolute;
@@ -185,6 +224,7 @@
       width      : 936px;
       padding    : 32px 96px 48px;
     }
+
     .logo {
       position  : absolute;
       top       : -90px;
@@ -192,6 +232,7 @@
       width     : 100%;
       text-align: center;
     }
+
     .auth__title-top {
       position  : absolute;
       top       : -64px;
@@ -200,6 +241,7 @@
       text-align: center;
     }
   }
+
   .offer__box {
     > .title {
       text-align   : center;
@@ -207,6 +249,7 @@
       font-size    : 24px;
       line-height  : 32px;
     }
+
     > .description {
       font-size    : 15px;
       color        : $black_87;
@@ -214,21 +257,25 @@
       text-align   : center;
       margin-bottom: 24px;
     }
+
     .plane__list {
       display        : flex;
       justify-content: space-between;
+
       .item {
         border       : 1px solid rgba(0,0,0,0.26);
         border-radius: 4px;
         width        : 360px;
         text-align   : center;
         padding      : 24px 24px 16px;
+
         .title {
           font-size    : 24px;
           color        : $black_87;
           line-height  : 32px;
           margin-bottom: 16px;
         }
+
         .description {
           font-size    : 13px;
           color        : $black_87;
@@ -237,6 +284,7 @@
           height       : 60px;
           overflow     : hidden;
         }
+
         .price {
           span {
             font-size   : 24px;
@@ -244,6 +292,7 @@
             line-height : 32px;
             margin-right: 15px;
           }
+
           .btn {
             @include inline-block;
           }
@@ -251,14 +300,17 @@
       }
     }
   }
+
   .subscribe {
+
     // @include white__block(1,0);
     // position   : absolute;
     // top        : 160px;
     // left       : 50%;
     // margin-left: -396px;
-    width      : 792px;
-    padding    : 32px 32px 24px;
+    width  : 792px;
+    padding: 32px 32px 24px;
+
     .title {
       font-size    : 24px;
       color        : $black_87;
@@ -266,26 +318,32 @@
       text-align   : center;
       margin-bottom: 45px;
       position     : relative;
+
       .back {
         position: absolute;
         top     : -1px;
         left    : -1px;
         cursor  : pointer;
+
         i {
           color    : $black_54;
           font-size: 24px;
+
           &::before {
             content: "\E893";
           }
         }
       }
     }
+
     .form__holder {
       display        : flex;
       justify-content: space-between;
+
       .form__col {
         width: 312px;
       }
+
       .form__legend {
         width      : 342px;
         font-size  : 15px;
@@ -294,10 +352,12 @@
         padding-top: 7px;
       }
     }
+
     .action__block {
       margin-right: -6px;
       margin-top  : -20px;
       @include clearfix;
+
       .btn {
         color           : #fff;
         float           : right;
@@ -323,6 +383,7 @@
   align-items    : center;
   justify-content: center;
   height         : 100vh;
+
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
   }
@@ -336,6 +397,7 @@
     background: $black_54;
     height    : auto;
     width     : 100%;
+
     .offer__box {
       @include white__block(1,0);
       position   : absolute;
@@ -345,6 +407,7 @@
       width      : 936px;
       padding    : 32px 96px 48px;
     }
+
     .logo {
       position  : absolute;
       top       : -90px;
@@ -352,6 +415,7 @@
       width     : 100%;
       text-align: center;
     }
+
     .auth__title-top {
       position  : absolute;
       top       : -64px;
@@ -366,6 +430,7 @@
     @include white__block(1, 0);
     margin-top: 140px;
     position  : relative;
+
     .logo {
       position  : absolute;
       top       : -90px;
@@ -373,6 +438,7 @@
       width     : 100%;
       text-align: center;
     }
+
     .auth__title-top {
       position  : absolute;
       top       : -64px;
@@ -381,18 +447,23 @@
       text-align: center;
     }
   }
+
   .auth__top {
     position: relative;
     padding : 32px 24px 90px;
+
     .auth_agree {
       padding-top: 13px;
+
       .checkbox {
 
       }
+
       label {
         .checkbox-material {
           color: #00bcd8;
         }
+
         em {
           display     : block;
           position    : absolute;
@@ -405,6 +476,7 @@
         }
       }
     }
+
     .auth__title {
       position     : relative;
       margin-bottom: 36px;
@@ -413,17 +485,20 @@
       line-height  : 24px;
       text-align   : center;
     }
+
     .create__acc,
     .have__acc {
       position: absolute;
       bottom  : 12px;
       left    : 24px;
+
       &-link {
         font           : 400 12px/12px 'Roboto';
         color          : rgba(0, 0, 0, .54);
         text-decoration: none;
       }
     }
+
     .auth__what {
       float     : left;
       opacity   : 0.8;
@@ -431,45 +506,55 @@
       color     : #00bcd8;
       transition: all 0.3s ease;
       cursor    : pointer;
+
       &:hover {
         opacity: 1;
       }
     }
+
     &-text {
       font: 300 13px/20px 'Roboto';
     }
+
     .btn-holder {
       .auth__submit {
         float     : right;
         background: #00bcd4;
         color     : #fff;
       }
+
       .btn.btn-flat,
       .btn.btn-raised {
         float: right;
       }
+
       .btn.btn-flat {
         &:hover {
           background: none !important;
         }
       }
+
       .btn {
         float: right;
       }
     }
   }
+
   .auth__bottom {
     padding      : 16px 24px 12px;
     border-top   : 1px solid rgba(0, 0, 0, .12);
     background   : #fff;
     border-radius: 0 0 2px 2px;
+
     .title {
       font  : 400 13px/20px 'Roboto';
       color : rgba(0, 0, 0, .54);
       margin: 0 0 12px;
     }
+
     .social__links {
       overflow: hidden;
+
       &-item {
         float        : left;
         width        : calc(50% - 3px);
@@ -480,58 +565,72 @@
         border-radius: 2px;
         text-align   : center;
         cursor       : pointer;
+
         &:nth-child(2n) {
           margin: 0 0 6px;
         }
+
         &-fb {
           background: #507cc0;
         }
+
         &-vk {
           background: #375a91;
         }
+
         &-od {
           background: #ef8117;
         }
       }
     }
   }
+
   .auth__problem {
     position: relative;
     padding : 32px 24px 96px;
+
     .auth__title {
       font      : 400 18px/24px 'Roboto';
       text-align: left;
     }
+
     .btn-holdr {
       position: absolute;
       bottom  : 8px;
       right   : 24px;
       @include clearfix;
+
       .auth__button {
         float    : right;
         font-size: 14px;
       }
+
       .auth__button-cancel {
         margin-right    : 8px !important;
         background-color: #fff !important;
         color           : #000 !important;
         opacity         : 0.26;
         transition      : opacity 0.3s ease;
+
         &:hover {
           opacity: 0.54;
         }
       }
     }
+
     .input-wrp {
       margin: 0 0 12px;
+
       textarea {
         border: 0;
       }
     }
   }
+
   label.error {
     display: none !important;
   }
+
   .auth__error {
     position     : absolute;
     z-index      : 1000;
@@ -547,53 +646,64 @@
     color        : #fff;
     text-align   : center;
   }
+
   .input-wrp {
     width        : 100%;
     height       : 37px;
     margin-bottom: 25px;
+
     &:before {
       position: absolute;
       z-index : 12;
       font    : 14px/14px 'Icons';
       color   : rgba(0, 0, 0, .54);
     }
+
     &.email {
       input {
         padding: 0 0 0 32px;
       }
+
       &:before {
         top    : 9px;
         left   : 4px;
         content: '\e8d9';
       }
     }
+
     &.password {
       input {
         padding: 0 0 0 32px;
       }
+
       &:before {
         top    : 9px;
         left   : 5px;
         content: '\e637';
       }
     }
+
     input,
     textarea {
       height     : 37px;
       position   : relative;
       color      : rgba(0, 0, 0, .87);
       line-height: 22px;
+
       &:before {
         position: absolute;
       }
     }
+
     input.error + hr {
       border-bottom: 2px solid #f50057;
     }
+
     hr {
       border-bottom: 2px solid #00bcd8;
     }
   }
+
   input.error {
     border-color: #f8538d;
   }
@@ -605,6 +715,7 @@
       font    : 400 13px/20px 'Roboto';
       color   : rgba(0, 0, 0, .54);
       margin  : 0 0 16px;
+
       &:before {
         position: absolute;
         left    : 4px;
@@ -612,30 +723,37 @@
         font    : 400 18px/12px 'Icons';
         color   : rgba(0, 0, 0, .54);
       }
+
       &.auth__reg-data:before {
         content: '\e8d9';
       }
+
       &.auth__reg-secutity:before {
         content: '\e637';
       }
+
       &.auth__reg-type:before {
         font   : 400 14px/12px 'Icons';
         content: '\e600';
       }
     }
+
     &-block {
       margin: 0 0 36px;
     }
+
     &-select {
       padding-top: 6px;
       position   : relative;
       margin     : 0 0 24px;
+
       &ed {
         position: relative;
         width   : 180px;
         font    : 400 13px/20px 'Roboto';
         color   : rgba(0, 0, 0, .87);
         cursor  : pointer;
+
         &:after {
           position  : absolute;
           display   : block;
@@ -648,6 +766,7 @@
           border-top: 5px solid #717171;
         }
       }
+
       &-list {
         position  : absolute;
         display   : none;
@@ -658,14 +777,17 @@
         background: #fff;
         padding   : 8px 0;
         box-shadow: 0 0 2px 0 rgba(0, 0, 0, .12), 0 2px 6px 0 rgba(0, 0, 0, .24);
+
         &.active {
           display: block;
         }
+
         &-item {
           padding: 6px 6px 6px 16px;
           font   : 400 13px/20px 'Roboto';
           color  : rgba(0, 0, 0, .54);
           cursor : default;
+
           &:hover {
             color     : #000;
             background: rgba(0, 0, 0, .12);
@@ -674,16 +796,20 @@
       }
     }
   }
+
   .corporate_acc {
     display: none;
+
     &.active {
       display: block;
     }
   }
+
   .checkbox__holder .label {
     font : 400 13px/20px 'Roboto';
     color: rgba(0, 0, 0, .54);
   }
+
   &_agree {
     &-link {
       color: #00bcd8;
@@ -693,6 +819,7 @@
 
 .oferta_holder {
   padding: 104px 0 40px;
+
   .header_simple {
     position  : fixed;
     z-index   : 1000;
@@ -704,10 +831,12 @@
     padding   : 0 0 0 24px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, .12), 0 2px 6px 0 rgba(0, 0, 0, .24);
     background: #fff;
+
     .back__holder {
       float : left;
       width : 32px;
       margin: 0 24px 0 0;
+
       a:after {
         font   : 400 20px/64px 'Icons';
         color  : rgba(0, 0, 0, .54);
@@ -715,6 +844,7 @@
         cursor : pointer;
       }
     }
+
     .title {
       float  : left;
       width  : calc(100% - 80px);
@@ -732,22 +862,71 @@
     box-shadow   : 0 0 2px 0 rgba(0, 0, 0, .12), 0 2px 6px 0 rgba(0, 0, 0, .24);
     background   : #fff;
     border-radius: 2px;
+    ol {
+      padding-left: 0;
+      ol{
+        padding-left: 8px;
+        ol{
+          padding-left: 8px;
+        }
+      }
+    }
+    li {
+      list-style-type: none;
+      position: relative;
+      &.h__h  {
+        &::before {
+          font-size: 24px;
+          color: #000;
+          line-height: 32px;
+          font-weight: 400;
+        }
+      }
+    }
+    ol {
+      counter-reset: list1;
+    }
+    ol li:before {
+      counter-increment: list1;
+      content          : counter(list1) ". ";
+      float: left;
+      margin-right: 4px;
+    }
+    ol ol {
+      counter-reset: list2;
+    }
+    ol ol ol {
+      counter-reset: list3;
+    }
+    ol ol li:before {
+      counter-increment: list2;
+      content          : counter(list1) "." counter(list2) ". ";
+    }
+    ol ol ol li:before {
+      counter-increment: list3;
+      content          : counter(list1) "." counter(list2) ". " counter(list3) ". ";
+    }
+
     .oferta_block {
       margin: 0 0 20px;
+
       .title {
         font         : 700 15px/20px 'Roboto';
         color        : #797979;
         margin-bottom: 16px;
       }
+
       .text {
         font         : 400 13px/20px 'Roboto';
         color        : #666;
         margin-bottom: 8px;
       }
+
       a {
         color: #666;
       }
     }
+
     .btn_holder {
       background-color: white;
       position        : absolute;
@@ -757,6 +936,7 @@
       bottom          : 0;
       padding         : 16px 15px 14px;
       border-top      : 1px solid rgba(0, 0, 0, .12);
+
       #submit {
         float: right;
       }
