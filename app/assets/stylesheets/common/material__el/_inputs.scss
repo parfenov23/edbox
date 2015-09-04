@@ -419,6 +419,7 @@ select.form-control {
       i {
         background-color: $primoryColor;
         &::before {
+          background-color: $primoryColor;
           color: #fff;
         }
       }

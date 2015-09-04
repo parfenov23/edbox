@@ -1,53 +1,71 @@
 .pop_up_confirm {
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  position        : fixed;
+  width           : 100%;
+  height          : 100%;
   background-color: rgba(0,0,0,0.54);
-  top: 0;
-  left: 0;
-  z-index: 200;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
+  top             : 0;
+  left            : 0;
+  z-index         : 200;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  display         : none;
+
   .inner {
-    width: 512px;
-    height: auto;
-    background: #fff;
-    box-shadow: 0 15px 12px 0 rgba(0,0,0,0.22), 0 19px 38px 0 rgba(0,0,0,0.30);
+    width        : 552px;
+    height       : auto;
+    background   : #fff;
+    box-shadow   : 0 15px 12px 0 rgba(0,0,0,0.22), 0 19px 38px 0 rgba(0,0,0,0.30);
     border-radius: 2px;
-    padding: 32px 24px 8px;
-    position: relative;
-    display: block;
+    padding      : 32px 24px 8px;
+    position     : relative;
+    display      : block;
+
     //margin-top: -96px;
-    margin: 0 auto;
-    padding-bottom: 80px;
+    margin       : 0 auto;
+    padding-bottom: 90px;
+
     .description {
       font-family: Roboto-Regular;
-      font-size: 15px;
-      color: #000000;
+      font-size  : 15px;
+      color      : #000;
       line-height: 24px;
     }
+
     .action-btn {
-      font-size: 14px;
+      font-size  : 14px;
       line-height: 20px;
-      position: absolute;
-      right: 24px;
-      bottom: 8px;
-      width: 100%;
+      position   : absolute;
+      right      : 16px;
+      bottom     : 16px;
+      width      : 100%;
+
       .btn {
         float: right;
       }
+
       .cancel {
         color: $primoryColor;
       }
+
       .yes {
-        color: #fff;
+        color           : #fff;
         background-color: $primoryColor;
       }
     }
 
+    .title {
+      font-size    : 20px;
+      line-height  : 28px;
+      margin-bottom: 16px;
+    }
+
+    .description {
+      font-size    : 15px;
+      line-height  : 24px;
+    }
   }
+
   &.is__active {
     display: flex;
   }

@@ -10,6 +10,16 @@
     .hidden__actions.is__visible
 
 
+.pop_up_confirm.is__active
+  .inner.allgood.test__popup
+    .title Поздравляем вас с окончанием курса!
+    .description Ваш результат — 86 %
+    .action__block.action-btn
+      .btn.is__blue OK
+
+
+
+
 .inner-content
     #tests
       .test-info
@@ -19,7 +29,7 @@
         .test-item
           .title 
             | Вопрос 123
-            / span Неверно
+            span Неверно
           .description Склонны ли вы быть склонным к тому чтобы искать пути, наводить мосты, точки соприкосновения для примирения после очередного служебного конфликта?
           .answer
             .radio
@@ -27,43 +37,27 @@
               label for="an-1-1"
                 i 
                 .text 0000 Какие еще точки, мосты и пути сообщения, летайте лучше самолетами Аэрофлота или ходите кораблями Севречфлота и Южрыбпрома до Иннопрома 
+          
           .answer
             .radio
               input#an-1-2 type="radio" name="an-1"
               label for="an-1-2"
                 i
                 .text Какие еще точки, м
-        .test-item.error
-          .title 
-            | Вопрос 123
-            span Неверно
-          .description Склонны ли вы быть склонным к тому чтобы искать пути, наводить мосты, точки соприкосновения для примирения после очередного служебного конфликта?
-          .answer
-            .radio
-              input#an-2-1 type="radio"  name="an-12"
-              label for="an-2-1"
-                i 
-                .text 0000 Какие еще точки, мосты и пути сообщения, летайте лучше самолетами Аэрофлота или ходите кораблями Севречфлота и Южрыбпрома до Иннопрома 
-          .answer
-            .radio
-              input#an-2-2 type="radio" name="an-12"
-              label for="an-2-2"
-                i
-                .text Какие еще точки, м
-        .test-item.error
+        .test-item
           .title Вопрос 1
           .description Склонны ли вы быть склонным к тому чтобы искать пути, наводить мосты, точки соприкосновения для примирения после очередного служебного конфликта?
           .answer
             .check
-              input#an-3-1 type="checkbox"
-              label.icon for="an-3-1"
+              input#an-2-1 type="checkbox"
+              label.icon for="an-2-1"
                 i
                 .text Какие еще точки, мосты и пути сообщения, летайте лучше самолетами Аэрофлота или ходите кораблями Севречфлота и Южрыбпрома до Иннопрома
 
           .answer
             .check
-              input#an-3-2 type="checkbox"
-              label.icon for="an-3-2"
+              input#an-2-2 type="checkbox"
+              label.icon for="an-2-2"
                 i
                 .text Какие еще точки, м
 
