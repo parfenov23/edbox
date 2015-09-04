@@ -31,7 +31,7 @@ class Attachment < ActiveRecord::Base
 
   def clear_full_text
     ActionView::Base.full_sanitizer.sanitize(full_text.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
-      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;',.gsub("<p>", "").gsub("</p>", "\n") '"')
+      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
   end
 
   def self.save_file(type, id, file, size=nil, width=nil, height=nil)
