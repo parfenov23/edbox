@@ -1,16 +1,15 @@
 #course {
   @include middle-block(936px);
+  padding-top: 32px;
   .text__description {
     margin-bottom: 64px;
     .title {
       font-size    : 24px;
-      color        : #4a4a4a;
       line-height  : 32px;
       margin-bottom: 32px;
     }
     .description {
       font-size    : 15px;
-      color        : #262626;
       line-height  : 24px;
       margin-bottom: 18px;
     }
@@ -73,8 +72,6 @@
     }
   }
   .text__content {
-    @include white__block(1, 0);
-    padding : 64px;
     position: relative;
     &.is__fullscrn {
       background: $black_87;
@@ -97,16 +94,18 @@
     }
     p {
       margin-bottom: 24px;
-      font-size    : 13px;
-      line-height  : 20px;
+      font-size    : 15px;
+      line-height  : 24px;
     }
     .toggle__screen {
       position: absolute;
-      left    : 100%;
+      left    : calc(100% + 16px);
       top     : 0;
       &::before {
         content  : "\E89F";
         font-size: 32px;
+        color: $black_54;
+        cursor: pointer;
       }
     }
   }
@@ -115,7 +114,6 @@
     audio {
       @include middle-block(584px);
       box-shadow    : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-      height        : 30px;
       vertical-align: middle;
       border-radius : 4px;
     }
