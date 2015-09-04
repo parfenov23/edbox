@@ -39,7 +39,7 @@
             yaCounter31766016.reachGoal('AUTH_SIGN_IN'); //кнопка авторизации
         });
 
-        $(document).on('click', '.ya_reg_sign_in', function () {
+        $(".ya_reg_sign_in").on('click', function () {
             yaCounter31766016.reachGoal('REG_SIGN_IN'); //кнопка регистрации
         });
 
@@ -60,15 +60,15 @@
         });
 
         if ($('.ya_course_unsigned_visit').length != 0) {
-            yaCounter31766016.reachGoal('COURSE_UNSIGNED_VISIT'); //посещение страницы курса когда пользователь на него не подписан
+            setTimeout(function(){ yaCounter31766016.reachGoal('COURSE_UNSIGNED_VISIT')}, 1000); //посещение страницы курса когда пользователь на него не подписан
         }
 
         if ($('.ya_course_signed_visit').length != 0) {
-            yaCounter31766016.reachGoal('COURSE_SIGNED_VISIT'); //посещение страницы курса когда пользователь на него подписан
+            setTimeout(function(){ yaCounter31766016.reachGoal('COURSE_SIGNED_VISIT')}, 1000); //посещение страницы курса когда пользователь на него подписан
         }
 
         if ($('.ya_course_not_auth_visit').length != 0) {
-            yaCounter31766016.reachGoal('COURSE_NOT_AUTH_VISIT'); //посещение страницы курса не авторизованным пользователем
+            setTimeout(function(){ yaCounter31766016.reachGoal('COURSE_NOT_AUTH_VISIT')}, 1000); //посещение страницы курса не авторизованным пользователем
         }
 
         $(document).on('click', '.ya_profile_update', function () {
