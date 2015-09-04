@@ -13,6 +13,11 @@ class Attachment < ActiveRecord::Base
   AVAILABLE_OTHERS = ['txt', 'doc', 'docx', 'zip', 'ppt', 'pptx', 'xls', 'xlsx']
   AVAILABLE_PDF = ['pdf']
   EXCEPT_ATTR = ["created_at", "updated_at", "file"]
+  INCLUDE_TEST = {
+    include: [test: {include: [questions: {include: :answers}]}],
+    methods: [:clear_full_text]
+  }
+
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
@@ -23,6 +28,11 @@ class Attachment < ActiveRecord::Base
 
   default_scope { where(archive: false) } #unscoped
   default_scope { order("position ASC") } #unscoped
+
+  def clear_full_text
+    ActionView::Base.full_sanitizer.sanitize(full_text.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
+      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
+  end
 
   def self.save_file(type, id, file, size=nil, width=nil, height=nil)
     class_name = type
@@ -128,6 +138,10 @@ class Attachment < ActiveRecord::Base
       when "other"
         ''
     end
+  end
+
+  def user_upload?
+    file.file.original_filename.include?("mini_magick")
   end
 
   def find_type
