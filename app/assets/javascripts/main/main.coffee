@@ -89,9 +89,13 @@ authCorpAcc =->
 
 
 adjustHeight = (textarea) ->
-  console.log textarea.value
+  textareaHeight = $(textarea).data('maxheight')
+  
+  if typeof textareaHeight == 'undefined'
+    textareaHeight = 110
+
   if textarea.value
-    if textarea.scrollHeight < 110
+    if textarea.scrollHeight < textareaHeight
       dif = textarea.scrollHeight - (textarea.clientHeight)
       if dif
         if isNaN(parseInt(textarea.style.height))
@@ -99,7 +103,7 @@ adjustHeight = (textarea) ->
         else
           textarea.style.height = parseInt(textarea.style.height) + dif + 'px'
     else
-      textarea.style.height = '95px'
+      textarea.style.height = textareaHeight +  'px'
   else
     $(textarea).css 'height': '26px'
 
