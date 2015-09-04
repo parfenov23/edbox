@@ -119,6 +119,7 @@ Rails.application.routes.draw do
           post :remove_leading
           post :update_type
           post :update_teaser
+          post :remove_teaser
         end
       end
 

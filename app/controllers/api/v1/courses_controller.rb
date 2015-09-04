@@ -83,6 +83,12 @@ module Api::V1
       render json: attachment.transfer_to_json
     end
 
+    def remove_teaser
+      course = find_course
+      course.attachments.where(file_type: params[:type]).destroy_all
+      render json: {success: true}
+    end
+
     private
 
     def find_course
