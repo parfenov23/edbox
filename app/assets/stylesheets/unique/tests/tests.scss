@@ -27,9 +27,8 @@
   }
 
   .test-item {
-    margin-bottom: 50px;
     padding-top  : 4px;
-
+    width: 800px;
     .title {
       @include inline-block;
       font-size    : 15px;
