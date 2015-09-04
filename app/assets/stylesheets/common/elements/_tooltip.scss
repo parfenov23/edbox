@@ -72,13 +72,13 @@
     position: absolute;
     background: $black_54;
     border-radius: 2px;
-    font-size: 11px;
     color: #FFFFFF;
-    line-height: 13px;
-    line-height: 22px;
+    line-height: 24px;
     padding: 0 8px;
+    font-size: 12px;
+
     &.is__bottom {
-      top: 110%;
+      top: calc(100% + 11px);
       left: 50%;
       transform: translate(-50%, 0);
     }
@@ -94,9 +94,9 @@
       @include transition;
       opacity: 1;
       width: auto;
-      height: 22px;
+      height: 24px;
       overflow: visible;
-
+      white-space: nowrap;
     }
   }
 }
