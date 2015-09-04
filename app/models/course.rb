@@ -120,16 +120,18 @@ class Course < ActiveRecord::Base
   end
 
   def leadings
-    ligament_leads.map{|ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]})}
+    ligament_leads.map { |ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]}) }
   end
 
   def transfer_to_json
     as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :creator, :leadings],
+             methods: [:clear_description, :images, :creator, :leadings, :audiences],
              include: [
                {sections: {except: Section::EXCEPT_ATTR,
                            include: [{attachments: Attachment::INCLUDE_TEST}]
-               }}
+               },
+                test: {include: [questions: {include: :answers}]}
+               }
              ]})
   end
 end
