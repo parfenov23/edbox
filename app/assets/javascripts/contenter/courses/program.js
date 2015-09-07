@@ -348,6 +348,7 @@ var removeQuestionToTest = function () {
             url : '/api/v1/questions/' + btn.data("id") + '/remove'
         }).success(function (data) {
             btn.closest(".testIssue").remove();
+            allValidateForms();
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -367,6 +368,7 @@ var removeAnswerToQuestion = function (input) {
             }).success(function (data) {
                 block.remove();
                 SetCaretAtEnd(prev_block.find(".questionInput")[0]);
+                allValidateForms();
             }).error(function () {
                 show_error('Произошла ошибка', 3000);
             });
@@ -406,6 +408,7 @@ var loadBindOnChangeInput = function () {
     }
     catch (err){
     }
+    sortableSections();
 
 };
 
@@ -472,6 +475,21 @@ var updatePositionAttachment = function(){
     });
 };
 
+var openInfoParent = function(){
+   $(this).closest(".attachment.item").addClass("open-state").removeClass("closed-state")
+};
+
+var sortableSections = function(){
+    $(".connectedSortable").sortable({
+        connectWith: ".connectedSortable",
+        update: function( event, ui ) {
+            updatePositionAttachment();
+            allValidateForms();
+            //console.log($(ui.item) );
+        }
+    }).disableSelection();
+};
+
 $(document).ready(function () {
     loadBindOnChangeInput();
     bindEventDocument({
@@ -506,6 +524,7 @@ $(document).ready(function () {
     $(document).on('keyup paste input propertychange click', '.form_group .js_onChangeEditAttachment', attachmentNameValidate);
 
     $(document).on('keyup paste input propertychange', '#contenterCourseProgram .js_changeAnswerInput', changeAnswerInput);
+    $(document).on('click', '#contenterCourseProgram .js_openInfoParent', openInfoParent);
     $(document).on("keydown", "#contenterCourseProgram .js_getCloneQuestion", function (evt) {
         var keycode = (evt.keyCode?evt.keyCode:evt.which);
         if (keycode == '13'){
@@ -516,12 +535,5 @@ $(document).ready(function () {
         }
     });
     removeExtraElement();
-    $(".connectedSortable").sortable({
-        connectWith: ".connectedSortable",
-        update: function( event, ui ) {
-            updatePositionAttachment();
-            allValidateForms();
-            //console.log($(ui.item) );
-        }
-    }).disableSelection();
+    sortableSections();
 });

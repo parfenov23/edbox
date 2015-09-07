@@ -72,7 +72,7 @@ validatePresentFile = function () {
             if (input.val() == "description"){
                 var textarea = blockEditFile.find(".addedTxtDescription textarea");
                 textarea.val(textarea.val().replace('<p><br data-mce-bogus="1"></p>', ''));
-                if (! textarea.count_text_input()){
+                if (! textarea.count_text_input() || !$( textarea.val()).text().length ){
                     arr_errors[arr_errors.length] = "Текст не может быть пустым";
                 }
             }

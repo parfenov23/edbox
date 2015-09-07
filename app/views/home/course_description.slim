@@ -21,7 +21,7 @@
       .item
         i.icon.teg
         = tag.title
-  - course_title = @course.paid ? @course.title : @course.title + ' (бесплатный)'
+  - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
 
   .course__title = course_title
   - if bunch_course.present?
