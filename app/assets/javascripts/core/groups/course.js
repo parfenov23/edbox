@@ -187,6 +187,14 @@ var bind_block = function () {
         removeCourseToGroup($(this));
     });
 
+    $('.edit-menu .js_changeDeadLineSectionMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+        changeDeadLineSectionMy($(this), $(this).data("text"));
+    });
+
+    $('.js_actionBtn .js_changeDeadLineSectionMy').change(function () {
+        changeDeadLineSectionMy($(this), $(this).data("text"));
+    });
+
     $('.js__select-calendar').hover((function () {
         $(this).addClass('is__active');
         $('.js__backing').addClass('is__active');
@@ -206,6 +214,7 @@ var loadMySchedule = function (data) {
         data: data
     }).success(function (data) {
         $("#js-schedule-cabinet").html($(data).html());
+        includeDatePicker($("#js-schedule-cabinet").find('.datapicker__trigger, .js__set-date'));
         bind_block();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -277,14 +286,6 @@ $(document).ready(function () {
         changeDeadLineCourse($(this));
     });
 
-    $('.edit-menu .js_changeDeadLineSectionMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-        changeDeadLineSectionMy($(this));
-    });
-
-    $('.js_actionBtn .js_changeDeadLineSectionMy').change(function () {
-        changeDeadLineSectionMy($(this), $(this).data("text"));
-    });
-
     $('.action-btn .js_changeDeadLineSectionGroup').change(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
@@ -295,7 +296,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.js_loadMySchedule',
         function() {
-            var date = new Date
+            var date = new Date;
             loadMySchedule({schedule: {month: (date.getMonth() + 1)}});
         }
     );

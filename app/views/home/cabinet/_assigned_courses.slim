@@ -9,8 +9,8 @@
       p
         'На изучении:
         = my_bunch_courses.in_study.count
-      /p.more
-      /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
+    /p.more
+    /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
@@ -27,30 +27,17 @@
                 .com__director-btn.js__select-calendar
                   a.edit-date href="javascript:void(0)"
                     i.icon-uniE8A3
-                  /.hidden-calendar-wrp
-                  /  .hidden-calendar
-                  /    .calendar-header
-                  /      .back.icon
-                  /      |Выбор даты
-                  /    .calendar-holder.edit-menu
-                  /      - text_data = "Установить дату окончания курса"
-                  /      .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
-                  /      .datapicker__trigger
-                  /  ul.hidden-list
-                  /    li data-show = "hidden-calendar" Перенести дату окончания курса
-                  /    - ts = "Курс удален!"
-                  /    li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id Удалить
                   .hidden-calendar-wrp
                     .hidden-calendar
                       .calendar-header
                         .back.icon
                         |Выбор даты
                       .calendar-holder
-                        - text_data = "Установить дату окончания курса"
+                        - text_data = "Дата оканчания курса изменена"
                         .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
                       .datapicker__trigger.incDocumentReady
                     ul.hidden-list
-                      - text_data = "Установить дату окончания курса"
+                      - text_data = "Дата оканчания курса изменена"
                       li data-show="hidden-calendar" Перенести дату окончания курса
                       - ts = "Курс удален!"
                       li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id  Удалить
