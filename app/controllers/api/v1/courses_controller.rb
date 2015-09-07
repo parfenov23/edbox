@@ -6,7 +6,7 @@ module Api::V1
     end
 
     def all
-      all_courses = Course.all.map(&:transfer_to_json)
+      all_courses = Course.all.map(&:transfer_to_json_mini)
       render json: all_courses
     end
 
