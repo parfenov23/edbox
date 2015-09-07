@@ -59,7 +59,14 @@
     display         : block;
     padding         : .2em;
     text-align      : right;
-    text-decoration : none
+    text-decoration : none;
+}
+.ui-datepicker td span, .ui-datepicker td span {
+    display         : block;
+    padding         : .2em;
+    text-align      : right;
+    text-decoration : none;
+    color: $black_54;
 }
 
 
@@ -148,6 +155,18 @@
             border         : none;
             font-size      : 12px;
             color          : rgba(0, 0, 0, 0.87);
+            line-height    : 15px;
+            display        : table-cell;
+            width          : 44px;
+            height         : 44px;
+            vertical-align : middle;
+            text-align     : center;
+        }
+        td span {
+            background     : none;
+            border         : none;
+            font-size      : 12px;
+            color          : rgba(0, 0, 0, 0.26);
             line-height    : 15px;
             display        : table-cell;
             width          : 44px;
