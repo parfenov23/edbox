@@ -12,6 +12,7 @@ class Attachment < ActiveRecord::Base
   AVAILABLE_VIDEO = ['mp4', 'webm', 'ogg', 'm4v', 'mov']
   AVAILABLE_OTHERS = ['txt', 'doc', 'docx', 'zip', 'ppt', 'pptx', 'xls', 'xlsx']
   AVAILABLE_PDF = ['pdf']
+  AVAILABLE_ALL = ['*']
   EXCEPT_ATTR = ["created_at", "updated_at", "file"]
   INCLUDE_TEST = {
     include: [test: {include: [questions: {include: :answers}]}],

@@ -179,10 +179,10 @@ $(document).ready(function () {
     //$("input[name=agreed]").change(function (e) {
     //    changeRegInput(e);
     //});
-
-    $(".auth__submit").click(function (e) {
-        validate(e);
-    });
+    //
+    //$(".auth__submit").click(function (e) {
+    //    validate(e);
+    //});
 
     $("input.error").keyup(function (e) {
         changeErrorInput(e);

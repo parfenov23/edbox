@@ -42,7 +42,9 @@ class AttachmentFileUploader < CarrierWave::Uploader::Base
   
   #available all files!
   def extension_white_list
-    Attachment::AVAILABLE_IMAGES + Attachment::AVAILABLE_AUDIO + Attachment::AVAILABLE_VIDEO + Attachment::AVAILABLE_OTHERS + Attachment::AVAILABLE_PDF
+    Attachment::AVAILABLE_IMAGES + Attachment::AVAILABLE_AUDIO +
+      Attachment::AVAILABLE_VIDEO + Attachment::AVAILABLE_OTHERS +
+      Attachment::AVAILABLE_PDF + Attachment::AVAILABLE_ALL
   end
 
   # Override the filename of the uploaded files:
