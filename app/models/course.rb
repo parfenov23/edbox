@@ -141,6 +141,6 @@ class Course < ActiveRecord::Base
 
   def transfer_to_json_mini
     as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :creator, :leadings, :audiences, :teaser]})
+             methods: [:clear_description, :images, :leadings, :audiences, :teaser]})
   end
 end
