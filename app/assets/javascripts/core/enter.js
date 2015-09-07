@@ -120,35 +120,35 @@ $(document).ready(function () {
     });
 
     $(".auth__enter .btn-holder #submit").click(function (e) {
-        //e.preventDefault();
-        //validate();
-        //if ($("input.error").length == 0){
-        //    var btn = $(this);
-        //    var form = btn.closest("form");
-        //    var data = form.serialize();
-        //
-        //    //var company, data, user;
-        //    //user = _.omit(data, 'password_repeat', 'agreed', 'name');
-        //    //company = _.pick(data, 'name');
-        //    //console.log(user, company);
-        //    show_error('Подождите чуть-чуть!', 5000);
-        //    return $.ajax({
-        //        type   : 'POST',
-        //        url    : '/api/v1/sessions/registration',
-        //        data   : data,
-        //        //data   : {
-        //        //    user   : user,
-        //        //    company: company
-        //        //},
-        //        success: function (m) {
-        //            $.cookie('user_key', m.user_key);
-        //            window.location.href = '/cabinet';
-        //        },
-        //        error  : function () {
-        //            show_error('Произошла ошибка регистрации', 3000);
-        //        }
-        //    });
-        //}
+        e.preventDefault();
+        validate();
+        if ($("input.error").length == 0){
+            var btn = $(this);
+            var form = btn.closest("form");
+            var data = form.serialize();
+
+            //var company, data, user;
+            //user = _.omit(data, 'password_repeat', 'agreed', 'name');
+            //company = _.pick(data, 'name');
+            //console.log(user, company);
+            show_error('Подождите чуть-чуть!', 5000);
+            return $.ajax({
+                type   : 'POST',
+                url    : '/api/v1/sessions/registration',
+                data   : data,
+                //data   : {
+                //    user   : user,
+                //    company: company
+                //},
+                success: function (m) {
+                    $.cookie('user_key', m.user_key);
+                    window.location.href = '/cabinet';
+                },
+                error  : function () {
+                    show_error('Произошла ошибка регистрации', 3000);
+                }
+            });
+        }
     });
 
     $("form.auth__enter input.validInput").change(function (e) {
