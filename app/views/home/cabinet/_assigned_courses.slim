@@ -9,8 +9,8 @@
       p
         'На изучении:
         = my_bunch_courses.in_study.count
-      /p.more
-      /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
+    /p.more
+    /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
@@ -32,14 +32,15 @@
                       .calendar-header
                         .back.icon
                         |Выбор даты
-                      .calendar-holder.edit-menu
-                        - text_data = "Установить дату окончания курса"
+                      .calendar-holder
+                        - text_data = "Дата оканчания курса изменена"
                         .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
-                        .datapicker__trigger
+                      .datapicker__trigger.incDocumentReady
                     ul.hidden-list
-                      li data-show = "hidden-calendar" Перенести дату окончания курса
+                      - text_data = "Дата оканчания курса изменена"
+                      li data-show="hidden-calendar" Перенести дату окончания курса
                       - ts = "Курс удален!"
-                      li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id Удалить
+                      li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id  Удалить
             .author
               'Завершить до
               = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")

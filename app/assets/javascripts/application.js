@@ -215,7 +215,7 @@ var optionDatePicker = function () {
         btn.datepicker("option", "maxDate", null);
     }
     btn.datepicker('show');
-    installPositionBlock($("#ui-datepicker-div"))
+    installPositionBlock($("#ui-datepicker-div"));
     //}, 3000)
 }
 

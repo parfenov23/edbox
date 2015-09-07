@@ -63,6 +63,7 @@ module Api::V1
 
     def update_section
       section = BunchSection.find(params[:section_id])
+      section.update({date_complete: params[:date_complete]})
       if (section.save rescue false)
         render json: section.as_json
       else
