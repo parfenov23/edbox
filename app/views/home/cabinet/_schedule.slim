@@ -35,7 +35,7 @@ div
                 - bunch_course = BunchCourse.find(bunch_course)
                 - course = bunch_course.course
                 - link = "/group?id=#{bunch_course.group.id}&type=schedule&course_id=#{bunch_course.ligament_course.id}" if bunch_course.model_type == "group"
-                - link = "/programm?course_id=#{course.id}" if bunch_course.model_type == "user"
+                - link = "/course_description?id=#{course.id}" if bunch_course.model_type == "user"
                 - onclick = "window.location.href = '#{link}'"
                 .event-info.mdl-shadow--2dp.director
                   .title onclick=onclick = course.title
