@@ -87,28 +87,28 @@ $(document).ajaxSend(function (event, jqxhr, settings) {
     jqxhr.setRequestHeader('USER-KEY', $.cookie('user_key'));
 });
 
-var goToProgramAttachment = function(){
+var goToProgramAttachment = function () {
     var block = $(".js_goToProgramAttachment");
-    if ( block.length ){
+    if (block.length){
         var block_scroll = $('.js_blockAttachmentInProgram[data-id="' + block.data('id') + '"]');
-        $('body, html').scrollTop( block_scroll.position().top );
+        $('body, html').scrollTop(block_scroll.position().top);
     }
 }
 
-var elemFullScreen = function(elem, btn){
+var elemFullScreen = function (elem, btn) {
     var fsButton = btn,
         fsElement = elem;
-    if (window.fullScreenApi.supportsFullScreen) {
+    if (window.fullScreenApi.supportsFullScreen){
         //console.log('YES: Your browser supports FullScreen');
         //console.log('fullScreenSupported');
 
         // handle button click
-        fsButton.addEventListener('click', function() {
+        fsButton.addEventListener('click', function () {
             window.fullScreenApi.requestFullScreen(fsElement);
         }, true);
 
-        fsElement.addEventListener(fullScreenApi.fullScreenEventName, function() {
-            if (fullScreenApi.isFullScreen()) {
+        fsElement.addEventListener(fullScreenApi.fullScreenEventName, function () {
+            if (fullScreenApi.isFullScreen()){
                 //console.log('Whoa, you went fullscreen');
             } else {
                 elem.pause();
@@ -219,7 +219,7 @@ var optionDatePicker = function () {
     //}, 3000)
 }
 
-var installPositionBlock = function(block){
+var installPositionBlock = function (block) {
     var dp_top = block.offset().top;
     var px_block = view_px_block(block);
     if (px_block < block.outerHeight()){
@@ -230,12 +230,12 @@ var installPositionBlock = function(block){
 function parseDate(input) {
     var parts = input.split('.');
     // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-    return new Date(parts[2], parts[1]-1, parts[0]); // Note: months are 0-based
+    return new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based
 }
-var for_tooltip = function() {
-    return $('.js_for-tooltip').hover(function() {
+var for_tooltip = function () {
+    return $('.js_for-tooltip').hover(function () {
         return $(this).find('.js_tooltip').addClass('is-active');
-    }, function() {
+    }, function () {
         return $(this).find('.js_tooltip').removeClass('is-active');
     });
 };
@@ -280,9 +280,12 @@ $(document).ready(function () {
         el.find('.close').click(function () {
             el.hide(400);
         });
-        setTimeout(function () {
-            el.hide(400);
-        }, duration);
+        if (duration){
+            setTimeout(function () {
+                el.hide(400);
+            }, duration);
+        }
+
     }
 
     setTimeout(function () {

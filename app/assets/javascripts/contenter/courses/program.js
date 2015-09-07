@@ -85,7 +85,7 @@ var ajaxUploadFileAttachment = function (file) {
 function uploadProgress(evt) {
     if (evt.lengthComputable){
         var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-        show_error('Загрузка: ' + percentComplete.toString() + '%', 3000);
+        show_error('Загрузка: ' + percentComplete.toString() + '%', 0);
     }
     else {
         console.log('unable to compute');
