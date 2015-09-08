@@ -2,7 +2,7 @@
 - if user.present?
   = render "home/courses/pop_up"
   - course_favorite = course.favorite_courses.find_by(user_id: user.id).present?
-  - course_assigned = course.bunch_courses.find_by(user_id: 1).present?
+  - course_assigned = course.bunch_courses.find_by(user_id: user.id).present?
   - if user.corporate? && user.director?
     .main__action.multi__action
       .inner__wrp
