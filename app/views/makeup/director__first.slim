@@ -1,0 +1,38 @@
+= render "home/header/header", {namePage: "other", titlePage: 'Help'}
+
+
+.inner-content
+  .ditector__first.cabinet__block
+    .empty-title Лёхан, добро пожаловать в Edbox
+    .empty-description Для того, чтобы начать пользоваться полным функционалом системы, вам необходимо выполнить несколько обязательных шагов:
+    .possible__action-list
+        .item.for__invite
+          .icon__block
+            i.icon
+          .text__block
+            .title 1. Пригласите ваших коллег
+            .description Отправьте приглашения вашим сотрудникам на email, чтобы они смогли зарегистрироваться в Edbox.
+          .action__block
+            .btn.btn-flat onclick='window.location.href="/members"' ОТПРАВИТЬ ПРИГЛАШЕНИЯ
+        .item.for__groups
+          .icon__block
+            i.icon
+          .text__block
+            .title Создайте группы
+            .description Вы можете разбить участников на группы по интересам или должностям, например: отдел продаж, маркетинг, разработка. Приглашайте участников в уже созданные группы, чтобы они видели тольконужный контент.
+          .action__block
+            .btn.btn-flat onclick='window.location.href="/group"'  СОЗДАТЬ ГРУППУ
+        .item.for__schedule
+          .icon__block
+            i.icon
+          .text__block
+            .title Составьте расписание обучения
+            .description Создайте расписание для каждой группы и установите четкий дедлайн прохождения курса. Вы можете установить срок для каждого блока курса, чтобы сотрудники могли видеть ваши рекомендации и проходить обучение в срок.
+          .action__block
+            .btn.btn-flat onclick='window.location.href="/courses"' СОСТАВИТЬ РАСПИСАНИЕ
+    .description__first__block
+      .title Развивайте собственные навыки
+      .description Для того, чтобы начать пользоваться полным функционалом системы, вам необходимо выполнить несколько обязательных шагов
+      .action__block
+        .description В вашем расписании еще нет запланированных курсов. Вы можете перейти в библиотеку и выбрать любой понравившийся курс, исходя из ваших профессиональных интересов. 
+        .btn.is__blue ВЫБРАТЬ КУРС

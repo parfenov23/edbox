@@ -6,11 +6,12 @@
     width: 32px;
     height: 32px;
     line-height: 32px;
+    cursor: pointer;
     text-align: center;
     -webkit-transition: all 0.55s ease;
             transition: all 0.55s ease;
     border-radius: 32px;
-        line-height: 41px !important;
+        line-height: 41px;
         &:hover {
           background : #F0F0F0;
         }
@@ -22,7 +23,6 @@
             content: "\E8A3";
             line-height: 32px;
           }
-          font-size : 26px;
         }
   }
   .hidden-calendar-wrp{

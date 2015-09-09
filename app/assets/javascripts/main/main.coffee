@@ -90,7 +90,7 @@ authCorpAcc =->
 
 adjustHeight = (textarea) ->
   textareaHeight = $(textarea).data('maxheight')
-  
+
   if typeof textareaHeight == 'undefined'
     textareaHeight = 110
 
@@ -121,6 +121,25 @@ $(document).ready ->
   showHideToggleBtn()
   toggleNotesAsideHeight()
   authCorpAcc()
+
+  $('#owl-example').owlCarousel
+    items : 3
+    itemsDesktop: [999, 3]
+    itemsDesktopSmall: [768, 3]
+    itemsTablet: false
+    itemsMobile: false
+    navigation: true
+    mouseDrag: false
+    rewindNav: false
+    responsiveRefreshRate: 10
+    scrollPerPage: true
+    slideSpeed: 800
+
+  $('.js__next__item-carusel').on 'click', ->
+    $('#owl-example').trigger('owl.next')
+
+  $('.js__prev__item-carusel').on 'click', ->
+    $('#owl-example').trigger('owl.prev')
 
 
   $('.com__input-item textarea').on 'keyup onpaste', (e) ->
