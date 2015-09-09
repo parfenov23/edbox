@@ -130,13 +130,13 @@ class Course < ActiveRecord::Base
     ligament_leads.map { |ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]}) }
   end
 
-  def teaser
+  def teaser_video
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :creator, :leadings, :audiences, :teaser],
+    as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
+             methods: [:clear_description, :teaser_image, :teaser_video, :creator, :leadings, :audiences],
              include: [
                {sections: {except: Section::EXCEPT_ATTR,
                            include: [{attachments: Attachment::INCLUDE_TEST}]
