@@ -27,6 +27,9 @@ select[multiple].form-control {
   }
 }
 
+
+
+
 .form-control-wrapper {
   position: relative;
 
@@ -45,13 +48,6 @@ select[multiple].form-control {
     font-size     : 15px;
     color         : rgba(0,0,0,0.87);
     line-height   : 24px;
-  }
-  .form-control:not(.empty) ~ .floating-label {
-    top        : -28px;
-    opacity    : 1;
-    font-size  : 12px;
-    color      : #1fc4d9;
-    line-height: 16px;
   }
   .form-control:not(.empty) {
     border-color: $primoryColor;
@@ -187,11 +183,10 @@ select.form-control {
 // float label
 .com__input-item {
   position     : relative;
-  // height       : 66px;
   margin-bottom: 6px;
   &.error {
     hr {
-      border-bottom: 1px solid #f50057 !important;
+      border-bottom: 1px solid #f50057 ;
     }
     .error__msg {
       display : block;
@@ -202,9 +197,14 @@ select.form-control {
       color: #F50057;
       line-height: 16px;
     }
+    &.item {
+      .floating-label {
+        color: #F50057;
+      }
+    }
     &.lvl-2 {
       hr {
-        border-color: #AB47BC !important;
+        border-color: #AB47BC ;
       }
       .error__msg, .floating-label {
         color: #AB47BC;
@@ -212,7 +212,7 @@ select.form-control {
     }
     &.lvl-3 {
       hr {
-        border-color: #1E88E5 !important;
+        border-color: #1E88E5;
       }
       .error__msg, .floating-label {
         color: #1E88E5;
@@ -220,7 +220,7 @@ select.form-control {
     }
     &.lvl-4 {
       hr {
-        border-color: $primoryColor !important;
+        border-color: $primoryColor;
       }
       .error__msg {
         color: $primoryColor;
@@ -240,10 +240,25 @@ select.form-control {
     display      : block;
     width        : 100%;
   }
+  .floating-label {
+    top        : -28px;
+    opacity    : 1;
+    font-size  : 12px;
+    color      : #1fc4d9;
+    line-height: 16px;
+  }
+
   &.empty {
     hr {
       border-bottom: 1px solid rgba(0,0,0,0.26);
     }
+    .floating-label {
+      font-size  : 15px;
+      color      : rgba(0,0,0,0.26);
+      line-height: 24px;
+      top        : -6px;
+    }
+
   }
   input {
     margin-bottom: 6px;
@@ -272,18 +287,12 @@ select.form-control {
   input:not(.empty) {
     border-color: $primoryColor;
   }
-  input:not(.empty) ~ .floating-label {
-    font-size  : 12px;
-    line-height: 16px;
-    color      : $primoryColor;
-    top        : -27px;
-  }
-  .floating-label {
-    font-size  : 15px;
-    color      : rgba(0,0,0,0.26);
-    line-height: 24px;
-    top        : -6px;
-  }
+  // input:not(.empty) ~ .floating-label {
+  //   font-size  : 12px;
+  //   line-height: 16px;
+  //   color      : $primoryColor;
+  //   top        : -27px;
+  // }
 }
 
 

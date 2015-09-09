@@ -3,6 +3,7 @@
 //= require ./vendor/jquery.cookie
 //= require ./vendor/zbaron.min
 //= require ./vendor/jquery.jcarousel.min
+//= require ./vendor/owl.carousel
 //= require ./vendor/jquery-migrate-1.2.1.min.js
 //= require ./vendor/notifymy.js
 

@@ -80,6 +80,9 @@
           - tag = bunch_tag.tag
           .item = tag.title
     - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study rescue nil
+    .detail__info class = "#{'is__closed' unless in_study.present?}"
+      .description
+        = raw truncate(@course.description, length: 1000, separator: ' ', omission: ' ...' )
     .detail__info class = "#{'is__closed' if in_study.present?}"
       .description
         = raw @course.description
@@ -168,9 +171,6 @@
                   .left-col Тест для завершения курса
                   .right-col
                 .description Станет доступным после прохождения всех материалов курса
-/ .toggle__view.btn.btn-flat
-/   span.for__closed СКРЫТЬ ПРОГРАММУ КУРСА
-/   span.for__open  ПОЛНАЯ ПРОГРАММА КУРСА
 
 = render "home/course_program/sink_button", {course: @course}
 

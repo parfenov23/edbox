@@ -51,22 +51,24 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def get_image_path(width=nil, height=nil)
-    # if id.present?
+  def get_image(width=nil, height=nil)
     attachment = attachments.where(file_type: 'image', width: width, height: height).last
     if attachment.present?
-      path = attachment.file.url
+      image = attachment
     else
       attachment_full = attachments.where(file_type: 'image', size: 'full').last
       if attachment_full.present?
-        new_attachment = create_img(attachment_full.file.path, width, height)
+        image = create_img(attachment_full.file.path, width, height)
       else
-        new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
       end
-      path = new_attachment.file.url
     end
-    path
-    # end
+    image
+  end
+
+  def get_image_path(width=nil, height=nil)
+    image = get_image(width=width, height=height)
+    image.file.url
   end
 
   def notify_json(type=nil)
@@ -115,6 +117,11 @@ class Course < ActiveRecord::Base
     end.compact!
   end
 
+  def teaser_image
+    image = get_image(1000, 562)
+    image.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+  end
+
   def creator
     user.as_json({except: User::EXCEPT_ATTR + ["user_key", "avatar"]})
   end
@@ -123,24 +130,29 @@ class Course < ActiveRecord::Base
     ligament_leads.map { |ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]}) }
   end
 
-  def teaser
+  def teaser_video
     attachments.where(file_type: "video").last.file.url rescue nil
+  end
+
+  def sss
+    ligament_courses.map(&:id)
   end
 
   def transfer_to_json
     as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-             methods: [:clear_description, :images, :leadings, :audiences, :teaser],
-             include: [
-               {sections: {except: Section::EXCEPT_ATTR,
-                           include: [{attachments: Attachment::INCLUDE_TEST}]
-               },
-                test: {include: [questions: {include: :answers}]}
-               }
-             ]})
+             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+             include:
+               [{sections: {except: Section::EXCEPT_ATTR,
+                            include: [{attachments: Attachment::INCLUDE_TEST}]}
+                },
+                {ligament_courses: {except: ["created_at", "updated_at"]}},
+                {test: {include: [questions: {include: :answers}]}}
+               ]
+            })
   end
 
   def transfer_to_json_mini
-    as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-             methods: [:clear_description, :images, :leadings, :teaser]})
+    as_json({except: [:duration, :main_img, :description, :user_id],
+             methods: [:clear_description, :teaser_image, :leadings]})
   end
 end
