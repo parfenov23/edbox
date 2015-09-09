@@ -109,6 +109,15 @@ class Course < ActiveRecord::Base
   end
 
   def images
+    attachments.map do |att|
+      arr_valid = ["full", "920x377"]
+      if arr_valid.include?(att.size)
+        att.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+      end
+    end.compact!
+  end
+
+  def teaser_image
     image = get_image(1000, 562)
     image.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
   end
@@ -139,6 +148,6 @@ class Course < ActiveRecord::Base
 
   def transfer_to_json_mini
     as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :leadings, :audiences, :teaser]})
+             methods: [:clear_description, :teaser_image, :leadings, :audiences]})
   end
 end
