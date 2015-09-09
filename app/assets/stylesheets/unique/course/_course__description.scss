@@ -255,8 +255,7 @@
     }
     .detail__info {
       &.is__closed {
-        overflow: hidden;
-        height  : 84px;
+          display: none;
       }
       .description {
         p {
