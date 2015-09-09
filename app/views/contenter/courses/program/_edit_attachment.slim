@@ -27,11 +27,13 @@
           span.max_count
             |/500
     - hP = {'data-validate' => "present_file"}
-    .upload_attachments.includeValidateForm style=((attachment.file.file.present? || attachment.file_type == "description") ? "display:none;" : "" ); *hP
+    - valid_arr = ["description", "webinar", "test"]
+    - vaft = attachment.file_type
+    .upload_attachments.includeValidateForm style=((attachment.file.file.present? || valid_arr.include?(vaft)) ? "display:none;" : "" ) *hP
       = render "contenter/courses/help_error"
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
       input.validateAttachmentFileType type="hidden" value=attachment.file_type
-      - unless attachment.file.file.present? || ["description", "test"].include?(attachment.file_type)
+      - unless attachment.file.file.present? || ["description", "test", "webinar"].include?(attachment.file_type)
         .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
           i.icon.text
           .selectText Написать текст
@@ -77,3 +79,7 @@
       .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
         - if attachment.test.present?
           = render "contenter/courses/program/test", {test: attachment.test}
+
+      .addedWebinar.itemFile data-type="webinar" class=(attachment.file_type == "webinar" ? "attachmentShow" : "")
+        - if attachment.file_type == "webinar"
+          = render "contenter/courses/program/webinar", {attachment: attachment}

@@ -1,0 +1,9 @@
+.courses-aside.favorite-courses.leadingRightSideBar.noCloseToggleState id="js-leading-online-courses"
+  .close-filter.icon Добавление ведущих
+  .leading__list
+    - User.where(leading: true).each do |user|
+      .item.js_addLeadingToWebinar.js_addLeadingToWebinar data-id=user.id
+        .ava
+          img src=default_img(user.avatar)
+        .info
+          .titleLeading = user.full_name

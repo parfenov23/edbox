@@ -1,0 +1,6 @@
+.blockLead data-id="leading-#{user.id}"
+  .added
+    .infoLead
+      img.ava src=default_img(user.avatar)
+      .contentLead = user.full_name
+  .remove.js_removeLeadingToWebinar data-id=user.id data-webinar_id=webinar.id

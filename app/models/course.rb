@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
   end
 
   def audiences
-    bunch_courses.map(&:user_id).uniq
+    bunch_courses.map(&:user_id).uniq.count
   end
 
   def validate
@@ -128,8 +128,8 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :creator, :leadings, :audiences, :teaser],
+    as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
+             methods: [:clear_description, :images, :leadings, :audiences, :teaser],
              include: [
                {sections: {except: Section::EXCEPT_ATTR,
                            include: [{attachments: Attachment::INCLUDE_TEST}]
@@ -140,7 +140,7 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json_mini
-    as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :leadings, :audiences, :teaser]})
+    as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
+             methods: [:clear_description, :images, :leadings, :teaser]})
   end
 end
