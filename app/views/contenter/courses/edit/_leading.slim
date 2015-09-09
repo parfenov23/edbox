@@ -1,6 +1,6 @@
 .description__Item.block__lead.item
   .ava
-    img src=default_img(user.avatar)
+    img src="#{(default_img(user.avatar) rescue nil)}"
   .info
     .title
       = user.full_name
