@@ -186,7 +186,7 @@ select.form-control {
   margin-bottom: 6px;
   &.error {
     hr {
-      border-bottom: 1px solid #f50057 !important;
+      border-bottom: 1px solid #f50057 ;
     }
     .error__msg {
       display : block;

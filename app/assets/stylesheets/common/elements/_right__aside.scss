@@ -45,6 +45,7 @@
       top      : 19px;
       left     : 26px;
       font-size: 26px;
+      color: $black_54;
     }
   }
 }
@@ -461,6 +462,9 @@
           padding-top     : 16px;
           padding-bottom  : 16px;
           cursor          : pointer;
+          &:last-child{
+            border: 0;
+          }
           &.current {
             .title,
             .description,
