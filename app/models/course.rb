@@ -51,22 +51,24 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def get_image_path(width=nil, height=nil)
-    # if id.present?
+  def get_image(width=nil, height=nil)
     attachment = attachments.where(file_type: 'image', width: width, height: height).last
     if attachment.present?
-      path = attachment.file.url
+      image = attachment
     else
       attachment_full = attachments.where(file_type: 'image', size: 'full').last
       if attachment_full.present?
-        new_attachment = create_img(attachment_full.file.path, width, height)
+        image = create_img(attachment_full.file.path, width, height)
       else
-        new_attachment = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
       end
-      path = new_attachment.file.url
     end
-    path
-    # end
+    image
+  end
+
+  def get_image_path(width=nil, height=nil)
+    image = get_image(width=width, height=height)
+    image.file.url
   end
 
   def notify_json(type=nil)
@@ -107,12 +109,8 @@ class Course < ActiveRecord::Base
   end
 
   def images
-    attachments.map do |att|
-      arr_valid = ["full", "920x377"]
-      if arr_valid.include?(att.size)
-        att.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
-      end
-    end.compact!
+    image = get_image(1000, 562)
+    image.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
   end
 
   def creator
