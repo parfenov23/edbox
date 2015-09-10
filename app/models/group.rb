@@ -7,7 +7,7 @@ class Group < ActiveRecord::Base
   EXCEPT_ATTR = ["created_at", "updated_at"]
 
   def transfer_to_json
-    result = as_json(:except => EXCEPT_ATTR)
+    result = as_json({except: EXCEPT_ATTR, include: :ligament_courses})
     result
   end
 
