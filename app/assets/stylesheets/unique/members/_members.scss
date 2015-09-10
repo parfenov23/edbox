@@ -1,193 +1,299 @@
 /* Cabinet css start */
-
 #members {
-  width       : 920px;
-  margin      : 0 auto;
-  padding-top : 128px;
+  width      : 920px;
+  margin     : 0 auto;
+  padding-top: 128px;
+}
 
-
-
-
+.members__title {
+  margin-bottom: 27px;
 }
 .members {
   .title {
-    width         : 780px;
-    margin        : 0 auto;
-    margin-bottom : 24px;
-    font          : 400 20px/32px 'Roboto';
-    color         : #4A4A4A;
-    text-align    : center;
+    width     : 780px;
+    margin    : 0 auto 24px;
+    font      : 400 20px/32px 'Roboto';
+    color     : #4a4a4a;
+    text-align: center;
   }
+
   .members__invite {
-    position      : relative;
-    background    : #FFF;
-    box-shadow    : 0 0 2px 0 rgba(0, 0, 0, .12),
-    0 2px 6px 0 rgba(0, 0, 0, .24);
-    border-radius : 2px;
-    padding       : 20px 32px 16px;
+    position     : relative;
+    background   : #fff;
+    box-shadow   : 0 0 2px 0 rgba(0, 0, 0, .12), 0 2px 6px 0 rgba(0, 0, 0, .24);
+    border-radius: 2px;
+    padding      : 20px 0 16px;
+
     .invited {
-      overflow : hidden;
-      padding  : 12px 0;
+      overflow     : hidden;
+      padding      : 12px 32px;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+      margin-bottom: 16px;
+
       &__item {
-        float         : left;
-        overflow      : hidden;
-        max-width     : 100%;
-        margin        : 0 16px 8px 0;
-        height        : 28px;
-        padding       : 0 12px;
-        background    : rgba(0, 0, 0, .54);
-        border-radius : 2px;
-        font          : 400 13px/28px 'Roboto';
-        color         : #FFF;
+        float        : left;
+        overflow     : hidden;
+        max-width    : 100%;
+        margin       : 0 16px 8px 0;
+        height       : 28px;
+        padding      : 0 12px;
+        border       : 1px solid $black_54;
+        border-radius: 4px;
+        font-size    : 15px;
+        color        : $black_54;
+        line-height  : 28px;
+
+        &:last-child {
+          border: none;
+        }
+
         .email {
-          float         : left;
-          max-width     : calc(100% - 40px);
-            @include eclipses;
-          margin        : 0 16px 0 0;
+          float    : left;
+          max-width: calc(100% - 40px);
+          @include eclipses;
+          margin   : 0 16px 0 0;
         }
+
         .cancel {
-          float      : left;
-          width      : 24px;
-          text-align : center;
-          cursor     : pointer;
-        }
-      }
-    }
-    .form {
-      position : relative;
-      width    : 100%;
-      .input {
-        width   : calc(100% - 30px);
-        border  : 0;
-        padding : 0;
-        font    : 400 13px/20px 'Roboto';
-        color   : rgba(0, 0, 0, .87);
-      }
-      .plane {
-        position   : absolute;
-        display    : block;
-        border     : 0;
-        padding    : 0;
-        background : transparent;
-        top        : 50%;
-        right      : 0;
-        margin: -13px 0 0 0;
-        width: 22px;
-        height: 26px;
-        &:before {
-          font    : 22px/22px 'Icons';
-          color   : rgba(0, 0, 0, .54);
-          content : '\e719';
-          cursor  : pointer;
-        }
-      }
-    }
-  }
-  .members__in_system {
-    &.director{
-      margin : 64px 0 0 0;
-    }
-    &-item {
-      overflow   : hidden;
-      padding    : 12px 32px;
-      background : #FFF;
-      box-shadow : 0 0 2px 0 rgba(0, 0, 0, .12),
-      0 2px 6px 0 rgba(0, 0, 0, .24);
-      &:first-child {
-        border-radius : 2px 2px 0 0;
-      }
-      &:last-child {
-        border-radius : 0 0 2px 2px;
-        &:first-child {
-          border-radius : 2px;
-        }
-      }
-      .ava {
-        float         : left;
-        width         : 30px;
-        height        : 30px;
-        margin        : 0 24px 0 0;
-        background    : $primoryColor;
-        border-radius : 100%;
-        font          : 400 13px/30px 'Roboto';
-        color         : #FFF;
-        text-align    : center;
-      }
-      .name {
-        float         : left;
-        width         : 25%;
-        @include eclipses;
-        font          : 400 13px/30px 'Roboto';
-        color         : #000;
-      }
-      .email {
-        float         : left;
-        width         : 30%;
-        @include eclipses;
-        font          : 400 13px/30px 'Roboto';
-        color         : rgba(0, 0, 0, .87);
-      }
-      .status {
-        float      : right;
-        overflow   : hidden;
-        width      : 35%;
-        font       : 400 13px/30px 'Roboto';
-        color      : #9B9B9B;
-        text-align : right;
-        .delete {
-          float     : right;
-          display   : none;
-          font-size : 30px;
+          float     : left;
+          width     : 24px;
+          text-align: center;
           cursor    : pointer;
         }
+      }
+    }
+
+    .form {
+      position: relative;
+      width   : 100%;
+      padding : 0 32px;
+
+      .input {
+        width  : calc(100% - 30px);
+        border : 0;
+        padding: 0;
+        font   : 400 13px/20px 'Roboto';
+        color  : rgba(0, 0, 0, .87);
+      }
+
+      .plane {
+        position  : absolute;
+        display   : block;
+        border    : 0;
+        padding   : 0;
+        background: transparent;
+        top       : 50%;
+        right     : 32px;
+        margin    : -13px 0 0;
+        width     : 22px;
+        height    : 26px;
+
+        &:before {
+          font   : 22px/22px 'Icons';
+          color  : rgba(0, 0, 0, .54);
+          content: '\e719';
+          cursor : pointer;
+        }
+      }
+    }
+  }
+
+  .members__in_system {
+    &.director {
+      margin : 30px 0 0;
+      padding: 8px 0;
+    }
+
+    &-item {
+      @include clearfix;
+      padding: 17px 32px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      position: relative;
+      padding-top: 23px;
+      padding-bottom: 11px;
+      &:first-child {
+        border-radius: 2px 2px 0 0;
+      }
+
+      &:last-child {
+        border: none;
+      }
+
+      &:hover {
+        background-color: #fafafa;
+      }
+
+      &.is__choosen {
+        &:hover {
+          background-color: #f0fbfd;
+
+          .ava {
+            background-color: $primoryColor;
+          }
+        }
+
+        .ava {
+          position: relative;
+
+          img {
+            @include transition;
+            opacity: 0;
+          }
+
+          &::before {
+            position   : absolute;
+            top        : 0;
+            left       : 7px;
+            content    : "\E899";
+            line-height: 30px;
+            @include transition;
+          }
+        }
+      }
+
+      .ava {
+        float        : left;
+        width        : 30px;
+        height       : 30px;
+        margin       : -4px 18px 0 2px;
+        background   : #72d8e4;
+        border-radius: 100%;
+        color        : #fff;
+        text-align   : center;
+
+        img {
+          @include transition;
+          width        : 100%;
+          border-radius: 50%;
+          display      : block;
+        }
+      }
+
+      .name {
+        float: left;
+        width: 280px;
+        @include eclipses;
+        font-size: 15px;
+        line-height: 24px;
+        margin-right: 24px;
+      }
+
+      .email {
+        float: left;
+        width: 350px;
+        @include eclipses;
+        margin-right: 12px;
+      }
+
+      .status {
+        float     : right;
+        width     : 150px;
+        text-align: right;
+        font-size: 15px;
+        color: rgba(0,0,0,0.54);
+        line-height: 24px;
+        position: relative;
+
+        .tooltip__list {
+          position: absolute;
+          right   : 0;
+          bottom  : 32px;
+          @include white__block(1,1);
+          @include transition;
+          padding: 16px;
+          display: none;
+
+          li {
+            width: 272px;
+            @include eclipses;
+            text-align: left;
+            font-size: 12px;
+            line-height: 16px;
+            color: $black_87;
+            margin-bottom: 10px;
+          }
+        }
+        &:hover {
+          .tooltip__list {
+            display: block;
+            @include transition;
+          }
+        }
+        .is__notAuth {
+          color: $primoryColor;
+        }
+
+        .delete {
+          float    : right;
+          display  : none;
+          font-size: 30px;
+          cursor   : pointer;
+        }
+
         .date {
-          float    : right;
-          position : relative;
+          float   : right;
+          position: relative;
+          width: 50%;
+          @include eclipses;
         }
+
         .text {
-          position : relative;
-          float    : right;
-          font     : 400 13px/30px 'Roboto';
-          padding  : 0 8px 0 26px;
+          position: relative;
+          float   : right;
+          font    : 400 13px/30px 'Roboto';
+          padding : 0 8px 0 26px;
+          width: 49%;
+          @include eclipses;
         }
+
         .text:before {
-          position    : absolute;
-          top         : 0;
-          left        : 0;
-          font-size   : 20px;
-          font-family : 'Icons';
-          content     : '\e899';
+          position   : absolute;
+          top        : 0;
+          left       : 0;
+          font-size  : 20px;
+          font-family: 'Icons';
+          content    : '\e899';
         }
+
         .authorized {
-          color : $primoryColor;
+          color: $primoryColor;
         }
+
         &.director:hover {
           .delete {
-            display : block;
+            display: block;
           }
-          .send, .authorized {
-            display : none;
+
+          .send,
+          .authorized {
+            display: none;
           }
         }
       }
     }
   }
+
   &.ingroups {
     .members__invite {
       box-shadow: none;
     }
+
     .members__in_system {
-      box-shadow: none;
-      margin-top: 0;
+      box-shadow    : none;
+      margin-top    : 0;
       padding-bottom: 8px;
+
       li {
-        border-top: 1px solid  rgba(0,0,0,0.12);
-        background-color: #FCFCFC;
-        box-shadow: none;
-        cursor: pointer;
+        border-top      : 1px solid rgba(0,0,0,0.12);
+        background-color: #fcfcfc;
+        box-shadow      : none;
+        cursor          : pointer;
+
         &:hover {
-          background-color: #EBEBEB;
+          background-color: #ebebeb;
         }
+
         &:last-child {
 
         }
@@ -195,8 +301,5 @@
     }
   }
 }
-
-
-
 
 /* Cabinet css end */
