@@ -109,6 +109,17 @@ adjustHeight = (textarea) ->
     $(textarea).css 'height': '26px'
 
 
+multiAction = (el) ->
+  parentBlock = el.closest('.members__in_system director')
+
+  if el.hasClass 'is__choosen'
+    if $('.members__in_system .is__choosen').length == 1
+      $('.js__multi__action').removeClass 'is__active'
+    el.removeClass 'is__choosen'
+  else
+    $('.js__multi__action').addClass 'is__active'
+    el.addClass 'is__choosen'
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -122,6 +133,9 @@ $(document).ready ->
   showHideToggleBtn()
   toggleNotesAsideHeight()
   authCorpAcc()
+
+  $('.members__in_system-item').on 'click', ->
+    multiAction($(this))
 
   $('#owl-example').owlCarousel
     items : 3

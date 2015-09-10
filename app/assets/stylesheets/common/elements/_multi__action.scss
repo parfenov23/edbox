@@ -1,0 +1,34 @@
+.multi__action {
+  position: fixed;
+  width: 100%;
+  height: 64px;
+  background-color: $primoryColor;
+  top: -200%;
+  left: 0;
+  z-index: 999;
+  @include transition;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 28px;
+  padding-right: 32px;
+  &.is__active {
+    @include transition;
+    top: 0;
+  }
+  .title {
+    color: #FFFFFF;
+    position: relative;
+    padding-left: 50px;
+    &::before {
+      content: "\E702";
+      font: 22px/22px 'Icons';
+      position: absolute;
+      left: 0;
+      top: -1px;
+    }
+  }
+  .action__block {
+
+  }
+}
