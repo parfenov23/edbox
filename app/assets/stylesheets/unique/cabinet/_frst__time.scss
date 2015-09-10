@@ -15,9 +15,9 @@
 }
 
 .possible__action-list {
-  @include middle-block(933px);
+  @include middle-block(936px);
   margin-bottom: 48px;
-
+  @include white__block(1,0);
   .item {
     padding         : 21px 256px 18px 151px;
     position        : relative;
