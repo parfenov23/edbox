@@ -5,7 +5,7 @@
   @import "frst__time";
 
   .director__summery-info {
-    @include middle-block(924px);
+    @include middle-block(936px);
     display        : flex;
     justify-content: center;
     background     : #eee;
@@ -63,7 +63,7 @@
 
       .corses-prev__v2 {
         float        : left;
-        margin-bottom: 24px;
+        margin-bottom: 30px;
       }
     }
 
@@ -123,7 +123,7 @@
 }
 .carusel__wrp.owl-carousel {
   margin-left: -10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 
 }
 .owl-carousel .owl-wrapper-outer {
