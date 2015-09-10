@@ -95,7 +95,8 @@
           .all_leading
             - course.ligament_leads.each do |ligament_lead|
               - user = ligament_lead.user
-              = render "contenter/courses/edit/leading", {user: user}
+              - if user.present?
+                = render "contenter/courses/edit/leading", {user: user}
 
           .description__Item.block__lead.js_clickFromCreateCourseContenter
             .addLead.js_openLeftSideBar data-id="js-course-leading"

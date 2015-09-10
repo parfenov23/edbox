@@ -1,0 +1,28 @@
+- webinar = attachment.webinar rescue nil
+- date_time = webinar.date_start rescue nil
+.formWebinar data-id=(webinar.id rescue nil)
+  .times
+    input.webinarDateStart type="hidden" value=date_time name="webinar[date_start]"
+    .startDate
+      span.text Дата начала:
+      input.datapicker__trigger.js_onChangeDateTimeWebinar data-type="date_time" placeholder="Ничего не выбрано" value=(date_time.strftime("%d.%m.%y") rescue nil)
+    .startHour
+      span.text Время начала:
+      input.js_onChangeDateTimeWebinar data-type="hour" placeholder="час" value=(date_time.hour rescue nil)
+      input.js_onChangeDateTimeWebinar data-type="min" placeholder="мин." value=(date_time.min rescue nil)
+    .duration
+      span.text Продолжительность в минутах:
+      input.js_updateWebinarInAttachment placeholder="мин." value=(webinar.duration rescue nil) name="webinar[duration]"
+  .leading
+    .titleLeadingx Ведущие:
+    .all class="allLeadsWebinarAttachment#{webinar.id}"
+      .blockLead.js_openLeftSideBar.js_loadIdsLeadsWebinar data-id="js-leading-online-courses" data-webinar_id=webinar.id
+        .added
+          .infoLead
+            i.icon.cabinet
+            .contentLead Добавить ведущего
+      - (webinar.ligament_leads rescue []).each do |ligament_lead|
+        - user = ligament_lead.user
+        = render "contenter/courses/program/webinar_leading", {user: user, webinar: webinar}
+
+

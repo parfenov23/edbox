@@ -11,7 +11,7 @@ module Api::V1
     end
 
     def info
-      render json: find_course.transfer_to_json
+      render json: find_course.transfer_to_json( (current_user.id rescue nil)  )
     end
 
     def create

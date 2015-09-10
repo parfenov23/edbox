@@ -312,7 +312,7 @@ $(document).ready ->
       adaptiveTitle()
 
   $('body').bind 'click.dropdown', (ev) ->
-    unless $(ev.target).closest('.js__toggle-state').length
+    unless $(ev.target).closest('.js__toggle-state').length || $(ev.target).closest(".noCloseToggleState").length
       hideBlock($('.js__toggle-state'))
       adaptiveTitle()
       $(document).unbind 'click.dropdown'
