@@ -134,18 +134,17 @@ class Course < ActiveRecord::Base
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
-  def sss
-    ligament_courses.map(&:id)
+  def ligament_groups
+    ligament_courses.map(&:transfer_to_json)
   end
 
   def transfer_to_json
     as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences, :ligament_groups],
              include:
                [{sections: {except: Section::EXCEPT_ATTR,
                             include: [{attachments: Attachment::INCLUDE_TEST}]}
                 },
-                {ligament_courses: {except: ["created_at", "updated_at"]}},
                 {test: {include: [questions: {include: :answers}]}}
                ]
             })

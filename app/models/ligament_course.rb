@@ -13,4 +13,8 @@ class LigamentCourse < ActiveRecord::Base
       linkGo: "/group?id=#{group_id}&type=courses"
     }
   end
+
+  def transfer_to_json
+    as_json
+  end
 end
