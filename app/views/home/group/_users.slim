@@ -1,3 +1,8 @@
+.js__multi__action.multi__action
+  .title.h__text_20-24 Выбран 1 пользователь
+  .action__block
+    .btn.btn-flat.is__blue УДАЛИТЬ
+.members__title.h__text_15-24 Добавлено 4 пользователя
 - if current_user.director
     .container
         .members.ingroups
@@ -19,21 +24,30 @@
     ul.members__in_system class="#{current_user.director ? 'director' : ''}"
         - @group.bunch_groups.each do |bunch_group|
             - member = bunch_group.user
+            / li.members__in_system-item.is__choosen
             li.members__in_system-item
-                - if member.avatar.present?
-                  img.ava src=default_img(member.avatar)
-                - else
-                  .ava = member.full_name.first
-                .name = member.full_name
-                .email = member.email
-                .status class="#{current_user.director ? 'director' : ''}"
+                / - if member.avatar.present?
+                /   img.ava src=default_img(member.avatar)
+                / - else
+                /   .ava = member.full_name.first
+                
+                
+                .ava.icon
+                  img src="/uploads/ava.png"
+                .name.h__text_15-24 = member.full_name
+                .email.h__text_15-24 = member.email
+                .status.h__text_15-24 class="#{current_user.director ? 'director' : ''}"
                     - if current_user.director
                         .delete.js_removeUserToGroup data-id="#{member.id}" data-group_id="#{@group.id}" ×
                     - unless member.auth?
-                        .send
+                        .send.is__notAuth
                             .date = "#{time_ago_in_words(member.created_at)} назад"
                             .text Отправлено:
                     - else
                         .authorized
                             .date = "#{time_ago_in_words(member.last_auth)} назад"
                             .text Авторизован:
+                    ul.tooltip__list
+                        li.h__text_16-12 Мои картошечки
+                        li Мои ягодки
+                        li Мои самые распрекрасные картошечк Мои самые распрекрасные картошечки…

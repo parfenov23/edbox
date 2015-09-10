@@ -156,7 +156,8 @@ i {
 }
 
 .content#groups {
-  padding-top : 130px;
+  padding-top : 125px;
+  width: 936px;
 }
 
 .js__baron {
@@ -304,6 +305,7 @@ i {
 @import "common/elements/adaptive_popup";
 @import "common/elements/directors_btn";
 @import "common/elements/welcome_scenario";
+@import "common/elements/multi__action";
 
 @import "common/header/header";
 
