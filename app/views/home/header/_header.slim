@@ -31,8 +31,13 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
 
       - if namePage == "contenter_courses"
         - if current_user.contenter
-          a.item href="/contenter/courses/new/edit"
-            i.add.icon
+          /a.item href="/contenter/courses/new/edit"
+          /  i.add.icon
+          .btn.is__blue.create__contenterCourse
+            span Создать
+            ul
+              li Курс
+              li Онлайн курс
           .item.js_openLeftSideBar data-id="js-help"
             i.help.icon
 
@@ -53,25 +58,6 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
         /  i.filter.icon
         .item.js_openLeftSideBar data-id="js-favorite-courses"
           i.star.icon
-      /.item.js_openLeftSideBar data-id="js-groups-courses"
-      /  i.groups.icon
-      /.item.js_openHeaderAppsBtn
-      /  i.calendar.icon
-      /  ul.menu__apps
-      /    li.menu__apps-item.last__row
-      /      .menu__apps-item-img-holder
-      /        img.menu__apps-item-img src="/assets/edbox.png"
-      /      .menu__apps-item-text Доступно с сентября 2015
-      /
-      /    li.menu__apps-item.last__row
-      /      .menu__apps-item-img-holder
-      /        img.menu__apps-item-img src="/assets/markethub.png"
-      /      .menu__apps-item-text Доступно с ноября 2015
-      /
-      /    li.menu__apps-item.last__row
-      /      .menu__apps-item-img-holder
-      /        img.menu__apps-item-img src="/assets/pf.png"
-      /      .menu__apps-item-text Доступно с декабря 2015
 
       - if (comment rescue false)
         .item
@@ -107,9 +93,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
         .item class=(namePage == "courses" ? "is__active" : "")
           i.biblio.icon
           a.label href="/courses" Библиотека
-        /.item class=(namePage == "my_course" ? "is__active" : "")
-        /  i.courses.icon
-        /  a.label href="/my_course?type=assigned" Курсы
+      /.item class=(namePage == "my_course" ? "is__active" : "")
+      /  i.courses.icon
+      /  a.label href="/my_course?type=assigned" Курсы
 
       - if current_user.corporate? && current_user.director? && !current_user.contenter
         .item class=(namePage == "schedule" ? "is__active" : "")

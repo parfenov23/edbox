@@ -17,4 +17,5 @@ class LigamentCourse < ActiveRecord::Base
   def transfer_to_json
     as_json
   end
+
 end

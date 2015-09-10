@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
-
+  USERID_TOJSON = nil
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
     if (width == nil) && (height == nil)
@@ -134,13 +134,21 @@ class Course < ActiveRecord::Base
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
-  def ligament_groups
-    ligament_courses.map(&:transfer_to_json)
+  def ligament_groups(user_id = nil)
+    if user_id.present?
+      user = User.find(user_id)
+      ids = user.all_groups.ids
+      lc = ligament_courses.where(group_id: ids).map(&:transfer_to_json)
+    else
+      lc = ligament_courses.map(&:transfer_to_json)
+    end
+    lc
   end
 
-  def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences, :ligament_groups],
+  def transfer_to_json(user_id = nil)
+    ligament_groups = self.ligament_groups(user_id)
+    result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
+             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
              include:
                [{sections: {except: Section::EXCEPT_ATTR,
                             include: [{attachments: Attachment::INCLUDE_TEST}]}
@@ -148,6 +156,8 @@ class Course < ActiveRecord::Base
                 {test: {include: [questions: {include: :answers}]}}
                ]
             })
+    result["ligament_groups"] = ligament_groups
+    result
   end
 
   def transfer_to_json_mini
