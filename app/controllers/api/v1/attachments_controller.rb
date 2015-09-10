@@ -47,7 +47,7 @@ module Api::V1
       attachment = Attachment.new({attachmentable_id: params[:attachmentable_id],
                                    attachmentable_type: params[:attachmentable_type], file_type: params[:file_type]})
       attachment.save
-      attachment.webinars.create if attachment.file_type == "webinar"
+      Webinar.create({attachment_id: attachment.id}) if attachment.file_type == "webinar"
       attachment.install_position
       render json: attachment.transfer_to_json
     end

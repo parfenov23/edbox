@@ -56,7 +56,7 @@ class Attachment < ActiveRecord::Base
 
   def validate
     valid_title = title.present? && description.present?
-    valid_file = (!["test", "description"].include?(file_type)) ? file.present? : valid_other
+    valid_file = (!["test", "description", "webinar"].include?(file_type)) ? file.present? : valid_other
     valid_title && valid_file
   end
 
@@ -66,6 +66,8 @@ class Attachment < ActiveRecord::Base
         test.present? ? test.validate : false
       when "description"
         full_text.present?
+      when "webinar"
+        true
       else
         true
     end

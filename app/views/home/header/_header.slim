@@ -33,11 +33,13 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
         - if current_user.contenter
           /a.item href="/contenter/courses/new/edit"
           /  i.add.icon
-          .btn.is__blue.create__contenterCourse
+          .btn.is__blue.create__contenterCourse.js_addToggleUlCreateCourse
             span Создать
             ul
-              li Курс
-              li Онлайн курс
+              li
+                a href="/contenter/courses/new/edit" Курс
+              li
+                a href="/contenter/courses/new/edit?type_course=online" Онлайн курс
           .item.js_openLeftSideBar data-id="js-help"
             i.help.icon
 

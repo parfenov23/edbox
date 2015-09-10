@@ -53,14 +53,15 @@ module NavLinkHelper
     course_validate = Course.find(params[:id]).validate rescue {}
     desc_valid = course_validate.select{|k, v| k == :description && v == false}.present? ? "error" : ""
     prog_valid = course_validate.select{|k, v| k == :program && v == false}.present? ? "error" : ""
+    type_course = params[:type_course].present? ? "?type_course=#{params[:type_course]}" : ""
     [
-      {title: "Описание", link: "/contenter/courses/#{id}/edit",
+      {title: "Описание", link: "/contenter/courses/#{id}/edit#{type_course}",
        add_params: {class: "contenter_courses_edit #{desc_valid}"}
       },
-      {title: "Программа", link: "/contenter/courses/#{id}/program",
+      {title: "Программа", link: "/contenter/courses/#{id}/program#{type_course}",
        add_params: {class: "contenter_courses_programm #{prog_valid}"}
       },
-      {title: "Публикация", link: "/contenter/courses/#{id}/publication",
+      {title: "Публикация", link: "/contenter/courses/#{id}/publication#{type_course}",
        add_params: {class: "contenter_courses_public"}}
     ]
   end

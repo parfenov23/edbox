@@ -2,7 +2,7 @@ var createCourseContenterProgram = function (action) {
     $.ajax({
         type: 'POST',
         url : '/api/v1/courses/',
-        data: {}
+        data: {course: {type_course: $("#typeCourseInputVal").val()}}
     }).success(function (data) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
