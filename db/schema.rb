@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902082133) do
+ActiveRecord::Schema.define(version: 20150909073110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20150902082133) do
     t.text     "title"
     t.integer  "duration",            default: 0
     t.text     "description"
-    t.boolean  "archive",             default: false
     t.boolean  "download",            default: false
+    t.boolean  "archive",             default: false
+    t.text     "full_text"
     t.integer  "width"
     t.integer  "height"
-    t.text     "full_text"
     t.integer  "position"
   end
 
@@ -278,6 +278,7 @@ ActiveRecord::Schema.define(version: 20150902082133) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "webinar_id"
   end
 
   create_table "ligament_sections", force: true do |t|
@@ -364,5 +365,13 @@ ActiveRecord::Schema.define(version: 20150902082133) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
+  create_table "webinars", force: true do |t|
+    t.datetime "date_start"
+    t.integer  "duration"
+    t.integer  "attachment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

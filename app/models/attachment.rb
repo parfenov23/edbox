@@ -24,6 +24,7 @@ class Attachment < ActiveRecord::Base
   before_save :set_file_type
   has_many :bunch_attachments
   has_many :notes, :dependent => :destroy
+  has_one :webinar, :dependent => :destroy
   has_one :test, :as => :testable, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
 
@@ -78,7 +79,7 @@ class Attachment < ActiveRecord::Base
   end
 
   def class_type
-    arr_types = ["text", "audio", "video", "test"]
+    arr_types = ["text", "audio", "video", "test", "webinar"]
     (arr_types.include? (file_type)) ? file_type : "text"
   end
 

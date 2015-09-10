@@ -148,7 +148,7 @@ var onChangeEditAttachment = function (input_incl) {
 
 var createAttachmentToSection = function () {
     var btn = $(this);
-    var data = {attachmentable_type: "Section", attachmentable_id: btn.data("section_id")};
+    var data = {attachmentable_type: "Section", attachmentable_id: btn.data("section_id"), file_type: btn.data('file_type')};
     $.ajax({
         type: 'POST',
         url : '/api/v1/attachments',
@@ -396,12 +396,43 @@ var addTestToCourse = function () {
     });
 };
 
+var onChangeDateTimeWebinar = function () {
+    var input = $(this);
+    var prent_block = input.closest(".times");
+    var parent_input = prent_block.find(".webinarDateStart");
+    var date_time = prent_block.find("input[data-type='date_time']").val();
+    var date_hour = prent_block.find("input[data-type='hour']").val();
+    var date_min = prent_block.find("input[data-type='min']").val();
+    var time = date_time + " " + date_hour + ":" + date_min;
+    parent_input.val(time);
+    updateWebinarInAttachment(parent_input)
+};
+
+var updateWebinarInAttachment = function (btn) {
+    if ($(btn.target).length){
+        btn = $(btn.target);
+    }
+    var form_webinar = btn.closest(".formWebinar");
+    $.ajax({
+        type: 'PUT',
+        url : '/api/v1/webinars/' + form_webinar.data("id"),
+        data: form_webinar.closest("form").serialize()
+    }).success(function (data) {
+
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
 var loadBindOnChangeInput = function () {
     $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
     $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
     $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
     $('#contenterCourseProgram .js_changeQuestionInput').change(changeQuestionInput);
     $('#contenterCourseProgram .js_changeAnswerInput').change(changeAnswerInput);
+    $('#contenterCourseProgram .js_onChangeDateTimeWebinar').change(onChangeDateTimeWebinar);
+    $('#contenterCourseProgram .js_updateWebinarInAttachment').change(updateWebinarInAttachment);
+
     removeExtraElement();
     try{
         init_tiny();
@@ -451,15 +482,15 @@ var attachmentNameValidate = function () {
     }
 };
 
-var updatePositionAttachment = function(){
+var updatePositionAttachment = function () {
     var data_hash = {ids_sections: [], ids_attachments: []};
     var sections = $(".allAttachmentsSection.connectedSortable");
-    $.each(sections, function(){
+    $.each(sections, function () {
         var section = $(this);
         data_hash.ids_sections[data_hash.ids_sections.length] = section.data('id');
         var attachments = section.find(".attachment.item");
         var arr_attachments = [];
-        $.each(attachments, function(){
+        $.each(attachments, function () {
             var attachment = $(this);
             arr_attachments[arr_attachments.length] = attachment.data('id');
         });
@@ -475,19 +506,66 @@ var updatePositionAttachment = function(){
     });
 };
 
-var openInfoParent = function(){
-   $(this).closest(".attachment.item").addClass("open-state").removeClass("closed-state")
+var openInfoParent = function () {
+    $(this).closest(".attachment.item").addClass("open-state").removeClass("closed-state")
 };
 
-var sortableSections = function(){
+var sortableSections = function () {
     $(".connectedSortable").sortable({
         connectWith: ".connectedSortable",
-        update: function( event, ui ) {
+        update     : function (event, ui) {
             updatePositionAttachment();
             allValidateForms();
             //console.log($(ui.item) );
         }
     }).disableSelection();
+};
+
+var loadIdsLeadsWebinar = function () {
+    var btn = $(this);
+    var rightBar = $("#js-leading-online-courses");
+    rightBar.data("id", btn.data("webinar_id"));
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/webinars/' + btn.data('webinar_id') + "/all_leading"
+    }).success(function (data) {
+        rightBar.find(".leading__list .item").removeClass("active");
+        $.each(data, function (n, id) {
+            rightBar.find(".leading__list .item[data-id='" + id + "']").addClass("active");
+        });
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var addLeadingToWebinar = function () {
+    var btn = $(this);
+    var parent = btn.closest("#js-leading-online-courses");
+    if (!btn.hasClass("active")){
+        btn.addClass("active");
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/webinars/' + parent.data('id') + "/add_leading",
+            data: {user_id: btn.data("id"), type: "html"}
+        }).success(function (data) {
+            $(".allLeadsWebinarAttachment" + parent.data('id')).append($(data));
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    }
+};
+
+var removeLeadingToWebinar = function (btn) {
+    $("#js-leading-online-courses").removeClass("show");
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/webinars/' + btn.data('webinar_id') + "/remove_leading",
+        data: {user_id: btn.data("id")}
+    }).success(function (data) {
+        btn.closest(".blockLead").remove();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
 };
 
 $(document).ready(function () {
@@ -506,8 +584,19 @@ $(document).ready(function () {
             ".js_changeAnswerInput",
             ".js_addTestToCourse",
             ".js_removeTestToCourse",
+            ".js_loadIdsLeadsWebinar",
             ".js_createQuestionToTest"
         ]
+    });
+
+    $(document).on("click", ".js_addLeadingToWebinar", addLeadingToWebinar);
+
+    $(document).on("click", ".js_removeLeadingToWebinar", function () {
+        var btn = $(this);
+        confirm("Вы действительно хотите удалить ведущего?", function () {
+            removeLeadingToWebinar(btn);
+        });
+
     });
 
     $(document).on("click", "#contenterCourseProgram .js_removeAnswerToQuestion", function () {

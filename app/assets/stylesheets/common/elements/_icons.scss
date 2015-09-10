@@ -33,6 +33,12 @@ i.icon {
     }
   }
 
+  &.webinar {
+    &::before {
+      content: "\e602";
+    }
+  }
+
   &.video {
     &::before {
       content: "\e602";

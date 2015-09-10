@@ -194,15 +194,17 @@ var validateSections = function(){
 };
 
 var allValidateForms = function () {
-    validateTestQuestion();
-    validateTitleAttachment();
-    validatePresentFile();
-    validateSections();
-    validateFinalTest();
-    validateAttachment();
-    ////
-    validateCourse();
-    for_tooltip();
+    if (formInputIdCourse().val() != "new"){
+        validateTestQuestion();
+        validateTitleAttachment();
+        validatePresentFile();
+        validateSections();
+        validateFinalTest();
+        validateAttachment();
+        ////
+        validateCourse();
+        for_tooltip();
+    }
 };
 
 pageLoad(function () {

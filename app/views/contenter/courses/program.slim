@@ -2,6 +2,9 @@
 = javascript_include_tag "/tinymce/contenter_start.js"
 = render "home/header/header", {namePage: "contenter_courses_new", titlePage: "Создание курса", btnBack: true, backUrl: "/contenter/courses"}
 - course = params[:id] == "new" ? Course.new : Course.find(params[:id])
+= render "contenter/courses/program/leadings"
+.js_courseContenter
+  input type="hidden" name="course[id]" value=params[:id]
 .contenter#contenterCourseProgram
   .inner-content.oh__nihuyase-block
     .programs.study__program.js_parentClosestSection

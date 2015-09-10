@@ -305,8 +305,7 @@ $(document).ready(function () {
     $('.filter-category .more .icon').on('click', function () {
         $(this).closest('.more').removeClass('hidden');
     })
-
-    $('.js_openLeftSideBar').on('click', function () {
+    $(document).on('click', ".js_openLeftSideBar", function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
             $('#' + id + '').toggleClass('show');

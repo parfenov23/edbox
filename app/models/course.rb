@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
-
+  USERID_TOJSON = nil
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
     if (width == nil) && (height == nil)
@@ -24,7 +24,7 @@ class Course < ActiveRecord::Base
   end
 
   def audiences
-    bunch_courses.map(&:user_id).uniq
+    bunch_courses.map(&:user_id).uniq.count
   end
 
   def validate
@@ -130,24 +130,38 @@ class Course < ActiveRecord::Base
     ligament_leads.map { |ll| ll.user.as_json({except: User::EXCEPT_ATTR + ["user_key"]}) }
   end
 
-  def teaser
+  def teaser_video
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
-  def transfer_to_json
-    as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :images, :creator, :leadings, :audiences, :teaser],
-             include: [
-               {sections: {except: Section::EXCEPT_ATTR,
-                           include: [{attachments: Attachment::INCLUDE_TEST}]
-               },
-                test: {include: [questions: {include: :answers}]}
-               }
-             ]})
+  def ligament_groups(user_id = nil)
+    if user_id.present?
+      user = User.find(user_id)
+      ids = user.all_groups.ids
+      lc = ligament_courses.where(group_id: ids).map(&:transfer_to_json)
+    else
+      lc = ligament_courses.map(&:transfer_to_json)
+    end
+    lc
+  end
+
+  def transfer_to_json(user_id = nil)
+    ligament_groups = self.ligament_groups(user_id)
+    result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
+             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+             include:
+               [{sections: {except: Section::EXCEPT_ATTR,
+                            include: [{attachments: Attachment::INCLUDE_TEST}]}
+                },
+                {test: {include: [questions: {include: :answers}]}}
+               ]
+            })
+    result["ligament_groups"] = ligament_groups
+    result
   end
 
   def transfer_to_json_mini
     as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :teaser_image, :leadings, :audiences]})
+             methods: [:clear_description, :teaser_image, :leadings]})
   end
 end

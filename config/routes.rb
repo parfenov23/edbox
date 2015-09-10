@@ -47,6 +47,14 @@ Rails.application.routes.draw do
           post :remove
         end
       end
+      resources :webinars do
+        member do
+          post :remove
+          post :all_leading
+          post :add_leading
+          post :remove_leading
+        end
+      end
 
       resources :questions do
         member do
