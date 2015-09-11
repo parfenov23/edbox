@@ -156,7 +156,7 @@
                 .adaptive__title
                   .left-col #{nsec}.#{natt += 1} #{attachment.title}
                   .right-col = attachment.full_duration
-                .description = attachment.title
+                .description = attachment.description
       - final_test = @course.test
       - if final_test.present?
         - hash_class ={}
