@@ -1,5 +1,5 @@
 - webinar = attachment.webinar rescue nil
-- date_time = webinar.date_start rescue nil
+- date_time = local_time(webinar.date_start) rescue nil
 .formWebinar data-id=(webinar.id rescue nil)
   .times
     input.webinarDateStart type="hidden" value=date_time name="webinar[date_start]"
