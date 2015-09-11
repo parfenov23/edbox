@@ -3,6 +3,7 @@ class Section < ActiveRecord::Base
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :tests, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
+  scope :attachments, -> { Attachment.where({attachmentable_type: "Section", attachmentable_id: ids}) }
   EXCEPT_ATTR = ["update_at"]
 
   def all_formats

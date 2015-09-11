@@ -49,6 +49,7 @@ gem 'spawnling', '~>2.1'
 #=====================
 #======= cron
 gem 'whenever', :require => false
+gem 'rufus-scheduler'
 #======
 
 # group :production do
