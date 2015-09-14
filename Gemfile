@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 # gem 'mysql2'
-gem 'pg'
-gem 'sqlite3'
+gem 'pg', '0.18.3'
+
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
@@ -66,6 +66,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'mailcatcher', '0.6.1'
   # gem 'sqlite3'
+  gem 'sqlite3'
   gem 'sqlite3_ar_regexp', '~> 2.1'
   gem 'pry'
   gem 'capistrano', '~> 3.0', require: false

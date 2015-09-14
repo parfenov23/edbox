@@ -349,7 +349,7 @@ DEPENDENCIES
   mechanize
   mini_magick (= 4.2.7)
   net-ssh (~> 2.7.0)
-  pg
+  pg (= 0.18.3)
   pry
   rack-fiber_pool
   rails (= 4.1.8)
