@@ -25,7 +25,7 @@
 
   .course__title = course_title
   - if bunch_course.present?
-    - date_complete = bunch_course.date_complete
+    - date_complete = local_time(bunch_course.date_complete)
     - all_sections = bunch_course.bunch_sections
     - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
     - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
@@ -117,7 +117,7 @@
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
                 - if bunch_section.present?
-                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
+                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(local_time(bunch_section.date_complete), "Завершить до ")}
                   - if bunch_course.model_type == "user"
                     .edit-menu.js__select-calendar
                       .edit-date href="#"
