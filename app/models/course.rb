@@ -53,27 +53,27 @@ class Course < ActiveRecord::Base
   end
 
   def get_image(width=nil, height=nil)
-    begin
-      attachment = attachments.where(file_type: 'image', width: width, height: height).last
-      if attachment.present?
-        image = attachment
+    attachment = attachments.where(file_type: 'image', width: width, height: height).last
+    if attachment.present?
+      image = attachment
+    else
+      attachment_full = attachments.where(file_type: 'image', size: 'full').last
+      if attachment_full.present?
+        image = create_img(attachment_full.file.path, width, height)
       else
-        attachment_full = attachments.where(file_type: 'image', size: 'full').last
-        if attachment_full.present?
-          image = create_img(attachment_full.file.path, width, height)
-        else
-          image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
-        end
+        image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
       end
-    rescue
-      image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
     end
     image
   end
 
   def get_image_path(width=nil, height=nil)
-    image = get_image(width=width, height=height)
-    image.file.url
+    begin
+      image = get_image(width=width, height=height)
+      image.file.url
+    rescue
+      '/uploads/course_default_image.png'
+    end
   end
 
   def notify_json(type=nil)
