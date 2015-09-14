@@ -33,7 +33,7 @@
       .progress__block
         .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
           .left-col Прогресс прохождения курса
-          .right-col = ltime(date_complete, "Завершить до ")
+          .right-col = ltime(date_complete, "Завершить до ", 'short_min', false)
           - if bunch_course.model_type == "user"
             .edit-menu.js__select-calendar
               .edit-date href="#"
@@ -117,7 +117,7 @@
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
                 - if bunch_section.present?
-                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(local_time(bunch_section.date_complete), "Завершить до ")}
+                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
                   - if bunch_course.model_type == "user"
                     .edit-menu.js__select-calendar
                       .edit-date href="#"
