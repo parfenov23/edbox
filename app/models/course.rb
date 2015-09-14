@@ -67,6 +67,11 @@ class Course < ActiveRecord::Base
     image
   end
 
+  def leading?(user_id)
+    leadings_ids = leadings.map{|l| l["id"]}
+    leadings_ids.include?(user_id)
+  end
+
   def get_image_path(width=nil, height=nil)
     begin
       image = get_image(width=width, height=height)
