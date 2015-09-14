@@ -86,10 +86,11 @@
     .detail__info class = "#{'is__closed' if in_study.present?}"
       .description
         = raw @course.description
-      - leading = @course.user
-      - if leading.present?
-        .leading__list
-          .title Ведущий курса
+      - leadings = @course.ligament_leads
+      .leading__list
+        .title Ведущий курса
+        - leadings.each do |lead|
+          - leading = lead.user
           .item
             .ava
               img src=default_img(leading.avatar)

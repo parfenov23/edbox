@@ -34,7 +34,7 @@ li.single-course data-course_id=course.id class=(type == "course" ? "favorite-it
 
       a.title href="/course_description?id=#{course.id}"
         h3 = course.title
-    .courses-autor = (course.user.full_name rescue "Нет ведущего")
+    .courses-autor = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
     .details-nav
       ul
         li.hours

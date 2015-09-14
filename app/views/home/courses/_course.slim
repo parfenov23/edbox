@@ -41,7 +41,7 @@ figure.corses-prev
           |  (бесплатный)
         .shadow
     .author
-      = (course.user.full_name rescue "Нет ведущего")
+      = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
     .info-block
       .duration
         - duration = (course.duration.to_i rescue 0)
