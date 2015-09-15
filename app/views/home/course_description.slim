@@ -33,26 +33,27 @@
       .progress__block
         .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
           .left-col Прогресс прохождения курса
-          .right-col = ltime(date_complete, "Завершить до ", 'short_min', false)
-          - if bunch_course.model_type == "user"
-            .edit-menu.js__select-calendar
-              .edit-date href="#"
-                i.icon-uniE8A3
-              .hidden-calendar-wrp
-                .hidden-calendar
-                  .calendar-header
-                    .back.icon
-                    |Выбор даты
-                  .calendar-holder
-                    .selected-value  Выберите дату
-                    .datapicker__trigger
-                ul.hidden-list
-                  li.datapicker__trigger.js_actionBtn
-                    |Перенести дату окончания раздела
-                    - ts = "Дата оканчания курса изменена"
-                    input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
-                      data-course_id=@course.id data-text=ts data-no_schedule="true"
-                    }
+          - if (!bunch_course.complete rescue false)
+            .right-col = ltime(date_complete, "Завершить до ", 'short_min', false)
+            - if bunch_course.model_type == "user"
+              .edit-menu.js__select-calendar
+                .edit-date href="#"
+                  i.icon-uniE8A3
+                .hidden-calendar-wrp
+                  .hidden-calendar
+                    .calendar-header
+                      .back.icon
+                      |Выбор даты
+                    .calendar-holder
+                      .selected-value  Выберите дату
+                      .datapicker__trigger
+                  ul.hidden-list
+                    li.datapicker__trigger.js_actionBtn
+                      |Перенести дату окончания раздела
+                      - ts = "Дата оканчания курса изменена"
+                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
+                        data-course_id=@course.id data-text=ts data-no_schedule="true"
+                      }
         .progress__wrp
           .bar
           .completed style ="width: #{complete_proc}%"
@@ -117,7 +118,7 @@
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
-                - if bunch_section.present?
+                - if bunch_section.present? && (!bunch_section.complete rescue false)
                   .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
                   - if bunch_course.model_type == "user"
                     .edit-menu.js__select-calendar
