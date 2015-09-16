@@ -1,0 +1,22 @@
+.filter__block {
+  display: flex;
+  justify-content: space-between;
+  background: #EEEEEE;
+  border-radius: 2px;
+  padding: 14px 51px 15px 26px;
+  margin-bottom: 32px;
+  .radio__block, .check__block {
+    display: flex;
+    justify-content: flex-start;
+    .check, .radio {
+      margin-right: 16px;
+      label {
+        .text {
+          white-space: nowrap;
+          font-size: 15px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}

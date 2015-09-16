@@ -1,0 +1,49 @@
+.item {
+  @include white__block (1,1);
+  margin-bottom: 16px;
+  padding      : 14px 16px 18px 120px;
+  position     : relative;
+
+  .number {
+    position: absolute;
+    width   : 120px;
+    height  : 100%;
+    top     : 0;
+    left    : 0;
+    color   : $black_26;
+    text-align: center;
+    padding-top: 32px;
+  }
+
+  .info {
+    .title {
+      margin-bottom: 8px;
+      .left-col {
+        font-weight: 500;
+      }
+
+      .right-col {
+        color: $black_54;
+        position: relative;
+        padding-right: 32px;
+        padding-top: 1px;
+        i {
+          position: absolute;
+          right: 0;
+          top: -2px;
+          &::before {
+            color: $black_26;
+            font-size: 16px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+
+    .description {
+      height: 40px;
+      width: 720px;
+      overflow: hidden;
+    }
+  }
+}

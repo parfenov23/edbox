@@ -1,0 +1,17 @@
+= render "home/header/header", {namePage: "other", titlePage: 'Help'}
+
+.inner-content 
+  .create__group.create__name
+    .create__name-description.h__text_15-24 Для того, чтобы начать обучение сотрудников, вам необходимо создать группы и пригласить в них пользователей. Далее вы сможете подобрать нужные курсы и составить расписание.    
+    .create__name-form
+      .title.h__text_24-32 Создание новой группы
+      .com__input-item.item.empty.is__info
+        input.form-control.floating-label name="name" type="text" placeholder="Название группы"
+        .error__msg.h__text_12-16 0/100
+        hr
+      .com__input-item.item.empty.is__textarea.is__info
+        textarea.form-control.floating-label data-maxHeight="72" style="height: 26px;" name="email" type="text" placeholder="Описание"
+        .error__msg.h__text_12-16 0/1000
+        hr
+      .action__block
+        .btn.disable СОХРАНИТЬ

@@ -154,6 +154,22 @@
           border-radius : 100%;
         }
       }
+      &.is__no-icon {
+        font-size: 14px;
+        line-height: 16px;
+        width: auto;
+        color: $primoryColor;
+        margin-right: 33px;
+        .btn{
+          margin-top: -5px;
+        }
+        &:active {
+          &::before {
+            -webkit-animation : rippleAnimation 0.5s ease-out;
+            background        : none;
+          }
+        }
+      }
     }
     .notification__with-qty {
       font-size        : 12px;

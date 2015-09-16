@@ -52,21 +52,6 @@ select[multiple].form-control {
   .form-control:not(.empty) {
     border-color: $primoryColor;
   }
-  .form-control:focus:invalid ~ .floating-label,
-  .form-control.focus:invalid ~ .floating-label {
-
-  }
-  .form-control:focus ~ .material-input:after,
-  .form-control.focus ~ .material-input:after {
-
-  }
-  .form-control:focus:invalid ~ .material-input,
-  .form-control.focus:invalid ~ .material-input {
-    &:before,
-    &:after {
-
-    }
-  }
   .form-control.empty ~ .floating-label {
     opacity: 1;
   }
@@ -183,7 +168,7 @@ select.form-control {
 // float label
 .com__input-item {
   position     : relative;
-  margin-bottom: 6px;
+  margin-bottom: 9px;
   &.error {
     hr {
       border-bottom: 1px solid #f50057 ;
@@ -225,6 +210,23 @@ select.form-control {
       .error__msg {
         color: $primoryColor;
       }
+    }
+  }
+  &.is__info {
+    .error__msg {
+      display: block;
+      position: absolute;
+      bottom    : 12px;
+      right: 0;
+      color: $black_26;
+    }
+  }
+  &.is__noFocus {
+    .floating-label {
+      color: $black_26;
+    }
+    hr {
+      border-bottom: 1px solid $black_26;
     }
   }
   .error__msg {
@@ -430,6 +432,7 @@ select.form-control {
         &::before {
           background-color: $primoryColor;
           color: #fff;
+          opacity: 1;
         }
       }
     }
@@ -444,6 +447,7 @@ select.form-control {
       content      : "\E899";
       position     : absolute;
       color        : #fff;
+      opacity: 0;
       top          : 0;
       left         : 0px;
     }

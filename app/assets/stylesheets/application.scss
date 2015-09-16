@@ -295,6 +295,8 @@ i {
 @import "common/material__el/toggle-state";
 @import "common/elements/tooltip";
 @import "common/elements/calendar";
+@import "common/elements/filter__block";
+@import "common/elements/courses_block";
 @import "common/elements/main__action-btn";
 @import "common/elements/icons";
 @import "common/elements/text";
@@ -306,6 +308,8 @@ i {
 @import "common/elements/directors_btn";
 @import "common/elements/welcome_scenario";
 @import "common/elements/multi__action";
+@import "common/elements/empty__info";
+@import "common/elements/action__menu";
 
 @import "common/header/header";
 
@@ -326,6 +330,7 @@ i {
 @import "unique/attachments/videos";
 @import "unique/course/course__description";
 @import "unique/course/course";
+@import "unique/create__group/create__group";
 @import "attachments/audios";
 @import "core/core";
 @import "contenter/publication";

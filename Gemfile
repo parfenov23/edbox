@@ -29,13 +29,17 @@ gem 'sass-rails'
 gem 'autoprefixer-rails'
 gem 'mini_magick', '4.2.7'
 gem 'slim', '~> 2.0.0'
-gem 'skim', '~> 0.9.3'
 gem 'without-rails'
 gem 'coffee-rails'
 gem 'carrierwave'
 gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
+
+
+gem 'less-rails', '~> 2.7.0'
+gem 'therubyracer', :platforms => :ruby
+
 
 #===================== websocket
 gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'

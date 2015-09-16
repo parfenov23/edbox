@@ -110,6 +110,15 @@
     &:active {
         @extend .shadow-z-2;
     }
+
+  &.disable {
+    background: rgba(0,0,0,0.12);
+    cursor: not-allowed;
+    color: $black_26;
+    &:hover {
+      box-shadow: none !important;
+    }
+  }
 }
 
 .btn-raised {
