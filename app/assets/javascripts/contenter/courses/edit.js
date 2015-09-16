@@ -20,9 +20,9 @@ var createCourseContenter = function (data) {
         input_id.val(data.id);
         history.pushState({}, '', "/contenter/courses/" + data.id + "/edit");
         var header = $("#page__header .page__children");
-        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/'+ data.id +'/edit');
-        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/'+ data.id +'/program');
-        header.find(".contenter_courses_public").attr('href', '/contenter/courses/'+ data.id +'/publication');
+        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
+        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
+        header.find(".contenter_courses_public").attr('href', '/contenter/courses/' + data.id + '/publication');
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -216,18 +216,18 @@ var removeLigamentLeadFromCourse = function () {
     });
 };
 
-var changeTeaserCourse = function(){
+var changeTeaserCourse = function () {
     var input = $(this);
     var form = input.closest('form');
     var presentation_block = input.closest('.presentation__block');
     show_error('Идет загрузка файла', 10000);
     $.ajax({
-        type: 'POST',
-        url : '/api/v1/courses/' + input.data('id') + "/update_teaser",
+        type       : 'POST',
+        url        : '/api/v1/courses/' + input.data('id') + "/update_teaser",
         processData: false,
         contentType: false,
         cache      : false,
-        data: form.serializefiles()
+        data       : form.serializefiles()
     }).success(function (data) {
         if (data.file_type == "image"){
             presentation_block.find(".teaserImageChange").attr('src', data.file_url);
@@ -252,10 +252,10 @@ var changeTeaserCourse = function(){
     });
 };
 
-var removeTeaserToCourse = function(){
+var removeTeaserToCourse = function () {
     var btn = $(this);
     var presentation_block = btn.closest('.presentation__block');
-    confirm("Вы действительно хотите удалить тизер?", function(){
+    confirm("Вы действительно хотите удалить тизер?", function () {
         $.ajax({
             type: 'POST',
             url : '/api/v1/courses/' + btn.data('course_id') + "/remove_teaser",
@@ -280,6 +280,11 @@ var removeTeaserToCourse = function(){
     });
 };
 
+var addToggleUlCreateCourse = function () {
+    var btn = $(this);
+    btn.find("ul").toggleClass("show");
+};
+
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
@@ -290,17 +295,18 @@ pageLoad(function () {
 
     $(document).on('click', "#js-course-leading .js__contenterAddLeadingToCourse", contenterAddLeadingToCourse);
     $(document).on('click', ".js_courseContenter .js_removeLigamentLeadFromCourse", removeLigamentLeadFromCourse);
+    $(document).on('click', ".js_addToggleUlCreateCourse", addToggleUlCreateCourse);
 
     $(document).on('click', ".courses-aside .close-filter", function () {
         $(this).closest(".courses-aside").removeClass("show");
     });
 
-    if($("#courseEditContenter").length){
+    if ($("#courseEditContenter").length){
         var video_block = $(".presentation__block .teaserVideoChange")[0];
         elemFullScreen(video_block, $('#courseEditContenter .js_openAndPlayVideo')[0]);
 
         $(document).on('click', '#courseEditContenter .js_removeTeaserToCourse', removeTeaserToCourse);
-        $(document).on('click', '#courseEditContenter .js_openAndPlayVideo', function(){
+        $(document).on('click', '#courseEditContenter .js_openAndPlayVideo', function () {
             video_block.play();
         });
     }

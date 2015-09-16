@@ -13,6 +13,7 @@ class Course < ActiveRecord::Base
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
   USERID_TOJSON = nil
+
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
     if (width == nil) && (height == nil)
@@ -37,7 +38,7 @@ class Course < ActiveRecord::Base
 
   def program_validate
     sections_validate = (!sections.where(title: [nil, ""]).present?) ? !sections.map(&:validate).include?(false) : false
-    test_validate = test.present? ? test.validate : false
+    test_validate = test.present? ? test.validate : (type_course == "online" ? true : false)
     sections_validate && test_validate
   end
 
@@ -66,9 +67,18 @@ class Course < ActiveRecord::Base
     image
   end
 
+  def leading?(user_id)
+    leadings_ids = leadings.map{|l| l["id"]}
+    leadings_ids.include?(user_id)
+  end
+
   def get_image_path(width=nil, height=nil)
-    image = get_image(width=width, height=height)
-    image.file.url
+    begin
+      image = get_image(width=width, height=height)
+      image.file.url
+    rescue
+      '/uploads/course_default_image.png'
+    end
   end
 
   def notify_json(type=nil)
@@ -148,14 +158,14 @@ class Course < ActiveRecord::Base
   def transfer_to_json(user_id = nil)
     ligament_groups = self.ligament_groups(user_id)
     result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-             methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
-             include:
-               [{sections: {except: Section::EXCEPT_ATTR,
-                            include: [{attachments: Attachment::INCLUDE_TEST}]}
-                },
-                {test: {include: [questions: {include: :answers}]}}
-               ]
-            })
+                      methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+                      include:
+                        [{sections: {except: Section::EXCEPT_ATTR,
+                                     include: [{attachments: Attachment::INCLUDE_TEST}]}
+                         },
+                         {test: {include: [questions: {include: :answers}]}}
+                        ]
+                     })
     result["ligament_groups"] = ligament_groups
     result
   end

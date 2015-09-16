@@ -4,14 +4,17 @@ module Api::V1
     def update
       webinar = find_webinar
       webinar_params_permit = webinar_params
-      webinar_params_permit[:date_start] = (Time.parse(webinar_params_permit[:date_start]) + (User.time_zone).hour) if webinar_params_permit[:date_start].present?
+      if webinar_params_permit[:date_start].present?
+        curr_time = Time.parse(webinar_params_permit[:date_start]) - (User.time_zone - 2).hour
+        webinar_params_permit[:date_start] = curr_time
+      end
       webinar.update(webinar_params_permit)
       # binding.pry
       render json: webinar.transfer_to_json
     end
 
     def all_leading
-      render json: find_webinar.ligament_leads.map{|ll| ll.user.id}
+      render json: find_webinar.ligament_leads.map { |ll| ll.user.id }
     end
 
     def add_leading

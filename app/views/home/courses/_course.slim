@@ -3,8 +3,8 @@ figure.corses-prev
     img src = course.get_image_path(694, 384)
     .fade
     .course__type-wrp
-    - course.bunch_tags.each do |bunch_tag|
-      .course-type = (bunch_tag.tag.title rescue nil)
+      - course.bunch_tags.each do |bunch_tag|
+        .course-type = (bunch_tag.tag.title rescue nil)
     - valid_action_btn_type = ["courses", "favorite"]
     - find_bunch_course_group = current_user.bunch_courses.where(model_type: "group", course_id: course.id)
     - if !course.paid || (course.paid && current_user.get_account_type)
@@ -41,7 +41,7 @@ figure.corses-prev
           |  (бесплатный)
         .shadow
     .author
-      = (course.user.full_name rescue "Нет ведущего")
+      = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
     .info-block
       .duration
         - duration = (course.duration.to_i rescue 0)

@@ -10,6 +10,8 @@
       i.icon
   - when "test"
     = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+  - when "webinar"
+    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
 - else
   = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
   .adova__btn.mdl-shadow--2dp.js_completeAttachment data-course_id=@course.id data-id=@attachment.id data-bunch_section_id=@section.bunch_section(current_user.id).id

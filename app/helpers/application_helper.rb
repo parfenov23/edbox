@@ -11,8 +11,9 @@ module ApplicationHelper
     end
   end
 
-  def ltime(time, add_text="", format='short_min')
-     ((add_text + (l local_time(time), :format => format.to_sym)) rescue "Нет даты")
+  def ltime(time, add_text="", format='short_min', valid_translate=true)
+    time_def = valid_translate ? local_time(time) : time
+    ((add_text + (l time_def, :format => format.to_sym)) rescue "Нет даты")
   end
 
   def current_time

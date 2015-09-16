@@ -10,7 +10,7 @@
       - section.attachments.each do |attachment|
         = render "contenter/courses/program/attachment", {attachment: attachment, course: course, section: section, class_state: "closed"}
     // .onlineCourse
-    .actionAttachment
+    .actionAttachment class=(course.type_course == "online" ? "onlineCourse" : "")
       .add_onlineCourse.js_createAttachmentToSection data-section_id=section.id data-file_type="webinar"
         .btn.btn-flat ДОБАВИТЬ ВЕБИНАР
       .add_attachment.js_createAttachmentToSection data-section_id=section.id

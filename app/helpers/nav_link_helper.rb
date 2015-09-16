@@ -14,6 +14,8 @@ module NavLinkHelper
         my_course_nav_links
       when "contenter_courses_new"
         contenter_courses_new_nav_links
+      when "contenter_materials_new"
+        contenter_materials_new_nav_links
       when "contenter_admin"
         contenter_admin_nav_links
       when "profile"
@@ -48,19 +50,28 @@ module NavLinkHelper
     ]
   end
 
+  def contenter_materials_new_nav_links
+    id = params[:id].present? ? params[:id] : "new"
+    [
+      {title: "Описание", link: "/contenter/materials/#{id}/edit"},
+      {title: "Публикация", link: "/contenter/materials/#{id}/publication"}
+    ]
+  end
+
   def contenter_courses_new_nav_links
     id = params[:id].present? ? params[:id] : "new"
     course_validate = Course.find(params[:id]).validate rescue {}
     desc_valid = course_validate.select{|k, v| k == :description && v == false}.present? ? "error" : ""
     prog_valid = course_validate.select{|k, v| k == :program && v == false}.present? ? "error" : ""
+    type_course = params[:type_course].present? ? "?type_course=#{params[:type_course]}" : ""
     [
-      {title: "Описание", link: "/contenter/courses/#{id}/edit",
+      {title: "Описание", link: "/contenter/courses/#{id}/edit#{type_course}",
        add_params: {class: "contenter_courses_edit #{desc_valid}"}
       },
-      {title: "Программа", link: "/contenter/courses/#{id}/program",
+      {title: "Программа", link: "/contenter/courses/#{id}/program#{type_course}",
        add_params: {class: "contenter_courses_programm #{prog_valid}"}
       },
-      {title: "Публикация", link: "/contenter/courses/#{id}/publication",
+      {title: "Публикация", link: "/contenter/courses/#{id}/publication#{type_course}",
        add_params: {class: "contenter_courses_public"}}
     ]
   end

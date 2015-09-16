@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 # gem 'mysql2'
-gem 'pg'
+gem 'pg', '0.18.3'
+
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
@@ -26,7 +27,7 @@ gem 'bigbluebutton_rails', github: 'mconf/bigbluebutton_rails', branch: 'master'
 gem 'uglifier'
 gem 'sass-rails'
 gem 'autoprefixer-rails'
-gem 'mini_magick'
+gem 'mini_magick', '4.2.7'
 gem 'slim', '~> 2.0.0'
 gem 'without-rails'
 gem 'coffee-rails'
@@ -53,6 +54,7 @@ gem 'spawnling', '~>2.1'
 #=====================
 #======= cron
 gem 'whenever', :require => false
+gem 'rufus-scheduler'
 #======
 
 # group :production do
@@ -67,6 +69,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher', '0.6.1'
+  # gem 'sqlite3'
   gem 'sqlite3'
   gem 'sqlite3_ar_regexp', '~> 2.1'
   gem 'pry'

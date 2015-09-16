@@ -121,11 +121,13 @@ var validateAttachment = function () {
 };
 
 var validateFinalTest = function (){
-    if ($("#contenterCourseProgram").length && !$(".parentFinalTest").length ){
-        var block = $(".section.add_new.js_addTestToCourse");
-        var arr_errors = [];
-        arr_errors[arr_errors.length] = "Добавьте финальный тест";
-        installErrorBlock(arr_errors, block, false);
+    if (!$(".js_addTestToCourse.noValid").length){
+        if ($("#contenterCourseProgram").length && !$(".parentFinalTest").length ){
+            var block = $(".section.add_new.js_addTestToCourse");
+            var arr_errors = [];
+            arr_errors[arr_errors.length] = "Добавьте финальный тест";
+            installErrorBlock(arr_errors, block, false);
+        }
     }
 };
 

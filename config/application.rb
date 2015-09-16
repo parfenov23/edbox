@@ -32,5 +32,7 @@ module Edbox
     # config.threadsafe!
     # config.time_zone = 'Asia/Yekaterinburg'
     # config.active_record.default_timezone = :local
+    config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
   end
 end

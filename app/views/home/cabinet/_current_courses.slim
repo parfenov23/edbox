@@ -23,7 +23,7 @@
                 .title
                   .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
                   .shadow
-                .author = (course.user.full_name rescue "Нет ведущего")
+                .author = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
                 .info-block
                   .duration
                     = duration = course.duration_time

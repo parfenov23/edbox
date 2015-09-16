@@ -27,6 +27,7 @@ class Attachment < ActiveRecord::Base
   has_one :webinar, :dependent => :destroy
   has_one :test, :as => :testable, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
+  scope :webinars, -> { Webinar.where(attachment_id: ids) }
 
   default_scope { where(archive: false) } #unscoped
   default_scope { order("position ASC") } #unscoped
@@ -56,7 +57,7 @@ class Attachment < ActiveRecord::Base
 
   def validate
     valid_title = title.present? && description.present?
-    valid_file = (!["test", "description"].include?(file_type)) ? file.present? : valid_other
+    valid_file = (!["test", "description", "webinar"].include?(file_type)) ? file.present? : valid_other
     valid_title && valid_file
   end
 
@@ -66,6 +67,8 @@ class Attachment < ActiveRecord::Base
         test.present? ? test.validate : false
       when "description"
         full_text.present?
+      when "webinar"
+        true
       else
         true
     end
@@ -80,7 +83,7 @@ class Attachment < ActiveRecord::Base
 
   def class_type
     arr_types = ["text", "audio", "video", "test", "webinar"]
-    (arr_types.include? (file_type)) ? file_type : "text"
+    (arr_types.include? (file_type)) ? file_type : "other"
   end
 
   def find_bunch_attachment(bunch_section_id)

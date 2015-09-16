@@ -14,6 +14,12 @@ module Api::V1
       render json: find_course.transfer_to_json( (current_user.id rescue nil)  )
     end
 
+    def public_webinar
+      course = find_course
+      course.sections.attachments.webinars.map(&:create_room_in_schedule) rescue nil
+      render json: {success: true}
+    end
+
     def create
       course = Course.new(params_course)
       course.save
@@ -96,7 +102,7 @@ module Api::V1
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public).compact rescue {}
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public, :type_course).compact rescue {}
     end
   end
 

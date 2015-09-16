@@ -1,0 +1,11 @@
+- webinar = @attachment.webinar
+.inner-content
+  - if webinar.bigbluebutton_room.present?
+    /javascript:
+    //  window.location.href = "#{raw webinar.url_bigbluebuttom(current_user.id)}";
+    - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
+    iframe width="100%" style="position: absolute; height: 100%;border: none;" *hash_attr
+  - else
+    #course
+      .text__description
+        .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"

@@ -24,4 +24,6 @@
         .info  заполнены не все данные
         .btn.btn-flat = text_btn
       - else
-        .btn.btn-flat.activate.js_publicationCourse data-id=@course.id data-type=(!@course.public).to_s = text_btn
+        - add_hash = {class: (!@course.public ? "js_publicationCourseWebinar" : "")}
+        .btn.btn-flat.activate.js_publicationCourse data-id=@course.id data-type=(!@course.public).to_s *add_hash
+          = text_btn

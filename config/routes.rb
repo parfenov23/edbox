@@ -136,6 +136,7 @@ Rails.application.routes.draw do
           post :update_type
           post :update_teaser
           post :remove_teaser
+          post :public_webinar
         end
       end
 
@@ -257,6 +258,13 @@ Rails.application.routes.draw do
       end
       member do
         get :program
+        get :publication
+      end
+    end
+    resources :materials do
+      collection do
+      end
+      member do
         get :publication
       end
     end

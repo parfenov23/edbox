@@ -25,7 +25,7 @@
 
   .course__title = course_title
   - if bunch_course.present?
-    - date_complete = bunch_course.date_complete
+    - date_complete = local_time(bunch_course.date_complete)
     - all_sections = bunch_course.bunch_sections
     - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
     - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
@@ -33,26 +33,27 @@
       .progress__block
         .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
           .left-col Прогресс прохождения курса
-          .right-col = ltime(date_complete, "Завершить до ")
-          - if bunch_course.model_type == "user"
-            .edit-menu.js__select-calendar
-              .edit-date href="#"
-                i.icon-uniE8A3
-              .hidden-calendar-wrp
-                .hidden-calendar
-                  .calendar-header
-                    .back.icon
-                    |Выбор даты
-                  .calendar-holder
-                    .selected-value  Выберите дату
-                    .datapicker__trigger
-                ul.hidden-list
-                  li.datapicker__trigger.js_actionBtn
-                    |Перенести дату окончания раздела
-                    - ts = "Дата оканчания курса изменена"
-                    input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
-                      data-course_id=@course.id data-text=ts data-no_schedule="true"
-                    }
+          - if (!bunch_course.complete rescue false)
+            .right-col = ltime(date_complete, "Завершить до ", 'short_min', false)
+            - if bunch_course.model_type == "user"
+              .edit-menu.js__select-calendar
+                .edit-date href="#"
+                  i.icon-uniE8A3
+                .hidden-calendar-wrp
+                  .hidden-calendar
+                    .calendar-header
+                      .back.icon
+                      |Выбор даты
+                    .calendar-holder
+                      .selected-value  Выберите дату
+                      .datapicker__trigger
+                  ul.hidden-list
+                    li.datapicker__trigger.js_actionBtn
+                      |Перенести дату окончания раздела
+                      - ts = "Дата оканчания курса изменена"
+                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
+                        data-course_id=@course.id data-text=ts data-no_schedule="true"
+                      }
         .progress__wrp
           .bar
           .completed style ="width: #{complete_proc}%"
@@ -86,10 +87,11 @@
     .detail__info class = "#{'is__closed' if in_study.present?}"
       .description
         = raw @course.description
-      - leading = @course.user
-      - if leading.present?
-        .leading__list
-          .title Ведущий курса
+      - leadings = @course.ligament_leads
+      .leading__list
+        .title Ведущий курса
+        - leadings.each do |lead|
+          - leading = lead.user
           .item
             .ava
               img src=default_img(leading.avatar)
@@ -116,8 +118,8 @@
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
-                - if bunch_section.present?
-                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ")}
+                - if bunch_section.present? && (!bunch_section.complete rescue false)
+                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
                   - if bunch_course.model_type == "user"
                     .edit-menu.js__select-calendar
                       .edit-date href="#"
@@ -156,21 +158,21 @@
                 .adaptive__title
                   .left-col #{nsec}.#{natt += 1} #{attachment.title}
                   .right-col = attachment.full_duration
-                .description = attachment.title
-          - final_test = @course.test
-          - if final_test.present?
-            - hash_class ={}
-            - if (bunch_course.complete rescue false) && (current_user.view_course?(@course) rescue false)
-              - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
-              - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
-            .programm__block.finalTest *hash_class
-              .item class=(class_block rescue '')
-                .icon__block
-                  i.icon.test
-                .adaptive__title
-                  .left-col Тест для завершения курса
-                  .right-col
-                .description Станет доступным после прохождения всех материалов курса
+                .description = attachment.description
+      - final_test = @course.test
+      - if final_test.present?
+        - hash_class ={}
+        - if (bunch_course.complete rescue false) && (current_user.view_course?(@course) rescue false)
+          - hash_class = {onclick: "window.location.href = '/tests/#{final_test.id}/run'"}
+          - class_block = final_test.test_results.where(user_id: current_user.id).count > 0 ? "is__completed" : ""
+        .programm__block.finalTest *hash_class
+          .item class=(class_block rescue '')
+            .icon__block
+              i.icon.test
+            .adaptive__title
+              .left-col Тест для завершения курса
+              .right-col
+            .description Станет доступным после прохождения всех материалов курса
 
 = render "home/course_program/sink_button", {course: @course}
 

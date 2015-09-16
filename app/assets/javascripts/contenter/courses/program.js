@@ -2,7 +2,7 @@ var createCourseContenterProgram = function (action) {
     $.ajax({
         type: 'POST',
         url : '/api/v1/courses/',
-        data: {}
+        data: {course: {type_course: $("#typeCourseInputVal").val()}}
     }).success(function (data) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
@@ -403,9 +403,20 @@ var onChangeDateTimeWebinar = function () {
     var date_time = prent_block.find("input[data-type='date_time']").val();
     var date_hour = prent_block.find("input[data-type='hour']").val();
     var date_min = prent_block.find("input[data-type='min']").val();
-    var time = date_time + " " + date_hour + ":" + date_min;
-    parent_input.val(time);
-    updateWebinarInAttachment(parent_input)
+    if (! date_hour.length){
+        date_hour = 0
+    }
+    if (! date_min.length){
+        date_min = 0
+    }
+    var time = date_time + " " + parseInt(date_hour) + ":" + parseInt(date_min);
+
+    if (date_hour <= 23 && date_min <= 59){
+        parent_input.val(time);
+        updateWebinarInAttachment(parent_input)
+    }else{
+        show_error('Проверьте дату', 3000);
+    }
 };
 
 var updateWebinarInAttachment = function (btn) {
@@ -541,7 +552,7 @@ var loadIdsLeadsWebinar = function () {
 var addLeadingToWebinar = function () {
     var btn = $(this);
     var parent = btn.closest("#js-leading-online-courses");
-    if (!btn.hasClass("active")){
+    if (! btn.hasClass("active")){
         btn.addClass("active");
         $.ajax({
             type: 'POST',
