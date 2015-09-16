@@ -40,9 +40,11 @@ class HomeController < ActionController::Base
   def attachment
     @attachment = Attachment.where(id: params[:id]).last
     @section = @attachment.attachmentable rescue nil
-    @course = @section.course rescue nil
-    unless @attachment.present? && (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
-      redirect_to "/"
+    @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
+    unless (@course.material? rescue false)
+      unless @attachment.present? && (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+        redirect_to "/"
+      end
     end
   end
 
@@ -123,6 +125,14 @@ class HomeController < ActionController::Base
       test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
       if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank? && params[:attachment_id].present?
         redirect_to "/tests/#{test_final.id}/run"
+      end
+    end
+    if @course.material?
+      unless @course.find_bunch_course(current_user.id, ["user", "group"]).present?
+        redirect_to "/courses"
+      else
+        attachment = @course.attachments.last
+        redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
       end
     end
   end

@@ -11,5 +11,13 @@ module Contenter
     def edit
     end
 
+    def publication
+      begin
+        @course = Course.find(params[:id])
+      rescue
+        redirect_to "contenter/materials/new/edit"
+      end
+    end
+
   end
 end

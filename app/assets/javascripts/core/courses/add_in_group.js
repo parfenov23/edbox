@@ -1,6 +1,6 @@
 var openPopup = function () {
     var btn = $(this);
-    if(!btn.hasClass('noAddedMyCourse')){
+    if (! btn.hasClass('noAddedMyCourse')){
         if (! btn.hasClass("noOpenPopup")){
             courseInfo(btn.data("id"));
             var popup = $("#js-add-course-to-shedule");
@@ -27,7 +27,7 @@ var openPopup = function () {
                 width: $(this).width() - rightWidth + 'px'
             });
         });
-    }else{
+    } else {
         show_error('Нельзя добавить курс в личное расписание, так как курс добавленн в группу', 3000)
     }
 
@@ -39,6 +39,20 @@ var courseInfo = function (course_id) {
         url : '/api/v1/courses/' + course_id
     }).success(function (data) {
         var popup = $("#js-add-course-to-shedule");
+        var block_selectSections = popup.find(".select-deadline.js_optionDatePicker").show();
+        var blockCalendarCourse = popup.find(".calendar").show();
+        var titleCourseType = popup.find(".titleCourseType").text("Добавить курс в ");
+        blockCalendarCourse.find(".calendar-trigger").text("Установите крайний срок прохождения курса");
+        if (data.type_course == "material"){
+            titleCourseType.text("Добавить материал в ");
+            block_selectSections.hide();
+            blockCalendarCourse.find(".calendar-trigger").text("Установите крайний срок прохождения материала");
+        }
+        if (data.type_course == "online"){
+            titleCourseType.text("Добавить онлайн-курс в ");
+            block_selectSections.hide();
+            blockCalendarCourse.hide()
+        }
         popup.find(".js__courseEditTitle span").text(data.title);
         $("ul.js_addTemplateSectionLi").html($(templateLiSection(data)));
         includeDatePicker();
@@ -140,6 +154,8 @@ var addCourseGroup = function (btn) {
         $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
         openEdnPopup();
         clearPopup();
+        var id_course = form.find("input.courseId").val();
+        $("#titleCoursePrev" + id_course).closest("a").removeClass(".js_goToAttachmentLock");
         show_error('Курс добавлен в группу', 3000);
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -157,6 +173,8 @@ var addCourseMySchedule = function (btn) {
     }).success(function () {
         $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
         openEdnPopup();
+        var id_course = form.find("input.courseId").val();
+        $("#titleCoursePrev" + id_course).closest("a").removeClass("js_goToAttachmentLock");
         clearPopup();
         show_error('Курс добавлен в расписание', 3000);
     }).error(function () {
@@ -207,16 +225,21 @@ var optionDatePickerCourse = function (btn) {
     var date_picker = form.find(".parentDatePickerTime");
     var child_date_picker = form.find(".childDatePickerTime");
     if (date_picker.val().length){
-        $.each(child_date_picker, function(n, el){
+        $.each(child_date_picker, function (n, el) {
             $(el).data(date_picker.data('type'), parseDate(date_picker.val()));
         });
     }
 };
 
-var closeSelectDeadLineSections = function(){
+var closeSelectDeadLineSections = function () {
     $(this).closest("form").find(".action-btn").show();
     $(this).closest("form").find(".action-btn.actionSectionDeadLine").hide();
     return $(this).closest('.check_group_added').removeClass('section__deadline');
+};
+
+var goToAttachmentLock = function (event) {
+    event.preventDefault();
+    show_error("Добавьте материал в расписание!", 3000)
 };
 
 $(document).ready(function () {
@@ -229,4 +252,5 @@ $(document).ready(function () {
     $(document).on('click', '#js-add-course-to-shedule form .action-btn.sendAction .btn.yes.js_addCourse', addCourse);
     $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
     $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
+    $(document).on('click', ".js_goToAttachmentLock", goToAttachmentLock)
 });

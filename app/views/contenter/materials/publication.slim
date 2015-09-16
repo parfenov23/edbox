@@ -1,1 +1,30 @@
 = render "home/header/header", {namePage: "contenter_materials_new", titlePage: "Создание материала", btnBack: true, backUrl: "/contenter/courses"}
+#contenterPublication
+  input#typeCourseInputVal type="hidden" value=@course.type_course
+  form.block__publication
+    .publication__type__course
+      h2 Тип курса
+      .type__course__radio__block
+        .radio__btn
+          - hash = {}
+          - hash = {checked: "checked"} if @course.paid
+          input type="radio" name="publication" id=@course.id.to_s+"false" *hash
+          label.js_updateTypeCourse data-id=@course.id data-type_id="true" for=@course.id.to_s+"false"
+            span Платный
+        .radio__btn
+          - hash = {}
+          - hash = {checked: "checked"} unless @course.paid
+          input type="radio" name="publication" id=@course.id.to_s+"true" *hash
+          label.js_updateTypeCourse data-id=@course.id data-type_id="false" for=@course.id.to_s+"true"
+            span Бесплатный
+
+    .type__course__ready__publication__block
+      - text_btn = @course.public ? "СНЯТЬ С ПУБЛИКАЦИИ" : "ОПУБЛИКОВАТЬ"
+      /- if @course.validate.select{|k, v| v == false}.present?
+      /  span Курс не готов к пубикации:
+      /  .info  заполнены не все данные
+      /  .btn.btn-flat = text_btn
+      /- else
+      /- add_hash = {class: (!@course.public ? "js_publicationCourseWebinar" : "")}
+      .btn.btn-flat.activate.js_publicationCourse data-id=@course.id data-type=(!@course.public).to_s
+        = text_btn
