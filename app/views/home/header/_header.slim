@@ -63,6 +63,11 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
         .item
           i.calendar.icon.js_openLeftSideBar data-id="js-comment"
 
+      - if namePage == "makeup"
+        .item.is__no-icon.js_openLeftSideBar data-id="js-add__users" 
+          .btn.btn-flat ДОБАВИТЬ ПОЛЬЗОВАТЕЛЕЙ
+          
+          
       .item.ava.header__user
         img src=default_img(current_user.avatar)
         .menu__user
