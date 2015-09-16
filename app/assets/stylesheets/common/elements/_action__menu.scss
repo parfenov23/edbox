@@ -1,0 +1,109 @@
+
+.action__menu {
+  position: absolute;
+  top: -2px;
+  right: -15px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  .icon__block {
+    margin-left: 3px;
+    width: 24px;
+    height: 24px;
+    @include transition;
+    border-radius: 100%;
+    text-align: center;
+    &:hover {
+      @include transition;
+      background-color: #F0F0F0;
+    }
+    i {
+      line-height: 24px;
+      font-size: 16px;
+      &::before {
+        color: $black_54;
+        content: '\E8A3';
+      }
+    }
+  }
+  .hidden-list {
+    height: 0;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+  }
+  &.is__active {
+    .icon__block {
+      @include transition;
+      background-color: #F0F0F0;
+    }
+    .hidden-list {
+      @include transition;
+      height: auto;
+      overflow: visible;
+      padding: 6px 0;
+    }
+  }
+  .hidden__content {
+    .hidden-calendar-wrp{
+      .hidden-calendar {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        min-width: 345px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 2px 5px 0px $black_54;
+        border-radius: 2px;
+        max-height: 236px;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 100;
+        bottom: auto;
+        .calendar-header {
+          font-size: 15px;
+          color: rgba(0,0,0,0.87);
+          line-height: 18px;
+          margin-bottom: 24px;
+          padding-left: 23px;
+          @include clearfix;
+          padding-top: 13px;
+          .back__v2 {
+            float: left;
+            margin-right: 15px;
+            font-size: 16px;
+            &::before {
+              content: '\E893'
+            }
+          }
+        }
+        .selected-value {
+          padding-left: 24px;
+        }
+        .calendar-holder{
+          font-size: 13px;
+          color: $black_54;
+          line-height: 20px;
+          .ui-datepicker {
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+    &.is__show_calendar {
+      .hidden-list {
+        opacity: 0;
+        @include transition;
+      }
+      .hidden-calendar {
+        opacity: 1;
+        height: auto;
+        overflow: visible;
+        @include transition;
+        padding: 6px 0;
+        display: block !important;
+      }
+    }
+  }
+}

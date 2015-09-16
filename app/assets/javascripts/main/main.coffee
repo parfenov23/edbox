@@ -1,3 +1,77 @@
+calendarLocale =
+  prevText: '&#x3c;Пред'
+  nextText: 'След&#x3e;'
+  currentText: 'Сегодня'
+  monthNames: [
+    'Январь'
+    'Февраль'
+    'Март'
+    'Апрель'
+    'Май'
+    'Июнь'
+    'Июль'
+    'Август'
+    'Сентябрь'
+    'Октябрь'
+    'Ноябрь'
+    'Декабрь'
+  ]
+  monthNamesShort: [
+    'Янв'
+    'Фев'
+    'Мар'
+    'Апр'
+    'Май'
+    'Июн'
+    'Июл'
+    'Авг'
+    'Сен'
+    'Окт'
+    'Ноя'
+    'Дек'
+  ]
+  dayNames: [
+    'воскресенье'
+    'понедельник'
+    'вторник'
+    'среда'
+    'четверг'
+    'пятница'
+    'суббота'
+  ]
+  dayNamesShort: [
+    'вск'
+    'пнд'
+    'втр'
+    'срд'
+    'чтв'
+    'птн'
+    'сбт'
+  ]
+  dayNamesMin: [
+    'Вс'
+    'Пн'
+    'Вт'
+    'Ср'
+    'Чт'
+    'Пт'
+    'Сб'
+  ]
+  dateFormat: 'dd.mm.yy'
+  firstDay: 1
+  isRTL: false
+  minDate: new Date
+  onSelect: (e) ->
+    dates = $(this).data('datepicker')
+    selectDate = dates.currentDay + '/' + dates.currentMonth + 1 + '/' + dates.currentYear
+    $(this).parent().find('.selected-value').html selectDate
+    if $(this).hasClass('js_changeDateToDatePicker')
+      changeDateToDatePicker $(this)
+    $(this).change()
+    $(this).parent().addClass 'show'
+
+
+
 headerTabsLine = (elem) ->
   if $('.page__children .item').length
     width = $(elem).outerWidth()
@@ -120,6 +194,26 @@ multiAction = (el) ->
     $('.js__multi__action').addClass 'is__active'
     el.addClass 'is__choosen'
 
+commonToggle = (el) ->
+  $(el).on 'click', ->
+    $(@).toggleClass 'is__active'
+
+
+
+activeMenu = ->
+  $('.js__action-menu .hidden-list li').on 'click', ->
+    showBlock = $(@).data 'id'
+    if showBlock == "innerCalendar"
+      $(@).closest('.hidden__content').addClass 'is__show_calendar'
+      $('.hidden-calendar-wrp .calendar-holder').datepicker(calendarLocale)
+      $('.hidden-calendar .calendar-header .back__v2').on 'click', ->
+        $(@).closest('.hidden__content').removeClass 'is__show_calendar'
+
+    else if showBlock == "showSectionList"
+      $('.js__section_popup').fadeIn().addClass 'is__active'
+    else if showBlock == "delete"
+      console.log showBlock
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -133,9 +227,18 @@ $(document).ready ->
   showHideToggleBtn()
   toggleNotesAsideHeight()
   authCorpAcc()
+  commonToggle('.courses-aside.add__users .item')
+  activeMenu()
+
+  $('.item.course__block_horizontal-shot input').datepicker(calendarLocale)
+
 
   $('.members__in_system-item').on 'click', ->
     multiAction($(this))
+
+  $('.js__action-menu .icon__block').on 'click', ->
+    $(@).closest('.js__action-menu').toggleClass 'is__active'
+    $('.js__backing').toggleClass 'is__active'
 
   $('#owl-example').owlCarousel
     items : 3
@@ -160,6 +263,10 @@ $(document).ready ->
   $('.com__input-item textarea').on 'keyup onpaste', (e) ->
     adjustHeight(e.target)
 
+  $('.com__input-item input, .com__input-item textarea').on 'focusout', ->
+    $(@).closest('.com__input-item').addClass 'is__noFocus'
+  $('.com__input-item input, .com__input-item textarea').on 'focusin', ->
+    $(@).closest('.com__input-item').removeClass 'is__noFocus'
 
 
 
@@ -277,6 +384,8 @@ $(document).ready ->
 
   $(document).on 'click', '.js__backing', ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+    $('.hidden__content').removeClass 'is__show_calendar'
+    $('.js__action-menu').removeClass 'is__active'
     $(@).removeClass('is__active')
     $('.js__left-aside').removeClass('is__active')
     $('.courses-aside').removeClass('show')

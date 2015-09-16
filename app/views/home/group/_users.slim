@@ -1,4 +1,4 @@
-.js__multi__action.multi__action
+.js__multi__action.multi__choice
   .title.h__text_20-24 Выбран 1 пользователь
   .action__block
     .btn.btn-flat.is__blue УДАЛИТЬ
@@ -11,7 +11,8 @@
                 ul.invited
                 form.form
                     input.input.searchMember type="text" placeholder="Email участника"
-                    .plane.js_inviteUserGroup data-group_id="#{@group.id}"
+                    .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
+                      .tooltip.is__bottom Отправить приглашение пользователям
 
             ul.members__in_system style="display:none;"
                 - @members.each do |member|

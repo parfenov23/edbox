@@ -14,8 +14,8 @@ $checkbox-animation-check: 0.3s;
   line-height: 40px;
 }
 .h__text_24-32 {
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 24px  !important;
+  line-height: 32px  !important;
 }
 .h__text_20-28 {
   font-size: 20px;
@@ -29,7 +29,10 @@ $checkbox-animation-check: 0.3s;
   font-size: 13px;
   line-height: 20px;
 }
-.h__text_11-16 {
-  font-size: 11px;
+.h__text_12-16 {
+  font-size: 12px;
   line-height: 16px;
+}
+.h__width_936 {
+  width: 936px !important;
 }

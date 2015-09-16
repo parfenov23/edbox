@@ -42,11 +42,11 @@
         font-size    : 15px;
         color        : $black_54;
         line-height  : 28px;
-
-        &:last-child {
-          border: none;
-        }
-
+        //
+        // &:last-child {
+        //   border: none;
+        // }
+        //
         .email {
           float    : left;
           max-width: calc(100% - 40px);
@@ -176,24 +176,28 @@
         @include eclipses;
         font-size: 15px;
         line-height: 24px;
-        margin-right: 24px;
+        margin-right: 20px;
       }
 
       .email {
         float: left;
         width: 350px;
         @include eclipses;
-        margin-right: 12px;
+        margin-right: 0px;
       }
 
       .status {
         float     : right;
-        width     : 150px;
+        width     : 170px;
         text-align: right;
         font-size: 15px;
         color: rgba(0,0,0,0.54);
         line-height: 24px;
         position: relative;
+
+        .overdue {
+          color: #F50057;
+        }
 
         .tooltip__list {
           position: absolute;

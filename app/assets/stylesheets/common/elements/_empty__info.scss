@@ -1,0 +1,19 @@
+.empty__info {
+  > .title {
+    margin-bottom: 24px;
+  }
+  .description {
+    background-color: #EEEEEE;
+    padding: 22px 65px 16px 32px;
+    .text  {
+      margin-bottom: 30px;
+    }
+    .action__block {
+      @include clearfix;
+      .btn {
+        float: left;
+        margin-right: 8px;
+      }
+    }
+  }
+}

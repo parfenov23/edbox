@@ -1,0 +1,19 @@
+.create__group {
+  @include middle-block(936px);
+  padding-top: 32px;
+  &.create__name {
+    @import "unique/create__group/create__groupe__name";
+  }
+  &.group__list {
+    @import "unique/create__group/group__list";
+  }
+  &.group__description {
+    @import "unique/create__group/group__description";
+  }
+  &.add__users {
+    @import "unique/create__group/users";
+  }
+  &.course__list {
+    @import "unique/create__group/course__list";
+  }
+}

@@ -153,6 +153,109 @@
 
 
 
+.course__block_horizontal {
+  @include white__block (1,1);
+  margin-bottom: 16px;
+  position: relative;
+  padding: 14px 32px 21px 216px;
+  .image {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 176px;
+    height: 96px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+    .fade{
+
+    }
+  }
+  .description {
+    position: relative;
+    .title {
+      margin-bottom: 8px;
+      @include eclipses;
+      padding-right: 16px;
+    }
+    .authors {
+      @extend .title;
+      color: $black_54;
+      margin-bottom: 16px;
+    }
+    .info {
+      .icons__block {
+        display: flex;
+        justify-content: flex-start;
+        .item {
+          margin-right: 17px;
+          i {
+            @include inline-block;
+            color: $black_54;
+            font-size: 15px;
+            margin-right: 8px;
+            margin-top: 4px;
+          }
+          span {
+            @include inline-block;
+            color: $black_54;
+            margin-top: 1px;
+          }
+        }
+      }
+      .text-info {
+        color: $primoryColor;
+        &.overdue {
+          color: #F50057;
+        }
+      }
+    }
+  }
+  &.with__action-menu {
+    .description {
+      padding-right: 32px;
+    }
+  }
+}
+
+.course__block_horizontal-shot {
+  @include white__block(1,1);
+  @include eclipses;
+  padding: 16px 32px;
+  margin-bottom: 16px;
+  position: relative;
+  cursor: pointer;
+  .adaptive__title {
+    .left-col {
+      padding-right: 10px;
+    }
+    .right-col {
+      color: $primoryColor;
+      padding-top: 2px;
+    }
+  }
+  input {
+    width: 100%;
+    opacity: 0;
+    height: 48px;
+    display: block;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+  }
+}
+
+
+
+
+
 // old
 
 .corses-prev {

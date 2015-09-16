@@ -151,7 +151,7 @@ var includeDatePicker = function (block) {
             }
         });
     }
-}
+};
 
 function pageLoad(action) {
     $(document).ready(action);
@@ -172,7 +172,7 @@ var notifyMypush = function (message) {
         }
     };
     NotifyMe.launch(message.title, options);
-}
+};
 
 var adaptiveTitle = function () {
     return $('.adaptive__title').each(function () {
@@ -198,7 +198,7 @@ Array.prototype.getUnique = function () {
         u[this[i]] = 1;
     }
     return a;
-}
+};
 var optionDatePicker = function () {
     var btn = $(this);
     //setTimeout(function(){
@@ -218,15 +218,15 @@ var optionDatePicker = function () {
     btn.datepicker('show');
     installPositionBlock($("#ui-datepicker-div"));
     //}, 3000)
-}
+};
 
 var installPositionBlock = function (block) {
     var dp_top = block.offset().top;
     var px_block = view_px_block(block);
     if (px_block < block.outerHeight()){
-        block.css('top', (dp_top - ( block.outerHeight() - px_block ) + 30))
+        block.css('top', (dp_top - ( block.outerHeight() - px_block ) + 30));
     }
-}
+};
 
 function parseDate(input) {
     var parts = input.split('.');
@@ -254,7 +254,7 @@ $(document).ready(function () {
         jQuery(this).on('keyup input click', function () { resizeTextarea(this); }).removeAttr('data-autoresize');
     });
 
-    $.material.init()
+    $.material.init();
 
     $('.favorite-courses .favorite-item .description .header .ingroup').hover(function () {
         $(this).find('.group-list').show();
@@ -287,7 +287,7 @@ $(document).ready(function () {
             }, duration);
         }
 
-    }
+    };
 
     setTimeout(function () {
         var windowHeight = $(window).outerHeight();
@@ -304,7 +304,7 @@ $(document).ready(function () {
 
     $('.filter-category .more .icon').on('click', function () {
         $(this).closest('.more').removeClass('hidden');
-    })
+    });
     $(document).on('click', ".js_openLeftSideBar", function () {
         var id = $(this).data('id');
         if ($('#' + id + '').hasClass('show')){
@@ -316,11 +316,11 @@ $(document).ready(function () {
             $('#' + id + '').toggleClass('show');
             $('.js__backing').toggleClass('is__active');
         }
-    })
+    });
 
 
     $('.ui-state-default').on('click', function (e) {
-    })
+    });
 
     //includeDatePicker()
 
@@ -334,7 +334,7 @@ $(document).ready(function () {
 
     headerUserToggle = function () {
         $(document).on('click', function (e) {
-            if ($(e.target).closest('.header__user').length == 0){
+            if ($(e.target).closest('.header__user').length === 0){
                 $('.menu__user').removeClass('active');
             }
             else if ($(e.target).closest('.header__user').length == 1){
@@ -346,7 +346,7 @@ $(document).ready(function () {
                 }
             }
         });
-    }
+    };
 
     changeAvatar = function (e) {
         $('.profile__main .upload__block input').change(function () {

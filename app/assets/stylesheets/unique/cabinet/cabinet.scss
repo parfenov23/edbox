@@ -153,6 +153,7 @@
 
   .possible__action-list {
     @include middle-block(933px);
+    @include white__block(1,0);
     margin-bottom: 48px;
 
     .item {
