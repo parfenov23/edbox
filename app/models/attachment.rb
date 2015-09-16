@@ -83,7 +83,7 @@ class Attachment < ActiveRecord::Base
 
   def class_type
     arr_types = ["text", "audio", "video", "test", "webinar"]
-    (arr_types.include? (file_type)) ? file_type : "text"
+    (arr_types.include? (file_type)) ? file_type : "other"
   end
 
   def find_bunch_attachment(bunch_section_id)

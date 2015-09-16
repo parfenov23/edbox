@@ -14,6 +14,8 @@ module NavLinkHelper
         my_course_nav_links
       when "contenter_courses_new"
         contenter_courses_new_nav_links
+      when "contenter_materials_new"
+        contenter_materials_new_nav_links
       when "contenter_admin"
         contenter_admin_nav_links
       when "profile"
@@ -45,6 +47,14 @@ module NavLinkHelper
       {title: "Категории", link: "/contenter/admin/categories"},
       {title: "Теги", link: "/contenter/admin/tags"},
       {title: "Ведущие", link: "/contenter/admin/members"}
+    ]
+  end
+
+  def contenter_materials_new_nav_links
+    id = params[:id].present? ? params[:id] : "new"
+    [
+      {title: "Описание", link: "/contenter/materials/#{id}/edit"},
+      {title: "Публикация", link: "/contenter/materials/#{id}/publication"}
     ]
   end
 

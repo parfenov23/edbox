@@ -1,0 +1,91 @@
+= render "home/header/header", {namePage: "contenter_materials_new", titlePage: "Создание материала", btnBack: true, backUrl: "/contenter/courses"}
+- course = params[:id] == "new" ? Course.new : Course.find(params[:id])
+- course.type_course = "material"
+= render "contenter/courses/edit/right_bar/tags", {course: course}
+= render "contenter/courses/edit/right_bar/categories", {course: course}
+= render "contenter/courses/edit/right_bar/leadings", {course: course}
+
+-# attachment = course.attachments.present? ? course.attachments.last : Attachment.create({attachmentable_type: "Course", attachmentable_id: course.id})
+- attachment = Attachment.last
+.contenter#materialEditContenter
+  form.course__description-content.oh__nihuyase-block.js_courseContenter data-id=attachment.id
+    input type="hidden" name="course[id]" value=params[:id]
+    input type="hidden" name="course[user_id]" value=current_user.id
+    input#typeCourseInputVal type="hidden" name="course[type_course]" value=course.type_course
+    .course__info
+      .form_group.detail__info.validateFormCourse
+        .title
+          input.course__title.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название материала" name="course[title]" value=course.title
+        .description
+          textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание материала" name="course[description]" data-autoresize=""
+            = course.description
+      .itemDetailInfo.validateCourseCategories.validateFormCourse
+        .description__Item
+          .allCategoriesDescriptionCourse
+            - course.bunch_categories.each do |bunch_category|
+              - category = bunch_category.category
+              .category
+                = category.title
+                .remove.js_removeBunchCategoryFromCourse data-id=category.id
+          .addCategory.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
+        .description__Item
+          .allTagDescriptionCourse
+            - course.bunch_tags.each do |bunch_tag|
+              - tag = bunch_tag.tag
+              .tag
+                = tag.title
+                .remove.js_removeBunchTagFromCourse data-id=tag.id
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+      .itemDetailInfo
+        - valid_arr = ["description", "webinar", "test"]
+        - vaft = attachment.file_type
+        .upload_attachments style=((attachment.file.file.present? || valid_arr.include?(vaft)) ? "display:none;" : "" )
+          input.uploadFileInputCourse type="file" id="inputFile_1" name="attachment[file]" data-type="file"
+          input.validateAttachmentFileType type="hidden" value="video"
+          - unless attachment.file.file.present? || ["description", "test", "webinar"].include?(attachment.file_type)
+            .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
+              i.icon.text
+              .selectText Написать текст
+
+            - add_class = attachment.file_type == "video" ? "active" : ""
+            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'video/*')" class=add_class
+              i.icon.video
+              .selectText Вставить видео
+
+            - add_class = attachment.file_type == "audio" ? "active" : ""
+            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'audio/*')" class=add_class
+              i.icon.audio
+              .selectText Вставить аудио
+
+            - add_class = attachment.file_type == "pdf" ? "active" : ""
+            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'application/pdf')"
+              i.icon.courses
+              .selectText Вставить PDF
+
+            - add_class = attachment.download ? "active" : ""
+            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{attachment.id}', '')" data-type="download" data-id=attachment.id class=add_class
+              i.icon.add
+              .selectText Прикрепить файл для скачивания
+
+            .selectAttachment.js_setAttachmentType.js_createAttachmentTest data-id=attachment.id data-type="test"
+              i.icon.test
+              .selectText Добавить тест
+
+        .editFileUpload.includeValidateForm data-validate="present_file"
+          .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
+            textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
+              = attachment.full_text
+          .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
+            .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
+              .titleName = (attachment.file.file.original_filename rescue "Без имени")
+              .fileType
+                i.icon.content class=attachment.class_type
+            .fileDuration
+              .titleDuration Продолжительность материала в минутах
+              input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]" value=attachment.duration
+
+          .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
+            - if attachment.test.present?
+              = render "contenter/courses/program/test", {test: attachment.test}

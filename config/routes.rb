@@ -253,6 +253,13 @@ Rails.application.routes.draw do
         get :publication
       end
     end
+    resources :materials do
+      collection do
+      end
+      member do
+        get :publication
+      end
+    end
     resources :admin do
       collection do
         get :tags
