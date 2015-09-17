@@ -8,19 +8,22 @@ var createCourseContenterProgram = function (action, new_create) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
         $("#contenterCourseProgram .js_createSectionToSection").data("course_id", data.id);
-        var header = $("#page__header .page__children");
-        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
-        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
-        header.find(".contenter_courses_public").attr('href', '/contenter/courses/' + data.id + '/publication');
+
+        var type_link = "courses";
         if (type_course == "material"){
-            history.pushState({}, '', "/contenter/materials/" + data.id + "/edit");
+            type_link = "materials";
+        }
+        if (type_course == "material"){
             if (new_create == "new_attachment"){
                 $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
                 onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
             }
-        } else {
-            history.pushState({}, '', "/contenter/courses/" + data.id + "/program");
         }
+        history.pushState({}, '', "/contenter/" + type_link + "/" + data.id + "/edit");
+        var header = $("#page__header .page__children");
+        header.find(".contenter_courses_edit").attr('href', '/contenter/' + type_link + '/' + data.id + '/edit');
+        header.find(".contenter_courses_programm").attr('href', '/contenter/' + type_link + '/' + data.id + '/program');
+        header.find(".contenter_courses_public").attr('href', '/contenter/' + type_link + '/' + data.id + '/publication');
         setTimeout(function () {
             action()
         }, 100);
