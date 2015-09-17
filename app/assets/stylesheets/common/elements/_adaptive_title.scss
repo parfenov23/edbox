@@ -4,6 +4,9 @@
   justify-content: space-between;;
   .left-col {
       @include eclipses;
+      .page__title {
+        @include eclipses;
+      }
   }
   .right-col {
     white-space: nowrap;
