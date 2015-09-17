@@ -76,7 +76,7 @@
     line-height: 24px;
     padding: 0 8px;
     font-size: 12px;
-
+    z-index: 999;
     &.is__bottom {
       top: calc(100% + 11px);
       left: 50%;
