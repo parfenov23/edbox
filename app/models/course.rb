@@ -117,7 +117,8 @@ class Course < ActiveRecord::Base
   end
 
   def find_bunch_course(user_id, type='user', group_id=nil)
-    bunch_courses.where({course_id: id, user_id: user_id, group_id: group_id, model_type: type}).last
+    hash_expression = {course_id: id, user_id: user_id, group_id: group_id, model_type: type}.compact
+    bunch_courses.where(hash_expression).last
   end
 
 
