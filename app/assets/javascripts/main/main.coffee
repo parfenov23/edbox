@@ -230,7 +230,7 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
-  $('.item.course__block_horizontal-shot input').datepicker(calendarLocale)
+  $('.item.course__block_horizontal-shot input, .course__block_horizontal input').datepicker(calendarLocale)
 
 
   $('.members__in_system-item').on 'click', ->

@@ -83,12 +83,13 @@
         position: absolute;
         right   : 16px;
         bottom  : 16px;
+        display: flex;
+        justify-content: flex-end;
 
         .btn {
-          float: right;
 
           &:first-child {
-            margin-right: 8px;
+            margin-left: 8px;
           }
         }
       }
@@ -137,6 +138,20 @@
         padding: 16px 0;
         .course__list {
           padding: 0 24px;
+          .item.course__block_horizontal {
+            cursor: pointer;
+            position: relative;
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 128px;
+              z-index: 1;
+              opacity: 0;
+              cursor: pointer;
+            }
+          }
         }
       }
       .bottom__info {

@@ -5,6 +5,7 @@ fieldset[disabled] .form-control,
   &:focus,
   &.focus {
     &:not(textarea) {
+
       // height: 28px;
     }
     padding      : 0;
@@ -13,6 +14,7 @@ fieldset[disabled] .form-control,
     box-shadow   : none;
     border-radius: 0;
     background   : transparent;
+
     &:disabled {
       border-style: dashed;
     }
@@ -26,9 +28,6 @@ select[multiple].form-control {
     height: 85px;
   }
 }
-
-
-
 
 .form-control-wrapper {
   position: relative;
@@ -49,12 +48,15 @@ select[multiple].form-control {
     color         : rgba(0,0,0,0.87);
     line-height   : 24px;
   }
+
   .form-control:not(.empty) {
     border-color: $primoryColor;
   }
+
   .form-control.empty ~ .floating-label {
     opacity: 1;
   }
+
   .material-input:before {
     position  : absolute;
     content   : "";
@@ -65,11 +67,13 @@ select[multiple].form-control {
     transform : scaleX(0);
     transition: transform 0s;
   }
+
   .form-control:focus ~ .material-input:before,
   .form-control.focus ~ .material-input:before {
     transform : scaleX(1);
     transition: transform 0.2s ease-out;
   }
+
   .material-input:after {
     content         : "";
     position        : absolute;
@@ -82,12 +86,15 @@ select[multiple].form-control {
     opacity         : 0.9;
     transform-origin: left;
   }
+
   .input-lg ~ .material-input:after {
     height: 26px;
   }
+
   textarea {
     resize: none;
   }
+
   textarea ~ .form-control-highlight {
     margin-top: -11px;
   }
@@ -114,9 +121,11 @@ select[multiple].form-control {
     margin-left : 5px;
     bottom      : -10px;
   }
+
   .input-group-addon {
     border: 0;
   }
+
   .input-group-btn .btn {
     border-radius: 4px;
   }
@@ -126,6 +135,7 @@ select.form-control {
   border       : 0;
   box-shadow   : none;
   border-radius: 0;
+
   &:focus,
   &.focus {
     box-shadow  : none;
@@ -138,11 +148,13 @@ select.form-control {
     left     : 20%;
     transform: scaleX(20%);
   }
+
   99% {
     transform: scaleX(0);
     left     : 0;
     opacity  : 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -169,72 +181,88 @@ select.form-control {
 .com__input-item {
   position     : relative;
   margin-bottom: 9px;
+
   &.error {
     hr {
-      border-bottom: 1px solid #f50057 ;
+      border-bottom: 1px solid #f50057;
     }
+
     .error__msg {
-      display : block;
-      position: absolute;
-      top     : 36px;
-      right: 0;
-      font-size: 11px;
-      color: #F50057;
+      display    : block;
+      position   : absolute;
+      top        : 36px;
+      right      : 0;
+      font-size  : 11px;
+      color      : #f50057;
       line-height: 16px;
     }
+
     &.item {
       .floating-label {
-        color: #F50057;
+        color: #f50057;
       }
     }
+
     &.lvl-2 {
       hr {
-        border-color: #AB47BC ;
+        border-color: #ab47bc;
       }
-      .error__msg, .floating-label {
-        color: #AB47BC;
+
+      .error__msg,
+      .floating-label {
+        color: #ab47bc;
       }
     }
+
     &.lvl-3 {
       hr {
-        border-color: #1E88E5;
+        border-color: #1e88e5;
       }
-      .error__msg, .floating-label {
-        color: #1E88E5;
+
+      .error__msg,
+      .floating-label {
+        color: #1e88e5;
       }
     }
+
     &.lvl-4 {
       hr {
         border-color: $primoryColor;
       }
+
       .error__msg {
         color: $primoryColor;
       }
     }
   }
+
   &.is__info {
     .error__msg {
-      display: block;
+      display : block;
       position: absolute;
-      bottom    : 12px;
-      right: 0;
-      color: $black_26;
+      bottom  : 12px;
+      right   : 0;
+      color   : $black_26;
     }
   }
+
   &.is__noFocus {
     .floating-label {
       color: $black_26;
     }
+
     hr {
       border-bottom: 1px solid $black_26;
     }
   }
+
   .error__msg {
     display: none;
   }
+
   hr {
     position     : absolute;
-    bottom:           29px;
+    bottom       : 29px;
     left         : 0;
     height       : 1px;
     border       : none;
@@ -242,6 +270,7 @@ select.form-control {
     display      : block;
     width        : 100%;
   }
+
   .floating-label {
     top        : -28px;
     opacity    : 1;
@@ -254,26 +283,29 @@ select.form-control {
     hr {
       border-bottom: 1px solid rgba(0,0,0,0.26);
     }
+
     .floating-label {
       font-size  : 15px;
       color      : rgba(0,0,0,0.26);
       line-height: 24px;
       top        : -6px;
     }
-
   }
+
   input {
     margin-bottom: 6px;
     margin-bottom: 40px;
     width        : 100%;
     line-height  : 24px;
+
     // position     : absolute;
     top          : -6px;
     left         : 0;
-    position: relative;
-    height: 26px;
+    position     : relative;
+    height       : 26px;
     border-bottom: none;
   }
+
   textarea {
     margin-bottom: 6px;
     margin-bottom: 40px;
@@ -281,14 +313,15 @@ select.form-control {
     line-height  : 24px;
     top          : -6px;
     left         : 0;
-    position: relative;
+    position     : relative;
     border-bottom: none;
-    height: 26px;
+    height       : 26px;
   }
 
   input:not(.empty) {
     border-color: $primoryColor;
   }
+
   // input:not(.empty) ~ .floating-label {
   //   font-size  : 12px;
   //   line-height: 16px;
@@ -297,149 +330,192 @@ select.form-control {
   // }
 }
 
-
-
 .input-wrp {
-    width         : 256px;
-    position      : relative;
-    height        : 32px;
-    margin-bottom : 21px;
-    input {
-        @include placeholder(rgba(0, 0, 0, 0.54));
-        font-size: 13px;
-        line-height: 20px;
-        display       : block;
-        border        : none;
-        background    : none;
-        height        : 32px;
-        width         : 100%;
-        border-bottom : 1px solid #E0E0E0;
-        position      : relative;
-        z-index       : 10;
-        &:focus + hr {
-            width : 100%;
-            left  : 0;
-        }
+  width        : 256px;
+  position     : relative;
+  height       : 32px;
+  margin-bottom: 21px;
+
+  input {
+    @include placeholder(rgba(0, 0, 0, 0.54));
+    font-size    : 13px;
+    line-height  : 20px;
+    display      : block;
+    border       : none;
+    background   : none;
+    height       : 32px;
+    width        : 100%;
+    border-bottom: 1px solid #e0e0e0;
+    position     : relative;
+    z-index      : 10;
+
+    &:focus + hr {
+      width: 100%;
+      left : 0;
     }
-    &.textarea {
-        height : auto;
+
+    &::-webkit-input-placeholder {
+      font-size  : 15px;
+      color      : rgba(0,0,0,0.26);
+      line-height: 24px;
     }
-    textarea {
-        @include placeholder(rgba(0, 0, 0, 0.54));
-        position: relative;
-        font-size: 13px;
-        line-height: 20px;
-        display       : block;
-        border        : none;
-        background    : none;
-        width         : 100%;
-        resize        : none;
-        border-bottom : 1px solid #E0E0E0;
-        position      : relative;
-        z-index       : 10;
-        min-height: 26px;
-        &:focus + hr {
-            width : 100%;
-            left  : 0;
-        }
+
+    &::-moz-placeholder {
+      font-size  : 15px;
+      color      : rgba(0,0,0,0.26);
+      line-height: 24px;
     }
-    hr {
-        border             : none;
-        margin             : 0 auto;
-        display            : block;
-        position           : absolute;
-        left               : 50%;
-        bottom             : 0;
-        -webkit-transition : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -moz-transition    : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        -o-transition      : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        transition         : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        z-index            : 11;
-        width              : 0;
+
+    &:-moz-placeholder {
+      font-size  : 15px;
+      color      : rgba(0,0,0,0.26);
+      line-height: 24px;
     }
-    input:focus + hr {
-        border-bottom : 2px solid #00BCD8;
+
+    &:-ms-input-placeholder {
+      font-size  : 15px;
+      color      : rgba(0,0,0,0.26);
+      line-height: 24px;
     }
-    input.error {
-        border-bottom : 1px solid #F50057;
+  }
+
+  &.textarea {
+    height: auto;
+  }
+
+  textarea {
+    @include placeholder(rgba(0, 0, 0, 0.54));
+    position     : relative;
+    font-size    : 13px;
+    line-height  : 20px;
+    display      : block;
+    border       : none;
+    background   : none;
+    width        : 100%;
+    resize       : none;
+    border-bottom: 1px solid #e0e0e0;
+    position     : relative;
+    z-index      : 10;
+    min-height   : 26px;
+
+     &:focus + hr {
+      width: 100%;
+      left : 0;
     }
-    input.error:focus + hr {
-        border-bottom : 2px solid #F50057;
-    }
+  }
+
+  hr {
+    border            : none;
+    margin            : 0 auto;
+    display           : block;
+    position          : absolute;
+    left              : 50%;
+    bottom            : 0;
+    -webkit-transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    -moz-transition   : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    -o-transition     : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    transition        : all 300ms cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    z-index           : 11;
+    width             : 0;
+  }
+
+  input:focus + hr {
+    border-bottom: 2px solid #00bcd8;
+  }
+
+  input.error {
+    border-bottom: 1px solid #f50057;
+  }
+
+  input.error:focus + hr {
+    border-bottom: 2px solid #f50057;
+  }
 }
 
-
-.radio, .check {
+.radio,
+.check {
   height  : 100%;
   position: relative;
+
   input {
-    opacity: 0;
+    opacity : 0;
     position: absolute;
   }
+
   label {
-    padding-left : 40px;
-    display: block;
-    position: relative;
+    padding-left: 40px;
+    display     : block;
+    position    : relative;
+
     i {
-      display      : block;
-      width        : 16px;
-      height       : 16px;
-      top          : 0;
-      left         : 0;
-      margin       : 3px 0 0 6px;
-      position     : absolute;
-      cursor       : pointer;
+      display : block;
+      width   : 16px;
+      height  : 16px;
+      top     : 0;
+      left    : 0;
+      margin  : 3px 0 0 6px;
+      position: absolute;
+      cursor  : pointer;
     }
+
     .text {
       font-size  : 13px;
       color      : rgba(37,37,37,0.87);
       line-height: 20px;
-      cursor: pointer;
+      cursor     : pointer;
     }
   }
 }
+
 .radio {
   input {
     &:checked + label {
       i {
-      &::before {
-        background-color: $primoryColor;
-      }
+        &::before {
+          background-color: $primoryColor;
+        }
       }
     }
   }
+
   i {
     border       : 2px solid $primoryColor;
     border-radius: 50%;
+
     &::before {
-      display         : block;
-      width           : 8px;
-      height          : 8px;
-      position        : absolute;
-      top             : 2px;
-      left            : 2px;
-      border-radius   : 50%;
-      content         : " ";
-      background-color: #fff;
+      display      : block;
+      width        : 8px;
+      height       : 8px;
+      position     : absolute;
+      top          : 2px;
+      left         : 2px;
+      border-radius: 50%;
+      content      : " ";
+
+      // background-color: #fff;
     }
   }
 }
+
 .check {
   input {
     &:checked + label {
       i {
         background-color: $primoryColor;
+
         &::before {
           background-color: $primoryColor;
-          color: #fff;
-          opacity: 1;
+          color           : #fff;
+          opacity         : 1;
         }
       }
     }
   }
+
   i {
     border       : 2px solid $primoryColor;
     border-radius: 2px;
+
     &::before {
       font-size    : 13px;
       line-height  : 14px;
@@ -447,15 +523,14 @@ select.form-control {
       content      : "\E899";
       position     : absolute;
       color        : #fff;
-      opacity: 0;
+      opacity      : 0;
       top          : 0;
-      left         : 0px;
+      left         : 0;
     }
   }
 }
 
-
 input[type=password] {
-    font-size: 30px;
-    letter-spacing: 2px;
+  font-size     : 30px;
+  letter-spacing: 2px;
 }

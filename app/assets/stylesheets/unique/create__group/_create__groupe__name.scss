@@ -15,12 +15,12 @@
     width: 793px;
   }
   .action__block {
-    @include clearfix;
     position: absolute;
     right: 16px;
     bottom: 16px;
+    display: flex;
+    justify-content: flex-end;
     .btn {
-      float: right;
     }
   }
 }
