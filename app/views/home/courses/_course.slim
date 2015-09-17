@@ -19,10 +19,11 @@ figure.corses-prev
             - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
             .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Расписание группы
+            
             - if find_bunch_course_group.blank?
               - hash_params = {'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule"}
               .schedule.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_private data-id="#{course.id}" data-height="224px" data-type="user" *hash_params
-              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
+                .mdl-shadow-2dp.com-top-tooltip.js_tooltip Личное расписание
           - else
             - clB = find_bunch_course_group.blank? ? "" : "noAddedMyCourse"
             - hash_params = {'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", class: clB}
