@@ -20,12 +20,18 @@
     color: #FFFFFF;
     position: relative;
     padding-left: 50px;
-    &::before {
-      content: "\E702";
-      font: 22px/22px 'Icons';
+    span {
       position: absolute;
       left: 0;
       top: -1px;
+      i {
+        &::before {
+          content: "\E702";
+          font: 22px/22px 'Icons';
+          cursor: pointer;
+        }
+
+      }
     }
   }
   .action__block {

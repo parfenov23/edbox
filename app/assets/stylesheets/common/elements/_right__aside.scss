@@ -797,11 +797,13 @@
   .search__right_aside {
     margin-bottom: 45px;
     margin-left: -16px;
+    padding-top: 18px;
     .input-wrp {
       width: 368px;
       position: relative;
       border-bottom: 1px solid #E0E0E0;
       padding-right: 42px;
+      height: 39px;
       &::before {
         content: '\E65F';
         font-family: Icons, sans-serif;
