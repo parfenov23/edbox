@@ -10,15 +10,7 @@
         - link = "/contenter/courses/#{course.id}/edit"
         - link = "/contenter/materials/#{course.id}/edit" if course.material?
         figure.corses-prev.compact.js__removeCourseMyBlock onclick='window.location.href="#{link}"'
-          .image class=(course.material? ? "material" : "")
-            - unless course.material?
-              img src = course.get_image_path(694, 384)
-              .fade
-            - else
-              - attachment = course.attachments.last
-              i.icon class=(attachment.file_type rescue "other")
-            - course.bunch_tags.last(1).each do |bunch_tag|
-              .tegs = bunch_tag.tag.title
+          = render "common/course/course_img", {course: course, w: 694, h: 384}
           figcaption
             .title.with_btn
               .inner = course.title

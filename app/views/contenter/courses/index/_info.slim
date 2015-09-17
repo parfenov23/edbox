@@ -1,7 +1,18 @@
+- count_courses = @courses.where(type_course: "course").count
+- count_public = @courses.publication.count
 .infoCourses
-  - 4.times do
-    .infoItem
-      .title
-        |Всего курсов
-      .count
-        |158
+  .infoItem
+    .title Опубликовано
+    .count = count_public
+
+  .infoItem
+    .title Всего курсов
+    .count = count_courses
+
+  .infoItem
+    .title Материалы
+    .count = @courses.materials.count
+
+  .infoItem
+    .title Онлайн - Курсы
+    .count = @courses.webinars.count

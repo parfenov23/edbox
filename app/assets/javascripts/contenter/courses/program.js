@@ -8,7 +8,6 @@ var createCourseContenterProgram = function (action, new_create) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
         $("#contenterCourseProgram .js_createSectionToSection").data("course_id", data.id);
-        history.pushState({}, '', "/contenter/courses/" + data.id + "/program");
         var header = $("#page__header .page__children");
         header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
         header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
@@ -19,9 +18,13 @@ var createCourseContenterProgram = function (action, new_create) {
                 $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
                 onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
             }
+        } else {
+            history.pushState({}, '', "/contenter/courses/" + data.id + "/program");
         }
+        setTimeout(function () {
+            action()
+        }, 100);
 
-        action()
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -37,10 +40,10 @@ var openInputFile = function (id, accept) {
 var setAttachmentType = function () {
     var btn = $(this);
     var sendAjax = function () {
-        setTimeout(function(){
+        setTimeout(function () {
             $.ajax({
                 type: 'POST',
-                url : '/api/v1/attachments/' + btn.attr("data-id") + "/set_type",
+                url : '/api/v1/attachments/' + btn.attr('data-id') + "/set_type",
                 data: {type: btn.data("type")}
             }).success(function (data) {
             }).error(function () {
@@ -56,8 +59,14 @@ var setAttachmentType = function () {
     if (btn.data('id') == "new"){
         var type_course = $("#typeCourseInputVal").val();
         if (type_course == "material"){
-            createCourseContenterProgram(sendAjax, "new_attachment"); // materials!!!!!!!!!!!! ==============
-        }else{
+            if (formInputIdCourse().val() == "new"){
+                createCourseContenterProgram(sendAjax, "new_attachment"); // materials!!!!!!!!!!!! ==============
+            } else {
+                onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
+                sendAjax();
+
+            }
+        } else {
             createCourseContenterProgram(sendAjax);
         }
     } else {
@@ -86,10 +95,8 @@ var ajaxUpdateSection = function (type, btn) {
         data       : form.serializefiles()
     }).success(function (data) {
         if (type == "attachments"){
-            console.log(data);
-            $(".upload_attachments .js_setAttachmentType").attr("data-id", data.id);
+            $(".upload_attachments .js_setAttachmentType").attr("data-id", data.id).data("id", data.id);
             $("form.form_edit").data("id", data.id);
-            //$(".upload_attachments .js_setAttachmentType").data("id", data.id);
         }
     }).error(function () {
         show_error('Произошла ошибка', 3000);

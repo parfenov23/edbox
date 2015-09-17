@@ -1,0 +1,9 @@
+.image class=(course.material? ? "material" : "")
+  - unless course.material?
+    img src = course.get_image_path(w, h)
+    .fade
+  - else
+    - attachment = course.attachments.last
+    i.icon class=(attachment.file_type rescue "other")
+  - course.bunch_tags.last(1).each do |bunch_tag|
+    .tegs = bunch_tag.tag.title

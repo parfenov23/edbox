@@ -90,7 +90,10 @@ class HomeController < ActionController::Base
     # time = Time.now
     # @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
     #                  .order("created_at ASC")
-    @courses = all_courses
+    @courses = all_courses.where(type_course: "course")
+    @courses = all_courses.where(type_course: "online") if params[:type] == "online"
+    @courses = all_courses.where(type_course: "material") if params[:type] == "material"
+    # binding.pry
     @favorite_courses = current_user.favorite_courses
   end
 

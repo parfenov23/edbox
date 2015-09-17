@@ -12,6 +12,8 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
+  scope :materials, -> { where(type_course: "material") }
+  scope :webinars, -> { where(type_course: "online") }
   USERID_TOJSON = nil
 
   def create_img(image_path, width, height)

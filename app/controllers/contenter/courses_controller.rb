@@ -6,6 +6,7 @@ module Contenter
     layout "application"
 
     def index
+      @courses = Course.all
     end
 
     def edit
