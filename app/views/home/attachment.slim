@@ -8,7 +8,7 @@
   - case @attachment.file_type
   - when "audio", "video", "description", "pdf"
     = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
-      - bsid = (@section.bunch_section(current_user.id).id rescue nil)
+    - bsid = (@section.bunch_section(current_user.id).id rescue nil)
     - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid}
     - add_class = !@course.material? ? "js_completeAttachment" : "js_completeMaterial"
     = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class}
