@@ -57,8 +57,12 @@ module NavLinkHelper
   def contenter_materials_new_nav_links
     id = params[:id].present? ? params[:id] : "new"
     [
-      {title: "Описание", link: "/contenter/materials/#{id}/edit"},
-      {title: "Публикация", link: "/contenter/materials/#{id}/publication"}
+      {title: "Описание", link: "/contenter/materials/#{id}/edit",
+       add_params: {class: "contenter_courses_edit"}
+      },
+      {title: "Публикация", link: "/contenter/materials/#{id}/publication",
+       add_params: {class: "contenter_courses_public"}
+      }
     ]
   end
 
