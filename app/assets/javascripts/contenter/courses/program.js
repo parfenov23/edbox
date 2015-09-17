@@ -43,21 +43,23 @@ var openInputFile = function (id, accept) {
 var setAttachmentType = function () {
     var btn = $(this);
     var sendAjax = function () {
-        setTimeout(function () {
-            $.ajax({
-                type: 'POST',
-                url : '/api/v1/attachments/' + btn.attr('data-id') + "/set_type",
-                data: {type: btn.data("type")}
-            }).success(function (data) {
-            }).error(function () {
-                show_error('Произошла ошибка', 3000);
-            });
-            if (btn.data("type") != "download"){
-                openEditFileAfterUpload(btn);
+        var includeSetInterval = setInterval(function () {
+            if (btn.attr('data-id') != "new"){
+                $.ajax({
+                    type: 'POST',
+                    url : '/api/v1/attachments/' + btn.attr('data-id') + "/set_type",
+                    data: {type: btn.data("type")}
+                }).success(function (data) {
+                }).error(function () {
+                    show_error('Произошла ошибка', 3000);
+                });
+                if (btn.data("type") != "download"){
+                    openEditFileAfterUpload(btn);
+                }
+                clearInterval(includeSetInterval);
+                return true;
             }
-            return true;
-        }, 100);
-
+        }, 50);
     };
     if (btn.data('id') == "new"){
         var type_course = $("#typeCourseInputVal").val();
