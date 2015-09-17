@@ -95,6 +95,13 @@ module Api::V1
       render json: {success: true}
     end
 
+    def complete_material
+      course = find_course
+      bunch_courses = course.bunch_courses.where(user_id: current_user.id)
+      bunch_courses.update_all({complete: true})
+      render json: {success: true}
+    end
+
     private
 
     def find_course

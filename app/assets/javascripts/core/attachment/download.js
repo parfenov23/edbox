@@ -16,6 +16,21 @@ var completeAttachment = function (btn) {
     });
 };
 
+var completeMaterial = function(){
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/courses/' + btn.data('course_id') + '/complete_material'
+    }).success(function () {
+        show_error('Материал пройден', 3000);
+        setTimeout(function () {
+            window.location.href = '/courses?type=material'
+        }, 1500)
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
 pageLoad(function () {
     $(document).on('click', '.js_downloadFile', function () {
         downloadAttachment($(this));
@@ -24,4 +39,5 @@ pageLoad(function () {
     $(document).on('click', '.js_completeAttachment', function () {
         completeAttachment($(this));
     });
+    $(document).on('click', '.js_completeMaterial', completeMaterial);
 });
