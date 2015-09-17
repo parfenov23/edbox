@@ -22,6 +22,7 @@ var createCourseContenter = function (data) {
         var type_link = "courses";
         if (type_course == "material"){
             type_link = "materials";
+            $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
         }
         history.pushState({}, '', "/contenter/" + type_link + "/" + data.id + "/edit");
         var header = $("#page__header .page__children");
