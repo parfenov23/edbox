@@ -1,8 +1,9 @@
-var createCourseContenterProgram = function (action) {
+var createCourseContenterProgram = function (action, new_create) {
+    var type_course = $("#typeCourseInputVal").val();
     $.ajax({
         type: 'POST',
         url : '/api/v1/courses/',
-        data: {course: {type_course: $("#typeCourseInputVal").val()}}
+        data: {course: {type_course: type_course}}
     }).success(function (data) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
@@ -12,6 +13,14 @@ var createCourseContenterProgram = function (action) {
         header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
         header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
         header.find(".contenter_courses_public").attr('href', '/contenter/courses/' + data.id + '/publication');
+        if (type_course == "material"){
+            history.pushState({}, '', "/contenter/materials/" + data.id + "/edit");
+            if (new_create == "new_attachment"){
+                $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
+                onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
+            }
+        }
+
         action()
     }).error(function () {
         show_error('Произошла ошибка', 3000);
@@ -27,18 +36,34 @@ var openInputFile = function (id, accept) {
 
 var setAttachmentType = function () {
     var btn = $(this);
-    $.ajax({
-        type: 'POST',
-        url : '/api/v1/attachments/' + btn.data("id") + "/set_type",
-        data: {type: btn.data("type")}
-    }).success(function (data) {
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
-    if (btn.data("type") != "download"){
-        openEditFileAfterUpload(btn);
+    var sendAjax = function () {
+        setTimeout(function(){
+            $.ajax({
+                type: 'POST',
+                url : '/api/v1/attachments/' + btn.attr("data-id") + "/set_type",
+                data: {type: btn.data("type")}
+            }).success(function (data) {
+            }).error(function () {
+                show_error('Произошла ошибка', 3000);
+            });
+            if (btn.data("type") != "download"){
+                openEditFileAfterUpload(btn);
+            }
+            return true;
+        }, 100);
+
+    };
+    if (btn.data('id') == "new"){
+        var type_course = $("#typeCourseInputVal").val();
+        if (type_course == "material"){
+            createCourseContenterProgram(sendAjax, "new_attachment"); // materials!!!!!!!!!!!! ==============
+        }else{
+            createCourseContenterProgram(sendAjax);
+        }
+    } else {
+        sendAjax();
     }
-    return true;
+
 };
 
 var openEditFileAfterUpload = function (btn) {
@@ -60,6 +85,12 @@ var ajaxUpdateSection = function (type, btn) {
         cache      : false,
         data       : form.serializefiles()
     }).success(function (data) {
+        if (type == "attachments"){
+            console.log(data);
+            $(".upload_attachments .js_setAttachmentType").attr("data-id", data.id);
+            $("form.form_edit").data("id", data.id);
+            //$(".upload_attachments .js_setAttachmentType").data("id", data.id);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -68,18 +99,23 @@ var ajaxUpdateSection = function (type, btn) {
 var ajaxUploadFileAttachment = function (file) {
     var form = file.closest("form");
     var formdata = new FormData();
-    file = file[0].files[0];
-    formdata.append("attachment[file]", file);
-    var xhr = new XMLHttpRequest();
-    xhr.upload.addEventListener("progress", uploadProgress, false);
-    xhr.addEventListener("load", function (e) {
-        uploadComplete(e, form);
-    }, false);
-    xhr.addEventListener("error", uploadFailed, false);
-    xhr.addEventListener("abort", uploadCanceled, false);
+    var uploadFile = function () {
+        file = file[0].files[0];
+        formdata.append("attachment[file]", file);
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", function (e) {
+            uploadComplete(e, form);
+        }, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
 
-    xhr.open('PUT', '/api/v1/attachments/' + form.data("id"), true);
-    xhr.send(formdata);
+        xhr.open('PUT', '/api/v1/attachments/' + form.data("id"), true);
+        xhr.send(formdata);
+    };
+
+    uploadFile()
+
 };
 
 function uploadProgress(evt) {
@@ -414,7 +450,7 @@ var onChangeDateTimeWebinar = function () {
     if (date_hour <= 23 && date_min <= 59){
         parent_input.val(time);
         updateWebinarInAttachment(parent_input)
-    }else{
+    } else {
         show_error('Проверьте дату', 3000);
     }
 };
@@ -437,8 +473,8 @@ var updateWebinarInAttachment = function (btn) {
 
 var loadBindOnChangeInput = function () {
     $('#contenterCourseProgram .js_onChangeEditSection').change(onChangeEditSection);
-    $('#contenterCourseProgram .js_onChangeEditAttachment').change(onChangeEditAttachment);
-    $('#contenterCourseProgram .uploadFileInput').change(onChangeEditAttachment);
+    $('#contenterCourseProgram .js_onChangeEditAttachment, #materialEditContenter .js_onChangeEditAttachment').change(onChangeEditAttachment);
+    $('#contenterCourseProgram .uploadFileInput, #materialEditContenter .uploadFileInput').change(onChangeEditAttachment);
     $('#contenterCourseProgram .js_changeQuestionInput').change(changeQuestionInput);
     $('#contenterCourseProgram .js_changeAnswerInput').change(changeAnswerInput);
     $('#contenterCourseProgram .js_onChangeDateTimeWebinar').change(onChangeDateTimeWebinar);
@@ -589,8 +625,6 @@ $(document).ready(function () {
             ".js_createSectionToSection",
             ".js_removeQuestionToTest",
             ".js_removeSectionToCourse",
-            ".js_setAttachmentType",
-            ".selectAttachment",
             ".js_createAttachmentTest",
             ".js_changeAnswerInput",
             ".js_addTestToCourse",
@@ -599,6 +633,10 @@ $(document).ready(function () {
             ".js_createQuestionToTest"
         ]
     });
+
+    $(document).on("click", ".js_setAttachmentType", setAttachmentType);
+
+    $(document).on("click", ".selectAttachment", selectAttachment);
 
     $(document).on("click", ".js_addLeadingToWebinar", addLeadingToWebinar);
 

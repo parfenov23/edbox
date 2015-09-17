@@ -48,7 +48,7 @@
     margin-bottom: 16px;
   }
   .description {
-    @include middle-block(390px);
+    // @include middle-block(390px);
     font-size: 13px;
     color: rgba(0,0,0,0.26);
     line-height: 20px;

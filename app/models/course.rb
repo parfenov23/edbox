@@ -53,22 +53,36 @@ class Course < ActiveRecord::Base
   end
 
   def get_image(width=nil, height=nil)
-    attachment = attachments.where(file_type: 'image', width: width, height: height).last
-    if attachment.present?
-      image = attachment
-    else
-      attachment_full = attachments.where(file_type: 'image', size: 'full').last
-      if attachment_full.present?
-        image = create_img(attachment_full.file.path, width, height)
+    if type_course != "material"
+      attachment = attachments.where(file_type: 'image', width: width, height: height).last
+      if attachment.present?
+        image = attachment
       else
-        image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        attachment_full = attachments.where(file_type: 'image', size: 'full').last
+        if attachment_full.present?
+          image = create_img(attachment_full.file.path, width, height)
+        else
+          image = create_img(Rails.root.join('public/uploads/course_default_image.png').to_s, width, height)
+        end
       end
+      image
     end
-    image
+  end
+
+  def webinar_deadline
+    sections.attachments.webinars.order("date_start ASC").last.date_start.end_of_day
+  end
+
+  def material?
+    type_course == "material"
+  end
+
+  def online?
+    type_course == "online"
   end
 
   def leading?(user_id)
-    leadings_ids = leadings.map{|l| l["id"]}
+    leadings_ids = leadings.map { |l| l["id"] }
     leadings_ids.include?(user_id)
   end
 
@@ -128,8 +142,10 @@ class Course < ActiveRecord::Base
   end
 
   def teaser_image
-    image = get_image(1000, 562)
-    image.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+    if type_course != "meterial"
+      image = get_image(1000, 562)
+      image.as_json({except: Attachment::EXCEPT_ATTR, methods: :file_url})
+    end
   end
 
   def creator

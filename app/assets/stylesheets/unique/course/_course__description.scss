@@ -106,7 +106,7 @@
             content: "\E893";
           }
         }
-      }  
+      }
     }
     .form__holder {
       display        : flex;
@@ -258,6 +258,7 @@
           display: none;
       }
       .description {
+        margin-bottom: 24px;
         p {
           font-size    : 15px;
           line-height  : 24px;

@@ -55,8 +55,9 @@ header#page__header class=(valid_img_page.include?(namePage) ? "with__img" : "" 
       - if namePage == "courseMaterial"
         .item.js_openLeftSideBar data-id="js-notification-courses"
           i.notes.icon
-        .item.js_openLeftSideBar data-id="js-programm-courses"
-          i.programm.icon
+        - unless @course.material?
+          .item.js_openLeftSideBar data-id="js-programm-courses"
+            i.programm.icon
       - if namePage == "courses"
         /.item
         /  i.filter.icon

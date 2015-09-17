@@ -19,6 +19,10 @@ var createCourseContenter = function (data) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
         history.pushState({}, '', "/contenter/courses/" + data.id + "/edit");
+        var type_course = $("#typeCourseInputVal").val();
+        if (type_course == "material"){
+            history.pushState({}, '', "/contenter/materials/" + data.id + "/edit");
+        }
         var header = $("#page__header .page__children");
         header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
         header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');

@@ -33,6 +33,6 @@
 /.DS_Store
 */.DS_Store
 /dump.rdb
-
+Gemfile.lock
 config/database.yml
 config/secrets.yml

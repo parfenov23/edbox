@@ -26,7 +26,7 @@ module Api::V1
     end
 
     def update
-      attachment = find_attachment
+      attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
       render json: attachment.transfer_to_json
     end
@@ -85,7 +85,7 @@ module Api::V1
     end
 
     def params_attachment
-      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration).compact rescue {}
+      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration, :attachmentable_type, :attachmentable_id).compact rescue {}
     end
 
     def find_user

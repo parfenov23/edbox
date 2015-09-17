@@ -866,7 +866,8 @@
 
 #materialEditContenter {
   .oh__nihuyase-block {
-    width : 1128px;
+    width      : 1128px;
+    margin-top : 90px;
     .course__title {
       font-size     : 18px;
       margin-bottom : 24px;
@@ -880,7 +881,7 @@
     .upload_attachments {
       height   : 120px;
       position : relative;
-      .uploadFileInputCourse {
+      .uploadFileInput {
         width    : 0;
         height   : 0;
         position : absolute;
@@ -964,4 +965,20 @@
     }
   }
 
+}
+
+.courses-list, .actual-courses {
+  .corses-prev, .course-prev-list {
+    .image.material {
+      background-image : linear-gradient(-180deg, #00FFEB 0%, #00BCD4 100%);
+      display          : flex;
+      justify-content  : center;
+      align-items      : center;
+      i.icon {
+        font-size : 38px;
+        color     : white;
+        height    : 38px;
+      }
+    }
+  }
 }

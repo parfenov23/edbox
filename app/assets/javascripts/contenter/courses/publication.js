@@ -18,11 +18,15 @@ var publicationCourse = function (){
         url : '/api/v1/courses/' + btn.data('id'),
         data: {course: {'public': btn.data('type')}}
     }).success(function (data) {
+        var rus_type = "Курс";
+        if ($("#typeCourseInputVal").val() == "material"){
+            var rus_type = "Материал";
+        }
         if (btn.data('type')){
-            show_error('Курс опубликован', 3000);
+            show_error(rus_type + ' опубликован', 3000);
             btn.text("СНЯТЬ С ПУБЛИКАЦИИ");
         }else{
-            show_error('Курс снят с публикации', 3000);
+            show_error(rus_type + ' снят с публикации', 3000);
             btn.text("ОПУБЛИКОВАТЬ");
         }
         btn.data("type", !btn.data('type'));

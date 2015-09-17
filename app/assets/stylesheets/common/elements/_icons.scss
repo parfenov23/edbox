@@ -39,6 +39,12 @@ i.icon {
     }
   }
 
+  &.image {
+    &::before {
+      content: "\E87A";
+    }
+  }
+
   &.video {
     &::before {
       content: "\e602";

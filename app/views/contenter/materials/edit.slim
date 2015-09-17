@@ -4,11 +4,12 @@
 = render "contenter/courses/edit/right_bar/tags", {course: course}
 = render "contenter/courses/edit/right_bar/categories", {course: course}
 = render "contenter/courses/edit/right_bar/leadings", {course: course}
-
--# attachment = course.attachments.present? ? course.attachments.last : Attachment.create({attachmentable_type: "Course", attachmentable_id: course.id})
-- attachment = Attachment.last
+= javascript_include_tag "/tinymce/tinymce.min.js"
+= javascript_include_tag "/tinymce/contenter_start.js"
+- attachment = course.attachments.present? ? course.attachments.last : course.attachments.new
+- att_id = attachment.id.present? ? attachment.id : "new"
 .contenter#materialEditContenter
-  form.course__description-content.oh__nihuyase-block.js_courseContenter data-id=attachment.id
+  form.course__description-content.oh__nihuyase-block.js_courseContenter.form_edit data-id=att_id
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id
     input#typeCourseInputVal type="hidden" name="course[type_course]" value=course.type_course
@@ -42,34 +43,36 @@
         - valid_arr = ["description", "webinar", "test"]
         - vaft = attachment.file_type
         .upload_attachments style=((attachment.file.file.present? || valid_arr.include?(vaft)) ? "display:none;" : "" )
-          input.uploadFileInputCourse type="file" id="inputFile_1" name="attachment[file]" data-type="file"
-          input.validateAttachmentFileType type="hidden" value="video"
+          input.uploadFileInput type="file" id="inputFile_#{att_id}" name="attachment[file]" data-type="file"
+          input.validateAttachmentFileType type="hidden" value=attachment.file_type
+          input type="hidden" name="attachment[attachmentable_type]" value="Course"
+          input type="hidden" name="attachment[attachmentable_id]" value=params[:id]
           - unless attachment.file.file.present? || ["description", "test", "webinar"].include?(attachment.file_type)
-            .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
+            .selectAttachment.js_setAttachmentType data-id=att_id data-type="description"
               i.icon.text
               .selectText Написать текст
 
             - add_class = attachment.file_type == "video" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'video/*')" class=add_class
+            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'video/*')" class=add_class
               i.icon.video
               .selectText Вставить видео
 
             - add_class = attachment.file_type == "audio" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'audio/*')" class=add_class
+            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'audio/*')" class=add_class
               i.icon.audio
               .selectText Вставить аудио
 
             - add_class = attachment.file_type == "pdf" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{attachment.id}', 'application/pdf')"
+            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'application/pdf')"
               i.icon.courses
               .selectText Вставить PDF
 
             - add_class = attachment.download ? "active" : ""
-            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{attachment.id}', '')" data-type="download" data-id=attachment.id class=add_class
+            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', '')" data-type="download" data-id=att_id class=add_class
               i.icon.add
               .selectText Прикрепить файл для скачивания
 
-            .selectAttachment.js_setAttachmentType.js_createAttachmentTest data-id=attachment.id data-type="test"
+            .selectAttachment.js_setAttachmentType.js_createAttachmentTest data-id=att_id data-type="test"
               i.icon.test
               .selectText Добавить тест
 
