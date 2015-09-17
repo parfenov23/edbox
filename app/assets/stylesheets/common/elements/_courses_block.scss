@@ -217,7 +217,12 @@
   }
   &.with__action-menu {
     .description {
-      padding-right: 32px;
+      .title {
+        padding-right: 32px;
+      }
+      .authors {
+        padding-right: 0;
+      }
     }
   }
 }
@@ -226,6 +231,7 @@
   @include white__block(1,1);
   @include eclipses;
   padding: 16px 32px;
+  padding-bottom: 13px;
   margin-bottom: 16px;
   position: relative;
   cursor: pointer;
