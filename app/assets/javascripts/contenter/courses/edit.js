@@ -18,15 +18,16 @@ var createCourseContenter = function (data) {
     }).success(function (data) {
         var input_id = formInputIdCourse();
         input_id.val(data.id);
-        history.pushState({}, '', "/contenter/courses/" + data.id + "/edit");
         var type_course = $("#typeCourseInputVal").val();
+        var type_link = "courses";
         if (type_course == "material"){
-            history.pushState({}, '', "/contenter/materials/" + data.id + "/edit");
+            type_link = "materials";
         }
+        history.pushState({}, '', "/contenter/" + type_link + "/" + data.id + "/edit");
         var header = $("#page__header .page__children");
-        header.find(".contenter_courses_edit").attr('href', '/contenter/courses/' + data.id + '/edit');
-        header.find(".contenter_courses_programm").attr('href', '/contenter/courses/' + data.id + '/program');
-        header.find(".contenter_courses_public").attr('href', '/contenter/courses/' + data.id + '/publication');
+        header.find(".contenter_courses_edit").attr('href', '/contenter/' + type_link + '/' + data.id + '/edit');
+        header.find(".contenter_courses_programm").attr('href', '/contenter/' + type_link + '/' + data.id + '/program');
+        header.find(".contenter_courses_public").attr('href', '/contenter/' + type_link + '/' + data.id + '/publication');
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
