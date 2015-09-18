@@ -118,9 +118,7 @@ class Attachment < ActiveRecord::Base
   end
 
   def work_to_video
-    p "good"
     if (file_type == VIDEO_FILE) && (size == nil) && (!attachments.where({file_type: VIDEO_FILE, title: file_name}).present?)
-      p "===="
       Thread.new do
         attachments.destroy_all
         video_decode
