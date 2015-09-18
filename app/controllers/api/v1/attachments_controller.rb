@@ -28,6 +28,7 @@ module Api::V1
     def update
       attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
+      # attachment.work_to_video
       render json: attachment.transfer_to_json
     end
 

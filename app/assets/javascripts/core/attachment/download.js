@@ -24,7 +24,7 @@ var completeMaterial = function(){
     }).success(function () {
         show_error('Материал пройден', 3000);
         setTimeout(function () {
-            window.location.href = '/courses?type=material'
+            window.location.href = '/cabinet'
         }, 1500)
     }).error(function () {
         show_error('Произошла ошибка', 3000);
