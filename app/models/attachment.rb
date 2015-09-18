@@ -119,10 +119,15 @@ class Attachment < ActiveRecord::Base
 
   def work_to_video
     if (file_type == VIDEO_FILE) && (size == nil) && (!attachments.where({file_type: VIDEO_FILE, title: file_name}).present?)
-      Thread.new do
-        attachments.destroy_all
-        video_decode
-      end
+      semaphore = Mutex.new
+      Thread.new {
+        ActiveRecord::Base.connection_pool.with_connection do
+          semaphore.synchronize {
+            attachments.destroy_all
+            video_decode
+          }
+        end
+      }
     end
   end
 
