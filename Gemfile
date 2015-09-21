@@ -5,7 +5,7 @@ gem 'rails', '4.1.8'
 gem 'pg', '0.18.3'
 
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
