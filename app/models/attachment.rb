@@ -22,7 +22,7 @@ class Attachment < ActiveRecord::Base
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
-  after_update :work_to_video
+  # after_update :work_to_video
   has_many :bunch_attachments
   has_many :notes, :dependent => :destroy
   has_one :webinar, :dependent => :destroy
@@ -48,7 +48,7 @@ class Attachment < ActiveRecord::Base
     attachment.width = width
     attachment.height = height
     attachment.save
-    attachment.work_to_video
+    # attachment.work_to_video
     attachment
   end
 
