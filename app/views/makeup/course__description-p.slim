@@ -1,0 +1,21 @@
+= render "home/header/header", {namePage: "makeup", titlePage: '2.1 Тест: Жарим, парим, варим'}
+
+.pop_up_confirm.is__active
+  .inner.allgood.review__popup
+    .title Оставьте отзыв и оцените курс
+    .stars
+      .item.is__blue ☆
+      .item.is__blue ☆
+      .item.is__blue ☆
+      .item ☆
+      .item ☆
+    .com__input-item.item.empty.is__textarea
+      textarea.form-control.floating-label data-maxHeight="95" style="height: 26px;" name="email" type="text" placeholder="Фактический адрес"
+      hr
+    .action__block
+      .btn.is__blue ОТПРАВИТЬ
+      
+
+.inner-content
+  .course__description_v2
+    = render "makeup/course__description/review"

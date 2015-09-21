@@ -15,6 +15,13 @@
   src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
+@font-face {
+    font-family: "Roboto";
+    src: url("/font/Roboto-Regular.woff2") format("woff");
+    font-style: normal;
+    font-weight: normal;
+}
+
 *, *:before, *:after {
   box-sizing : border-box;
 }
