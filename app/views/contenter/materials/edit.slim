@@ -53,17 +53,17 @@
               .selectText Написать текст
 
             - add_class = attachment.file_type == "video" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'video/*')" class=add_class
+            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'video/*')" class=add_class data-type="video" data-id=att_id
               i.icon.video
               .selectText Вставить видео
 
             - add_class = attachment.file_type == "audio" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'audio/*')" class=add_class
+            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'audio/*')" class=add_class data-type="audio" data-id=att_id
               i.icon.audio
               .selectText Вставить аудио
 
             - add_class = attachment.file_type == "pdf" ? "active" : ""
-            .selectAttachment onclick="openInputFile('inputFile_#{att_id}', 'application/pdf')"
+            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'application/pdf')" data-type="pdf" data-id=att_id
               i.icon.courses
               .selectText Вставить PDF
 

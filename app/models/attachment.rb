@@ -22,9 +22,11 @@ class Attachment < ActiveRecord::Base
   mount_uploader :file, AttachmentFileUploader
   belongs_to :attachmentable, :polymorphic => true
   before_save :set_file_type
+  after_update :work_to_video
   has_many :bunch_attachments
   has_many :notes, :dependent => :destroy
   has_one :webinar, :dependent => :destroy
+  has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_one :test, :as => :testable, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
   scope :webinars, -> { Webinar.where(attachment_id: ids) }
@@ -46,12 +48,7 @@ class Attachment < ActiveRecord::Base
     attachment.width = width
     attachment.height = height
     attachment.save
-    if (attachment.file_type == VIDEO_FILE) && (attachment.size == nil)
-      Thread.new do
-        attachment.video_decode
-        attachment.to_archive
-      end
-    end
+    attachment.work_to_video
     attachment
   end
 
@@ -72,6 +69,10 @@ class Attachment < ActiveRecord::Base
       else
         true
     end
+  end
+
+  def file_name
+    file.file.filename.split(".").first rescue nil
   end
 
   def install_position
@@ -111,6 +112,25 @@ class Attachment < ActiveRecord::Base
     self.save
   end
 
+  def render_video(size_p="720p")
+    attachment = attachments.where({size: size_p}).last
+    attachment.present? ? attachment : self
+  end
+
+  def work_to_video
+    if (file_type == VIDEO_FILE) && (size == nil) && (!attachments.where({file_type: VIDEO_FILE, title: file_name}).present?)
+      semaphore = Mutex.new
+      Thread.new {
+        ActiveRecord::Base.connection_pool.with_connection do
+          semaphore.synchronize {
+            attachments.destroy_all
+            video_decode
+          }
+        end
+      }
+    end
+  end
+
   def video_decode
     new_file_name = file.file.basename + '-' + Time.now.to_i.to_s + '-min.mp4'
     storage_path = Rails.root.to_s + '/tmp/video/'
@@ -119,9 +139,8 @@ class Attachment < ActiveRecord::Base
     VideoProc.decode(file.file, new_file_path)
     if File.exist?(new_file_path)
       new_file = File.open(new_file_path)
-      attachment = Attachment.save_file(self.attachmentable_type, self.attachmentable_id, new_file, size='720p')
-      attachment.title = self.title
-      attachment.duration = self.duration
+      attachment = Attachment.save_file("Attachment", id, new_file, size='720p')
+      attachment.title = file_name
       attachment.save
       File.delete(new_file_path)
     end

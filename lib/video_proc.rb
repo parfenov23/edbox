@@ -26,6 +26,7 @@ module VideoProc
   end
 
   def self.decode(file, new_file_path)
+    p "start decode"
     movie = FFMPEG::Movie.new(file.path)
     if movie.valid?
       options = { resolution: '1280x720',
@@ -35,6 +36,7 @@ module VideoProc
                   custom: '-strict experimental'
       }
       movie.transcode(new_file_path, options)
+      p "complete decode"
     end
   end
 end
