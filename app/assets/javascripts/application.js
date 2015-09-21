@@ -241,6 +241,7 @@ var for_tooltip = function () {
     });
 };
 $(document).ready(function () {
+    $('video').bind('contextmenu',function() { return false; });
     goToProgramAttachment();
     includeDatePicker($('.datapicker__trigger.incDocumentReady'));
     $(document).on('click', '.datapicker__trigger', optionDatePicker);
