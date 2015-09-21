@@ -230,6 +230,10 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $('.js__toggle_review-list').on 'click', ->
+    $(@).closest('.review__section').toggleClass('is__opened')
+
+
   $('.item.course__block_horizontal-shot input, .course__block_horizontal input').datepicker(calendarLocale)
 
 
