@@ -1,54 +1,50 @@
 .js__multi__action.multi__choice
-  .title.h__text_20-24 Выбран 1 пользователь
+  .title.h__text_20-24 1
+
   .action__block
-    .btn.btn-flat.is__blue УДАЛИТЬ
-.members__title.h__text_15-24 Добавлено 4 пользователя
+    .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
+- count_members = @group.bunch_groups.count
+.members__title.h__text_15-24 Добавлено #{rus_case(count_members, "пользователь", "пользователя", "пользователей")}
 - if current_user.director
-    .container
-        .members.ingroups
+  .container
+    .members.ingroups
+      .members__invite
+        ul.invited
+        form.form
+          input.input.searchMember type="text" placeholder="Email участника"
+          .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
+            .tooltip.is__bottom Отправить приглашение пользователям
 
-            .members__invite
-                ul.invited
-                form.form
-                    input.input.searchMember type="text" placeholder="Email участника"
-                    .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
-                      .tooltip.is__bottom Отправить приглашение пользователям
-
-            ul.members__in_system style="display:none;"
-                - @members.each do |member|
-                    li.members__in_system-item.js_addSearchMember data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
-                        .ava = member.full_name.first
-                        .name = member.full_name
-                        .email = member.email
+      ul.members__in_system.director style="display:none;"
+        - @members.each do |member|
+          li.members__in_system-item.js_addSearchMember.noHeaderOpen data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
+            .ava.icon
+              img src=default_img(member.avatar)
+            .name.h__text_15-24 = member.full_name
+            .email.h__text_15-24 = member.email
 
 .container.members
-    ul.members__in_system class="#{current_user.director ? 'director' : ''}"
-        - @group.bunch_groups.each do |bunch_group|
-            - member = bunch_group.user
-            / li.members__in_system-item.is__choosen
-            li.members__in_system-item
-                / - if member.avatar.present?
-                /   img.ava src=default_img(member.avatar)
-                / - else
-                /   .ava = member.full_name.first
-                
-                
-                .ava.icon
-                  img src="/uploads/ava.png"
-                .name.h__text_15-24 = member.full_name
-                .email.h__text_15-24 = member.email
-                .status.h__text_15-24 class="#{current_user.director ? 'director' : ''}"
-                    - if current_user.director
-                        .delete.js_removeUserToGroup data-id="#{member.id}" data-group_id="#{@group.id}" ×
-                    - unless member.auth?
-                        .send.is__notAuth
-                            .date = "#{time_ago_in_words(member.created_at)} назад"
-                            .text Отправлено:
-                    - else
-                        .authorized
-                            .date = "#{time_ago_in_words(member.last_auth)} назад"
-                            .text Авторизован:
-                    ul.tooltip__list
-                        li.h__text_16-12 Мои картошечки
-                        li Мои ягодки
-                        li Мои самые распрекрасные картошечк Мои самые распрекрасные картошечки…
+  ul.members__in_system class="#{current_user.director ? 'director' : ''}"
+    - @group.bunch_groups.each do |bunch_group|
+      - member = bunch_group.user
+      li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
+        .ava.icon
+          img src=default_img(member.avatar)
+        .name.h__text_15-24  = member.full_name
+        .email.h__text_15-24  = member.email
+        .status
+          - all_group_course_member = member.bunch_courses.where(group_id: @group.id)
+          ul.tooltip__list
+            - all_group_course_member.each do |bunch_course|
+              - course = bunch_course.course
+              li.h__text_16-12 = course.title
+
+          // .overdue
+          - overdue_courses = all_group_course_member.overdue
+          - unless overdue_courses.present?
+            - complete_course = all_group_course_member.where(complete: true).count
+            .send.h__text_15-24  Пройдено #{rus_case(complete_course, "курс", "курса", "курсов")} из #{all_group_course_member.count}
+          - else
+            - overdue_courses_count = overdue_courses.count
+            - tl = "#{rus_case_label(overdue_courses_count, "Просроченн", "Просроченно", "Просроченно")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
+            .send.h__text_15-24.overdue = tl

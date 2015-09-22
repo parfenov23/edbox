@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get :sign_out, to: "enter#sign_out"
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
-
   bigbluebutton_routes :default
 
   get "video/:id" => "home#video"

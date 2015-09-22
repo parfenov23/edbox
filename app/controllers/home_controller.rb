@@ -17,15 +17,6 @@ class HomeController < ActionController::Base
     end
   end
 
-  def render_file
-    attachment = Attachment.where(id: params[:id]).last
-    hash_type = {"video" => "video/mp4", "image" => "image/jpeg"}
-    if attachment.present?
-      send_file "#{Rails.root}/public#{attachment.file.url}", :type => hash_type[attachment.file_type], :disposition => 'inline', :stream => true
-    else
-      render :text => "error"
-    end
-  end
 
   def show
     render :text => "profile"

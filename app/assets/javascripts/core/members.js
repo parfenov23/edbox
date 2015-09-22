@@ -144,24 +144,6 @@ deleteInvitedMember = function () {
     });
 };
 
-deleteMemberToGroup = function () {
-    $('.members__in_system .members__in_system-item .js_removeUserToGroup').click(function () {
-        var btn = $(this);
-        var number = btn.data('id');
-        var group_id = btn.data("group_id");
-        btn.closest('.members__in_system-item').remove();
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/groups/' + group_id + '/remove_user',
-            data: {user_id: number}
-        }).success(function () {
-            show_error('Пользователь удален из группы', 3000);
-        }).error(function () {
-            show_error('Произошла ошибка', 3000);
-        });
-    });
-};
-
 searchMember = function () {
     $('.members__invite .input.searchMember').on('keyup paste input propertychange', function () {
         var input = $(this);
@@ -202,7 +184,6 @@ $(document).ready(function () {
     sendInvintationsInGroup();
 
     deleteInvitedMember();
-    deleteMemberToGroup();
 
     searchMember();
     addSearchMember();

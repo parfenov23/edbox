@@ -19,6 +19,11 @@
 //= require_tree ./websocket
 //= require_tree ./contenter
 
+function declOfNum(number, titles) {
+    cases = [2, 0, 1, 1, 1, 2];
+    return titles[(number % 100 > 4 && number % 100 < 20)?2:cases[(number % 10 < 5)?number % 10:5]];
+}
+
 function SetCaretAtEnd(elem) {
     var elemLen = elem.value.length;
     // For IE Only
@@ -241,7 +246,7 @@ var for_tooltip = function () {
     });
 };
 $(document).ready(function () {
-    $('video').bind('contextmenu',function() { return false; });
+    $('video').bind('contextmenu', function () { return false; });
     goToProgramAttachment();
     includeDatePicker($('.datapicker__trigger.incDocumentReady'));
     $(document).on('click', '.datapicker__trigger', optionDatePicker);

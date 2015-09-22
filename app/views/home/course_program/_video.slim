@@ -9,7 +9,7 @@
       
     .video__content
       video.video-js.vjs-default-skin.vjs-big-play-centered controls="" preload="auto"
-        source src="/render_file?id=#{attachment.id}&h=#{SecureRandom.hex(20)}"
+        source src="#{attachment.file.url}?h=#{SecureRandom.hex(20)}"
         p.vjs-no-js
           | To view this video please enable JavaScript, and consider upgrading to a web browser that
           a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video

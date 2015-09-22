@@ -50,13 +50,15 @@ module Api::V1
     def remove_user
       group = get_find_group
       result = unless group.nil?
-                 user = group.company.users.where(id: params[:user_id]).last
-                 if user.present?
-                   user.bunch_groups.where(group_id: group.id).destroy_all
-                   user.transfer_to_json if (user.save rescue false)
-                 end
+                 users = group.company.users.where(id: params[:user_id])
+                 users.map do |user|
+                   if user.present?
+                     user.bunch_groups.where(group_id: group.id).destroy_all
+                     user.transfer_to_json if (user.save rescue false)
+                   end
+                 end.compact
                end
-      render json: {user: (result rescue render_error(400, 'Проверьте данные'))}
+      render json: {users: (result rescue render_error(400, 'Проверьте данные'))}
     end
 
     def destroy
