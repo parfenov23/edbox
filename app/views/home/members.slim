@@ -17,9 +17,9 @@
           .plane.js_inviteUser
 
   .members.container
-    ul.members__in_system class="#{current_user.director ? 'director' : ''}"
-      - @members.each do |member|
-        - unless member.director
+    - if @members.present?
+      ul.members__in_system class="#{current_user.director ? 'director' : ''}"
+        - @members.each do |member|
           li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
             .ava.icon
               img src=default_img(member.avatar)

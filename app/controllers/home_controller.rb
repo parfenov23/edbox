@@ -87,7 +87,7 @@ class HomeController < ActionController::Base
   end
 
   def members
-    @members = current_user.company.users
+    @members = current_user.company.users.where({director: false})
   end
 
   def courses

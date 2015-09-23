@@ -4,6 +4,10 @@
   .action__block
     .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
 - count_members = @group.bunch_groups.count
+- text_title = "Не добавлено ни одного пользователя"
+- text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
+.members__title.h__text_15-24 = text_title
+
 .members__title.h__text_15-24 Добавлено #{rus_case(count_members, "пользователь", "пользователя", "пользователей")}
 - if current_user.director
   .container

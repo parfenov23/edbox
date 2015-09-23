@@ -25,19 +25,20 @@
             .email.h__text_15-24 = member.email
 
   .members.container
-    ul.members__in_system class="#{current_user.director ? 'director' : ''}"
-      - @members.each do |member|
-        li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
-          .ava.icon
-            img src=default_img(member.avatar)
-          .name.h__text_15-24 = member.full_name
-          .email.h__text_15-24 = member.email
-          .status
-            - unless member.auth?
-              .send
-                .date = "#{time_ago_in_words(member.created_at)} назад"
-                .text Отправлено:
-            - else
-              .authorized
-                .date = "#{time_ago_in_words(member.last_auth)} назад"
-                .text Авторизован:
+    - if @members.present?
+      ul.members__in_system class="#{current_user.director ? 'director' : ''}"
+        - @members.each do |member|
+          li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
+            .ava.icon
+              img src=default_img(member.avatar)
+            .name.h__text_15-24 = member.full_name
+            .email.h__text_15-24 = member.email
+            .status
+              - unless member.auth?
+                .send
+                  .date = "#{time_ago_in_words(member.created_at)} назад"
+                  .text Отправлено:
+              - else
+                .authorized
+                  .date = "#{time_ago_in_words(member.last_auth)} назад"
+                  .text Авторизован:
