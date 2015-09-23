@@ -196,6 +196,23 @@ i.icon {
       content: "\E899"
     }
   }
+  &.dark__info {
+    &::before {
+      content: "\E638"
+    }
+  }
+
+  &.online__course {
+    &::before {
+      content: "\E6CC"
+    }
+  }
+
+  &.circle__add {
+    &::before {
+      content: "\E6FE"
+    }
+  }
 
 
 }

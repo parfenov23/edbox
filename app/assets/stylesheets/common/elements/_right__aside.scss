@@ -865,3 +865,35 @@
   }
 
 }
+
+
+.info__course {
+  .notes__content-aside {
+    width: 400px;
+    margin-left: -32px;
+    padding: 16px;
+        height: 100%;
+  }
+  .item {
+    @include white__block(1,0);
+    padding: 16px 24px 16px 64px;
+    position: relative;
+    margin-bottom: 16px;
+    i {
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 24px;
+      color: $black_26;
+    }
+    .title {
+      margin-bottom: 8px;
+      span {
+        font-weight: 500;
+      }
+    }
+    .date {
+      color: $black_54;
+    }
+  }
+}

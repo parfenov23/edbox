@@ -107,7 +107,7 @@
     &:hover {
         // @extend .shadow-z-2-hover;
     }
-    &:active {
+    &:active:not(.disable) {
         @extend .shadow-z-2;
     }
 
@@ -118,6 +118,15 @@
     &:hover {
       box-shadow: none !important;
     }
+    .ripple-wrapper {
+      display: none;
+      .ripple {
+        display: none;
+      }
+    }
+    &:active {
+
+    }
   }
 }
 
@@ -125,7 +134,7 @@
     @include btn-shadow();
 }
 
-.btn-flat {
+.btn.btn-flat {
     box-shadow: none !important;
     &.btn-default:hover {
         background: none;
@@ -133,6 +142,19 @@
     &:active {
       box-shadow: none !important;
     }
+    &.disable {
+      background: rgba(0,0,0,0);
+      cursor: not-allowed;
+      color: $black_26;
+      .ripple-wrapper {
+        display: none;
+      }
+      &:hover {
+        background: rgba(0,0,0,0) !important;
+        box-shadow: none !important;
+      }
+    }
+
 }
 
 .btn.btn-flat:hover:not(.btn-ink),
@@ -149,10 +171,6 @@
 
 .btn-group, .btn-group-vertical {
     position: relative;
-    border-radius: 4px;
-    margin: 10px 1px;
-
-    @include btn-shadow();
     &.open .dropdown-toggle {
         box-shadow: none;
     }
@@ -191,6 +209,10 @@
     }
 }
 
+
+.btn-group {
+  height: 40px;
+}
 
 
 
