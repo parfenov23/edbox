@@ -29,8 +29,8 @@ module Api::V1
     end
 
     def remove_user_leading
-      user = find_user
-      user.update({leading: false})
+      user = User.where(id: params[:id])
+      user.update_all({leading: false})
       render json: {success: true}
     end
 

@@ -38,5 +38,8 @@
     /! modals end
 - else
   - dt = "На данный момент в этой группе нет курсов."
-  - dt += " Вы можете выбрать курсы из «Избранного» или библиотеки." if current_user.director
+  - if current_user.director
+    - dt = "Вы еще не назначили курсы этой группе. Вы можете перейти "
+    - dt += "на страницу библиотеки и выбрать подходящие курсы Кнопка “Выбрать из библиотеки”"
+
   = render "home/group/no_schedule", {titleText: "Курсы", descriptionText: dt}

@@ -155,9 +155,10 @@ Rails.application.routes.draw do
           post :remove_course
           post :update_section
           post :remove_section_deadline
+          post :remove_user_leading
         end
         member do
-          post :remove_user_leading
+
         end
       end
       resources :groups do

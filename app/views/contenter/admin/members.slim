@@ -1,31 +1,38 @@
 = render "home/header/header", {namePage: "contenter_admin", titlePage: "Администрирование"}
-.content#membersAdminLeading
+
+.content.membersAdminLeading#groups
+  .js__multi__action.multi__choice
+    .title.h__text_20-24 1
+
+    .action__block
+      .btn.btn-flat.is__blue.js_removeUserToLeading УДАЛИТЬ
+  - text_title = "Не добавлено ни одного пользователя"
+  - text_title = "Добавлено #{rus_case(@members.count, 'пользователь', 'пользователя', 'пользователей')}" if @members.present?
+  .members__title.h__text_15-24 = text_title
   .container
     .members.ingroups
-
       .members__invite
         ul.invited
-        .form
+        form.form
           input.input.searchMember type="text" placeholder="Email участника"
           .plane.js_inviteLeadingUser
-
-      ul.members__in_system style="display:none;"
+      ul.members__in_system.director style="display:none;"
         - User.all.each do |member|
-          li.members__in_system-item.js_addSearchMember data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
-            .ava = member.full_name.first
-            .name = member.full_name
-            .email = member.email
+          li.members__in_system-item.js_addSearchMember.noHeaderOpen data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
+            .ava.icon
+              img src=default_img(member.avatar)
+            .name.h__text_15-24 = member.full_name
+            .email.h__text_15-24 = member.email
 
-  .container.members
-    ul.members__in_system.director
-      - User.where(leading: true).each do |user|
-        - member = user
-        li.members__in_system-item
-          .ava = member.full_name.first
-          .name = member.full_name
-          .email = member.email
-          .status class="#{current_user.director ? 'director' : ''}"
-            .delete.js_removeUserToLeading data-id="#{member.id}" ×
+  .members.container
+    ul.members__in_system class="#{current_user.director ? 'director' : ''}"
+      - @members.each do |member|
+        li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
+          .ava.icon
+            img src=default_img(member.avatar)
+          .name.h__text_15-24 = member.full_name
+          .email.h__text_15-24 = member.email
+          .status
             - unless member.auth?
               .send
                 .date = "#{time_ago_in_words(member.created_at)} назад"

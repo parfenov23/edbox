@@ -136,6 +136,7 @@ deleteInvitedMember = function () {
         data: {id: number_ids}
     }).success(function () {
         form.remove();
+        $(".js__multi__action.multi__choice").removeClass("is__active");
         show_error('Пользователи удаленны', 3000);
     }).error(function () {
         show_error('Произошла ошибка', 3000);
