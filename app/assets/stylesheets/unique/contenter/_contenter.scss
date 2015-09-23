@@ -1,0 +1,44 @@
+.contenter__index {
+  @include middle-block(1128px);
+  .contener__filter {
+    @include middle-block(936px);
+    margin-bottom: 48px;
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    padding: 22px 31px 16px 33px;
+    .dropdown__menu-wrp {
+
+    }
+    .inputs-wrp {
+      display: flex;
+      justify-content: flex-start;
+      .check {
+        margin-left: 18px;
+        label {
+          padding-left: 34px;
+        }
+        .text {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+  .conenter__course {
+    @include clearfix;
+    .corses-prev__v2 {
+      margin-right: 24px;
+      float: left;
+      margin-bottom: 24px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .show__more {
+    .btn {
+      @include middle-block(123px);
+    }
+  }
+}

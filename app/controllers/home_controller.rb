@@ -1,6 +1,6 @@
 class HomeController < ActionController::Base
   helper_method :current_user
-  before_action :authorize, except: [:course_description]
+  before_action :authorize, except: [:course_description, :render_file]
   before_action :is_corporate?, only: [:group]
 
   layout "application"
@@ -15,6 +15,11 @@ class HomeController < ActionController::Base
     else
       redirect_to '/sign_in'
     end
+  end
+
+  def render_file
+    att = Attachment.find(params[:id])
+    send_file att.file.path
   end
 
   def show

@@ -126,39 +126,21 @@ sendInvintationsInGroup = function () {
 
 
 deleteInvitedMember = function () {
-    $('.members__in_system .members__in_system-item .js_removeUser').click(function () {
-        var btn = $(this);
-        confirm("Вы действительно хотите удалить пользователя?", function () {
-            var number = btn.attr('data-id');
-            $.ajax({
-                type: 'POST',
-                url : '/api/v1/users/remove_user',
-                data: {id: number}
-            }).success(function () {
-                btn.closest('.members__in_system-item').remove();
-                show_error('Пользователь удален', 3000);
-            }).error(function () {
-                show_error('Произошла ошибка', 3000);
-            });
-        });
+    var form = $("ul.members__in_system li.is__choosen");
+    var number_ids = $.map(form, function (n) {
+        return $(n).data('id');
     });
-};
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/remove_user',
+        data: {id: number_ids}
+    }).success(function () {
+        form.remove();
+        $(".js__multi__action.multi__choice").removeClass("is__active");
 
-deleteMemberToGroup = function () {
-    $('.members__in_system .members__in_system-item .js_removeUserToGroup').click(function () {
-        var btn = $(this);
-        var number = btn.data('id');
-        var group_id = btn.data("group_id");
-        btn.closest('.members__in_system-item').remove();
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/groups/' + group_id + '/remove_user',
-            data: {user_id: number}
-        }).success(function () {
-            show_error('Пользователь удален из группы', 3000);
-        }).error(function () {
-            show_error('Произошла ошибка', 3000);
-        });
+        show_error('Пользователи удаленны', 3000);
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
     });
 };
 
@@ -201,10 +183,13 @@ $(document).ready(function () {
     sendInvintations();
     sendInvintationsInGroup();
 
-    deleteInvitedMember();
-    deleteMemberToGroup();
-
     searchMember();
     addSearchMember();
     addedValidMember();
+
+    $(document).on('click', ".js__multi__action .js_removeUser", function () {
+        confirm("Вы действительно хотите удалить участников?", function () {
+            deleteInvitedMember();
+        });
+    });
 });
