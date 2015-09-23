@@ -42,6 +42,6 @@ pageLoad(function () {
     $(document).on('click', ".js__multi__action .js_removeUserToLeading", function () {
         confirm("Вы действительно хотите удалить ведущих?", function () {
             removeUserToLeading();
-        })
+        });
     });
 });
