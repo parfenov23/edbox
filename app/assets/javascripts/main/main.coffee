@@ -214,6 +214,17 @@ activeMenu = ->
     else if showBlock == "delete"
       console.log showBlock
 
+
+# функция которая скрывает блок по клику вне его
+hideElementOutOff = (elem, parentBlock, e) ->
+  $(document).trigger 'click.dropdown'
+  $(elem).fadeIn()
+  $('body').bind 'click.dropdown', (ev) ->
+    unless $(e.target).closest(parentBlock).length == $(ev.target).closest(parentBlock).length
+      elem.fadeOut()
+      $(document).unbind 'click.dropdown'
+
+
 $(document).ready ->
 
   figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
@@ -229,6 +240,24 @@ $(document).ready ->
   authCorpAcc()
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
+
+
+
+  $('.btn-group > .btn').on 'click', (e) ->
+    parentBlock = $(@).closest('.btn-group')
+    elem  = parentBlock.find('ul.hidden-list')
+    hideElementOutOff(elem, parentBlock , e)
+
+
+  $('.btn-group > .btn').on 'click', ->
+    $(@).closest('.btn-group').find('.hidden-list').fadeIn()
+
+
+  $('.header__with_search input').on 'focusin', ->
+    $('.search__content').addClass('is__visible')
+  $('.header__with_search input').on 'focusout', ->
+    if !$('.search__content').is ':has(div)'
+      $('.search__content').removeClass('is__visible')
 
   $('.js__toggle_review-list').on 'click', ->
     $(@).closest('.review__section').toggleClass('is__opened')
