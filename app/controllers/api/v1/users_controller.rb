@@ -24,7 +24,7 @@ module Api::V1
     end
 
     def remove_user
-      find_user.destroy
+      User.where(id: params[:id]).destroy_all
       render json: {success: true}
     end
 

@@ -126,21 +126,19 @@ sendInvintationsInGroup = function () {
 
 
 deleteInvitedMember = function () {
-    $('.members__in_system .members__in_system-item .js_removeUser').click(function () {
-        var btn = $(this);
-        confirm("Вы действительно хотите удалить пользователя?", function () {
-            var number = btn.attr('data-id');
-            $.ajax({
-                type: 'POST',
-                url : '/api/v1/users/remove_user',
-                data: {id: number}
-            }).success(function () {
-                btn.closest('.members__in_system-item').remove();
-                show_error('Пользователь удален', 3000);
-            }).error(function () {
-                show_error('Произошла ошибка', 3000);
-            });
-        });
+    var form = $("ul.members__in_system li.is__choosen");
+    var number_ids = $.map(form, function (n) {
+        return $(n).data('id');
+    });
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/remove_user',
+        data: {id: number_ids}
+    }).success(function () {
+        form.remove();
+        show_error('Пользователи удаленны', 3000);
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
     });
 };
 
@@ -183,9 +181,13 @@ $(document).ready(function () {
     sendInvintations();
     sendInvintationsInGroup();
 
-    deleteInvitedMember();
-
     searchMember();
     addSearchMember();
     addedValidMember();
+
+    $(document).on('click', ".js__multi__action .js_removeUser", function () {
+        confirm("Вы действительно хотите удалить участников?", function () {
+            deleteInvitedMember();
+        });
+    });
 });

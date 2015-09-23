@@ -17,6 +17,10 @@ class HomeController < ActionController::Base
     end
   end
 
+  def render_file
+    att = Attachment.find(params[:id])
+    send_file att.file.path
+  end
 
   def show
     render :text => "profile"
