@@ -37,16 +37,18 @@
           .status
             - all_group_course_member = member.bunch_courses.where(group_id: @group.id)
             ul.tooltip__list
+              - overdue_courses = all_group_course_member.overdue
               - all_group_course_member.each do |bunch_course|
                 - course = bunch_course.course
-                li.h__text_16-12 = course.title
+                - hash_style = overdue_courses.where(id: bunch_course.id).present? ? {style: "color: red;"} : {}
+                li.h__text_16-12 *hash_style
+                  = course.title
 
             // .overdue
-            - overdue_courses = all_group_course_member.overdue
             - unless overdue_courses.present?
               - complete_course = all_group_course_member.where(complete: true).count
               .send.h__text_15-24  Пройдено #{rus_case(complete_course, "курс", "курса", "курсов")} из #{all_group_course_member.count}
             - else
               - overdue_courses_count = overdue_courses.count
-              - tl = "#{rus_case_label(overdue_courses_count, "Просроченн", "Просроченно", "Просроченно")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
+              - tl = "#{rus_case_label(overdue_courses_count, "Просрочен", "Просроченно", "Просроченно")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
               .send.h__text_15-24.overdue = tl
