@@ -22,6 +22,11 @@ Rails.application.routes.draw do
         get ":action" => "create_group#:action"
       end
     end
+    resources :contenter do
+      collection do
+        get ":action" => "contenter#:action"
+      end
+    end
   end
 # get "test_websocket" => "home#test_websocket"
   # get 'nod'
