@@ -40,7 +40,7 @@ class Course < ActiveRecord::Base
 
   def program_validate
     sections_validate = (!sections.where(title: [nil, ""]).present?) ? !sections.map(&:validate).include?(false) : false
-    test_validate = test.present? ? test.validate : (type_course == "online" ? true : false)
+    test_validate = test.present? ? test.validate : true
     sections_validate && test_validate
   end
 
