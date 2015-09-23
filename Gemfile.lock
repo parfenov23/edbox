@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mconf/bigbluebutton_rails.git
-  revision: 4852a804166fe452ffbfc853e7f021b650f8514d
+  revision: e7310a061fb61c7f179bb5d86f8716699ce5de7a
   branch: master
   specs:
     bigbluebutton_rails (2.0.0)
@@ -56,7 +56,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (6.0.2)
+    autoprefixer-rails (6.0.3)
       execjs
       json
     babosa (1.0.2)
@@ -160,7 +160,7 @@ GEM
       ntlm-http (~> 0.1, >= 0.1.1)
       webrobots (>= 0.0.9, < 0.2)
     method_source (0.8.2)
-    mime-types (2.6.1)
+    mime-types (2.6.2)
     mini_magick (4.2.7)
     mini_portile (0.6.2)
     minitest (5.8.0)

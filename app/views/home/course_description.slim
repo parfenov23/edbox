@@ -92,12 +92,13 @@
         .title Ведущий курса
         - leadings.each do |lead|
           - leading = lead.user
-          .item
-            .ava
-              img src=default_img(leading.avatar)
-            .info
-              .title = leading.full_name
-              .description = leading.about_me
+          - if leading.present?
+            .item
+              .ava
+                img src=default_img(leading.avatar)
+              .info
+                .title = leading.full_name
+                .description = leading.about_me
     - if in_study.present?
       .more.is__closed
         .btn.btn-flat.for__closed Показать описание

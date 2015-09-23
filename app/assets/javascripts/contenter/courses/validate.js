@@ -27,7 +27,7 @@ var validateTestQuestion = function () {
         }
 
         if (answers.find("input:checked").length < 1){
-            arr_errors[arr_errors.length] = "Должен быть хотя бы один правельный ответ";
+            arr_errors[arr_errors.length] = "Укажите правильные варианты ответа в вопросах";
         }
         installErrorBlock(arr_errors, question);
     });
@@ -98,13 +98,13 @@ var validateAttachment = function () {
                     arr_errors[arr_errors.length] = "Проверьте тест"
                 }
                 if (block_err.data('validate') == "attachment_title"){
-                    arr_errors[arr_errors.length] = "Проверьте название материала"
+                    arr_errors[arr_errors.length] = "Введите название материала"
                 }
                 if (block_err.data('validate') == "attachment_description"){
-                    arr_errors[arr_errors.length] = "Проверьте описание материала"
+                    arr_errors[arr_errors.length] = "Введите описание материала"
                 }
                 if (block_err.data('validate') == "present_file"){
-                    arr_errors[arr_errors.length] = "Проверьте материал"
+                    arr_errors[arr_errors.length] = "Вы забыли прикрепить материал"
                 }
             });
         }
@@ -154,7 +154,7 @@ var validateCourseCategories = function () {
     if (categories.length){
         block.removeClass("error");
     } else {
-        arr_errors[arr_errors.length] = "Выберете категорию";
+        arr_errors[arr_errors.length] = "Добавьте категорию";
         block.addClass("error");
     }
     installErrorBlock(arr_errors, block, false);
@@ -168,10 +168,10 @@ var validateCourseTitle = function () {
         var block = $(elem);
         if (! block.count_text_input()){
             if (block.attr('name') == "course[title]"){
-                arr_errors[arr_errors.length] = "Введите заголовок курса"
+                arr_errors[arr_errors.length] = "Введите название"
             }
             if (block.attr('name') == "course[description]"){
-                arr_errors[arr_errors.length] = "Введите описание курса"
+                arr_errors[arr_errors.length] = "Введите описание"
             }
         }
         installErrorBlock(arr_errors, block.closest(".validateFormCourse"), false);
