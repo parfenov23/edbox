@@ -626,12 +626,18 @@
 
         @import "common/elements/edit_menu";
       }
+      .programm__wrp {
+        @include white__block(1,0);
+      }
       .item {
         position     : relative;
         height       : 96px;
-        margin-bottom: 16px;
+        // margin-bottom: 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
         padding      : 13px 16px 16px 120px;
-        @include white__block(1, 1);
+        &:last-child {
+          border: none;
+        }
         .icon__block {
           position  : absolute;
           top       : 0;
