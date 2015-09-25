@@ -226,10 +226,13 @@ var optionDatePicker = function () {
 };
 
 var installPositionBlock = function (block) {
-    var dp_top = block.offset().top;
-    var px_block = view_px_block(block);
-    if (px_block < block.outerHeight()){
-        block.css('top', (dp_top - ( block.outerHeight() - px_block ) + 30));
+    if (block.length){
+        var dp_top = block.offset().top;
+        var px_block = view_px_block(block);
+        if (px_block < block.outerHeight()){
+            block.css('top', (dp_top - ( block.outerHeight() - px_block ) + 30));
+        }
+
     }
 };
 

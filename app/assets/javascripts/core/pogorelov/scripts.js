@@ -1,9 +1,9 @@
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     //debugger
     // Resize textarea by keyup
     var textareaResize = $("textarea.expand");
-    if(textareaResize.length) {
-         $(textareaResize).TextAreaExpander();
+    if (textareaResize.length){
+        $(textareaResize).TextAreaExpander();
     }
 
     // Modal init
@@ -25,26 +25,26 @@ function ModalWindow() {
 
     self.activeModal = null;
 
-    self.init = function(options){              //options: onShow, onHide are callbacks
-        this.overlay    = $('.md-overlay');
-        this.trigger    = $('.md-trigger');
-        this.close      = $('.md-close');
-        onShow = options ? options.onShow : null;
-        onHide = options ? options.onHide : null;
+    self.init = function (options) {              //options: onShow, onHide are callbacks
+        this.overlay = $('.md-overlay');
+        this.trigger = $('.md-trigger');
+        this.close = $('.md-close');
+        onShow = options?options.onShow:null;
+        onHide = options?options.onHide:null;
         //remove old events
         this.overlay.unbind('click.modal');
         this.close.unbind('click.modal');
         this.trigger.unbind('click.modal');
         //init events
-       /* this.overlay.bind('click.modal', function(e){
-            e.preventDefault();
-            self.hideModalWindow(onHide);
-        });*/
-        this.close.bind('click.modal', function(e){
+        /* this.overlay.bind('click.modal', function(e){
+         e.preventDefault();
+         self.hideModalWindow(onHide);
+         });*/
+        this.close.bind('click.modal', function (e) {
             e.preventDefault();
             self.hideModalWindow(onHide);
         });
-        this.trigger.bind('click.modal', function(e){
+        this.trigger.bind('click.modal', function (e) {
             e.preventDefault();
             this.attrID = $(this).attr('href');
             self.showModalWindow(this.attrID, onShow);
@@ -52,17 +52,17 @@ function ModalWindow() {
 
     };
 
-    self.showModalWindow = function(id, callback){
+    self.showModalWindow = function (id, callback) {
         self.activeModal = $(id);
         self.activeModal.toggleClass('md-show');
-        if(typeof callback == 'function'){
+        if (typeof callback == 'function'){
             callback();
         }
     };
 
-    self.hideModalWindow = function(callback){
+    self.hideModalWindow = function (callback) {
         self.activeModal.toggleClass('md-show');
-        if(typeof callback == 'function'){
+        if (typeof callback == 'function'){
             callback();
         }
         self.activeModal = null;
@@ -76,32 +76,24 @@ function scrollInit() {
     $('.scrollbar-outer, .textarea-scrollbar').scrollbar({
         ignoreOverlay: false
     });
-    $('.md-content .single-course .left-image').click(function(){
-        var block = $(this).closest(".single-course");
-        if (block.hasClass('selected')) {
-            block.removeClass('selected');
-        } else {
-            block.addClass('selected');
-        };
-    });
 }
 
-window.onload = function() {
+window.onload = function () {
     var heart = document.getElementsByClassName("heart");
     var classname = document.getElementsByClassName("tabitem");
     var boxitem = document.getElementsByClassName("box");
 
-    var clickFunction = function(e) {
+    var clickFunction = function (e) {
         e.preventDefault();
         var a = this.getElementsByTagName("a")[0];
         var span = this.getElementsByTagName("span")[0];
-        var href = a.getAttribute("href").replace("#","");
-        for(var i=0;i<boxitem.length;i++){
-            boxitem[i].className =  boxitem[i].className.replace(/(?:^|\s)show(?!\S)/g, '');
+        var href = a.getAttribute("href").replace("#", "");
+        for (var i = 0; i < boxitem.length; i ++){
+            boxitem[i].className = boxitem[i].className.replace(/(?:^|\s)show(?!\S)/g, '');
         }
         document.getElementById(href).className += " show";
-        for(var i=0;i<classname.length;i++){
-            classname[i].className =  classname[i].className.replace(/(?:^|\s)active(?!\S)/g, '');
+        for (var i = 0; i < classname.length; i ++){
+            classname[i].className = classname[i].className.replace(/(?:^|\s)active(?!\S)/g, '');
         }
         this.className += " active";
         span.className += 'active';
@@ -109,25 +101,25 @@ window.onload = function() {
         var top = a.getBoundingClientRect().top;
         var consx = (e.clientX - left);
         var consy = (e.clientY - top);
-        span.style.top = consy+"px";
-        span.style.left = consx+"px";
+        span.style.top = consy + "px";
+        span.style.left = consx + "px";
         span.className = 'clicked';
-        span.addEventListener('webkitAnimationEnd', function(event){
+        span.addEventListener('webkitAnimationEnd', function (event) {
             this.className = '';
         }, false);
     };
 
-    for(var i=0;i<classname.length;i++){
+    for (var i = 0; i < classname.length; i ++){
         classname[i].addEventListener('click', clickFunction, false);
     }
-    for(var i=0;i<heart.length;i++){
-        heart[i].addEventListener('click', function(e) {
+    for (var i = 0; i < heart.length; i ++){
+        heart[i].addEventListener('click', function (e) {
             var classString = this.className, nameIndex = classString.indexOf("active");
-            if (nameIndex == -1) {
+            if (nameIndex == - 1){
                 classString += ' ' + "active";
             }
             else {
-                classString = classString.substr(0, nameIndex) + classString.substr(nameIndex+"active".length);
+                classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + "active".length);
             }
             this.className = classString;
 

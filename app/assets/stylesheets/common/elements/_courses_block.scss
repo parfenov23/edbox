@@ -477,7 +477,7 @@
           content: '\E631';
         }
       }
-      .schedule {
+      .schedule, .user_schedule {
         &::before {
           content: '\E8AF';
         }

@@ -6,8 +6,17 @@
       .item.courses
         .container
           .container-inner
-            - if current_user.director
-              a.md-trigger.add-courses href="#modal-3"  Добавить
+            .btn-group style="float: right;"
+              .btn.is__blue  Добавить
+              ul.hidden-list
+                li
+                  a.md-trigger href="#modal-3" Из моих курсов
+                li
+                  a.md-trigger href="#modal-4" Из библиотеки
+
+            /- if current_user.director
+            /  a.md-trigger.add-courses href="#modal-3"  Добавить из моих курсов
+            /  a.md-trigger.add-courses href="#modal-3"  Добавить из моих курсов
             h2 Курсы
             .data-group-create
               =' Russian.p(count_ligament_courses, "Добавлен", "Добавленно", "Добавленно")
@@ -16,26 +25,8 @@
               - ligament_courses.each do |ligament_course|
                 = render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
 
-      /! Create dialog
-      #modal-3.md-modal.md-effect-1
-        .md-content.popupFavorite
-          div
-            .modal-text
-              h2 Выберите курс из "Избранного"
-              .scrollbar-outer
-                ul.courses-list data-group_id=@group.id
-                  - current_user.favorite_courses.each do |favorite_course|
-                    - course = favorite_course.course
-                    - if course.present?
-                      = render "home/group/course", {course: course, type: "course", favorite: favorite_course}
-
-            ul.button-area
-              li
-                a.flat-button.button.button-ok.md-close href="#"  Отменить
-              li
-                a.orange-button.js_addCoursesFromFavorite.ya_add_to_schedule_corp href="#"  Добавить
-      .md-overlay
-    /! modals end
+      = render "home/group/popup/my_course"
+      = render "home/group/popup/library"
 - else
   - dt = "На данный момент в этой группе нет курсов."
   - if current_user.director

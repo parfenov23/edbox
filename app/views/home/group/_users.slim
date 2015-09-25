@@ -1,5 +1,9 @@
 .js__multi__action.multi__choice
-  .title.h__text_20-24 1
+  .title.h__text_20-24
+    .js_editTitleDestroyMember 1
+    span.js__tooltip.js_closeDestroySelectMember
+      i.icon
+      .tooltip.is__bottom Отменить
 
   .action__block
     .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
@@ -8,7 +12,6 @@
 - text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
 .members__title.h__text_15-24 = text_title
 
-.members__title.h__text_15-24 Добавлено #{rus_case(count_members, "пользователь", "пользователя", "пользователей")}
 - if current_user.director
   .container
     .members.ingroups
