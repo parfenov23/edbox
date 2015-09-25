@@ -13,7 +13,7 @@
 
         .hidden__actions.is__visible
           - unless course_assigned
-            - ass_class = (course_favorite ? 'frst' : 'scnd')
+            - ass_class = ((course_favorite rescue false) ? 'frst' : 'scnd')
             - hash_params = { 'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", 'data-type' => "user"}
             .item.main__action-tooltip-wrp.main__action-shadow.js_openPopup class = ass_class data-id="#{course.id}" *hash_params
               i.icon.courses
