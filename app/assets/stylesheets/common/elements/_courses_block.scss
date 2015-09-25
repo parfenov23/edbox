@@ -482,7 +482,7 @@
       }
       .schedule, .user_schedule {
         &::before {
-          content: '\E8AF';
+          content: '\E6B2';
         }
       }
       &:hover {
@@ -490,13 +490,13 @@
         .add {
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .30), 0 6px 5px 0 rgba(0, 0, 0, .22);
           &::before {
-            font-size  : 24px;
-            line-height: 21px;
+            //font-size  : 24px;
+            //line-height: 21px;
             top        : 15px;
             left       : 10px;
             width      : 30px;
             height     : 20px;
-            content    : '\E8D6';
+            //content    : '\E8D6';
             /* Oval 2 Copy 2: */
           }
         }
@@ -808,23 +808,23 @@
           content: '\E631';
         }
       }
-      .schedule {
-        &::before {
-          content: '\E8AF';
-        }
-      }
+      //.schedule {
+      //  &::before {
+      //    content: '\E8AF';
+      //  }
+      //}
       &:hover {
         width: 95px;
         .add {
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .30), 0 6px 5px 0 rgba(0, 0, 0, .22);
           &::before {
-            font-size  : 24px;
-            line-height: 21px;
+            //font-size  : 24px;
+            //line-height: 21px;
             top        : 15px;
             left       : 10px;
             width      : 30px;
             height     : 20px;
-            content    : '\E8D6';
+            //content    : '\E8D6';
             /* Oval 2 Copy 2: */
           }
         }
