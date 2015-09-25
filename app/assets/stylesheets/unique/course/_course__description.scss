@@ -11,7 +11,7 @@
   .first__description {
     margin-top: -3px;
     width: 840px;
-    margin-bottom: 6px;
+    margin-bottom: 36px;
   }
   .rating__block {
     display: flex;
@@ -34,6 +34,7 @@
         .item {
           font-size: 20px;
           margin: 0 2px;
+          color: $black_54;
           &.is__blue {
             position: relative;
             color: $primoryColor;
@@ -68,6 +69,7 @@
         justify-content: flex-start;
         margin-bottom: 14px;
         .star {
+          color: $black_54;
           width: 30px;
           margin-top: 1px;
           margin-right: 9px;
@@ -132,7 +134,7 @@
             margin-right: 16px;
           }
           .date {
-
+            color: $black_54;
           }
         }
         .stars {
@@ -141,6 +143,8 @@
           margin-bottom: 2px;
           .item {
             position: relative;
+            margin-right: 2px;
+            color: $black_54;
             &.is__blue {
               position: relative;
               color: $primoryColor;
@@ -622,12 +626,18 @@
 
         @import "common/elements/edit_menu";
       }
+      .programm__wrp {
+        @include white__block(1,0);
+      }
+
       .item {
         position     : relative;
         height       : 96px;
-        margin-bottom: 16px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
         padding      : 13px 16px 16px 120px;
-        @include white__block(1, 1);
+        &:last-child {
+          border: none;
+        }
         .icon__block {
           position  : absolute;
           top       : 0;
