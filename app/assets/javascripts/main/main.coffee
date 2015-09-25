@@ -248,6 +248,8 @@ $(document).ready ->
     elem  = parentBlock.find('ul.hidden-list')
     hideElementOutOff(elem, parentBlock , e)
 
+  $('.tegs__add_block .show__more').on 'click', ->
+    $(@).fadeOut().closest('.tegs__add_block').find('.visible__viewport').addClass('is__unfold')
 
   $('.btn-group > .btn').on 'click', ->
     $(@).closest('.btn-group').find('.hidden-list').fadeIn()
@@ -376,7 +378,7 @@ $(document).ready ->
       $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
-      show_error('Установите крайний срок прохождения курса', 3000);
+      show_error('Установите срок прохождения курса', 3000);
 
 #  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
 #    $(@).closest("form").find(".action-btn").show()

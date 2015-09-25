@@ -4,7 +4,7 @@ var clickItemMember = function () {
     var arr_1 = ["пользователь", "пользователя", "пользователей"];
     var arr_2 = ["Выбран", "Выбранно", "Выбранно"];
     var text_title = declOfNum(count_select, arr_2) + " " + count_select + " " + declOfNum(count_select, arr_1);
-    $(".js__multi__action .title").text(text_title)
+    $(".js__multi__action .title .js_editTitleDestroyMember").text(text_title)
 };
 
 var deleteMemberToGroup = function (group_id) {
@@ -25,8 +25,14 @@ var deleteMemberToGroup = function (group_id) {
     });
 };
 
+var closeDestroySelectMember = function(){
+    $(".members__in_system .members__in_system-item.is__choosen").removeClass("is__choosen");
+    $(".js__multi__action").removeClass("is__active");
+};
+
 pageLoad(function () {
     $(document).on('click', ".js_clickItemMember", clickItemMember);
+    $(document).on('click', ".js_closeDestroySelectMember", closeDestroySelectMember);
     $(document).on('click', ".js__multi__action .js_removeUserToGroup", function () {
         var btn = $(this);
         confirm("Вы действительно хотите удалить участников из гуппы?", function () {

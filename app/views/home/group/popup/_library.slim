@@ -1,0 +1,17 @@
+#modal-4.md-modal.md-effect-1
+  .md-content.popupFavorite
+    div
+      .modal-text
+        h2 Выберите курс из "Библиотеки"
+        .scrollbar-outer
+          ul.courses-list data-group_id=@group.id
+            - Course.all.publication.each do |course|
+              - if course.present?
+                = render "home/group/course", {course: course, type: "course"}
+
+      ul.button-area
+        li
+          a.flat-button.button.button-ok.md-close href="#"  Отменить
+        li
+          a.orange-button.js_addCoursesFromFavorite.ya_add_to_schedule_corp href="#"  Добавить
+.md-overlay

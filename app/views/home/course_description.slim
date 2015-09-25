@@ -144,22 +144,23 @@
 
                   / .action-btn.drunkenPig.js_actionBtn
                   /   i.icon.schedule
-
-            - section_attachments.each do |attachment|
-              - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
-              - class_block = ""
-              - hash_class = {}
-              - if (current_user.view_course?(@course) rescue false)
-                - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                - if bunch_attachment.present?
-                  - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
-              .item.js_blockAttachmentInProgram data-id=attachment.id class=(class_block + ' ' + ya_class) *hash_class
-                .icon__block
-                  i.icon class=attachment.class_type
-                .adaptive__title
-                  .left-col #{nsec}.#{natt += 1} #{attachment.title}
-                  .right-col = attachment.full_duration
-                .description = attachment.description
+            .programm__wrp    
+      
+              - section_attachments.each do |attachment|
+                - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
+                - class_block = ""
+                - hash_class = {}
+                - if (current_user.view_course?(@course) rescue false)
+                  - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
+                  - if bunch_attachment.present?
+                    - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
+                  .item.js_blockAttachmentInProgram data-id=attachment.id class=(class_block + ' ' + ya_class) *hash_class
+                    .icon__block
+                      i.icon class=attachment.class_type
+                    .adaptive__title
+                      .left-col #{nsec}.#{natt += 1} #{attachment.title}
+                      .right-col = attachment.full_duration
+                    .description = attachment.description
       - final_test = @course.test
       - if final_test.present?
         - hash_class ={}

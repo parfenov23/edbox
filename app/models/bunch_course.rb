@@ -7,6 +7,8 @@ class BunchCourse < ActiveRecord::Base
   has_many :notifications, :as => :notifytable, :dependent => :destroy
 
   scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
+  scope :my, -> { where({model_type: "user"}) }
+  scope :in_group, -> { where({model_type: "group"}) }
   scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
   scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
