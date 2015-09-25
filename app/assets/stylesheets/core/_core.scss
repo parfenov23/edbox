@@ -982,3 +982,18 @@
     }
   }
 }
+
+.single-course {
+  .left-image.material {
+    height           : 128px;
+    background-image : linear-gradient(-180deg, #00FFEB 0%, #00BCD4 100%);
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    i.icon {
+      font-size : 38px;
+      color     : white;
+      height    : 38px;
+    }
+  }
+}

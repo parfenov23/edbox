@@ -897,3 +897,13 @@
     }
   }
 }
+.linked__courses {
+  .linked-aside {
+    height: 100%;
+    padding-bottom: 66px;
+  }
+  @import "common/elements/courses_block";
+  .corses-prev__v2.compact {
+    margin: 0 0 16px 36px;
+  }
+}
