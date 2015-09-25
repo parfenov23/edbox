@@ -42,11 +42,13 @@ var courseInfo = function (course_id) {
         var block_selectSections = popup.find(".select-deadline.js_optionDatePicker").show();
         var blockCalendarCourse = popup.find(".calendar").show();
         var titleCourseType = popup.find(".titleCourseType").text("Добавить курс в ");
-        blockCalendarCourse.find(".calendar-trigger").text("Установите срок прохождения курса");
+        blockCalendarCourse.find(".calendar-trigger")
+            .text("Установите срок прохождения курса");
         if (data.type_course == "material"){
             titleCourseType.text("Добавить материал в ");
             block_selectSections.hide();
-            blockCalendarCourse.find(".calendar-trigger").text("Установите срок прохождения материала");
+            blockCalendarCourse.find(".calendar-trigger")
+                .text("Установите срок прохождения материала");
 
         }
         if (data.type_course == "online"){
