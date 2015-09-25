@@ -267,7 +267,7 @@ var selectCourseInPopup = function () {
     }
 };
 
-var clearPopupFavorite = function(){
+var clearPopupFavorite = function () {
     $('.md-content.popupFavorite .single-course.selected').removeClass("selected");
     $('.md-content.popupFavorite .hidden-list .jsValueDatePicker').val('');
     $('.md-content.popupFavorite .edit-menu.js__select-calendar').removeClass('is__active');
@@ -285,15 +285,12 @@ $(document).ready(function () {
 
     //$(document).on('click', '.edit-menu .js_openDataPicker', openDataPicker);
 
-    $(document).on('click', '.hidden-list .js_removeCourseToGroup',
-        function () {
-            var btn = $(this);
-            confirm("Вы действительно хотате удалить курс?",
-                function () {
-                    removeCourseToGroup(btn)
-                }
-            )
+    $(document).on('click', '.hidden-list .js_removeCourseToGroup', function () {
+        var btn = $(this);
+        confirm("Вы действительно хотате удалить курс?", function () {
+            removeCourseToGroup(btn)
         });
+    });
     $(document).on('click', '.listGroup .selectMonthSchedule', selectMonthSchedule);
     $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
