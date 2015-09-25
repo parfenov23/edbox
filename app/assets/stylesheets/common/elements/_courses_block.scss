@@ -475,16 +475,19 @@
           box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .30), 0 6px 5px 0 rgba(0, 0, 0, .22);
         }
       }
-      .favorite {
-        &::before {
-          content: '\E631';
-        }
-      }
+
       .schedule, .user_schedule {
         &::before {
           content: '\E6B2';
         }
       }
+
+      .favorite {
+        &::before {
+          content: '\E631';
+        }
+      }
+
       &:hover {
         width: 95px;
         .add {
