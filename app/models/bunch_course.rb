@@ -73,7 +73,6 @@ class BunchCourse < ActiveRecord::Base
   end
 
   def self.build_to_user(course_id, user_id, group_id, date_complete, type, ligament_course_id=nil, sections_hash)
-    date_complete = Time.parse(date_complete).end_of_day
     course = Course.find(course_id)
     sections = course.sections.not_empty
     user = User.find(user_id)
