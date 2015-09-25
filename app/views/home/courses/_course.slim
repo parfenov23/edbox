@@ -7,8 +7,9 @@ figure.corses-prev
       - attachment = course.attachments.last
       i.icon class=(attachment.file_type rescue "other")
     .course__type-wrp
-      - course.bunch_tags.each do |bunch_tag|
-        .course-type = (bunch_tag.tag.title rescue nil)
+      .course-type.h__text_15-24
+        i.icon.teg
+          = course.bunch_categories.last.category.title rescue nil
     = render "home/courses/added_btn", {course: course, type: type}
 
   - bunch_course_present = course.find_bunch_course(current_user.id, ["user", "group"]).present?

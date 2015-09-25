@@ -28,6 +28,12 @@ class BunchCourse < ActiveRecord::Base
     true
   end
 
+  def progress
+    all_sections = bunch_sections
+    all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
+    ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
+  end
+
   def full_complete?
     sections = bunch_sections
     if sections.where(complete: true).count >= sections.count
