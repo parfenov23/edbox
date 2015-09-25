@@ -629,15 +629,23 @@
       .programm__wrp {
         @include white__block(1,0);
       }
-
+      form{
+        cursor: pointer;
+        &:hover{
+          background-color: #F5F5F5;
+        }
+        &:last-child {
+          .item{
+            border: none;
+          }
+        }
+      }
       .item {
         position     : relative;
         height       : 96px;
         border-bottom: 1px solid rgba(0,0,0,0.12);
         padding      : 13px 16px 16px 120px;
-        &:last-child {
-          border: none;
-        }
+
         .icon__block {
           position  : absolute;
           top       : 0;
