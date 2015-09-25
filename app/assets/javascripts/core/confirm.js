@@ -4,7 +4,7 @@ function confirm(text, action){
     var popup = $(".pop_up_confirm");
     popup.find(".inner .description").text(text);
     btn_yes_action = action;
-    popup.css("display", "flex");
+    popup.addClass("h__PopupDisplayFlex");
 }
 
 function warning(text, actionText){
@@ -26,7 +26,7 @@ function warning(text, actionText){
 
 var defaultConfirm = function(){
     var popup = $(".pop_up_confirm");
-    popup.css("display", "");
+    popup.removeClass("h__PopupDisplayFlex");
     btn_yes_action = function(){console.log("no_action")};
 };
 
