@@ -19,7 +19,7 @@
             /  a.md-trigger.add-courses href="#modal-3"  Добавить из моих курсов
             h2 Курсы
             .data-group-create
-              =' Russian.p(count_ligament_courses, "Добавлен", "Добавленно", "Добавленно")
+              =' Russian.p(count_ligament_courses, "Добавлен", "Добавлено", "Добавлено")
               = rus_case(count_ligament_courses, "курс", "курса", "курсов")
             ul.courses-list
               - ligament_courses.each do |ligament_course|
@@ -31,6 +31,6 @@
   - dt = "На данный момент в этой группе нет курсов."
   - if current_user.director
     - dt = "Вы еще не назначили курсы этой группе. Вы можете перейти "
-    - dt += "на страницу библиотеки и выбрать подходящие курсы'"
+    - dt += "на страницу библиотеки и выбрать подходящие курсы."
 
   = render "home/group/no_schedule", {titleText: "Курсы", descriptionText: dt}
