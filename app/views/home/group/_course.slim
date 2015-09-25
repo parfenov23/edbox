@@ -1,7 +1,11 @@
 - course = ligament_course.course if type == "ligament"
 li.single-course data-course_id=course.id class=(type == "course" ? "favorite-item" : "")
-  .left-image
-    img alt="" src=course.get_image_path(320, 256) style="width:160px; height:128px"
+  .left-image class=(course.material? ? "material" : "")
+    - unless course.material?
+      img alt="" src=course.get_image_path(320, 256) style="width:160px; height:128px"
+    - else
+      - attachment = course.attachments.last
+      i.icon class=(attachment.file_type rescue "other")
   .courses-info
     .top-line
       - if current_user.director
@@ -27,10 +31,11 @@ li.single-course data-course_id=course.id class=(type == "course" ? "favorite-it
               - if type == "ligament" # главный блок
                 li data-show="hidden-calendar" = text_data
                 li.js_removeCourseToGroup data-id="#{ligament_course.course_id}" data-group_id=@group.id Удалить
-              - if type == "course" # блок в попапе
+              - if type == "course"  # блок в попапе
                 li data-show="hidden-calendar"
                   input.datapicker__trigger.jsValueDatePicker value=text_data name="courses[date_complete]" placeholder=text_data
-                li.js_removeFavorite data-id=favorite.id Удалить
+                - if (favorite.present? rescue false)
+                  li.js_removeFavorite data-id=favorite.id Удалить
 
       a.title href="/course_description?id=#{course.id}"
         h3 = course.title

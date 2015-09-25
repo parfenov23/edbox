@@ -14,6 +14,7 @@ class Course < ActiveRecord::Base
   scope :publication, -> { where(public: true) }
   scope :materials, -> { where(type_course: "material") }
   scope :webinars, -> { where(type_course: "online") }
+  default_scope { order("created_at DESC") }
   USERID_TOJSON = nil
 
   def create_img(image_path, width, height)
