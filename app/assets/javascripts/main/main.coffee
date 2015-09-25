@@ -378,7 +378,7 @@ $(document).ready ->
       $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
-      show_error('Установите крайний срок прохождения курса', 3000);
+      show_error('Установите срок прохождения курса', 3000);
 
 #  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
 #    $(@).closest("form").find(".action-btn").show()
