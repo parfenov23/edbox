@@ -1,0 +1,104 @@
+.tegs__add_block {
+  @include middle-block(936px);
+  @include white__block(1,0);
+  padding: 32px 128px 33px 48px;
+
+  .title {
+    margin-bottom: 16px;
+  }
+
+  .tegs__qty {
+    color        : $black_54;
+    margin-bottom: 44px;
+  }
+
+  .tegs__list {
+    .visible__viewport {
+      max-height: 336px;
+      overflow: hidden;
+      &.short__ver {
+        max-height: 226px;
+      }
+      &.is__unfold {
+        @include transition__d(300ms);
+        max-height: 10000px;
+      }
+    }
+    .item {
+      position: relative;
+      &.empty {
+        .delete {
+          display: none;
+        }
+      }
+      .input-wrp {
+        width        : 504px;
+        height       : 36px;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 23px;
+
+        input {
+          margin-top: -3px;
+          height    : 23px;
+          border    : none;
+        }
+
+        .delete {
+          position : absolute;
+          top      : 4px;
+          left     : 520px;
+          font-size: 24px;
+          color    : $black_26;
+          cursor   : pointer;
+        }
+      }
+
+      .related__courses {
+        position: absolute;
+        top     : 0;
+        left    : 600px;
+        color   : $black_54;
+        cursor: pointer;
+        a {
+          color: $primoryColor;
+        }
+      }
+
+      &.empty {
+        .related__courses {
+          color: $black_26;
+        }
+      }
+    }
+  }
+
+  .show__more {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin-bottom: 38px;
+    margin-left: 9px;
+    width: 60px;
+    i {
+      display         : flex;
+      width           : 16px;
+      height          : 16px;
+      color           : $black_54;
+      text-align      : center;
+      border-radius: 100%;
+      margin-right: 8px;
+      &:hover {
+        background-color: #e0e0e0;
+      }
+      &::before {
+        font-size  : 16px;
+        line-height: 18px;
+      }
+    }
+
+    span {
+      line-height: 18px;
+      color: $black_54;
+    }
+  }
+}
