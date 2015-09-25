@@ -16,8 +16,9 @@
       .members__invite
         ul.invited
         form.form
-          input.input type="text" placeholder="Email участника"
-          .plane.js_inviteUser
+          input.input type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
+          .plane.js_inviteUser.js__tooltip
+            .tooltip.is__bottom Отправить приглашение пользователям
 
   .members.container
     - if @members.present?
