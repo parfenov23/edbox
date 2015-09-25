@@ -135,6 +135,13 @@
   @include middle-block(1208px);
   padding: 0 42px;
 
+  .for__helps {
+    text-align: center;
+    a {
+      color: $primoryColor;
+    }
+  }
+
   .empty-title {
     text-align   : center;
     margin-bottom: 21px;
@@ -154,7 +161,7 @@
   .possible__action-list {
     @include middle-block(933px);
     @include white__block(1,0);
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 
     .item {
       padding         : 21px 256px 18px 151px;

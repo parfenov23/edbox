@@ -200,6 +200,8 @@
               margin-bottom: 2px;
               .item {
                 position: relative;
+                margin-right: 2px;
+                color: rgba(0, 0, 0, 0.54);
                 &.is__blue {
                   position: relative;
                   color: $primoryColor;
