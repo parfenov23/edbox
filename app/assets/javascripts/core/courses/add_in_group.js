@@ -47,6 +47,7 @@ var courseInfo = function (course_id) {
             titleCourseType.text("Добавить материал в ");
             block_selectSections.hide();
             blockCalendarCourse.find(".calendar-trigger").text("Установите срок прохождения материала");
+
         }
         if (data.type_course == "online"){
             titleCourseType.text("Добавить онлайн-курс в ");
