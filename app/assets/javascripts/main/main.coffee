@@ -248,6 +248,8 @@ $(document).ready ->
     elem  = parentBlock.find('ul.hidden-list')
     hideElementOutOff(elem, parentBlock , e)
 
+  $('.tegs__add_block .show__more').on 'click', ->
+    $(@).fadeOut().closest('.tegs__add_block').find('.visible__viewport').addClass('is__unfold')
 
   $('.btn-group > .btn').on 'click', ->
     $(@).closest('.btn-group').find('.hidden-list').fadeIn()
