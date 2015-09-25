@@ -2,14 +2,16 @@ figure.corses-prev
   .image class=(course.material? ? "material" : "")
     - unless course.material?
       img src = course.get_image_path(694, 384)
-      .fade
     - else
       - attachment = course.attachments.last
-      i.icon class=(attachment.file_type rescue "other")
-    .course__type-wrp
-      .course-type.h__text_15-24
-        i.icon.teg
-          = course.bunch_categories.last.category.title rescue nil
+      i.icon.icon_material class=(attachment.file_type rescue "other")
+    - category = course.bunch_categories.last.category.title rescue nil
+    - if category.present?
+      .fade
+      .course__type-wrp
+        .course-type.h__text_15-24
+          i.icon.teg style="margin-right: 6px;"
+          = category
     = render "home/courses/added_btn", {course: course, type: type}
 
   - bunch_course_present = course.find_bunch_course(current_user.id, ["user", "group"]).present?
