@@ -214,5 +214,17 @@ i.icon {
     }
   }
 
+  &.delete {
+    &::before {
+      content: "\E702"
+    }
+  }
+
+  &.dropdown {
+    &::before {
+      content: "\E7B4"
+    }
+  }
+
 
 }

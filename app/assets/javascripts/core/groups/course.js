@@ -7,9 +7,9 @@ var removeCourseToGroup = function (btn) {
         url : '/api/v1/groups/' + group_id + '/remove_course',
         data: {course_id: course_id}
     }).success(function (data) {
-        if(btn.data("no_schedule") == true){
+        if (btn.data("no_schedule") == true){
             show_error(text_success, 3000);
-            setTimeout(function(){
+            setTimeout(function () {
                 location.reload();
             }, 1000);
         } else {
@@ -32,9 +32,9 @@ var changeDeadLineCourse = function (btn) {
         url : '/api/v1/groups/' + group_id + '/update_course',
         data: {course_id: course_id, date_complete: data_time}
     }).success(function (data) {
-        if(btn.data("no_schedule") == true){
+        if (btn.data("no_schedule") == true){
             show_error(text_success, 3000);
-            setTimeout(function(){
+            setTimeout(function () {
                 location.reload();
             }, 1000);
         } else {
@@ -183,9 +183,9 @@ var bind_block = function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
 
-    $('.edit-menu .js_removeCourseToGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
-        removeCourseToGroup($(this));
-    });
+    //$('.edit-menu .js_removeCourseToGroup').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+    //    removeCourseToGroup($(this));
+    //});
 
     $('.edit-menu .js_changeDeadLineSectionMy').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineSectionMy($(this), $(this).data("text"));
@@ -258,7 +258,20 @@ var addCoursesFromFavorite = function () {
     });
     return true;
 };
+var selectCourseInPopup = function () {
+    var block = $(this).closest(".single-course");
+    if (block.hasClass('selected')){
+        block.removeClass('selected');
+    } else {
+        block.addClass('selected');
+    }
+};
 
+var clearPopupFavorite = function () {
+    $('.md-content.popupFavorite .single-course.selected').removeClass("selected");
+    $('.md-content.popupFavorite .hidden-list .jsValueDatePicker').val('');
+    $('.md-content.popupFavorite .edit-menu.js__select-calendar').removeClass('is__active');
+};
 $(document).ready(function () {
     $(document).on('click', '.edit-menu .js_removeDeadLineSectionMy',
         function () {
@@ -272,15 +285,12 @@ $(document).ready(function () {
 
     //$(document).on('click', '.edit-menu .js_openDataPicker', openDataPicker);
 
-    $(document).on('click', '.hidden-list .js_removeCourseToGroup',
-        function () {
-            var btn = $(this);
-            confirm("Вы действительно хотате удалить курс?",
-                function () {
-                    removeCourseToGroup(btn)
-                }
-            )
+    $(document).on('click', '.hidden-list .js_removeCourseToGroup', function () {
+        var btn = $(this);
+        confirm("Вы действительно хотате удалить курс?", function () {
+            removeCourseToGroup(btn)
         });
+    });
     $(document).on('click', '.listGroup .selectMonthSchedule', selectMonthSchedule);
     $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
@@ -290,17 +300,23 @@ $(document).ready(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
 
+    $('.single-course .hidden-calendar-wrp .jsValueDatePicker').change(function () {
+        $(this).closest(".single-course").addClass("selected");
+    });
+
     //$('.js_actionBtn .js_changeDeadLineCourseMy').change(function () {
     //    changeDeadLineCourseMy($(this), $(this).data("text"));
     //});
 
     $(document).on('click', '.js_loadMySchedule',
-        function() {
+        function () {
             var date = new Date;
             loadMySchedule({schedule: {month: (date.getMonth() + 1)}});
         }
     );
     $(document).on('click', '.js_addCoursesFromFavorite', addCoursesFromFavorite);
+    $(document).on('click', '.md-content .single-course .left-image', selectCourseInPopup);
+    $(document).on('click', '.md-content.popupFavorite .button-area .md-close', clearPopupFavorite);
     $(document).on('click', '.js_removeCourseMy',
         function () {
             var btn = $(this);

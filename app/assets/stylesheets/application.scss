@@ -333,6 +333,7 @@ i {
 @import "unique/course/course";
 @import "unique/create__group/create__group";
 @import "unique/contenter/contenter";
+@import "unique/contenter/add__tegs";
 @import "attachments/audios";
 @import "core/core";
 @import "contenter/publication";
@@ -346,4 +347,8 @@ i {
 }
 .h__BC-blue {
   background-color : rgba(85, 184, 255, 0.72) !important;
+}
+
+.h__PopupDisplayFlex{
+  display: flex !important;
 }

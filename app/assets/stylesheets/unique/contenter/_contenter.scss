@@ -1,5 +1,10 @@
 .contenter__index {
   @include middle-block(1128px);
+  .for__helps {
+    a {
+      color: $primoryColor;
+    }
+  }
   .contener__filter {
     @include middle-block(936px);
     margin-bottom: 48px;

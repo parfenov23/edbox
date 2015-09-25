@@ -87,11 +87,11 @@ class HomeController < ActionController::Base
   end
 
   def members
-    @members = current_user.company.users
+    @members = current_user.company.users.where({director: false})
   end
 
   def courses
-    all_courses = Course.all.order("created_at DESC").publication
+    all_courses = Course.all.publication
     # time = Time.now
     # @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
     #                  .order("created_at ASC")
