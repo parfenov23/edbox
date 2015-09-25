@@ -4856,6 +4856,7 @@ function confirm(text, action){
     popup.find(".inner .description").text(text);
     btn_yes_action = action;
     popup.addClass("h__PopupDisplayFlex");
+
 }
 
 function warning(text, actionText){
