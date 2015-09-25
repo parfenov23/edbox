@@ -25,12 +25,11 @@ var warningTestText = function (invalidTestItemsIds) {
 
 var testResult = function (response) {
     var form = $('#tests');
-    var text = 'Ваш результат прохождения теста ' +
-        response.result + '%. Вы ответили правильно на ' +
-        response.right_answers + ' вопросов из ' +
-        response.all_questions + '.';
+    var text = 'Поздравляем! Вы сдали тест. Вы прошли тест с результатом ' +
+        response.result + '%. Если вы хотите улучшить свой результат, ' +
+        'вы может пересдать тест и мы засчитаем вашу лучшую попытку.';
 
-    confirm(text, function(){
+    confirm(text, function () {
         window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
     });
     $(".pop_up_confirm .js_closePopupConfirmNo").hide();
@@ -38,7 +37,7 @@ var testResult = function (response) {
     //warning(text, 'ОК');
 };
 
-var submitFromTest = function(){
+var submitFromTest = function () {
     var form = $('#tests');
     var invalidTestItemsIds = validTestForm(form);
     if (invalidTestItemsIds.length){
@@ -48,7 +47,7 @@ var submitFromTest = function(){
         var data = form.serialize();
         $.ajax({
             type   : 'POST',
-            url    : '/api/v1/tests/'+ form.data('id') +'/result',
+            url    : '/api/v1/tests/' + form.data('id') + '/result',
             data   : data,
             success: function (e) {
                 testResult(e);
