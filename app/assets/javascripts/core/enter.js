@@ -111,7 +111,11 @@ $(document).ready(function () {
             data   : data,
             success: function (user) {
                 $.cookie('user_key', user.user_key);
-                window.location.href = '/cabinet';
+                if(form.data('redirect') == undefined){
+                    window.location.href = '/cabinet';
+                }else{
+                    window.location.href = form.data('redirect');
+                }
             },
             error  : function () {
                 show_error('Произошла ошибка авторизации', 3000);
@@ -142,7 +146,12 @@ $(document).ready(function () {
                 //},
                 success: function (m) {
                     $.cookie('user_key', m.user_key);
-                    window.location.href = '/cabinet';
+                    if(form.data('redirect') == undefined){
+                        window.location.href = '/cabinet';
+                    }else{
+                        window.location.href = form.data('redirect');
+                    }
+
                 },
                 error  : function () {
                     show_error('Произошла ошибка регистрации', 3000);

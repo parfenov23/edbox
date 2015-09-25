@@ -4,7 +4,7 @@
             img src="assets/logo.svg"
         .auth__title-top
             img.logo__img src="assets/logo_auth.svg"
-        form.auth__top.auth__enter-first
+        form.auth__top.auth__enter-first data-redirect=(params[:redirect].present? ? "/course_description?id=#{params[:redirect]}" : '')
             .auth__title Авторизация
             .input-wrp.email
                 input placeholder="Email" name="user[email]" type="text"
