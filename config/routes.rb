@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get :sign_out, to: "enter#sign_out"
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
-
   bigbluebutton_routes :default
 
   get "video/:id" => "home#video"
@@ -161,9 +160,10 @@ Rails.application.routes.draw do
           post :remove_course
           post :update_section
           post :remove_section_deadline
+          post :remove_user_leading
         end
         member do
-          post :remove_user_leading
+
         end
       end
       resources :groups do

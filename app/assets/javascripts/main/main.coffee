@@ -267,7 +267,8 @@ $(document).ready ->
 
 
   $('.members__in_system-item').on 'click', ->
-    multiAction($(this))
+    if !$(this).hasClass("noHeaderOpen")
+      multiAction($(this))
 
   $('.js__action-menu .icon__block').on 'click', ->
     $(@).closest('.js__action-menu').toggleClass 'is__active'

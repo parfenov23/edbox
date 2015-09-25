@@ -6,7 +6,7 @@ module Contenter
     layout "application"
 
     def members
-
+      @members = User.where(leading: true)
     end
 
     def tags
