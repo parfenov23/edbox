@@ -105,12 +105,14 @@ $(document).ready(function () {
         var btn = $(this);
         var form = btn.closest("form");
         var data = form.serialize();
+        show_error('Идет проверка данных', 3000);
         $.ajax({
             type   : 'POST',
             url    : '/api/v1/sessions/auth',
             data   : data,
             success: function (user) {
                 $.cookie('user_key', user.user_key);
+                show_error('Успешно', 3000);
                 setTimeout(function(){
                     if(form.data('redirect') == undefined || form.data('redirect') == ''){
                         window.location.href = '/cabinet';
