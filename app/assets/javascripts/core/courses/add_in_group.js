@@ -122,6 +122,7 @@ var clearPopup = function () {
     calendar.removeClass("show");
     //select.find(".titleSelectGroup").text("Выберите группу");
     //select.find(".selectGroupId").val("");
+
     calendar.find(".datapicker__trigger").val("");
     popup.find(".courseId").val("");
     installTitleFormPopup(0);
