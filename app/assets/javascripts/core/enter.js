@@ -111,7 +111,7 @@ $(document).ready(function () {
             data   : data,
             success: function (user) {
                 $.cookie('user_key', user.user_key);
-                if(form.data('redirect') == undefined){
+                if(form.data('redirect') == undefined || form.data('redirect') == ''){
                     window.location.href = '/cabinet';
                 }else{
                     window.location.href = form.data('redirect');

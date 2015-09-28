@@ -133,7 +133,8 @@ class Course < ActiveRecord::Base
 
   def clear_description
     ActionView::Base.full_sanitizer.sanitize(description.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
-      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
+      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"').gsub('&mdash;', '—')
+      .gsub('&gt;', '>')
   end
 
   def images
