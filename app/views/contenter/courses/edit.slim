@@ -57,7 +57,7 @@
         .left-col style="height: 56px;"
           .item
             - sections_count = course.sections.count
-            = rus_case(sections_count, "лекция", "лекции", "лекций")
+            = rus_case(sections_count, "раздел", "раздела", "разделов")
             i.courses.icon
           .item
             - course_duration = course.duration.to_i
