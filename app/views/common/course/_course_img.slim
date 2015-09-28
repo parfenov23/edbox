@@ -8,7 +8,7 @@
     i.icon.icon_material class=(attachment.file_type rescue "other")
   - unless (bunch_course.complete rescue false)
     .fade
-    - progress = bunch_course.progress
+    - progress = bunch_course.progress rescue 0
     - if progress == 0
       - if bunch_course.model_type == "user"
         .tegs.h__BC-green Добавлен

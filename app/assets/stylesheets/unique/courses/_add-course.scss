@@ -219,6 +219,7 @@
       display          : none;
       z-index          : 99;
       bottom           : auto;
+      max-width        : 434px;
       &.to-top {
         top    : auto;
         bottom : 0;

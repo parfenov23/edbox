@@ -147,7 +147,7 @@ function uploadComplete(evt, form) {
     block_fileInfo.find(".fileInfo .titleName").text(response.file_name);
     block_fileInfo.find(".fileInfo .fileType .icon").attr("class", "icon content");
     block_fileInfo.find(".fileInfo .fileType .icon").addClass(response.file_type);
-    show_error('Згруженно!', 3000);
+    show_error('Загружено!', 3000);
 }
 
 function uploadFailed(evt) {

@@ -6,6 +6,6 @@
     - if current_user.director
       ul.button-area
         li
-          a.orange-button href="/courses"  Выбрать из библиотеки
+          a.orange-button href="/courses?group_id=#{@group.id}"  Выбрать из библиотеки
         /li
           a.orange-button href="/my_course?type=favorite"  ПЕРЕЙТИ В ИЗБРАННОЕ
