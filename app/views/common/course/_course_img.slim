@@ -10,7 +10,7 @@
     .fade
     - progress = bunch_course.progress rescue 0
     - if progress == 0
-      - if bunch_course.model_type == "user"
+      - if (bunch_course.model_type == "user" rescue true)
         .tegs.h__BC-green Добавлен
       - else
         .tegs.h__BC-green Назначенный
