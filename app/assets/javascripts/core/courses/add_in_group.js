@@ -119,8 +119,8 @@ var clearPopup = function () {
     var popup = $("#js-add-course-to-shedule");
     var select = popup.find(".select");
     var calendar = popup.find(".calendar");
-    select.find(".titleSelectGroup").text("Выберите группу");
-    select.find(".selectGroupId").val("");
+    //select.find(".titleSelectGroup").text("Выберите группу");
+    //select.find(".selectGroupId").val("");
     calendar.removeClass("show");
     calendar.find(".datapicker__trigger").val("");
     popup.find(".courseId").val("");
