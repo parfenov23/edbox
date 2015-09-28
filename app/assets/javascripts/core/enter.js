@@ -111,11 +111,14 @@ $(document).ready(function () {
             data   : data,
             success: function (user) {
                 $.cookie('user_key', user.user_key);
-                if(form.data('redirect') == undefined || form.data('redirect') == ''){
-                    window.location.href = '/cabinet';
-                }else{
-                    window.location.href = form.data('redirect');
-                }
+                setTimeout(function(){
+                    if(form.data('redirect') == undefined || form.data('redirect') == ''){
+                        window.location.href = '/cabinet';
+                    }else{
+                        window.location.href = form.data('redirect');
+                    }
+                }, 1000);
+
             },
             error  : function () {
                 show_error('Произошла ошибка авторизации', 3000);
@@ -166,7 +169,9 @@ $(document).ready(function () {
 
 
     $("input[name='user[password]'], input[name=password_repeat]").change(function (e) {
-        changePassword(e);
+        if($(".auth__enter .btn-holder #submit").length){
+            changePassword(e);
+        }
     });
 
     $(".auth__reg-selected").click(function (e) {
