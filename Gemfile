@@ -19,6 +19,7 @@ gem 'bcrypt'
 # gem 'turbolinks'
 gem 'thin', '~> 1.5.0'
 gem 'babosa'
+gem 'skylight'
 #===================== webinar
 gem 'bigbluebutton_rails', github: 'mconf/bigbluebutton_rails', branch: 'master'
 #=====================
@@ -53,6 +54,7 @@ gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
 gem 'spawnling', '~>2.1'
 #=====================
+
 #======= cron
 gem 'whenever', :require => false
 gem 'rufus-scheduler'
