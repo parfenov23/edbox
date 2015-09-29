@@ -13,20 +13,20 @@ namespace :server do
     commit = STDIN.gets.chomp
 
     p "Обновляю репозиторий"
-    p `git add .`
-    p `git commit -m '#{commit}'`
+    sh 'git add .'
+    sh "git commit -m '#{commit}'"
 
     valid = true
-    pull_log = p `git pull origin #{current_project[:rep]}`
+    pull_log = sh "git pull origin #{current_project[:rep]}"
 
     valid = false if pull_log.scan("CONFLICT").present?
     if valid
-      pull_log = p `git pull origin master` if current_project[:name] == "release"
+      pull_log = sh "git pull origin master" if current_project[:name] == "release"
       valid = false if pull_log.scan("CONFLICT").present?
       if valid
-        p `git push origin #{current_project[:rep]}`
+        sh "git push origin #{current_project[:rep]}"
         p "Запускаю деплой!"
-        p `cap #{current_project[:name]} deploy`
+        sh "cap #{current_project[:name]} deploy"
       end
     end
   end
