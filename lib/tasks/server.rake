@@ -17,11 +17,11 @@ namespace :server do
     sh "git commit -m '#{commit}'"
 
     valid = true
-    pull_log = sh "git pull origin #{current_project[:rep]}"
+    pull_log = p `git pull origin #{current_project[:rep]}`
 
     valid = false if pull_log.scan("CONFLICT").present?
     if valid
-      pull_log = sh "git pull origin master" if current_project[:name] == "release"
+      pull_log = p `git pull origin master` if current_project[:name] == "release"
       valid = false if pull_log.scan("CONFLICT").present?
       if valid
         sh "git push origin #{current_project[:rep]}"
