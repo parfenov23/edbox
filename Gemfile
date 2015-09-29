@@ -59,10 +59,7 @@ gem 'rufus-scheduler'
 #======
 
 group :production do
-  path = `pwd`
-  if (path.scan('beta_edbox').length  != 0)
-    gem 'skylight'
-  end
+  gem 'skylight'
 end
 
 group :development do
