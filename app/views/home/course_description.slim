@@ -25,16 +25,16 @@
 
   .course__title = course_title
   - if bunch_course.present?
-    - date_complete = local_time(bunch_course.date_complete)
+    - date_complete = local_time(bunch_course.date_complete) rescue nil
     - all_sections = bunch_course.bunch_sections
     - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
     - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
     - if !@course.paid || (@course.paid && current_user.get_account_type)
       .progress__block
-        .title.adaptive__title class=(date_complete < current_time ? "overdue" : "")
+        .title.adaptive__title class=((date_complete < current_time rescue false) ? "overdue" : "")
           .left-col Прогресс прохождения курса
-          - if (!bunch_course.complete rescue false)
-            .right-col = ltime(date_complete, "Завершить до ", 'short_min', false)
+          - if (!bunch_course.complete rescue false) && (bunch_course.model_type == "group")
+            .right-col = (ltime(date_complete, "Завершить до ", 'short_min', false) rescue nil)
             - if bunch_course.model_type == "user"
               .edit-menu.js__select-calendar
                 .edit-date href="#"
@@ -119,28 +119,27 @@
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
-                - if bunch_section.present? && (!bunch_section.complete rescue false)
+                - if bunch_section.present? && (!bunch_section.complete rescue false) && (bunch_course.model_type == "group")
                   .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
-                  - if bunch_course.model_type == "user"
-                    .edit-menu.js__select-calendar
-                      .edit-date href="#"
-                        i.icon-uniE8A3
-                      .hidden-calendar-wrp
-                        .hidden-calendar
-                          .calendar-header
-                            .back.icon
-                            |Выбор даты
-                          .calendar-holder
-                            .selected-value  Выберите дату
-                            .datapicker__trigger
-                        ul.hidden-list
-                          li.datapicker__trigger.js_actionBtn
-                            |Перенести дату окончания раздела
-                            - ts = "Дата оканчания раздела изменена"
-                            input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
-                              data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
-                            }
-                          /li.js_removeFavorite Удалить
+                  .edit-menu.js__select-calendar
+                    .edit-date href="#"
+                      i.icon-uniE8A3
+                    .hidden-calendar-wrp
+                      .hidden-calendar
+                        .calendar-header
+                          .back.icon
+                          |Выбор даты
+                        .calendar-holder
+                          .selected-value  Выберите дату
+                          .datapicker__trigger
+                      ul.hidden-list
+                        li.datapicker__trigger.js_actionBtn
+                          |Перенести дату окончания раздела
+                          - ts = "Дата оканчания раздела изменена"
+                          input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
+                            data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
+                          }
+                        /li.js_removeFavorite Удалить
 
                   / .action-btn.drunkenPig.js_actionBtn
                   /   i.icon.schedule
@@ -148,13 +147,14 @@
       
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
-                - class_block = ""
-                - hash_class = {}
-                - if (current_user.view_course?(@course) rescue false)
-                  - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                  - if bunch_attachment.present?
-                    - hash_class = {onclick: "window.location.href = '/attachment?id=#{attachment.id}'"}
-                  .item.js_blockAttachmentInProgram data-id=attachment.id class=(class_block + ' ' + ya_class) *hash_class
+                - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
+                - if current_user.present?
+                  - redirect_att = "/attachment?id=#{attachment.id}"
+                  - class_add_course = "js_addCourseToMyCourse"
+                form data-redirect=(redirect_att rescue nil) data-alert="false"
+                  - if current_user.present?
+                    input type="hidden" name="course_id" value=@course.id
+                  .item.js_blockAttachmentInProgram data-id=attachment.id class="#{class_block} #{ya_class} #{class_add_course rescue nil}"
                     .icon__block
                       i.icon class=attachment.class_type
                     .adaptive__title

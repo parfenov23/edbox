@@ -1,7 +1,7 @@
 - user = current_user
 - if user.present?
   = render "home/courses/pop_up"
-  - course_assigned = current_user.bunch_courses.find_by(model_type: "user").present?
+  - course_assigned = current_user.bunch_courses.find_by(model_type: "user", course_id: course.id).present?
   - if user.corporate? && user.director?
     .main__action.multi__action
       .inner__wrp
@@ -13,16 +13,17 @@
 
         .hidden__actions.is__visible
           - unless course_assigned
-            - ass_class = ((course_favorite rescue false) ? 'frst' : 'scnd')
-            - hash_params = { 'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", 'data-type' => "user"}
-            .item.main__action-tooltip-wrp.main__action-shadow.js_openPopup class = ass_class data-id="#{course.id}" *hash_params
-              i.icon.courses
-              .main__action-tooltip Добавить в мои курсы
+            form
+              input type="hidden" name="course_id" value=course.id
+              .item.main__action-tooltip-wrp.main__action-shadow.frst.js_addCourseToMyCourse
+                i.icon.courses
+                .main__action-tooltip Добавить в мои курсы
   - else
     - unless course_assigned
       .main__action.multi__action
         .inner__wrp
-          - hash_params = { 'data-hide' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-show' => ".title .addedMySchedule", 'data-type' => "user"}
-          .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_openPopup data-id="#{course.id}" *hash_params
-            i.icon.courses
-            .main__action-tooltip Добавить в мои курсы
+          form
+            input type="hidden" name="course_id" value=course.id
+            .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_addCourseToMyCourse
+              i.icon.courses
+              .main__action-tooltip Добавить в мои курсы

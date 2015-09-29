@@ -50,8 +50,7 @@ module Api::V1
 
     def update_course
       course = Course.find(params[:course_id])
-      date_complete = course.online? ? course.webinar_deadline.to_s : params[:date_complete]
-      if (bunch_course = BunchCourse.build(course.id, nil, date_complete, "user", current_user.id, params[:sections]))
+      if (bunch_course = BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
         render json: bunch_course.as_json
       else
         render_error(500, 'Проверьте данные')

@@ -47,11 +47,11 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
 
         /.item
         /  .notification__with-qty ...
-        - if namePage == "cabinet"
-          .item.js_openLeftSideBar.js_loadMySchedule.ya_schedule_icon_click data-id="js-schedule-cabinet"
-            i.schedule.icon
-          .item.js_openLeftSideBar data-id="js-favorite-courses"
-            i.star.icon
+        /- if namePage == "cabinet"
+        /  .item.js_openLeftSideBar.js_loadMySchedule.ya_schedule_icon_click data-id="js-schedule-cabinet"
+        /    i.schedule.icon
+        /  .item.js_openLeftSideBar data-id="js-favorite-courses"
+        /    i.star.icon
         - if namePage == "courseMaterial"
           .item.js_openLeftSideBar data-id="js-notification-courses"
             i.notes.icon
