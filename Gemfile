@@ -58,16 +58,13 @@ gem 'whenever', :require => false
 gem 'rufus-scheduler'
 #======
 
-# group :production do
-#   path = `pwd`
-#   if (path.scan('beta_edbox').length  != 0)
-#     gem 'better_errors'
-#     gem 'binding_of_caller'
-#   end
-# end
 group :production do
-  gem 'skylight'
+  path = `pwd`
+  if (path.scan('beta_edbox').length  != 0)
+    gem 'skylight'
+  end
 end
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

@@ -93,7 +93,7 @@ var ajaxUpdateSection = function (type, btn) {
     var form = btn.closest("form");
     $.ajax({
         type       : 'PUT',
-        url        : '/api/v1/' + type + '/' + form.data("id"),
+        url        : '/api/v1/' + type + '/' + form.attr("data-id"),
         processData: false,
         contentType: false,
         cache      : false,
@@ -181,7 +181,7 @@ var onChangeEditAttachment = function (input_incl) {
         block_info.find(".description").text(input.val());
         input_file.attr("name", "");
     }
-    if (input.attr("name") == "attachment[full_text]"){
+    if (input.attr("name") == "attachment[full_text]" || input.attr("name") == "attachment[duration]"){
         input_file.attr("name", "");
     }
 

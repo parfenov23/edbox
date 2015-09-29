@@ -345,6 +345,9 @@
         }
         .title.input_section {
           @include blockHelpError;
+          &:hover {
+            background-color : transparent;
+          }
           .helpError {
             .com-top-tooltip {
               left : 5px !important;
@@ -443,6 +446,9 @@
                 .form_edit {
                   width : 904px;
                   @include btnRemove;
+                  &:hover {
+                    background-color : transparent;
+                  }
                   .remove {
                     top   : 0px;
                     right : 35px;
@@ -681,6 +687,9 @@
       .addedTest {
         border-top  : 1px solid rgba(0, 0, 0, 0.26);
         padding-top : 24px;
+        &:hover{
+          background-color: transparent;
+        }
         .testHolder {
           .testIssue {
             @include blockHelpError;
