@@ -19,7 +19,6 @@ gem 'bcrypt'
 # gem 'turbolinks'
 gem 'thin', '~> 1.5.0'
 gem 'babosa'
-gem 'skylight'
 #===================== webinar
 gem 'bigbluebutton_rails', github: 'mconf/bigbluebutton_rails', branch: 'master'
 #=====================
@@ -36,7 +35,6 @@ gem 'carrierwave'
 gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
-
 
 
 gem 'less-rails', '~> 2.7.0'
@@ -67,7 +65,9 @@ gem 'rufus-scheduler'
 #     gem 'binding_of_caller'
 #   end
 # end
-
+group :production do
+  gem 'skylight'
+end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
