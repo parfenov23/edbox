@@ -119,9 +119,10 @@ var clearPopup = function () {
     var popup = $("#js-add-course-to-shedule");
     var select = popup.find(".select");
     var calendar = popup.find(".calendar");
-    select.find(".titleSelectGroup").text("Выберите группу");
-    select.find(".selectGroupId").val("");
     calendar.removeClass("show");
+    //select.find(".titleSelectGroup").text("Выберите группу");
+    //select.find(".selectGroupId").val("");
+
     calendar.find(".datapicker__trigger").val("");
     popup.find(".courseId").val("");
     installTitleFormPopup(0);

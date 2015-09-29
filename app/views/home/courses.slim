@@ -4,7 +4,7 @@
   = render "home/courses/groups"
 .inner-content
 
-  #courses.content-courses.courses-list
+  #courses.content-courses.courses-list.cabinet__block__v2
     - @courses.each do |course|
       = render "home/courses/course", {course: course, type: 'courses'}
     = render "home/courses/pop_up"

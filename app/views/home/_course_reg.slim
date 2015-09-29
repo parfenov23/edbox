@@ -4,7 +4,7 @@
       img src="/assets/logo.svg"
     .auth__title-top
       img.logo__img src="/assets/logo_auth.svg"
-    form.auth__top.auth__enter.js_registrationUser
+    form.auth__top.auth__enter.js_registrationUser data-redirect="/course_description?id=#{@course.id}"
       .auth__title Регистрация
       .auth__reg-block
         .auth__reg-title.auth__reg-data Персональные данные
@@ -45,7 +45,7 @@
           a.auth_agree-link href="/oferta" target='_blank' договором оферты&nbsp;
           | принимаю условия договора
       .have__acc
-        a.auth__what href="/sign_in"  У меня уже есть аккаунт
+        a.auth__what href="/sign_in?redirect=#{@course.id}"  У меня уже есть аккаунт
       .btn-holder
         #submit.btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.ya_reg_sign_in data-phoenix-action="remove"  Создать аккаунт
 .not__auth-block

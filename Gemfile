@@ -37,6 +37,7 @@ gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
 
+
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
@@ -57,15 +58,12 @@ gem 'whenever', :require => false
 gem 'rufus-scheduler'
 #======
 
-# group :production do
-#   path = `pwd`
-#   if (path.scan('beta_edbox').length  != 0)
-#     gem 'better_errors'
-#     gem 'binding_of_caller'
-#   end
-# end
+group :production do
+  gem 'skylight'
+end
 
 group :development do
+  gem 'rails-erd'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher', '0.6.1'

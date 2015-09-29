@@ -8,9 +8,12 @@
         .tooltip.is__bottom Отменить
     .action__block
       .btn.btn-flat.is__blue.js_removeUser УДАЛИТЬ
-  - text_title = "Не добавлено ни одного пользователя"
-  - text_title = "Добавлено #{rus_case(@members.count, 'пользователь', 'пользователя', 'пользователей')}" if @members.present?
-  .members__title.h__text_15-24 = text_title
+  - if @members.present?
+    - text_title = "Добавлено #{rus_case(@members.count, 'пользователь', 'пользователя', 'пользователей')}"
+    .members__title.h__text_15-24 = text_title
+  - else
+    .members
+      .title Чтобы добавить участника, введите его email и отправьте приглашение.
   .container
     .members
       .members__invite

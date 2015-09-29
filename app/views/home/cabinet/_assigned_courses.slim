@@ -1,5 +1,5 @@
 .carusel-wrp
-  - title = current_user.corporate ? "Назначенные курсы" : "Мои курсы"
+  - title = ((type_course == 'group') rescue true) ? "Назначенные курсы" : "Мои курсы"
   .title = title
   .info-box
     .legend-info
@@ -34,8 +34,8 @@
                         .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
                       .datapicker__trigger.incDocumentReady
                     ul.hidden-list
-                      - text_data = "Дата оканчания курса изменена"
-                      li data-show="hidden-calendar" Перенести дату окончания курса
+                      /- text_data = "Дата оканчания курса изменена"
+                      /li data-show="hidden-calendar" Перенести дату окончания курса
                       - ts = "Курс удален!"
                       li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id  Удалить
             .author

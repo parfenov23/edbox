@@ -59,14 +59,14 @@
           .completed style ="width: #{complete_proc}%"
         .info
           .precent Пройдено #{complete_proc} %
-          .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "лекции", "лекций", "лекций")}
+          .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "раздела", "разделов", "разделов")}
 
   .course__info
     .adaptive__title
       .left-col style="height: 56px;"
         .item
           - section_count = @course.sections.count
-          = rus_case(section_count, "лекция", "лекции", "лекций")
+          = rus_case(section_count, "раздел", "раздела", "разделов")
           i.courses.icon
         .item
           - duration = (@course.full_duration.to_i rescue 0)

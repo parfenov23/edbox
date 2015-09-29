@@ -108,9 +108,11 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
       /  a.label href="/my_course?type=assigned" Курсы
 
       - if current_user.corporate? && current_user.director? && !current_user.contenter
-        .item class=(namePage == "schedule" ? "is__active" : "")
-          i.schedule.icon
-          a.label href="/schedule" Расписание
+        - company = current_user.company
+        - if company.present? && company.groups.present?
+          .item class=(namePage == "schedule" ? "is__active" : "")
+            i.schedule.icon
+            a.label href="/schedule" Расписание
 
       - if current_user.corporate && !current_user.contenter
         .item class=(namePage == "group" ? "is__active" : "")
@@ -121,7 +123,7 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
             i.groups.icon
             a.label href="/members" Участники
 
-      - if current_user.contenter
+      - if current_user.contenter || (Rails.env.development?)
         .item class=(namePage == "contenter_admin" ? "is__active" : "")
           i.schedule.icon
           a.label href="/contenter/admin/categories" Администрирование

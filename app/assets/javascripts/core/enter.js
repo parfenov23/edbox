@@ -105,13 +105,22 @@ $(document).ready(function () {
         var btn = $(this);
         var form = btn.closest("form");
         var data = form.serialize();
+        show_error('Идет проверка данных', 3000);
         $.ajax({
             type   : 'POST',
             url    : '/api/v1/sessions/auth',
             data   : data,
             success: function (user) {
                 $.cookie('user_key', user.user_key);
-                window.location.href = '/cabinet';
+                show_error('Успешно', 3000);
+                setTimeout(function(){
+                    if(form.data('redirect') == undefined || form.data('redirect') == ''){
+                        window.location.href = '/cabinet';
+                    }else{
+                        window.location.href = form.data('redirect');
+                    }
+                }, 1000);
+
             },
             error  : function () {
                 show_error('Произошла ошибка авторизации', 3000);
@@ -142,7 +151,12 @@ $(document).ready(function () {
                 //},
                 success: function (m) {
                     $.cookie('user_key', m.user_key);
-                    window.location.href = '/cabinet';
+                    if(form.data('redirect') == undefined){
+                        window.location.href = '/cabinet';
+                    }else{
+                        window.location.href = form.data('redirect');
+                    }
+
                 },
                 error  : function () {
                     show_error('Произошла ошибка регистрации', 3000);
@@ -157,7 +171,9 @@ $(document).ready(function () {
 
 
     $("input[name='user[password]'], input[name=password_repeat]").change(function (e) {
-        changePassword(e);
+        if($(".auth__enter .btn-holder #submit").length){
+            changePassword(e);
+        }
     });
 
     $(".auth__reg-selected").click(function (e) {

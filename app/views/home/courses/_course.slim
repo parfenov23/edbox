@@ -2,41 +2,50 @@ figure.corses-prev
   .image class=(course.material? ? "material" : "")
     - unless course.material?
       img src = course.get_image_path(694, 384)
-      .fade
     - else
       - attachment = course.attachments.last
-      i.icon class=(attachment.file_type rescue "other")
-    .course__type-wrp
-      - course.bunch_tags.each do |bunch_tag|
-        .course-type = (bunch_tag.tag.title rescue nil)
+      i.icon.icon_material class=(attachment.file_type rescue "other")
+    - category = course.bunch_categories.last.category.title rescue nil
+    - if category.present?
+      .fade
+      .course__type-wrp
+        .course-type.h__text_15-24
+          i.icon.teg style="margin-right: 6px;"
+          = category
     = render "home/courses/added_btn", {course: course, type: type}
 
   - bunch_course_present = course.find_bunch_course(current_user.id, ["user", "group"]).present?
   - link = "/course_description?id=#{course.id}"
-  - add_class = (course.material? ? (!bunch_course_present ? "js_goToAttachmentLock" : "") : "")
   figcaption
-    a href=link class=add_class
-      .title id="titleCoursePrev#{course.id}"
-        = course.title
-        - unless course.paid
-          |  (бесплатный)
-        .shadow
-    - unless course.material? || course.online?
-      .author
-        = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-      .info-block
-        .duration
-          - duration = (course.duration.to_i rescue 0)
-          = rus_case(duration, "час", "часа", "часов")
-          i.icon
-        .qty-lectures
-          - section_count = course.sections.count
-          = rus_case(section_count, "лекция", "лекции", "лекций")
-          i.icon
-        .completed-courses
-          |Прошли курс
-          i.icon
-    - if course.online?
-      .author
-        = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-      .info-block Онлайн - курс
+    - if course.material?
+      - redirect_att = "/course_description?id=#{course.id}"
+      - add_class = "js_addCourseToMyCourse"
+      - link = "javascript:void(0)"
+    form data-redirect=(redirect_att rescue nil) data-alert="false"
+      - if course.material?
+        input type="hidden" name="course_id" value=course.id
+      a href=link class=(add_class rescue nil)
+        .title id="titleCoursePrev#{course.id}"
+          = course.title
+          - unless course.paid
+            |  (бесплатный)
+          .shadow
+      - unless course.material? || course.online?
+        .author
+          = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
+        .info-block
+          .duration
+            - duration = (course.duration.to_i rescue 0)
+            = rus_case(duration, "час", "часа", "часов")
+            i.icon
+          .qty-lectures
+            - section_count = course.sections.count
+            = rus_case(section_count, "раздел", "раздела", "разделов")
+            i.icon
+          .completed-courses
+            |Прошли курс
+            i.icon
+      - if course.online?
+        .author
+          = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
+        .info-block Онлайн - курс

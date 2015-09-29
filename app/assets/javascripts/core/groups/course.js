@@ -287,7 +287,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.hidden-list .js_removeCourseToGroup', function () {
         var btn = $(this);
-        confirm("Вы действительно хотате удалить курс?", function () {
+        confirm("Вы действительно хотите удалить курс?", function () {
             removeCourseToGroup(btn)
         });
     });
@@ -320,7 +320,7 @@ $(document).ready(function () {
     $(document).on('click', '.js_removeCourseMy',
         function () {
             var btn = $(this);
-            confirm("Вы действительно хотате удалить курс?",
+            confirm("Вы действительно хотите удалить курс?",
                 function () {
                     removeCourseMy(btn, btn.data("text"));
                 }
