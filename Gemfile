@@ -36,6 +36,8 @@ gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
+
+
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
@@ -51,7 +53,6 @@ gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
 gem 'spawnling', '~>2.1'
 #=====================
-
 #======= cron
 gem 'whenever', :require => false
 gem 'rufus-scheduler'

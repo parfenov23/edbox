@@ -149,57 +149,7 @@
           margin-top  : 2px;
           margin-left : 17px;
           margin-right: 72px;
-
-          .ava {
-            position: relative;
-            width: 144px;
-            height: 144px;
-            @include circle-img;
-            input {
-              display: block;
-              width: 144px;
-              height: 144px;
-              position: absolute;
-              top: 0;
-              left: 0;
-              z-index: 10;
-              opacity: 0;
-            }
-            .shadow  {
-              position: absolute;
-              opacity: 0;
-              width: 48px;
-              height: 48px;
-              top: 49px;
-              left: 48px;
-              background: rgba(0,0,0,0.54);
-              @include circle-img;
-              text-align: center;
-              @include transition;
-              &::before {
-                color: rgba(255,255,255,0.70);
-                content: "\E7E3";
-                line-height: 48px;
-                font-size: 24px;
-              }
-            }
-            img {
-              display: block;
-              width  : 100%;
-              @include circle-img;
-            }
-            &:hover {
-              .shadow {
-                @include transition;
-                opacity: 1;
-              }
-            }
-            .tooltip {
-
-            }
-
-          }
-
+          @import "common/elements/ava";
         }
 
         .info__list {
@@ -316,19 +266,19 @@
       width: 450px;
 
       .name {
-        font  : 400 18px/1 'Roboto';
+        font  : 400 18px/1 "Roboto";
         color : rgba(0,0,0,.87);
         margin: 0 0 12px;
       }
 
       .state {
-        font  : 400 13px/1 'Roboto';
+        font  : 400 13px/1 "Roboto";
         color : rgba(0,0,0,.87);
         margin: 0 0 24px;
       }
 
       .account {
-        font         : 400 13px/1 'Roboto';
+        font         : 400 13px/1 "Roboto";
         color        : rgba(0,0,0,.54);
         margin-bottom: 8px;
 
@@ -349,14 +299,14 @@
     padding: 24px 24px 72px 32px;
 
     .title {
-      font  : 400 18px/18px 'Roboto';
+      font  : 400 18px/18px "Roboto";
       color : rgba(0,0,0,.54);
       margin: 0 0 32px;
     }
 
     .password {
       margin: 0 0 12px;
-      font  : 400 13px/13px 'Roboto';
+      font  : 400 13px/13px "Roboto";
       color : rgba(0,0,0,.26);
     }
   }
@@ -371,7 +321,7 @@
       background: #fff3eb;
 
       .text {
-        font  : 400 13px/18px 'Roboto';
+        font  : 400 13px/18px "Roboto";
         color : rgba(0,0,0,.54);
         margin: 0 0 20px;
 
@@ -393,7 +343,7 @@
     .title {
       float : left;
       width : 70%;
-      font  : 400 18px/24px 'Roboto';
+      font  : 400 18px/24px "Roboto";
       color : rgba(0,0,0,.87);
       margin: 0 5% 8px 0;
     }
@@ -401,14 +351,14 @@
     .time {
       float     : right;
       width     : 25%;
-      font      : 400 13px/18px 'Roboto';
+      font      : 400 13px/18px "Roboto";
       color     : rgba(0,0,0,.54);
       margin    : 0 0 8px;
       text-align: right;
     }
 
     .quantity {
-      font : 400 13px/20px 'Roboto';
+      font : 400 13px/20px "Roboto";
       color: rgba(0,0,0,.87);
     }
 
@@ -421,7 +371,7 @@
       &__item {
         float: left;
         width: calc(100%/3);
-        font : 400 13px/18px 'Roboto';
+        font : 400 13px/18px "Roboto";
         color: rgba(0,0,0,.54);
 
         &-top {

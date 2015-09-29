@@ -18,6 +18,7 @@
       white-space: nowrap;
       position: relative;
       list-style-type: none;
+
       .datapicker__trigger {
         background: none;
         border: none;
@@ -47,5 +48,19 @@
           line-height : 20px;
           background  : #F5F5F5;
       }
+  }
+  &.two__cols {
+    width: 100%;
+    top: 29px;
+    li {
+      display: flex;
+      .name {
+        width: 408px;
+      }
+      .email {
+        width: 280px;
+        margin-right: 16px;
+      }
+    }
   }
 }

@@ -120,28 +120,28 @@
             font-size  : 37px;
             margin-top : -6px;
             &::before {
-                content : '\E621';
+                content : "\E621";
             }
         }
         .audio {
             font-size  : 32px;
             margin-top : -3px;
             &::before {
-                content : '\E603';
+                content : "\E603";
             }
         }
         .video {
             font-size   : 26px;
             margin-top  : 4px;
             &::before {
-                content : '\e602';
+                content : "\e602";
             }
         }
         .test {
             font-size   : 34px;
             margin-top  : -3px;
             &::before {
-                content : '\e601';
+                content : "\e601";
             }
         }
 

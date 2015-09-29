@@ -39,7 +39,7 @@
             position: relative;
             color: $primoryColor;
             &:before {
-              content: '\2605';
+              content: "\2605";
               position: absolute;
               top: 0;
               left: 0;
@@ -78,7 +78,7 @@
           line-height: 16px;
           &:before {
             font-size: 16px;
-            content: '\2605';
+            content: "\2605";
             margin-right: 3px;
           }
         }
@@ -149,7 +149,7 @@
               position: relative;
               color: $primoryColor;
               &:before {
-                content: '\2605';
+                content: "\2605";
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -206,7 +206,7 @@
                   position: relative;
                   color: $primoryColor;
                   &:before {
-                    content: '\2605';
+                    content: "\2605";
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -247,7 +247,7 @@
     color: $primoryColor;
     &::before {
       @include transition;
-      content: 'Показать все отзывы';
+      content: "Показать все отзывы";
     }
   }
 
@@ -255,7 +255,7 @@
     .show__more {
       &::before {
         transition: max-height 0.5s ease-in;
-        content: 'Скрыть отзывы';
+        content: "Скрыть отзывы";
       }
     }
     .review__list {
@@ -699,7 +699,7 @@
               left       : 0;
               display    : block;
               width      : 100%;
-              content    : '\E899';
+              content    : "\E899";
               color      : $primoryColor;
             }
             i {

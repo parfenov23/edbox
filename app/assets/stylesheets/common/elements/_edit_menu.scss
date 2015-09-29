@@ -10,16 +10,16 @@
     i {
       font-size: 26px;
       &::before {
-        font-family: 'Icons';
+        font-family: "Icons";
         line-height: 32px;
-        content    : '\E8A3';
+        content    : "\E8A3";
         color      : rgba(0, 0, 0, .26);
       }
     }
   }
 
   .hidden-calendar-wrp {
-    @import 'common/elements/hidden-list';
+    @import "common/elements/hidden-list";
     .hidden-calendar {
       display         : none;
       min-width       : 345px;
@@ -48,7 +48,7 @@
           cursor      : pointer;
           &::before {
             color  : rgba(0,0,0,0.87);
-            content: '\E893';
+            content: "\E893";
           }
         }
       }
