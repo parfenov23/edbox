@@ -1,5 +1,5 @@
 .schedule-cabinet {
-  @import 'common/elements/select';
+  @import "common/elements/select";
   .month_chouse {
     margin-bottom: 37px;
   }
@@ -21,7 +21,7 @@
           .event-info {
             position: relative;
             &::before {
-              content: '';
+              content: "";
               display: block;
               height: 100%;
               width: 4px;
@@ -72,7 +72,7 @@
               i {
                 &::before {
                   color: rgba(0, 0, 0, 0.26);
-                  font-family: 'Icons';
+                  font-family: "Icons";
                   content: "\E8A3";
                   line-height: 32px;
                 }
@@ -86,7 +86,7 @@
                 // z-index: 10;
                 height: 100%;
               .hidden-calendar-wrp{
-                @import 'common/elements/hidden-list';
+                @import "common/elements/hidden-list";
                 .hidden-calendar {
                   display: none;
                   min-width: 345px;
@@ -114,7 +114,7 @@
                       font-size: 16px;
                       &::before {
                         color: rgba(0,0,0,0.87);
-                        content: '\E893'
+                        content: "\E893"
                       }
                     }
                   }

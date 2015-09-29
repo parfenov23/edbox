@@ -1,0 +1,36 @@
+= render "home/header/header", {namePage: "other", titlePage: '2.1 Тест: Жарим, парим, варим'}
+          
+
+.inner-content
+  .add__leadings
+    .page__title.h__text_24-32 Ведущие курсов
+    .leadings__qty.h__text_15-24 Не добавлено ни одного ведущего.
+    .leadings__list
+    
+    
+      .item.is__active
+        .hidden__part
+          .row
+            .ava.ava__144.js__tooltip
+              img src="/images/ava.png"
+              input type="file"
+              .shadow.icon
+              .tooltip.is__bottom Изменить фотографию
+              
+            .description
+              .com__input-item.item.empty
+                input.form-control.floating-label name="email" type="email" placeholder="e-mail"
+                hr
+                ul.hidden-list.two__cols
+                  li
+                    .name Новосёлов Иннокентий
+                    .email novodvorskaya@masshtab.am
+                    
+              .com__input-item.item.empty
+                input.form-control.floating-label name="fio" type="text" placeholder="Имя и фамилия" 
+                hr
+              .com__input-item.item.empty.is__textarea
+                textarea.form-control.floating-label data-maxHeight="95" name="about" type="text" placeholder="Информация о ведущем" 
+                hr
+          .action__block
+            .btn.disable СОХРАНИТЬ

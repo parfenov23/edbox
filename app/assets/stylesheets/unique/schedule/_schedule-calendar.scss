@@ -60,7 +60,7 @@
         .day-event {
           position: relative;
           &::before {
-              content       : '';
+              content       : "";
               display       : block;
               width         : 4px;
               height        : 100%;
@@ -128,7 +128,7 @@
     .item {
       position: relative;
       &::before {
-          content       : '';
+          content       : "";
           display       : block;
           width         : 4px;
           height        : 100%;

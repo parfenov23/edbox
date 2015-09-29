@@ -239,8 +239,18 @@ $(document).ready ->
   toggleNotesAsideHeight()
   authCorpAcc()
   commonToggle('.courses-aside.add__users .item')
+  commonToggle('.leadings__list .item')
   activeMenu()
 
+
+  $(document).on 'keyup', '.com__input-item textarea, .com__input-item input', ->
+    console.log $(@).val()
+    list = $ @ .closest '.com__input-item'
+      .find '.hidden-list'
+    if $(@).val() == ''
+      list.fadeOut 300
+    else
+      list.fadeIn 300
 
 
   $('.btn-group > .btn').on 'click', (e) ->
@@ -378,7 +388,7 @@ $(document).ready ->
       $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
-      show_error('Установите срок прохождения курса', 3000);
+      show_error('Установите срок прохождения курса', 3000)
 
 #  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
 #    $(@).closest("form").find(".action-btn").show()
@@ -419,7 +429,7 @@ $(document).ready ->
     parenBlock.find('.hidden-list').show()
 
   $(document).on 'click', '.js__backing', ->
-    $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+    $('.hidden-calendar-wrp .hidden-list, .hidden-calendar').hide()
     $('.hidden__content').removeClass 'is__show_calendar'
     $('.js__action-menu').removeClass 'is__active'
     $(@).removeClass('is__active')

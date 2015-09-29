@@ -53,7 +53,7 @@
   bottom     : 0;
   width      : 0;
   height     : 2px;
-  content    : '';
+  content    : "";
 
   //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
   transition : 0.2s ease all;
@@ -112,7 +112,7 @@
   .container-inner {
     padding : 21px 32px 5px;
   }
-  input[type='submit'] {
+  input[type="submit"] {
     float : right;
   }
 }
@@ -127,7 +127,7 @@
   color       : rgba(40, 46, 62, .54);
 }
 
-input[type='text'] {
+input[type="text"] {
 
   //@extend %extend_1;
   &:focus {
@@ -156,7 +156,7 @@ input[type='text'] {
   }
 }
 
-input[type='submit'] {
+input[type="submit"] {
   font-size        : 14px;
   font-weight      : 500;
   line-height      : 20px;
@@ -223,7 +223,7 @@ input[type='submit'] {
         width         : 47px;
         height        : 47px;
         margin-top    : -24px;
-        content       : '\e899';
+        content       : "\e899";
         text-align    : center;
         color         : $primoryColor;
         border        : 2px solid $primoryColor;
@@ -396,9 +396,9 @@ input[type='submit'] {
   i {
     font-size : 26px;
     &::before {
-      font-family : 'Icons';
+      font-family : "Icons";
       line-height : 32px;
-      content     : '\E8A3';
+      content     : "\E8A3";
       color       : rgba(0, 0, 0, .26);
     }
   }
@@ -433,27 +433,27 @@ input[type='submit'] {
         top       : 0;
         left      : 4px;
         ::before {
-          font-family : 'Icons';
+          font-family : "Icons";
         }
       }
       &.hours {
         i {
           &::before {
-            content : '\E71F';
+            content : "\E71F";
           }
         }
       }
       &.lections {
         i {
           &::before {
-            content : '\E6B2';
+            content : "\E6B2";
           }
         }
       }
       &.courses-end {
         i {
           &::before {
-            content : '\E8D6';
+            content : "\E8D6";
           }
         }
       }
@@ -648,7 +648,7 @@ input[type='submit'] {
 .courses-list:after {
   display : block;
   clear   : both;
-  content : '';
+  content : "";
 }
 
 .md-effect-1 .md-content {

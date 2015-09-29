@@ -110,9 +110,9 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
       - if current_user.corporate? && current_user.director? && !current_user.contenter
         - company = current_user.company
         - if company.present? && company.groups.present?
-        .item class=(namePage == "schedule" ? "is__active" : "")
-          i.schedule.icon
-          a.label href="/schedule" Расписание
+          .item class=(namePage == "schedule" ? "is__active" : "")
+            i.schedule.icon
+            a.label href="/schedule" Расписание
 
       - if current_user.corporate && !current_user.contenter
         .item class=(namePage == "group" ? "is__active" : "")

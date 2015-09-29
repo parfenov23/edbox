@@ -91,7 +91,7 @@
           cursor       : pointer;
           &::before {
             color   : rgba(0, 0, 0, 0.87);
-            content : '\E893'
+            content : "\E893"
           }
         }
       }
@@ -140,7 +140,7 @@
                 text-align    : center;
                 color         : rgba(0, 0, 0, 0.26);
                 &::before {
-                  content     : '\E8AF';
+                  content     : "\E8AF";
                   font-size   : 20px;
                   line-height : 32px;
                 }
@@ -194,7 +194,7 @@
       top       : 2px;
       font-size : 24px;
       &::before {
-        content : '\E8D6';
+        content : "\E8D6";
       }
     }
     .select-trigger {
@@ -250,7 +250,7 @@
     cursor       : pointer;
     &::before {
       font-family : Icons, sans-serif;
-      content     : '\E7B6';
+      content     : "\E7B6";
       position    : absolute;
       right       : -32px;
       top         : 50%;
@@ -278,7 +278,7 @@
       top       : 2px;
       font-size : 24px;
       &::before {
-        content : '\E8AF';
+        content : "\E8AF";
       }
     }
   }
@@ -295,7 +295,7 @@
       top       : 2px;
       font-size : 24px;
       &::before {
-        content : '\E8AF';
+        content : "\E8AF";
       }
     }
     .calendar-trigger {
