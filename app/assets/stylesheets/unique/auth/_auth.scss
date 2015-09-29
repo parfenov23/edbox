@@ -469,7 +469,7 @@
           position    : absolute;
           top         : 0;
           left        : 0;
-          font        : 400 13px/20px 'Roboto';
+          font        : 400 13px/20px "Roboto";
           color       : rgba(0,0,0,0.54);
           padding-left: 28px;
           min-height  : 16px;
@@ -493,7 +493,7 @@
       left    : 24px;
 
       &-link {
-        font           : 400 12px/12px 'Roboto';
+        font           : 400 12px/12px "Roboto";
         color          : rgba(0, 0, 0, .54);
         text-decoration: none;
       }
@@ -502,7 +502,7 @@
     .auth__what {
       float     : left;
       opacity   : 0.8;
-      font      : 400 12px/12px 'Roboto';
+      font      : 400 12px/12px "Roboto";
       color     : #00bcd8;
       transition: all 0.3s ease;
       cursor    : pointer;
@@ -513,7 +513,7 @@
     }
 
     &-text {
-      font: 300 13px/20px 'Roboto';
+      font: 300 13px/20px "Roboto";
     }
 
     .btn-holder {
@@ -547,7 +547,7 @@
     border-radius: 0 0 2px 2px;
 
     .title {
-      font  : 400 13px/20px 'Roboto';
+      font  : 400 13px/20px "Roboto";
       color : rgba(0, 0, 0, .54);
       margin: 0 0 12px;
     }
@@ -560,7 +560,7 @@
         width        : calc(50% - 3px);
         height       : 30px;
         margin       : 0 6px 6px 0;
-        font         : 400 13px/30px 'Roboto';
+        font         : 400 13px/30px "Roboto";
         color        : #fff;
         border-radius: 2px;
         text-align   : center;
@@ -590,7 +590,7 @@
     padding : 32px 24px 96px;
 
     .auth__title {
-      font      : 400 18px/24px 'Roboto';
+      font      : 400 18px/24px "Roboto";
       text-align: left;
     }
 
@@ -642,7 +642,7 @@
     padding      : 24px;
     border-radius: 2px;
     background   : rgba(0, 0, 0, .8);
-    font         : 400 13px/20px 'Roboto';
+    font         : 400 13px/20px "Roboto";
     color        : #fff;
     text-align   : center;
   }
@@ -655,7 +655,7 @@
     &:before {
       position: absolute;
       z-index : 12;
-      font    : 14px/14px 'Icons';
+      font    : 14px/14px "Icons";
       color   : rgba(0, 0, 0, .54);
     }
 
@@ -667,7 +667,7 @@
       &:before {
         top    : 9px;
         left   : 4px;
-        content: '\e8d9';
+        content: "\e8d9";
       }
     }
 
@@ -679,7 +679,7 @@
       &:before {
         top    : 9px;
         left   : 5px;
-        content: '\e637';
+        content: "\e637";
       }
     }
 
@@ -712,7 +712,7 @@
     &-title {
       position: relative;
       padding : 0 0 0 30px;
-      font    : 400 13px/20px 'Roboto';
+      font    : 400 13px/20px "Roboto";
       color   : rgba(0, 0, 0, .54);
       margin  : 0 0 16px;
 
@@ -720,21 +720,21 @@
         position: absolute;
         left    : 4px;
         top     : 2px;
-        font    : 400 18px/12px 'Icons';
+        font    : 400 18px/12px "Icons";
         color   : rgba(0, 0, 0, .54);
       }
 
       &.auth__reg-data:before {
-        content: '\e8d9';
+        content: "\e8d9";
       }
 
       &.auth__reg-secutity:before {
-        content: '\e637';
+        content: "\e637";
       }
 
       &.auth__reg-type:before {
-        font   : 400 14px/12px 'Icons';
-        content: '\e600';
+        font   : 400 14px/12px "Icons";
+        content: "\e600";
       }
     }
 
@@ -750,14 +750,14 @@
       &ed {
         position: relative;
         width   : 180px;
-        font    : 400 13px/20px 'Roboto';
+        font    : 400 13px/20px "Roboto";
         color   : rgba(0, 0, 0, .87);
         cursor  : pointer;
 
         &:after {
           position  : absolute;
           display   : block;
-          content   : '';
+          content   : "";
           top       : 7px;
           right     : 0;
           width     : 0;
@@ -784,7 +784,7 @@
 
         &-item {
           padding: 6px 6px 6px 16px;
-          font   : 400 13px/20px 'Roboto';
+          font   : 400 13px/20px "Roboto";
           color  : rgba(0, 0, 0, .54);
           cursor : default;
 
@@ -806,7 +806,7 @@
   }
 
   .checkbox__holder .label {
-    font : 400 13px/20px 'Roboto';
+    font : 400 13px/20px "Roboto";
     color: rgba(0, 0, 0, .54);
   }
 
@@ -838,9 +838,9 @@
       margin: 0 24px 0 0;
 
       a:after {
-        font   : 400 20px/64px 'Icons';
+        font   : 400 20px/64px "Icons";
         color  : rgba(0, 0, 0, .54);
-        content: '\e893';
+        content: "\e893";
         cursor : pointer;
       }
     }
@@ -849,7 +849,7 @@
       float  : left;
       width  : calc(100% - 80px);
       padding: 0 24px 0 0;
-      font   : 400 20px/64px 'Roboto';
+      font   : 400 20px/64px "Roboto";
       color  : rgba(0, 0, 0, .54);
     }
   }
@@ -911,13 +911,13 @@
       margin: 0 0 20px;
 
       .title {
-        font         : 700 15px/20px 'Roboto';
+        font         : 700 15px/20px "Roboto";
         color        : #797979;
         margin-bottom: 16px;
       }
 
       .text {
-        font         : 400 13px/20px 'Roboto';
+        font         : 400 13px/20px "Roboto";
         color        : #666;
         margin-bottom: 8px;
       }
@@ -946,7 +946,7 @@
 
 .what__wrp {
   &-link {
-    font : 400 13px/20px 'Roboto';
+    font : 400 13px/20px "Roboto";
     color: rgba(0, 0, 0, .54);
   }
 }

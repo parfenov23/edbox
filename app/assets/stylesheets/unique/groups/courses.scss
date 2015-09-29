@@ -4,7 +4,7 @@
         position: relative;
         z-index: 8;
       .hidden-calendar-wrp{
-        @import 'common/elements/hidden-list';
+        @import "common/elements/hidden-list";
         .hidden-calendar {
           display: none;
           min-width: 345px;
@@ -33,7 +33,7 @@
               font-size: 16px;
               &::before {
                 color: rgba(0,0,0,0.87);
-                content: '\E893'
+                content: "\E893"
               }
             }
           }

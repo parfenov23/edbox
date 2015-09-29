@@ -246,7 +246,7 @@
       padding-right: 16px;
     }
     .authors {
-      @extend .title;
+      // @extend .title;
       color: $black_54;
       margin-bottom: 16px;
     }
@@ -333,7 +333,7 @@
   height: 408px;
   margin: 0 24px 32px 0;
   @include white__block(1,1);
-  @import 'unique/courses/info-block';
+  @import "unique/courses/info-block";
   &:nth-child(3n) {
     margin-right: 0;
   }
@@ -444,7 +444,7 @@
           display    : block;
           width      : 20px;
           height     : 20px;
-          content    : '+';
+          content    : "+";
           color      : $primoryColor;
         }
       }
@@ -477,12 +477,12 @@
       }
       .favorite {
         &::before {
-          content: '\E631';
+          content: "\E631";
         }
       }
       .schedule, .user_schedule {
         &::before {
-          content: '\E8AF';
+          content: "\E8AF";
         }
       }
       &:hover {
@@ -496,7 +496,7 @@
             left       : 10px;
             width      : 30px;
             height     : 20px;
-            content    : '\E8D6';
+            content    : "\E8D6";
             /* Oval 2 Copy 2: */
           }
         }
@@ -659,7 +659,7 @@
   height: 408px;
   margin: 0 24px 32px 0;
   @include white__block(1,1);
-  @import 'unique/courses/info-block';
+  @import "unique/courses/info-block";
   &:nth-child(3n) {
     margin-right: 0;
   }
@@ -772,7 +772,7 @@
           display    : block;
           width      : 20px;
           height     : 20px;
-          content    : '+';
+          content    : "+";
           color      : $primoryColor;
         }
       }
@@ -805,12 +805,12 @@
       }
       .favorite {
         &::before {
-          content: '\E631';
+          content: "\E631";
         }
       }
       .schedule {
         &::before {
-          content: '\E8AF';
+          content: "\E8AF";
         }
       }
       &:hover {
@@ -824,7 +824,7 @@
             left       : 10px;
             width      : 30px;
             height     : 20px;
-            content    : '\E8D6';
+            content    : "\E8D6";
             /* Oval 2 Copy 2: */
           }
         }

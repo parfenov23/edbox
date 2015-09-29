@@ -37,7 +37,7 @@
         &::before {
             position  : absolute;
             display   : block;
-            content   : '\E702';
+            content   : "\E702";
             top       : 35px;
             left      : 0;
             font-size : 26px;
@@ -88,7 +88,7 @@
                     color       : rgba(0, 0, 0, 0.54);
                     margin-left : 6px;
                     &::before {
-                        content   : '\E7B4';
+                        content   : "\E7B4";
                         font-size : 24px;
                     }
                 }
@@ -135,7 +135,7 @@
             .icon {
                 &::before {
                     font-size : 16px;
-                    content   : '\E8D6';
+                    content   : "\E8D6";
                 }
             }
         }
@@ -143,7 +143,7 @@
             .icon {
                 &::before {
                     font-size : 15px;
-                    content   : '\E6B2';
+                    content   : "\E6B2";
                 }
             }
         }
@@ -228,7 +228,7 @@
                     .icon {
                         font-size : 20px;
                         &::before {
-                            content : '\E8D6'
+                            content : "\E8D6"
                         }
                     }
                 }
@@ -236,7 +236,7 @@
                     right : 3px;
                     .icon {
                         &::before {
-                            content : '\E620'
+                            content : "\E620"
                         }
                     }
                 }
