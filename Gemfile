@@ -36,7 +36,6 @@ gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
-
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
@@ -63,6 +62,7 @@ group :production do
 end
 
 group :development do
+  gem 'rails-erd'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher', '0.6.1'

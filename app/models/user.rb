@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :company
   belongs_to :group
-  belongs_to :action_type
   has_many :bunch_groups, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
   has_many :courses, dependent: :destroy
