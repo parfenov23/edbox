@@ -6,10 +6,6 @@
 
   #courses.content-courses.courses-list.cabinet__block__v2
     - @courses.each do |course|
-      - begin
-        - cache course do
-          = render partial: course, locals: {type: 'courses'}
-      - rescue
-        = render partial: course, locals: {type: 'courses'}
+      = render "courses/course", {course: course,type: 'courses'}
     - if current_user.present?
       = render "home/courses/pop_up"
