@@ -1,5 +1,8 @@
 .inner-content
   #course
+    - if course.material?
+      h2 = course.title
+      .title = course.description
     .text__description
       .title = attachment.title
       .description = attachment.description
