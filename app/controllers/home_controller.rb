@@ -4,6 +4,7 @@ class HomeController < ActionController::Base
   before_action :is_corporate?, only: [:group]
 
   layout "application"
+  # caches_page :courses
 
   def index_page
     unless current_user.nil?
