@@ -291,6 +291,28 @@
     width           : 100%;
     height          : 100%;
   }
+  .play__btn {
+    position: absolute;
+    top: 208px;
+    width: 116px;
+    left: 50%;
+    margin-left: -58px;
+    padding-top: 52px;
+    cursor: pointer;
+    i {
+      color: #fff;
+      position: absolute;
+      font-size: 47px;
+      top: 0;
+      left: 50%;
+      margin-left: -25px;
+    }
+    span {
+      font-size: 15px;
+      color: #FFFFFF;
+      line-height: 24px;
+    }
+  }
 }
 
 .auth.is__course-description {
