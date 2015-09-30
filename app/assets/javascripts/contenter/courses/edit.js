@@ -307,12 +307,12 @@ pageLoad(function () {
         $(this).closest(".courses-aside").removeClass("show");
     });
 
-    if ($("#courseEditContenter").length){
+    if ($(".js_openAndPlayVideo").length){
         var video_block = $(".presentation__block .teaserVideoChange")[0];
-        elemFullScreen(video_block, $('#courseEditContenter .js_openAndPlayVideo')[0]);
+        elemFullScreen(video_block, $('.js_openAndPlayVideo')[0]);
 
-        $(document).on('click', '#courseEditContenter .js_removeTeaserToCourse', removeTeaserToCourse);
-        $(document).on('click', '#courseEditContenter .js_openAndPlayVideo', function () {
+        $(document).on('click', '.js_removeTeaserToCourse', removeTeaserToCourse);
+        $(document).on('click', '.js_openAndPlayVideo', function () {
             video_block.play();
         });
     }
