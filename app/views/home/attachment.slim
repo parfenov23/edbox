@@ -1,8 +1,9 @@
 - back_url = !@course.material? ? "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}" : "/courses"
 - header_title = !@course.material? ? @attachment.title : @course.title
 = render "home/header/header", {namePage: "courseMaterial", titlePage: header_title, btnBack: true, backUrl: back_url}
-= render "home/course_program/right_sidebar/notes_aside"
-- unless @course.material?
+- if current_user.present?
+  = render "home/course_program/right_sidebar/notes_aside"
+- unless @course.material? || !current_user.present?
   = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
 - unless @attachment.download
   - case @attachment.file_type
@@ -11,14 +12,15 @@
     - bsid = (@section.bunch_section(current_user.id).id rescue nil)
     - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid}
     - add_class = !@course.material? ? "js_completeAttachment" : "js_completeMaterial"
-    = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class}
+    = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class} if current_user.present?
   - when "test"
     = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
   - when "webinar"
     = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
 - else
   = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
-  - bsid = (@section.bunch_section(current_user.id).id rescue nil)
-  - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid}
-  - add_class = !@course.material? ? "js_completeAttachment" : "js_completeMaterial"
-  = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class}
+  - if current_user.present?
+    - bsid = (@section.bunch_section(current_user.id).id rescue nil)
+    - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid}
+    - add_class = !@course.material? ? "js_completeAttachment" : "js_completeMaterial"
+    = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class}

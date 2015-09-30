@@ -1,6 +1,6 @@
 = render "home/header/header", {namePage: "courses", titlePage: "Библиотека"}
 = render "home/courses/filter"
-- if current_user.corporate
+- if (current_user.corporate rescue false)
   = render "home/courses/groups"
 .inner-content
 
@@ -11,4 +11,5 @@
           = render partial: course, locals: {type: 'courses'}
       - rescue
         = render partial: course, locals: {type: 'courses'}
-    = render "home/courses/pop_up"
+    - if current_user.present?
+      = render "home/courses/pop_up"

@@ -371,12 +371,12 @@ $(document).ready ->
   $('.is__sooo-long .page__title').on 'click', ->
     $(@).next().toggle 300
 
-  $(window).scroll ->
-    scrollHeight = $('body').scrollTop()
-    if scrollHeight > 1
-      $('#page__header').addClass('is__white')
-    else
-      $('#page__header').removeClass('is__white')
+#  $(window).scroll ->
+#    scrollHeight = $('body').scrollTop()
+#    if scrollHeight > 1
+#      $('#page__header').addClass('is__white')
+#    else
+#      $('#page__header').removeClass('is__white')
 
   $('.js__show-aside-main-nav').on 'click', ->
     $('.js__left-aside, .js__backing').addClass('is__active')
