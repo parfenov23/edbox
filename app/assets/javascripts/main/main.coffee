@@ -111,12 +111,12 @@ figcaptionTitleEclipses = (el, height) ->
       $(element).addClass 'over-title'
 
 testList = ->
-  parenBlock = $('.content#tests')
-  if parenBlock.height() > $(window).height()
-    parenBlock.addClass('fixed-btm')
+  parentBlock = $('.content#tests')
+  if parentBlock.height() > $(window).height()
+    parentBlock.addClass('fixed-btm')
     $('.finish-test').css
-      width: parenBlock.width() + 'px'
-      left: parenBlock.offset().left + 'px'
+      width: parentBlock.width() + 'px'
+      left: parentBlock.offset().left + 'px'
 
 
 carusel = ->
@@ -222,6 +222,7 @@ hideElementOutOff = (elem, parentBlock, e) ->
   $('body').bind 'click.dropdown', (ev) ->
     unless $(e.target).closest(parentBlock).length == $(ev.target).closest(parentBlock).length
       elem.fadeOut()
+      parentBlock.removeClass 'is__active'
       $(document).unbind 'click.dropdown'
 
 
@@ -239,13 +240,17 @@ $(document).ready ->
   toggleNotesAsideHeight()
   authCorpAcc()
   commonToggle('.courses-aside.add__users .item')
-  commonToggle('.leadings__list .item')
   activeMenu()
+
+  $(document).on 'click', '.add__leadings .visible__part', (e) ->
+    parentBlock = $(@).closest '.item'
+    elem = parentBlock.find '.hidden__part'
+    parentBlock.addClass 'is__active'
+    hideElementOutOff(elem, parentBlock , e)
 
 
   $(document).on 'keyup', '.com__input-item textarea, .com__input-item input', ->
-    console.log $(@).val()
-    list = $ @ .closest '.com__input-item'
+    list = $(@).closest '.com__input-item'
       .find '.hidden-list'
     if $(@).val() == ''
       list.fadeOut 300
@@ -259,7 +264,10 @@ $(document).ready ->
     hideElementOutOff(elem, parentBlock , e)
 
   $('.tegs__add_block .show__more').on 'click', ->
-    $(@).fadeOut().closest('.tegs__add_block').find('.visible__viewport').addClass('is__unfold')
+    $(@).fadeOut()
+      .closest '.tegs__add_block'
+      .find '.visible__viewport'
+      .addClass 'is__unfold'
 
   $('.btn-group > .btn').on 'click', ->
     $(@).closest('.btn-group').find('.hidden-list').fadeIn()
@@ -390,10 +398,6 @@ $(document).ready ->
     else
       show_error('Установите срок прохождения курса', 3000)
 
-#  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
-#    $(@).closest("form").find(".action-btn").show()
-#    $(@).closest("form").find(".action-btn.actionSectionDeadLine").hide()
-#    $(@).closest('.check_group_added').removeClass('section__deadline')
 
   $('.js_for-tooltip').hover ->
     $(@).find('.js_tooltip').addClass('is-active')
@@ -415,18 +419,18 @@ $(document).ready ->
         $(@).removeClass('is__active')
 
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
-    parenBlock = undefined
+    parentBlock = undefined
     showId = undefined
     showId = $(this).data('show')
-    parenBlock = $(this).closest('.hidden-calendar-wrp')
-    parenBlock.find('.hidden-list').hide()
-    parenBlock.find('.' + showId + ' ').show()
-    installPositionBlock(parenBlock.find('.hidden-calendar'))
+    parentBlock = $(this).closest('.hidden-calendar-wrp')
+    parentBlock.find('.hidden-list').hide()
+    parentBlock.find('.' + showId + ' ').show()
+    installPositionBlock(parentBlock.find('.hidden-calendar'))
 
   $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
-    parenBlock = $(@).closest('.hidden-calendar-wrp')
-    parenBlock.find('.hidden-calendar').hide()
-    parenBlock.find('.hidden-list').show()
+    parentBlock = $(@).closest('.hidden-calendar-wrp')
+    parentBlock.find('.hidden-calendar').hide()
+    parentBlock.find('.hidden-list').show()
 
   $(document).on 'click', '.js__backing', ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar').hide()
