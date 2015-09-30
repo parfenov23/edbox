@@ -9,6 +9,7 @@ gem 'pg', '0.18.3'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'actionpack-page_caching'
 
 gem 'unicorn'
 gem 'faraday'

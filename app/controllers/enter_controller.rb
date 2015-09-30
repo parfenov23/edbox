@@ -1,5 +1,7 @@
 class EnterController < ActionController::Base
   layout "application"
+  caches_page :sign_in, :sign_up, :oferta
+
   def sign_in
   end
 
