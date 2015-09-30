@@ -3,7 +3,19 @@
   input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
   .shadow
+  .play__btn.js_openAndPlayVideo
+    i.icon.play
+    span Смотреть тизер
   img src = @course.get_image_path
+  
+  .hidden__video
+    video.teaserVideoChange {
+      controls="" height="400" preload="auto" width="800"
+    
+    }
+      source src="uploads/vid.mp4"
+
+
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
 - if current_user.present?
