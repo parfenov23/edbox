@@ -29,6 +29,7 @@
 </div>
 <div class="js__backing"></div>
 <%= render "layouts/notification" %>
+<%= render "common/popup_request" unless current_user.present?%>
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if Rails.env.production?%>
 <%= render "layouts/zendesk_widget" if Rails.env.production?%>

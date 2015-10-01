@@ -306,9 +306,9 @@
       }
 
       &.is__active {
-        height: 670px;
+        //height: 670px;
         &.pidor__dva {
-          height: 775px;
+          //height: 775px;
         }
         .visibile__part {
           border-bottom: none;
@@ -396,9 +396,9 @@
       }
       .hidden__part {
         display: none;
-        position: absolute;
-        top: 295px;
         border: 1px solid rgba(0,0,0,0.54);
+        top: -1px;
+        position: relative;
         border-radius: 4px;
         width        : 360px;
         text-align   : center;
@@ -410,6 +410,12 @@
         -moz-border-radius-topleft: 0;
         border-radius: 4px;
         padding-top: 21px;
+        &.left{
+          border-top-left-radius: 0;
+        }
+        &.right{
+          border-top-right-radius: 0;
+        }
         .wrp {
           display: flex;
           justify-content: space-between;
@@ -493,9 +499,9 @@
     padding-bottom: 32px;
     .item {
       &.is__active {
-        height: 730px;
+        //height: 730px;
         &.pidor__dva {
-          height: 775px;
+          //height: 775px;
         }
       }
     }

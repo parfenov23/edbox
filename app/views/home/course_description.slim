@@ -33,6 +33,12 @@
   - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
 
   .course__title = course_title
+  - unless current_user.present?
+    .progress__block
+      .title.adaptive__title.h__no_margin
+        .left-col.h__text_20-28  Данный курс доступен по подписке
+        .right-col
+          .btn.is__blue.js_openFormRegistration ОФОРМИТЬ ПОДПИСКУ
   - if bunch_course.present?
     - date_complete = local_time(bunch_course.date_complete) rescue nil
     - all_sections = bunch_course.bunch_sections
@@ -189,5 +195,4 @@
 
 = render "home/course_program/sink_button", {course: @course}
 
-- unless current_user.present?
-  = render "home/course_reg"
+= render "common/course/course_reg" unless current_user.present?

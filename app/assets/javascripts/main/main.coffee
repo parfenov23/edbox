@@ -242,7 +242,8 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
-  $(document).on 'click', '.plane__list .item', ->
+  $(document).on 'click', '.plane__list .item.js_openHiddenPart', ->
+    parent_block = $(@).closest(".ugly__popup")
     $('.plane__list .item')
       .removeClass 'is__active'
       .addClass 'is__NOactive'
@@ -254,6 +255,15 @@ $(document).ready ->
       .removeClass 'is__NOactive'
       .find '.visibile__part .action__block .btn'
       .removeClass 'btn-flat'
+    parent_block.find(".form__SendMessage .hidden__part")
+      .show()
+      .removeClass("left")
+      .removeClass("right")
+      .addClass($(@).data('type'));
+    if $(@).data('show') != undefined || $(@).data('show') != ""
+      parent_block.find($(@).data('show')).closest('.item').show()
+    if $(@).data('hide') != undefined || $(@).data('hide') != ""
+      parent_block.find($(@).data('hide')).val('').closest('.item').hide().addClass("empty")
 
   $(document).on 'click', '.add__leadings .visible__part', (e) ->
     parentBlock = $(@).closest '.item'
