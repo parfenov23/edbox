@@ -16,14 +16,14 @@ module Superuser
     end
 
     def create
-      section = Section.new(params_course)
+      section = Section.new(params_section)
       section.save
       redirect_to edit_superuser_course_path(section.course_id)
     end
 
     def update
       section = find_section
-      section.update(params_course)
+      section.update(params_section)
       redirect_to edit_superuser_course_path(section.course_id)
     end
 
@@ -38,8 +38,8 @@ module Superuser
       Section.find(params[:id])
     end
 
-    def params_course
-      params.require(:sections).permit(:title, :course_id)
+    def params_section
+      params.require(:sections).permit(:title, :course_id).compact rescue {}
     end
 
   end

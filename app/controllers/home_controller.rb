@@ -1,6 +1,6 @@
 class HomeController < ActionController::Base
   helper_method :current_user
-  before_action :authorize, except: [:course_description, :render_file]
+  before_action :authorize, except: [:course_description, :render_file, :courses, :attachment]
   before_action :is_corporate?, only: [:group]
 
   layout "application"
@@ -48,7 +48,9 @@ class HomeController < ActionController::Base
     @section = @attachment.attachmentable rescue nil
     @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
     unless (@course.material? rescue false)
-      unless @attachment.present? && (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+      valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+      valid_redirect = current_user.present? ? valid_added : @attachment.public
+      unless @attachment.present? && valid_redirect
         redirect_to "/"
       end
     end
@@ -99,8 +101,6 @@ class HomeController < ActionController::Base
     @courses = all_courses.where(type_course: "course")
     @courses = all_courses.where(type_course: "online") if params[:type] == "online"
     @courses = all_courses.where(type_course: "material") if params[:type] == "material"
-    # binding.pry
-    @favorite_courses = current_user.favorite_courses
   end
 
   def programm
@@ -169,7 +169,7 @@ class HomeController < ActionController::Base
   end
 
   def authorize
-    redirect_to "/sign_in" if current_user.nil?
+    redirect_to "/courses" if current_user.nil?
   end
 
   def is_corporate?

@@ -53,7 +53,7 @@ module Superuser
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :paid)
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :paid).compact rescue {}
     end
   end
 end
