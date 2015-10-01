@@ -54,7 +54,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
     &::before {
       line-height: 60px;
       font-size  : 24px;
-      content    : '\E899';
+      content    : "\E899";
     }
   }
   &.multi__action {

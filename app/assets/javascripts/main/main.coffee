@@ -111,12 +111,12 @@ figcaptionTitleEclipses = (el, height) ->
       $(element).addClass 'over-title'
 
 testList = ->
-  parenBlock = $('.content#tests')
-  if parenBlock.height() > $(window).height()
-    parenBlock.addClass('fixed-btm')
+  parentBlock = $('.content#tests')
+  if parentBlock.height() > $(window).height()
+    parentBlock.addClass('fixed-btm')
     $('.finish-test').css
-      width: parenBlock.width() + 'px'
-      left: parenBlock.offset().left + 'px'
+      width: parentBlock.width() + 'px'
+      left: parentBlock.offset().left + 'px'
 
 
 carusel = ->
@@ -222,6 +222,7 @@ hideElementOutOff = (elem, parentBlock, e) ->
   $('body').bind 'click.dropdown', (ev) ->
     unless $(e.target).closest(parentBlock).length == $(ev.target).closest(parentBlock).length
       elem.fadeOut()
+      parentBlock.removeClass 'is__active'
       $(document).unbind 'click.dropdown'
 
 
@@ -241,6 +242,33 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $(document).on 'click', '.offer__box .plane__list .item', ->
+    $('.offer__box .plane__list .item')
+      .removeClass 'is__active'
+      .addClass 'is__NOactive'
+      .find '.visibile__part .action__block .btn'
+      .addClass 'btn-flat'
+      .removeClass 'is__blue'
+    $(@)
+      .addClass 'is__active'
+      .removeClass 'is__NOactive'
+      .find '.visibile__part .action__block .btn'
+      .removeClass 'btn-flat'
+
+  $(document).on 'click', '.add__leadings .visible__part', (e) ->
+    parentBlock = $(@).closest '.item'
+    elem = parentBlock.find '.hidden__part'
+    parentBlock.addClass 'is__active'
+    hideElementOutOff(elem, parentBlock , e)
+
+
+  $(document).on 'keyup', '.com__input-item textarea, .com__input-item input', ->
+    list = $(@).closest '.com__input-item'
+      .find '.hidden-list'
+    if $(@).val() == ''
+      list.fadeOut 300
+    else
+      list.fadeIn 300
 
 
   $('.btn-group > .btn').on 'click', (e) ->
@@ -249,7 +277,10 @@ $(document).ready ->
     hideElementOutOff(elem, parentBlock , e)
 
   $('.tegs__add_block .show__more').on 'click', ->
-    $(@).fadeOut().closest('.tegs__add_block').find('.visible__viewport').addClass('is__unfold')
+    $(@).fadeOut()
+      .closest '.tegs__add_block'
+      .find '.visible__viewport'
+      .addClass 'is__unfold'
 
   $('.btn-group > .btn').on 'click', ->
     $(@).closest('.btn-group').find('.hidden-list').fadeIn()
@@ -361,12 +392,12 @@ $(document).ready ->
   $('.is__sooo-long .page__title').on 'click', ->
     $(@).next().toggle 300
 
-  $(window).scroll ->
-    scrollHeight = $('body').scrollTop()
-    if scrollHeight > 1
-      $('#page__header').addClass('is__white')
-    else
-      $('#page__header').removeClass('is__white')
+#  $(window).scroll ->
+#    scrollHeight = $('body').scrollTop()
+#    if scrollHeight > 1
+#      $('#page__header').addClass('is__white')
+#    else
+#      $('#page__header').removeClass('is__white')
 
   $('.js__show-aside-main-nav').on 'click', ->
     $('.js__left-aside, .js__backing').addClass('is__active')
@@ -378,12 +409,8 @@ $(document).ready ->
       $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
       $(@).closest('.check_group_added').addClass('section__deadline')
     else
-      show_error('Установите срок прохождения курса', 3000);
+      show_error('Установите срок прохождения курса', 3000)
 
-#  $('.section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes').on 'click', ->
-#    $(@).closest("form").find(".action-btn").show()
-#    $(@).closest("form").find(".action-btn.actionSectionDeadLine").hide()
-#    $(@).closest('.check_group_added').removeClass('section__deadline')
 
   $('.js_for-tooltip').hover ->
     $(@).find('.js_tooltip').addClass('is-active')
@@ -405,21 +432,21 @@ $(document).ready ->
         $(@).removeClass('is__active')
 
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
-    parenBlock = undefined
+    parentBlock = undefined
     showId = undefined
     showId = $(this).data('show')
-    parenBlock = $(this).closest('.hidden-calendar-wrp')
-    parenBlock.find('.hidden-list').hide()
-    parenBlock.find('.' + showId + ' ').show()
-    installPositionBlock(parenBlock.find('.hidden-calendar'))
+    parentBlock = $(this).closest('.hidden-calendar-wrp')
+    parentBlock.find('.hidden-list').hide()
+    parentBlock.find('.' + showId + ' ').show()
+    installPositionBlock(parentBlock.find('.hidden-calendar'))
 
   $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
-    parenBlock = $(@).closest('.hidden-calendar-wrp')
-    parenBlock.find('.hidden-calendar').hide()
-    parenBlock.find('.hidden-list').show()
+    parentBlock = $(@).closest('.hidden-calendar-wrp')
+    parentBlock.find('.hidden-calendar').hide()
+    parentBlock.find('.hidden-list').show()
 
   $(document).on 'click', '.js__backing', ->
-    $('.hidden-calendar-wrp .hidden-list, .hidden-calendar-wrp .hidden-calendar').hide()
+    $('.hidden-calendar-wrp .hidden-list, .hidden-calendar').hide()
     $('.hidden__content').removeClass 'is__show_calendar'
     $('.js__action-menu').removeClass 'is__active'
     $(@).removeClass('is__active')
@@ -457,7 +484,7 @@ $(document).ready ->
       adaptiveTitle()
 
   $('body').bind 'click.dropdown', (ev) ->
-    unless $(ev.target).closest('.js__toggle-state').length || $(ev.target).closest(".noCloseToggleState").length
+    unless ($(ev.target).closest('.js__toggle-state').length || $(ev.target).closest(".noCloseToggleState").length || $(ev.target).is('[class^="ui-datepicker"]'))
       hideBlock($('.js__toggle-state'))
       adaptiveTitle()
       $(document).unbind 'click.dropdown'

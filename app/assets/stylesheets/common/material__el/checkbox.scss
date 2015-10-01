@@ -4,12 +4,12 @@
     .checkbox {
         display: none;
         &:not(:checked) + label:before {
-            content: '';
+            content: "";
         }
         &:checked + label:before {
             background: #00bcd8;
             transition: background .2s ease;
-            content: '';
+            content: "";
         }
         &:not(:checked) + label i.check {
             position: absolute;
@@ -29,7 +29,7 @@
                 height: 0px;
                 background: #fff;
                 transform: rotate(0deg);
-                content: '';
+                content: "";
             }
         }
         &:checked + label i.check {
@@ -51,7 +51,7 @@
                 height: 8px;
                 background: #fff;
                 transform: rotate(-180deg);
-                content: '';
+                content: "";
                 transition: height .2s ease;
                 text-align: left;
             }

@@ -1,7 +1,7 @@
 i.icon {
   &.cabinet {
     &::before {
-      content: '\E8D9';
+      content: "\E8D9";
     }
   }
   &.biblio {
@@ -112,60 +112,60 @@ i.icon {
 
   &.search {
     &::before {
-      content: '\E65F';
+      content: "\E65F";
     }
   }
 
   &.schedule {
     &::before {
-      content: '\E8AF';
+      content: "\E8AF";
     }
   }
 
   &.notification {
     &::before {
-      content: '\E8CF';
+      content: "\E8CF";
     }
   }
 
   &.calendar {
     &::before {
-      content: '\E892';
+      content: "\E892";
     }
   }
 
   &.filter {
     &::before {
-      content: '\E855';
+      content: "\E855";
     }
   }
 
   &.star {
     &::before {
-      content: '\E631';
+      content: "\E631";
     }
   }
   &.duration {
     &::before {
-      content: '\E71F';
+      content: "\E71F";
     }
   }
 
   &.file {
     &::before {
-      content: '\E614';
+      content: "\E614";
     }
   }
 
   &.pdf {
     &::before {
-      content: '\E78F';
+      content: "\E78F";
     }
   }
 
   &.programm {
     &::before {
-      content: '\E625';
+      content: "\E625";
     }
   }
 
@@ -174,7 +174,7 @@ i.icon {
       content: "\E706";
     }
   }
-  &.delete {
+  &.del {
     &::before {
       content: "\E620";
     }
@@ -226,5 +226,10 @@ i.icon {
     }
   }
 
+  &.play {
+    &::before {
+      content: "\E6BA";
+    }
+  }
 
 }

@@ -2,8 +2,17 @@
 - if params[:attachment_id].present?
   input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
+  - course_video = @course.attachments.where(file_type: "video").last
   .shadow
   img src = @course.get_image_path
+  - if course_video.present?
+    .play__btn.js_openAndPlayVideo
+      i.icon.play
+      span Смотреть тизер
+    .hidden__video
+      video.teaserVideoChange controls="" height="400" preload="auto" width="800"
+        source src=course_video.file.url
+
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
 - if current_user.present?
@@ -120,7 +129,7 @@
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
                 - if bunch_section.present? && (!bunch_section.complete rescue false) && (bunch_course.model_type == "group")
-                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
+                  .right-col class=((date_complete < current_time ? "overdue" : "") rescue nil) #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
                   .edit-menu.js__select-calendar
                     .edit-date href="#"
                       i.icon-uniE8A3
@@ -148,13 +157,15 @@
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
+                - class_add_course = (!current_user.present? && attachment.public) ? "js_goToAttachment" : " "
                 - if current_user.present?
                   - redirect_att = "/attachment?id=#{attachment.id}"
-                  - class_add_course = "js_addCourseToMyCourse"
+                  - class_add_course += "js_addCourseToMyCourse"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  .item.js_blockAttachmentInProgram data-id=attachment.id class="#{class_block} #{ya_class} #{class_add_course rescue nil}"
+                  - class_item = ("#{class_block} #{ya_class} #{class_add_course}").split(" ").join(" ")
+                  .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
                       i.icon class=attachment.class_type
                     .adaptive__title

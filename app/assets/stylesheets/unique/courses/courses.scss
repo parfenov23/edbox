@@ -58,7 +58,7 @@
     filter          : url(#blur);
     -webkit-filter  : blur(16px);
     filter          : blur(16px);
-    filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius='16');
+    filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius="16");
     z-index         : -1;
     background-size: cover !important;
 }

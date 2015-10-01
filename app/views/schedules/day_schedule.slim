@@ -23,7 +23,7 @@
                                 .datapicker__trigger
                         ul.hidden-list
                             li data-show="hidden-calendar"  Перенести дату окончания курса
-                            li.js_removeCourseToGroup data-id="#{course.id}" data-group_id="1" Удалить
+                            li.js_removeCourseToGroup data-id="#{course.id}" data-group_id=@group.id Удалить
 
 - @day_schedule.each do |course_id, section_ids|
     - if section_ids.present?

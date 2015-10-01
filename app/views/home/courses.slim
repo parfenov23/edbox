@@ -1,10 +1,11 @@
 = render "home/header/header", {namePage: "courses", titlePage: "Библиотека"}
 = render "home/courses/filter"
-- if current_user.corporate
+- if (current_user.corporate rescue false)
   = render "home/courses/groups"
 .inner-content
 
   #courses.content-courses.courses-list.cabinet__block__v2
     - @courses.each do |course|
-      = render "home/courses/course", {course: course, type: 'courses'}
-    = render "home/courses/pop_up"
+      = render "courses/course", {course: course,type: 'courses'}
+    - if current_user.present?
+      = render "home/courses/pop_up"

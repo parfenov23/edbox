@@ -140,7 +140,7 @@
       &.error {
         padding-right : 14px;
         &:before {
-          content          : ' ';
+          content          : " ";
           width            : 5px;
           height           : 5px;
           display          : block;
@@ -207,7 +207,7 @@
         display       : block;
         width         : 48px;
         height        : 48px;
-        content       : '';
+        content       : "";
         border-radius : 100%;
       }
       &:active {
@@ -277,7 +277,7 @@
         position    : absolute;
         top         : 22px;
         right       : 0;
-        content     : '\E7B4';
+        content     : "\E7B4";
       }
     }
     .page__children {
@@ -371,7 +371,7 @@
       height        : 0;
       border        : 5px solid transparent;
       border-bottom : 8px solid #FFF;
-      content       : '';
+      content       : "";
     }
     .top {
       overflow      : hidden;
@@ -391,12 +391,12 @@
       .text {
         float : left;
         .name {
-          font   : 400 13px/20px 'Roboto';
+          font   : 400 13px/20px "Roboto";
           color  : rgba(0, 0, 0, .87);
           margin : 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px 'Roboto';
+          font  : 400 13px/20px "Roboto";
           color : rgba(0, 0, 0, .54);
         }
       }
@@ -410,7 +410,7 @@
           display     : block;
           height      : 48px;
           line-height : 48px;
-          font        : 400 13px/48px 'Roboto';
+          font        : 400 13px/48px "Roboto";
           color       : #767676;
           padding     : 0 24px 0 80px;
           &:hover {
@@ -420,23 +420,23 @@
             position : absolute;
             left     : 24px;
             top      : 14px;
-            font     : 20px/1 'Icons';
+            font     : 20px/1 "Icons";
             color    : #767676;
           }
           &.menu__item-schedule:before {
-            content : '\e640';
+            content : "\e640";
           }
           &.menu__item-profile:before {
-            content : '\e660';
+            content : "\e660";
           }
           &.menu__item-company:before {
-            content : '\e8ca';
+            content : "\e8ca";
           }
           &.menu__item-groups:before {
-            content : '\e8d6';
+            content : "\e8d6";
           }
           &.menu__item-courses:before {
-            content : '\e6b2';
+            content : "\e6b2";
           }
         }
       }
@@ -454,12 +454,12 @@
       .text {
         float : left;
         .name {
-          font   : 400 13px/20px 'Roboto';
+          font   : 400 13px/20px "Roboto";
           color  : rgba(0, 0, 0, .87);
           margin : 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px 'Roboto';
+          font  : 400 13px/20px "Roboto";
           color : rgba(0, 0, 0, .54);
         }
       }
@@ -502,7 +502,7 @@
       height        : 0;
       border        : 5px solid transparent;
       border-bottom : 8px solid #FFF;
-      content       : '';
+      content       : "";
     }
     &-item {
       float      : left;
@@ -527,11 +527,11 @@
         }
       }
       &-text {
-        font  : 400 8px/12px 'Roboto';
+        font  : 400 8px/12px "Roboto";
         color : rgba(0, 0, 0, .54);
       }
     }
   }
 }
 
-@import 'common/header/main__nav';
+@import "common/header/main__nav";

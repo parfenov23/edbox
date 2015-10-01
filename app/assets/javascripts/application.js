@@ -303,7 +303,6 @@ $(document).ready(function () {
         var bodyHeight = $('body').outerHeight();
         if ($('.auth').hasClass('is__course-description')){
             $('.auth').css({'height': (bodyHeight + 312) + 'px'});
-            console.log(bodyHeight);
         }
         else {
 

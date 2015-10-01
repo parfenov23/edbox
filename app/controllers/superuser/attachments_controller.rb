@@ -40,7 +40,7 @@ module Superuser
     end
 
     def params_attachment
-      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title, :duration)
+      params.require(:attachment).permit(:file, :attachmentable_type, :attachmentable_id, :title, :duration, :public).compact rescue {}
     end
   end
 end

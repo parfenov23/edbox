@@ -92,5 +92,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   # config.middleware.delete Rack::Lock
   # Do not dump schema after migrations.
+  config.action_controller.perform_caching = true
   config.active_record.dump_schema_after_migration = false
 end

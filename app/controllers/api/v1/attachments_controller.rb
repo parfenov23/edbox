@@ -4,8 +4,8 @@ module Api::V1
 
     def render_file
       user = find_user
-      if user.present?
-        attachment = find_attachment
+      attachment = find_attachment
+      if user.present? || attachment.public
         file_path = Rails.root.to_s+"/public"+attachment.file.to_s
         file_type = attachment.file.file.content_type
         send_file file_path, :type => file_type, :filename => attachment.file.file.filename

@@ -9,6 +9,7 @@ gem 'pg', '0.18.3'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'actionpack-page_caching'
 
 gem 'unicorn'
 gem 'faraday'
@@ -36,6 +37,8 @@ gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
+
+
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
@@ -51,7 +54,6 @@ gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
 gem 'spawnling', '~>2.1'
 #=====================
-
 #======= cron
 gem 'whenever', :require => false
 gem 'rufus-scheduler'

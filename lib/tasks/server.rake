@@ -14,7 +14,7 @@ namespace :server do
 
     p "Обновляю репозиторий"
     sh 'git add .'
-    sh "git commit -m '#{commit}'"
+    sh("git commit -m '#{commit}'") rescue "Пусто"
 
     valid = true
     pull_log = p `git pull origin #{current_project[:rep]}`

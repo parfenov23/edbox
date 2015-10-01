@@ -1,0 +1,97 @@
+.add__leadings {
+  @include middle-block(936px);
+  .page__title {
+    margin-bottom: 24px;
+  }
+  .leadings__qty {
+    margin-bottom: 32px
+  }
+  > .action__block {
+    @include white__block(1,1);
+    .btn {
+      width: 100%;
+    }
+  }
+  .leadings__list {
+    >.item {
+      @include white__block(1, 1);
+      padding: 32px 16px 16px 48px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      height: 192px;
+      @include transition;
+      .hidden__part {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+      }
+      .row {
+        display: flex;
+        justify-content: flex-start;
+        .ava {
+          width: 144px;
+          height: 144px;
+          margin-right: 48px;
+          img {
+            border-radius: 100%;
+            width: 100%;
+          }
+        }
+        .info {
+
+        }
+        .title {
+          font-weight: 500;
+          margin-bottom: 10px;
+          position: relative;
+          padding-right: 20px;
+          i {
+            color: $black_26;
+            position: absolute;
+            top: -9px;
+            right: -33px;
+          }
+        }
+        .description {
+          width: 648px;
+          height: 96px;
+          overflow: hidden;
+        }
+      }
+      &.is__active {
+        width: 1128px;
+        box-shadow: 0px 15px 12px 0px rgba(0,0,0,0.22), 0px 19px 38px 0px rgba(0,0,0,0.30);
+        margin-left: -96px;
+        height: 368px;
+        overflow: hidden;
+        @include transition;
+        .visible__part {
+          height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+        .hidden__part {
+          height: 368px;
+          opacity: 1;
+          overflow: visible;
+        }
+        .description {
+          width: 728px;
+          height: 284px;
+          padding-top: 19px;
+          >.item {
+            margin-bottom: 5px;
+          }
+        }
+
+      }
+    }
+  }
+  .action__block {
+    display: flex;
+    justify-content: flex-end;
+    .btn {
+
+    }
+  }
+}

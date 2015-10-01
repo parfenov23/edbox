@@ -34,5 +34,6 @@ module Edbox
     # config.active_record.default_timezone = :local
     config.time_zone = "UTC"
     config.active_record.default_timezone = :utc
+    config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
   end
 end
