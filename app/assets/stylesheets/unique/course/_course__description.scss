@@ -306,7 +306,10 @@
       }
 
       &.is__active {
-        height: 644px;
+        height: 670px;
+        &.pidor__dva {
+          height: 775px;
+        }
         .visibile__part {
           border-bottom: none;
           height: 296px;
@@ -472,7 +475,32 @@
 }
 
 
-
+.ugly__popup {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $black_54;
+  .ugly__popup_inner {
+    @include middle-block(936px);
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    margin-left: -468px;
+    padding-bottom: 32px;
+    .item {
+      &.is__active {
+        height: 730px;
+        &.pidor__dva {
+          height: 775px;
+        }
+      }
+    }
+  }
+}
 
 
 // old
@@ -639,7 +667,7 @@
   position  : relative;
   z-index   : 12;
   @include middle-block(920px);
-  margin-top: 312px;
+  padding-top: 312px;
   .tegs__list {
     display        : flex;
     margin-bottom  : 8px;
