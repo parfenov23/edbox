@@ -9,7 +9,6 @@ module Api::V1
         webinar_params_permit[:date_start] = curr_time
       end
       webinar.update(webinar_params_permit)
-      # binding.pry
       render json: webinar.transfer_to_json
     end
 

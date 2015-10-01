@@ -105,7 +105,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
             i.groups.icon
             a.label href="/members" Участники
 
-      - if current_user.contenter || (Rails.env.development?)
+      - if current_user.contenter
         .item class=(namePage == "contenter_admin" ? "is__active" : "")
           i.schedule.icon
           a.label href="/contenter/admin/categories" Администрирование
