@@ -129,7 +129,7 @@
               .left-col #{nsec += 1}. #{section.title}
               - if !@course.paid || (@course.paid && current_user.get_account_type)
                 - if bunch_section.present? && (!bunch_section.complete rescue false) && (bunch_course.model_type == "group")
-                  .right-col class=(date_complete < current_time ? "overdue" : "") #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
+                  .right-col class=((date_complete < current_time ? "overdue" : "") rescue nil) #{ltime(bunch_section.date_complete, "Завершить до ", 'short_min', false)}
                   .edit-menu.js__select-calendar
                     .edit-date href="#"
                       i.icon-uniE8A3
