@@ -255,7 +255,10 @@ var goToAttachmentLock = function (event) {
     event.preventDefault();
     show_error("Добавьте материал в расписание!", 3000)
 };
-
+var goToAttachment = function(){
+    var btn = $(this);
+    window.location.href = "/attachment?id="+btn.attr('data-id');
+};
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +
         '.courses-description .text-block .action-block .add-to-group', openPopup);
@@ -267,5 +270,6 @@ $(document).ready(function () {
     $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
     $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
     $(document).on('click', ".js_goToAttachmentLock", goToAttachmentLock);
-    $(document).on('click', ".js_addCourseToMyCourse", addCourseMySchedule)
+    $(document).on('click', ".js_addCourseToMyCourse", addCourseMySchedule);
+    $(document).on('click', ".js_goToAttachment", goToAttachment)
 });

@@ -12,9 +12,9 @@ figure.corses-prev
         .course-type.h__text_15-24
           i.icon.teg style="margin-right: 6px;"
           = category
-    = render "home/courses/added_btn", {course: course, type: type}
+    - if current_user.present?
+      = render "home/courses/added_btn", {course: course, type: type}
 
-  - bunch_course_present = course.find_bunch_course(current_user.id, ["user", "group"]).present?
   - link = "/course_description?id=#{course.id}"
   figcaption
     - if course.material?

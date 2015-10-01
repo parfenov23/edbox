@@ -1,11 +1,14 @@
 - title titlePage
 / header#page__header.with__img
 - valid_img_page = ["course_description", "other_white"]
-header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "with__img" : "" )
+header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
     - unless (btnBack rescue false)
       .page__icon.item.ya_burger_click
-        i.burger.icon.js__show-aside-main-nav
+        - if current_user.present?
+          i.burger.icon.js__show-aside-main-nav
+        - else
+          .burger
     - else
       a.page__icon.item href=backUrl
         i.back.icon
@@ -19,16 +22,10 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
   .right-col
     - if current_user.present?
       .page__action
-        /.item.js__tooltip
-        /  i.search.icon
-        /  .tooltip.is__bottom Уведомления
-        /.item
-        /  i.notification.icon
         - if namePage == "group"
           - if current_user.director
             .item.js_openPopupNewGroup
               i.add.icon
-
         - if namePage == "contenter_courses"
           - if current_user.contenter
             /a.item href="/contenter/courses/new/edit"
@@ -44,35 +41,18 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
                   a href="/contenter/materials/new/edit" Материал
             .item.js_openLeftSideBar data-id="js-help"
               i.help.icon
-
-        /.item
-        /  .notification__with-qty ...
-        /- if namePage == "cabinet"
-        /  .item.js_openLeftSideBar.js_loadMySchedule.ya_schedule_icon_click data-id="js-schedule-cabinet"
-        /    i.schedule.icon
-        /  .item.js_openLeftSideBar data-id="js-favorite-courses"
-        /    i.star.icon
         - if namePage == "courseMaterial"
           .item.js_openLeftSideBar data-id="js-notification-courses"
             i.notes.icon
           - unless (@course.material? rescue true)
             .item.js_openLeftSideBar data-id="js-programm-courses"
               i.programm.icon
-        - if namePage == "courses"
-          /.item
-          /  i.filter.icon
-          /.item.js_openLeftSideBar data-id="js-favorite-courses"
-          /  i.star.icon
-
         - if (comment rescue false)
           .item
             i.calendar.icon.js_openLeftSideBar data-id="js-comment"
-
         - if namePage == "makeup"
-          .item.is__no-icon.js_openLeftSideBar data-id="js-add__users" 
+          .item.is__no-icon.js_openLeftSideBar data-id="js-add__users"
             .btn.btn-flat ДОБАВИТЬ ПОЛЬЗОВАТЕЛЕЙ
-            
-            
         .item.ava.header__user
           img src=default_img(current_user.avatar)
           .menu__user
@@ -90,6 +70,11 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
             .bottom
               /.btn__raised.add__acc добавить аккаунт
               a.btn.btn-flat.exit href="/sign_out" выход
+    - else
+      .page__action style="margin-right: 24px;"
+        a.btn.btn-flat href="/sign_in" войти
+        a.btn.is__blue href="/sign_up" Регистрация
+
 - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
     .info__block
@@ -103,9 +88,6 @@ header#page__header.adaptive__title class=(valid_img_page.include?(namePage) ? "
         .item class=(namePage == "courses" ? "is__active" : "")
           i.biblio.icon
           a.label href="/courses" Библиотека
-      /.item class=(namePage == "my_course" ? "is__active" : "")
-      /  i.courses.icon
-      /  a.label href="/my_course?type=assigned" Курсы
 
       - if current_user.corporate? && current_user.director? && !current_user.contenter
         - company = current_user.company

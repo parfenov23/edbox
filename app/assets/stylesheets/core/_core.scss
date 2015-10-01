@@ -64,6 +64,7 @@
       .ava {
         float  : left;
         width  : 48px;
+        height : 48px;
         margin : 16px 24px 16px 12px;
         img {
           display       : block;
@@ -687,8 +688,8 @@
       .addedTest {
         border-top  : 1px solid rgba(0, 0, 0, 0.26);
         padding-top : 24px;
-        &:hover{
-          background-color: transparent;
+        &:hover {
+          background-color : transparent;
         }
         .testHolder {
           .testIssue {

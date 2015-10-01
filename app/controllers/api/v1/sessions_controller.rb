@@ -8,6 +8,7 @@ module Api::V1
       user_auth = User.auth(params[:user])
       unless user_auth.nil?
         session[:user_key] = user_auth["user_key"]
+        Rails.cache.clear rescue nil
         render json: user_auth
       else
         render_error(401, 'Не удалось пройти аутентификацию, проверьте введенные данные')
@@ -25,6 +26,7 @@ module Api::V1
       user = User.build(permit_params)
       if (user.save rescue false)
         session[:user_key] = user["user_key"]
+        Rails.cache.clear rescue nil
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)
@@ -42,6 +44,7 @@ module Api::V1
     end
 
     def signout
+      Rails.cache.clear rescue nil
       session[:user_key] = nil
       render json: {success: true}
     end
