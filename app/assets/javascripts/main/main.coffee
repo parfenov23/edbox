@@ -242,6 +242,19 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $(document).on 'click', '.offer__box .plane__list .item', ->
+    $('.offer__box .plane__list .item')
+      .removeClass 'is__active'
+      .addClass 'is__NOactive'
+      .find '.visibile__part .action__block .btn'
+      .addClass 'btn-flat'
+      .removeClass 'is__blue'
+    $(@)
+      .addClass 'is__active'
+      .removeClass 'is__NOactive'
+      .find '.visibile__part .action__block .btn'
+      .removeClass 'btn-flat'
+
   $(document).on 'click', '.add__leadings .visible__part', (e) ->
     parentBlock = $(@).closest '.item'
     elem = parentBlock.find '.hidden__part'
