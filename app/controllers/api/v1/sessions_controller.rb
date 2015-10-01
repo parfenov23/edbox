@@ -44,6 +44,7 @@ module Api::V1
     end
 
     def signout
+      Rails.cache.clear
       session[:user_key] = nil
       render json: {success: true}
     end
