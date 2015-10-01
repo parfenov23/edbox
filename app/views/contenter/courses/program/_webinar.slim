@@ -5,7 +5,8 @@
     input.webinarDateStart type="hidden" value=date_time name="webinar[date_start]"
     .startDate
       span.text Дата начала:
-      input.datapicker__trigger.js_onChangeDateTimeWebinar data-type="date_time" placeholder="Ничего не выбрано" value=(date_time.strftime("%d.%m.%y") rescue nil)
+      - h = {readonly: "readonly" }
+      input.datapicker__trigger.js_onChangeDateTimeWebinar data-type="date_time" placeholder="Ничего не выбрано" value=(date_time.strftime("%d.%m.%y") rescue nil) *h
     .startHour
       span.text Время начала:
       input.js_onChangeDateTimeWebinar data-type="hour" placeholder="час" value=(date_time.hour rescue nil)
