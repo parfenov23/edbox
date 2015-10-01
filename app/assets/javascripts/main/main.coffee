@@ -242,8 +242,8 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
-  $(document).on 'click', '.offer__box .plane__list .item', ->
-    $('.offer__box .plane__list .item')
+  $(document).on 'click', '.plane__list .item', ->
+    $('.plane__list .item')
       .removeClass 'is__active'
       .addClass 'is__NOactive'
       .find '.visibile__part .action__block .btn'
