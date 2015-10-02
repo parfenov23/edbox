@@ -493,7 +493,7 @@
   .ugly__popup_inner {
     @include middle-block(936px);
     position: absolute;
-    top: 400px;
+    top: 10vh;
     left: 50%;
     margin-left: -468px;
     padding-bottom: 32px;
