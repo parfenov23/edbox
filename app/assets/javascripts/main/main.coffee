@@ -242,6 +242,13 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $(document).on 'click', '.programm__block > .adaptive__title i', ->
+    parentBlock = $(@).closest '.programm__block'
+    if !parentBlock.hasClass('is__shot')
+      parentBlock.addClass 'is__shot'
+    else
+      parentBlock.removeClass 'is__shot'
+
   $(document).on 'click', '.plane__list .item', ->
     $('.plane__list .item')
       .removeClass 'is__active'

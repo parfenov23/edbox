@@ -864,6 +864,36 @@
       padding         : 24px;
       width           : calc(100% + 48px);
       margin-left     : -24px;
+      @include transition;
+
+      &.is__shot{
+          background:none;
+          @include white__block(1,1);
+          width: 100%;
+          margin-left: 0;
+          padding: 0;
+          height: 40px;
+          cursor: pointer;
+          @include transition;
+        >.adaptive__title {
+          margin-bottom: 0;
+          padding-left: 12px;
+          padding-top: 10px;
+          .right-col {
+            padding-top: 2px;
+          }
+          i {
+            margin-right: 19px;
+            &::before {
+              content: '\E8A6'
+            }
+          }
+        }
+        .programm__wrp {
+            height: 0;
+            overflow: hidden;
+        }
+      }
       &.finalTest{
         background: none;
       }
@@ -875,7 +905,10 @@
           color      : $black_54;
         }
         .right-col {
-          color: rgba(0, 0, 0, 0.87);
+          color: $black_26;
+          i {
+            cursor: pointer;
+          }
           &.overdue {
             color: #ff1744;
           }
@@ -902,7 +935,9 @@
         height       : 96px;
         border-bottom: 1px solid rgba(0,0,0,0.12);
         padding      : 13px 16px 16px 120px;
-
+        &.is__unreacheble {
+          opacity: .26;
+        }
         .icon__block {
           position  : absolute;
           top       : 0;
