@@ -3,7 +3,10 @@
   - if webinar.bigbluebutton_room.present?
     /javascript:
     //  window.location.href = "#{raw webinar.url_bigbluebuttom(current_user.id)}";
-    - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
+    - if current_user.present?
+      - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
+    - else
+      - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, "user")))}
     iframe width="100%" style="position: absolute; height: 100%;border: none;" *hash_attr
   - else
     #course
