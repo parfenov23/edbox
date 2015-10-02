@@ -253,21 +253,26 @@ function myIP() {
     if (window.XMLHttpRequest) xmlhttp = new XMLHttpRequest();
     else xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 
-    xmlhttp.open("GET","http://api.hostip.info/get_html.php",false);
+    xmlhttp.open("GET", "http://api.hostip.info/get_html.php", false);
     xmlhttp.send();
 
     hostipInfo = xmlhttp.responseText.split("\n");
 
-    for (i=0; hostipInfo.length >= i; i++) {
+    for (i = 0; hostipInfo.length >= i; i ++){
         ipAddress = hostipInfo[i].split(":");
-        if ( ipAddress[0] == "IP" ) return ipAddress[1];
+        if (ipAddress[0] == "IP") return ipAddress[1];
     }
 
     return false;
 }
 
 $(document).ready(function () {
-    $("input[name='ip_user']").val(myIP());
+
+    $(document).on('click', '.js_closeAllPopup', function (e) {
+        if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
+    })
+
+    if ($("input[name='ip_user']").length) $("input[name='ip_user']").val(myIP());
     $("input[name='current_link_page']").val(window.location.href);
 
     $('video').bind('contextmenu', function () { return false; });
