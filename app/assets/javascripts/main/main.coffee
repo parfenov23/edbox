@@ -250,6 +250,7 @@ $(document).ready ->
       parentBlock.removeClass 'is__shot'
 
   $(document).on 'click', '.plane__list .item.js_openHiddenPart', ->
+    parent_block = $(@).closest(".js_parentRequestSend")
     $('.plane__list .item')
       .removeClass 'is__active'
       .addClass 'is__NOactive'
@@ -266,6 +267,7 @@ $(document).ready ->
       .removeClass("left")
       .removeClass("right")
       .addClass($(@).data('type'));
+    parent_block.find("input[name='type_account']").val($(@).data('type_account'))
     if $(@).data('show') != undefined || $(@).data('show') != ""
       parent_block.find($(@).data('show')).closest('.item').show()
     if $(@).data('hide') != undefined || $(@).data('hide') != ""
