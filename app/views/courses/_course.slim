@@ -13,6 +13,7 @@ figure.corses-prev
           i.icon.teg style="margin-right: 6px;"
           = category
     - if current_user.present?
+      span style="disaply:none" Test #{type}
       = render "home/courses/added_btn", {course: course, type: type}
 
   - link = "/course_description?id=#{course.id}"
