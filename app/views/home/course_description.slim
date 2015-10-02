@@ -130,7 +130,7 @@
           - natt = 0
           - if bunch_course.present?
             - bunch_section = all_sections.where(section_id: section.id).last
-          - add_class_section = section.attachments.where(public: true).present? ? "" : "is__shot"
+          - add_class_section = !current_user.present? ? (section.attachments.where(public: true).present? ? "" : "is__shot") : ""
           .programm__block class=add_class_section
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
