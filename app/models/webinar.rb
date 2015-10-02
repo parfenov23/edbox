@@ -20,17 +20,19 @@ class Webinar < ActiveRecord::Base
                                               salt: "74ab3f53f53e260406faeaa4bdbded35", version: "0.9"})
     end
     scheduler.at "#{date_start}" do
-      bb = BigbluebuttonRoom.where(name: attachment.title).last
-      bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
-      bb.update({
-                  meetingid: config_meeting[:meetingID],
-                  attendee_api_password: config_meeting[:attendeePW],
-                  moderator_api_password: config_meeting[:moderatorPW]
-                })
-      self.bigbluebutton_room_id = bb.id
-      save
+      ActiveRecord::Base.connection_pool.with_connection do
+        bb = BigbluebuttonRoom.where(name: attachment.title).last
+        bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
+        # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
+        config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
+        bb.update({
+                    meetingid: config_meeting[:meetingID],
+                    attendee_api_password: config_meeting[:attendeePW],
+                    moderator_api_password: config_meeting[:moderatorPW]
+                  })
+        self.bigbluebutton_room_id = bb.id
+        save
+      end
     end
     scheduler.start
   end

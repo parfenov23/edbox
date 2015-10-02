@@ -161,6 +161,7 @@ Rails.application.routes.draw do
           post :update_section
           post :remove_section_deadline
           post :remove_user_leading
+          post :send_request
         end
         member do
 
