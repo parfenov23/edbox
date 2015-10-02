@@ -130,7 +130,8 @@
           - natt = 0
           - if bunch_course.present?
             - bunch_section = all_sections.where(section_id: section.id).last
-          .programm__block
+          - add_class_section = section.attachments.where(public: true).present? ? "" : "is__shot"
+          .programm__block class=add_class_section
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if (current_user.director? rescue false)
@@ -154,11 +155,10 @@
                           input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineSectionMy{
                             data-section_id=bunch_section.id data-text=ts data-no_schedule="true"
                           }
-                        /li.js_removeFavorite Удалить
-
-                  / .action-btn.drunkenPig.js_actionBtn
-                  /   i.icon.schedule
-            .programm__wrp    
+              - unless current_user.present?
+                .right-col
+                  i.icon.to__unfold
+            .programm__wrp
       
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
@@ -170,7 +170,8 @@
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  - class_item = ("#{class_block} #{ya_class} #{class_add_course}").split(" ").join(" ")
+                  - ad__active = !current_user.present? ? (attachment.public ? "" : "is__unreacheble") : ""
+                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
                       i.icon class=attachment.class_type
