@@ -1,32 +1,22 @@
 - notes = @attachment.notes.where(user_id: current_user.id)
-#js-notification-courses.courses-aside.notes__course
+#js-notification-courses.courses-aside.notes__course.show
   .close-filter.icon Заметки
-  .notes__content.js__baron.js_addNoteBlock
-    - notes.each do |note|
-      .item.js__showHideToggleBtn
-        .title
-          .date #{ltime(note.created_at, '', 'long')}
-          .edit
-            i.icon.more
-            ul.hidden-list
-              li.item Редактировать
-              li.item Удалить
-
-        .description
-          = note.text
-        .js__toggle-viewport.icon.toggle-viewport
-
-    /.item.js__showHideToggleBtn
-    /  .title
-    /    .date 15 января 2015, 12:38
-    /    .edit
-    /  .description
-    /    | Дорогой дневник, сегодня я оплатил Эдбокс.
-    /  .js__toggle-viewport.icon.toggle-viewport
-
-  form.notes__edit
-    input name="attachment_id" value=@attachment.id style='display: none'
-    /input name="note_id" value=@attachment.id style='display: none'
-    textarea name="note_text" placeholder="Напишите текст заметки"
-    .actions__block
-      .btn.btn-flat.js_noteUpdate СОХРАНИТЬ
+  .notes__content-aside.js__baron
+    .wrp.js_addNoteBlock
+      - notes.each do |note|
+        .item.js__showHideToggleBtn.js_noteItem
+          .title
+            .date #{ltime(note.created_at, '', 'long')}
+            .edit
+              i.icon.more
+              ul.hidden-list
+                /li.item Редактировать
+                li.item.js_noteDestroyMenu data-note_id=note.id Удалить
+          .description
+            = note.text
+          .js__toggle-viewport.icon.toggle-viewport
+    form.notes__edit
+      input name="attachment_id" value=@attachment.id style='display: none'
+      textarea name="note_text" placeholder="Напишите текст заметки"
+      .actions__block
+        .btn.btn-flat.js_noteUpdate СОХРАНИТЬ
