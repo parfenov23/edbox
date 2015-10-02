@@ -232,4 +232,16 @@ i.icon {
     }
   }
 
+  &.to__unfold {
+    &::before {
+      content: "\E8A5";
+    }
+  }
+
+  &.to__close {
+    &::before {
+      content: "\E8A6";
+    }
+  }
+
 }
