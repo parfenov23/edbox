@@ -18,9 +18,10 @@ figure.corses-prev
   - link = "/course_description?id=#{course.id}"
   figcaption
     - if course.material?
-      - redirect_att = "/course_description?id=#{course.id}"
-      - add_class = "js_addCourseToMyCourse"
       - link = "javascript:void(0)"
+      - if current_user.present?
+        - redirect_att = "/course_description?id=#{course.id}"
+        - add_class = "js_addCourseToMyCourse"
     form data-redirect=(redirect_att rescue nil) data-alert="false"
       - if course.material?
         input type="hidden" name="course_id" value=course.id

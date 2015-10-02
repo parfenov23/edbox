@@ -22,7 +22,8 @@ class Webinar < ActiveRecord::Base
     scheduler.at "#{date_start}" do
       bb = BigbluebuttonRoom.where(name: attachment.title).last
       bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
+      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
+      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
       bb.update({
                   meetingid: config_meeting[:meetingID],
                   attendee_api_password: config_meeting[:attendeePW],
