@@ -1,13 +1,12 @@
 .image class=(course.material? ? "material" : "")
+  .fade
   - unless course.material?
     img src = course.get_image_path(w, h)
-    .fade
   - else
   - bunch_course = course.find_bunch_course(current_user.id, ["group", "user"])
     - attachment = course.attachments.last
     i.icon.icon_material class=(attachment.file_type rescue "other")
   - unless (bunch_course.complete rescue false)
-    .fade
     - progress = bunch_course.progress rescue 0
     - if progress == 0
       - if (bunch_course.model_type == "user" rescue true)
@@ -17,5 +16,4 @@
     - else
       .tegs.h__BC-green #{progress}%
   - else
-    .fade
     .tegs.h__BC-blue Пройденно
