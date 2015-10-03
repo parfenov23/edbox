@@ -1,21 +1,20 @@
 - valid_action_btn_type = ["courses", "favorite"]
 - find_bunch_course_group = current_user.bunch_courses.where(model_type: "group", course_id: course.id)
-- if !course.paid || (course.paid && current_user.get_account_type)
-  - if valid_action_btn_type.include?(type)
-    .action-btn class="two"
-      - if current_user.director
-        - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
-        - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
-        .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
-          .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в расписание группы
+- if valid_action_btn_type.include?(type)
+  .action-btn class="two"
+    - if current_user.director
+      - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
+      - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
+      .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
+        .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в расписание группы
 
-        - if find_bunch_course_group.blank?
-          form data-redirect="/course_description?id=#{course.id}"
-            input type="hidden" name="course_id" value=course.id
-            .schedule.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
-              .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы
-      - else
+      - if find_bunch_course_group.blank?
         form data-redirect="/course_description?id=#{course.id}"
           input type="hidden" name="course_id" value=course.id
-          .add.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
+          .schedule.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
             .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы
+    - else
+      form data-redirect="/course_description?id=#{course.id}"
+        input type="hidden" name="course_id" value=course.id
+        .add.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
+          .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы

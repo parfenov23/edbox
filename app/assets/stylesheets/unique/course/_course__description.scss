@@ -1,109 +1,110 @@
 .course__description_v2 {
   @include middle-block(936px);
 }
+
 .review__section {
   @include white__block(1, 0);
-  padding: 32px 150px 18px 48px;
-  margin-bottom: 25px;
+  padding       : 32px 150px 18px 48px;
+  margin-bottom : 25px;
   > .title {
-    margin-bottom: 32px;
+    margin-bottom : 32px;
   }
   .first__description {
-    margin-top: -3px;
-    width: 840px;
-    margin-bottom: 36px;
+    margin-top    : -3px;
+    width         : 840px;
+    margin-bottom : 36px;
   }
   .rating__block {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 22px;
+    display         : flex;
+    justify-content : space-between;
+    margin-bottom   : 22px;
     .current__rating {
-      width: 120px;
+      width : 120px;
       .digit {
-        font-size: 64px;
-        height: 86px;
-        font-weight: 300;
-        text-align: center;
-        line-height: 77px;
-        color: $black_54;
+        font-size   : 64px;
+        height      : 86px;
+        font-weight : 300;
+        text-align  : center;
+        line-height : 77px;
+        color       : $black_54;
       }
       .stars {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 13px;
+        display         : flex;
+        justify-content : flex-start;
+        margin-bottom   : 13px;
         .item {
-          font-size: 20px;
-          margin: 0 2px;
-          color: $black_54;
+          font-size : 20px;
+          margin    : 0 2px;
+          color     : $black_54;
           &.is__blue {
-            position: relative;
-            color: $primoryColor;
+            position : relative;
+            color    : $primoryColor;
             &:before {
-              content: "\2605";
-              position: absolute;
-              top: 0;
-              left: 0;
+              content  : "\2605";
+              position : absolute;
+              top      : 0;
+              left     : 0;
             }
           }
         }
       }
-      .qty  {
-        position: relative;
-        color: $black_54;
-        font-size: 13px;
-        line-height: 16px;
-        padding-left: 40px;
+      .qty {
+        position     : relative;
+        color        : $black_54;
+        font-size    : 13px;
+        line-height  : 16px;
+        padding-left : 40px;
         i {
-          color: $black_54;
-          position: absolute;
-          left: 16px;
-          top: 1px;
-          font-size: 16px;
+          color     : $black_54;
+          position  : absolute;
+          left      : 16px;
+          top       : 1px;
+          font-size : 16px;
         }
       }
     }
     .rating__level {
-      width: 583px;
+      width : 583px;
       .item {
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: 14px;
+        display         : flex;
+        justify-content : flex-start;
+        margin-bottom   : 14px;
         .star {
-          color: $black_54;
-          width: 30px;
-          margin-top: 1px;
-          margin-right: 9px;
-          margin-left: -2px;
-          font-size: 12px;
-          line-height: 16px;
+          color        : $black_54;
+          width        : 30px;
+          margin-top   : 1px;
+          margin-right : 9px;
+          margin-left  : -2px;
+          font-size    : 12px;
+          line-height  : 16px;
           &:before {
-            font-size: 16px;
-            content: "\2605";
-            margin-right: 3px;
+            font-size    : 16px;
+            content      : "\2605";
+            margin-right : 3px;
           }
         }
-        .qty{
-          width: 544px;
-          position: relative;
+        .qty {
+          width    : 544px;
+          position : relative;
           span {
-            font-size: 11px;
-            color: #FFFFFF;
-            line-height: 16px;
-            height: 16px;
-            display: block;
-            position: absolute;
-            top: 2px;
-            left: 8px;
-            z-index: 2;
+            font-size   : 11px;
+            color       : #FFF;
+            line-height : 16px;
+            height      : 16px;
+            display     : block;
+            position    : absolute;
+            top         : 2px;
+            left        : 8px;
+            z-index     : 2;
           }
           .bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            background: #B2EAF2;
-            border-radius: 2px;
-            height: 16px;
+            position      : absolute;
+            top           : 0;
+            left          : 0;
+            z-index       : 1;
+            background    : #B2EAF2;
+            border-radius : 2px;
+            height        : 16px;
           }
         }
       }
@@ -111,48 +112,48 @@
   }
   .review__list {
     > .item {
-      position: relative;
-      padding-left: 64px;
-      margin-bottom: 16px;
+      position      : relative;
+      padding-left  : 64px;
+      margin-bottom : 16px;
       .ava {
-        width: 40px;
-        position: absolute;
-        top: 0;
-        left: 0;
+        width    : 40px;
+        position : absolute;
+        top      : 0;
+        left     : 0;
         img {
-          width: 100%;
-          border-radius: 100%;
+          width         : 100%;
+          border-radius : 100%;
         }
       }
       .description {
         .title {
-          display: flex;
-          justify-content: flex-start;
-          margin-bottom: 8px;
+          display         : flex;
+          justify-content : flex-start;
+          margin-bottom   : 8px;
           .name {
-            font-weight: 500;
-            margin-right: 16px;
+            font-weight  : 500;
+            margin-right : 16px;
           }
           .date {
-            color: $black_54;
+            color : $black_54;
           }
         }
         .stars {
-          display: flex;
-          justify-content: flex-start;
-          margin-bottom: 2px;
+          display         : flex;
+          justify-content : flex-start;
+          margin-bottom   : 2px;
           .item {
-            position: relative;
-            margin-right: 2px;
-            color: $black_54;
+            position     : relative;
+            margin-right : 2px;
+            color        : $black_54;
             &.is__blue {
-              position: relative;
-              color: $primoryColor;
+              position : relative;
+              color    : $primoryColor;
               &:before {
-                content: "\2605";
-                position: absolute;
-                top: 0;
-                left: 0;
+                content  : "\2605";
+                position : absolute;
+                top      : 0;
+                left     : 0;
               }
             }
 
@@ -164,144 +165,144 @@
       }
     }
     .hidden__block {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease-in;
-        > .item {
-          position: relative;
-          padding-left: 64px;
-          margin-bottom: 16px;
-          .ava {
-            width: 40px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            img {
-              width: 100%;
-              border-radius: 100%;
-            }
-          }
-          .description {
-            .title {
-              display: flex;
-              justify-content: flex-start;
-              margin-bottom: 8px;
-              .name {
-                font-weight: 500;
-                margin-right: 16px;
-              }
-              .date {
-                color: rgba(0, 0, 0, 0.54);
-              }
-            }
-            .stars {
-              display: flex;
-              justify-content: flex-start;
-              margin-bottom: 2px;
-              .item {
-                position: relative;
-                margin-right: 2px;
-                color: rgba(0, 0, 0, 0.54);
-                &.is__blue {
-                  position: relative;
-                  color: $primoryColor;
-                  &:before {
-                    content: "\2605";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                  }
-                }
-
-              }
-            }
-            .review__text {
-
-            }
+      max-height : 0;
+      overflow   : hidden;
+      transition : max-height 0.5s ease-in;
+      > .item {
+        position      : relative;
+        padding-left  : 64px;
+        margin-bottom : 16px;
+        .ava {
+          width    : 40px;
+          position : absolute;
+          top      : 0;
+          left     : 0;
+          img {
+            width         : 100%;
+            border-radius : 100%;
           }
         }
+        .description {
+          .title {
+            display         : flex;
+            justify-content : flex-start;
+            margin-bottom   : 8px;
+            .name {
+              font-weight  : 500;
+              margin-right : 16px;
+            }
+            .date {
+              color : rgba(0, 0, 0, 0.54);
+            }
+          }
+          .stars {
+            display         : flex;
+            justify-content : flex-start;
+            margin-bottom   : 2px;
+            .item {
+              position     : relative;
+              margin-right : 2px;
+              color        : rgba(0, 0, 0, 0.54);
+              &.is__blue {
+                position : relative;
+                color    : $primoryColor;
+                &:before {
+                  content  : "\2605";
+                  position : absolute;
+                  top      : 0;
+                  left     : 0;
+                }
+              }
+
+            }
+          }
+          .review__text {
+
+          }
+        }
+      }
     }
   }
   .actiion__block {
-    background: rgba(0,0,0,0.03);
-    display: flex;
-    justify-content: flex-start;
-    margin-left: -48px;
-    margin-bottom: -18px;
-    width: 936px;
-    height: 96px;
-    padding-top: 30px;
-    margin-top: 19px;
+    background      : rgba(0, 0, 0, 0.03);
+    display         : flex;
+    justify-content : flex-start;
+    margin-left     : -48px;
+    margin-bottom   : -18px;
+    width           : 936px;
+    height          : 96px;
+    padding-top     : 30px;
+    margin-top      : 19px;
     .btn {
-      margin-left: 48px;
+      margin-left : 48px;
     }
   }
   .show__more {
-    margin-left: -40px;
-    width: 936px;
-    padding-left: 48px;
-    cursor: pointer;
-    font-size: 14px;
-    padding-top: 9px;
-    padding-bottom: 23px;
-    color: $primoryColor;
+    margin-left    : -40px;
+    width          : 936px;
+    padding-left   : 48px;
+    cursor         : pointer;
+    font-size      : 14px;
+    padding-top    : 9px;
+    padding-bottom : 23px;
+    color          : $primoryColor;
     &::before {
       @include transition;
-      content: "Показать все отзывы";
+      content : "Показать все отзывы";
     }
   }
 
   &.is__opened {
     .show__more {
       &::before {
-        transition: max-height 0.5s ease-in;
-        content: "Скрыть отзывы";
+        transition : max-height 0.5s ease-in;
+        content    : "Скрыть отзывы";
       }
     }
     .review__list {
       .hidden__block {
-        transition: max-height 0.5s ease-in;
-        max-height: 5000px;
-        overflow: hidden;
+        transition : max-height 0.5s ease-in;
+        max-height : 5000px;
+        overflow   : hidden;
       }
     }
   }
 }
 
 .last__chance {
-  padding    : 32px 96px 48px;
-  background-color: #fff;
+  padding          : 32px 96px 48px;
+  background-color : #FFF;
   > .wrp {
     @include middle-block(744px);
     > .title {
-      font-size    : 24px;
-      color        : $black_87;
-      line-height  : 40px;
-      text-align   : center;
-      margin-bottom: 24px;
+      font-size     : 24px;
+      color         : $black_87;
+      line-height   : 40px;
+      text-align    : center;
+      margin-bottom : 24px;
     }
     > .description {
-      font-size    : 15px;
-      color        : $black_87;
-      line-height  : 24px;
-      text-align   : center;
-      margin-bottom: 24px;
+      font-size     : 15px;
+      color         : $black_87;
+      line-height   : 24px;
+      text-align    : center;
+      margin-bottom : 24px;
     }
 
   }
   .plane__list {
-    display        : flex;
-    justify-content: space-between;
+    display         : flex;
+    justify-content : space-between;
     .item {
-      position: relative;
+      position : relative;
       &.pidor__raz {
       }
       &.pidor__dva {
         .description {
-          margin-bottom: 8px
+          margin-bottom : 8px
         }
         .price {
-          margin-bottom: 10px;
+          margin-bottom : 10px;
         }
       }
 
@@ -311,133 +312,133 @@
           //height: 775px;
         }
         .visibile__part {
-          border-bottom: none;
-          height: 296px;
-          cursor: default;
+          border-bottom : none;
+          height        : 296px;
+          cursor        : default;
           &:hover {
-            background-color: #fff;
+            background-color : #FFF;
           }
           .action__block {
             .btn {
-              display: none;
+              display : none;
             }
             .ogo {
-              display: block;
+              display : block;
             }
           }
         }
         .hidden__part {
-          display: block;
+          display : block;
         }
 
         &.pidor__raz {
           .visibile__part {
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-left-radius     : 4px;
+            border-top-right-radius    : 4px;
+            border-bottom-right-radius : 0;
+            border-bottom-left-radius  : 0;
           }
           .hidden__part {
-            left: 0;
-            right: auto;
-            border-top-left-radius: 0;
+            left                   : 0;
+            right                  : auto;
+            border-top-left-radius : 0;
 
           }
         }
         &.pidor__dva {
           .visibile__part {
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
+            border-top-left-radius     : 4px;
+            border-top-right-radius    : 4px;
+            border-bottom-right-radius : 0;
+            border-bottom-left-radius  : 0;
           }
           .hidden__part {
-            left: auto;
-            right: 0;
-            border-top-right-radius: 0;
+            left                    : auto;
+            right                   : 0;
+            border-top-right-radius : 0;
 
           }
         }
       }
       .visibile__part {
-        border       : 1px solid rgba(0,0,0,0.54);
-        border-radius: 4px;
-        width        : 360px;
-        text-align   : center;
-        padding      : 21px 24px 16px;
-        background-color: #fff;
-        position: relative;
-        height: 272px;
-        z-index: 1;
-        cursor: pointer;
+        border           : 1px solid rgba(0, 0, 0, 0.54);
+        border-radius    : 4px;
+        width            : 360px;
+        text-align       : center;
+        padding          : 21px 24px 16px;
+        background-color : #FFF;
+        position         : relative;
+        height           : 272px;
+        z-index          : 1;
+        cursor           : pointer;
         &:hover {
-          background-color: #FAFAFA;
+          background-color : #FAFAFA;
           .btn {
-            box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+            box-shadow : 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
           }
         }
         .price {
           span {
-            display: block;
-            color: $black_54;
-            font-size: 15px;
-            line-height: 24px;
+            display     : block;
+            color       : $black_54;
+            font-size   : 15px;
+            line-height : 24px;
           }
         }
         .action__block {
-          text-align: center;
+          text-align : center;
           .btn {
             @include inline-block;
           }
           .ogo {
-            display: none;
+            display : none;
           }
         }
       }
       .hidden__part {
-        display: none;
-        border: 1px solid rgba(0,0,0,0.54);
-        top: -1px;
-        position: relative;
-        border-radius: 4px;
-        width        : 360px;
-        text-align   : center;
-        padding      : 24px 24px 16px;
-        width: 744px;
-        -webkit-border-radius: 4px;
-        -webkit-border-top-left-radius: 0;
-        -moz-border-radius: 4px;
-        -moz-border-radius-topleft: 0;
-        border-radius: 4px;
-        padding-top: 21px;
-        &.left{
-          border-top-left-radius: 0;
+        display                        : none;
+        border                         : 1px solid rgba(0, 0, 0, 0.54);
+        top                            : -1px;
+        position                       : relative;
+        border-radius                  : 4px;
+        width                          : 360px;
+        text-align                     : center;
+        padding                        : 24px 24px 16px;
+        width                          : 744px;
+        -webkit-border-radius          : 4px;
+        -webkit-border-top-left-radius : 0;
+        -moz-border-radius             : 4px;
+        -moz-border-radius-topleft     : 0;
+        border-radius                  : 4px;
+        padding-top                    : 21px;
+        &.left {
+          border-top-left-radius : 0;
         }
-        &.right{
-          border-top-right-radius: 0;
+        &.right {
+          border-top-right-radius : 0;
         }
         .wrp {
-          display: flex;
-          justify-content: space-between;
+          display         : flex;
+          justify-content : space-between;
           .form__col {
-            width: 312px;
-            padding-top: 30px;
+            width       : 312px;
+            padding-top : 30px;
             .item {
-              margin-bottom: 14px
+              margin-bottom : 14px
             }
           }
           .text__col {
-            width: 336px;
-            text-align: left;
+            width      : 336px;
+            text-align : left;
             p {
-              margin-bottom: 16px;
+              margin-bottom : 16px;
             }
           }
         }
         .action__block {
-          text-align: center;
-          margin-top: 29px;
-          margin-bottom: 11px;
+          text-align    : center;
+          margin-top    : 29px;
+          margin-bottom : 11px;
           .btn {
             @include inline-block;
           }
@@ -447,30 +448,30 @@
           .check {
             label {
 
-            padding-left: 33px;
+              padding-left : 33px;
             }
           }
         }
       }
       .title {
-        font-size    : 24px;
-        color        : $black_87;
-        line-height  : 32px;
-        margin-bottom: 16px;
+        font-size     : 24px;
+        color         : $black_87;
+        line-height   : 32px;
+        margin-bottom : 16px;
       }
       .description {
-        font-size    : 13px;
-        color        : $black_87;
-        line-height  : 20px;
-        margin-bottom: 18px;
+        font-size     : 13px;
+        color         : $black_87;
+        line-height   : 20px;
+        margin-bottom : 18px;
       }
       .price {
-        margin-bottom: 23px;
+        margin-bottom : 23px;
         span {
-          font-size   : 24px;
-          color       : $black_87;
-          line-height : 32px;
-          margin-right: 15px;
+          font-size    : 24px;
+          color        : $black_87;
+          line-height  : 32px;
+          margin-right : 15px;
         }
         .btn {
           @include inline-block;
@@ -480,23 +481,22 @@
   }
 }
 
-
 .ugly__popup {
-  position: absolute;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: $black_54;
+  position         : absolute;
+  z-index          : 9999;
+  top              : 0;
+  left             : 0;
+  bottom           : 0;
+  width            : 100%;
+  height           : 100%;
+  background-color : $black_54;
   .ugly__popup_inner {
     @include middle-block(936px);
-    position: absolute;
-    top: 400px;
-    left: 50%;
-    margin-left: -468px;
-    padding-bottom: 32px;
+    position       : absolute;
+    top            : 7vh;
+    left           : 50%;
+    margin-left    : -468px;
+    padding-bottom : 32px;
     .item {
       &.is__active {
         //height: 730px;
@@ -508,104 +508,103 @@
   }
 }
 
-
 // old
 
 .presentation__block {
-  height  : 536px;
-  overflow: hidden;
-  position: absolute;
-  z-index : 1;
-  top     : 0;
-  left    : 0;
-  width   : 100%;
+  height   : 536px;
+  overflow : hidden;
+  position : absolute;
+  z-index  : 1;
+  top      : 0;
+  left     : 0;
+  width    : 100%;
   img {
-    width: 100%;
+    width : 100%;
   }
   .shadow {
-    background-image: linear-gradient(-179deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.50) 100%);
-    position        : absolute;
-    top             : 0;
-    left            : 0;
-    width           : 100%;
-    height          : 100%;
+    background-image : linear-gradient(-179deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%);
+    position         : absolute;
+    top              : 0;
+    left             : 0;
+    width            : 100%;
+    height           : 100%;
   }
   .play__btn {
-    position: absolute;
-    top: 208px;
-    width: 116px;
-    left: 50%;
-    margin-left: -58px;
-    padding-top: 52px;
-    cursor: pointer;
+    position    : absolute;
+    top         : 208px;
+    width       : 116px;
+    left        : 50%;
+    margin-left : -58px;
+    padding-top : 52px;
+    cursor      : pointer;
     i {
-      color: #fff;
-      position: absolute;
-      font-size: 47px;
-      top: 0;
-      left: 50%;
-      margin-left: -25px;
+      color       : #FFF;
+      position    : absolute;
+      font-size   : 47px;
+      top         : 0;
+      left        : 50%;
+      margin-left : -25px;
     }
     span {
-      font-size: 15px;
-      color: #FFFFFF;
-      line-height: 24px;
+      font-size   : 15px;
+      color       : #FFF;
+      line-height : 24px;
     }
   }
 }
 
 .auth.is__course-description {
   .offer__box {
-    @include white__block(1,0);
-    position   : absolute;
-    top        : 160px;
-    left       : 50%;
-    margin-left: -468px;
-    width      : 936px;
-    padding    : 32px 96px 48px;
+    @include white__block(1, 0);
+    position    : absolute;
+    top         : 160px;
+    left        : 50%;
+    margin-left : -468px;
+    width       : 936px;
+    padding     : 32px 96px 48px;
     > .title {
-      font-size    : 24px;
-      color        : $black_87;
-      line-height  : 40px;
-      text-align   : center;
-      margin-bottom: 24px;
+      font-size     : 24px;
+      color         : $black_87;
+      line-height   : 40px;
+      text-align    : center;
+      margin-bottom : 24px;
     }
     > .description {
-      font-size    : 15px;
-      color        : $black_87;
-      line-height  : 24px;
-      text-align   : center;
-      margin-bottom: 24px;
+      font-size     : 15px;
+      color         : $black_87;
+      line-height   : 24px;
+      text-align    : center;
+      margin-bottom : 24px;
     }
     .plane__list {
-      display        : flex;
-      justify-content: space-between;
+      display         : flex;
+      justify-content : space-between;
       .item {
-        border       : 1px solid rgba(0,0,0,0.54);
-        border-radius: 4px;
-        width        : 360px;
-        text-align   : center;
-        padding      : 24px 24px 16px;
+        border        : 1px solid rgba(0, 0, 0, 0.54);
+        border-radius : 4px;
+        width         : 360px;
+        text-align    : center;
+        padding       : 24px 24px 16px;
         .title {
-          font-size    : 24px;
-          color        : $black_87;
-          line-height  : 32px;
-          margin-bottom: 16px;
+          font-size     : 24px;
+          color         : $black_87;
+          line-height   : 32px;
+          margin-bottom : 16px;
         }
         .description {
-          font-size    : 13px;
-          color        : $black_87;
-          line-height  : 20px;
-          margin-bottom: 18px;
-          height       : 60px;
-          overflow     : hidden;
+          font-size     : 13px;
+          color         : $black_87;
+          line-height   : 20px;
+          margin-bottom : 18px;
+          height        : 60px;
+          overflow      : hidden;
         }
         .price {
           span {
-            font-size   : 24px;
-            color       : $black_87;
-            line-height : 32px;
-            margin-right: 15px;
+            font-size    : 24px;
+            color        : $black_87;
+            line-height  : 32px;
+            margin-right : 15px;
           }
           .btn {
             @include inline-block;
@@ -615,222 +614,222 @@
     }
   }
   .subscribe {
-    @include white__block(1,0);
-    position   : absolute;
-    top        : 160px;
-    left       : 50%;
-    margin-left: -396px;
-    width      : 792px;
-    padding    : 32px 32px 24px;
+    @include white__block(1, 0);
+    position    : absolute;
+    top         : 160px;
+    left        : 50%;
+    margin-left : -396px;
+    width       : 792px;
+    padding     : 32px 32px 24px;
     .title {
-      font-size  : 24px;
-      color      : $black_87;
-      line-height: 32px;
-      text-align : center;
-      margin-bottom: 45px;
-      position     : relative;
+      font-size     : 24px;
+      color         : $black_87;
+      line-height   : 32px;
+      text-align    : center;
+      margin-bottom : 45px;
+      position      : relative;
       .back {
-        position: absolute;
-        top     : -1px;
-        left    : -1px;
-        cursor  : pointer;
+        position : absolute;
+        top      : -1px;
+        left     : -1px;
+        cursor   : pointer;
         i {
-          color    : $black_54;
-          font-size: 24px;
+          color     : $black_54;
+          font-size : 24px;
           &::before {
-            content: "\E893";
+            content : "\E893";
           }
         }
       }
     }
     .form__holder {
-      display        : flex;
-      justify-content: space-between;
-        .form__col {
-          width: 312px;
-        }
+      display         : flex;
+      justify-content : space-between;
+      .form__col {
+        width : 312px;
+      }
 
       .form__legend {
-        width      : 342px;
-        font-size  : 15px;
-        color      : $black_87;
-        line-height: 24px;
-        padding-top: 7px;
+        width       : 342px;
+        font-size   : 15px;
+        color       : $black_87;
+        line-height : 24px;
+        padding-top : 7px;
       }
     }
-    .action__block   {
+    .action__block {
       @include clearfix;
       .btn {
-        color: #FFF;
-        float: right;
-        background-color: #00BCD4;
+        color            : #FFF;
+        float            : right;
+        background-color : #00BCD4;
       }
     }
   }
 }
 
 .oh__nihuyase-block {
-  position  : relative;
-  z-index   : 12;
+  position : relative;
+  z-index  : 12;
   @include middle-block(920px);
-  padding-top: 312px;
+  top      : 312px;
   .tegs__list {
-    display        : flex;
-    margin-bottom  : 8px;
-    justify-content: flex-start;
+    display         : flex;
+    margin-bottom   : 8px;
+    justify-content : flex-start;
     .item {
-      font-size   : 15px;
-      line-height : 24px;
-      position    : relative;
-      padding-left: 24px;
-      color       : rgba(255,255,255,.70);
+      font-size    : 15px;
+      line-height  : 24px;
+      position     : relative;
+      padding-left : 24px;
+      color        : rgba(255, 255, 255, .70);
       i {
-        position: absolute;
-        top     : 0;
-        left    : 0;
-        color   : rgba(255,255,255,.70);
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        color    : rgba(255, 255, 255, .70);
       }
     }
   }
   .course__title {
-    font-size    : 34px;
-    line-height  : 40px;
-    margin-bottom: 56px;
-    color        : #fff;
+    font-size     : 34px;
+    line-height   : 40px;
+    margin-bottom : 56px;
+    color         : #FFF;
   }
   .progress__block {
-    margin-bottom: 32px;
-    padding      : 24px 32px;
-    @include white__block(1,0);
+    margin-bottom : 32px;
+    padding       : 24px 32px;
+    @include white__block(1, 0);
     > .title {
       @import "common/elements/edit_menu";
-      margin-bottom: 24px;
+      margin-bottom : 24px;
       &.overdue {
         .right-col {
-          color: #ff1744;
+          color : #FF1744;
         }
       }
       .left-col {
-        font-size  : 24px;
-        line-height: 32px;
-        color      : $black_87;
+        font-size   : 24px;
+        line-height : 32px;
+        color       : $black_87;
       }
       .right-col {
-        font-size  : 15px;
-        line-height: 24px;
-        color      : $black_87;
+        font-size   : 15px;
+        line-height : 24px;
+        color       : $black_87;
       }
     }
     .progress__wrp {
-      position     : relative;
-      margin-bottom: 24px;
+      position      : relative;
+      margin-bottom : 24px;
       .bar {
-        width        : 100%;
-        height       : 24px;
-        border-radius: 2px 0 0 2px;
-        background   : rgba(0,0,0,.12);
+        width         : 100%;
+        height        : 24px;
+        border-radius : 2px 0 0 2px;
+        background    : rgba(0, 0, 0, .12);
       }
       .completed {
-        position        : absolute;
-        top             : 0;
-        left            : 0;
-        height          : 24px;
-        border-radius   : 2px 0 0 2px;
-        background-color: $primoryColor;
+        position         : absolute;
+        top              : 0;
+        left             : 0;
+        height           : 24px;
+        border-radius    : 2px 0 0 2px;
+        background-color : $primoryColor;
       }
     }
     .info {
-      display        : flex;
-      justify-content: center;
+      display         : flex;
+      justify-content : center;
       .precent,
       .qty {
-        font-size  : 15px;
-        line-height: 24px;
-        margin     : 0 32px;
-        color      : $black_54;
+        font-size   : 15px;
+        line-height : 24px;
+        margin      : 0 32px;
+        color       : $black_54;
       }
     }
   }
   .course__info {
-    margin-bottom: 48px;
-    padding      : 32px 48px;
+    margin-bottom : 48px;
+    padding       : 32px 48px;
     @include white__block(1, 0);
     .adaptive__title {
       .left-col {
-        font-size      : 13px;
-        line-height    : 20px;
-        display        : flex;
-        color          : $black_54;
-        justify-content: flex-start;
+        font-size       : 13px;
+        line-height     : 20px;
+        display         : flex;
+        color           : $black_54;
+        justify-content : flex-start;
         .item {
-          position    : relative;
-          margin      : 0 8px;
-          padding-left: 24px;
+          position     : relative;
+          margin       : 0 8px;
+          padding-left : 24px;
           i {
-            font-size: 17px;
-            position : absolute;
-            top      : 0;
-            left     : 0;
-            color    : $black_54;
+            font-size : 17px;
+            position  : absolute;
+            top       : 0;
+            left      : 0;
+            color     : $black_54;
           }
         }
       }
       .right-col {
         .item {
-          font-size    : 11px;
-          line-height  : 24px;
-          height       : 24px;
-          margin       : -4px 4px 36px;
-          padding      : 0 8px;
-          color        : $black_54;
-          border       : 1px solid $black_54;
-          border-radius: 2px;
+          font-size     : 11px;
+          line-height   : 24px;
+          height        : 24px;
+          margin        : -4px 4px 36px;
+          padding       : 0 8px;
+          color         : $black_54;
+          border        : 1px solid $black_54;
+          border-radius : 2px;
         }
       }
     }
     .detail__info {
       &.is__closed {
-          display: none;
+        display : none;
       }
       .description {
-        margin-bottom: 24px;
+        margin-bottom : 24px;
         p {
-          font-size    : 15px;
-          line-height  : 24px;
-          margin-bottom: 30px;
-          color        : $black_87;
+          font-size     : 15px;
+          line-height   : 24px;
+          margin-bottom : 30px;
+          color         : $black_87;
         }
       }
       .leading__list {
         > .title {
-          margin-bottom: 32px;
+          margin-bottom : 32px;
         }
         .item {
-          margin-bottom: 40px;
+          margin-bottom : 40px;
           @include clearfix;
           .ava {
-            float       : left;
-            width       : 142px;
-            margin-right: 48px;
+            float        : left;
+            width        : 142px;
+            margin-right : 48px;
             img {
-              display      : block;
-              width        : 100%;
-              border-radius: 100%;
+              display       : block;
+              width         : 100%;
+              border-radius : 100%;
             }
           }
           .info {
-            float: left;
-            width: calc(100% - 190px);
+            float : left;
+            width : calc(100% - 190px);
             .title {
-              font-size    : 15px;
-              line-height  : 24px;
-              margin-bottom: 8px;
-              color        : #000;
+              font-size     : 15px;
+              line-height   : 24px;
+              margin-bottom : 8px;
+              color         : #000;
             }
             .description {
-              font-size  : 15px;
-              line-height: 24px;
-              color      : $black_54;
+              font-size   : 15px;
+              line-height : 24px;
+              color       : $black_54;
             }
           }
         }
@@ -838,18 +837,18 @@
     }
     .more {
       .btn {
-        text-transform: none;
+        text-transform : none;
       }
       &.is__closed {
         .for__closed {
           @include inline-block;
         }
         .for__open {
-          display: none;
+          display : none;
         }
       }
       .for__closed {
-        display: none;
+        display : none;
       }
       .for__open {
         @include inline-block;
@@ -859,203 +858,239 @@
 
   .study__program {
     .title {
-      font-size    : 24px;
-      line-height  : 32px;
-      margin-bottom: 24px;
-      color        : $black_87;
+      font-size     : 24px;
+      line-height   : 32px;
+      margin-bottom : 24px;
+      color         : $black_87;
     }
     .programm__block {
-      margin-bottom   : 40px;
-      background-color: #eee;
-      padding         : 24px;
-      width           : calc(100% + 48px);
-      margin-left     : -24px;
-      &.finalTest{
-        background: none;
+      margin-bottom    : 40px;
+      background-color : #EEE;
+      padding          : 24px;
+      width            : calc(100% + 48px);
+      margin-left      : -24px;
+      @include transition;
+
+      &.is__shot {
+        background  : none;
+        @include white__block(1, 1);
+        width       : 100%;
+        margin-left : 0;
+        padding     : 0;
+        height      : 40px;
+        cursor      : pointer;
+        @include transition;
+        > .adaptive__title {
+          margin-bottom : 0;
+          padding-left  : 12px;
+          padding-top   : 10px;
+          .right-col {
+            padding-top : 2px;
+          }
+          i {
+            margin-right : 19px;
+            &::before {
+              content : '\E8A6'
+            }
+          }
+        }
+        .programm__wrp {
+          height   : 0;
+          overflow : hidden;
+        }
+      }
+      &.finalTest {
+        background : none;
       }
       > .adaptive__title {
-        margin-bottom: 16px;
+        margin-bottom : 16px;
         .left-col {
-          font-size  : 15px;
-          line-height: 24px;
-          color      : $black_54;
+          font-size   : 15px;
+          line-height : 24px;
+          color       : $black_54;
         }
         .right-col {
-          color: rgba(0, 0, 0, 0.87);
+          color : $black_26;
+          i {
+            cursor : pointer;
+          }
           &.overdue {
-            color: #ff1744;
+            color : #FF1744;
           }
         }
 
         @import "common/elements/edit_menu";
       }
       .programm__wrp {
-        @include white__block(1,0);
+        @include white__block(1, 0);
       }
-      form{
-        cursor: pointer;
-        &:hover{
-          background-color: #F5F5F5;
+      form {
+        cursor : pointer;
+        &:hover {
+          background-color : #F5F5F5;
         }
         &:last-child {
-          .item{
-            border: none;
+          .item {
+            border : none;
           }
         }
       }
       .item {
-        position     : relative;
-        height       : 96px;
-        border-bottom: 1px solid rgba(0,0,0,0.12);
-        padding      : 13px 16px 16px 120px;
-
+        position      : relative;
+        height        : 96px;
+        border-bottom : 1px solid rgba(0, 0, 0, 0.12);
+        padding       : 13px 16px 16px 120px;
+        &.is__unreacheble {
+          opacity : .26;
+        }
         .icon__block {
-          position  : absolute;
-          top       : 0;
-          left      : 0;
-          width     : 108px;
-          height    : 100%;
-          text-align: center;
+          position   : absolute;
+          top        : 0;
+          left       : 0;
+          width      : 108px;
+          height     : 100%;
+          text-align : center;
           i {
-            font-size  : 24px;
-            line-height: 96px;
-            color      : $black_54;
+            font-size   : 24px;
+            line-height : 96px;
+            color       : $black_54;
             &.text {
-              font-size: 36px;
+              font-size : 36px;
             }
             &.audio,
             &.test {
-              font-size: 33px;
+              font-size : 33px;
             }
           }
         }
         .adaptive__title {
-          margin-bottom: 10px;
+          margin-bottom : 10px;
           .left-col {
-            font-size  : 15px;
-            line-height: 24px;
-            color      : $black_87;
+            font-size   : 15px;
+            line-height : 24px;
+            color       : $black_87;
           }
           .right-col {
-            font-size  : 12px;
-            line-height: 16px;
-            color      : $black_26;
+            font-size   : 12px;
+            line-height : 16px;
+            color       : $black_26;
           }
         }
         .description {
-          font-size  : 12px;
-          line-height: 16px;
-          overflow   : hidden;
-          height     : 34px;
-          color      : $black_87;
+          font-size   : 12px;
+          line-height : 16px;
+          overflow    : hidden;
+          height      : 34px;
+          color       : $black_87;
         }
         &.is__completed {
           .icon__block {
             &::before {
-              font-family: Icons, sans-serif;
-              font-size  : 39px;
-              line-height: 96px;
-              position   : absolute;
-              top        : 0;
-              left       : 0;
-              display    : block;
-              width      : 100%;
-              content    : "\E899";
-              color      : $primoryColor;
+              font-family : Icons, sans-serif;
+              font-size   : 39px;
+              line-height : 96px;
+              position    : absolute;
+              top         : 0;
+              left        : 0;
+              display     : block;
+              width       : 100%;
+              content     : "\E899";
+              color       : $primoryColor;
             }
             i {
-              color: $black_26;
+              color : $black_26;
             }
           }
           .adaptive__title {
             .left-col {
-              color: $black_54;
+              color : $black_54;
             }
           }
           .description {
-            color: $black_54;
+            color : $black_54;
           }
         }
       }
     }
     &.is__closed {
-      width      : calc(100% + 32px);
-      margin-left: -16px;
-      height     : 315px;
-      padding    : 0 16px;
-      overflow   : hidden;
+      width       : calc(100% + 32px);
+      margin-left : -16px;
+      height      : 315px;
+      padding     : 0 16px;
+      overflow    : hidden;
       .prgr-wrp {
         .programm__block:nth-child(1) {
-          display: block;
+          display : block;
         }
         .programm__block {
-          display: none;
+          display : none;
         }
       }
     }
   }
   .toggle__view.btn {
     @include inline-block;
-    margin-bottom: 36px;
+    margin-bottom : 36px;
     &.is__closed {
       .for__closed {
         @include inline-block;
       }
       .for__open {
-        display: none;
+        display : none;
       }
     }
     .for__closed {
-      display: none;
+      display : none;
     }
     .for__open {
       @include inline-block;
     }
   }
 }
+
 .not__auth-block {
-  background-color: #fff;
-  padding         : 48px 0 36px;
+  background-color : #FFF;
+  padding          : 48px 0 36px;
   .inner {
     @include middle-block(750px);
     > .title {
-      font-size    : 34px;
-      color        : $black_87;
-      line-height  : 40px;
-      margin-bottom: 24px;
-      text-align   : center;
+      font-size     : 34px;
+      color         : $black_87;
+      line-height   : 40px;
+      margin-bottom : 24px;
+      text-align    : center;
     }
     .info {
-      font-size    : 15px;
-      color        : $black_87;
-      line-height  : 24px;
-      margin-bottom: 24px;
-      text-align   : center;
+      font-size     : 15px;
+      color         : $black_87;
+      line-height   : 24px;
+      margin-bottom : 24px;
+      text-align    : center;
     }
   }
   .plans {
-    display        : flex;
-    justify-content: center;
+    display         : flex;
+    justify-content : center;
     .item {
-      border       : 1px solid $black_54;
-      border-radius: 4px;
-      padding      : 32px 24px 24px;
+      border        : 1px solid $black_54;
+      border-radius : 4px;
+      padding       : 32px 24px 24px;
       &:first-child {
-        margin-right: 24px;
+        margin-right : 24px;
       }
       .title {
-        font-size    : 24px;
-        color        : $black_87;
-        line-height  : 28px;
-        text-align   : center;
-        margin-bottom: 24px;
+        font-size     : 24px;
+        color         : $black_87;
+        line-height   : 28px;
+        text-align    : center;
+        margin-bottom : 24px;
       }
       .description {
-        text-align   : center;
-        font-size    : 13px;
-        color        : $black_54;
-        line-height  : 20px;
-        margin-bottom: 28px;
+        text-align    : center;
+        font-size     : 13px;
+        color         : $black_54;
+        line-height   : 20px;
+        margin-bottom : 28px;
       }
     }
   }

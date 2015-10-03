@@ -42,7 +42,6 @@ gem 'rails-i18n'
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
-
 #===================== websocket
 gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 gem 'hiredis'

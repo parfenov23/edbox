@@ -12,3 +12,6 @@
       = render "common/page_empty", {btn: false}
     - if current_user.present?
       = render "home/courses/pop_up"
+- unless current_user.present?
+  .last__chance.js_parentRequestSend
+    = render "common/popup_request/content"

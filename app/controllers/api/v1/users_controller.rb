@@ -3,9 +3,14 @@ require 'resize_image'
 module Api::V1
   class UsersController < ::ApplicationController
     before_action :is_director, only: [:invite, :remove_user]
-
+    skip_before_action :authorize, only: [:send_request]
     def info
       render json: current_user.transfer_to_json
+    end
+
+    def send_request
+      HomeMailer.sendRequest(params).deliver
+      render json: {success: "good"}
     end
 
     def invite

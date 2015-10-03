@@ -1,0 +1,20 @@
+<% type_hash = {"user" => "Личный аккаунт", "corp" => "Корпаративный аккаунит"} %>
+Тип аккаунта: <b><%= type_hash[@params[:type_account]] %></b>
+<br>
+Email: <b><%= @params[:email] %></b>
+<br>
+Телефон: <b><%= @params[:phone] %></b>
+<br>
+Имя: <b><%= @params[:fio] %></b>
+<br>
+<% if @params[:type_account] == "corp" %>
+    Компания: <b><%= @params[:company] %></b>
+    <br>
+<% end %>
+<br>
+Дата: <b><%= Time.current %></b>
+<br>
+Страница: <a href="<%= @params[:current_link_page] %>"><b><%= @params[:current_link_page] %></b></a>
+<br>
+IP: <b><%= @params[:ip_user] %></b>
+<br>

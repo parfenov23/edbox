@@ -14,7 +14,7 @@ function warning(text, actionText){
     popup.find('.action-btn .js_closePopupConfirmNo').attr('style', 'display:none');
     popup.find('.action-btn .js_actionYesStart').text(actionText);
     btn_yes_action = defaultConfirm;
-    popup.show();
+    popup.addClass("h__PopupDisplayFlex");
 }
 
 //var closePopupConfirm = function (event) {

@@ -242,6 +242,13 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $(document).on 'click', '.programm__block > .adaptive__title i', ->
+    parentBlock = $(@).closest '.programm__block'
+    if !parentBlock.hasClass('is__shot')
+      parentBlock.addClass 'is__shot'
+    else
+      parentBlock.removeClass 'is__shot'
+
   $(document).on 'click', '.plane__list .item.js_openHiddenPart', ->
     parent_block = $(@).closest(".js_parentRequestSend")
     $('.plane__list .item')
@@ -260,6 +267,7 @@ $(document).ready ->
       .removeClass("left")
       .removeClass("right")
       .addClass($(@).data('type'));
+    parent_block.find("input[name='type_account']").val($(@).data('type_account'))
     if $(@).data('show') != undefined || $(@).data('show') != ""
       parent_block.find($(@).data('show')).closest('.item').show()
     if $(@).data('hide') != undefined || $(@).data('hide') != ""
@@ -270,6 +278,12 @@ $(document).ready ->
     elem = parentBlock.find '.hidden__part'
     parentBlock.addClass 'is__active'
     hideElementOutOff(elem, parentBlock , e)
+
+  $('#js-add-course-to-shedule .select-trigger').on 'click', (e) ->
+    parentBlock = $(@).closest '.select'
+    elem = parentBlock.find '.listGroup'
+    hideElementOutOff(elem, parentBlock , e)
+
 
 
   $(document).on 'keyup', '.com__input-item textarea, .com__input-item input', ->
@@ -402,13 +416,6 @@ $(document).ready ->
   $('.is__sooo-long .page__title').on 'click', ->
     $(@).next().toggle 300
 
-#  $(window).scroll ->
-#    scrollHeight = $('body').scrollTop()
-#    if scrollHeight > 1
-#      $('#page__header').addClass('is__white')
-#    else
-#      $('#page__header').removeClass('is__white')
-
   $('.js__show-aside-main-nav').on 'click', ->
     $('.js__left-aside, .js__backing').addClass('is__active')
 
@@ -479,8 +486,7 @@ $(document).ready ->
         list.hide()
         $(document).unbind 'click.dropdown'
 
-  $('#js-add-course-to-shedule .select-trigger').on 'click', ->
-    $(@).closest('.select').find('ul.hidden').show()
+
 
   $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
     $(document).trigger 'click.dropdown'

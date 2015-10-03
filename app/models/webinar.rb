@@ -20,17 +20,19 @@ class Webinar < ActiveRecord::Base
                                               salt: "74ab3f53f53e260406faeaa4bdbded35", version: "0.9"})
     end
     scheduler.at "#{date_start}" do
-      bb = BigbluebuttonRoom.where(name: attachment.title).last
-      bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
-      bb.update({
-                  meetingid: config_meeting[:meetingID],
-                  attendee_api_password: config_meeting[:attendeePW],
-                  moderator_api_password: config_meeting[:moderatorPW]
-                })
-      self.bigbluebutton_room_id = bb.id
-      save
+      ActiveRecord::Base.connection_pool.with_connection do
+        bb = BigbluebuttonRoom.where(name: attachment.title).last
+        bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
+        # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
+        config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
+        bb.update({
+                    meetingid: config_meeting[:meetingID],
+                    attendee_api_password: config_meeting[:attendeePW],
+                    moderator_api_password: config_meeting[:moderatorPW]
+                  })
+        self.bigbluebutton_room_id = bb.id
+        save
+      end
     end
     scheduler.start
   end
@@ -38,9 +40,9 @@ class Webinar < ActiveRecord::Base
   def url_bigbluebuttom(user_id, type="user")
     bbbroom = bigbluebutton_room rescue nil
     if bbbroom.present?
-      user = User.find(user_id)
+      user = User.find(user_id) rescue nil
       password = type == "user" ? bbbroom.attendee_api_password : bbbroom.moderator_api_password
-      bbbroom.server.api.join_meeting_url(bbbroom.meetingid, user.full_name, password)
+      bbbroom.server.api.join_meeting_url(bbbroom.meetingid, (user.full_name rescue "Слушатель"), password)
     end
   end
 
