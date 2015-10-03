@@ -1,8 +1,19 @@
 = render "home/header/header", {namePage: "other", titlePage: "Финальный тест", btnBack: true, backUrl: "/course_description?id=#{@course.id}"}
+
+.main__action.multi__action
+  .inner__wrp
+    .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_submitFormTest.ya_course_end
+      i.icon.done
+      .main__action-tooltip В мой кабинет
+    .hidden__actions.is__visible
+
 - test = @test
 .inner-content
   form#tests data-id=test.id data-course_id=@course.id data-att_id=''
     - if test.present?
+      .test-info
+        .title Тест: #{@course.title}
+        .description #{@course.description}
       .test-list
         - questions = test.questions.where.not(title: [nil, ""])
         - count_q = 0
@@ -23,5 +34,3 @@
                   label for="an-#{question.id}-#{answer.id}"
                     i
                     .text = answer.text
-    .adova__btn.mdl-shadow--2dp.js_submitFormTest.ya_course_end
-      i.icon
