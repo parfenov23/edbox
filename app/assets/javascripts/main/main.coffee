@@ -243,7 +243,7 @@ $(document).ready ->
   activeMenu()
 
   $(document).on 'click', '.plane__list .item.js_openHiddenPart', ->
-    parent_block = $(@).closest(".ugly__popup")
+    parent_block = $(@).closest(".js_parentRequestSend")
     $('.plane__list .item')
       .removeClass 'is__active'
       .addClass 'is__NOactive'
