@@ -125,6 +125,10 @@ class HomeController < ActionController::Base
   #   render text: html
   # end
 
+  def course_no_reg
+    @course = Course.find(params[:id])
+  end
+
   def course_description
     # @favorite_courses = current_user.favorite_courses
     @course = Course.find(params[:id])
