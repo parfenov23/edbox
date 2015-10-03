@@ -3,12 +3,12 @@ var validTestForm = function (form) {
     var invalidTestItemsIds = [];
     $.each(testItems, function (i, element) {
         if ($(element).find(':checked').length){
-            if (! $(element).hasClass('is__not-activ')){
-                $(element).addClass('is__not-activ');
+            if (! $(element).hasClass('error')){
+                $(element).addClass('error');
             }
         } else {
-            if ($(element).hasClass('is__not-activ')){
-                $(element).removeClass('is__not-activ');
+            if ($(element).hasClass('error')){
+                $(element).removeClass('error');
             }
             invalidTestItemsIds.push($(element).attr('name'));
         }
@@ -61,7 +61,7 @@ var submitFromTest = function () {
 };
 
 $(document).ready(function () {
-    $(document).on('click', '#tests .js_submitFormTest', submitFromTest);
+    $(document).on('click', '.js_submitFormTest', submitFromTest);
 
     var result = $('#tests .result-block');
     if (result.length){
