@@ -19,5 +19,5 @@
             .author
               - title_auth = course.ligament_leads.first.user.full_name rescue "Нет ведущего"
               - title_auth = "Материал" if course.material?
-              - title_auth = "Онлайн - Курс" if course.online?
+              - title_auth = "Вебинар" if course.online?
               = title_auth

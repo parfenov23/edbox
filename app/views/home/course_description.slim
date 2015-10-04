@@ -1,4 +1,5 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
+span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 - if params[:attachment_id].present?
   input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 .presentation__block
