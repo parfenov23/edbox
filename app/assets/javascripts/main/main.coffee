@@ -249,6 +249,8 @@ $(document).ready ->
 
   $(document).on 'click', '.js_openAndPlayVideoFullScreen', ->
     $('.hidden__video').addClass 'is__fullscrn'
+    $('video')[0].play()
+
 
   $(document).on 'click', '.programm__block > .adaptive__title i', ->
     parentBlock = $(@).closest '.programm__block'
