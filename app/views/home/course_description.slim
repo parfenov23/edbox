@@ -1,4 +1,12 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses"}
+.hidden__video
+  .for__back
+    i.icon.back
+  video.js__hiddenVideo controls=""  preload="auto" 
+    source src="/system/attachment/file/31/video.mp4"
+    
+    
+    
 span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 - if params[:attachment_id].present?
   input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
@@ -7,12 +15,9 @@ span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
   .shadow
   img src = @course.get_image_path
   - if course_video.present?
-    .play__btn.js_openAndPlayVideo
+    .play__btn.js_openAndPlayVideoFullScreen
       i.icon.play
       span Смотреть тизер
-    .hidden__video
-      video.teaserVideoChange controls="" height="400" preload="auto" width="800"
-        source src=course_video.file.url
 
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
