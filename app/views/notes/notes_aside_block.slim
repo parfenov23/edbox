@@ -1,11 +1,11 @@
-.item.js__showHideToggleBtn
+.item.js__showHideToggleBtn.js_noteItem
   .title
     .date #{ltime(note.created_at, '', 'long')}
     .edit
       i.icon.more
       ul.hidden-list
-        li.item Редактировать
-        li.item Удалить
+        /li.item Редактировать
+        li.item.js_noteDestroyMenu data-note_id=note.id Удалить
 
   .description
     = note.text
