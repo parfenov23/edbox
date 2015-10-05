@@ -53,7 +53,7 @@ var courseInfo = function (course_id) {
 
         }
         if (data.type_course == "online"){
-            titleCourseType.text("Добавить онлайн-курс в ");
+            titleCourseType.text("Добавить вебинар в ");
             block_selectSections.hide();
             blockCalendarCourse.hide()
         }
