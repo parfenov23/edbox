@@ -9,6 +9,11 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Добро пожаловать в Edbox!")
   end
 
+  def sendRequest(params)
+    @params = params
+    mail(:to => "bazhan@masshtab.am", :subject => "Заявка с Edbox", :reply_to => @params[:email])
+  end
+
   def change_password(user, new_password)
     @user = user
     @new_password = new_password

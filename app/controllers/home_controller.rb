@@ -1,6 +1,6 @@
 class HomeController < ActionController::Base
   helper_method :current_user
-  before_action :authorize, except: [:course_description, :render_file, :courses, :attachment]
+  before_action :authorize, except: [:course_description, :render_file, :courses, :attachment, :course_no_reg]
   before_action :is_corporate?, only: [:group]
 
   layout "application"
@@ -124,6 +124,10 @@ class HomeController < ActionController::Base
   #   html = render_to_string 'home/group/_schedule', :layout => false, :locals => {params: params}
   #   render text: html
   # end
+
+  def course_no_reg
+    @course = Course.find(params[:id])
+  end
 
   def course_description
     # @favorite_courses = current_user.favorite_courses

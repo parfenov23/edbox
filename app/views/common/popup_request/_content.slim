@@ -54,10 +54,11 @@
           .btn.is__blue.js_sendRequestForm ОТПРАВИТЬ ЗАЯВКУ
         .agrement
           .check
-            input#an-3-1 type="checkbox"
+            input#an-3-1 type="checkbox" checked=true disabled="disabled"
             label.icon for="an-3-1"
               i
               .text
-                |Я ознакомлен с
-                a href=""договором оферты
+                'Я ознакомлен с
+                a.auth_agree-link href="/oferta"
+                  'договором оферты
                 |и принимаю условия договора

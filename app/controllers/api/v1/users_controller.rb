@@ -9,6 +9,7 @@ module Api::V1
     end
 
     def send_request
+      HomeMailer.sendRequest(params).deliver
       render json: {success: "good"}
     end
 

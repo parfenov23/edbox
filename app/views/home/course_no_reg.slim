@@ -1,0 +1,7 @@
+= render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: "/courses?type=material"}
+.inner-content
+  #course
+    h2 = @course.title
+    .title = @course.description
+.last__chance.js_parentRequestSend
+  = render "common/popup_request/content"
