@@ -242,6 +242,16 @@ $(document).ready ->
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
+  $(document).on 'click', '.hidden__video.is__fullscrn', (e) ->
+    if $(e.target)[0] != $('.js__hiddenVideo')[0]
+      $('.hidden__video.is__fullscrn').removeClass('is__fullscrn')
+      $('video')[0].pause()
+
+  $(document).on 'click', '.js_openAndPlayVideoFullScreen', ->
+    $('.hidden__video').addClass 'is__fullscrn'
+    $('video')[0].play()
+
+
   $(document).on 'click', '.programm__block > .adaptive__title i', ->
     parentBlock = $(@).closest '.programm__block'
     if !parentBlock.hasClass('is__shot')
