@@ -9,7 +9,8 @@
       - @courses.each do |course|
         = render "courses/course", {course: course, type: 'courses'}
     - else
-      = render "common/page_empty", {btn: false}
+      - if current_user.present?
+        = render "common/page_empty", {btn: false}
     - if current_user.present?
       = render "home/courses/pop_up"
 - unless current_user.present?
