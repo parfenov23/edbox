@@ -324,6 +324,7 @@
             }
             .ogo {
               display : block;
+              color: $black_54;
             }
           }
         }
@@ -437,7 +438,6 @@
         }
         .action__block {
           text-align    : center;
-          margin-top    : 29px;
           margin-bottom : 11px;
           .btn {
             @include inline-block;
