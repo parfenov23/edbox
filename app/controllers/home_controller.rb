@@ -173,7 +173,13 @@ class HomeController < ActionController::Base
   end
 
   def authorize
-    redirect_to "/courses" if current_user.nil?
+    if current_user.nil?
+      if params[:reg].present?
+        redirect_to "/courses?reg=#{params[:reg]}&type=#{params[:type]}"
+      else
+        redirect_to '/courses'
+      end
+    end
   end
 
   def is_corporate?

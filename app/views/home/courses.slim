@@ -16,3 +16,19 @@
 - unless current_user.present?
   .last__chance.js_parentRequestSend
     = render "common/popup_request/content"
+
+- if params[:reg].present? && params[:reg] == 'true'
+  - if params[:type].present?
+    #regtype data-type=params[:type]  style = 'display: none'
+  javascript:
+    $(document).ready(function(){
+      $.when(openFormRegistration()).then(function () {
+        var regtype = $('#regtype')
+        if (regtype.data('type') == 'pers'){
+          $("#formCourseRegPopUp .pidor__raz .btn").click();
+        }
+        if (regtype.data('type') == 'corp'){
+          $("#formCourseRegPopUp .pidor__dva .btn").click();
+        }
+      });
+    });
