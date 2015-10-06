@@ -995,6 +995,44 @@
         &.is__unreacheble {
           opacity : .26;
         }
+        &.is__webinar {
+          height: 126px;
+          .icon__block {
+            i {
+              font-size: 39px;
+              line-height: 75px;
+            }
+          }
+          .adaptive__title {
+            .left-col {
+              font-size: 15px;
+              line-height: 24px;
+              font-weight: 500;
+            }
+          }
+          .description {
+            margin-bottom: 14px;
+          }
+          .info__block {
+            display: flex;
+            justify-content: flex-start;
+            .start__time, .authors {
+              @include eclipses;
+              font-size: 11px;
+              span {
+                color: $black_54;
+                padding-right: 11px;
+              }
+            }
+            .start__time {
+              max-width: 205px;
+              margin-right: 48px;
+            }
+            .authors {
+              max-width: 475px;
+            }
+          }
+        }
         .icon__block {
           position   : absolute;
           top        : 0;
@@ -1034,8 +1072,21 @@
           overflow    : hidden;
           height      : 34px;
           color       : $black_87;
+              padding-right: 32px;
         }
         &.is__completed {
+          &.is__webinar {
+            .icon__block {
+              &::before {
+                content: ""
+              }
+              i {
+                &::before {
+                color: $primoryColor;
+                }
+              }
+            }
+          }
           .icon__block {
             &::before {
               font-family : Icons, sans-serif;
