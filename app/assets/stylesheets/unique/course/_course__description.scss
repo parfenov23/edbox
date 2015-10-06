@@ -940,7 +940,19 @@
         }
       }
       &.finalTest {
-        background : none;
+        @include white__block(1,1);
+        width: 100%;
+        margin-left: 0;
+        padding: 0;
+        cursor: pointer;
+        .item {
+          .icon__block {
+            i {
+              color: $primoryColor;
+            }
+          }
+
+        }
       }
       > .adaptive__title {
         margin-bottom : 16px;
