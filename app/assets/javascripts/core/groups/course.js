@@ -124,6 +124,9 @@ var changeDeadLineSectionMy = function (btn, text_success) {
 
 var changeDeadLineSectionGroup = function (btn, text_success) {
     var data_time = btn.val();
+    if (data_time == ""){
+        data_time = btn.text();
+    }
     var section_id = btn.data("section_id");
     show_error('Загрузка', 3000);
     $.ajax({
