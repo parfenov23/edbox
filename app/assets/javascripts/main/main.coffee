@@ -90,12 +90,12 @@ headerSubmenu = ->
   chPageWidth = $('.page__children').width()
   titleWidth = $('.page__title ').width()
   rightWidt = $('.right-col').width()
-  if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
-    if( $("#namePageGroup").length)
-      $("page__title")
-    $('#page__header .left-col').addClass('is__sooo-long')
-    $('#page__header').removeClass('with__children ')
-    $('#page__header .page__children').addClass('js__baron')
+  # if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
+  #   if( $("#namePageGroup").length)
+  #     $("page__title")
+  #   $('#page__header .left-col').addClass('is__sooo-long')
+  #   $('#page__header').removeClass('with__children ')
+  #   $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
   $('.adaptive__title').each ->
