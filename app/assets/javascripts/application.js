@@ -270,7 +270,14 @@ $(document).ready(function () {
 
     $(document).on('click', '.js_closeAllPopup', function (e) {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
-    })
+    });
+
+    $(document).on('click', function(e){
+        if (!$(e.target).closest(".js__select-calendar").length){
+            $(".js__select-calendar.is__active").removeClass("is__active")
+                .find(".hidden-calendar").hide()
+        }
+    });
 
     if ($("input[name='ip_user']").length) $("input[name='ip_user']").val(myIP());
     $("input[name='current_link_page']").val(window.location.href);

@@ -33,7 +33,7 @@ var changeDeadLineCourse = function (btn) {
         data: {course_id: course_id, date_complete: data_time}
     }).success(function (data) {
         if (btn.data("no_schedule") == true){
-            show_error(text_success, 3000);
+            show_error("Дата прохождения курса изменена", 3000);
             setTimeout(function () {
                 location.reload();
             }, 1000);
@@ -195,15 +195,17 @@ var bind_block = function () {
         changeDeadLineSectionMy($(this), $(this).data("text"));
     });
 
-    $('.js__select-calendar').hover((function () {
+    $('.js__select-calendar').on('click', function (e) {
+        e.preventDefault();
         $(this).addClass('is__active');
         $('.js__backing').addClass('is__active');
-    }), function () {
-        if ($('#ui-datepicker-div').is(':hidden')){
-            $(this).removeClass('is__active');
-        }
-
     });
+    //, function () {
+    //    if ($('#ui-datepicker-div').is(':hidden') || !$('#ui-datepicker-div').length){
+    //        $(this).removeClass('is__active');
+    //    }
+    //
+    //});
     //includeDatePicker();
 };
 
