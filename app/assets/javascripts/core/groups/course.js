@@ -122,6 +122,22 @@ var changeDeadLineSectionMy = function (btn, text_success) {
     }
 };
 
+var removeDeadLineSectionMy = function () {
+    var bunch_section_id = btn.data("bunch_section_id");
+    show_error('Загрузка', 3000);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/remove_section_deadline',
+        data: {bunch_section_id: bunch_section_id}
+    }).success(function () {
+        show_error(text_success, 3000);
+        loadMySchedule();
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+    return true;
+};
+
 var changeDeadLineSectionGroup = function (btn, text_success) {
     var data_time = btn.val();
     if (data_time == ""){
@@ -140,22 +156,6 @@ var changeDeadLineSectionGroup = function (btn, text_success) {
             show_error(text_success, 3000);
             loadMySchedule();
         }
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
-    return true;
-};
-
-var removeDeadLineSectionMy = function () {
-    var bunch_section_id = btn.data("bunch_section_id");
-    show_error('Загрузка', 3000);
-    $.ajax({
-        type: 'POST',
-        url : '/api/v1/users/remove_section_deadline',
-        data: {bunch_section_id: bunch_section_id}
-    }).success(function () {
-        show_error(text_success, 3000);
-        loadMySchedule();
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
