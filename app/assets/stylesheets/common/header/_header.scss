@@ -264,53 +264,53 @@
     }
   }
 
-  .is__sooo-long {
-    position : relative;
-    overflow : visible;
-    .page__title {
-      position      : relative;
-      padding-right : 32px;
-      cursor        : pointer;
-      &::before {
-        font-family : Icons, sans-serif;
-        font-size   : 23px;
-        position    : absolute;
-        top         : 22px;
-        right       : 0;
-        content     : "\E7B4";
-      }
-    }
-    .page__children {
-      position   : absolute;
-      z-index    : 99;
-      top        : 64px;
-      left       : 80px;
-      display    : none;
-      min-width  : 320px;
-      max-height : 88vh;
-      padding    : 6px 0;
-      cursor     : pointer;
-      @include white__block(1, 0);
-      .line {
-        display : none;
-      }
-      .item {
-        font-size   : 15px;
-        line-height : 36px;
-        position    : relative;
-        height      : 48px;
-        padding     : 6px 16px;
-        cursor      : pointer;
-        text-align  : left;
-        white-space : nowrap;
-        color       : rgba(0, 0, 0, .54);
-        &:hover {
-          color      : #000;
-          background : rgba(0, 0, 0, .12);
-        }
-      }
-    }
-  }
+  // .is__sooo-long {
+  //   position : relative;
+  //   overflow : visible;
+  //   .page__title {
+  //     position      : relative;
+  //     padding-right : 32px;
+  //     cursor        : pointer;
+  //     &::before {
+  //       font-family : Icons, sans-serif;
+  //       font-size   : 23px;
+  //       position    : absolute;
+  //       top         : 22px;
+  //       right       : 0;
+  //       content     : "\E7B4";
+  //     }
+  //   }
+  //   .page__children {
+  //     position   : absolute;
+  //     z-index    : 99;
+  //     top        : 64px;
+  //     left       : 80px;
+  //     display    : none;
+  //     min-width  : 320px;
+  //     max-height : 88vh;
+  //     padding    : 6px 0;
+  //     cursor     : pointer;
+  //     @include white__block(1, 0);
+  //     .line {
+  //       display : none;
+  //     }
+  //     .item {
+  //       font-size   : 15px;
+  //       line-height : 36px;
+  //       position    : relative;
+  //       height      : 48px;
+  //       padding     : 6px 16px;
+  //       cursor      : pointer;
+  //       text-align  : left;
+  //       white-space : nowrap;
+  //       color       : rgba(0, 0, 0, .54);
+  //       &:hover {
+  //         color      : #000;
+  //         background : rgba(0, 0, 0, .12);
+  //       }
+  //     }
+  //   }
+  // }
   &.is__white {
     background-color : #FFF;
     @include transition;
