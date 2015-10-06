@@ -25,13 +25,25 @@ var validate_request = function () {
     });
 };
 
+var validate_offer = function (form) {
+    var bigform = form.closest('.item');
+    var offerCheckbox = bigform.find('.js_offerCheckbox')
+    if (offerCheckbox.attr("checked")){
+        return true;
+    }
+    show_error('Вы должны согласиться с договором оферты', 3000)
+    return false;
+};
+
 var sendRequestForm = function(){
     var btn = $(this);
     var form = btn.closest(".form__SendMessage").find(".formRequest");
     form.addClass("attempt");
+    var offer = validate_offer(form);
+
     validate_request();
     var error_inputs = form.find(".item.error");
-    if (!error_inputs.length){
+    if ((!error_inputs.length) && (validate_offer(form))){
         $.ajax({
             type: 'POST',
             url : '/api/v1/users/send_request',
