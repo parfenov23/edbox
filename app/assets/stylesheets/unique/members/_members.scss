@@ -37,10 +37,10 @@
         margin       : 0 16px 8px 0;
         height       : 28px;
         padding      : 0 12px;
-        border       : 1px solid black__color('grade__54');
+        border       : 1px solid black__color('secondary__color');
         border-radius: 4px;
         font-size    : 15px;
-        color        : black__color('grade__54');
+        color        : black__color('secondary__color');
         line-height  : 28px;
         //
         // &:last-child {
@@ -129,7 +129,7 @@
           background-color: #f0fbfd;
 
           .ava {
-            background-color: $primoryColor;
+            background-color: $primaryColor;
           }
         }
 
@@ -214,7 +214,7 @@
             text-align: left;
             font-size: 12px;
             line-height: 16px;
-            color: black__color('grade__87');
+            color: black__color('base__color');
             margin-bottom: 10px;
           }
         }
@@ -225,7 +225,7 @@
           }
         }
         .is__notAuth {
-          color: $primoryColor;
+          color: $primaryColor;
         }
 
         .delete {
@@ -261,7 +261,7 @@
         }
 
         .authorized {
-          color: $primoryColor;
+          color: $primaryColor;
         }
 
         &.director:hover {

@@ -55,7 +55,7 @@
 
         a {
           font-size  : 15px;
-          color      : #00bcd4;
+          color      : $primaryColor;
           line-height: 24px;
         }
       }
@@ -116,7 +116,7 @@
 
         > .title {
           font-size    : 15px;
-          color        : black__color('grade__54');
+          color        : black__color('secondary__color');
           line-height  : 24px;
           margin-bottom: 16px;
           padding-left : 6px;
@@ -145,7 +145,7 @@
           margin-left: -8px;
 
           a {
-            color: $primoryColor;
+            color: $primaryColor;
           }
         }
 
@@ -211,7 +211,7 @@
     top       : 0;
     left      : 0;
     z-index   : 9999;
-    background: black__color('grade__54');
+    background: black__color('secondary__color');
     height    : auto;
     width     : 100%;
 
@@ -252,7 +252,7 @@
 
     > .description {
       font-size    : 15px;
-      color        : black__color('grade__87');
+      color        : black__color('base__color');
       line-height  : 24px;
       text-align   : center;
       margin-bottom: 24px;
@@ -271,14 +271,14 @@
 
         .title {
           font-size    : 24px;
-          color        : black__color('grade__87');
+          color        : black__color('base__color');
           line-height  : 32px;
           margin-bottom: 16px;
         }
 
         .description {
           font-size    : 13px;
-          color        : black__color('grade__87');
+          color        : black__color('base__color');
           line-height  : 20px;
           margin-bottom: 18px;
           height       : 60px;
@@ -288,7 +288,7 @@
         .price {
           span {
             font-size   : 24px;
-            color       : black__color('grade__87');
+            color       : black__color('base__color');
             line-height : 32px;
             margin-right: 15px;
           }
@@ -313,7 +313,7 @@
 
     .title {
       font-size    : 24px;
-      color        : black__color('grade__87');
+      color        : black__color('base__color');
       line-height  : 32px;
       text-align   : center;
       margin-bottom: 45px;
@@ -326,7 +326,7 @@
         cursor  : pointer;
 
         i {
-          color    : black__color('grade__54');
+          color    : black__color('secondary__color');
           font-size: 24px;
 
           &::before {
@@ -347,7 +347,7 @@
       .form__legend {
         width      : 342px;
         font-size  : 15px;
-        color      : black__color('grade__87');
+        color      : black__color('base__color');
         line-height: 24px;
         padding-top: 7px;
       }
@@ -361,7 +361,7 @@
       .btn {
         color           : #fff;
         float           : right;
-        background-color: #00bcd4;
+        background-color: $primaryColor;
       }
     }
   }
@@ -394,7 +394,7 @@
     top       : 0;
     left      : 0;
     z-index   : 9999;
-    background: black__color('grade__54');
+    background: black__color('secondary__color');
     height    : auto;
     width     : 100%;
 
@@ -461,7 +461,7 @@
 
       label {
         .checkbox-material {
-          color: #00bcd8;
+          color: $primaryColor;
         }
 
         em {
@@ -503,7 +503,7 @@
       float     : left;
       opacity   : 0.8;
       font      : 400 12px/12px "Roboto";
-      color     : #00bcd8;
+      color     : $primaryColor;
       transition: all 0.3s ease;
       cursor    : pointer;
 
@@ -519,7 +519,7 @@
     .btn-holder {
       .auth__submit {
         float     : right;
-        background: #00bcd4;
+        background: $primaryColor;
         color     : #fff;
       }
 
@@ -700,7 +700,7 @@
     }
 
     hr {
-      border-bottom: 2px solid #00bcd8;
+      border-bottom: 2px solid $primaryColor;
     }
   }
 
@@ -812,7 +812,7 @@
 
   &_agree {
     &-link {
-      color: #00bcd8;
+      color: $primaryColor;
     }
   }
 }

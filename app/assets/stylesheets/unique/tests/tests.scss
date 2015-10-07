@@ -7,7 +7,7 @@
     .title {
       margin-bottom: 32px;
       font-size    : 24px;
-      color        : black__color('grade__87');
+      color        : black__color('base__color');
       line-height  : 32px;
       padding-right: 150px;
     }
@@ -16,7 +16,7 @@
       font-size    : 15px;
       line-height  : 24px;
 
-      // color        : black__color('grade__54');
+      // color        : black__color('secondary__color');
       margin-bottom: 48px;
     }
   }
@@ -32,7 +32,7 @@
     .title {
       @include inline-block;
       font-size    : 15px;
-      color        : black__color('grade__87');
+      color        : black__color('base__color');
       line-height  : 24px;
       margin-bottom: 10px;
       font-weight  : 500;
@@ -52,7 +52,7 @@
 
     .description {
       font-size    : 15px;
-      color        : black__color('grade__87');
+      color        : black__color('base__color');
       line-height  : 24px;
       margin-bottom: 16px;
     }
@@ -70,14 +70,14 @@
     &.error {
       .description {
         font-size  : 15px;
-        color      : black__color('grade__54');
+        color      : black__color('secondary__color');
         line-height: 24px;
       }
 
       .answer {
         .text {
           font-size  : 13px;
-          color      : black__color('grade__54');
+          color      : black__color('secondary__color');
           line-height: 20px;
         }
 
@@ -127,7 +127,7 @@
 
     .finish-btn {
       font-size   : 14px;
-      color       : $primoryColor;
+      color       : $primaryColor;
       line-height : 36px;
       height      : 36px;
       padding     : 0 8px;
