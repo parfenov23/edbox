@@ -420,7 +420,7 @@ select.form-control {
   }
 
   input:focus + hr {
-    border-bottom: 2px solid #00bcd8;
+    border-bottom: 2px solid $primaryColor;
   }
 
   input.error {

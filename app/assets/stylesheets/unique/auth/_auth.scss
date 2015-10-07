@@ -461,7 +461,7 @@
 
       label {
         .checkbox-material {
-          color: #00bcd8;
+          color: $primaryColor;
         }
 
         em {
@@ -503,7 +503,7 @@
       float     : left;
       opacity   : 0.8;
       font      : 400 12px/12px "Roboto";
-      color     : #00bcd8;
+      color     : $primaryColor;
       transition: all 0.3s ease;
       cursor    : pointer;
 
@@ -700,7 +700,7 @@
     }
 
     hr {
-      border-bottom: 2px solid #00bcd8;
+      border-bottom: 2px solid $primaryColor;
     }
   }
 
@@ -812,7 +812,7 @@
 
   &_agree {
     &-link {
-      color: #00bcd8;
+      color: $primaryColor;
     }
   }
 }
