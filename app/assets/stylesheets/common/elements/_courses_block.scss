@@ -234,9 +234,6 @@
     img {
       width: 100%;
     }
-    .fade{
-
-    }
   }
   .description {
     position: relative;
@@ -682,7 +679,7 @@
       z-index: 2;
       top: 0;
       left: 0;
-      background: black__color('secondary__color');
+      background: black__color('not_active__color');
     }
     img {
       position: absolute;
