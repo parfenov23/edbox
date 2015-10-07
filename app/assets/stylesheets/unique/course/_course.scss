@@ -22,11 +22,11 @@
         }
         &::before {
           font-size: 24px;
-          color    : black__color('grade__54');
+          color    : black__color('secondary__color');
         }
         &::after {
           font-size     : 13px;
-          color         : black__color('grade__87');
+          color         : black__color('base__color');
           line-height   : 13px;
           display       : inline-block;
           margin-left   : 10px;
@@ -74,7 +74,7 @@
   .text__content {
     position: relative;
     &.is__fullscrn {
-      background: black__color('grade__87');
+      background: black__color('base__color');
       .toggle__screen {
         &::before {
           content: "\E8A0";
@@ -104,7 +104,7 @@
       &::before {
         content  : "\E89F";
         font-size: 32px;
-        color: black__color('grade__54');
+        color: black__color('secondary__color');
         cursor: pointer;
       }
     }
@@ -137,12 +137,12 @@
           overflow   : hidden;
           height     : 40px;
           font-size  : 13px;
-          color      : black__color('grade__87');
+          color      : black__color('base__color');
           line-height: 20px;
         }
         .weight {
           font-size    : 12px;
-          color        : black__color('grade__54');
+          color        : black__color('secondary__color');
           line-height  : 20px;
           margin-bottom: 11px;
         }

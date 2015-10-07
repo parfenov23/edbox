@@ -84,11 +84,11 @@
               margin: 0 8px;
           }
           .is__orange {
-            background-color : $primoryColor;
+            background-color : $primaryColor;
             color            : #FFFFFF;
           }
           .is__white {
-            color : $primoryColor;
+            color : $primaryColor;
             background-color            : #FFFFFF;
           }
         }
@@ -153,7 +153,7 @@
       a {
           font-family: Roboto, sans-serif;
           font-size   : 13px;
-          color       : $primoryColor;
+          color       : $primaryColor;
           line-height : 20px;
       }
     }
@@ -218,14 +218,14 @@
             line-height : 36px;
         }
         .btn.yes {
-            background : $primoryColor;
+            background : $primaryColor;
             font-size  : 14px;
             color      : #FFFFFF;
         }
         .btn.no {
             background : #fff;
             font-size  : 14px;
-            color      : $primoryColor;
+            color      : $primaryColor;
         }
         .addititonal-info {
             @include middle-block(320px);

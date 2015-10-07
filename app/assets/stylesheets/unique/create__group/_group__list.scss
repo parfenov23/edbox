@@ -11,7 +11,7 @@
     height  : 100%;
     top     : 0;
     left    : 0;
-    color   : black__color('grade__26');
+    color   : black__color('not_active__color');
     text-align: center;
     padding-top: 32px;
   }
@@ -24,7 +24,7 @@
       }
 
       .right-col {
-        color: black__color('grade__54');
+        color: black__color('secondary__color');
         position: relative;
         padding-right: 32px;
         padding-top: 1px;
@@ -33,7 +33,7 @@
           right: 0;
           top: -2px;
           &::before {
-            color: black__color('grade__26');
+            color: black__color('not_active__color');
             font-size: 16px;
             line-height: 24px;
           }

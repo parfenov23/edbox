@@ -66,7 +66,7 @@
     padding         : .2em;
     text-align      : right;
     text-decoration : none;
-    color: black__color('grade__54');
+    color: black__color('secondary__color');
 }
 
 
@@ -102,7 +102,7 @@
         border-radius  : 0;
         padding-bottom : 24px;
         font-size      : 20px;
-        color          : black__color('grade__54');
+        color          : black__color('secondary__color');
         line-height    : 24px;
         font-weight    : 400;
         position : relative;
@@ -176,7 +176,7 @@
         }
         .ui-datepicker-today {
             a {
-                color : $primoryColor;
+                color : $primaryColor;
             }
 
         }
