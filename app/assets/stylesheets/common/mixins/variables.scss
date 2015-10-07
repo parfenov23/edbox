@@ -1,10 +1,15 @@
 //colors
-$black_12 : rgba(0, 0, 0, 0.12);
-$black_26 : rgba(0, 0, 0, 0.26);
-$black_54 : rgba(0, 0, 0, 0.54);
-$black_87 : rgba(0, 0, 0, 0.87);
+@function black__color($key: 'primary') {
+  @return map-get($black, $key);
+}
+$black : (
+  'grade__87': rgba(0, 0, 0, 0.87),
+  'grade__54': rgba(0, 0, 0, 0.54),
+  'grade__26': rgba(0, 0, 0, 0.26),
+  'grade__12': rgba(0, 0, 0, 0.12),
+);
 
-$primoryColor: rgb(238, 135, 56) ;
+$primoryColor: rgb(238, 135, 56);
 
 $checkbox-animation-check: 0.3s;
 

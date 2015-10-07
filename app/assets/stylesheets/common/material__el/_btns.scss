@@ -114,7 +114,7 @@
   &.disable {
     background: rgba(0,0,0,0.12);
     cursor: not-allowed;
-    color: $black_26;
+    color: black__color('grade__26');
     &:hover {
       box-shadow: none !important;
     }
@@ -145,7 +145,7 @@
     &.disable {
       background: rgba(0,0,0,0);
       cursor: not-allowed;
-      color: $black_26;
+      color: black__color('grade__26');
       .ripple-wrapper {
         display: none;
       }

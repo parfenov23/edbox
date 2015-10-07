@@ -17,7 +17,7 @@
       justify-content: space-between;
       .description {
         font-size  : 15px;
-        color      : $black_54;
+        color      : black__color('grade__54');
         line-height: 24px;
         width      : 360px;
       }
@@ -44,7 +44,7 @@
             cursor    : pointer;
             display   : block;
             &::before {
-              color    : $black_54;
+              color    : black__color('grade__54');
               content  : "\E7B6";
               font-size: 24px;
             }

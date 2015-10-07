@@ -21,7 +21,7 @@
       line-height: 24px;
       font-size: 16px;
       &::before {
-        color: $black_54;
+        color: black__color('grade__54');
         content: "\E8A3";
       }
     }
@@ -53,7 +53,7 @@
         padding: 0;
         min-width: 345px;
         background-color: #FFFFFF;
-        box-shadow: 0px 2px 5px 0px $black_54;
+        box-shadow: 0px 2px 5px 0px black__color('grade__54');
         border-radius: 2px;
         max-height: 236px;
         position: absolute;
@@ -80,11 +80,11 @@
         }
         .selected-value {
           padding-left: 24px;
-          color: $black_54;
+          color: black__color('grade__54');
         }
         .calendar-holder{
           font-size: 13px;
-          color: $black_54;
+          color: black__color('grade__54');
           line-height: 20px;
           .ui-datepicker {
             padding-top: 10px;
