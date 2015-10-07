@@ -54,7 +54,7 @@
       &.current {
         .data {
           .weekday, .day {
-            color: $primoryColor;
+            color: $primaryColor;
           }
         }
         .day-event {
@@ -67,7 +67,7 @@
               position      : absolute;
               top           : 0;
               left          : 0;
-              background    : $primoryColor;
+              background    : $primaryColor;
               border-radius : 1px 0 0 1px;
           }
         }
@@ -135,7 +135,7 @@
           position      : absolute;
           top           : 0;
           left          : 0;
-          background    : $primoryColor;
+          background    : $primaryColor;
           border-radius : 1px 0 0 1px;
       }
     }

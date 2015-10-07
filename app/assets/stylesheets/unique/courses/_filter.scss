@@ -49,7 +49,7 @@
     .reset-filter {
         text-align    : right;
         font-size     : 14px;
-        color         : $primoryColor;
+        color         : $primaryColor;
         line-height   : 18px;
         padding-right : 24px;
         margin-bottom : 15px;
@@ -74,11 +74,11 @@
                 line-height  : 18px;
                 padding-left : 37px;
                 &::before {
-                    border-color : $primoryColor;
+                    border-color : $primaryColor;
                 }
             }
             .checkbox:checked + label:before {
-                background : $primoryColor;
+                background : $primaryColor;
             }
         }
         .more {
@@ -114,7 +114,7 @@
             cursor        : pointer;
             margin-bottom : 8px;
             &:hover {
-                color : $primoryColor;
+                color : $primaryColor;
             }
         }
         .user-qty, .courses-qty {
@@ -181,7 +181,7 @@
                     cursor      : pointer;
                     &:hover {
                         span {
-                            color : $primoryColor;
+                            color : $primaryColor;
                         }
                     }
                     .group-list {
@@ -261,7 +261,7 @@
                     }
                 }
                 &:hover {
-                    color : $primoryColor;
+                    color : $primaryColor;
                 }
             }
             .author {

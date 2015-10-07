@@ -94,15 +94,15 @@
     font-size      : 14px;
     line-height    : 36px;
     transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-    color: $primoryColor;
+    color: $primaryColor;
     outline: none !important;
     &.is__orange {
       color: #FFFFFF;
-      background-color: $primoryColor;
+      background-color: $primaryColor;
     }
     &.is__blue {
       color: #FFFFFF;
-      background-color: #00BCD4;
+      background-color: $primaryColor;
     }
     &:hover {
         // @extend .shadow-z-2-hover;
@@ -114,7 +114,7 @@
   &.disable {
     background: rgba(0,0,0,0.12);
     cursor: not-allowed;
-    color: black__color('grade__26');
+    color: black__color('not_active__color');
     &:hover {
       box-shadow: none !important;
     }
@@ -145,7 +145,7 @@
     &.disable {
       background: rgba(0,0,0,0);
       cursor: not-allowed;
-      color: black__color('grade__26');
+      color: black__color('not_active__color');
       .ripple-wrapper {
         display: none;
       }
@@ -160,7 +160,7 @@
 .btn.btn-flat:hover:not(.btn-ink),
 .btn-default.btn-flat:hover:not(.btn-ink) {
   background-color: rgba(0, 0, 0, 0.2);
-  background: rgba(0,187,211,0.08);
+  background: rgba(238, 135, 56,0.08);
 }
 
 
@@ -223,7 +223,7 @@
 //   height         : 36px;
 //   font           : 400 13px/36px "Roboto";
 //   color          : #FFF;
-//   background     : $primoryColor;
+//   background     : $primaryColor;
 //   cursor         : pointer;
 //   text-align     : center;
 //   text-transform : uppercase;
@@ -234,12 +234,12 @@
 // .btn__flat {
 //   display        : block;
 //   font           : 400 14px/1 "Roboto";
-//   color          : $primoryColor;
+//   color          : $primaryColor;
 //   text-transform : uppercase;
 // }
 //
 // .is__orange {
-//   background : $primoryColor;
+//   background : $primaryColor;
 //   color      : #FFF;
 // }
 //
@@ -269,7 +269,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : $primoryColor !important;
+//     background : $primaryColor !important;
 //   }
 // }
 //
@@ -287,7 +287,7 @@
 //     background : #00BCD8 !important;
 //   }
 //   &.btn__orange {
-//     background : $primoryColor !important;
+//     background : $primaryColor !important;
 //   }
 // }
 //

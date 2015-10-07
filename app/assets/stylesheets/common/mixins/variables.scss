@@ -1,42 +1,69 @@
 //colors
-@function black__color($key: 'primary') {
-  @return map-get($black, $key);
-}
 $black : (
-  'grade__87': rgba(0, 0, 0, 0.87),
-  'grade__54': rgba(0, 0, 0, 0.54),
-  'grade__26': rgba(0, 0, 0, 0.26),
-  'grade__12': rgba(0, 0, 0, 0.12),
+  'base__color': rgba(0, 0, 0, 0.87),
+  'secondary__color': rgba(0, 0, 0, 0.54),
+  'not_active__color': rgba(0, 0, 0, 0.26),
+  'decoration__color': rgba(0, 0, 0, 0.12),
+);
+$fontSize : (
+  'smallest__typo': 12px,
+  'small__typo': 13px,
+  'normal__typo': 15px,
+  'header__typo_1': 20px,
+  'header__typo_2': 24px,
+  'header__typo_3': 32px
+);
+$lineHeight : (
+  'smallest__typo': 16px,
+  'small__typo': 20px,
+  'normal__typo': 24px,
+  'header__typo_1': 28px,
+  'header__typo_2': 32px,
+  'header__typo_3': 40px
 );
 
-$primoryColor: rgb(238, 135, 56);
+@function black__color($key: 'base__color') {
+  @return map-get($black, $key);
+}
+@function line-height($level) {
+  @return map-get($lineHeight, $level);
+}
+@function font-size($level) {
+  @return map-get($fontSize, $level);
+}
 
-$checkbox-animation-check: 0.3s;
+@mixin text__setting($typo:'normal__typo', $col:'base__color') {
+  font-size: font-size($typo);
+  line-height: line-height($typo);
+  color: black__color($col);
+}
+
+
+$primaryColor: rgb(238, 135, 56);
+
 
 
 .h__text_34-40 {
-  font-size: 34px;
-  line-height: 40px;
+  @include text__setting('header__typo_3') ;
 }
 .h__text_24-32 {
   font-size: 24px  !important;
   line-height: 32px  !important;
 }
 .h__text_20-28 {
-  font-size: 20px;
-  line-height: 28px;
+  @include text__setting('header__typo_1') ;
+
 }
 .h__text_15-24 {
-  font-size: 15px;
-  line-height: 24px;
+  @include text__setting() ;
+
 }
 .h__text_13-20 {
-  font-size: 13px;
-  line-height: 20px;
+  @include text__setting('small__typo') ;
+
 }
 .h__text_12-16 {
-  font-size: 12px;
-  line-height: 16px;
+  @include text__setting('smallest__typo') ;
 }
 .h__width_936 {
   width: 936px !important;

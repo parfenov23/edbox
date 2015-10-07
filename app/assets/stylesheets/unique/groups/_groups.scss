@@ -76,7 +76,7 @@
 }
 
 .group-menu a:hover [class^="icon-"], .group-menu a:hover [class*=" icon-"] {
-  color : $primoryColor;
+  color : $primaryColor;
 }
 
 .icon-uniE8D9:before {
@@ -296,7 +296,7 @@ input[type="text"]:focus {
   width              : 0;
   bottom             : 0;
   position           : absolute;
-  background         : $primoryColor;
+  background         : $primaryColor;
   transition         : 0.2s ease all;
   -moz-transition    : 0.2s ease all;
   -webkit-transition : 0.2s ease all;
@@ -324,7 +324,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 .submitBtn {
   width              : 97px;
   height             : 36px;
-  background-color   : $primoryColor;
+  background-color   : $primaryColor;
   font-size          : 14px;
   font-weight        : 500;
   line-height        : 36px;
@@ -365,7 +365,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
       @include clearfix;
       &.active {
         i:before {
-          color : #00BCD4;
+          color : $primaryColor;
         }
       }
     }
@@ -509,7 +509,7 @@ input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
 }
 
 .group-info li a {
-  color : $primoryColor;
+  color : $primaryColor;
 }
 
 .group-info li strong {

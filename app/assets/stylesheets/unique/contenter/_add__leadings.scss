@@ -5,7 +5,7 @@
   }
   .leadings__qty {
     margin-bottom: 32px;
-    color: black__color('grade__54');
+    color: black__color('secondary__color');
   }
   > .action__block {
     @include white__block(1,1);
@@ -50,7 +50,7 @@
           position: relative;
           padding-right: 20px;
           i {
-            color: black__color('grade__26');
+            color: black__color('not_active__color');
             position: absolute;
             top: -9px;
             right: -33px;

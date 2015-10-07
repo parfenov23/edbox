@@ -28,7 +28,7 @@
             float: left;
             &:checked + label {
               &::before {
-                background-color: #00BCD4;
+                background-color: $primaryColor;
               }
             }
           }
@@ -36,7 +36,7 @@
             display: block;
             width: 16px;
             height: 16px;
-            border: 2px solid #00BCD4;
+            border: 2px solid $primaryColor;
             border-radius: 50%;
             position: absolute;
             cursor: pointer;
@@ -79,7 +79,7 @@
         line-height: 17px;
         padding-top:10px;
         &.activate {
-          background-color: #00BCD4;
+          background-color: $primaryColor;
           color: #FFFFFF;
           font-weight: 100;
         }
