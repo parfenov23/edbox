@@ -18,10 +18,10 @@
     .item {
       font-size  : 20px;
       line-height: 24px;
-      color      : $black_26;
+      color      : black__color('grade__26');
       margin-right: 32px;
       &.active {
-        color: $black_54;
+        color: black__color('grade__54');
       }
     }
   }
@@ -29,7 +29,7 @@
   .next {
     .item {
       font-size  : 20px;
-      color      : $black_26;
+      color      : black__color('grade__26');
       line-height: 24px;
       padding-right: 36px;
       position: relative;

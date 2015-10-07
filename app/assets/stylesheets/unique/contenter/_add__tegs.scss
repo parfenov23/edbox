@@ -8,7 +8,7 @@
   }
 
   .tegs__qty {
-    color        : $black_54;
+    color        : black__color('grade__54');
     margin-bottom: 44px;
   }
 
@@ -48,7 +48,7 @@
           top      : 4px;
           left     : 520px;
           font-size: 24px;
-          color    : $black_26;
+          color    : black__color('grade__26');
           cursor   : pointer;
         }
       }
@@ -57,7 +57,7 @@
         position: absolute;
         top     : 0;
         left    : 600px;
-        color   : $black_54;
+        color   : black__color('grade__54');
         cursor: pointer;
         a {
           color: $primoryColor;
@@ -66,7 +66,7 @@
 
       &.empty {
         .related__courses {
-          color: $black_26;
+          color: black__color('grade__26');
         }
       }
     }
@@ -83,7 +83,7 @@
       display         : flex;
       width           : 16px;
       height          : 16px;
-      color           : $black_54;
+      color           : black__color('grade__54');
       text-align      : center;
       border-radius: 100%;
       margin-right: 8px;
@@ -98,7 +98,7 @@
 
     span {
       line-height: 18px;
-      color: $black_54;
+      color: black__color('grade__54');
     }
   }
 }
