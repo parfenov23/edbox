@@ -274,10 +274,16 @@
   background-color : #FFF;
   > .wrp {
     @include middle-block(744px);
+    .video__te {
+      @include middle-block(745px);
+      height: 416px;
+      background-color: black__color('decoration__color');
+      margin-bottom: 16px;
+    }
     > .title {
-      font-size     : 24px;
+      font-size: 34px;
+      line-height: 40px;
       color         : black__color('base__color');
-      line-height   : 40px;
       text-align    : center;
       margin-bottom : 24px;
     }
