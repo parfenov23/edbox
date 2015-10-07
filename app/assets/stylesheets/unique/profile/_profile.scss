@@ -28,7 +28,7 @@
     }
 
     .subscribe__type {
-      border-bottom  : 1px solid $black_12;
+      border-bottom  : 1px solid black__color('grade__12');
       display        : flex;
       justify-content: space-between;
       font-size      : 15px;
@@ -55,21 +55,21 @@
       padding-right: 16px;
 
       .item {
-        border       : 1px solid $black_26;
+        border       : 1px solid black__color('grade__26');
         border-radius: 4px;
         margin-bottom: 16px;
         padding      : 20px 16px 14px 24px;
 
         .title {
           font-size    : 24px;
-          color        : $black_87;
+          color        : black__color('grade__87');
           line-height  : 32px;
           margin-bottom: 16px;
         }
 
         .description {
           font-size    : 13px;
-          color        : $black_87;
+          color        : black__color('grade__87');
           line-height  : 20px;
           margin-bottom: 8px;
         }
@@ -80,7 +80,7 @@
 
           .price {
             font-size  : 24px;
-            color      : $black_87;
+            color      : black__color('grade__87');
             line-height: 32px;
           }
         }

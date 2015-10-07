@@ -50,7 +50,7 @@
       top      : 19px;
       left     : 26px;
       font-size: 26px;
-      color    : $black_54;
+      color    : black__color('grade__54');
     }
   }
 }
@@ -364,7 +364,7 @@
 
           .date {
             font-size  : 13px;
-            color      : $black_54;
+            color      : black__color('grade__54');
             line-height: 20px;
           }
 
@@ -416,7 +416,7 @@
 
         .description {
           font-size    : 13px;
-          color        : $black_87;
+          color        : black__color('grade__87');
           line-height  : 20px;
           margin-bottom: 12px;
         }
@@ -451,7 +451,7 @@
       outline     : none;
       @include middle-block(344px);
       height      : 104px;
-      @include placeholder($black_26);
+      @include placeholder(black__color('grade__26'));
       border      : none;
       resize      : none;
       padding-left: 6px;
@@ -491,7 +491,7 @@
 
         .term {
           font-size    : 12px;
-          color        : $black_54;
+          color        : black__color('grade__54');
           line-height  : 16px;
           margin-bottom: 8px;
 
@@ -511,7 +511,7 @@
             &::before {
               content  : "\E8AF";
               font-size: 24px;
-              color    : $black_26;
+              color    : black__color('grade__26');
             }
           }
 
@@ -579,7 +579,7 @@
 
           .title {
             font-size    : 13px;
-            color        : $black_87;
+            color        : black__color('grade__87');
             line-height  : 20px;
             font-weight  : 500;
             @include eclipses;
@@ -588,7 +588,7 @@
 
           .description {
             font-size  : 13px;
-            color      : $black_87;
+            color      : black__color('grade__87');
             line-height: 20px;
             height     : 40px;
             overflow   : hidden;
@@ -613,13 +613,13 @@
     right   : 19px;
 
     i {
-      color       : $black_26;
+      color       : black__color('grade__26');
       font-size   : 22px;
       margin-right: 6px;
       cursor      : pointer;
 
       &:hover {
-        color: $black_87;
+        color: black__color('grade__87');
       }
     }
   }
@@ -730,7 +730,7 @@
           display   : block;
 
           &::before {
-            color    : $black_54;
+            color    : black__color('grade__54');
             content  : "\E7B6";
             font-size: 24px;
           }
@@ -811,7 +811,7 @@
         top: -1px;
         right: 13px;
         font-size: 23px;
-        color: $black_26;
+        color: black__color('grade__26');
       }
       input {
         border: none;
@@ -884,7 +884,7 @@
       top: 16px;
       left: 24px;
       font-size: 24px;
-      color: $black_26;
+      color: black__color('grade__26');
     }
     .title {
       margin-bottom: 8px;
@@ -893,7 +893,7 @@
       }
     }
     .date {
-      color: $black_54;
+      color: black__color('grade__54');
     }
   }
 }

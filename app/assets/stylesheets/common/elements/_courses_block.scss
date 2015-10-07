@@ -103,7 +103,7 @@
       padding: 0 16px;
       .col {
         width: 45%;
-        color: $black_54;
+        color: black__color('grade__54');
         &:last-child {
           text-align: right;
         }
@@ -247,7 +247,7 @@
     }
     .authors {
       // @extend .title;
-      color: $black_54;
+      color: black__color('grade__54');
       margin-bottom: 16px;
     }
     .info {
@@ -258,14 +258,14 @@
           margin-right: 17px;
           i {
             @include inline-block;
-            color: $black_54;
+            color: black__color('grade__54');
             font-size: 15px;
             margin-right: 8px;
             margin-top: 4px;
           }
           span {
             @include inline-block;
-            color: $black_54;
+            color: black__color('grade__54');
             margin-top: 1px;
           }
         }
@@ -351,7 +351,7 @@
       z-index: 2;
       top: 0;
       left: 0;
-      background: $black_54;
+      background: black__color('grade__54');
     }
     img {
       position: absolute;
@@ -682,7 +682,7 @@
       z-index: 2;
       top: 0;
       left: 0;
-      background: $black_54;
+      background: black__color('grade__54');
     }
     img {
       position: absolute;

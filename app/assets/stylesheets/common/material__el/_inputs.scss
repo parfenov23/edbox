@@ -242,17 +242,17 @@ select.form-control {
       position: absolute;
       bottom  : 12px;
       right   : 0;
-      color   : $black_26;
+      color   : black__color('grade__26');
     }
   }
 
   &.is__noFocus {
     .floating-label {
-      color: $black_26;
+      color: black__color('grade__26');
     }
 
     hr {
-      border-bottom: 1px solid $black_26;
+      border-bottom: 1px solid black__color('grade__26');
     }
   }
 

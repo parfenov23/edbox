@@ -90,12 +90,12 @@ headerSubmenu = ->
   chPageWidth = $('.page__children').width()
   titleWidth = $('.page__title ').width()
   rightWidt = $('.right-col').width()
-  if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
-    if( $("#namePageGroup").length)
-      $("page__title")
-    $('#page__header .left-col').addClass('is__sooo-long')
-    $('#page__header').removeClass('with__children ')
-    $('#page__header .page__children').addClass('js__baron')
+  # if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
+  #   if( $("#namePageGroup").length)
+  #     $("page__title")
+  #   $('#page__header .left-col').addClass('is__sooo-long')
+  #   $('#page__header').removeClass('with__children ')
+  #   $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
   $('.adaptive__title').each ->
@@ -252,7 +252,7 @@ $(document).ready ->
     $('video')[0].play()
 
 
-  $(document).on 'click', '.programm__block > .adaptive__title i', ->
+  $(document).on 'click', '.programm__block > .adaptive__title i.ckick_shot', ->
     parentBlock = $(@).closest '.programm__block'
     if !parentBlock.hasClass('is__shot')
       parentBlock.addClass 'is__shot'
@@ -451,12 +451,12 @@ $(document).ready ->
     $(@).stop(true).queue 'fx', ->
       headerTabsLine('.page__children .item.active')
 
-  $('.js__select-calendar').hover (->
-    $(@).addClass('is__active')
-    $('.js__backing').addClass('is__active')
-  ), ->
-    if $('#ui-datepicker-div').is(':hidden') || !$('#ui-datepicker-div').length
-      $(@).removeClass('is__active')
+#  $('.js__select-calendar').hover (->
+#    $(@).addClass('is__active')
+#    $('.js__backing').addClass('is__active')
+#  ), ->
+#    if $('#ui-datepicker-div').is(':hidden') || !$('#ui-datepicker-div').length
+#      $(@).removeClass('is__active')
 
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
     parentBlock = undefined
@@ -465,6 +465,7 @@ $(document).ready ->
     parentBlock = $(this).closest('.hidden-calendar-wrp')
     parentBlock.find('.hidden-list').hide()
     parentBlock.find('.' + showId + ' ').show()
+    includeDatePicker($('.datapicker__trigger, .js__set-date'));
     installPositionBlock(parentBlock.find('.hidden-calendar'))
 
   $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
