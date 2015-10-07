@@ -72,10 +72,38 @@
     }
 }
 
+.category__filter_list {
+  @include middle-block(1128px);
+  display: flex;
+  justify-content: flex-start;
+  .item {
+    max-width: 296px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 8px;
+    border: 1px solid #979797;
+    border-radius: 2px;
+    /* Подрядчик: */
+    font-size: 15px;
+    color: black__color('secondary__color');
+    margin-right: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    @include eclipses;
+    &:hover {
+      color: $primaryColor;
+      border-color: $primaryColor;
+    }
+    &.is__checked {
+      background-color: $primaryColor;
+      color: #fff;
+      border-color: $primaryColor;
+    }
+  }
+}
 .courses-list {
     @include clearfix;
     @import "common/elements/courses_block";
-
 }
 
 @import "unique/courses/add-course";

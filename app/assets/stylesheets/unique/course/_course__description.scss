@@ -274,10 +274,16 @@
   background-color : #FFF;
   > .wrp {
     @include middle-block(744px);
+    .video__te {
+      @include middle-block(745px);
+      height: 416px;
+      background-color: black__color('decoration__color');
+      margin-bottom: 16px;
+    }
     > .title {
-      font-size     : 24px;
+      font-size: 34px;
+      line-height: 40px;
       color         : black__color('base__color');
-      line-height   : 40px;
       text-align    : center;
       margin-bottom : 24px;
     }
@@ -509,6 +515,36 @@
 }
 
 // old
+.webinar__teaser {
+  width: 552px;
+  position: absolute;
+  top: 208px;
+  left: 50%;
+  margin-left: -276px;
+  background: black__color('secondary__color');
+  border-radius: 2px;
+  z-index: 999;
+  .info__block {
+    height: 112px;
+    padding: 16px 18px 16px 24px;
+    .title {
+      @include text__setting('normal__typo');
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .description {
+      @include text__setting('normal__typo');
+      color: #fff;
+    }
+  }
+.action__block{
+  border-top: 1px solid rgba(255, 255, 255, 0.3 );
+  .btn {
+
+  }
+}
+
+}
 
 .presentation__block {
   height   : 536px;
@@ -712,7 +748,7 @@
   position : relative;
   z-index  : 12;
   @include middle-block(920px);
-  top      : 312px;
+  top      : 470px;
   .tegs__list {
     display         : flex;
     margin-bottom   : 8px;
