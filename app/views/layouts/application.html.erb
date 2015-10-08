@@ -14,6 +14,9 @@
   <link href="/assets/app.css" rel="stylesheet">
   <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
   <script src="//vjs.zencdn.net/4.12/video.js"></script>
+  <%= render "layouts/pixel/facebook_pixel" if Rails.env.production?%>
+  <%= render "layouts/pixel/facebook_pixel_profile" if (Rails.env.production? && (params[:action] == 'profile' || params[:action] == 'tariff'))%>
+  <%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production?%>
 </head>
 <% websocket_url = "#{request.host}:#{request.port}/node/websocket" %>
 <% if Rails.env.production? %>
@@ -31,8 +34,6 @@
 <%= render "layouts/notification" %>
 <%= render "common/popup_request/request" if !(current_user.present? rescue true)%>
 <%= render "layouts/pop_up_confirm" %>
-<%= render "layouts/pixel/facebook_pixel" if Rails.env.production?%>
-<%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production?%>
 <%= render "layouts/yandex_metrika" if Rails.env.production?%>
 <%= render "layouts/zendesk_widget" if Rails.env.production?%>
 </body>
