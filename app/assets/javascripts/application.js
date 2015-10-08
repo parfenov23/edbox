@@ -279,6 +279,16 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on('click', '.programm__block', function(e){
+        if($(e.target).hasClass("programm__block") || $(e.target).closest(".programm__block.is__shot") ){
+            if ( !$(e.target).closest(".programm__wrp").length ){
+                if( $(this).find("i.ckick_shot").length && !$(e.target).hasClass("ckick_shot")){
+                    $(this).toggleClass("is__shot");
+                }
+            }
+        }
+    })
+
     if ($("input[name='ip_user']").length) $("input[name='ip_user']").val(myIP());
     $("input[name='current_link_page']").val(window.location.href);
 
