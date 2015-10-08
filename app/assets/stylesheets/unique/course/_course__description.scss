@@ -549,10 +549,8 @@
 .presentation__block {
   height   : 536px;
   overflow : hidden;
-  position : absolute;
+  position : relative;
   z-index  : 1;
-  top      : 0;
-  left     : 0;
   width    : 100%;
   img {
     width : 100%;
@@ -747,7 +745,7 @@
   position : relative;
   z-index  : 12;
   @include middle-block(920px);
-  top      : 470px;
+  margin-top: -32px;
   .tegs__list {
     display         : flex;
     margin-bottom   : 8px;
@@ -771,6 +769,9 @@
     line-height   : 40px;
     margin-bottom : 56px;
     color         : #FFF;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
   }
   .progress__block {
     margin-bottom : 32px;
