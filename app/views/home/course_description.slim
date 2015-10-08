@@ -46,49 +46,7 @@ span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
   - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
 
   .course__title = course_title
-  - unless current_user.present?
-    .progress__block
-      .title.adaptive__title.h__no_margin
-        .left-col.h__text_20-28  Данный курс доступен по подписке
-        .right-col
-          .btn.is__blue.js_openFormRegistration ОФОРМИТЬ ПОДПИСКУ
-  - if bunch_course.present?
-    - date_complete = local_time(bunch_course.date_complete) rescue nil
-    - all_sections = bunch_course.bunch_sections
-    - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
-    - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
-    - if !@course.paid || (@course.paid && current_user.get_account_type)
-      .progress__block
-        .title.adaptive__title class=((date_complete < current_time rescue false) ? "overdue" : "")
-          .left-col Прогресс прохождения курса
-          - if (!bunch_course.complete rescue false) && (bunch_course.model_type == "group")
-            .right-col = (ltime(date_complete, "Завершить до ", 'short_min', false) rescue nil)
-            - if bunch_course.model_type == "user"
-              .edit-menu.js__select-calendar
-                .edit-date href="#"
-                  i.icon-uniE8A3
-                .hidden-calendar-wrp
-                  .hidden-calendar
-                    .calendar-header
-                      .back.icon
-                      |Выбор даты
-                    .calendar-holder
-                      .selected-value  Выберите дату
-                      .datapicker__trigger
-                  ul.hidden-list
-                    li.datapicker__trigger.js_actionBtn
-                      |Перенести дату окончания раздела
-                      - ts = "Дата оканчания курса изменена"
-                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
-                        data-course_id=@course.id data-text=ts data-no_schedule="true"
-                      }
-        .progress__wrp
-          .bar
-          .completed style ="width: #{complete_proc}%"
-        .info
-          .precent Пройдено #{complete_proc} %
-          .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "раздела", "разделов", "разделов")}
-
+  = render "home/course_description/progress_block", {bunch_course: bunch_course}
   .course__info
     .adaptive__title
       .left-col style="height: 56px;"
@@ -173,39 +131,39 @@ span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
                   i.icon.to__unfold.ckick_shot
             .programm__wrp
       
-              form style="display:none;" 
-                input name="" type="hidden" value="" 
-                .item.is__webinar
-                  .icon__block
-                    i.icon.online__course
-                  .adaptive__title
-                    .left-col 2.2 Встреча для обсуждения кривизны пространства-время вокруг больших чёрных женщин
-                    .right-col 0 минут
-                  .description Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница с…
-                  .info__block
-                    .start__time
-                      span Начало:
-                      | 27 января в 13:00 (мск)
-                    .authors
-                      span Ведущие:
-                      | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
-              form style="display:none;" 
-                input name="" type="hidden" value="" 
-                .item.is__webinar.is__completed
-                  .icon__block
-                    i.icon.online__course
-                  .adaptive__title
-                    .left-col 2.2 Встреча для обсуждения кривизны пространства-время вокруг больших чёрных женщин
-                    .right-col 0 минут
-                  .description Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница с…
-                  .info__block
-                    .start__time
-                      span Начало:
-                      | 27 января в 13:00 (мск)
-                    .authors
-                      span Ведущие:
-                      | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
-      
+              /form style="display:none;"
+              /  input name="" type="hidden" value=""
+              /  .item.is__webinar
+              /    .icon__block
+              /      i.icon.online__course
+              /    .adaptive__title
+              /      .left-col 2.2 Встреча для обсуждения кривизны пространства-время вокруг больших чёрных женщин
+              /      .right-col 0 минут
+              /    .description Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница с…
+              /    .info__block
+              /      .start__time
+              /        span Начало:
+              /        | 27 января в 13:00 (мск)
+              /      .authors
+              /        span Ведущие:
+              /        | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
+              /form style="display:none;"
+              /  input name="" type="hidden" value=""
+              /  .item.is__webinar.is__completed
+              /    .icon__block
+              /      i.icon.online__course
+              /    .adaptive__title
+              /      .left-col 2.2 Встреча для обсуждения кривизны пространства-время вокруг больших чёрных женщин
+              /      .right-col 0 минут
+              /    .description Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница Чёрная дыра́ — область в пространстве-времени, гравитационное притяжение которой настолько велико, что покинуть её не могут даже объекты, движущиеся со скоростью света, в том числе кванты самого света. Граница с…
+              /    .info__block
+              /      .start__time
+              /        span Начало:
+              /        | 27 января в 13:00 (мск)
+              /      .authors
+              /        span Ведущие:
+              /        | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
+              /
       
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
@@ -242,5 +200,9 @@ span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
             .description Станет доступным после прохождения всех материалов курса
 
 = render "home/course_program/sink_button", {course: @course}
+- unless @course.online?
+  = render "common/course/course_reg" unless current_user.present?
+- else
+  = render "home/course_description/registration_webinar"
 
-= render "common/course/course_reg" unless current_user.present?
+
