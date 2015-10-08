@@ -4,6 +4,12 @@ var openFormRegistration = function(){
     $(document).scrollTop( popup.offset().top);
 };
 
+var openFormRegistrationAuth = function(){
+    var popup = $("#openFormRegistrationAuth");
+    popup.show();
+    $(document).scrollTop( popup.offset().top);
+};
+
 var regFromLanding = function(regtype){
     if ($('.js_openFormRegistration').length != 0){
         $.when(openFormRegistration()).then(function () {
@@ -19,7 +25,9 @@ var regFromLanding = function(regtype){
 
 pageLoad(function(){
     $(document).on('click', '.js_openFormRegistration', openFormRegistration);
+    $(document).on('click', '.js_openFormRegistrationAuth', openFormRegistrationAuth);
     if ($('.js_regFromLanding').length != 0) {
         regFromLanding($('.js_regFromLanding'));
     }
+
 });
