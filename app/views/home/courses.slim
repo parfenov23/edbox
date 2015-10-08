@@ -4,11 +4,12 @@
   = render "home/courses/groups"
 .inner-content
 
-  /.category__filter_list
-    .item Все
-    .item Тестовый
-    .item.is__checked Какая то категория 
-    .item Слишком длинный тег но такое бывает Слишком длинный тег но такое бывает
+  - if Rails.root.to_s.scan('beta_edbox').present? || Rails.env.development?
+    .category__filter_list
+      .item Все
+      .item Тестовый
+      .item.is__checked Какая то категория
+      .item Слишком длинный тег но такое бывает Слишком длинный тег но такое бывает
     
   #courses.content-courses.courses-list.cabinet__block__v2
        

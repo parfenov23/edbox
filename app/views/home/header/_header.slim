@@ -1,8 +1,6 @@
 - title titlePage
 / header#page__header.with__img
 - valid_img_page = ["course_description", "other_white"]
-- if namePage == "profile" && Rails.env.production?
-  - render "layouts/pixel/facebook_pixel_profile"
 header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
     - unless (btnBack rescue false)
