@@ -95,6 +95,7 @@ span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
     .title Учебная программа
     .prgr-wrp
       - nsec = 0
+      - all_sections = bunch_course.bunch_sections
       - @course.sections.not_empty.each do |section|
         - section_attachments = section.attachments.not_empty
         - if section_attachments.present?
