@@ -80,6 +80,7 @@ i {
   padding-top : 128px;
   min-width   : 1066px;
   padding-bottom: 40px;
+  min-height: calc(100vh - 112px);
   .content-video {
     position  : absolute;
     top       : 50%;
@@ -313,6 +314,7 @@ i {
 @import "common/elements/empty__info";
 @import "common/elements/action__menu";
 @import "common/elements/ava";
+@import "common/footer";
 
 @import "common/header/header";
 

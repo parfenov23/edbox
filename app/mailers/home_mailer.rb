@@ -1,17 +1,17 @@
 # encoding: utf-8
 class HomeMailer < ActionMailer::Base
-  default :from => 'Masshtab <info@masshtab.am>'
+  default :from => 'ADCONSULT ONLINE <info@masshtab.am>'
   # layout 'home_email', :except => [:order_product_user]
 
   def welcome_latter(user, new_password)
     @user = user
     @new_password = new_password
-    mail(:to => @user.email, :subject => "Добро пожаловать в Edbox!")
+    mail(:to => @user.email, :subject => "Добро пожаловать в ADCONSULT ONLINE!")
   end
 
   def sendRequest(params)
     @params = params
-    mail(:to => "bazhan@masshtab.am", :subject => "Заявка с Edbox", :reply_to => @params[:email])
+    mail(:to => 'bazhan@masshtab.am, leads@romanpivovarov.ru, leads@adconsult.club, roman.pivovarov@gmail.com', :subject => "Заявка с Edbox", :reply_to => @params[:email])
   end
 
   def change_password(user, new_password)

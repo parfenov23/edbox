@@ -73,13 +73,16 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     - else
       .page__action style="margin-right: 24px;"
         a.btn.btn-flat href="/sign_in" войти
-        .btn.is__blue.js_openFormRegistration Регистрация
+        - if (!@course.online? rescue true)
+          .btn.is__blue.js_openFormRegistration Регистрация
+        - else
+          .btn.is__blue.js_openFormRegistrationAuth Регистрация
 
 - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
     .info__block
       .top__logo
-        img src= "/assets/edbox__bloo.svg"
+        img src="/assets/adcons__grey.svg"
     .menu__list
       - unless current_user.contenter
         .item class=(namePage == "cabinet" ? "is__active" : "")
@@ -123,8 +126,8 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     /  i.notes.icon
     /  .label Заметки
 
-    .btm__logo
-      img src = "/assets/adcons__grey.svg"
+    / .btm__logo
+    /   img src = "/assets/adcons__grey.svg"
 
 - if (comment rescue false)
   #js-comment.courses-aside
