@@ -15,9 +15,9 @@ class Webinar < ActiveRecord::Base
     scheduler = Rufus::Scheduler.start_new
     server_bb = BigbluebuttonServer.last
     unless server_bb.present?
-      server_bb = BigbluebuttonServer.create({name: "Webinars Ed",
-                                              url: "http://78.47.73.50/bigbluebutton/api",
-                                              salt: "74ab3f53f53e260406faeaa4bdbded35", version: "0.9"})
+      server_bb = BigbluebuttonServer.create({name: "Adconsult Webinar",
+                                              url: "http://95.213.182.34/bigbluebutton/api",
+                                              salt: "e332144d6725ac8864d92cbf96ddb0df", version: "0.9"})
     end
     scheduler.at "#{date_start}" do
       ActiveRecord::Base.connection_pool.with_connection do
