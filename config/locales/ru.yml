@@ -254,5 +254,6 @@ ru:
       long: "%d %B %Y, %H:%M"
       long_without_time: "%d %B %Y"
       short: "%d %b, %H:%M"
+      short_max: "%d %D, %H:%M"
       short_min: "%d %b"
     pm: вечера

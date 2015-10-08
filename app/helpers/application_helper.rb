@@ -20,6 +20,23 @@ module ApplicationHelper
     local_time(Time.now)
   end
 
+  def parse_russian_date(time)
+    case time_current_day(time)
+      when 1
+        "Сегодня #{time.strftime('%H:%M')}"
+      when 2
+        "Завтра #{time.strftime('%H:%M')}"
+      else
+        ltime(time, '', 'short')
+    end
+  end
+
+  def time_current_day(time)
+    end_time_day = time.end_of_day
+    end_time_day_current = Time.now.end_of_day
+    ((end_time_day - end_time_day_current).to_i / 60)/(24*60)
+  end
+
   def current_link
     request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
   end
