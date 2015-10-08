@@ -9,20 +9,21 @@
 
 - if @course.online?
   - all_webinars = @course.sections.attachments.where(public: true).webinars
-  - first_time = Time.current - (all_webinars.map(&:duration).max).minute
-  - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
-  - if first_webinar.present?
-    - attachment = first_webinar.attachment
-    - date_start = first_webinar.date_start
-    .webinar__teaser
-      .info__block
-        - unless first_webinar.in_progress?
-          .title #{parse_russian_date(date_start)} (по мск) в курсе состоится вебинар:
-        - else
-          .title Сейчас онлайн:
-        .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-      .action__block
-        a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
+  - if all_webinars.present?
+    - first_time = Time.current - (all_webinars.map(&:duration).max).minute
+    - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
+    - if first_webinar.present?
+      - attachment = first_webinar.attachment
+      - date_start = first_webinar.date_start
+      .webinar__teaser
+        .info__block
+          - unless first_webinar.in_progress?
+            .title #{parse_russian_date(date_start)} (по мск) в курсе состоится вебинар:
+          - else
+            .title Сейчас онлайн:
+          .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
+        .action__block
+          a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 

@@ -658,6 +658,7 @@
   width : 346px;
   height: 408px;
   margin: 0 24px 32px 0;
+  cursor: pointer;
   @include white__block(1,1);
   @import "unique/courses/info-block";
   &:nth-child(3n) {
