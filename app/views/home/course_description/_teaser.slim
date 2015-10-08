@@ -8,22 +8,21 @@
       source src="/system/attachment/file/31/video.mp4"
 
 - if @course.online?
-  - all_webinars = @course.sections.attachments.webinars
+  - all_webinars = @course.sections.attachments.where(public: true).webinars
   - first_time = Time.current - (all_webinars.map(&:duration).max).minute
   - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
   - if first_webinar.present?
     - attachment = first_webinar.attachment
-    - if !attachment.public
-      - date_start = first_webinar.date_start
-      .webinar__teaser
-        .info__block
-          - unless first_webinar.in_progress?
-            .title #{parse_russian_date(date_start)} (по мск) в курсе состоится вебинар:
-          - else
-            .title Сейчас онлайн:
-          .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-        .action__block
-          a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
+    - date_start = first_webinar.date_start
+    .webinar__teaser
+      .info__block
+        - unless first_webinar.in_progress?
+          .title #{parse_russian_date(date_start)} (по мск) в курсе состоится вебинар:
+        - else
+          .title Сейчас онлайн:
+        .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
+      .action__block
+        a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 
