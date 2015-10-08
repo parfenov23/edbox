@@ -44,12 +44,12 @@
       }
 
       .cancel {
-        color: $primoryColor;
+        color: $primaryColor;
       }
 
       .yes {
         color           : #fff;
-        background-color: $primoryColor;
+        background-color: $primaryColor;
       }
     }
 
@@ -162,7 +162,7 @@
         padding-right: 17px;
         padding-left: 23px;
         .legend {
-          color: $black_54;
+          color: black__color('secondary__color');
         }
         .action__block {
           display: flex;
@@ -200,10 +200,10 @@
     .item {
       font-size: 24px;
       margin: 0 9px 0 0px;
-      color: $black_54;
+      color: black__color('secondary__color');
       &.is__blue {
         position: relative;
-        color: $primoryColor;
+        color: $primaryColor;
         &:before {
           content: "\2605";
           position: absolute;

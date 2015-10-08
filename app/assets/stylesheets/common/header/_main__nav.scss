@@ -12,7 +12,7 @@
     i {
       line-height: 48px;
       cursor     : pointer;
-      color      : $black_54;
+      color      : black__color('secondary__color');
       &::before {
         font-size: 24px;
       }
@@ -50,7 +50,10 @@
       position: absolute;
       top: 3px;
       left: 27px;
-      width   : 94px;
+      width   : 170px;
+      img {
+        width: 100%;
+      }
     }
   }
   .menu__list {
@@ -65,7 +68,7 @@
         width      : 48px;
         height     : 48px;
         text-align : center;
-        color      : $black_54;
+        color      : black__color('secondary__color');
         margin-left: 15px;
       }
       .label {
@@ -74,10 +77,10 @@
       }
       &.is__active {
         .icon {
-          color: $primoryColor;
+          color: $primaryColor;
         }
         .label {
-          color: $primoryColor;
+          color: $primaryColor;
         }
       }
     }

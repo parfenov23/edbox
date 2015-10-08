@@ -26,7 +26,7 @@
         font-weight : 300;
         text-align  : center;
         line-height : 77px;
-        color       : $black_54;
+        color       : black__color('secondary__color');
       }
       .stars {
         display         : flex;
@@ -35,10 +35,10 @@
         .item {
           font-size : 20px;
           margin    : 0 2px;
-          color     : $black_54;
+          color     : black__color('secondary__color');
           &.is__blue {
             position : relative;
-            color    : $primoryColor;
+            color    : $primaryColor;
             &:before {
               content  : "\2605";
               position : absolute;
@@ -50,12 +50,12 @@
       }
       .qty {
         position     : relative;
-        color        : $black_54;
+        color        : black__color('secondary__color');
         font-size    : 13px;
         line-height  : 16px;
         padding-left : 40px;
         i {
-          color     : $black_54;
+          color     : black__color('secondary__color');
           position  : absolute;
           left      : 16px;
           top       : 1px;
@@ -70,7 +70,7 @@
         justify-content : flex-start;
         margin-bottom   : 14px;
         .star {
-          color        : $black_54;
+          color        : black__color('secondary__color');
           width        : 30px;
           margin-top   : 1px;
           margin-right : 9px;
@@ -135,7 +135,7 @@
             margin-right : 16px;
           }
           .date {
-            color : $black_54;
+            color : black__color('secondary__color');
           }
         }
         .stars {
@@ -145,10 +145,10 @@
           .item {
             position     : relative;
             margin-right : 2px;
-            color        : $black_54;
+            color        : black__color('secondary__color');
             &.is__blue {
               position : relative;
-              color    : $primoryColor;
+              color    : $primaryColor;
               &:before {
                 content  : "\2605";
                 position : absolute;
@@ -205,7 +205,7 @@
               color        : rgba(0, 0, 0, 0.54);
               &.is__blue {
                 position : relative;
-                color    : $primoryColor;
+                color    : $primaryColor;
                 &:before {
                   content  : "\2605";
                   position : absolute;
@@ -245,7 +245,7 @@
     font-size      : 14px;
     padding-top    : 9px;
     padding-bottom : 23px;
-    color          : $primoryColor;
+    color          : $primaryColor;
     &::before {
       @include transition;
       content : "Показать все отзывы";
@@ -274,16 +274,22 @@
   background-color : #FFF;
   > .wrp {
     @include middle-block(744px);
+    .video__te {
+      @include middle-block(745px);
+      height           : 416px;
+      background-color : black__color('decoration__color');
+      margin-bottom    : 16px;
+    }
     > .title {
-      font-size     : 24px;
-      color         : $black_87;
+      font-size     : 34px;
       line-height   : 40px;
+      color         : black__color('base__color');
       text-align    : center;
       margin-bottom : 24px;
     }
     > .description {
       font-size     : 15px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 24px;
       text-align    : center;
       margin-bottom : 24px;
@@ -324,7 +330,7 @@
             }
             .ogo {
               display : block;
-              color   : $black_54;
+              color   : black__color('secondary__color');
             }
           }
         }
@@ -381,7 +387,7 @@
         .price {
           span {
             display     : block;
-            color       : $black_54;
+            color       : black__color('secondary__color');
             font-size   : 15px;
             line-height : 24px;
           }
@@ -455,13 +461,13 @@
       }
       .title {
         font-size     : 24px;
-        color         : $black_87;
+        color         : black__color('base__color');
         line-height   : 32px;
         margin-bottom : 16px;
       }
       .description {
         font-size     : 13px;
-        color         : $black_87;
+        color         : black__color('base__color');
         line-height   : 20px;
         margin-bottom : 18px;
       }
@@ -469,7 +475,7 @@
         margin-bottom : 23px;
         span {
           font-size    : 24px;
-          color        : $black_87;
+          color        : black__color('base__color');
           line-height  : 32px;
           margin-right : 15px;
         }
@@ -489,7 +495,7 @@
   bottom           : 0;
   width            : 100%;
   height           : 100%;
-  background-color : $black_54;
+  background-color : black__color('secondary__color');
   .ugly__popup_inner {
     @include middle-block(936px);
     position       : absolute;
@@ -509,6 +515,36 @@
 }
 
 // old
+.webinar__teaser {
+  width         : 552px;
+  position      : absolute;
+  top           : 208px;
+  left          : 50%;
+  margin-left   : -276px;
+  background    : black__color('secondary__color');
+  border-radius : 2px;
+  z-index       : 999;
+  .info__block {
+    height  : 112px;
+    padding : 16px 18px 16px 24px;
+    .title {
+      @include text__setting('normal__typo');
+      color         : #FFF;
+      margin-bottom : 8px;
+    }
+    .description {
+      @include text__setting('normal__typo');
+      color : #FFF;
+    }
+  }
+  .action__block {
+    border-top : 1px solid rgba(255, 255, 255, 0.3);
+    .btn {
+
+    }
+  }
+
+}
 
 .presentation__block {
   height   : 536px;
@@ -573,7 +609,7 @@
     width            : 100%;
     height           : 100%;
     z-index          : 9999;
-    background-color : $black_54;
+    background-color : black__color('secondary__color');
     justify-content  : center;
     i {
       color       : rgba(0, 0, 0, 0.54);
@@ -603,14 +639,14 @@
     padding     : 32px 96px 48px;
     > .title {
       font-size     : 24px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 40px;
       text-align    : center;
       margin-bottom : 24px;
     }
     > .description {
       font-size     : 15px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 24px;
       text-align    : center;
       margin-bottom : 24px;
@@ -626,13 +662,13 @@
         padding       : 24px 24px 16px;
         .title {
           font-size     : 24px;
-          color         : $black_87;
+          color         : black__color('base__color');
           line-height   : 32px;
           margin-bottom : 16px;
         }
         .description {
           font-size     : 13px;
-          color         : $black_87;
+          color         : black__color('base__color');
           line-height   : 20px;
           margin-bottom : 18px;
           height        : 60px;
@@ -641,7 +677,7 @@
         .price {
           span {
             font-size    : 24px;
-            color        : $black_87;
+            color        : black__color('base__color');
             line-height  : 32px;
             margin-right : 15px;
           }
@@ -662,7 +698,7 @@
     padding     : 32px 32px 24px;
     .title {
       font-size     : 24px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 32px;
       text-align    : center;
       margin-bottom : 45px;
@@ -673,7 +709,7 @@
         left     : -1px;
         cursor   : pointer;
         i {
-          color     : $black_54;
+          color     : black__color('secondary__color');
           font-size : 24px;
           &::before {
             content : "\E893";
@@ -691,7 +727,7 @@
       .form__legend {
         width       : 342px;
         font-size   : 15px;
-        color       : $black_87;
+        color       : black__color('base__color');
         line-height : 24px;
         padding-top : 7px;
       }
@@ -701,7 +737,7 @@
       .btn {
         color            : #FFF;
         float            : right;
-        background-color : #00BCD4;
+        background-color : $primaryColor;
       }
     }
   }
@@ -711,7 +747,7 @@
   position : relative;
   z-index  : 12;
   @include middle-block(920px);
-  top      : 312px;
+  top      : 470px;
   .tegs__list {
     display         : flex;
     margin-bottom   : 8px;
@@ -751,12 +787,12 @@
       .left-col {
         font-size   : 24px;
         line-height : 32px;
-        color       : $black_87;
+        color       : black__color('base__color');
       }
       .right-col {
         font-size   : 15px;
         line-height : 24px;
-        color       : $black_87;
+        color       : black__color('base__color');
       }
     }
     .progress__wrp {
@@ -774,7 +810,7 @@
         left             : 0;
         height           : 24px;
         border-radius    : 2px 0 0 2px;
-        background-color : $primoryColor;
+        background-color : $primaryColor;
       }
     }
     .info {
@@ -785,7 +821,7 @@
         font-size   : 15px;
         line-height : 24px;
         margin      : 0 32px;
-        color       : $black_54;
+        color       : black__color('secondary__color');
       }
     }
   }
@@ -798,7 +834,7 @@
         font-size       : 13px;
         line-height     : 20px;
         display         : flex;
-        color           : $black_54;
+        color           : black__color('secondary__color');
         justify-content : flex-start;
         .item {
           position     : relative;
@@ -809,7 +845,7 @@
             position  : absolute;
             top       : 0;
             left      : 0;
-            color     : $black_54;
+            color     : black__color('secondary__color');
           }
         }
       }
@@ -820,8 +856,8 @@
           height        : 24px;
           margin        : -4px 4px 36px;
           padding       : 0 8px;
-          color         : $black_54;
-          border        : 1px solid $black_54;
+          color         : black__color('secondary__color');
+          border        : 1px solid black__color('secondary__color');
           border-radius : 2px;
         }
       }
@@ -836,7 +872,7 @@
           font-size     : 15px;
           line-height   : 24px;
           margin-bottom : 30px;
-          color         : $black_87;
+          color         : black__color('base__color');
         }
       }
       .leading__list {
@@ -868,7 +904,7 @@
             .description {
               font-size   : 15px;
               line-height : 24px;
-              color       : $black_54;
+              color       : black__color('secondary__color');
             }
           }
         }
@@ -900,7 +936,7 @@
       font-size     : 24px;
       line-height   : 32px;
       margin-bottom : 24px;
-      color         : $black_87;
+      color         : black__color('base__color');
     }
     .programm__block {
       cursor           : pointer;
@@ -948,7 +984,7 @@
         .item {
           .icon__block {
             i {
-              color : $primoryColor;
+              color : $primaryColor;
             }
           }
 
@@ -959,10 +995,10 @@
         .left-col {
           font-size   : 15px;
           line-height : 24px;
-          color       : $black_54;
+          color       : black__color('secondary__color');
         }
         .right-col {
-          color : $black_26;
+          color : black__color('not_active__color');
           i {
             cursor : pointer;
           }
@@ -995,6 +1031,44 @@
         &.is__unreacheble {
           opacity : .26;
         }
+        &.is__webinar {
+          height : 126px;
+          .icon__block {
+            i {
+              font-size   : 39px;
+              line-height : 75px;
+            }
+          }
+          .adaptive__title {
+            .left-col {
+              font-size   : 15px;
+              line-height : 24px;
+              font-weight : 500;
+            }
+          }
+          .description {
+            margin-bottom : 14px;
+          }
+          .info__block {
+            display         : flex;
+            justify-content : flex-start;
+            .start__time, .authors {
+              @include eclipses;
+              font-size : 11px;
+              span {
+                color         : black__color('secondary__color');
+                padding-right : 11px;
+              }
+            }
+            .start__time {
+              max-width    : 205px;
+              margin-right : 48px;
+            }
+            .authors {
+              max-width : 475px;
+            }
+          }
+        }
         .icon__block {
           position   : absolute;
           top        : 0;
@@ -1005,7 +1079,7 @@
           i {
             font-size   : 24px;
             line-height : 96px;
-            color       : $black_54;
+            color       : black__color('secondary__color');
             &.text {
               font-size : 36px;
             }
@@ -1020,22 +1094,35 @@
           .left-col {
             font-size   : 15px;
             line-height : 24px;
-            color       : $black_87;
+            color       : black__color('base__color');
           }
           .right-col {
             font-size   : 12px;
             line-height : 16px;
-            color       : $black_26;
+            color       : black__color('not_active__color');
           }
         }
         .description {
-          font-size   : 12px;
-          line-height : 16px;
-          overflow    : hidden;
-          height      : 34px;
-          color       : $black_87;
+          font-size     : 12px;
+          line-height   : 16px;
+          overflow      : hidden;
+          height        : 34px;
+          color         : black__color('base__color');
+          padding-right : 32px;
         }
         &.is__completed {
+          &.is__webinar {
+            .icon__block {
+              &::before {
+                content : ""
+              }
+              i {
+                &::before {
+                  color : $primaryColor;
+                }
+              }
+            }
+          }
           .icon__block {
             &::before {
               font-family : Icons, sans-serif;
@@ -1047,19 +1134,19 @@
               display     : block;
               width       : 100%;
               content     : "\E899";
-              color       : $primoryColor;
+              color       : $primaryColor;
             }
             i {
-              color : $black_26;
+              color : black__color('not_active__color');
             }
           }
           .adaptive__title {
             .left-col {
-              color : $black_54;
+              color : black__color('secondary__color');
             }
           }
           .description {
-            color : $black_54;
+            color : black__color('secondary__color');
           }
         }
       }
@@ -1107,14 +1194,14 @@
     @include middle-block(750px);
     > .title {
       font-size     : 34px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 40px;
       margin-bottom : 24px;
       text-align    : center;
     }
     .info {
       font-size     : 15px;
-      color         : $black_87;
+      color         : black__color('base__color');
       line-height   : 24px;
       margin-bottom : 24px;
       text-align    : center;
@@ -1124,7 +1211,7 @@
     display         : flex;
     justify-content : center;
     .item {
-      border        : 1px solid $black_54;
+      border        : 1px solid black__color('secondary__color');
       border-radius : 4px;
       padding       : 32px 24px 24px;
       &:first-child {
@@ -1132,7 +1219,7 @@
       }
       .title {
         font-size     : 24px;
-        color         : $black_87;
+        color         : black__color('base__color');
         line-height   : 28px;
         text-align    : center;
         margin-bottom : 24px;
@@ -1140,7 +1227,7 @@
       .description {
         text-align    : center;
         font-size     : 13px;
-        color         : $black_54;
+        color         : black__color('secondary__color');
         line-height   : 20px;
         margin-bottom : 28px;
       }

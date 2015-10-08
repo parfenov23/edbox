@@ -11,7 +11,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
   z-index      : 200;
   cursor       : pointer;
   text-align   : center;
-  background-color: $primoryColor;
+  background-color: $primaryColor;
   .main__action-tooltip-wrp {
     .main__action-tooltip {
       opacity: 0;
@@ -21,7 +21,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
       position: absolute;
       top: 50%;
       right: 70px;
-      background: $black_54;
+      background: black__color('secondary__color');
       border-radius: 2px;
       font-size: 11px;
       color: #FFFFFF;
@@ -70,7 +70,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
         left         : 0;
         bottom       : 0;
         z-index: 10;
-        background-color: $primoryColor;
+        background-color: $primaryColor;
         >i {
           color: #fff;
           &::before {
@@ -97,7 +97,7 @@ $mainBtnShadowHover :0 3px 8px 0px rgba(0, 0, 0, 0.30), 0 6px 5px 0 rgba(0, 0, 0
         }
         .icon {
           &::before {
-            color: $primoryColor;
+            color: $primaryColor;
             line-height  : 40px;
           }
         }

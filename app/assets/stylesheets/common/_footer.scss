@@ -1,0 +1,31 @@
+footer {
+  height: 112px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 172px;
+  background-color: #fff;
+  .left-col {
+    padding-top: 24px;
+  }
+  .right-col {
+    padding-top: 56px;
+    @include clearfix;
+    .logo {
+      float: left;
+      width: 32px;
+      margin-right: 16px;
+      img {
+        opacity: .54;
+        width: 100%;
+      }
+    }
+    .info {
+      float: left;
+      padding-top: 8px;
+      @include text__setting(normal__typo, secondary__color);
+      a {
+        color: $primaryColor;
+      }
+    }
+  }
+}

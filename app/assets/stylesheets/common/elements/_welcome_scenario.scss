@@ -18,10 +18,10 @@
     .item {
       font-size  : 20px;
       line-height: 24px;
-      color      : $black_26;
+      color      : black__color('not_active__color');
       margin-right: 32px;
       &.active {
-        color: $black_54;
+        color: black__color('secondary__color');
       }
     }
   }
@@ -29,7 +29,7 @@
   .next {
     .item {
       font-size  : 20px;
-      color      : $black_26;
+      color      : black__color('not_active__color');
       line-height: 24px;
       padding-right: 36px;
       position: relative;
@@ -40,7 +40,7 @@
         font-size: 24px;
       }
       &.active {
-        color: $primoryColor;
+        color: $primaryColor;
       }
     }
   }

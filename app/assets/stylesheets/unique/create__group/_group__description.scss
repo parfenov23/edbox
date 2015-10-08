@@ -15,14 +15,14 @@
         margin-top: -8px;
         margin-right: -2px;
         margin-left: 18px;
-        color: $black_26;
+        color: black__color('not_active__color');
       }
     }
   }
   .description {
     padding: 0 48px;
     padding-bottom: 26px;
-    border-bottom: 1px solid $black_12;
+    border-bottom: 1px solid black__color('decoration__color');
     margin-bottom: 31px;
   }
   .description__info {
@@ -36,16 +36,16 @@
       .value  {
         width: 450px;
         .h__black {
-            color: $black_87;
+            color: black__color('base__color');
         }
         p {
           margin-bottom: 6px;
-          color: $black_54;
+          color: black__color('secondary__color');
           a {
-            color: $primoryColor;
+            color: $primaryColor;
           }
           b {
-            color: $black_87;
+            color: black__color('base__color');
             font-weight: normal;
           }
         }

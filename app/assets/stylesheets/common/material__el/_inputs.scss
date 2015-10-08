@@ -50,7 +50,7 @@ select[multiple].form-control {
   }
 
   .form-control:not(.empty) {
-    border-color: $primoryColor;
+    border-color: $primaryColor;
   }
 
   .form-control.empty ~ .floating-label {
@@ -227,11 +227,11 @@ select.form-control {
 
     &.lvl-4 {
       hr {
-        border-color: $primoryColor;
+        border-color: $primaryColor;
       }
 
       .error__msg {
-        color: $primoryColor;
+        color: $primaryColor;
       }
     }
   }
@@ -242,17 +242,17 @@ select.form-control {
       position: absolute;
       bottom  : 12px;
       right   : 0;
-      color   : $black_26;
+      color   : black__color('not_active__color');
     }
   }
 
   &.is__noFocus {
     .floating-label {
-      color: $black_26;
+      color: black__color('not_active__color');
     }
 
     hr {
-      border-bottom: 1px solid $black_26;
+      border-bottom: 1px solid black__color('not_active__color');
     }
   }
 
@@ -266,7 +266,7 @@ select.form-control {
     left         : 0;
     height       : 1px;
     border       : none;
-    border-bottom: 1px solid $primoryColor;
+    border-bottom: 1px solid $primaryColor;
     display      : block;
     width        : 100%;
   }
@@ -275,7 +275,7 @@ select.form-control {
     top        : -28px;
     opacity    : 1;
     font-size  : 12px;
-    color      : #1fc4d9;
+    color      : $primaryColor;
     line-height: 16px;
   }
 
@@ -319,13 +319,13 @@ select.form-control {
   }
 
   input:not(.empty) {
-    border-color: $primoryColor;
+    border-color: $primaryColor;
   }
 
   // input:not(.empty) ~ .floating-label {
   //   font-size  : 12px;
   //   line-height: 16px;
-  //   color      : $primoryColor;
+  //   color      : $primaryColor;
   //   top        : -27px;
   // }
 }
@@ -420,7 +420,7 @@ select.form-control {
   }
 
   input:focus + hr {
-    border-bottom: 2px solid #00bcd8;
+    border-bottom: 2px solid $primaryColor;
   }
 
   input.error {
@@ -472,14 +472,14 @@ select.form-control {
     &:checked + label {
       i {
         &::before {
-          background-color: $primoryColor;
+          background-color: $primaryColor;
         }
       }
     }
   }
 
   i {
-    border       : 2px solid $primoryColor;
+    border       : 2px solid $primaryColor;
     border-radius: 50%;
 
     &::before {
@@ -501,10 +501,10 @@ select.form-control {
   input {
     &:checked + label {
       i {
-        background-color: $primoryColor;
+        background-color: $primaryColor;
 
         &::before {
-          background-color: $primoryColor;
+          background-color: $primaryColor;
           color           : #fff;
           opacity         : 1;
         }
@@ -513,7 +513,7 @@ select.form-control {
   }
 
   i {
-    border       : 2px solid $primoryColor;
+    border       : 2px solid $primaryColor;
     border-radius: 2px;
 
     &::before {

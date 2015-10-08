@@ -1,6 +1,8 @@
 - title titlePage
 / header#page__header.with__img
 - valid_img_page = ["course_description", "other_white"]
+- if namePage == "profile" && Rails.env.production?
+  - render "layouts/pixel/facebook_pixel_profile"
 header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
     - unless (btnBack rescue false)
@@ -79,7 +81,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
   .left__aside-main-nav.js__baron.js__left-aside
     .info__block
       .top__logo
-        img src= "/assets/edbox__bloo.svg"
+        img src="/assets/adcons__grey.svg"
     .menu__list
       - unless current_user.contenter
         .item class=(namePage == "cabinet" ? "is__active" : "")
@@ -123,8 +125,8 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     /  i.notes.icon
     /  .label Заметки
 
-    .btm__logo
-      img src = "/assets/adcons__grey.svg"
+    / .btm__logo
+    /   img src = "/assets/adcons__grey.svg"
 
 - if (comment rescue false)
   #js-comment.courses-aside

@@ -21,7 +21,7 @@
       cursor: pointer;
       &:hover {
         i, span {
-          color: $primoryColor;
+          color: $primaryColor;
         }
       }
       i.icon {
@@ -46,7 +46,7 @@
         top     : 1px;
         right   : -8px;
         i {
-          color       : $black_26;
+          color       : black__color('not_active__color');
           font-size   : 22px;
           margin-right: 6px;
         }
@@ -72,7 +72,7 @@
     .more {
       font-size  : 13px;
       line-height: 20px;
-      color      : $primoryColor;
+      color      : $primaryColor;
       cursor     : pointer;
     }
   }
