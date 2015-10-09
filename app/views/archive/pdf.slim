@@ -3,3 +3,5 @@
     .content-audio
         p.audio-title #{@pdf.title}
         embed src="#{request.base_url + @pdf.file.url}" width="800" height="1200" type='application/pdf'
+
+= render "home/footer/footer"
