@@ -16,14 +16,12 @@ module Superuser
     def create
       company = Company.new({first_name: params[:first_name]})
       company.save
-      company.update_account_type(params[:account_type].to_i)
       redirect_to edit_superuser_company_path(company.id)
     end
 
     def update
       company = find_company
       company.update({first_name: params[:first_name]})
-      company.update_account_type(params[:account_type].to_i)
       redirect_to :back
     end
 

@@ -115,8 +115,12 @@ class User < ActiveRecord::Base
     (last_auth > created_at ? true : false) rescue false
   end
 
+  def self.user_zone
+    "Europe/Moscow"
+  end
+
   def self.time_zone
-    timezone = "Asia/Yekaterinburg"
+    timezone = user_zone
     TZInfo::Timezone.get(timezone).current_period.utc_offset / (60*60)
   end
 

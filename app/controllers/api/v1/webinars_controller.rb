@@ -5,7 +5,8 @@ module Api::V1
       webinar = find_webinar
       webinar_params_permit = webinar_params
       if webinar_params_permit[:date_start].present?
-        curr_time = Time.parse(webinar_params_permit[:date_start]) - (User.time_zone - 2).hour
+        utc_strt = webinar_params_permit[:date_start].gsub(".", "-").gsub(" ", "T") + "Z"
+        curr_time = Time.parse(utc_strt) - (User.time_zone).hour
         webinar_params_permit[:date_start] = curr_time
       end
       webinar.update(webinar_params_permit)

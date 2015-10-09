@@ -8,7 +8,7 @@ class LigamentCourse < ActiveRecord::Base
   def notify_json(type=nil)
     {
       title: "В вашу группу добавлен курс",
-      body: "В вашу группу «#{group.first_name}» добавлен новый курс “#{course.title}",
+      body: "Отличная новость! В вашу группу «#{group.first_name}» добавлен новый курс — «#{course.title}». Давайте приступим к его изучению!",
       timeClose: 0,
       linkGo: "/group?id=#{group_id}&type=courses"
     }

@@ -11,6 +11,11 @@ class Webinar < ActiveRecord::Base
     attachment.attachmentable.course rescue nil
   end
 
+  def in_progress?
+    minute_diff = (date_start - Time.current).to_i/60
+    (minute_diff > 0 && minute_diff < duration) ? true : false
+  end
+
   def create_room_in_schedule
     scheduler = Rufus::Scheduler.start_new
     server_bb = BigbluebuttonServer.last

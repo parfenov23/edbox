@@ -94,13 +94,12 @@ class HomeController < ActionController::Base
   end
 
   def courses
-    all_courses = Course.all.publication
-    # time = Time.now
-    # @new_courses = all_courses.where(created_at: (time - 3.day).beginning_of_day..time.end_of_day)
-    #                  .order("created_at ASC")
-    @courses = all_courses.where(type_course: "course")
-    @courses = all_courses.where(type_course: "online") if params[:type] == "online"
-    @courses = all_courses.where(type_course: "material") if params[:type] == "material"
+    @courses_cid = nil
+    type_course = params[:type].present? ? params[:type] : "course"
+    @courses = Course.all.publication.where(type_course: type_course)
+    if params[:cid].present?
+      @courses_cid = @courses.joins(:bunch_categories).where("bunch_categories.category_id" => params[:cid])
+    end
   end
 
   def programm

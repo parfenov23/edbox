@@ -129,7 +129,7 @@ class BunchCourse < ActiveRecord::Base
       when "new"
         {
           title: "Добавлен новый курс в библиотеку.",
-          body: "В вашей библиотеке, появился новый курс!",
+          body: "Обратите внимание! В библиотеку добавлен новый курс — «#{course.title}»",
           timeClose: 0,
           linkGo: "/courses"
         }
@@ -137,21 +137,21 @@ class BunchCourse < ActiveRecord::Base
         user_name = (user.full_name rescue "Нет имени")
         {
           title: "Пользователь закончил прохождение курса",
-          body: "#{user_name} прошел курс “#{course.title}”",
+          body: "Ура! Ваш слушатель #{user_name} прошел курс «#{course.title}»!  Молодец!",
           timeClose: 0,
           linkGo: "/courses"
         }
       when "overdue_course"
         {
           title: "Вы просрочили время прохождения.",
-          body: "Вы не успели изучить курс “#{course.title}” в указанный срок",
+          body: "Увы, к сожалению, вы не успели изучить курс «#{course.title}» в указанный вами для себя срок. Данные об этом сохранены в системе учета. Пожалуйста, не забывайте учиться вовремя! ",
           timeClose: 0,
           linkGo: "/courses"
         }
       when "close_overdue_course"
         {
-          title: "Приближается время дедлайна курса",
-          body: "Сегодня последний день для изучения курса “#{course.title}”",
+          title: "Приближается время прохождения курса",
+          body: "Обратите внимание! Сегодня — последний день для изучения курса «#{course.title}». Давайте не отставать от графика! Пожалуйста, успейте сегодня закончить обучение.",
           timeClose: 0,
           linkGo: "/courses"
         }

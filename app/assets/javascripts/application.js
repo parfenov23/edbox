@@ -272,6 +272,13 @@ $(document).ready(function () {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
     });
 
+    $(document).on('click', 'figure.corses-prev', function(e){
+        console.log($(e.target))
+        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn")){
+            $(this).find("a")[0].click();
+        }
+    })
+
     $(document).on('click', function(e){
         if (!$(e.target).closest(".js__select-calendar").length){
             $(".js__select-calendar.is__active").removeClass("is__active")

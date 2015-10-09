@@ -48,7 +48,7 @@ class Group < ActiveRecord::Base
   def notify_json(type=nil)
     {
       title: "Вас добавили в группу",
-      body: "Вы добавлены в группу «#{first_name}»",
+      body: "Поздравляем! Вы добавлены в группу «#{first_name}». Пожалуйста, проверьте, какие курсы назначены вашей группе для изучения.",
       timeClose: 0,
       linkGo: "/group?id=#{id}"
     }
