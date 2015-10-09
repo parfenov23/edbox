@@ -1,0 +1,16 @@
+- action_url = @page_question.id.nil? ? "/superuser/page_questions" : "/superuser/page_questions/#{@page_question.id}"
+- method = @page_question.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  - if @page_question.id.nil?
+    input type="hidden" value=params[:ask_question_id] name="page_question[ask_question_id]"
+  .form-group
+    label
+      | Название:
+    input.form-control name="page_question[title]" type="text" value="#{@page_question.title}"
+  .form-group
+    label
+      | Описание:
+    textarea name="page_question[content]" = @page_question.content
+
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
