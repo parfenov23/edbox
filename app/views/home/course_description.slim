@@ -22,6 +22,14 @@
   .course__title = course_title
   = render "home/course_description/progress_block", {bunch_course: bunch_course}
   .course__info
+    .webinar__date
+      .webinar__day 17 августа — 18 сентября
+      .webinar__calendar
+        | Добавить в:
+        a href="#" iCal
+        |,
+        a href="#" Google Calendar
+
     .adaptive__title
       .left-col style="height: 56px;"
         .item
@@ -181,4 +189,4 @@
 - else
   = render "home/course_description/registration_webinar"
 
-
+= render "home/footer/footer"
