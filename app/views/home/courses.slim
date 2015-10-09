@@ -2,18 +2,19 @@
 = render "home/courses/filter"
 - if (current_user.corporate rescue false)
   = render "home/courses/groups"
-.inner-content
-  = render "home/courses/category"
-  #courses.content-courses.courses-list.cabinet__block__v2
-    - if @courses.present?
-      - course_each = @courses_cid.present? ? @courses_cid : @courses
-      - course_each.each do |course|
-        = render "courses/course", {course: course, type: 'courses'}
-    - else
+- if current_user.present? || @course.present?
+  .inner-content
+    = render "home/courses/category"
+    #courses.content-courses.courses-list.cabinet__block__v2
+      - if @courses.present?
+        - course_each = @courses_cid.present? ? @courses_cid : @courses
+        - course_each.each do |course|
+          = render "courses/course", {course: course, type: 'courses'}
+      - else
+        - if current_user.present?
+          = render "common/page_empty", {btn: false}
       - if current_user.present?
-        = render "common/page_empty", {btn: false}
-    - if current_user.present?
-      = render "home/courses/pop_up"
+        = render "home/courses/pop_up"
 - unless current_user.present?
   .last__chance.js_parentRequestSend
     = render "common/popup_request/content"
