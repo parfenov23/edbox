@@ -23,8 +23,9 @@
           - else
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-        .action__block
-          a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
+        - unless first_webinar.in_progress?
+          .action__block
+            a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 
