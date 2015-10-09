@@ -2,7 +2,7 @@
 = render "home/courses/filter"
 - if (current_user.corporate rescue false)
   = render "home/courses/groups"
-- if current_user.present? || @course.present?
+- if current_user.present? || @courses.present?
   .inner-content
     = render "home/courses/category"
     #courses.content-courses.courses-list.cabinet__block__v2
