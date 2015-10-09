@@ -1,6 +1,32 @@
 .course__description_v2 {
   @include middle-block(936px);
 }
+.course__info {
+  .webinar__date {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 48px;
+    padding-bottom: 14px;
+    margin-left: -48px;
+    border-bottom: 1px solid black__color('decoration__color');
+    width: 920px;
+    margin-bottom: 25px;
+    .webinar__day {
+      width: 45%;
+      @include text__setting('header__typo_2');
+    }
+    .webinar__calendar {
+      width: 40%;
+      text-align: right;
+      padding-top: 3px;
+      @include text__setting('normal__typo', 'secondary__color');
+      a {
+        color: $primaryColor;
+        padding: 0 4px;
+      }
+    }
+  }
+}
 
 .review__section {
   @include white__block(1, 0);
