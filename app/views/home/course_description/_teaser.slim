@@ -8,7 +8,8 @@
       source src="/system/attachment/file/31/video.mp4"
 
 - if @course.online?
-  - all_webinars = @course.sections.attachments.where(public: true).webinars
+  - att_public = current_user.present? ? [true, false] : true
+  - all_webinars = @course.sections.attachments.where(public: att_public).webinars
   - if all_webinars.present?
     - first_time = Time.current - (all_webinars.map(&:duration).max).minute
     - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
