@@ -114,7 +114,7 @@
                 .right-col
                   i.icon.to__unfold.ckick_shot
             .programm__wrp
-      
+
               /form style="display:none;"
               /  input name="" type="hidden" value=""
               /  .item.is__webinar
@@ -148,7 +148,7 @@
               /        span Ведущие:
               /        | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
               /
-      
+
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
@@ -182,11 +182,11 @@
               .left-col Тест для завершения курса
               .right-col
             .description Станет доступным после прохождения всех материалов курса
+  - unless @course.online?
+    = render "common/course/course_reg" unless current_user.present?
+  - else
+    = render "home/course_description/registration_webinar"
 
 = render "home/course_program/sink_button", {course: @course}
-- unless @course.online?
-  = render "common/course/course_reg" unless current_user.present?
-- else
-  = render "home/course_description/registration_webinar"
 
 = render "home/footer/footer"
