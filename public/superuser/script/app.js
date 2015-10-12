@@ -2,6 +2,7 @@ function init_tiny(){
     tinymce.init({
         selector: "textarea",
         height  : 300,
+        plugins: "code"
         //menu : { // this is the complete default configuration
         //    //edit   : {title : 'Редактирование'  , items : 'undo redo | cut copy paste pastetext | selectall'},
         //    //insert : {title : 'Insert', items : 'link media | template hr'},
