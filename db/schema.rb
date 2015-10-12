@@ -11,15 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930103410) do
+ActiveRecord::Schema.define(version: 20151009114158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_types", force: true do |t|
+    t.string  "name"
+    t.string  "title"
+    t.string  "info"
+    t.boolean "corporate", default: false
+    t.boolean "paid",      default: false
+  end
 
   create_table "answers", force: true do |t|
     t.integer "question_id"
     t.string  "text"
     t.boolean "right"
+  end
+
+  create_table "ask_questions", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "attachments", force: true do |t|
@@ -299,6 +314,14 @@ ActiveRecord::Schema.define(version: 20150930103410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "action_type"
+  end
+
+  create_table "page_questions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "ask_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "questions", force: true do |t|

@@ -1,3 +1,131 @@
+.content__for_row{
+  @include clearfix;
+  figure {
+    float: left;
+  }
+}
+figure.basic__module {
+  @include white__block(1, 0);
+  width: 360px;
+  height: 352px;
+  overflow: hidden;
+  .image {
+    position: relative;
+    height: 200px;
+    width: 360px;
+    overflow: hidden;
+    .fade {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 69%, #000000 100%);
+      z-index: 1;
+    }
+    img {
+      width: 100%;
+    }
+    .category {
+      @include inline-block;
+      @include eclipses;
+      @include text__setting(normal__typo);
+      position: absolute;
+      bottom: 9px;
+      left: 2px;
+      max-width    : 256px;
+      padding      : 2px 7px;
+      color        : #fff;
+      margin: 8px;
+      z-index: 2;
+      i {
+        margin-right: 6px;
+      }
+    }
+    .status {
+      @include text__setting(smallest__typo);
+      background: black__color(secondary__color);
+      padding: 4px 8px;
+      border-radius: 2px;
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      color: #fff;
+      &.overdue {
+        background: rgba(245,0,87,0.54);
+      }
+      &.completed {
+        background: rgba(0,187,211,0.54);
+      }
+    }
+  }
+  figcaption {
+    position: relative;
+    height: 152px;
+    width: 360px;
+    .authors {
+      @include text__setting(normal__typo, secondary__color);
+      @include eclipses;
+      padding: 13px 16px 0 16px;
+      margin-bottom: 8px;
+      height: 37px;
+    }
+    .title {
+      padding: 0 16px;
+      @include text__setting(header__typo_1);
+      height: 56px;
+      overflow:hidden;
+      margin-bottom: 16px;
+    }
+    .info__block {
+      padding: 0 16px;
+      .type {
+        @include text__setting(normal__typo, secondary__color);
+        position: relative;
+        padding-left: 24px;
+        i {
+          position: absolute;
+          top: 0;
+          left: 0;
+          &.webinar {
+            font-size: 13px;
+          }
+          &.online__course {
+            font-size: 17px;
+          }
+          &.test {
+            font-size: 14px;
+          }
+          &.file {
+            font-size: 14px;
+          }
+        }
+      }
+
+    }
+    .progress__block {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+      overflow: hidden;
+      .bar {
+        height: 4px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $primaryColor;
+      }
+    }
+  }
+}
+
+
+
 .corses-prev__v2 {
   margin: 0;
   margin-right: 24px;

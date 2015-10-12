@@ -1,0 +1,11 @@
+.list-group.row
+    .list-group-item.active
+        a.btn.btn-success href="/superuser/ask_questions/new"  Добавить Вопрос
+    - @ask_questions.each do |ask_question|
+        .list-group-item.col-md-6
+            span
+                = ask_question.title
+            a.btn.btn-danger.pull-right href="/superuser/ask_questions/#{ask_question.id}/remove"  data-method='delete'
+                | Удалить
+            a.btn.btn-success.pull-right href="/superuser/ask_questions/#{ask_question.id}/edit" style="margin-right: 5px;"
+                | Редактировать

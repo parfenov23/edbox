@@ -166,6 +166,14 @@
     display         : flex;
     padding-top     : 19px;
     justify-content : flex-start;
+    .btn {
+      margin-right: 8px;
+    }
+    .our__phone {
+      padding-top: 5px;
+      margin-right: 16px;
+      @include text__setting(header__typo_1)
+    }
     .create__contenterCourse {
       margin-right : 16px;
       ul {

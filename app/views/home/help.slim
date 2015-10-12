@@ -1,0 +1,14 @@
+= render "home/header/header", {namePage: "other", titlePage: 'F.A.Q'}
+
+.inner-content
+  .help-content
+    - AskQuestion.all.each do |ask_question|
+      .item
+        .title = raw ask_question.title
+        .wrp
+          .description = raw ask_question.description
+          .list
+            - ask_question.page_questions.each do |page_question|
+              a.item href="/help_answer?id=#{page_question.id}"
+                = raw page_question.title
+                i.icon

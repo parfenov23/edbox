@@ -190,6 +190,18 @@ Rails.application.routes.draw do
         get :index
       end
     end
+
+    resources :ask_questions do
+      member do
+        post :remove
+      end
+    end
+    resources :page_questions do
+      member do
+        post :remove
+      end
+    end
+
     resources :companies do
       member do
         get :remove
