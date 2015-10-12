@@ -1,0 +1,14 @@
+- action_url = @ask_question.id.nil? ? "/superuser/ask_questions" : "/superuser/ask_questions/#{@ask_question.id}"
+- method = @ask_question.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Название:
+        input.form-control name="ask_question[title]" type="text" value="#{@ask_question.title}"
+    .form-group
+        label
+            | Описание:
+        textarea.form-control name="ask_question[description]" =@ask_question.description
+
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить

@@ -24,3 +24,5 @@
     - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid}
     - add_class = !@course.material? ? "js_completeAttachment" : "js_completeMaterial"
     = render "common/course/adova_btn", {add_hash: add_hash, add_class: add_class}
+
+= render "home/footer/footer"

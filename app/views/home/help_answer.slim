@@ -1,0 +1,7 @@
+= render "home/header/header", {namePage: "other", titlePage: @page_question.title, btnBack: true, backUrl: "/help"}
+
+.inner-content
+  .text__content_inner
+    .separator
+    h1 = @page_question.title
+    = raw @page_question.content

@@ -114,6 +114,10 @@ class HomeController < ActionController::Base
     # redirect_to "/schedule" unless current_user.director
   end
 
+  def help_answer
+    @page_question = PageQuestion.find(params[:id])
+  end
+
   def render_mini_schedule
     html = render_to_string 'home/cabinet/_schedule', :layout => false, :locals => {params: params}
     render text: html
