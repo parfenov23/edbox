@@ -1,14 +1,13 @@
 footer {
-  height: 112px;
+  height: 152px;
   display: flex;
   justify-content: space-between;
   padding: 0 172px;
   background-color: #fff;
+  padding-top: 23px;
   .left-col {
-    padding-top: 24px;
   }
   .right-col {
-    padding-top: 56px;
     @include clearfix;
     .logo {
       float: left;
@@ -21,10 +20,18 @@ footer {
     }
     .info {
       float: left;
-      padding-top: 8px;
       @include text__setting(normal__typo, secondary__color);
+      margin-top: -3px;
+      font-weight: 500;
       a {
         color: $primaryColor;
+      }
+      .address  {
+        font-weight: 400;
+        a {
+          font-weight: 400;
+          display: block;
+        }
       }
     }
   }
