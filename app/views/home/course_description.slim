@@ -95,7 +95,7 @@
         = tag.title
   - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
 
-  .tizer__block 
+  /.tizer__block
     .title Полная программа курса станет доступна в скором времени
     .action__block
       .btn.is__blue УВЕДОМИТЬ МЕНЯ
@@ -276,8 +276,8 @@
               .right-col
             .description Станет доступным после прохождения всех материалов курса
             
-            
-- unless @course.online?
+
+- if @course.paid?
   = render "common/course/course_reg" unless current_user.present?
 - else
   = render "home/course_description/registration_webinar"
