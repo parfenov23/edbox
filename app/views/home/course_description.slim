@@ -114,7 +114,7 @@
                 .right-col
                   i.icon.to__unfold.ckick_shot
             .programm__wrp
-      
+
               /form style="display:none;"
               /  input name="" type="hidden" value=""
               /  .item.is__webinar
@@ -148,18 +148,19 @@
               /        span Ведущие:
               /        | Рома Воронежский, Валерия Новодворская, Юля Козюля Рома Воронежский, Валерия Новодворская, Юля Козюля
               /
-      
+
+              /TODO Переписать все нахрен
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - class_add_course = (!current_user.present? && attachment.public) ? "js_goToAttachment" : " "
-                - if current_user.present?
+                - if current_user.present? && current_user.view_course?(@course)
                   - redirect_att = "/attachment?id=#{attachment.id}"
                   - class_add_course += "js_addCourseToMyCourse"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  - ad__active = !current_user.present? ? (attachment.public ? "" : "is__unreacheble") : ""
+                  - ad__active = !current_user.present? ? (attachment.public ? "" : "is__unreacheble") : (current_user.view_course?(@course) ? "" : "is__unreacheble")
                   - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
@@ -182,11 +183,11 @@
               .left-col Тест для завершения курса
               .right-col
             .description Станет доступным после прохождения всех материалов курса
+  - unless @course.online?
+    = render "common/course/course_reg" unless current_user.present?
+  - else
+    = render "home/course_description/registration_webinar"
 
 = render "home/course_program/sink_button", {course: @course}
-- unless @course.online?
-  = render "common/course/course_reg" unless current_user.present?
-- else
-  = render "home/course_description/registration_webinar"
 
 = render "home/footer/footer"

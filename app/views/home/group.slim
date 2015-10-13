@@ -1,6 +1,6 @@
 = render "home/header/header", {namePage: "group", titlePage: "Группы"}
 input#namePageGroup type="hidden" value=(@group.first_name rescue 'Нет группы')
-.content#groups
+.content.content-inner#groups
   - unless @group.present?
     - if current_user.director
       = render 'home/group/new'

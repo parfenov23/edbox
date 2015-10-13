@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def view_course?(course)
-    !course.paid || (course.paid && get_account_paid)
+    !course.paid || (course.paid && paid)
   end
 
   def all_groups
