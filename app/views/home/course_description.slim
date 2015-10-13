@@ -22,13 +22,24 @@
   .course__title = course_title
   = render "home/course_description/progress_block", {bunch_course: bunch_course}
   .course__info
-    .webinar__date
-      .webinar__day 17 августа — 18 сентября
-      .webinar__calendar
-        | Добавить в:
-        a href="#" iCal
-        |,
-        a href="#" Google Calendar
+
+    - if @course.online?
+      - att_public = current_user.present? ? [true, false] : true
+      - all_webinars = @course.sections.attachments.where(public: att_public).webinars
+      - if all_webinars.present?
+        - first_webinar = all_webinars.order("date_start ASC").first
+        - last_webinar = all_webinars.order("date_start ASC").last
+        - if first_webinar.present?
+          .webinar__date
+            - last_webinar_date = ''
+            - unless last_webinar.id == first_webinar.id
+              - last_webinar_date = " — #{ltime(last_webinar.date_start, '', 'short_date', false)}"
+            .webinar__day #{ltime(first_webinar.date_start, '', 'short_date', false)}#{last_webinar_date}
+            /.webinar__calendar
+              | Добавить в:
+              a href="#" iCal
+              |,
+              a href="#" Google Calendar
 
     .adaptive__title
       .left-col style="height: 56px;"
