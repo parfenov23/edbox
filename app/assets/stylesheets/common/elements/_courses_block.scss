@@ -3,8 +3,15 @@
   figure {
     float: left;
   }
+  &.horizontal {
+    @include middle-block(936px);
+    figure {
+      float: none;
+    }
+  }
 }
 figure.basic__module {
+  margin: 0;
   @include white__block(1, 0);
   width: 360px;
   height: 352px;
@@ -14,6 +21,21 @@ figure.basic__module {
     height: 200px;
     width: 360px;
     overflow: hidden;
+    .type__icon {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      width: 72px;
+      height: 72px;
+      text-align: center;
+      color: #fff;
+      margin: -36px 0 0 -36px;
+      i {
+        font-size: 46px;
+        line-height: 72px;
+      }
+    }
     .fade {
       width: 100%;
       height: 100%;
@@ -80,27 +102,23 @@ figure.basic__module {
     }
     .info__block {
       padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
       .type {
         @include text__setting(normal__typo, secondary__color);
         position: relative;
         padding-left: 24px;
+        width: 75%;
         i {
           position: absolute;
           top: 0;
           left: 0;
-          &.webinar {
-            font-size: 13px;
-          }
-          &.online__course {
-            font-size: 17px;
-          }
-          &.test {
-            font-size: 14px;
-          }
-          &.file {
-            font-size: 14px;
-          }
         }
+      }
+      .time__date {
+        width: 39%;
+        @include text__setting(normal__typo, secondary__color);
+        text-align: right;
       }
 
     }
@@ -122,8 +140,70 @@ figure.basic__module {
       }
     }
   }
+  &.completed {
+    .image {
+      .fade {
+        background: rgba(255,255,255,0.54);
+      }
+    }
+  }
 }
 
+figure.shot__module  {
+  margin: 0;
+  @include white__block(1, 0);
+  padding: 16px;
+  display: flex;
+  justify-content: flex-start;
+  height: 128px;
+  .image {
+    width: 176px;
+    height: 96px;
+    margin-right: 24px;
+    position: relative;
+    img {
+      width: 100%;
+    }
+    .type__icon{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -24px 0 0 -24px;
+      width: 48px;
+      height: 48px;
+      i {
+        font-size: 48px;
+        color: #fff
+      }
+    }
+  }
+  figcaption {
+    width: 700px;
+    .title {
+      @include eclipses;
+      @include text__setting(header__typo_1);
+    }
+    .authors {
+      @include eclipses;
+      @include text__setting(small__typo, secondary__color);
+    }
+    .info__block {
+      .left-col{
+        .item {
+          i {
+
+          }
+          &.type{
+
+          }
+        }
+      }
+      .right-col {
+
+      }
+    }
+  }
+}
 
 
 .corses-prev__v2 {
