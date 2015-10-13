@@ -35,7 +35,7 @@ i.icon {
 
   &.webinar {
     &::before {
-      content: "\e602";
+      content: "\E833";
     }
   }
 
@@ -47,13 +47,13 @@ i.icon {
 
   &.video {
     &::before {
-      content: "\e602";
+      content: "\E833";
     }
   }
 
   &.audio {
     &::before {
-      content: "\e603";
+      content: "\E7B0";
     }
   }
 
@@ -65,7 +65,7 @@ i.icon {
 
   &.test {
     &::before {
-      content: "\e601";
+      content: "\E615";
     }
   }
 

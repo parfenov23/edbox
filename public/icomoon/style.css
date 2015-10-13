@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?ushni2');
-	src:url('fonts/icomoon.eot?ushni2#iefix') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?ushni2') format('truetype'),
-		url('fonts/icomoon.woff?ushni2') format('woff'),
-		url('fonts/icomoon.svg?ushni2#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?uqp6nx');
+	src:url('fonts/icomoon.eot?uqp6nx#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.ttf?uqp6nx') format('truetype'),
+		url('fonts/icomoon.woff?uqp6nx') format('woff'),
+		url('fonts/icomoon.svg?uqp6nx#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,15 +23,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-e601:before {
-	content: "\e601";
-}
-.icon-e602:before {
-	content: "\e602";
-}
-.icon-e603:before {
-	content: "\e603";
-}
 .icon-uniE600:before {
 	content: "\e600";
 }
@@ -91,6 +82,9 @@
 }
 .icon-uniE614:before {
 	content: "\e614";
+}
+.icon-uniE615:before {
+	content: "\e615";
 }
 .icon-uniE619:before {
 	content: "\e619";
@@ -152,6 +146,9 @@
 .icon-uniE78F:before {
 	content: "\e78f";
 }
+.icon-uniE7B0:before {
+	content: "\e7b0";
+}
 .icon-uniE7B4:before {
 	content: "\e7b4";
 }
@@ -175,6 +172,9 @@
 }
 .icon-uniE824:before {
 	content: "\e824";
+}
+.icon-uniE833:before {
+	content: "\e833";
 }
 .icon-uniE87A:before {
 	content: "\e87a";
