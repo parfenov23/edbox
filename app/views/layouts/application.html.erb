@@ -31,7 +31,7 @@
 </div>
 <div class="js__backing"></div>
 <%= render "layouts/notification" %>
-<% if (!@course.online? rescue true) %>
+<% if (@course.paid? rescue true) %>
     <%= render "common/popup_request/request" if !(current_user.present? rescue true) %>
 <% end %>
 <%= render "layouts/pop_up_confirm" %>

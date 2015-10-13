@@ -1,10 +1,12 @@
 - unless current_user.present?
   .progress__block
     .title.adaptive__title.h__no_margin
-      .left-col.h__text_20-28 = @course.online? ? "Вебинар доступен зарегистрированным пользователям" : "Данный курс доступен по подписке"
+      - course_type = (@course.online? ? 'Вебинар' : 'Курс')
+      /- binding.pry
+      .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
-        - if !@course.online?
-          .btn.is__blue.js_openFormRegistration ОФОРМИТЬ ПОДПИСКУ
+        - if @course.paid?
+          .btn.is__blue.js_openFormRegistration Регистрация
         - else
           .btn.is__blue.js_openFormRegistrationAuth Бесплатная регистрация
   - if bunch_course.present?
