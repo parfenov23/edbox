@@ -28,6 +28,22 @@
   }
 }
 
+.tizer__block  {
+  @include white__block(1, 0);
+  padding: 20px 48px;
+  height: 72px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  .title {
+    width: 600px;
+    @include text__setting(header__typo_1);
+  }
+  .action__block {
+    width: 160px;
+  }
+}
+
 .review__section {
   @include white__block(1, 0);
   padding       : 32px 150px 18px 48px;
@@ -295,9 +311,81 @@
   }
 }
 
+.notice__popup.email__add {
+  padding-bottom: 16px;
+  .title {
+    @include text__setting(normal__typo);
+  }
+  .input-wrp{
+    width: 505px;
+  }
+  .action__block {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: -8px;
+    .btn {
+      &:first-child{
+        margin-right: 16px;
+      }
+    }
+  }
+}
+.inner.explore {
+  width: 1192px;
+  padding-bottom: 24px;
+  padding-top: 24px;
+  >.title {
+    @include text__setting(header__typo_3);
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  > .description {
+    @include text__setting(normal__typo);
+    margin-bottom: 26px;
+    text-align: center;
+  }
+  .material__list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 23px;
+    figure {
+      margin: 0 12px;
+    }
+  }
+  .action__block {
+    display: flex;
+    justify-content: center;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+}
+
+
 .last__chance {
   padding          : 32px 96px 48px;
   background-color : #FFF;
+  .notice__block  {
+    @include middle-block(936px);
+    border-bottom: 1px solid black__color(decoration__color);
+    text-align: center;
+    margin-bottom: 32px;
+    padding-top: 16px;
+    .title {
+      @include text__setting(header__typo_3);
+      margin-bottom: 24px;
+    }
+    .info {
+      @include text__setting(normal__typo);
+      margin-bottom: 24px;
+    }
+    .action__block {
+      margin-bottom: 46px;
+      .btn {
+        @include inline-block;
+      }
+    }
+  }
   > .wrp {
     @include middle-block(744px);
     .video__te {

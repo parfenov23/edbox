@@ -21,6 +21,7 @@
 
 
 #page__header {
+  @include transition;
   position        : fixed;
   z-index         : 200;
   top             : 0;
@@ -29,7 +30,7 @@
   width           : 100%;
   height          : 64px;
   justify-content : space-between;
-  @include transition;
+  min-width: 1200px;
 
   &.header__with_search {
     display: flex;

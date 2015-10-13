@@ -35,6 +35,7 @@ body {
   color            : black__color('base__color');
   font-weight      : 400 !important;
   position: relative;
+  min-width: 1200px;
 }
 
 input:focus {
