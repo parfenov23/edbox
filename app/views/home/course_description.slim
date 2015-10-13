@@ -252,7 +252,7 @@
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  - ad__active = !current_user.present? ? (attachment.public ? "" : "is__unreacheble") : (current_user.view_course?(@course) ? "" : "is__unreacheble")
+                  - ad__active = !current_user.present? ? (attachment.public ? "" : "is__unreacheble js_openFormRegistration") : (current_user.view_course?(@course) ? "" : "is__unreacheble js_openFormRegistration")
                   - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
