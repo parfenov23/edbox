@@ -86,12 +86,17 @@ figure.basic__module {
     position: relative;
     height: 152px;
     width: 360px;
-    .authors {
-      @include text__setting(normal__typo, secondary__color);
-      @include eclipses;
+    .adaptive__title {
       padding: 13px 16px 0 16px;
       margin-bottom: 8px;
       height: 37px;
+    }
+    .left-col {
+      @include text__setting(normal__typo, secondary__color);
+    }
+    .right-col {
+      @include text__setting(normal__typo, secondary__color);
+      color: $primaryColor;
     }
     .title {
       padding: 0 16px;
@@ -147,6 +152,37 @@ figure.basic__module {
       }
     }
   }
+  &.basic__mat {
+    figcaption {
+      .authors {
+        @include text__setting(normal__typo);
+        padding-right: 16px;
+        color: $primaryColor;
+        text-align: right;
+        margin-bottom: 8px;
+        height: 24px;
+        margin-top: 12px;
+      }
+    }
+  }
+  &.short__ver {
+    width: 264px;
+    height: 264px;
+    .image {
+      height: 144px;
+      width: 264px;
+    }
+    figcaption {
+      width: 264px;
+      padding-top: 16px;
+      .title {
+        @include text__setting(normal__typo);
+      }
+      .info__block {
+        @include text__setting(smallest__typo, secondary__color);
+      }
+    }
+  }
 }
 
 figure.shot__module  {
@@ -180,26 +216,58 @@ figure.shot__module  {
   figcaption {
     width: 700px;
     .title {
-      @include eclipses;
-      @include text__setting(header__typo_1);
+      margin-bottom: 8px;
+      position: relative;
+      .inner {
+        @include eclipses;
+        @include text__setting(header__typo_1);
+        padding-right: 50px;
+      }
+      .action__menu {
+        right: -5px;
+        top: 3px;
+      }
     }
     .authors {
       @include eclipses;
       @include text__setting(small__typo, secondary__color);
+      margin-bottom: 14px;
     }
     .info__block {
       .left-col{
+        display: flex;
+        justify-content: flex-start;
         .item {
+          margin-right: 16px;
+          @include text__setting(small__typo, secondary__color);
+          position: relative;
+          padding-left: 24px;
+          padding-top: 3px;
           i {
-
+            position: absolute;
+            top: 1px;
+            left: 0;
+            font-size: 17px;
           }
           &.type{
-
+            margin-top: -4px;
+            margin-right: 32px;
+            background: rgba(0,0,0,0.06);
+            border-radius: 2px;
+            padding: 4px 8px 0 32px;
+            i {
+              left: 8px;
+              top: 5px;
+            }
           }
         }
       }
       .right-col {
-
+        @include text__setting(smallest__typo);
+        color: $primaryColor;
+        &.overdue {
+          color: #F50057;
+        }
       }
     }
   }

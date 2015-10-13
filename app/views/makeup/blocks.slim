@@ -1,6 +1,31 @@
 .inner-content
   h1 Блоки курсов 
   .content__for_row
+    figure.basic__module.short__ver
+      .image
+        .fade
+        img src="/uploads/pic5.png"
+        / .category 
+        /   i.icon.teg
+        /   |Продажи
+        .status Опубликован 25.06.15 
+      figcaption
+        / .adaptive__title
+        /   .left-col Денис Баталин
+        /   .right-col Бесплатно
+        / 
+        .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+        .info__block
+          .type
+            i.icon.online__course
+            | Онлайн-курс
+          .time__date 17 авг – 18 сен
+            
+        .progress__block
+         .bar style="width:36%"
+         
+  h1 Блоки курсов 
+  .content__for_row
     figure.basic__module
       .image
         .fade
@@ -10,7 +35,10 @@
           |Продажи
         .status Опубликован 25.06.15 
       figcaption
-        .authors Денис Баталин
+        .adaptive__title
+          .left-col Денис Баталин
+          .right-col Бесплатно
+        
         .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
         .info__block
           .type
@@ -30,7 +58,10 @@
           |Продажи
         .status.overdue Опубликован 25.06.15 
       figcaption
-        .authors Василиса придорожная
+        .adaptive__title
+          .left-col Василиса придорожная
+          .right-col Бесплатно
+        
         .title Расчеты предсказывают, 
         .info__block
           .type
@@ -48,7 +79,9 @@
           |Продажи
         .status.completed Опубликован 25.06.15 
       figcaption
-        .authors Денис Баталин, Василиса придорожная, Денис Баталин, Василиса придорожная
+        .adaptive__title
+          .left-col Денис Баталин, Василиса придорожная, Денис Баталин, Василиса придорожная
+          .right-col Бесплатно
         .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
         .info__block
           .type
@@ -61,7 +94,7 @@
   h1 Блоки материалов       
   .content__for_row
   
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         / .fade
         img src="/assets/orange-waves.svg"
@@ -72,14 +105,14 @@
           |Продажи
         .status Опубликован 25.06.15 
       figcaption
-        .authors 
+        .authors Бесплатно
         .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
         .info__block
           .type
             i.icon.edit
             | Текстовый материал
          
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         .fade
         img src="/uploads/pic5.png"
@@ -97,7 +130,7 @@
             i.icon.webinar
             | Видео-материал
             
-    figure.basic__module.completed
+    figure.basic__module.completed.basic__mat
       .image
         .fade
         img src="/assets/orange-waves.svg"
@@ -115,7 +148,7 @@
             i.icon.webinar
             | Видео-материал
          
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -132,7 +165,7 @@
             i.icon.audio 
             | Аудио-материал
     
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -149,7 +182,7 @@
             i.icon.pdf 
             | PDF
     
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -166,7 +199,7 @@
             i.icon.img
             | Изображение
     
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -183,7 +216,7 @@
             i.icon.file 
             | Материал для скачивания
          
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -200,7 +233,7 @@
             i.icon.test 
             | Тест
          
-    figure.basic__module
+    figure.basic__module.basic__mat
       .image
         img src="/assets/orange-waves.svg"
         .type__icon
@@ -226,18 +259,19 @@
         .type__icon
           i.icon.test
       figcaption
-        .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+        .title 
+          .inner Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
         .authors Денис Баталин, Роман Пивоваров Денис Баталин, Роман Пивоваров
         .info__block.adaptive__title
           .left-col
             .item.type
               i.icon.test 
-              | Тест
+              | Курс
             .item
-              i.icon
+              i.icon.sect
               | 16 разделов
             .item
-              i.icon
+              i.icon.duration
               | 1 час 30 минут
             
           .right-col Прохождение по 19 сентября
@@ -248,18 +282,35 @@
         / .type__icon
         /   i.icon.test
       figcaption
-        .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+        .title 
+          .inner Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+          .js__action-menu.action__menu
+            .icon__block
+              i.icon
+            .hidden__content  
+              .hidden-list
+                li data-id="innerCalendar" Выбрать дату окончания курса
+                li data-id="showSectionList" Составить расписание по разделам
+                li data-id="delete" Удалить из расписания
+              .hidden-calendar-wrp
+                .hidden-calendar
+                  .calendar-header 
+                    |Выберите дату завершения курса
+                    i.back__v2.icon
+                  .selected-value Завтра
+                  .calendar-holder
+        
         .authors Денис Баталин, Роман Пивоваров Денис Баталин, Роман Пивоваров
         .info__block.adaptive__title
           .left-col
             .item.type
               i.icon.test 
-              | Тест
+              | Курс
             .item
-              i.icon
+              i.icon.sect
               | 16 разделов
             .item
-              i.icon
+              i.icon.duration
               | 1 час 30 минут
             
           .right-col.overdue Прохождение по 19 сентября

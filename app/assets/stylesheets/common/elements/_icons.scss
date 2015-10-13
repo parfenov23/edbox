@@ -250,4 +250,10 @@ i.icon {
     }
   }
 
+  &.sect {
+    &::before {
+      content: "\E640";
+    }
+  }
+
 }
