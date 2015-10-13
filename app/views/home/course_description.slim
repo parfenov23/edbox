@@ -9,6 +9,82 @@
     .ya_course_unsigned_visit style = 'display: none'
 - else
   .ya_course_not_auth_visit style = 'display: none'
+  
+
+/ .pop_up_confirm.is__active 
+/   .inner.notice__popup.email__add
+/     .title Укажите адрес электронной почты, на которую придёт уведомление о выходе курса.
+/     .input-wrp.email
+/       input placeholder="Email" name="user[email]" type="text"
+/       hr
+/     .action__block
+/       .btn.btn-flat ОТМЕНА
+/       .btn.is__blue.disable УВЕДОМИТЬ МЕНЯ
+/ 
+/ .pop_up_confirm.is__active 
+/   .inner.explore
+/     .title Исследуйте библиотеку Edbox
+/     .description Тонны полезного материалов от лучших специалистов отрасли.
+/     .material__list
+/       figure.basic__module
+/         .image
+/           / .fade
+/           img src="/assets/orange-waves.svg"
+/           .type__icon
+/             i.icon.edit
+/           .category 
+/             i.icon.teg
+/             |Продажи
+/           .status Опубликован 25.06.15 
+/         figcaption
+/           .authors 
+/           .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+/           .info__block
+/             .type
+/               i.icon.edit
+/               | Текстовый материал
+/               
+/       figure.basic__module
+/         .image
+/           / .fade
+/           img src="/assets/orange-waves.svg"
+/           .type__icon
+/             i.icon.edit
+/           .category 
+/             i.icon.teg
+/             |Продажи
+/           .status Опубликован 25.06.15 
+/         figcaption
+/           .authors 
+/           .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+/           .info__block
+/             .type
+/               i.icon.edit
+/               | Текстовый материал
+/               
+/       figure.basic__module
+/         .image
+/           / .fade
+/           img src="/assets/orange-waves.svg"
+/           .type__icon
+/             i.icon.edit
+/           .category 
+/             i.icon.teg
+/             |Продажи
+/           .status Опубликован 25.06.15 
+/         figcaption
+/           .authors 
+/           .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
+/           .info__block
+/             .type
+/               i.icon.edit
+/               | Текстовый материал
+/               
+/ 
+/     .action__block
+/       .btn.btn-flat НЕ СЕЙЧАС
+/       .btn.is__blue ПЕРЕЙТИ В БИБЛИОТЕКУ
+/ 
 
 .course__description-content.oh__nihuyase-block
   /.tegs__list
@@ -18,6 +94,11 @@
         i.icon.teg
         = tag.title
   - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
+
+  .tizer__block 
+    .title Полная программа курса станет доступна в скором времени
+    .action__block
+      .btn.is__blue УВЕДОМИТЬ МЕНЯ
 
   .course__title = course_title
   = render "home/course_description/progress_block", {bunch_course: bunch_course}
@@ -183,10 +264,12 @@
               .left-col Тест для завершения курса
               .right-col
             .description Станет доступным после прохождения всех материалов курса
-  - unless @course.online?
-    = render "common/course/course_reg" unless current_user.present?
-  - else
-    = render "home/course_description/registration_webinar"
+            
+            
+- unless @course.online?
+  = render "common/course/course_reg" unless current_user.present?
+- else
+  = render "home/course_description/registration_webinar"
 
 = render "home/course_program/sink_button", {course: @course}
 
