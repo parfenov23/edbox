@@ -1,3 +1,51 @@
+# это только на заметках
+# showHideToggleBtn = ->
+#   $('.js__showHideToggleBtn').each ->
+#     descriptionHeight = $(@).find('.description').height()
+#     if descriptionHeight > 80
+#       $(@).addClass('is__shot')
+#
+# toggleNotesAsideHeight = ->
+#   $('.toggle-viewport').on 'click', ->
+#     if $(@).hasClass 'for__less'
+#       $(@).removeClass('for__less').closest('.item').addClass('is__shot')
+#     else
+#       $(@).addClass('for__less').closest('.item').removeClass('is__shot')
+#
+# $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
+#   $(document).trigger 'click.dropdown'
+#   el = $(@).closest('.js__toggle-state')
+#   if el.hasClass('closed-state')
+#     hideBlock('.js__toggle-state')
+#     el.removeClass('closed-state').addClass 'open-state'
+#     adaptiveTitle()
+#   else
+#     hideBlock(el)
+#     adaptiveTitle()
+#
+#  $('.js__select-calendar').hover (->
+#    $(@).addClass('is__active')
+#    $('.js__backing').addClass('is__active')
+#  ), ->
+#    if $('#ui-datepicker-div').is(':hidden') || !$('#ui-datepicker-div').length
+#      $(@).removeClass('is__active')
+#
+# $('.select-deadline').on 'click', ->
+#   form = $(@).closest('form')
+#   if form.find('.parentDatePickerTime').val().length > 0
+#     $(@).closest("form").find(".action-btn").hide()
+#     $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
+#     $(@).closest('.check_group_added').addClass('section__deadline')
+#   else
+#     show_error('Установите срок прохождения курса', 3000)
+#
+# $('.is__sooo-long .page__title').on 'click', ->
+#   $(@).next().toggle 300
+#
+
+
+
+
 calendarLocale =
   prevText: '&#x3c;Пред'
   nextText: 'След&#x3e;'
@@ -71,31 +119,13 @@ calendarLocale =
     $(this).parent().addClass 'show'
 
 
-
-headerTabsLine = (elem) ->
-  if $('.page__children .item').length
-    width = $(elem).outerWidth()
-    tabs_item_active = $(elem)
-    if tabs_item_active.length > 0
-      offset = tabs_item_active.position().left
-      $('.page__children .line').animate(
-        'width': width + 'px'
-        'left': offset + 'px').dequeue 'fx'
-
+# TODO: переработать название
 hideBlock = (elem) ->
   $(elem).removeClass('open-state').addClass 'closed-state'
+commonToggle = (el) ->
+  $(el).on 'click', ->
+    $(@).toggleClass 'is__active'
 
-headerSubmenu = ->
-  headerWidth = $('#page__header').width()
-  chPageWidth = $('.page__children').width()
-  titleWidth = $('.page__title ').width()
-  rightWidt = $('.right-col').width()
-  # if chPageWidth + titleWidth + 107 > headerWidth - rightWidt
-  #   if( $("#namePageGroup").length)
-  #     $("page__title")
-  #   $('#page__header .left-col').addClass('is__sooo-long')
-  #   $('#page__header').removeClass('with__children ')
-  #   $('#page__header .page__children').addClass('js__baron')
 
 adaptiveTitle = ->
   $('.adaptive__title').each ->
@@ -104,71 +134,10 @@ adaptiveTitle = ->
       width: $(@).width() - rightWidth + 'px'
 
 
-figcaptionTitleEclipses = (el, height) ->
-  heights = []
-  $(el).each (indx, element) ->
-    if $(element).height() > height
-      $(element).addClass 'over-title'
-
-testList = ->
-  parentBlock = $('.content#tests')
-  if parentBlock.height() > $(window).height()
-    parentBlock.addClass('fixed-btm')
-    $('.finish-test').css
-      width: parentBlock.width() + 'px'
-      left: parentBlock.offset().left + 'px'
-
-
-carusel = ->
-  $('.js__carusel').jcarousel(
-  )
-
-  $('.jcarousel-control-prev').on('jcarouselcontrol:active', ->
-    $(this).removeClass 'inactive'
-  ).on('jcarouselcontrol:inactive', ->
-    $(this).addClass 'inactive'
-  ).jcarouselControl target: '-=2'
-
-  $('.jcarousel-control-next').on('jcarouselcontrol:active', ->
-    $(this).removeClass 'inactive'
-  ).on('jcarouselcontrol:inactive', ->
-    $(this).addClass 'inactive'
-  ).jcarouselControl target: '+=2'
-
-showHideToggleBtn = ->
-  $('.js__showHideToggleBtn').each ->
-    descriptionHeight = $(@).find('.description').height()
-    if descriptionHeight > 80
-      $(@).addClass('is__shot')
-
-
-toggleNotesAsideHeight = ->
-  $('.toggle-viewport').on 'click', ->
-    if $(@).hasClass 'for__less'
-      $(@).removeClass('for__less').closest('.item').addClass('is__shot')
-    else
-      $(@).addClass('for__less').closest('.item').removeClass('is__shot')
-
-
-authCorpAcc =->
-  $('.type__acc-item input').on 'click', ->
-    if $('.type__acc-item .corp__acc input').is(':checked')
-      $('.auth__wrp .js__company-name').addClass('is__active')
-      $('.auth__wrp .js__company-name').removeClass('is__NOactive')
-      $('.auth__wrp .js__company-name input').focus()
-      $('.auth__wrp .js__company-name .floating-label').text("Название компании")
-    else
-      $('.auth__wrp .js__company-name').removeClass('is__active')
-      $('.auth__wrp .js__company-name').addClass('is__Noactive')
-      $('.auth__wrp .js__company-name input').attr("placeholder", "")
-
-
 adjustHeight = (textarea) ->
   textareaHeight = $(textarea).data('maxheight')
-
   if typeof textareaHeight == 'undefined'
     textareaHeight = 110
-
   if textarea.value
     if textarea.scrollHeight < textareaHeight
       dif = textarea.scrollHeight - (textarea.clientHeight)
@@ -193,12 +162,6 @@ multiAction = (el) ->
   else
     $('.js__multi__action').addClass 'is__active'
     el.addClass 'is__choosen'
-
-commonToggle = (el) ->
-  $(el).on 'click', ->
-    $(@).toggleClass 'is__active'
-
-
 
 activeMenu = ->
   $('.js__action-menu .hidden-list li').on 'click', ->
@@ -227,18 +190,10 @@ hideElementOutOff = (elem, parentBlock, e) ->
 
 
 $(document).ready ->
-
-  figcaptionTitleEclipses('.corses-prev figcaption .title', 84)
-  figcaptionTitleEclipses('.favorite-item .description .title', 56)
-  figcaptionTitleEclipses('.corses-prev.compact figcaption .title', 73)
-  headerTabsLine('.page__children .item.active')
-  testList()
-  headerSubmenu()
-  carusel()
+  # showHideToggleBtn()
+  # toggleNotesAsideHeight()
+  # testList()
   adaptiveTitle()
-  showHideToggleBtn()
-  toggleNotesAsideHeight()
-  authCorpAcc()
   commonToggle('.courses-aside.add__users .item')
   activeMenu()
 
@@ -341,6 +296,7 @@ $(document).ready ->
     $(@).closest('.js__action-menu').toggleClass 'is__active'
     $('.js__backing').toggleClass 'is__active'
 
+# это нормальная карусель
   $('#owl-example').owlCarousel
     items : 3
     itemsDesktop: [999, 3]
@@ -387,10 +343,6 @@ $(document).ready ->
   $('.help__wrp .item .hidden__block >.title').on 'click', ->
     $(@).parent().removeClass('is__active')
 
-  $('.js__tooltip').hover (->
-    $(@).addClass('is__visible-tooltip')
-  ), ->
-    $(@).removeClass('is__visible-tooltip')
 
   if $('#js__toTogglescreen').length
     fsButton = document.getElementById('js__toTogglescreen')
@@ -415,49 +367,31 @@ $(document).ready ->
     else
       console.log 'SORRY: Your browser does not support FullScreen'
 
-  $('.course__info .more').on 'click', ->
-    $('.detail__info').toggleClass('is__closed')
+  $('.course__info .more, .toggle__view.btn').on 'click', ->
+    $('.detail__info, .study__program').toggleClass('is__closed')
     $(@).toggleClass('is__closed')
 
-  $('.toggle__view.btn').on 'click', ->
-    $('.study__program').toggleClass('is__closed')
-    $(@).toggleClass('is__closed')
-
-  $('.is__sooo-long .page__title').on 'click', ->
-    $(@).next().toggle 300
 
   $('.js__show-aside-main-nav').on 'click', ->
     $('.js__left-aside, .js__backing').addClass('is__active')
 
-  $('.select-deadline').on 'click', ->
-    form = $(@).closest('form')
-    if form.find('.parentDatePickerTime').val().length > 0
-      $(@).closest("form").find(".action-btn").hide()
-      $(@).closest("form").find(".action-btn.actionSectionDeadLine").show()
-      $(@).closest('.check_group_added').addClass('section__deadline')
-    else
-      show_error('Установите срок прохождения курса', 3000)
 
-
+# показ тултипа
+# TODO: вынести в функцию
   $('.js_for-tooltip').hover ->
     $(@).find('.js_tooltip').addClass('is-active')
   , ->
     $(@).find('.js_tooltip').removeClass('is-active')
+    
+  $('.js__tooltip').hover (->
+    $(@).addClass('is__visible-tooltip')
+  ), ->
+    $(@).removeClass('is__visible-tooltip')
 
-  $('.page__children .item').hover ->
-    $(@).stop(true).queue 'fx', ->
-      headerTabsLine(@)
-  , ->
-    $(@).stop(true).queue 'fx', ->
-      headerTabsLine('.page__children .item.active')
 
-#  $('.js__select-calendar').hover (->
-#    $(@).addClass('is__active')
-#    $('.js__backing').addClass('is__active')
-#  ), ->
-#    if $('#ui-datepicker-div').is(':hidden') || !$('#ui-datepicker-div').length
-#      $(@).removeClass('is__active')
 
+
+# какая то белиберда со скрытым списком и календарем
   $(document).on 'click', '.hidden-calendar-wrp .hidden-list li', ->
     parentBlock = undefined
     showId = undefined
@@ -465,23 +399,28 @@ $(document).ready ->
     parentBlock = $(this).closest('.hidden-calendar-wrp')
     parentBlock.find('.hidden-list').hide()
     parentBlock.find('.' + showId + ' ').show()
-    includeDatePicker($('.datapicker__trigger, .js__set-date'));
+    includeDatePicker($('.datapicker__trigger, .js__set-date'))
     installPositionBlock(parentBlock.find('.hidden-calendar'))
 
+
+# скрытие календаря при клике на стрелку
   $(document).on 'click', '.hidden-calendar-wrp .calendar-header .back', ->
     parentBlock = $(@).closest('.hidden-calendar-wrp')
     parentBlock.find('.hidden-calendar').hide()
     parentBlock.find('.hidden-list').show()
 
+
+# скрывает все по клику на .js__backing
   $(document).on 'click', '.js__backing', ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar').hide()
     $('.hidden__content').removeClass 'is__show_calendar'
-    $('.js__action-menu').removeClass 'is__active'
-    $(@).removeClass('is__active')
-    $('.js__left-aside').removeClass('is__active')
+    $('.js__action-menu, .js__left-aside').removeClass 'is__active'
     $('.courses-aside').removeClass('show')
+    $(@).removeClass('is__active')
 
-  $('.schedule-item .additional-info .action-btn').on 'click', (e) ->
+
+# тут какая то добавочная информация показывается
+  $(document).on 'click', '.schedule-item .additional-info .action-btn' ,(e) ->
     $(document).trigger 'click.dropdown'
     list = $(@).find('ul.hidden-list').show()
     $('body').bind 'click.dropdown', (ev) ->
@@ -489,7 +428,9 @@ $(document).ready ->
         list.hide()
         $(document).unbind 'click.dropdown'
 
-  $('.schedule-header .select-trigger').on 'click', (e) ->
+
+# судя по всему что то скрывается, на клик мимо его. Заменить на стандартную
+  $(document).on 'click', '.schedule-header .select-trigger', (e) ->
     $(document).trigger 'click.dropdown'
     list = $(@).closest('.psevdo-select').find('ul.hidden-list').show()
     $('body').bind 'click.dropdown', (ev) ->
@@ -498,18 +439,7 @@ $(document).ready ->
         $(document).unbind 'click.dropdown'
 
 
-
-  $(document).on 'click', '.js__toggle-state .fixed-h .title', (e) ->
-    $(document).trigger 'click.dropdown'
-    el = $(@).closest('.js__toggle-state')
-    if el.hasClass('closed-state')
-      hideBlock('.js__toggle-state')
-      el.removeClass('closed-state').addClass 'open-state'
-      adaptiveTitle()
-    else
-      hideBlock(el)
-      adaptiveTitle()
-
+# судя по всему что то скрывается, на клик мимо его. Заменить на стандартную
   $('body').bind 'click.dropdown', (ev) ->
     unless ($(ev.target).closest('.js__toggle-state').length || $(ev.target).closest(".noCloseToggleState").length || $(ev.target).is('[class^="ui-datepicker"]'))
       hideBlock($('.js__toggle-state'))

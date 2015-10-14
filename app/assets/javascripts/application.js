@@ -11,7 +11,7 @@
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
 //= require ./vendor/fullscrn
-//= require main/main
+//= require_tree ./main
 
 //= require_tree ./core
 
