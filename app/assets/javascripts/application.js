@@ -273,7 +273,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', 'figure.corses-prev', function(e){
-        console.log($(e.target))
         if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn")){
             $(this).find("a")[0].click();
         }
