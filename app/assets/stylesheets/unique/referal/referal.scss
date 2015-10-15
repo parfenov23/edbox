@@ -1,0 +1,111 @@
+.referal__content {
+  @include middle-block(936px);
+  min-width: 0;
+  .page__title {
+    @include text__setting(header__typo_3);
+    margin-bottom: 21px;
+  }
+  .page__description {
+    @include text__setting(normal__typo, secondary__color);
+    margin-bottom: 28px;
+    a {
+      display: block;
+      margin-top: 8px;
+      color: $primaryColor;
+    }
+  }
+  .main__anchor, .you__referal_users_list, .you__referal_courses_list {
+    @include white__block(1, 0);
+    margin-bottom: 32px;
+  }
+  .main__anchor {
+    .item {
+      padding: 23px 32px 21px 32px;
+      display: flex;
+      justify-content: space-between;
+      .legend {
+
+      }
+      .refral__anchor {
+        a {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+  .you__referal_courses_list, .you__referal_users_list {
+    .title {
+      @include text__setting(header__typo_2);
+      font-weight: 500;
+      background-color: #FAFAFA;
+      padding: 24px 32px 16px 32px;
+    }
+    table {
+      tr {
+        border-top: 1px solid black__color(decoration__color);
+      }
+      td {
+        a {
+          display: block;
+          @include eclipses;
+          color: $primaryColor;
+        }
+      }
+
+    }
+  }
+  .you__referal_courses_list {
+    table {
+      tr {
+        td {
+          padding: 16px 32px 12px 32px;
+          &:first-child {
+            .wrp {
+              width: 360px;
+              @include eclipses;
+            }
+          }
+          &:last-child {
+            .wrp {
+              width: 448px;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+  .you__referal_users_list {
+    .title {
+      padding-bottom: 10px;
+    }
+    table {
+      width: 936px;
+      thead {
+        background-color: #FAFAFA;
+        padding-top: 8px;
+        tr {
+          border: none;
+          th {
+            padding: 16px 32px 19px 32px;
+            font-weight: 400;
+            text-align: left;
+            white-space: nowrap;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding: 16px 29px 12px 28px;
+            &:first-child{
+              max-width: 416px;
+              padding-right: 0;
+            }
+            @include eclipses;
+          }
+        }
+      }
+    }
+  }
+}
