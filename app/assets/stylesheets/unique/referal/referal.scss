@@ -24,7 +24,7 @@
       display: flex;
       justify-content: space-between;
       .legend {
-
+        color: black__color(secondary__color);
       }
       .refral__anchor {
         a {
@@ -63,6 +63,7 @@
             .wrp {
               width: 360px;
               @include eclipses;
+              color: black__color(secondary__color);
             }
           }
           &:last-child {
@@ -91,6 +92,7 @@
             font-weight: 400;
             text-align: left;
             white-space: nowrap;
+            color: black__color(secondary__color);
           }
         }
       }
@@ -107,5 +109,10 @@
         }
       }
     }
+  &.empty {
+    td {
+      color: black__color(secondary__color);
+    }
+  }
   }
 }
