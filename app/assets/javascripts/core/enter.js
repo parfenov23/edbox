@@ -131,7 +131,7 @@ $(document).ready(function () {
     $(".auth__enter .btn-holder #submit").click(function (e) {
         e.preventDefault();
         validate();
-        if ($("input.error").length == 0){
+        if ($(".js_registrationUser input.error").length == 0){
             var btn = $(this);
             var form = btn.closest("form");
             var data = form.serialize();
