@@ -27,7 +27,7 @@ figure.corses-prev
     form data-redirect=(redirect_att rescue nil) data-alert="false"
       - if course.material?
         input type="hidden" name="course_id" value=course.id
-      a href=link class=(add_class rescue nil)
+      a.goToCourse href=link class=(add_class rescue nil)
         .title id="titleCoursePrev#{course.id}"
           = course.title
           - unless course.paid

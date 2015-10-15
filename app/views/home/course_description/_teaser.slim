@@ -16,7 +16,8 @@
     - if first_webinar.present?
       - attachment = first_webinar.attachment
       - date_start = first_webinar.date_start
-      .webinar__teaser
+      form.webinar__teaser
+        input type="hidden" name="course_id" value=@course.id
         .info__block
           - unless first_webinar.in_progress?
             .title #{parse_russian_date(date_start)} (по мск) в курсе состоится вебинар:
@@ -24,7 +25,7 @@
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
         - unless first_webinar.in_progress?
-          .action__block
+          .action__block class=((current_user.present? && current_user.view_course?(@course)) ? "js_addCourseToMyCourse" : "")
             a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title

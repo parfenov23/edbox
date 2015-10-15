@@ -273,8 +273,15 @@ $(document).ready(function () {
     });
 
     $(document).on('click', 'figure.corses-prev', function(e){
-        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn")){
-            $(this).find("a")[0].click();
+        var cabinte_block_valid = (!$(e.target).closest(".com__director-btn").length && !$(e.target).hasClass(".com__director-btn"))
+        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn") && cabinte_block_valid){
+            var link = $(this).find("a.goToCourse");
+            if (link.length){
+                link[0].click();
+            }else{
+                link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
+                window.location.href = link;
+            }
         }
     })
 
