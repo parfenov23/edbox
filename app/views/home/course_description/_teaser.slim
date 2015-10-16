@@ -16,7 +16,7 @@
     - if first_webinar.present?
       - attachment = first_webinar.attachment
       - date_start = first_webinar.date_start
-      form.webinar__teaser
+      form.webinar__teaser data-alert="false"
         input type="hidden" name="course_id" value=@course.id
         .info__block
           - unless first_webinar.in_progress?

@@ -283,7 +283,16 @@ $(document).ready(function () {
                 window.location.href = link;
             }
         }
-    })
+    });
+
+    $(document).on('click', '.webinar__teaser .action__block.js_addCourseToMyCourse a', function(e){
+        var link = $(this).attr('href');
+        e.preventDefault();
+        setTimeout(function(){
+            window.location.href = link
+        }, 500);
+
+    });
 
     $(document).on('click', function(e){
         if (!$(e.target).closest(".js__select-calendar").length){
