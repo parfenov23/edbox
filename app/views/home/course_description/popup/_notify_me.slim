@@ -1,0 +1,11 @@
+/.pop_up_confirm.is__active
+#notify_me.pop_up_confirm
+  form.inner.notice__popup.email__add
+    .title Укажите адрес электронной почты, на которую придёт уведомление о выходе курса.
+    .input-wrp.email
+      input.js_annonsEmail placeholder="Email" name="notice[email]" type="text"
+      input name="notice[course_id]" value=@course.id style="display:none"
+      hr
+    .action__block
+      .btn.btn-flat.js_annons ОТМЕНА
+      .btn.is__blue.disable.js_annonsSend УВЕДОМИТЬ МЕНЯ
