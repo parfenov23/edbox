@@ -11,7 +11,7 @@
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
 //= require ./vendor/fullscrn
-//= require main/main
+//= require_tree ./main
 
 //= require_tree ./core
 
@@ -273,11 +273,26 @@ $(document).ready(function () {
     });
 
     $(document).on('click', 'figure.corses-prev', function(e){
-        console.log($(e.target))
-        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn")){
-            $(this).find("a")[0].click();
+        var cabinte_block_valid = (!$(e.target).closest(".com__director-btn").length && !$(e.target).hasClass(".com__director-btn"))
+        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn") && cabinte_block_valid){
+            var link = $(this).find("a.goToCourse");
+            if (link.length){
+                link[0].click();
+            }else{
+                link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
+                window.location.href = link;
+            }
         }
-    })
+    });
+
+    $(document).on('click', '.webinar__teaser .action__block.js_addCourseToMyCourse a', function(e){
+        var link = $(this).attr('href');
+        e.preventDefault();
+        setTimeout(function(){
+            window.location.href = link
+        }, 500);
+
+    });
 
     $(document).on('click', function(e){
         if (!$(e.target).closest(".js__select-calendar").length){

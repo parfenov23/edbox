@@ -1235,10 +1235,10 @@ figure.shot__module  {
       .title {
         font-size    : 15px;
         line-height  : 24px;
-        min-height   : 72px;
+        height   : 72px;
         margin-bottom: 4px;
         color        : rgba(0, 0, 0, .87);
-
+        overflow: hidden;
         &.with_btn {
           padding-right: 45px;
         }

@@ -173,6 +173,11 @@ class Course < ActiveRecord::Base
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
+  def assigned?(user_id)
+    bunch_courses.where(user_id: user_id).present?
+  end
+
+
   def ligament_groups(user_id = nil)
     if user_id.present?
       user = User.find(user_id)
@@ -187,7 +192,7 @@ class Course < ActiveRecord::Base
   def transfer_to_json(user_id = nil)
     ligament_groups = self.ligament_groups(user_id)
     result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-                      methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+                      methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences, :duration_time],
                       include:
                         [{sections: {except: Section::EXCEPT_ATTR,
                                      include: [{attachments: Attachment::INCLUDE_TEST}]}
@@ -195,12 +200,17 @@ class Course < ActiveRecord::Base
                          {test: {include: [questions: {include: :answers}]}}
                         ]
                      })
+    result["assigned"] = assigned?(user_id)
+    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
     result
   end
 
   def transfer_to_json_mini
-    as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :teaser_image, :leadings]})
+    result = as_json({except: [:duration, :main_img, :description, :user_id],
+             methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
+    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result
   end
 end

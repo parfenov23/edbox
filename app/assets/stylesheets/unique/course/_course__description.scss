@@ -387,7 +387,8 @@
     }
   }
   > .wrp {
-    @include middle-block(744px);
+    @include middle-block(1128px);
+    padding-top: 16px;
     .video__te {
       @include middle-block(745px);
       height           : 416px;
@@ -408,7 +409,6 @@
       text-align    : center;
       margin-bottom : 24px;
     }
-
   }
   .plane__list {
     display         : flex;
@@ -416,6 +416,9 @@
     .item {
       position : relative;
       &.pidor__raz {
+        .description {
+          margin-bottom: 36px;
+        }
       }
       &.pidor__dva {
         .description {
@@ -520,6 +523,7 @@
         display                        : none;
         border                         : 1px solid rgba(0, 0, 0, 0.54);
         top                            : -1px;
+        left: 384px;
         position                       : relative;
         border-radius                  : 4px;
         width                          : 360px;
@@ -559,6 +563,7 @@
         .action__block {
           text-align    : center;
           margin-bottom : 11px;
+          margin-top: -32px;
           .btn {
             @include inline-block;
           }
@@ -611,11 +616,11 @@
   height           : 100%;
   background-color : black__color('secondary__color');
   .ugly__popup_inner {
-    @include middle-block(936px);
+    @include middle-block(1320px);
     position       : absolute;
     top            : 7vh;
     left           : 50%;
-    margin-left    : -468px;
+    margin-left    : -660px;
     padding-bottom : 32px;
     .item {
       &.is__active {
@@ -881,14 +886,14 @@
   .course__title {
     font-size     : 34px;
     line-height   : 40px;
-    margin-bottom : 56px;
+    margin-bottom : 48px;
     color         : #FFF;
     position: absolute;
     bottom: 100%;
     left: 0;
   }
   .progress__block {
-    margin-bottom : 32px;
+    margin-bottom : 16px;
     padding       : 24px 32px;
     @include white__block(1, 0);
     > .title {
@@ -900,8 +905,8 @@
         }
       }
       .left-col {
-        font-size   : 24px;
-        line-height : 32px;
+        // font-size   : 24px;
+        // line-height : 32px;
         color       : black__color('base__color');
       }
       .right-col {
