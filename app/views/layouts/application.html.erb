@@ -34,6 +34,8 @@
 <% if (@course.paid? rescue true) %>
     <%= render "common/popup_request/request" %>
 <% end %>
+
+<%= render "home/course_description/registration_webinar"%>
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if Rails.env.production?%>
 <%= render "layouts/zendesk_widget" if Rails.env.production?%>
