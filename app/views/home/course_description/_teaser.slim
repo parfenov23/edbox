@@ -25,7 +25,8 @@
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
         - unless first_webinar.in_progress?
-          .action__block class=((current_user.present? && current_user.view_course?(@course)) ? "js_addCourseToMyCourse" : "")
+          //  && current_user.view_course?(@course)
+          .action__block class=((current_user.present?) ? "js_addCourseToMyCourse" : "")
             a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
