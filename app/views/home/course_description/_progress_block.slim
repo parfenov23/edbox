@@ -2,7 +2,6 @@
   .progress__block
     .title.adaptive__title.h__no_margin
       - course_type = (@course.online? ? 'Вебинар' : 'Курс')
-      /- binding.pry
       .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
         - if @course.paid?

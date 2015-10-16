@@ -31,6 +31,14 @@ class Course < ActiveRecord::Base
     bunch_courses.map(&:user_id).uniq.count
   end
 
+  def announcement
+    sections.attachments.where(file_type:'announcement')
+  end
+
+  def announcement?
+    announcement.present?
+  end
+
   def validate
     {description: description_validate, program: program_validate}
   end
