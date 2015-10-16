@@ -279,8 +279,6 @@
 
 - if @course.paid?
   = render "common/course/course_reg" unless current_user.present?
-- else
-  = render "home/course_description/registration_webinar"
 
 = render "home/course_program/sink_button", {course: @course}
 
