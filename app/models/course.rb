@@ -200,7 +200,9 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json_mini
-    as_json({except: [:duration, :main_img, :description, :user_id],
+    result = as_json({except: [:duration, :main_img, :description, :user_id],
              methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
+    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result
   end
 end
