@@ -184,7 +184,7 @@ class Course < ActiveRecord::Base
   def transfer_to_json(user_id = nil)
     ligament_groups = self.ligament_groups(user_id)
     result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
-                      methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences],
+                      methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences, :duration_time],
                       include:
                         [{sections: {except: Section::EXCEPT_ATTR,
                                      include: [{attachments: Attachment::INCLUDE_TEST}]}
@@ -201,6 +201,6 @@ class Course < ActiveRecord::Base
 
   def transfer_to_json_mini
     as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :teaser_image, :leadings]})
+             methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
   end
 end
