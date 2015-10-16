@@ -165,6 +165,11 @@ class Course < ActiveRecord::Base
     attachments.where(file_type: "video").last.file.url rescue nil
   end
 
+  def assigned?(user_id)
+    bunch_courses.where(user_id: user_id).present?
+  end
+
+
   def ligament_groups(user_id = nil)
     if user_id.present?
       user = User.find(user_id)
@@ -187,6 +192,9 @@ class Course < ActiveRecord::Base
                          {test: {include: [questions: {include: :answers}]}}
                         ]
                      })
+    result["assigned"] = assigned?(user_id)
+    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
     result
   end
