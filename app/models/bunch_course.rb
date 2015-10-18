@@ -28,6 +28,12 @@ class BunchCourse < ActiveRecord::Base
     true
   end
 
+  def transfer_to_json
+    as_json({include: [
+              {bunch_sections: {include: :bunch_attachments}}
+            ]})
+  end
+
   def progress
     all_sections = bunch_sections
     all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))

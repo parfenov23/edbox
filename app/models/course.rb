@@ -192,10 +192,17 @@ class Course < ActiveRecord::Base
                          {test: {include: [questions: {include: :answers}]}}
                         ]
                      })
-    result["assigned"] = assigned?(user_id)
+    result_assigned = assigned?(user_id)
+    result["assigned"] = result_assigned
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
     result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
+    if result_assigned
+      result["bunch_course"] = find_bunch_course(user_id, ["group", "user"]).transfer_to_json
+    end
+    if test.present?
+      result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
+    end
     result
   end
 
