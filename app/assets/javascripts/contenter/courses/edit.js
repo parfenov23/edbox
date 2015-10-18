@@ -291,6 +291,11 @@ var addToggleUlCreateCourse = function () {
     btn.find("ul").toggleClass("show");
 };
 
+var announcement = function () {
+    var btn = $(this);
+    $(btn).closest('.upload_attachments').removeClass('includeValidateForm error');
+}
+
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
@@ -302,6 +307,8 @@ pageLoad(function () {
     $(document).on('click', "#js-course-leading .js__contenterAddLeadingToCourse", contenterAddLeadingToCourse);
     $(document).on('click', ".js_courseContenter .js_removeLigamentLeadFromCourse", removeLigamentLeadFromCourse);
     $(document).on('click', ".js_addToggleUlCreateCourse", addToggleUlCreateCourse);
+
+    $(document).on('click', ".js_announcement", announcement);
 
     $(document).on('click', ".courses-aside .close-filter", function () {
         $(this).closest(".courses-aside").removeClass("show");

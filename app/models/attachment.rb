@@ -54,7 +54,7 @@ class Attachment < ActiveRecord::Base
 
   def validate
     valid_title = title.present? && description.present?
-    valid_file = (!["test", "description", "webinar"].include?(file_type)) ? file.present? : valid_other
+    valid_file = (!["test", "description", "webinar", "announcement"].include?(file_type)) ? file.present? : valid_other
     valid_title && valid_file
   end
 
@@ -171,6 +171,10 @@ class Attachment < ActiveRecord::Base
   def find_type
     arr_text_type = ["description"]
     arr_text_type.include?(file_type) ? "text" : file_type
+  end
+
+  def announcement?
+    file_type == 'announcement'
   end
 
   private

@@ -59,6 +59,8 @@ Rails.application.routes.draw do
           post :remove
         end
       end
+      resources :notices do
+      end
       resources :webinars do
         member do
           post :remove
