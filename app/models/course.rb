@@ -214,10 +214,12 @@ class Course < ActiveRecord::Base
     result
   end
 
-  def transfer_to_json_mini
+  def transfer_to_json_mini(user_id=nil)
     result = as_json({except: [:duration, :main_img, :description, :user_id],
              methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
+    result["assigned"] = assigned?(user_id) if user_id.present?
     result
   end
 end
