@@ -13,6 +13,47 @@
       line-height  : 24px;
       margin-bottom: 18px;
     }
+    .title__tegs_list {
+      @include clearfix;
+      margin-bottom: 7px;
+      .category {
+        float: left;
+        padding-top: 1px;
+        margin-right: 35px;
+        position: relative;
+        padding-left: 24px;
+        i {
+          color: black__color(secondary__color);
+          line-height: 24px;
+          padding-right: 6px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          &::before{
+            line-height: 24px;
+            font-size: 14px;
+          }
+        }
+        span {
+          line-height: 24px;
+          font-size: 14px;
+          color: black__color(secondary__color);
+        }
+      }
+      .teg__item {
+        float: left;
+        height: 24px;
+        line-height: 23px;
+        color: black__color(secondary__color);
+        border: 1px solid black__color(secondary__color);
+        border-radius: 2px;
+        padding: 0 7px;
+        font-size: 12px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        margin-top: 3px;
+      }
+    }
     .icon__block {
       i {
         @include inline-block;
