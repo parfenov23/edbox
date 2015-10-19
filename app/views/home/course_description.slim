@@ -1,7 +1,5 @@
 = render "home/header/header", {namePage: "other_white", titlePage: @course.title, btnBack: true, backUrl: back_url_course}
 = render "home/course_description/teaser"
-div style="display:none;"
-  = session[:histories]
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
 - if current_user.present?
