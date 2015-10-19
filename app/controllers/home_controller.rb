@@ -3,7 +3,7 @@ class HomeController < ActionController::Base
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg, :help, :help_answer]
   before_action :is_corporate?, only: [:group]
-  after_filter :store_location
+  helper_method :back_url
   layout "application"
   # caches_page :courses
 
@@ -162,10 +162,14 @@ class HomeController < ActionController::Base
 
   private
 
-  def store_location
-    if request.get? && (session[:return_to].present? ? request.fullpath != session[:return_to] : true)
-      session[:return_to] = request.fullpath
+  def back_url
+    if request.get?
+      session[:histories] = [] if !session[:histories].present?
+      session[:histories] << request.fullpath if request.fullpath != session[:histories].last
+      session[:back_url] = session[:histories].present? ? session[:histories].last(2).first : request.fullpath
+      @back_url ||= session[:back_url]
     end
+    @back_url
   end
 
   def current_user

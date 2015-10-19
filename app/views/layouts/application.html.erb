@@ -23,7 +23,7 @@
 <% end %>
 
 <body class="࿕" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
-<%= session[:return_to] %>
+<%= back_url %>
 <%= yield %>
 <div id="alert">
   <div class="text"></div>
