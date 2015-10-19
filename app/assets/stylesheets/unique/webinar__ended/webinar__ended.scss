@@ -1,0 +1,30 @@
+.webinar__is_ended {
+  @include middle-block(1128px);
+  .page__title {
+    @include text__setting(header__typo_3);
+    @include middle-block(790px);
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .page__description {
+    @include text__setting();
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .courses__list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    figure {
+      margin: 0 12px;
+    }
+  }
+  .action__blocks {
+    display: flex;
+    justify-content: center;
+    .btn {
+      margin: 0 8px;
+    }
+  }
+
+}
