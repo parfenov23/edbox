@@ -140,7 +140,7 @@ module Api::V1
     end
 
     def my_courses
-      render json: Course.where(id: current_user.bunch_courses.where(model_type: "user").map(&:course_id)).transfer_to_json_mini((current_user.id rescue nil))
+      render json: Course.where(id: current_user.bunch_courses.where(model_type: "user").map(&:course_id)).map{|ca| ca.transfer_to_json_mini((current_user.id rescue nil))}
     end
 
     private
