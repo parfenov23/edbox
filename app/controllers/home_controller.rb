@@ -163,9 +163,9 @@ class HomeController < ActionController::Base
   private
 
   def back_url
-    p "================================"
-    p request.fullpath
-    p "================================"
+    logger.info "================================"
+    logger.info request.fullpath
+    logger.info "================================"
     if request.get?
       session[:histories] = [] if !session[:histories].present?
       session[:histories] << request.fullpath if request.fullpath != session[:histories].last
