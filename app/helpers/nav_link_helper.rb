@@ -92,7 +92,20 @@ module NavLinkHelper
   end
 
   def back_url_course
-    ""
+    begin
+      go_to_back_url = back_url
+      if !back_url.scan("/cabinet").present? || !back_url.scan("/courses").present?
+        session[:histories].reverse.each do |url|
+          if url.scan("/cabinet").present? || url.scan("/courses").present?
+            go_to_back_url = url
+            break
+          end
+        end
+      end
+      go_to_back_url
+    rescue
+      "/courses"
+    end
   end
 
   def back_url

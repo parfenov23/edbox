@@ -1,5 +1,6 @@
 = render "home/header/header", {namePage: "courses", titlePage: "Библиотека"}
 = render "home/courses/filter"
+= session[:histories]
 - if (current_user.corporate rescue false)
   = render "home/courses/groups"
 - if current_user.present? || @courses.present?
