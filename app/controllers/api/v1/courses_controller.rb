@@ -6,12 +6,12 @@ module Api::V1
     end
 
     def all
-      all_courses = Course.all.map{|course| course.transfer_to_json_mini(current_user.id rescue nil) }
+      all_courses = Course.all.map { |course| course.transfer_to_json_mini((current_user.id rescue nil)) }
       render json: all_courses
     end
 
     def info
-      render json: find_course.transfer_to_json( (current_user.id rescue nil)  )
+      render json: find_course.transfer_to_json((current_user.id rescue nil))
     end
 
     def public_webinar

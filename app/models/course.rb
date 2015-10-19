@@ -174,7 +174,7 @@ class Course < ActiveRecord::Base
   end
 
   def assigned?(user_id)
-    bunch_courses.where(user_id: user_id).present?
+    user_id.present? ? bunch_courses.where(user_id: user_id).present? : false
   end
 
 
@@ -219,7 +219,7 @@ class Course < ActiveRecord::Base
              methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
     result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
-    result["assigned"] = assigned?(user_id) if user_id.present?
+    result["assigned"] = assigned?(user_id)
     result
   end
 end
