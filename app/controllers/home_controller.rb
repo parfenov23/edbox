@@ -166,6 +166,7 @@ class HomeController < ActionController::Base
     begin
       if request.get?
         session[:histories] = [] if !session[:histories].present?
+        session[:histories] = [] if !session[:histories].count > 5
         session[:histories] << request.fullpath if request.fullpath != session[:histories].last
         session[:back_url] = session[:histories].present? ? session[:histories].last(2).first : request.fullpath
       end
