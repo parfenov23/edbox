@@ -211,6 +211,7 @@ class Course < ActiveRecord::Base
     if test.present?
       result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
     end
+    result["user_id"] = user_id
     result
   end
 
