@@ -35,7 +35,7 @@ module NavLinkHelper
 
   def profile_nav_links
     [
-      { title: "Профиль", link: "/profile" }
+      {title: "Профиль", link: "/profile"}
     ]
   end
 
@@ -62,8 +62,8 @@ module NavLinkHelper
   def contenter_courses_new_nav_links
     id = params[:id].present? ? params[:id] : "new"
     course_validate = Course.find(params[:id]).validate rescue {}
-    desc_valid = course_validate.select{|k, v| k == :description && v == false}.present? ? "error" : ""
-    prog_valid = course_validate.select{|k, v| k == :program && v == false}.present? ? "error" : ""
+    desc_valid = course_validate.select { |k, v| k == :description && v == false }.present? ? "error" : ""
+    prog_valid = course_validate.select { |k, v| k == :program && v == false }.present? ? "error" : ""
     type_course = params[:type_course].present? ? "?type_course=#{params[:type_course]}" : ""
     [
       {title: "Описание", link: "/contenter/courses/#{id}/edit#{type_course}",
@@ -89,6 +89,19 @@ module NavLinkHelper
 
   def other_nav_links
     []
+  end
+
+  def back_url_course
+    go_to_back_url = back_url
+    if !back_url.scan("/cabinet").present? || !back_url.scan("/courses").present?
+      session[:histories].reverse.each do |url|
+        if url.scan("/cabinet").present? || url.scan("/courses").present?
+          go_to_back_url = url
+          break
+        end
+      end
+    end
+    go_to_back_url
   end
 
   def group_nav_link
