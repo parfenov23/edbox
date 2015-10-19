@@ -220,7 +220,6 @@ class Course < ActiveRecord::Base
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
     result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["assigned"] = assigned?(user_id)
-    result["user_id"] = user_id
     result
   end
 end

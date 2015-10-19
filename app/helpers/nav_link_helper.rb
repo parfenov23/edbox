@@ -34,16 +34,9 @@ module NavLinkHelper
   end
 
   def profile_nav_links
-    if (!current_user.corporate?) || (current_user.director)
-      [
-        { title: "Профиль", link: "/profile" },
-        { title: "Тариф", link: "/tariff" }
-      ]
-    else
-      [
-        { title: "Профиль", link: "/profile" },
-      ]
-    end
+    [
+      { title: "Профиль", link: "/profile" }
+    ]
   end
 
   def contenter_admin_nav_links
