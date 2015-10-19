@@ -7,15 +7,15 @@
   </title>
   <%= render "layouts/favicon" %>
   <%= javascript_include_tag 'application' %>
-  <meta property="og:image" content="/images/title_img.png" />
+  <meta property="og:image" content="/images/title_img.png"/>
   <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=latin,cyrillic" rel="stylesheet">
   <link href="/assets/vendor/normalize.css" rel="stylesheet">
   <link href="/assets/application.css" rel="stylesheet">
   <link href="/assets/app.css" rel="stylesheet">
   <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
   <script src="//vjs.zencdn.net/4.12/video.js"></script>
-  <%= render "layouts/pixel/facebook_pixel" if Rails.env.production?%>
-  <%= render "layouts/pixel/facebook_pixel_profile" if (Rails.env.production? && (params[:action] == 'cabinet'))%>
+  <%= render "layouts/pixel/facebook_pixel" if Rails.env.production? %>
+  <%= render "layouts/pixel/facebook_pixel_profile" if (Rails.env.production? && (params[:action] == 'cabinet')) %>
 </head>
 <% websocket_url = "#{request.host}:#{request.port}/node/websocket" %>
 <% if Rails.env.production? %>
@@ -23,7 +23,7 @@
 <% end %>
 
 <body class="࿕" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
-
+<%= session[:return_to] %>
 <%= yield %>
 <div id="alert">
   <div class="text"></div>
@@ -31,14 +31,16 @@
 </div>
 <div class="js__backing"></div>
 <%= render "layouts/notification" %>
+
 <% if (@course.paid? rescue true) %>
     <%= render "common/popup_request/request" %>
 <% end %>
-
-<%= render "home/course_description/registration_webinar"%>
+<% if params[:action] != "sign_up" %>
+    <%= render "home/course_description/registration_webinar" %>
+<% end %>
 <%= render "layouts/pop_up_confirm" %>
-<%= render "layouts/yandex_metrika" if Rails.env.production?%>
-<%= render "layouts/zendesk_widget" if Rails.env.production?%>
-<%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production?%>
+<%= render "layouts/yandex_metrika" if Rails.env.production? %>
+<%= render "layouts/zendesk_widget" if Rails.env.production? %>
+<%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production? %>
 </body>
 </html>
