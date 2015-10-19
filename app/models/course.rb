@@ -211,7 +211,6 @@ class Course < ActiveRecord::Base
     if test.present?
       result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
     end
-    result["user_id"] = user_id
     result
   end
 
@@ -221,6 +220,7 @@ class Course < ActiveRecord::Base
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
     result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["assigned"] = assigned?(user_id)
+    result["user_id"] = user_id
     result
   end
 end
