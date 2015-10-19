@@ -109,7 +109,7 @@ module NavLinkHelper
   end
 
   def back_url
-    session[:back_url]
+    session[:back_url] rescue "/cabinet"
   end
 
   def group_nav_link
