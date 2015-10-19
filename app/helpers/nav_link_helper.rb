@@ -104,6 +104,10 @@ module NavLinkHelper
     go_to_back_url
   end
 
+  def back_url
+    session[:back_url]
+  end
+
   def group_nav_link
     if current_user.director
       current_user.company.groups.map do |group|
