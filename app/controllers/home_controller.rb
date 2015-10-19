@@ -80,16 +80,6 @@ class HomeController < ActionController::Base
     end
   end
 
-  def tariff
-    @current_user = current_user
-    if (!@current_user.corporate?) || (@current_user.director)
-      @account_type_name = @current_user.get_account_type_name
-      @offer_account_type_name = @account_type_name.gsub('Беcплатная', 'Платная')
-    else
-      render :error
-    end
-  end
-
   def members
     @members = current_user.company.users.where({director: false})
   end
