@@ -59,6 +59,8 @@ Rails.application.routes.draw do
           post :remove
         end
       end
+      resources :notices do
+      end
       resources :webinars do
         member do
           post :remove
@@ -162,6 +164,7 @@ Rails.application.routes.draw do
           post :remove_section_deadline
           post :remove_user_leading
           post :send_request
+          post :my_courses
         end
         member do
 

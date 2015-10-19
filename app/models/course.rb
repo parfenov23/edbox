@@ -31,6 +31,14 @@ class Course < ActiveRecord::Base
     bunch_courses.map(&:user_id).uniq.count
   end
 
+  def announcement
+    sections.attachments.where(file_type:'announcement')
+  end
+
+  def announcement?
+    announcement.present?
+  end
+
   def validate
     {description: description_validate, program: program_validate}
   end
@@ -166,7 +174,7 @@ class Course < ActiveRecord::Base
   end
 
   def assigned?(user_id)
-    bunch_courses.where(user_id: user_id).present?
+    user_id.present? ? bunch_courses.where(user_id: user_id).present? : false
   end
 
 
@@ -192,17 +200,26 @@ class Course < ActiveRecord::Base
                          {test: {include: [questions: {include: :answers}]}}
                         ]
                      })
-    result["assigned"] = assigned?(user_id)
+    result_assigned = assigned?(user_id)
+    result["assigned"] = result_assigned
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
     result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
+    if result_assigned
+      result["bunch_course"] = find_bunch_course(user_id, ["group", "user"]).transfer_to_json
+    end
+    if test.present?
+      result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
+    end
     result
   end
 
-  def transfer_to_json_mini
+  def transfer_to_json_mini(user_id=nil)
     result = as_json({except: [:duration, :main_img, :description, :user_id],
              methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
     result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
+    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
+    result["assigned"] = assigned?(user_id)
     result
   end
 end
