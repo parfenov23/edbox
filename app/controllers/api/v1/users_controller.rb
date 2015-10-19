@@ -139,6 +139,10 @@ module Api::V1
       render json: {success: true}
     end
 
+    def my_courses
+      Course.where(id: current_user.bunch_courses.where(model_type: "user").map(&:course_id)).map(&:transfer_to_json_mini)
+    end
+
     private
 
     def find_favorite_course
