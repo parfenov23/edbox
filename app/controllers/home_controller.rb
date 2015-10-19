@@ -3,7 +3,7 @@ class HomeController < ActionController::Base
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg, :help, :help_answer]
   before_action :is_corporate?, only: [:group]
-
+  after_filter :store_location
   layout "application"
   # caches_page :courses
 
@@ -111,6 +111,7 @@ class HomeController < ActionController::Base
   end
 
   def cabinet
+    # binding.pry
     @favorite_courses = current_user.favorite_courses
     # redirect_to "/schedule" unless current_user.director
   end
@@ -170,6 +171,12 @@ class HomeController < ActionController::Base
   end
 
   private
+
+  def store_location
+    if request.get? && (session[:return_to].present? ? request.fullpath != session[:return_to] : true)
+      session[:return_to] = request.fullpath
+    end
+  end
 
   def current_user
     @current_user ||= User.find_by(user_key: session[:user_key]) if session[:user_key]
