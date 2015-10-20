@@ -226,7 +226,7 @@ class Course < ActiveRecord::Base
       if bunch_course.present?
         result["completed"] = bunch_course.complete
         result["assigned_type"] = bunch_course.model_type
-        result["process"] = bunch_course.progress
+        result["progress"] = bunch_course.progress
       end
     end
     result
