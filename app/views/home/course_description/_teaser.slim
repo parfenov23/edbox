@@ -17,7 +17,7 @@
     - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
     - if first_webinar.present?
       - attachment = first_webinar.attachment
-      - date_start = first_webinar.date_start
+      - date_start = (first_webinar.date_start + User.time_zone.hour)
       form.webinar__teaser data-alert="false"
         input type="hidden" name="course_id" value=@course.id
         .info__block
