@@ -1,11 +1,13 @@
+- course_video = @course.attachments.where(file_type: "video").last
 - if params[:attachment_id].present?
   input.js_goToProgramAttachment type="hidde" data-id=params[:attachment_id]
 - if !@course.online?
   .hidden__video
     .for__back
       i.icon.back
-    video.js__hiddenVideo controls="" preload="auto"
-      source src="/system/attachment/file/31/video.mp4"
+    - if course_video.present?
+      video.js__hiddenVideo controls="" preload="auto"
+        source src=course_video.file.url
 
 - if @course.online?
   - att_public = current_user.present? ? [true, false] : true
@@ -32,7 +34,6 @@
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 
 .presentation__block
-  - course_video = @course.attachments.where(file_type: "video").last
   .shadow
 
   img src = @course.get_image_path
