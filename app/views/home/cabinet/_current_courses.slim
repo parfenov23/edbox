@@ -36,8 +36,9 @@
                 .progress-block
                   .progress-label
                     .until
-                      'Завершить до
-                      = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
+                      - unless bunch_course.model_type == "user"
+                        'Завершить до
+                        = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
                     .complite
                       'Пройдено
                       = "#{complete_proc}%"

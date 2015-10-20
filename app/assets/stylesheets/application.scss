@@ -82,6 +82,10 @@ i {
   min-width   : 1066px;
   padding-bottom: 40px;
   min-height: calc(100vh - 152px);
+  &.webinar_attachment{
+    padding-top : 62px;
+    padding-bottom: 0px;
+  }
   .content-video {
     position  : absolute;
     top       : 50%;

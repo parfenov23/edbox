@@ -7,3 +7,7 @@ var view_px_block = function (block) {
     var do_block = win_height + curr_scroll - (curr_pos + 64 + accessing_top);
     return do_block
 };
+
+pageLoad(function(){
+    $("a.item[href='backCourse']").attr('href', back_url('find', ["courses", 'cabinet']))
+});
