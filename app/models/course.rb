@@ -225,6 +225,7 @@ class Course < ActiveRecord::Base
       bunch_course = find_bunch_course(user_id, ["group", "user"])
       if bunch_course.present?
         result["completed"] = bunch_course.complete
+        result["assigned_type"] = bunch_course.model_type
       end
     end
     result
