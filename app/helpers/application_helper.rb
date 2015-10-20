@@ -22,9 +22,9 @@ module ApplicationHelper
 
   def parse_russian_date(time)
     case time_current_day(time)
-      when 1
+      when 0
         "Сегодня #{time.strftime('%H:%M')}"
-      when 2
+      when 1
         "Завтра #{time.strftime('%H:%M')}"
       else
         ltime(time, '', 'short')
