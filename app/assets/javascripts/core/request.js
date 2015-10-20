@@ -27,11 +27,6 @@ var validate_request = function () {
                 parent_block.removeClass("error");
             }
         }
-        if (block.attr("name") == "phone"){
-            if (block.closest(".form__col").find("input[name='type_account']").val() == "user"){
-                parent_block.removeClass("error");
-            }
-        }
     });
 };
 
