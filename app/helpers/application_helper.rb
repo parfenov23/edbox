@@ -27,7 +27,7 @@ module ApplicationHelper
       when 1
         "Завтра #{time.strftime('%H:%M')}"
       else
-        ltime(time, '', 'short')
+        ltime(time, '', 'short', false)
     end
   end
 
