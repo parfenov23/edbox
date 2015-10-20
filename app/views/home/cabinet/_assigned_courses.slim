@@ -39,4 +39,8 @@
                       - ts = "Курс удален!"
                       li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id  Удалить
             .author
-              = (course.ligament_leads.last.user.full_name rescue nil)
+              - unless my_bunch_course.model_type == "user"
+                'Завершить до
+                = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
+              - else
+                = (course.ligament_leads.last.user.full_name rescue nil)
