@@ -2,13 +2,6 @@
 = render "home/course_description/teaser"
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
-- if current_user.present?
-  - if bunch_course.present?
-    .ya_course_signed_visit style = 'display: none'
-  - else
-    .ya_course_unsigned_visit style = 'display: none'
-- else
-  .ya_course_not_auth_visit style = 'display: none'
 
 - if @course.announcement? && !@current_user.present?
   = render "home/course_description/popup/notify_me"

@@ -4,7 +4,7 @@
 header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
   .left-col
     - unless (btnBack rescue false)
-      .page__icon.item.ya_burger_click
+      .page__icon.item
         - if current_user.present?
           i.burger.icon.js__show-aside-main-nav
         - else
