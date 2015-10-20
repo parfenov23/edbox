@@ -184,10 +184,12 @@ select.form-control {
 
   &.error {
     hr {
+      @include transition;
       border-bottom: 1px solid #f50057;
     }
 
     .error__msg {
+      @include transition;
       display    : block;
       position   : absolute;
       top        : 36px;
@@ -199,39 +201,47 @@ select.form-control {
 
     &.item {
       .floating-label {
+        @include transition;
         color: #f50057;
       }
     }
 
     &.lvl-2 {
       hr {
+        @include transition;
         border-color: #ab47bc;
       }
 
       .error__msg,
       .floating-label {
+        @include transition;
         color: #ab47bc;
       }
     }
 
     &.lvl-3 {
       hr {
+        @include transition;
         border-color: #1e88e5;
       }
 
       .error__msg,
       .floating-label {
+        @include transition;
         color: #1e88e5;
       }
     }
 
     &.lvl-4 {
       hr {
-        border-color: $primaryColor;
+        @include transition;
+        border-color: #00BCD4;
       }
 
-      .error__msg {
-        color: $primaryColor;
+      .error__msg,
+      .floating-label {
+        @include transition;
+        color: #00BCD4;
       }
     }
   }
@@ -248,10 +258,12 @@ select.form-control {
 
   &.is__noFocus {
     .floating-label {
+      @include transition;
       color: black__color('not_active__color');
     }
 
     hr {
+      @include transition;
       border-bottom: 1px solid black__color('not_active__color');
     }
   }

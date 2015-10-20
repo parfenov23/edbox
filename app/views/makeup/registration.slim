@@ -1,0 +1,35 @@
+.reg__wrp
+  .logo__frst
+    img src="/assets/header__edbox.svg"
+  .logo__scnd
+    img src="/assets/header__adconsult.svg"
+  form.reg__form
+    .title Регистрация
+    .com__input-item.item.empty.error.lvl-2
+      input.form-control.floating-label name="fio" type="text" placeholder="Ваше имя"
+      .error__msg Ой все
+      hr
+    .com__input-item.item.empty.error.lvl-3
+      input.form-control.floating-label name="email" type="email" placeholder="e-mail"
+      .error__msg Ой все
+      hr
+    .com__input-item.item.empty.error.lvl-4
+      input.form-control.floating-label name="pass1" type="password" placeholder="Пароль"
+      .error__msg Ой все
+      hr
+    .com__input-item.item.empty.error
+      input.form-control.floating-label name="pass2" type="password" placeholder="Подтверждение пароля"
+      .error__msg Ой все
+      hr
+    .auth_agree.checkbox__holder
+      input#agree__check.checkbox name="agreed" type="checkbox" 
+      label.label for="agree__check" 
+        i.check
+        i.ripple-effect.ripple-check
+        i.ripple-effect.ripple-uncheck
+        | Я ознакомлен с
+        a.auth_agree-link href="/oferta"  договором оферты&nbsp;
+        | принимаю условия договора
+    .action__block
+      .btn.btn-flat У МЕНЯ ЕСТЬ АККАУНТ
+      .btn.is__blue СОЗДАТЬ АККАУНТ
