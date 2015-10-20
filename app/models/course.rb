@@ -223,7 +223,7 @@ class Course < ActiveRecord::Base
     result["assigned"] = result_assigned
     if result_assigned
       bunch_course = find_bunch_course(user_id, ["group", "user"])
-      if bunch_course.pesent?
+      if bunch_course.present?
         result["completed"] = bunch_course.complete
       end
     end
