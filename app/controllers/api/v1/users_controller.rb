@@ -55,8 +55,8 @@ module Api::V1
 
     def update_course
       course = Course.find(params[:course_id])
-      if (bunch_course = BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
-        render json: bunch_course.as_json
+      if (BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
+        render json: {success: true}
       else
         render_error(500, 'Проверьте данные')
       end
