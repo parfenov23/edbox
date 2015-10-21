@@ -67,12 +67,12 @@ module ApplicationHelper
     condition_where_arr = []
     time_where_arr = []
     if time_from.present?
-      condition_where_arr << "created_at > ?"
+      condition_where_arr << "created_at >= ?"
       time_where_arr << time_from
     end
     condition_where_arr << "and" if time_from.present? && time_to.present?
     if time_to.present?
-      condition_where_arr << "created_at < ?"
+      condition_where_arr << "created_at <= ?"
       time_where_arr << time_to
     end
     array_where = [condition_where_arr.join(" ")]
