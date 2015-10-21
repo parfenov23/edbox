@@ -21,7 +21,7 @@
           - if current_user.director
             - add_class = ((current_user.company.groups.present? ? "" : "noOpenPopup") rescue "")
             - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
-            .add-group.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
+            .add-group.js_openPopup data-id="#{course.id}" class="#{add_class}" *hash_params
               i.icon
         .delete data-id="#{favorite_course.id}"
           i.icon
