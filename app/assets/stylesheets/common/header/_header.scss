@@ -324,6 +324,7 @@
     background-color : #FFF;
     @include transition;
     @include white__block(1, 0);
+    border-radius: 0;
     &.with__img {
       .page__icon i {
         color : rgba(0, 0, 0, .54);
