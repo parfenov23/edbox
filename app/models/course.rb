@@ -203,7 +203,7 @@ class Course < ActiveRecord::Base
     result_assigned = assigned?(user_id)
     result["assigned"] = result_assigned
     result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
-    result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
+    # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
     if result_assigned
       bunch_course = find_bunch_course(user_id, ["group", "user"])
@@ -220,7 +220,7 @@ class Course < ActiveRecord::Base
     result = as_json({except: [:duration, :main_img, :description, :user_id],
                       methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
     result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
-    result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
+    # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result_assigned = assigned?(user_id)
     result["assigned"] = result_assigned
     if result_assigned
