@@ -206,7 +206,9 @@ class Course < ActiveRecord::Base
     result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
     if result_assigned
-      result["bunch_course"] = find_bunch_course(user_id, ["group", "user"]).transfer_to_json
+      bunch_course = find_bunch_course(user_id, ["group", "user"])
+      result["bunch_course"] = bunch_course.transfer_to_json
+      result["date_complete"] = bunch_course.date_complete
     end
     if test.present?
       result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
@@ -227,6 +229,7 @@ class Course < ActiveRecord::Base
         result["completed"] = bunch_course.complete
         result["assigned_type"] = bunch_course.model_type
         result["progress"] = bunch_course.progress
+        result["date_complete"] = bunch_course.date_complete
       end
     end
     result
