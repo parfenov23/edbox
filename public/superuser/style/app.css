@@ -32,28 +32,47 @@ body, .well {
 }
 
 .btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    background: red;
-    cursor: inherit;
-    display: block;
-}
-input[readonly] {
-    background-color: white !important;
-    cursor: text !important;
+    position : relative;
+    overflow : hidden;
 }
 
-.no_padding{
-    padding: 0;
+.btn-file input[type=file] {
+    position   : absolute;
+    top        : 0;
+    right      : 0;
+    min-width  : 100%;
+    min-height : 100%;
+    font-size  : 100px;
+    text-align : right;
+    filter     : alpha(opacity=0);
+    opacity    : 0;
+    background : red;
+    cursor     : inherit;
+    display    : block;
+}
+
+input[readonly] {
+    background-color : white !important;
+    cursor           : text !important;
+}
+
+.no_padding {
+    padding : 0;
+}
+
+.form_filter .row {
+    margin-bottom : 5px;
+}
+
+#BillingTable thead tr {
+    background-color : #2B669A;
+    color            : white;
+}
+#BillingTable thead tr th.headerSortUp{
+    background-color: #FCF8E3;
+    color: black;
+}
+#BillingTable thead tr th.headerSortDown{
+    background-color: #d9edf7;
+    color: black;
 }

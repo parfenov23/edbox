@@ -1,0 +1,28 @@
+javascript:
+  $(document).ready(function () {
+    $("#BillingTable").tablesorter({headers: { 7:{sorter: false}}});
+  });
+table#BillingTable.tablesorter.table.table-bordered
+  thead
+    tr
+      th ID
+      th Email
+      th Тип
+      th Статус
+      th Кол-во
+      th Дата регистрации
+      th Срок подписки
+      th Действия
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.id
+        td = user.email
+        td = user.corporate ? "Корпоративный" : "Личный"
+        td = user.get_account_type ? "Оплачено" : "Не оплачено"
+        td = (user.corporate ? user.company.users.count : nil) rescue nil
+        td = ltime(user.created_at)
+        td 19 окт.
+        td
+          - edit_link = user.corporate ? ("/companies/#{user.company.id}" rescue "/users/#{user.id}") : "/users/#{user.id}"
+          a.btn.btn-primary href="/superuser#{edit_link}/edit" Редактировать
