@@ -17,7 +17,10 @@
           |В подписку входят только бесплатные  курсы и материалы.
         .price.h__text_24-32 Бесплатно
         .action__block
-          .btn.is__blue.js_openFormRegistrationAuth ВЫБРАТЬ
+          - hash_class = ''
+          - hash_class += 'ya_courses_free ' if (params[:action] == 'courses')
+          - hash_class += 'ya_webinar_free ' if (@course.online? rescue false)
+          .btn.is__blue.js_openFormRegistrationAuth.ya_free_acc class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
 
@@ -27,7 +30,11 @@
         .description Получите неограниченный доступ ко всем онлайн-курсам, вебинарам, материалам и обновлениям Edbox ADCONSULT.
         .price.h__text_24-32 1490 ₽/мес
         .action__block
-          .btn.is__blue ВЫБРАТЬ
+          - hash_class = ''
+          - hash_class += 'ya_paid_course_pers ' if (@course.paid? rescue false)
+          - hash_class += 'ya_courses_pers ' if (params[:action] == 'courses')
+          - hash_class += 'ya_webinar_pers ' if (@course.online? rescue false)
+          .btn.is__blue.ya_pers_acc class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
 
@@ -39,7 +46,11 @@
           |2990 ₽/мес
           span + 990 ₽/пользователь
         .action__block
-          .btn.is__blue ВЫБРАТЬ
+          - hash_class = ''
+          - hash_class += 'ya_paid_course_corp ' if (@course.paid? rescue false)
+          - hash_class += 'ya_courses_corp ' if (params[:action] == 'courses')
+          - hash_class += 'ya_webinar_corp ' if (@course.online? rescue false)
+          .btn.is__blue.ya_corp_acc class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
 

@@ -74,10 +74,13 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
       .page__action style="margin-right: 22px;"
         .our__phone +7 (495) 258-46-42
         a.btn.btn-flat href="/sign_in" войти
-        - if (@course.paid? rescue true)
-          .btn.is__blue.js_openFormRegistration ПРИСОЕДИНИТЬСЯ
+        - hash_class = ''
+        - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
+        - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
+        - if (@course.paid? rescue false)
+          .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
         - else
-          .btn.is__blue.js_openFormRegistrationAuth Регистрация
+          .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
 
 - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside

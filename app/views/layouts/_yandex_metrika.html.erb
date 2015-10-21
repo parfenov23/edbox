@@ -35,12 +35,92 @@
 
 <script type="text/javascript">
     pageLoad(function(){
-//        $(document).on('click', '.ya_auth_sign_in', function () {
-//            yaCounter31766016.reachGoal('AUTH_SIGN_IN'); //кнопка авторизации
-//        });
-//
-//        if ($('.ya_course_unsigned_visit').length != 0) {
-//            setTimeout(function(){ yaCounter31766016.reachGoal('COURSE_UNSIGNED_VISIT')}, 1000); //посещение страницы курса когда пользователь на него не подписан
-//        }
+        $(document).on('click', '.ya_free_course_reg', function () {
+            yaCounter31766016.reachGoal('FREE_COURSE_REG'); //В бесплатных курсах - кнопка “Бесплатная регистрация”
+        });
+
+        $(document).on('click', '.ya_free_course_create_acc', function () {
+            yaCounter31766016.reachGoal('FREE_COURSE_CREATE_ACC'); //В бесплатных курсах: в форме регистрации на кнопку “Создать аккаунт”
+        });
+
+        $(document).on('click', '.ya_paid_course_reg', function () {
+            yaCounter31766016.reachGoal('PAID_COURSE_REG'); //В платных курсах настраиваем цели: кнопка “Регистрация”
+        });
+
+        $(document).on('click', '.ya_paid_course_pers', function () {
+            yaCounter31766016.reachGoal('PAID_COURSE_PERS'); //В платных курсах: Оформление личной подписки
+        });
+
+        $(document).on('click', '.ya_paid_course_corp', function () {
+            yaCounter31766016.reachGoal('PAID_COURSE_CORP'); //В платных курсах: Оформление корпоративной подписки
+        });
+
+        $(document).on('click', '.ya_courses_join', function () {
+            yaCounter31766016.reachGoal('COURSES_JOIN'); //На странице библиотеки курсов - кнопка “Присоединиться”
+        });
+
+        $(document).on('click', '.ya_courses_free', function () {
+            yaCounter31766016.reachGoal('COURSES_FREE'); //На странице библиотеки курсов - оформление Бесплатного аккаунта
+        });
+
+        $(document).on('click', '.ya_courses_pers', function () {
+            yaCounter31766016.reachGoal('COURSES_PERS'); //На странице библиотеки курсов - оформление Личного аккаунта
+        });
+
+        $(document).on('click', '.ya_courses_corp', function () {
+            yaCounter31766016.reachGoal('COURSES_CORP'); //На странице библиотеки курсов - оформление Корпоративного аккаунта
+        });
+
+        $(document).on('click', '.ya_webinar_reg', function () {
+            yaCounter31766016.reachGoal('WEBINAR_REG'); //На странице вебинара - кнопка Регистрация
+        });
+
+        $(document).on('click', '.ya_webinar_free', function () {
+            yaCounter31766016.reachGoal('WEBINAR_FREE'); //На странице вебинара - оформление Бесплатного аккаунта
+        });
+
+        $(document).on('click', '.ya_webinar_pers', function () {
+            yaCounter31766016.reachGoal('WEBINAR_PERS'); //На странице вебинара - оформление Личного аккаунта
+        });
+
+        $(document).on('click', '.ya_webinar_corp', function () {
+            yaCounter31766016.reachGoal('WEBINAR_CORP'); //На странице вебинара - оформление Корпоративного аккаунта
+        });
+
+        $(document).on('click', '.ya_pers_acc', function () {
+            yaCounter31766016.reachGoal('PERS_ACC'); //Оформление личного аккаунта
+        });
+
+        $(document).on('click', '.ya_free_acc', function () {
+            yaCounter31766016.reachGoal('FREE_ACC'); //Оформление бесплатной подписки
+        });
+
+        $(document).on('click', '.ya_corp_acc', function () {
+            yaCounter31766016.reachGoal('CORP_ACC'); //Оформление корпоративного аккаунта
+        });
+
+        $(document).on('click', '.ya_new_acc', function () {
+            yaCounter31766016.reachGoal('NEW_ACC'); //Создание нового аккаунта
+        });
+
+        $(document).on('click', '.ya_old_acc', function () {
+            yaCounter31766016.reachGoal('OLD_ACC'); //Вход уже с имеющимся аккаунтом
+        });
+
+        $(document).on('click', '.ya_annons_course', function () {
+            yaCounter31766016.reachGoal('ANNONS_COURSE'); //Подписка на курс, который еще не вышел
+        });
+
+        $(document).on('click', '.ya_see_video', function () {
+            yaCounter31766016.reachGoal('SEE_VIDEO'); //Просмотр видео
+        });
+
+        $(document).on('click', '.ya_complete_course', function () {
+            yaCounter31766016.reachGoal('COMLETE_COURSE'); // Закончил прохождение курса
+        });
+
+        $(document).on('click', '.ya_join', function () {
+            yaCounter31766016.reachGoal('JOIN'); // Нажатие на кнопку присоединиться
+        });
     });
 </script>
