@@ -1,7 +1,11 @@
 javascript:
   $(document).ready(function(){
-    $('input.datepicker').datepicker({format: 'yy.mm.dd'});
+    $('.form-group .input-daterange.datepicker').datepicker({
+      dateFormat  : "mm/dd/yy",
+      language: "ru"
+    });
   });
+
 - user_params = params[:user].present? ? params[:user] : {}
 form.form-inline.form_filter
   .row
@@ -9,7 +13,7 @@ form.form-inline.form_filter
       .form-group
         label Статус:
         - array_type = [["Все", nil],["Не оплачен", false], ["Оплачен", true]]
-        = select_tag 'user[paid]', options_for_select(array_type, user_params[:paid]), {:class => 'form-control'}
+        = select_tag 'user[acc_paid]', options_for_select(array_type, user_params[:acc_paid]), {:class => 'form-control'}
 
     .col-lg-2
       .form-group
@@ -20,14 +24,18 @@ form.form-inline.form_filter
     .col-lg-5
       .form-group
         label Дата регистрации:
-        input.form-control.datepicker type="text" name="user[created_at_from]" placeholder="c" value=user_params[:created_at_from]
-        input.form-control.datepicker type="text" name="user[created_at_to]" placeholder="по" value=user_params[:created_at_to]
+        .input-daterange.input-group.datepicker
+          input.form-control.datepicker.input-sm type="text" name="user[created_at_from]" placeholder="c" value=user_params[:created_at_from]
+          span.input-group-addon До
+          input.form-control.datepicker.input-sm type="text" name="user[created_at_to]" placeholder="по" value=user_params[:created_at_to]
   .row
     .col-lg-5
       .form-group
         label Дата подписки:
-        input.form-control.datepicker type="text" name="user[sub_from]" placeholder="c" value=user_params[:sub_from]
-        input.form-control.datepicker type="text" name="user[sub_to]" placeholder="по" value=user_params[:from_to]
+        .input-daterange.input-group.datepicker
+          input.form-control.datepicker.input-sm type="text" name="user[sub_from]" placeholder="c" value=user_params[:sub_from]
+          span.input-group-addon До
+          input.form-control.datepicker.input-sm type="text" name="user[sub_to]" placeholder="по" value=user_params[:sub_to]
   .row
     .col-lg-2
       button.btn.btn-primary Применить
