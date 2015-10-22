@@ -26,6 +26,11 @@ Rails.application.routes.draw do
         get ":action" => "contenter#:action"
       end
     end
+    resources :billing do
+      collection do
+        get ":action" => "billing#:action"
+      end
+    end
   end
 # get "test_websocket" => "home#test_websocket"
   # get 'nod'
