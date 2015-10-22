@@ -22,12 +22,12 @@ module ApplicationHelper
 
   def parse_russian_date(time)
     case time_current_day(time)
-      when 1
+      when 0
         "Сегодня #{time.strftime('%H:%M')}"
-      when 2
+      when 1
         "Завтра #{time.strftime('%H:%M')}"
       else
-        ltime(time, '', 'short')
+        ltime(time, '', 'short', false)
     end
   end
 
@@ -61,6 +61,23 @@ module ApplicationHelper
      {month: 7, title: "Июль"}, {month: 8, title: "Август"},
      {month: 9, title: "Сентябрь"}, {month: 10, title: "Октябрь"},
      {month: 11, title: "Ноябрь"}, {month: 12, title: "Декабрь"}]
+  end
+
+  def make_up_where_from_date(time_from, time_to)
+    condition_where_arr = []
+    time_where_arr = []
+    if time_from.present?
+      condition_where_arr << "created_at >= ?"
+      time_where_arr << time_from
+    end
+    condition_where_arr << "and" if time_from.present? && time_to.present?
+    if time_to.present?
+      condition_where_arr << "created_at <= ?"
+      time_where_arr << time_to
+    end
+    array_where = [condition_where_arr.join(" ")]
+    time_where_arr.each{|time_where| array_where << time_where}
+    array_where
   end
 
   def rus_case(count, n1, n2, n3)

@@ -226,6 +226,10 @@ Rails.application.routes.draw do
         get :all_leading
       end
     end
+    resources :billing do
+      member do
+      end
+    end
     resources :groups do
       member do
         get :remove

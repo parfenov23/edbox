@@ -1,0 +1,41 @@
+javascript:
+  $(document).ready(function(){
+    $('.form-group .input-daterange.datepicker').datepicker({
+      dateFormat  : "mm/dd/yy",
+      language: "ru"
+    });
+  });
+
+- user_params = params[:user].present? ? params[:user] : {}
+form.form-inline.form_filter
+  .row
+    .col-lg-2
+      .form-group
+        label Статус:
+        - array_type = [["Все", nil],["Не оплачен", false], ["Оплачен", true]]
+        = select_tag 'user[acc_paid]', options_for_select(array_type, user_params[:acc_paid]), {:class => 'form-control'}
+
+    .col-lg-2
+      .form-group
+        label Тип:
+        - array_type = [["Все", nil],["Индивидуальный", false], ["Корпоративный", true]]
+        = select_tag 'user[corporate]', options_for_select(array_type, user_params[:corporate]), {:class => 'form-control'}
+  .row
+    .col-lg-5
+      .form-group
+        label Дата регистрации:
+        .input-daterange.input-group.datepicker
+          input.form-control.datepicker.input-sm type="text" name="user[created_at_from]" placeholder="c" value=user_params[:created_at_from]
+          span.input-group-addon До
+          input.form-control.datepicker.input-sm type="text" name="user[created_at_to]" placeholder="по" value=user_params[:created_at_to]
+  .row
+    .col-lg-5
+      .form-group
+        label Дата подписки:
+        .input-daterange.input-group.datepicker
+          input.form-control.datepicker.input-sm type="text" name="user[sub_from]" placeholder="c" value=user_params[:sub_from]
+          span.input-group-addon До
+          input.form-control.datepicker.input-sm type="text" name="user[sub_to]" placeholder="по" value=user_params[:sub_to]
+  .row
+    .col-lg-2
+      button.btn.btn-primary Применить

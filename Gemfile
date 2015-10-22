@@ -39,7 +39,9 @@ gem 'streamio-ffmpeg'
 gem 'eventmachine', '1.0.4'
 gem 'rails-i18n'
 
-
+#Filter Model
+# gem 'will_filter'
+# gem 'kaminari'
 
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby

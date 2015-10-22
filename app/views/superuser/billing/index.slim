@@ -1,0 +1,34 @@
+javascript:
+  $(document).ready(function () {
+    $("#BillingTable").tablesorter({headers: { 7:{sorter: false}}});
+  });
+= render "superuser/users/filter"
+table#BillingTable.tablesorter.table.table-bordered
+  thead
+    tr
+      th ID
+      th Email
+      th Тип
+      th Статус
+      th Кол-во
+      th Дата регистрации
+      th Срок подписки
+      th Действия
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.id
+        td = user.email
+        td = user.corporate ? "Корпоративный" : "Личный"
+        td = user.get_account_type ? "Оплачено" : "Не оплачено"
+        td = (user.corporate ? user.company.users.count : nil) rescue nil
+        td = ltime(user.created_at, '', 'short_min_y')
+        td 19 окт.
+        td
+          - sub = user.find_subscription.last
+          - if sub.present?
+            a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
+          - else
+            - model = user.director? ? (user.company rescue user) : user
+            a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
+              |Создать
