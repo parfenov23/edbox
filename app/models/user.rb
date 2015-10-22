@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   def find_subscription
     model = director? ? (company rescue self) : self
     time = Time.current
-    model.subscriptions.where(["active = ? and 'from' < ? and 'to' > ?", true, time, time])
+    model.subscriptions.where(["active = ? and date_from < ? and date_to > ?", true, time, time]).last
   end
 
   def get_account_type

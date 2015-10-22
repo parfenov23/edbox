@@ -29,6 +29,12 @@ module Superuser
       redirect_to edit_superuser_billing_path(sub.id)
     end
 
+    def update
+      sub = find_subscription
+      sub.update(sub_params)
+      redirect_to :back
+    end
+
     private
 
     def find_subscription
@@ -47,7 +53,7 @@ module Superuser
     end
 
     def sub_params
-      params.require(:subscription).permit(:date_from, :date_to, :subscriptiontable_type,
+      params.require(:subscription).permit(:date_from, :date_to, :subscriptiontable_type, :sum,
                                            :subscriptiontable_id, :active).compact.select { |k, v| v != "" } rescue {}
     end
 

@@ -4,9 +4,15 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
   .form-group
     label Дата подписки:
     .input-daterange.input-group.datepicker
-      input.form-control.datepicker.input-sm type="text" name="subscription[date_from]" placeholder="c(d.m.Y H:M)" value=(@subscription.date_from.strftime('%d.%m.%Y %H:%M') rescue nil)
+      - date_from = (@subscription.date_from.strftime('%d.%m.%Y %H:%M') rescue nil)
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_from]" placeholder="c (d.m.y H:M) UTC" value=date_from
       span.input-group-addon До
-      input.form-control.datepicker.input-sm type="text" name="subscription[date_to]" placeholder="по(d.m.Y H:M))" value=(@subscription.date_to.strftime('%d.%m.%Y %H:%M') rescue nil)
+      - date_to = (@subscription.date_to.strftime('%d.%m.%Y %H:%M') rescue nil)
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_to]" placeholder="по (d.m.y H:M)) UTC" value=date_to
+  .form-group
+    label
+      | Сумма:
+    input.form-control name="subscription[sum]" type="text" value="#{@subscription.sum}"
   .form-group
     label Модель:
     - array_type = [["Компания", "Company"], ["Пользователь", "User"]]

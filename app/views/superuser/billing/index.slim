@@ -16,6 +16,7 @@ table#BillingTable.tablesorter.table.table-bordered
       th Действия
   tbody
     - @users.each do |user|
+      - sub = user.find_subscription
       tr
         td = user.id
         td = user.email
@@ -23,9 +24,8 @@ table#BillingTable.tablesorter.table.table-bordered
         td = user.get_account_type ? "Оплачено" : "Не оплачено"
         td = (user.corporate ? user.company.users.count : nil) rescue nil
         td = ltime(user.created_at, '', 'short_min_y')
-        td 19 окт.
+        td = sub.present? ? sub.date_string : "Нет подписки"
         td
-          - sub = user.find_subscription.last
           - if sub.present?
             a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
           - else
