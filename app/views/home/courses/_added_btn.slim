@@ -6,16 +6,16 @@
       - if current_user.director
         - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
         - hash_params = {'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule"}
-        .add.icon.js_for-tooltip.js_openPopup.ya_add_to_schedule_corp data-id="#{course.id}" class="#{add_class}" *hash_params
+        .add.icon.js_for-tooltip.js_openPopup data-id="#{course.id}" class="#{add_class}" *hash_params
           .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в расписание группы
 
         - if find_bunch_course_group.blank?
           form data-redirect="/course_description?id=#{course.id}"
             input type="hidden" name="course_id" value=course.id
-            .schedule.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
+            .schedule.icon.js_for-tooltip.js_addCourseToMyCourse
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы
       - else
         form data-redirect="/course_description?id=#{course.id}"
           input type="hidden" name="course_id" value=course.id
-          .add.icon.js_for-tooltip.ya_add_to_schedule_private.js_addCourseToMyCourse
+          .add.icon.js_for-tooltip.js_addCourseToMyCourse
             .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы
