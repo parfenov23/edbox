@@ -1,0 +1,28 @@
+.dropdown__flash {
+  width: 180px;
+  position: relative;
+  margin-left: 88px;
+  .visible__part {
+    @include text__setting(header__typo_1);
+    cursor: pointer;
+  }
+  .hidden__list {
+    @include white__block(1,0);
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: -22px;
+    left: -16px;
+    padding: 8px 0;
+    width: 180px;
+    li {
+      @include text__setting(header__typo_1, secondary__color);
+      padding: 16px 0 8px 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: #F5F5F5;
+        color: black__color(base__color);
+      }
+    }
+  }
+}
