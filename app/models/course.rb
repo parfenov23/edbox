@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
+  has_many :notices, :dependent => :destroy
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
@@ -37,6 +38,18 @@ class Course < ActiveRecord::Base
 
   def announcement?
     announcement.present?
+  end
+
+  def notice_users
+    if public && !announcement?
+      emails = notices.pluck(:email).uniq
+      if emails.present?
+        emails.each do |email|
+          (HomeMailer.notice_letter(email, self).deliver rescue nil)
+          Notice.destroy_all(course_id: id, email: email)
+        end
+      end
+    end
   end
 
   def validate

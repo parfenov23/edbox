@@ -20,4 +20,14 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Ваш пароль изменился")
   end
 
+  def notice_letter(email, course)
+    @email = email
+    @course = course
+    mail(:to => @email, :subject => 'В Edbox вышел курс, который вы ждали')
+  end
+
+  def notice_confirm(email)
+    @email = email
+    mail(:to => @email, :subject => 'Вы подписались на обновления Edbox ADCONSULT')
+  end
 end
