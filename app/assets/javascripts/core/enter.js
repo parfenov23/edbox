@@ -115,7 +115,7 @@ $(document).ready(function () {
                 show_error('Успешно', 3000);
                 setTimeout(function(){
                     if(form.data('redirect') == undefined || form.data('redirect') == ''){
-                        window.location.href = '/cabinet';
+                        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
                     }else{
                         window.location.href = form.data('redirect');
                     }
@@ -152,7 +152,7 @@ $(document).ready(function () {
                 success: function (m) {
                     $.cookie('user_key', m.user_key);
                     if(form.data('redirect') == undefined){
-                        window.location.href = '/cabinet';
+                        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
                     }else{
                         window.location.href = form.data('redirect');
                     }
