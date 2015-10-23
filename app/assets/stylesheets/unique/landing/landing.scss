@@ -1,0 +1,197 @@
+.landing__header {
+  @include clearfix;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background-color: rgba(255, 255, 255, .87);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+  z-index: 99;
+  .logo {
+    margin-left: 20px;
+    margin-right: 16px;
+    float: left;
+    width: 168px;
+    padding-top: 14px;
+    a {
+      img{
+        width: 100%;
+      }
+    }
+  }
+  .logo__legend {
+    font-size: 14px;
+    line-height: 20px;
+    float: left;
+    padding-top: 23px;
+  }
+  .action__block {
+    width: 290px;
+    float: right;
+    padding-top: 16px;
+    .btn {
+      float: left;
+      margin-right: 8px;
+    }
+  }
+}
+.landing__inner {
+  @include middle-block(1128px);
+  padding-bottom: 64px;
+  .section__title {
+    @include text__setting(header__typo_3);
+    text-align: center;
+    font-weight: 300;
+    &.is__white {
+      color: #fff;
+    }
+  }
+}
+.landing__banner {
+  margin-top: 64px;
+  background: url("landing__banner.png") 50% 0 no-repeat #fff;
+  padding-top: 64px;
+  padding-bottom: 19px;
+  .section__title {
+    @include middle-block(683px);
+    margin-bottom: 32px;
+  }
+  .action__block  {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 38px;
+    .btn {
+      margin: 0 16px;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      padding: 0 16px;
+    }
+    .is__white {
+      color: #fff;
+      border-color: #fff;
+      &:hover {
+        background: rgba(255, 255, 255,0.08);
+      }
+    }
+  }
+  .banner__img  {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .description {
+    @include text__setting(header__typo_1);
+    @include middle-block(770px);
+    text-align: center;
+  }
+}
+.landing__courses__list {
+  padding-top: 83px;
+  .section__title {
+    @include middle-block(985px);
+    margin-bottom: 64px;
+  }
+  .courses__list_inner {
+    @include clearfix;
+    margin-bottom: 16px;
+    figure {
+      float: left;
+      margin: 0 24px 32px 0;
+      &:nth-child(3n){
+        margin-right: 0;
+      }
+    }
+  }
+  .action__block {
+    display: flex;
+    justify-content: center;
+  }
+}
+.landing__advantages__list {
+  padding-top: 78px;
+  background-color: #fff;
+  .section__title {
+    @include middle-block(920px);
+    margin-bottom: 37px;
+  }
+  .description {
+    @include text__setting(header__typo_1);
+    @include middle-block(860px);
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .advantages__list {
+    @include clearfix;
+    padding-left: 97px;
+    margin-bottom: 15px;
+    figure {
+      margin: 0;
+      float: left;
+      width: 264px;
+      height: 368px;
+      margin-bottom: 44px;
+      margin-right: 75px;
+      .image {
+        height: 264px;
+        margin-bottom: 30px;
+        img {
+          width: 100%;
+        }
+      }
+      .title {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+      }
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
+  .action__block {
+    display: flex;
+    justify-content: center;
+  }
+}
+.landing__question {
+  background: url("pic_2.png") 0 0 repeat-x;
+  .landing__inner {
+    background: url("landing__banner_img2.png") 50% 50% no-repeat;
+    padding-top: 64px;
+  }
+  .section__title {
+    @include middle-block(670px);
+    margin-bottom: 33px;
+  }
+  .description {
+    @include middle-block(970px);
+    @include text__setting(header__typo_1);
+    color: #fff;
+    margin-bottom: 64px;
+  }
+  .action__block  {
+    display: flex;
+    justify-content: center;
+    .is__white {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 16px;
+      font-size: 16px;
+      background-color: #fff;
+
+    }
+  }
+}
+.landing__compare__table {
+  padding-top: 51px;
+  .section__title {
+    margin-bottom: 25px;
+  }
+  .description {
+    @include middle-block(750px);
+    @include text__setting(header__typo_1);
+    margin-bottom: 72px;
+    text-align: center;
+  }
+}
