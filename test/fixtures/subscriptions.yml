@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: 2015-10-22 12:25:27
+  to: 2015-10-22 12:25:27
+  subscriptiontable_id: 1
+  subscriptiontable_type: MyString
+  sum: 1.5
+  active: false
+
+two:
+  from: 2015-10-22 12:25:27
+  to: 2015-10-22 12:25:27
+  subscriptiontable_id: 1
+  subscriptiontable_type: MyString
+  sum: 1.5
+  active: false

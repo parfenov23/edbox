@@ -1,0 +1,30 @@
+- action_url = @subscription.id.nil? ? "/superuser/billing" : "/superuser/billing/#{@subscription.id}"
+- method = @subscription.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post" enctype="multipart/form-data"
+  .form-group
+    label Дата подписки:
+    .input-daterange.input-group.datepicker
+      - date_from = (@subscription.date_from.strftime('%d.%m.%Y %H:%M') rescue nil)
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_from]" placeholder="c (d.m.y H:M) UTC" value=date_from
+      span.input-group-addon До
+      - date_to = (@subscription.date_to.strftime('%d.%m.%Y %H:%M') rescue nil)
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_to]" placeholder="по (d.m.y H:M)) UTC" value=date_to
+  .form-group
+    label
+      | Сумма:
+    input.form-control name="subscription[sum]" type="text" value="#{@subscription.sum}"
+  .form-group
+    label Модель:
+    - array_type = [["Компания", "Company"], ["Пользователь", "User"]]
+    = select_tag 'subscription[subscriptiontable_type]', options_for_select(array_type, @subscription.subscriptiontable_type), {:class => 'form-control'}
+  .form-group
+    label
+      | ID модели:
+    input.form-control name="subscription[subscriptiontable_id]" type="text" value="#{@subscription.subscriptiontable_id}"
+
+  .form-group
+    label
+      | Активный?:
+    = check_box("subscription", "active", {checked: @subscription.active})
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

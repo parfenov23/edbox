@@ -8,10 +8,38 @@ module Superuser
         time_to = Time.parse(params_user[:created_at_to]).end_of_day rescue nil
         @users = @users.where(make_up_where_from_date(time_from, time_to))
       end
+      if params_user[:acc_paid].present?
+        user_ids = @users.where(corporate: false, paid: params_user[:acc_paid]).ids
+        user_ids += @users.joins(:company).where({"companies.paid" => params_user[:acc_paid]}).ids
+        @users = User.where(id: user_ids)
+      end
+    end
+
+    def edit
+      @subscription = find_subscription
+    end
+
+    def new
+      @subscription = Subscription.new(sub_params)
+    end
+
+    def create
+      sub = Subscription.new(sub_params)
+      sub.save
+      redirect_to edit_superuser_billing_path(sub.id)
+    end
+
+    def update
+      sub = find_subscription
+      sub.update(sub_params)
+      redirect_to :back
     end
 
     private
 
+    def find_subscription
+      Subscription.find(params[:id])
+    end
 
     def find_user
       User.find(params[:id])
@@ -22,6 +50,11 @@ module Superuser
                                    :password, :director, :corporate,
                                    :company_id, :leading, :about_me,
                                    :contenter, :superuser, :paid).compact.select { |k, v| v != "" } rescue {}
+    end
+
+    def sub_params
+      params.require(:subscription).permit(:date_from, :date_to, :subscriptiontable_type, :sum,
+                                           :subscriptiontable_id, :active).compact.select { |k, v| v != "" } rescue {}
     end
 
   end
