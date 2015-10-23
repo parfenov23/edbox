@@ -276,7 +276,7 @@ function myIP() {
     return false;
 }
 
-var back_url = function (type, find_link) {
+var back_url = function (type, find_link, default_result) {
     if (sessionStorage['histories'] == undefined) sessionStorage['histories'] = [];
     var array_histories = sessionStorage['histories'].split(',');
     var current_url = (location.pathname + location.search)
@@ -284,15 +284,15 @@ var back_url = function (type, find_link) {
     sessionStorage['histories'] = array_histories.clean("").clean("undefined");
     var result = array_histories[array_histories.length - 2];
     if (array_histories.length == 1) result = array_histories[0];
-    if (array_histories.length > 10) sessionStorage['histories'] = array_histories.slice(- 5);
+    if (array_histories.length > 35) sessionStorage['histories'] = array_histories.slice(- 10);
     if (type == "clear") sessionStorage['histories'] = "";
     if (type == "find"){
+        var validate_search = false;
         $.each(array_histories.reverse(), function (n, e) {
-            var validate_search = false;
             for (var i = 0; i < find_link.length; i ++){
                 if (e.search(find_link[i]) >= 0){
                     validate_search = true;
-                    break
+                    break;
                 }
             }
             if (validate_search){
@@ -300,6 +300,7 @@ var back_url = function (type, find_link) {
                 return false;
             }
         });
+        if (default_result != undefined && ! validate_search) result = default_result;
     }
     if (type == "all") result = array_histories;
     if (result == "" || result == undefined) result = "/";

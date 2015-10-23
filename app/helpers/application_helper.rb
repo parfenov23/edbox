@@ -63,16 +63,16 @@ module ApplicationHelper
      {month: 11, title: "Ноябрь"}, {month: 12, title: "Декабрь"}]
   end
 
-  def make_up_where_from_date(time_from, time_to)
+  def make_up_where_from_date(time_from, time_to, frist_field="created_at >=", last_field="created_at <=")
     condition_where_arr = []
     time_where_arr = []
     if time_from.present?
-      condition_where_arr << "created_at >= ?"
+      condition_where_arr << "#{frist_field} ?"
       time_where_arr << time_from
     end
     condition_where_arr << "and" if time_from.present? && time_to.present?
     if time_to.present?
-      condition_where_arr << "created_at <= ?"
+      condition_where_arr << "#{last_field} ?"
       time_where_arr << time_to
     end
     array_where = [condition_where_arr.join(" ")]
