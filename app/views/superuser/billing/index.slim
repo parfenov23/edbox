@@ -16,6 +16,8 @@ javascript:
 
   = render "superuser/users/filter"
 .btn.btn-primary#openFilterBilling Открыть фильтр
+.form-group
+  label Найдено результатов: #{@users.count}
 table#BillingTable.tablesorter.table.table-bordered
   thead
     tr
