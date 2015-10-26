@@ -8,10 +8,16 @@ module Superuser
         time_to = Time.parse(params_user[:created_at_to]).end_of_day rescue nil
         @users = @users.where(make_up_where_from_date(time_from, time_to))
       end
+      if params_user[:sub_from].present? || params_user[:sub_to].present?
+        time_from = Time.parse(params_user[:sub_from]).beginning_of_day rescue nil
+        time_to = Time.parse(params_user[:sub_to]).end_of_day rescue nil
+        @users = @users.select{|u|
+          sub = u.find_subscription([false, true])
+          sub.present? ? (time_from.present? ? sub.date_from : true) <= time_from && (time_to.present? ? sub.date_to >= time_to : true) : false
+        }
+      end
       if params_user[:acc_paid].present?
-        user_ids = @users.where(corporate: false, paid: params_user[:acc_paid]).ids
-        user_ids += @users.joins(:company).where({"companies.paid" => params_user[:acc_paid]}).ids
-        @users = User.where(id: user_ids)
+        @users = @users.select{|u| u.find_subscription.present?.to_s == params_user[:acc_paid]}
       end
     end
 
@@ -32,6 +38,16 @@ module Superuser
     def update
       sub = find_subscription
       sub.update(sub_params)
+      redirect_to :back
+    end
+
+    def all
+      @user = find_user
+      @subscriptions = @user.find_subscription([true, false], false)
+    end
+
+    def remove
+      find_subscription.destroy
       redirect_to :back
     end
 

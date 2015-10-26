@@ -1,8 +1,23 @@
 javascript:
   $(document).ready(function () {
     $("#BillingTable").tablesorter({headers: { 7:{sorter: false}}});
+    $("#openFilterBilling").on('click', function(){
+      $(this).hide();
+      $(".formFilter").show();
+    });
+    $("#goToBillingEdit").on('click', function(){
+      window.location.href = "/superuser/billing/" + $(this).closest('.form-group').find("input").val() + "/edit";
+    })
   });
-= render "superuser/users/filter"
+.formFilter style="display:none;"
+  .form-group.form-inline
+    input.form-control placeholder="ID счета"
+    .btn.btn-primary#goToBillingEdit Перейти
+
+  = render "superuser/users/filter"
+.btn.btn-primary#openFilterBilling Открыть фильтр
+.form-group
+  label Найдено результатов: #{@users.count}
 table#BillingTable.tablesorter.table.table-bordered
   thead
     tr
@@ -16,7 +31,7 @@ table#BillingTable.tablesorter.table.table-bordered
       th Действия
   tbody
     - @users.each do |user|
-      - sub = user.find_subscription
+      - sub = user.find_subscription([false, true], false).last
       tr
         td = user.id
         td = user.email
@@ -28,6 +43,8 @@ table#BillingTable.tablesorter.table.table-bordered
         td
           - if sub.present?
             a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
+            a.btn.btn-primary.col-lg-offset-1 href="/superuser/billing/#{user.id}/all"
+              |Все подписки
           - else
             - model = user.director? ? (user.company rescue user) : user
             a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"

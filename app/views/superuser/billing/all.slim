@@ -1,0 +1,27 @@
+javascript:
+  $(document).ready(function () {
+    $("#BillingTable").tablesorter({headers: {4: {sorter: false}}});
+  });
+- model = @user.director? ? (@user.company rescue @user) : @user
+a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
+  |Создать
+table#BillingTable.tablesorter.table.table-bordered
+  thead
+    tr
+      th ID
+      th Сумма
+      th Статус
+      th Срок
+      th Действия
+
+  tbody
+    - @subscriptions.each do |sub|
+      tr
+        td = sub.id
+        td = sub.sum
+        td = sub.active ? "Активно" : "Не активно"
+        td = sub.date_string rescue "Не установлен"
+        td
+          a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
+          a.btn.btn-primary href="/superuser/billing/#{sub.id}/remove" style ="margin-left: 5px;"
+            |Удалить

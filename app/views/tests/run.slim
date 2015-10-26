@@ -3,9 +3,9 @@
 .main__action.multi__action
   .inner__wrp
     - hash_class = (@test.testable_type == 'Course' ? 'ya_complete_course' : '')
-    .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow class=hash_class
+    .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_submitFormTest class=hash_class
       i.icon.done
-      .main__action-tooltip В мой кабинет
+      .main__action-tooltip Заверишть тест
     .hidden__actions.is__visible
 
 - test = @test

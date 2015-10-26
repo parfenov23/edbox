@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
+  has_many :notices, :dependent => :destroy
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
@@ -37,6 +38,18 @@ class Course < ActiveRecord::Base
 
   def announcement?
     announcement.present?
+  end
+
+  def notice_users
+    if public && !announcement?
+      emails = notices.pluck(:email).uniq
+      if emails.present?
+        emails.each do |email|
+          (HomeMailer.notice_letter(email, self).deliver rescue nil)
+          Notice.destroy_all(course_id: id, email: email)
+        end
+      end
+    end
   end
 
   def validate
@@ -209,6 +222,7 @@ class Course < ActiveRecord::Base
       bunch_course = find_bunch_course(user_id, ["group", "user"])
       result["bunch_course"] = bunch_course.transfer_to_json
       result["date_complete"] = bunch_course.date_complete
+      result["overdue"] = (bunch_course.date_complete < Time.now.beginning_of_day) rescue false
     end
     if test.present?
       result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
@@ -230,6 +244,7 @@ class Course < ActiveRecord::Base
         result["assigned_type"] = bunch_course.model_type
         result["progress"] = bunch_course.progress
         result["date_complete"] = bunch_course.date_complete
+        result["overdue"] = (bunch_course.date_complete < Time.now.beginning_of_day) rescue false
       end
     end
     result
