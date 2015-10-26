@@ -3,7 +3,7 @@ module Api::V1
     def create
       notice = Notice.new(notice_params)
       notice.save
-      (HomeMailer.notice_confirm(notice.email).deliver rescue nil)
+      (HomeMailer.notice_confirm(notice.email, notice.course).deliver rescue nil)
       render json: notice.as_json
     end
 

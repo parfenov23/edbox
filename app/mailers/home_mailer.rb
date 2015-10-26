@@ -26,8 +26,9 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @email, :subject => 'В Edbox вышел курс, который вы ждали')
   end
 
-  def notice_confirm(email)
+  def notice_confirm(email, course)
     @email = email
+    @course = course
     mail(:to => @email, :subject => 'Вы подписались на обновления Edbox ADCONSULT')
   end
 end
