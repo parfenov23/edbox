@@ -14,6 +14,10 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
       | Сумма:
     input.form-control name="subscription[sum]" type="text" value="#{@subscription.sum}"
   .form-group
+    label
+      | Количество пользователей:
+    input.form-control name="subscription[user_count]" type="text" value="#{@subscription.user_count}"
+  .form-group
     label Модель:
     - array_type = [["Компания", "Company"], ["Пользователь", "User"]]
     = select_tag 'subscription[subscriptiontable_type]', options_for_select(array_type, @subscription.subscriptiontable_type), {:class => 'form-control'}

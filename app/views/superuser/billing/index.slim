@@ -31,7 +31,7 @@ table#BillingTable.tablesorter.table.table-bordered
       th Действия
   tbody
     - @users.each do |user|
-      - sub = user.find_subscription([false, true], false).last
+      - sub = user.find_subscription([false, true], false)
       tr
         td = user.id
         td = user.email

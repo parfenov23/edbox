@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022072527) do
+ActiveRecord::Schema.define(version: 20151026093410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "account_types", force: true do |t|
-    t.string  "name"
-    t.string  "title"
-    t.string  "info"
-    t.boolean "corporate", default: false
-    t.boolean "paid",      default: false
-  end
 
   create_table "answers", force: true do |t|
     t.integer "question_id"
@@ -47,8 +39,8 @@ ActiveRecord::Schema.define(version: 20151022072527) do
     t.string   "size"
     t.text     "title"
     t.integer  "duration",            default: 0
-    t.boolean  "archive",             default: false
     t.text     "description"
+    t.boolean  "archive",             default: false
     t.boolean  "download",            default: false
     t.integer  "width"
     t.integer  "height"
@@ -363,6 +355,7 @@ ActiveRecord::Schema.define(version: 20151022072527) do
     t.boolean  "active",                 default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_count",             default: 0
   end
 
   create_table "tags", force: true do |t|
