@@ -256,4 +256,10 @@ i.icon {
     }
   }
 
+  &.to__drop {
+    &::before {
+      content: "\E894";
+    }
+  }
+
 }
