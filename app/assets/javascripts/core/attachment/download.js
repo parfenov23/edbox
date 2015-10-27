@@ -8,12 +8,16 @@ var completeAttachment = function (btn) {
         data: {bunch_section_id: btn.data('bunch_section_id')}
     }).success(function () {
         show_error('Материал пройден', 3000);
-        setTimeout(function () {
-            window.location.href = '/course_description?id=' + btn.data('course_id') + '&attachment_id=' + btn.data('id')
-        }, 1500)
+        btn.removeClass('js_completeAttachment');
+        btn.find('.tooltext').text('Следующий материал');
+        btn.addClass('js_redirectAttachment');
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
+};
+
+var redirectAttachment = function (btn) {
+    window.location.href = btn.data('redirect_url');
 };
 
 var completeMaterial = function(){
@@ -34,10 +38,12 @@ var completeMaterial = function(){
 pageLoad(function () {
     $(document).on('click', '.js_downloadFile', function () {
         downloadAttachment($(this));
-        //completeAttachment($(this));
     });
     $(document).on('click', '.js_completeAttachment', function () {
-        completeAttachment($(this));
+       completeAttachment($(this));
     });
     $(document).on('click', '.js_completeMaterial', completeMaterial);
+    $(document).on('click', '.js_redirectAttachment', function () {
+        redirectAttachment($(this));
+    });
 });

@@ -28,6 +28,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def program_complete(complete = true)
+    sections.attachments.joins(:bunch_attachments).where({"bunch_attachments.complete" => complete})
+  end
+
   def audiences
     bunch_courses.map(&:user_id).uniq.count
   end

@@ -1,0 +1,25 @@
+- if current_user.present?
+  - bsid = (@section.bunch_section(current_user.id).id rescue nil)
+  - redirect_url = "/course_description?id=#{@course.id}"
+  - attachs_other = (@course.program_complete(false).where.not(id: @attachment.id) rescue nil)
+  - if attachs_other.present?
+    - redirect_url = "/attachment?id=#{attachs_other.first.id}"
+  - elsif @course.test.present?
+    - redirect_url = "/tests/#{@course.test.id}/run"
+  - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid, 'data-redirect_url' => redirect_url}
+  - unless @course.material?
+    - if (@attachment.bunch_attachment(current_user.id).complete rescue true)
+      - add_class = "js_redirectAttachment"
+      - text = 'Следующий материал'
+    - else
+      - add_class = "js_completeAttachment"
+      - text = 'Материал пройден'
+  - else
+    - add_class = "js_completeMaterial"
+  .main__action.multi__action
+    .inner__wrp
+      .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow class=add_class *add_hash
+        i.icon.done
+        .main__action-tooltip.tooltext
+          = text
+      .hidden__actions.is__visible
