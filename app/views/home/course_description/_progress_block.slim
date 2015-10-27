@@ -4,10 +4,11 @@
       - course_type = (@course.online? ? 'Вебинар' : 'Курс')
       .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
+        - hash_class = ((@course.online? rescue false) ? 'ya_webinar_reg' : '')
         - if @course.paid?
-          .btn.is__blue.js_openFormRegistration Регистрация
+          .btn.is__blue.js_openFormRegistration.ya_paid_course_reg class=hash_class Регистрация
         - else
-          .btn.is__blue.js_openFormRegistrationAuth Бесплатная регистрация
+          .btn.is__blue.js_openFormRegistrationAuth.ya_free_course_reg class=hash_class Бесплатная регистрация
   - if bunch_course.present?
     - date_complete = local_time(bunch_course.date_complete) rescue nil
     - all_sections = bunch_course.bunch_sections

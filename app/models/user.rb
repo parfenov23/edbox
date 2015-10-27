@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :test_results, dependent: :destroy
   has_many :notifications, :dependent => :destroy
   has_many :notes, :dependent => :destroy
+  has_many :subscriptions, :as => :subscriptiontable, :dependent => :destroy
+
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
@@ -55,8 +57,18 @@ class User < ActiveRecord::Base
     result
   end
 
+  def find_subscription(active = true, find_time=false, type="last")
+    model = director? ? (company rescue self) : self
+    time = Time.current
+    subs = model.subscriptions.where(active: active)
+    if find_time
+      subs = subs.where(["date_from < ? and date_to > ?", time, time])
+    end
+    type == "last" ? subs.last : subs
+  end
+
   def get_account_type
-    corporate ? (company.paid rescue false) : paid
+    find_subscription.present?
   end
 
   def get_account_type_name
@@ -76,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def my_groups
-    ids_group = bunch_groups.map{|bg| bg.group_id}
+    ids_group = bunch_groups.map { |bg| bg.group_id }
     company.groups.where(id: ids_group)
   end
 

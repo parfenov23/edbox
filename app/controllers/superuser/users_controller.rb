@@ -1,7 +1,7 @@
 module Superuser
   class UsersController < SuperuserController
     def index
-      @users = User.all
+      @users = User.where(user_params)
     end
 
     def edit

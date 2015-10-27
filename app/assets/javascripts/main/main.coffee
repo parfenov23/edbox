@@ -247,6 +247,23 @@ $(document).ready ->
     if !$(@).hasClass("noHeaderOpen")
       multiAction($(@))
 
+# счетчик сотрудников на странице выбора тарифа
+  $(document).on 'click', '.js__stuf_count .js__change_qty_stuf', ->
+    input = $('.js__stuf_count input')
+    futVal = parseInt(input.val()) + parseInt($(@).data 'delta')
+    input.val(futVal)
+    if futVal > 0
+      $('.js__stuf_count').removeClass 'is__empty'
+    else if futVal == 0
+      $('.js__stuf_count').addClass 'is__empty'
+
+
+# дропдаун который заподлицо
+  $(document).on 'click', '.js__dropdown_toggle .visible__part', (e) ->
+    parentBlock = $(@).closest '.js__dropdown_toggle'
+    elem = parentBlock.find('.hidden__list')
+    hideElementOutOff(elem, parentBlock, e)
+
 # новый выпадающий список в трех точках (его появление)
   $(document).on 'click', '.js__action-menu .icon__block', ->
     $(@).closest('.js__action-menu').toggleClass 'is__active'

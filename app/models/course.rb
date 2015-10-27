@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
+  has_many :notices, :dependent => :destroy
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }
@@ -32,11 +33,23 @@ class Course < ActiveRecord::Base
   end
 
   def announcement
-    sections.attachments.where(file_type:'announcement')
+    sections.attachments.where(file_type: 'announcement')
   end
 
   def announcement?
     announcement.present?
+  end
+
+  def notice_users
+    if public && !announcement?
+      emails = notices.pluck(:email).uniq
+      if emails.present?
+        emails.each do |email|
+          (HomeMailer.notice_letter(email, self).deliver rescue nil)
+          Notice.destroy_all(course_id: id, email: email)
+        end
+      end
+    end
   end
 
   def validate
@@ -202,11 +215,14 @@ class Course < ActiveRecord::Base
                      })
     result_assigned = assigned?(user_id)
     result["assigned"] = result_assigned
-    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
-    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
+    result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
+    # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups
     if result_assigned
-      result["bunch_course"] = find_bunch_course(user_id, ["group", "user"]).transfer_to_json
+      bunch_course = find_bunch_course(user_id, ["group", "user"])
+      result["bunch_course"] = bunch_course.transfer_to_json
+      result["date_complete"] = bunch_course.date_complete
+      result["overdue"] = (bunch_course.date_complete < Time.now.beginning_of_day) rescue false
     end
     if test.present?
       result["test_result"] = test.test_results.where(user_id: user_id).map(&:as_json)
@@ -216,10 +232,21 @@ class Course < ActiveRecord::Base
 
   def transfer_to_json_mini(user_id=nil)
     result = as_json({except: [:duration, :main_img, :description, :user_id],
-             methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
-    result["categories"] = bunch_categories.map{|bc| {id: bc.category_id, name: bc.category.title} }
-    result["tags"] = bunch_tags.map{|bt| {id: bt.tag_id, name: bt.tag.title} }
-    result["assigned"] = assigned?(user_id)
+                      methods: [:clear_description, :teaser_image, :leadings, :duration_time]})
+    result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
+    # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
+    result_assigned = assigned?(user_id)
+    result["assigned"] = result_assigned
+    if result_assigned
+      bunch_course = find_bunch_course(user_id, ["group", "user"])
+      if bunch_course.present?
+        result["completed"] = bunch_course.complete
+        result["assigned_type"] = bunch_course.model_type
+        result["progress"] = bunch_course.progress
+        result["date_complete"] = bunch_course.date_complete
+        result["overdue"] = (bunch_course.date_complete < Time.now.beginning_of_day) rescue false
+      end
+    end
     result
   end
 end

@@ -48,4 +48,5 @@
       .have__acc
         a.auth__what href="/sign_in"  У меня уже есть аккаунт
       .btn-holder
-        #submit.btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect data-phoenix-action="remove"  Создать аккаунт
+        - hash_class = (!@course.paid? rescue false) ? 'ya_free_course_create_acc' : ''
+        #submit.btn.auth__submit.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.ya_new_acc class=hash_class data-phoenix-action="remove" Создать аккаунт

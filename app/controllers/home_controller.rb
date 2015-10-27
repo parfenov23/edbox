@@ -1,7 +1,7 @@
 class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg, :help, :help_answer]
+                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -122,6 +122,18 @@ class HomeController < ActionController::Base
 
   def course_no_reg
     @course = Course.find(params[:id])
+  end
+
+  def pay
+    params_sub = params
+    user = User.where(email: params_sub[:email]).last
+    user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
+    params_sub[:type_account] == "user" ? params_sub[:sum] = 1490.00 : params_sub[:sum] = 50000.00
+
+    subscription = Subscription.build(params_sub)
+    subscription.save
+    html = render_to_string 'common/popup_request/_yandex_cash', :layout => false, :locals => {params_sub: params_sub, :subscription => subscription}
+    render text: html
   end
 
   def course_description

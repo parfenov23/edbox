@@ -9,5 +9,9 @@ var view_px_block = function (block) {
 };
 
 pageLoad(function(){
-    $("a.item[href='backCourse']").attr('href', back_url('find', ["courses", 'cabinet']))
+    var back_item_link = $("a.item[href='backCourse']")
+    if (back_item_link.length){
+        back_item_link.attr('href', back_url('find', ["courses", 'cabinet']))
+
+    }
 });
