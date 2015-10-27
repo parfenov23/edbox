@@ -1,4 +1,4 @@
-- back_url = !@course.material? ? "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}" : back_url_course
+- back_url = !@course.material? ? "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}" : 'backCourse'
 - header_title = !@course.material? ? @attachment.title : @course.title
 = render "home/header/header", {namePage: "courseMaterial", titlePage: header_title, btnBack: true, backUrl: back_url}
 - if current_user.present?

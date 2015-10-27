@@ -12,7 +12,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def in_progress?
-    minute_diff = (date_start - Time.current).to_i/60
+    minute_diff = (Time.now.utc - date_start).to_i/60
     (minute_diff > 0 && minute_diff < duration) ? true : false
   end
 

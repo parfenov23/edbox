@@ -236,6 +236,16 @@ var installPositionBlock = function (block) {
     }
 };
 
+Array.prototype.clean = function (deleteValue) {
+    for (var i = 0; i < this.length; i ++){
+        if (this[i] == deleteValue){
+            this.splice(i, 1);
+            i --;
+        }
+    }
+    return this;
+};
+
 function parseDate(input) {
     var parts = input.split('.');
     // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
@@ -266,45 +276,75 @@ function myIP() {
     return false;
 }
 
-$(document).ready(function () {
+var back_url = function (type, find_link) {
+    if (sessionStorage['histories'] == undefined) sessionStorage['histories'] = [];
+    var array_histories = sessionStorage['histories'].split(',');
+    var current_url = (location.pathname + location.search)
+    if (array_histories[array_histories.length - 1] != current_url) array_histories[array_histories.length] = current_url;
+    sessionStorage['histories'] = array_histories.clean("").clean("undefined");
+    var result = array_histories[array_histories.length - 2];
+    if (array_histories.length == 1) result = array_histories[0];
+    if (array_histories.length > 10) sessionStorage['histories'] = array_histories.slice(- 5);
+    if (type == "clear") sessionStorage['histories'] = "";
+    if (type == "find"){
+        $.each(array_histories.reverse(), function (n, e) {
+            var validate_search = false;
+            for (var i = 0; i < find_link.length; i ++){
+                if (e.search(find_link[i]) >= 0){
+                    validate_search = true;
+                    break
+                }
+            }
+            if (validate_search){
+                result = e;
+                return false;
+            }
+        });
+    }
+    if (type == "all") result = array_histories;
+    if (result == "" || result == undefined) result = "/";
+    return result;
+}
 
+$(document).ready(function () {
+    back_url();
     $(document).on('click', '.js_closeAllPopup', function (e) {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
     });
 
-    $(document).on('click', 'figure.corses-prev', function(e){
-        var cabinte_block_valid = (!$(e.target).closest(".com__director-btn").length && !$(e.target).hasClass(".com__director-btn"))
-        if( !$(e.target).closest(".action-btn").length && !$(e.target).hasClass("action-btn") && cabinte_block_valid){
+    $(document).on('click', 'figure.corses-prev', function (e) {
+        var cabinte_block_valid = (! $(e.target).closest(".com__director-btn").length && ! $(e.target).hasClass(".com__director-btn"))
+        if (! $(e.target).closest(".action-btn").length && ! $(e.target).hasClass("action-btn") && cabinte_block_valid){
             var link = $(this).find("a.goToCourse");
             if (link.length){
                 link[0].click();
-            }else{
+            } else {
                 link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
                 window.location.href = link;
             }
         }
     });
 
-    $(document).on('click', '.webinar__teaser .action__block.js_addCourseToMyCourse a', function(e){
+    $(document).on('click', '.webinar__teaser .action__block.js_addCourseToMyCourse a', function (e) {
         var link = $(this).attr('href');
         e.preventDefault();
-        setTimeout(function(){
+        setTimeout(function () {
             window.location.href = link
         }, 500);
 
     });
 
-    $(document).on('click', function(e){
-        if (!$(e.target).closest(".js__select-calendar").length){
+    $(document).on('click', function (e) {
+        if (! $(e.target).closest(".js__select-calendar").length){
             $(".js__select-calendar.is__active").removeClass("is__active")
                 .find(".hidden-calendar").hide()
         }
     });
 
-    $(document).on('click', '.programm__block', function(e){
-        if($(e.target).hasClass("programm__block") || $(e.target).closest(".programm__block.is__shot") ){
-            if ( !$(e.target).closest(".programm__wrp").length ){
-                if( $(this).find("i.ckick_shot").length && !$(e.target).hasClass("ckick_shot")){
+    $(document).on('click', '.programm__block', function (e) {
+        if ($(e.target).hasClass("programm__block") || $(e.target).closest(".programm__block.is__shot")){
+            if (! $(e.target).closest(".programm__wrp").length){
+                if ($(this).find("i.ckick_shot").length && ! $(e.target).hasClass("ckick_shot")){
                     $(this).toggleClass("is__shot");
                 }
             }
