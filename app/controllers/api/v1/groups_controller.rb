@@ -30,12 +30,23 @@ module Api::V1
     end
 
     def invite
+      find_sub = current_user.find_subscription
+      company_users = current_user.company.users.count rescue 0
+      result = {}
       emails = params[:emails]
       group = get_find_group
       unless group.nil?
         arr_hash_users = emails.map do |email|
+          validate = true
           user = User.find_by_email(email)
-          user = User.build_default(current_user.company_id, email) if user.nil?
+          if user.nil?
+            validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
+          end
+          if validate
+            user = User.build_default(current_user.company_id, email) if user.nil?
+          else
+            result[:error] = "Вы превысили лимит приглашения участников"
+          end
           if (user.save rescue false)
             BunchGroup.build(user.id, group.id).save
             user.create_notify(group)
@@ -44,7 +55,9 @@ module Api::V1
         end
       end
       group.build_all_course
-      render json: {users: (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))}
+      result[:users] = (arr_hash_users.compact rescue render_error(400, 'Проверьте данные'))
+
+      render json: result
     end
 
     def remove_user
