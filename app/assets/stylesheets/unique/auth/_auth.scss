@@ -39,6 +39,19 @@
         color: black__color(primaryColor) !important; /* цвет текста */
       }
     }
+    &.is__auth {
+      .com__input-item {
+        margin-bottom: 7px;
+      }
+      .forgot__pass {
+        margin-top: -22px;
+        padding-left: 4px;
+        margin-bottom: 29px;
+         a{
+           font-size: 15px;
+         }
+      }
+    }
   }
   .auth_agree {
     margin-bottom: 24px;
