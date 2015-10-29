@@ -13,7 +13,7 @@ var removeCourseToGroup = function (btn) {
                 location.reload();
             }, 1000);
         } else {
-            btn.closest("li.single-course").remove();
+            btn.closest("li.single-course, figure").remove();
             show_error('Курс удален из группы', 3000);
         }
     }).error(function () {
@@ -85,8 +85,9 @@ var removeCourseMy = function (btn, text_success) {
         data: {course_id: course_id, date_complete: data_time}
     }).success(function () {
         show_error(text_success, 3000);
-        btn.closest(".js__removeCourseMyBlock").remove();
-        loadMySchedule();
+        btn.closest(".js__removeCourseMyBlock, figure").remove();
+        //loadMySchedule();
+        show_error('Курс удален!', 3000);
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -178,7 +179,7 @@ var bind_block = function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
 
-    $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+    $('.js_edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
     });
 

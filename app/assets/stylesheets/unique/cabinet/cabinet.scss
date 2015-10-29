@@ -3,7 +3,13 @@
   padding: 0 42px;
   padding-top: 34px;
   @import "frst__time";
-
+  .basic__module{
+    margin: 0 24px 32px 0;
+    float: left;
+  }
+  .basic__module:nth-child(3n){
+    margin: 0 0 32px 0;
+  }
   .director__summery-info {
     @include middle-block(936px);
     display        : flex;
@@ -430,6 +436,9 @@
       .jcarousel li {
         float       : left;
         margin-right: 16px;
+        figure{
+          margin: 0;
+        }
       }
 
       .info-box {
@@ -459,7 +468,7 @@
         .course-prev-list {
           float: left;
 
-          .corses-prev {
+          .basic__module {
             @include inline-block;
             float        : none;
             margin-right : 10px;

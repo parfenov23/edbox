@@ -1,0 +1,59 @@
+- course = ligament_course.course if type == "ligament"
+li.single-course data-course_id=course.id class=(type == "course" ? "favorite-item" : "")
+  .left-image class=(course.material? ? "material" : "")
+    - unless course.material?
+      img alt="" src=course.get_image_path(320, 256) style="width:160px; height:128px"
+    - else
+      - attachment = course.attachments.last
+      i.icon class=(attachment.file_type rescue "other")
+  .courses-info
+    .top-line
+      - if current_user.director
+        .edit-menu.js__select-calendar
+          a.edit-date href="#"
+            i.icon-uniE8A3
+          .hidden-calendar-wrp
+            - if type == "ligament" # главный блок
+              .hidden-calendar
+                .calendar-header
+                  .back.icon
+                  |Выбор даты
+                .calendar-holder
+                  - if type == "ligament"
+                    .selected-value.js_changeDeadLineCourse data-id="#{ligament_course.course_id}" data-group_id="#{@group.id}"
+                      |Выберите дату
+                  - if type == "course"
+                    .selected-value data-group_id="#{@group.id}" Выберите дату
+                  .datapicker__trigger.incDocumentReady
+            ul.hidden-list
+              - text_data = "Перенести дату окончания курса" if type == "ligament"
+              - text_data = "Установить дату окончания курса" if type == "course"
+              - if type == "ligament" # главный блок
+                li data-show="hidden-calendar" = text_data
+                li.js_removeCourseToGroup data-id="#{ligament_course.course_id}" data-group_id=@group.id Удалить
+              - if type == "course"  # блок в попапе
+                li data-show="hidden-calendar"
+                  input.datapicker__trigger.jsValueDatePicker value=text_data name="courses[date_complete]" placeholder=text_data
+                - if (favorite.present? rescue false)
+                  li.js_removeFavorite data-id=favorite.id Удалить
+
+      a.title href="/course_description?id=#{course.id}"
+        h3 = course.title
+    .courses-autor = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
+    .details-nav
+      ul
+        li.hours
+          i.icon
+          - duration = (course.duration_time rescue 0)
+          = rus_case(duration, "минута", "минуты", "минут")
+        li.lections
+          i.icon
+          - count_sections = course.sections.count
+          = rus_case(count_sections, "раздел", "раздела", "разделов")
+        li.courses-end
+          i.icon
+          |Прошли курс
+      - if type == "ligament"
+        .courses-date
+          'Пройти курс до:
+          span = ((l local_time(ligament_course.date_complete), :format => :short_min) rescue "Нет даты")
