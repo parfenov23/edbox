@@ -11,6 +11,12 @@ module ApplicationHelper
     end
   end
 
+  def text_type_material
+    {"edit" => "Текстовый материал", "video" => "Видео-материал",
+     "audio" => "Аудио-материал", "pdf" => "PDF", "img" => "Изображение",
+     "file" => "Материал для скачивания", "test" => "Тест", "online__course" => "Вебинар"}
+  end
+
   def ltime(time, add_text="", format='short_min', valid_translate=true)
     time_def = valid_translate ? local_time(time) : time
     ((add_text + (l time_def, :format => format.to_sym)) rescue "Нет даты")

@@ -115,11 +115,11 @@ calendarLocale =
   minDate: new Date
   onSelect: (e) ->
     dates = $(this).data('datepicker')
-    selectDate = dates.currentDay + '/' + dates.currentMonth + 1 + '/' + dates.currentYear
+    selectDate = dates.currentDay + '.' + dates.currentMonth + '.' + dates.currentYear
     $(this).parent().find('.selected-value').html selectDate
     if $(this).hasClass('js_changeDateToDatePicker')
       changeDateToDatePicker $(this)
-    $(this).change()
+#    $(this).change()
     $(this).parent().addClass 'show'
 
 
@@ -172,7 +172,7 @@ activeMenu = ->
     showBlock = $(@).data 'id'
     if showBlock == "innerCalendar"
       $(@).closest('.hidden__content').addClass 'is__show_calendar'
-      $('.hidden-calendar-wrp .calendar-holder').datepicker(calendarLocale)
+#      $('.hidden-calendar-wrp .calendar-holder').datepicker(calendarLocale)
       $('.hidden-calendar .calendar-header .back__v2').on 'click', ->
         $(@).closest('.hidden__content').removeClass 'is__show_calendar'
 

@@ -102,7 +102,7 @@ module Api::V1
     end
 
     def add_courses
-      hash_params = params[:courses]
+      hash_params = params[:course]
       hash_params.each do |course|
         course = course.last
         BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)

@@ -6,10 +6,10 @@ class BunchCourse < ActiveRecord::Base
   has_many :bunch_sections, dependent: :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
 
-  scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day) }
+  scope :overdue, -> { where("date_complete < ?", Time.now.beginning_of_day).where.not(complete: true, date_complete: nil) }
   scope :my, -> { where({model_type: "user"}) }
   scope :in_group, -> { where({model_type: "group"}) }
-  scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true}).uniq }
+  scope :in_study, -> { includes(bunch_sections: [:bunch_attachments]).where({"bunch_attachments.complete" => true, complete: false}).uniq }
   scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
   scope :uniq_by_course_id, -> { select(:course_id).distinct }
@@ -26,6 +26,22 @@ class BunchCourse < ActiveRecord::Base
         build_to_user(course_id, user_id, nil, date_complete, type, nil, sections_hash)
     end
     true
+  end
+
+  def status
+    progress = self.progress rescue 0
+    bc_type = model_type == "user" rescue true
+    bc_complete = complete rescue false
+    hash = progress != 0 ? {v: progress} : (bc_type ? {v: 'Добавлен'} : {v: 'Назначен'})
+    date = time_current_day(date_complete) rescue 0
+    hash = {v: "Пройти до #{ApplicationController.helpers.ltime(date_complete, '', 'short_min_y')}"} if date_complete.present?
+    hash = {k: 'overdue', v: "Просрочен на #{ApplicationController.helpers.rus_case(date.abs, 'день', 'дня', 'дней') }"} if overdue?
+    hash = {k: 'completed', v: 'Пройденно'} if bc_complete
+    hash
+  end
+
+  def overdue?
+    !date_complete.present? ? false : date_complete.end_of_day < Time.new.end_of_day
   end
 
   def transfer_to_json

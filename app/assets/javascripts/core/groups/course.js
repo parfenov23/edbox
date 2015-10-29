@@ -178,7 +178,7 @@ var bind_block = function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
 
-    $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+    $('.js_edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
     });
 

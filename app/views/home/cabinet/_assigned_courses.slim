@@ -9,38 +9,7 @@
       p
         'На изучении:
         = my_bunch_courses.in_study.count
-    /p.more
-    /  a href ="/my_course?type=assigned" СМОТРЕТЬ ВСЕ
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
-        figure.corses-prev.compact.js__removeCourseMyBlock
-          = render "common/course/course_img", {course: course, w: 694, h: 384}
-          figcaption
-            .title
-              .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
-              .shadow
-              - if my_bunch_course.model_type == "user"
-                .com__director-btn.js__select-calendar
-                  a.edit-date href="javascript:void(0)"
-                    i.icon-uniE8A3
-                  .hidden-calendar-wrp
-                    .hidden-calendar
-                      .calendar-header
-                        .back.icon
-                        |Выбор даты
-                      .calendar-holder
-                        - text_data = "Дата оканчания курса изменена"
-                        .selected-value.js_changeDeadLineCourseMy data-text=text_data data-course_id=my_bunch_course.course_id Выберите дату
-                      .datapicker__trigger.incDocumentReady
-                    ul.hidden-list
-                      /- text_data = "Дата оканчания курса изменена"
-                      /li data-show="hidden-calendar" Перенести дату окончания курса
-                      - ts = "Курс удален!"
-                      li.js_removeCourseMy data-text=ts data-course_id=my_bunch_course.course_id  Удалить
-            .author
-              - unless my_bunch_course.model_type == "user"
-                'Завершить до
-                = ((l local_time(my_bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
-              - else
-                = (course.ligament_leads.last.user.full_name rescue nil)
+        = render "course/course", {course: course, type: "short__ver", model_type: type_course}

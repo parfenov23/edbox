@@ -142,7 +142,7 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def find_bunch_course(user_id, type='user', group_id=nil)
+  def find_bunch_course(user_id, type=nil, group_id=nil)
     hash_expression = {course_id: id, user_id: user_id, group_id: group_id, model_type: type}.compact
     bunch_courses.where(hash_expression).last
   end
@@ -153,7 +153,7 @@ class Course < ActiveRecord::Base
   end
 
   def full_duration
-    duration
+    duration.to_i
   end
 
   def clear_description
@@ -207,7 +207,7 @@ class Course < ActiveRecord::Base
   end
 
   def transfer_to_json(user_id = nil)
-    ligament_groups = self.ligament_groups(user_id)
+    ligament_groups = self.ligament_groups(user_id) rescue nil
     result = as_json({except: [:duration, :main_img, :description, :user_id, :account_type_id],
                       methods: [:clear_description, :teaser_image, :teaser_video, :leadings, :audiences, :duration_time],
                       include:
@@ -221,7 +221,7 @@ class Course < ActiveRecord::Base
     result["assigned"] = result_assigned
     result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
     # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
-    result["ligament_groups"] = ligament_groups
+    result["ligament_groups"] = ligament_groups rescue nil
     if result_assigned
       bunch_course = find_bunch_course(user_id, ["group", "user"])
       result["bunch_course"] = bunch_course.transfer_to_json

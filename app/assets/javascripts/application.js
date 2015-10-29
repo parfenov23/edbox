@@ -313,15 +313,17 @@ $(document).ready(function () {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
     });
 
-    $(document).on('click', 'figure.corses-prev', function (e) {
+    $(document).on('click', 'figure.basic__module, figure.shot__module', function (e) {
         var cabinte_block_valid = (! $(e.target).closest(".com__director-btn").length && ! $(e.target).hasClass(".com__director-btn"))
         if (! $(e.target).closest(".action-btn").length && ! $(e.target).hasClass("action-btn") && cabinte_block_valid){
-            var link = $(this).find("a.goToCourse");
-            if (link.length){
-                link[0].click();
-            } else {
-                link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
-                window.location.href = link;
+            if(!$(e.target).hasClass("action__menu") && !$(e.target).closest(".action__menu").length){
+                var link = $(this).find("a.goToCourse");
+                if (link.length){
+                    link[0].click();
+                } else {
+                    link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
+                    window.location.href = link;
+                }
             }
         }
     });

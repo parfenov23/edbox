@@ -1,0 +1,37 @@
+figcaption
+  .title
+    a.goToCourse href="/course_description?id=#{course.id}"
+      .inner = course.title
+    .js__action-menu.action__menu.js_edit-menu
+      .icon__block
+        i.icon
+      .hidden__content
+        .hidden-list
+          li data-id="innerCalendar" Выбрать дату окончания курса
+          li data-id="showSectionList" Составить расписание по разделам
+          li data-id="delete" Удалить из расписания
+        .hidden-calendar-wrp
+          .hidden-calendar
+            .calendar-header
+              |Выберите дату завершения курса
+              i.back__v2.icon
+            .selected-value.js_changeDeadLineCourse data-id="#{ligament_course.course_id}" data-group_id="#{ligament_course.group_id}"
+            .calendar-holder.datapicker__trigger.incDocumentReady
+
+  .authors = course.ligament_leads.map{|ll| ll.user.full_name }.join(", ")
+  .info__block.adaptive__title
+    .left-col
+      .item.type
+        - type = course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : ""))
+        - text = course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс")
+        i.icon class=type style="position: absolute;"
+        = text
+      .item
+        i.icon.sect
+        = rus_case(course.sections.count, "раздел", "раздела", "разделов")
+      .item
+        i.icon.duration
+        = rus_case(course.full_duration, "минута", "минуты", "минут")
+    - date = ligament_course.date_complete
+    - col_class = date.end_of_day < Time.now.end_of_day ? "overdue" : ""
+    .right-col class=col_class Пройти до #{ltime(date)}
