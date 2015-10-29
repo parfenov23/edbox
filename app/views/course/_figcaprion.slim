@@ -7,7 +7,7 @@ figcaption
         .right-col = !course.paid ? "Бесплатно" : nil
     - else
       .authors = !course.paid ? "Бесплатно" : nil
-  - add_class = "js_addCourseToMyCourse" if current_user.present?
+  - add_class = "js_addCourseToMyCourse" if current_user.present? && !assigned
   a.goToCourse class=(add_class rescue nil) href="/course_description?id=#{course.id}"
     .title = course.title
   - if assigned
