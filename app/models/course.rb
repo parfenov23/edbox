@@ -15,6 +15,7 @@ class Course < ActiveRecord::Base
   scope :publication, -> { where(public: true) }
   scope :materials, -> { where(type_course: "material") }
   scope :webinars, -> { where(type_course: "online") }
+  scope :announcement, -> { joins(sections: [:attachments]).where({"attachments.file_type" => "announcement"})}
   default_scope { order("created_at DESC") }
   USERID_TOJSON = nil
 
