@@ -11,6 +11,9 @@ var completeAttachment = function (btn) {
         btn.removeClass('js_completeAttachment');
         btn.find('.tooltext').text('Следующий материал');
         btn.addClass('js_redirectAttachment');
+        var icon = btn.find('.icon');
+        icon.removeClass('done');
+        icon.addClass('next');
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
