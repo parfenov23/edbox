@@ -7,12 +7,17 @@ figcaption
         .right-col = !course.paid ? "Бесплатно" : nil
     - else
       .authors = !course.paid ? "Бесплатно" : nil
-  - add_class = "js_addCourseToMyCourse" if current_user.present? && !assigned
-  a.goToCourse class=(add_class rescue nil) href="/course_description?id=#{course.id}"
-    .title = course.title
-  - if assigned
-    - bunch_course = course.find_bunch_course(current_user.id, nil)
-    = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user"
+  -  if current_user.present? && !assigned && course.material?
+    - redirect_att = "/course_description?id=#{course.id}"
+    - add_class = "js_addCourseToMyCourse"
+  form data-redirect=(redirect_att rescue nil) data-alert="false"
+    - if course.material?
+      input type="hidden" name="course_id" value=course.id
+    a.goToCourse class=(add_class rescue nil) href="/course_description?id=#{course.id}"
+      .title = course.title
+    - if assigned
+      - bunch_course = course.find_bunch_course(current_user.id, nil)
+      = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user"
   .info__block
     .type
       - type = course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : ""))
