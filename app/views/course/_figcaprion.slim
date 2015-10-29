@@ -7,8 +7,8 @@ figcaption
         .right-col = !course.paid ? "Бесплатно" : nil
     - else
       .authors = !course.paid ? "Бесплатно" : nil
-
-  a.goToCourse href="/course_description?id=#{course.id}"
+  - add_class = "js_addCourseToMyCourse" if current_user.present?
+  a.goToCourse class=(add_class rescue nil) href="/course_description?id=#{course.id}"
     .title = course.title
   - if assigned
     - bunch_course = course.find_bunch_course(current_user.id, nil)
