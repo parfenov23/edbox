@@ -10,6 +10,9 @@
     }
   }
 }
+figure{
+  cursor:pointer;
+}
 figure.basic__module {
   @include white__block(1, 0);
   width: 360px;

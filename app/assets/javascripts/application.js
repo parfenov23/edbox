@@ -317,12 +317,14 @@ $(document).ready(function () {
         var cabinte_block_valid = (! $(e.target).closest(".com__director-btn").length && ! $(e.target).hasClass(".com__director-btn"))
         if (! $(e.target).closest(".action-btn").length && ! $(e.target).hasClass("action-btn") && cabinte_block_valid){
             if(!$(e.target).hasClass("action__menu") && !$(e.target).closest(".action__menu").length){
-                var link = $(this).find("a.goToCourse");
-                if (link.length){
-                    link[0].click();
-                } else {
-                    link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
-                    window.location.href = link;
+                if(!$(e.target).hasClass('left-image') && !$(e.target).closest('.left-image').length){
+                    var link = $(this).find("a.goToCourse");
+                    if (link.length){
+                        link[0].click();
+                    } else {
+                        link = $(this).find(".title .inner").attr("onclick").replace("window.location.href=", '').replace('"', '').replace('"', '')
+                        window.location.href = link;
+                    }
                 }
             }
         }

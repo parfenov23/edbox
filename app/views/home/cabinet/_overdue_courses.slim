@@ -11,4 +11,4 @@
     .course-prev-list
       - overdue_bunch_courses.each do |overdue_bunch_course|
         - course = overdue_bunch_course.course
-        = render "course/course", {course: course, type: "short__ver"}
+        = render "course/course", {course: course, type: "short__ver", action_block: true}
