@@ -1,3 +1,4 @@
+- assigned = (course.assigned?(current_user.id) rescue false)
 figcaption
   - unless type == "short__ver"
     - unless course.material?
@@ -9,6 +10,9 @@ figcaption
 
   a.goToCourse href="/course_description?id=#{course.id}"
     .title = course.title
+  - if assigned
+    - bunch_course = course.find_bunch_course(current_user.id, nil)
+    = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user"
   .info__block
     .type
       - type = course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : ""))
@@ -20,7 +24,6 @@ figcaption
       - date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1
       - date_webinar = (ltime(attachments.last.date_start) rescue nil) if attachments.count == 1
       .time__date = date_webinar
-    - if (course.assigned?(current_user.id) rescue false)
-      - bunch_course = course.find_bunch_course(current_user.id, nil)
+    - if assigned
       .progress__block
         .bar style="width:#{bunch_course.progress}%"
