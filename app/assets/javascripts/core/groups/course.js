@@ -247,7 +247,7 @@ var addCoursesFromFavorite = function () {
         var course_params = {};
         course_params["course_id"] = course_block.data("course_id");
         course_params["group_id"] = group_id;
-        course_params["date_complete"] = course_block.find(".hidden-calendar-wrp .jsValueDatePicker").val();
+        course_params["date_complete"] = course_block.find(".hidden-calendar-wrp .jsValueDatePicker").text();
         hash_params["courses"][i] = course_params;
     });
     $.ajax({
@@ -306,7 +306,7 @@ $(document).ready(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
 
-    $('.single-course .hidden-calendar-wrp .jsValueDatePicker').change(function () {
+    $('.single-course .hidden-calendar-wrp .jsValueDatePicker').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         $(this).closest(".single-course").addClass("selected");
     });
 

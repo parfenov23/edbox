@@ -219,7 +219,7 @@ input[type="submit"] {
         line-height   : 47px;
         position      : absolute;
         top           : 50%;
-        left          : 55px;
+        left          : 64px;
         width         : 47px;
         height        : 47px;
         margin-top    : -24px;
@@ -227,6 +227,7 @@ input[type="submit"] {
         text-align    : center;
         color         : $primaryColor;
         border        : 2px solid $primaryColor;
+        z-index: 999;
 
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius : 48px;
@@ -327,7 +328,6 @@ input[type="submit"] {
 
 .left-image {
   float : left;
-  width : 160px;
 }
 
 .courses-info {
@@ -415,7 +415,7 @@ input[type="submit"] {
 .details-nav {
   ul {
     float        : left;
-    width        : 60%;
+    width        : 100%;
     padding-left : 0;
     @include clearfix;
     li {

@@ -180,6 +180,10 @@ activeMenu = ->
       $('.js__section_popup').fadeIn().addClass 'is__active'
     else if showBlock == "delete"
       console.log showBlock
+    else if showBlock == "selectCourseGroup"
+      $(this).closest(".single-course").addClass("selected")
+      $(".js__action-menu.is__active").removeClass("is__active")
+      $(".js__action-menu .is__show_calendar").removeClass("is__show_calendar")
 
 
 # функция которая скрывает блок по клику вне его
@@ -266,6 +270,8 @@ $(document).ready ->
 
 # новый выпадающий список в трех точках (его появление)
   $(document).on 'click', '.js__action-menu .icon__block', ->
+    $(".js__action-menu.is__active").removeClass("is__active")
+    $(".js__action-menu .is__show_calendar").removeClass("is__show_calendar")
     $(@).closest('.js__action-menu').toggleClass 'is__active'
     $('.js__backing').toggleClass 'is__active'
 
@@ -331,7 +337,7 @@ $(document).ready ->
 
 
 # скрывает все по клику на .js__backing
-  $(document).on 'click', '.js__backing', ->
+  $(document).on 'click', '.js__backing, .md-overlay', ->
     $('.hidden-calendar-wrp .hidden-list, .hidden-calendar').hide()
     $('.hidden__content').removeClass 'is__show_calendar'
     $('.js__action-menu, .js__left-aside').removeClass 'is__active'
