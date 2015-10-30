@@ -39,18 +39,22 @@ module Api::V1
         arr_hash_users = emails.map do |email|
           validate = true
           user = User.find_by_email(email)
-          if user.nil?
-            validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
-          end
-          if validate
-            user = User.build_default(current_user.company_id, email) if user.nil?
+          if current_user.company.users.where(user.as_json).present?
+            if user.nil?
+              validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
+            end
+            if validate
+              user = User.build_default(current_user.company_id, email) if user.nil?
+            else
+              result[:error] = "Вы превысили лимит приглашения участников"
+            end
+            if (user.save rescue false)
+              BunchGroup.build(user.id, group.id).save
+              user.create_notify(group)
+              user.transfer_to_json
+            end
           else
-            result[:error] = "Вы превысили лимит приглашения участников"
-          end
-          if (user.save rescue false)
-            BunchGroup.build(user.id, group.id).save
-            user.create_notify(group)
-            user.transfer_to_json
+            result[:error] = "Участник с таким Email не состоит в вашей компании"
           end
         end
       end
