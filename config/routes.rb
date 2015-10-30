@@ -28,6 +28,11 @@ Rails.application.routes.draw do
         get ":action" => "contenter#:action"
       end
     end
+    resources :director do
+      collection do
+        get ":action" => "director#:action"
+      end  
+    end
     resources :billing do
       collection do
         get ":action" => "billing#:action"

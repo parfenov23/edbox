@@ -1,0 +1,185 @@
+$director__table_first_col_width: 273px;
+$director__table_common_col_width: 214px;
+$director__table_border_style: 1px solid black__color(decoration__color);
+
+
+.director__statistic {
+  @include middle-block(1128px);
+  .dropdown__flash {
+    margin-right: 13px;
+    margin-left: 0;
+    .visible__part {
+      @include text__setting(normal__typo);
+      i {
+        right: 34px;
+        font-size: 17px;
+      }
+    }
+    .hidden__list {
+        top: -24px;
+      li {
+        @include text__setting(normal__typo);
+        @include eclipses;
+        padding-right: 8px;
+      }
+    }
+  }
+  .miracle__notification {
+    @include middle-block(936px);
+    @include white__block(1, 0);
+    @include clearfix;
+    padding: 22px 55px 24px 25px;
+    position: relative;
+    margin-bottom: 48px;
+    .delete {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 24px;
+      color: black__color(secondary__color);
+      cursor: pointer;
+    }
+  }
+  .icon__holder {
+    width: 32px;
+    margin-right: 25px;
+    float: left;
+    img {
+      width: 100%;
+    }
+  }
+  .text__holder {
+    width: 784px;
+    float: left;
+    margin-top: -2px;
+    .title {
+      @include text__setting(header__typo_1);
+      margin-bottom: 8px;
+    }
+    .description {
+      @include text__setting(normal__typo);
+    }
+  }
+  .director__statistic__filtre {
+    @include middle-block(936px);
+    @include clearfix;
+    background-color: #EEEEEE;
+    padding: 24px 32px 16px 32px;
+    margin-bottom: 46px;
+    .dropdown__flash {
+      float: left;
+    }
+  }
+  .director__stat_table {
+    @include white__block(1, 0);
+    .action__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 32px 24px 32px;
+      .dropdown__flash {
+        float: left;
+      }
+    }
+    .table__paginator {
+      display: flex;
+      justify-content: flex-start;
+      width: 175px;
+      padding-left: 4px;
+      margin-right: -5px;
+      .block__counter {
+        @include text__setting(normal__typo, secondary__color);
+        margin-right: 33px;
+      }
+      .action__block {
+        display: flex;
+        justify-content: flex-start;
+        color: black__color(decoration__color);
+        i {
+          font-size: 24px;
+          &.is__active {
+            cursor: pointer;
+            color: black__color(secondary__color);
+          }
+        }
+        .prev{
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+  .psevdo__table__header {
+    @include clearfix;
+    .first__item {
+      width: $director__table_first_col_width;
+      float: left;
+      height: 90px;
+    }
+  }
+  .course__title__list {
+    float: right;
+    width: calc(100% - #{$director__table_first_col_width});
+    overflow: hidden;
+    .wrp {
+      width: 10000%;
+    }
+    .item {
+      height: 90px;
+      width: $director__table_common_col_width;
+      border-left: $director__table_border_style;
+      float: left;
+      padding: 18px 8px 24px 12px;
+      .icon {
+
+      }
+    }
+  }
+  .psevdo__table__body {
+
+  }
+  .name__column {
+    float: left;
+    .item {
+      height: 64px;
+      padding: 14px 19px 15px 35px;
+      width: $director__table_first_col_width;
+      border-top: $director__table_border_style;
+      .ava {
+        @include inline-block;
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+        img {
+          width: 100%;
+        }
+      }
+      .name {
+        @include inline-block;
+        @include eclipses;
+        @include text__setting(normal__typo, secondary__color);
+        width: 149px;
+      }
+    }
+  }
+  .status__table {
+    overflow: hidden;
+    .wrp {
+      @include clearfix;
+      width: 10000%;
+      @include transition;
+    }
+  }
+  .table__column {
+    float: left;
+    width: $director__table_common_col_width;
+    .item {
+      height: 64px;
+      border-left: $director__table_border_style;
+      border-top: $director__table_border_style;
+      line-height: 64px;
+      text-align: center;
+      &.overdue {
+        color: #F50057;
+      }
+    }
+  }
+}
