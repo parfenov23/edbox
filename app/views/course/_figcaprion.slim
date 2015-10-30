@@ -26,7 +26,8 @@ figcaption
       = text
     - if course.announcement? || course.online?
       - if course.announcement?
-        .time__date = 'Выйдет скоро'
+        - announcement_date = course.announcement_date.present? ? ltime(course.announcement_date, "", 'short_date') : 'скоро'
+        .time__date = "Выйдет #{announcement_date}"
       - elsif course.online?
         - attachments = course.sections.attachments.webinars.order("date_start ASC")
         - date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1

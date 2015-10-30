@@ -18,7 +18,7 @@
             span Бесплатный
 
         - if @course.announcement?
-          .startDate
+          .startDate style='margin-left : 50px;'
             span.text Дата начала:
             input.datapicker__trigger.js_announce_time data-type="date_time" placeholder="Ничего не выбрано" value=(date_time.strftime("%d.%m.%y") rescue nil) readonly='readonly'
 

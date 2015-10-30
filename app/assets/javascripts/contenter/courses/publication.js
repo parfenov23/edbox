@@ -13,7 +13,7 @@ var updateTypeCourse = function () {
 
 var publicationCourse = function (){
     var btn = $(this);
-    data = {course: {'public': btn.data('type')}};
+    var data = {course: {'public': btn.data('type')}};
     var date = $(this).closest('form').find('.js_announce_time');
     if (date.length) {
         data = {course: {'public': btn.data('type'), 'announcement_date': date.val() }}
@@ -21,7 +21,7 @@ var publicationCourse = function (){
     $.ajax({
         type: 'PUT',
         url : '/api/v1/courses/' + btn.data('id'),
-        data: {course: {'public': btn.data('type'), 'announcement_date': btn.data('type') }}
+        data: data
     }).success(function (data) {
         var rus_type = "Курс";
         if ($("#typeCourseInputVal").val() == "material"){
