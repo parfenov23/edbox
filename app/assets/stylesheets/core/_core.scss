@@ -209,6 +209,7 @@
     }
   }
   .oh__nihuyase-block {
+    margin-top : -196px;
     .helpError {
       i.icon.help {
         top : 14px;
@@ -229,8 +230,10 @@
       background-color : rgba(255, 255, 255, 0);
       border           : 0;
       border-bottom    : 1px solid #949494;
-      color            : white;
+      color            : #828282;
       outline          : none;
+      font-size        : 36px;
+      margin-bottom    : 24px;
     }
     .detail__info {
       .description {
@@ -327,7 +330,7 @@
 .contenter#contenterCourseProgram {
   .oh__nihuyase-block {
     margin-top : 0px;
-    top: 0px;
+    top        : 0px;
   }
   .inner-content {
     padding-top : 128px;
@@ -983,7 +986,7 @@
   .corses-prev, .course-prev-list {
     .image.material {
       background-image : url('orange-waves.svg');
-      background-size: cover;
+      background-size  : cover;
       display          : flex;
       justify-content  : center;
       align-items      : center;
