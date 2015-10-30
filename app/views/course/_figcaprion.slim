@@ -24,11 +24,14 @@ figcaption
       - text = course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс")
       i.icon class=type
       = text
-    - if course.online?
-      - attachments = course.sections.attachments.webinars.order("date_start ASC")
-      - date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1
-      - date_webinar = (ltime(attachments.last.date_start) rescue nil) if attachments.count == 1
-      .time__date = date_webinar
+    - if course.announcement? || course.online?
+      - if course.announcement?
+        .time__date = 'Выйдет скоро'
+      - elsif course.online?
+        - attachments = course.sections.attachments.webinars.order("date_start ASC")
+        - date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1
+        - date_webinar = (ltime(attachments.last.date_start) rescue nil) if attachments.count == 1
+        .time__date = date_webinar
     - if assigned
       .progress__block
         .bar style="width:#{bunch_course.progress}%"
