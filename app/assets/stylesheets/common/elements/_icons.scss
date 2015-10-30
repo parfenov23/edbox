@@ -262,4 +262,16 @@ i.icon {
     }
   }
 
+  &.less {
+    &::before {
+      content: "\E7B5";
+    }
+  }
+
+  &.more {
+    &::before {
+      content: "\E7B6";
+    }
+  }
+
 }
