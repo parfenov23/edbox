@@ -1,21 +1,20 @@
 class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay]
+                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay, :index]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
   # caches_page :courses
 
-  def index_page
+  def index
+    @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
-        redirect_to '/cabinet'
+        redirect_to '/courses'
       else
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
-    else
-      redirect_to '/sign_in'
     end
   end
 
