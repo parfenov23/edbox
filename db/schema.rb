@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026093410) do
+ActiveRecord::Schema.define(version: 20151030105609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,10 +252,11 @@ ActiveRecord::Schema.define(version: 20151026093410) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "duration"
-    t.boolean  "public",          default: false
+    t.boolean  "public",            default: false
     t.integer  "account_type_id"
-    t.boolean  "paid",            default: false
-    t.string   "type_course",     default: "course"
+    t.boolean  "paid",              default: false
+    t.string   "type_course",       default: "course"
+    t.datetime "announcement_date"
   end
 
   create_table "favorite_courses", force: true do |t|
