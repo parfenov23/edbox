@@ -62,7 +62,8 @@ class Attachment < ActiveRecord::Base
   def validate
     valid_title = title.present? && description.present?
     valid_file = (!["test", "description", "webinar", "announcement"].include?(file_type)) ? file.present? : valid_other
-    valid_title && valid_file
+    validate_date = file_type == "webinar" ? webinar.date_start.present? : true
+    valid_title && valid_file && validate_date
   end
 
   def valid_other
