@@ -88,6 +88,7 @@ sendInvintations = function () {
                 url : '/api/v1/users/invite',
                 data: {emails: data}
             }).success(function (data) {
+                $(".members__invite ul li").remove();
                 if (data.error == undefined){
                     show_error('Приглашения отправлены', 3000);
                     setTimeout(function () {

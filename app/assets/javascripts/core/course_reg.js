@@ -1,7 +1,20 @@
 var openFormRegistration = function(){
+    var btn = $(this);
     var popup = $("#formCourseRegPopUp");
     popup.show();
     $(document).scrollTop( popup.offset().top);
+    if($(this).hasClass("selectType")){
+        selectType(btn.data('type'));
+    }
+};
+
+var selectType = function(type){
+    if (type == 'pers'){
+        $("#formCourseRegPopUp .pidor__raz .btn.pers").click();
+    }
+    if (type == 'corp'){
+        $("#formCourseRegPopUp .pidor__dva .btn.corp").click();
+    }
 };
 
 var openFormRegistrationAuth = function(){
@@ -13,12 +26,7 @@ var openFormRegistrationAuth = function(){
 var regFromLanding = function(regtype){
     if ($('.js_openFormRegistration').length != 0){
         $.when(openFormRegistration()).then(function () {
-            if (regtype.data('type') == 'pers'){
-                $("#formCourseRegPopUp .pidor__raz .btn").click();
-            }
-            if (regtype.data('type') == 'corp'){
-                $("#formCourseRegPopUp .pidor__dva .btn").first().click();
-            }
+            selectType(regtype.data('type'));
         });
     };
 };

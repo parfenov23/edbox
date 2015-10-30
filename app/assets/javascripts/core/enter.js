@@ -70,6 +70,12 @@ function fixed_btn_save(){
 }
 
 $(document).ready(function () {
+
+    $(".js_LendingGoToSubscription").on('click', function(){
+        $('html,body').animate({
+            scrollTop: $("#divToBeScrolledTo").offset().top - 64
+        });
+    });
     if ($("form.js_registrationUser").length){
         (function() {
             $('.phoenix-input').phoenix();
@@ -84,13 +90,17 @@ $(document).ready(function () {
         var val_inp = $("input[name='company[name]']");
         var selected = $(".js_registrationUser .auth__reg-selected");
         var input_corp_name = $(".js_registrationUser .input-wrp.corporate_acc");
-        if (val_inp.count_text_input()){
-            selected.text("Корпоративный аккаунт");
-            input_corp_name.addClass("active");
-        }else{
-            input_corp_name.removeClass("active");
-            selected.text("Персональный аккаунт");
+        var param_type = $("#paramsInputTypeAccount").val();
+        if (param_type != undefined && !param_type.length){
+            if (val_inp.count_text_input()){
+                selected.text("Корпоративный аккаунт");
+                input_corp_name.addClass("active");
+            }else{
+                input_corp_name.removeClass("active");
+                selected.text("Персональный аккаунт");
+            }
         }
+
     }
 
     $(window).scroll(function () {

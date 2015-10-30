@@ -4,7 +4,7 @@
   .adaptive__title
     .fixed-h
       - title = attachment.title
-      .left-col.title = title.present? ? title : "Нет заголовка"
+      .left-col.title.js_openInfoParent = title.present? ? title : "Нет заголовка"
     .right-col
       - duration = attachment.duration.to_i
       = rus_case(duration, "минута", "минуты", "минут") if duration > 0

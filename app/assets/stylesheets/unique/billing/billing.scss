@@ -247,6 +247,12 @@
           cursor: default;
         }
       }
+      .dropdown__flash {
+        .visible__part {
+          padding-left: 33px;
+        }
+      }
+
     }
     &.suc {
       >.title {
