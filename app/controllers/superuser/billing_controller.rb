@@ -43,7 +43,7 @@ module Superuser
 
     def all
       @user = find_user
-      @subscriptions = @user.find_subscription([true, false], false)
+      @subscriptions = @user.find_subscription([true, false], false, "all")
     end
 
     def remove
@@ -70,7 +70,7 @@ module Superuser
 
     def sub_params
       params.require(:subscription).permit(:date_from, :date_to, :subscriptiontable_type, :sum,
-                                           :subscriptiontable_id, :active).compact.select { |k, v| v != "" } rescue {}
+                                           :subscriptiontable_id, :active, :user_count).compact.select { |k, v| v != "" } rescue {}
     end
 
   end

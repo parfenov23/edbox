@@ -87,11 +87,16 @@ sendInvintations = function () {
                 type: 'POST',
                 url : '/api/v1/users/invite',
                 data: {emails: data}
-            }).success(function () {
-                show_error('Приглашения отправлены', 3000);
-                setTimeout(function () {
-                    location.reload();
-                }, 1500);
+            }).success(function (data) {
+                $(".members__invite ul li").remove();
+                if (data.error == undefined){
+                    show_error('Приглашения отправлены', 3000);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+                }else{
+                    show_error(data.error, 3000);
+                }
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });
@@ -112,11 +117,20 @@ sendInvintationsInGroup = function () {
                 type: 'POST',
                 url : '/api/v1/groups/' + btn.data("group_id") + '/invite',
                 data: {emails: data}
-            }).success(function () {
-                show_error('Приглашения отправлены', 3000);
-                setTimeout(function () {
-                    location.reload();
-                }, 1500);
+            }).success(function (data) {
+                if (data.error == undefined){
+                    show_error('Приглашения отправлены', 3000);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1500);
+                }else{
+                    show_error(data.error, 3000);
+                    if (data.users.length){
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1500);
+                    }
+                }
             }).error(function () {
                 show_error('Произошла ошибка отправки', 3000);
             });

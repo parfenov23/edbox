@@ -57,14 +57,14 @@ class User < ActiveRecord::Base
     result
   end
 
-  def find_subscription(active = true, find_time=true)
+  def find_subscription(active = true, find_time=false, type="last")
     model = director? ? (company rescue self) : self
     time = Time.current
     subs = model.subscriptions.where(active: active)
     if find_time
-      subs = subs.where(["date_from < ? and date_to > ?", time, time]).last
+      subs = subs.where(["date_from < ? and date_to > ?", time, time])
     end
-    subs
+    type == "last" ? subs.last : subs
   end
 
   def get_account_type
@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
   end
 
   def view_course?(course)
-    !course.paid || (course.paid && paid)
+    !course.paid || (course.paid && get_account_type)
   end
 
   def all_groups

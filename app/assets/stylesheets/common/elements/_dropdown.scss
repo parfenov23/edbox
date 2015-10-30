@@ -5,6 +5,12 @@
   .visible__part {
     @include text__setting(header__typo_1);
     cursor: pointer;
+    i {
+      position: absolute;
+      right: 31px;
+      top: 0px;
+      font-size: 22px;
+    }
   }
   .hidden__list {
     @include white__block(1,0);

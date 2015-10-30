@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'home#index_page'
+  root to: 'home#index'
   get :sign_in, to: "enter#sign_in"
   get :sign_up, to: "enter#sign_up"
   get :sign_out, to: "enter#sign_out"
@@ -27,6 +27,11 @@ Rails.application.routes.draw do
       collection do
         get ":action" => "contenter#:action"
       end
+    end
+    resources :director do
+      collection do
+        get ":action" => "director#:action"
+      end  
     end
     resources :billing do
       collection do

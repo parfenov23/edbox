@@ -256,4 +256,22 @@ i.icon {
     }
   }
 
+  &.to__drop {
+    &::before {
+      content: "\E894";
+    }
+  }
+
+  &.less {
+    &::before {
+      content: "\E7B5";
+    }
+  }
+
+  &.more {
+    &::before {
+      content: "\E7B6";
+    }
+  }
+
 }

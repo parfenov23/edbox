@@ -111,6 +111,7 @@
     > .title {
       @include text__setting(header__typo_2);
       margin-bottom: 24px;
+      padding-right: 30px;
     }
     .description  {
       @include text__setting(normal__typo);
@@ -211,7 +212,7 @@
       }
       input {
         @include text__setting(header__typo_1);
-        width: 21px;
+        width: 29px;
         border: none;
         background: none;
         border-bottom: 1px solid black__color(secondary__color);
@@ -257,6 +258,11 @@
       .privet__calc {
         .visible__part {
           cursor: default;
+        }
+      }
+      .dropdown__flash {
+        .visible__part {
+          padding-left: 33px;
         }
       }
       .action__block {

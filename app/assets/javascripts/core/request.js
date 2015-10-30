@@ -60,7 +60,11 @@ var sendRequestForm = function(){
             var item = form.closest(".item");
             var type_account = item.find("input[name='type_account']").val();
             var email = form.find("input[name='email']").val();
-            subscription_pay(type_account, email);
+            if (type_account == "user"){
+                subscription_pay(type_account, email);
+            }else{
+                warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox', 'Хорошо');
+            }
         }).error(function () {
             show_error('Ошибка', 3000);
         });

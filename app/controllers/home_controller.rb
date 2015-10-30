@@ -1,21 +1,20 @@
 class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay]
+                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay, :index]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
   # caches_page :courses
 
-  def index_page
+  def index
+    @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
-        redirect_to '/cabinet'
+        redirect_to '/courses'
       else
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
-    else
-      redirect_to '/sign_in'
     end
   end
 
@@ -101,7 +100,6 @@ class HomeController < ActionController::Base
   end
 
   def cabinet
-    # binding.pry
     @favorite_courses = current_user.favorite_courses
     # redirect_to "/schedule" unless current_user.director
   end
@@ -128,7 +126,7 @@ class HomeController < ActionController::Base
     params_sub = params
     user = User.where(email: params_sub[:email]).last
     user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
-    params_sub[:type_account] == "user" ? params_sub[:sum] = 1.00 : params_sub[:sum] = 50000.00
+    params_sub[:type_account] == "user" ? params_sub[:sum] = 1490.00 : params_sub[:sum] = 50000.00
 
     subscription = Subscription.build(params_sub)
     subscription.save
@@ -148,10 +146,10 @@ class HomeController < ActionController::Base
       end
     end
     if @course.material?
-      unless @course.find_bunch_course(current_user.id, ["user", "group"]).present?
-        redirect_to "/courses"
+      attachment = @course.attachments.last
+      unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
+        redirect_to "/courses?type=material"
       else
-        attachment = @course.attachments.last
         redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
       end
     end

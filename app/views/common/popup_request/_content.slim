@@ -10,7 +10,7 @@
   .plane__list
     .item.pidor__raz
       .visibile__part
-        .title Бесплатная регистрация
+        .title Попробовать бесплатно
         .description 
           |Ограниченный доступ к библиотеке знаний. 
           br
@@ -34,7 +34,7 @@
           - hash_class += 'ya_paid_course_pers ' if (@course.paid? rescue false)
           - hash_class += 'ya_courses_pers ' if (params[:action] == 'courses')
           - hash_class += 'ya_webinar_pers ' if (@course.online? rescue false)
-          .btn.is__blue.ya_pers_acc class=hash_class ВЫБРАТЬ
+          .btn.is__blue.ya_pers_acc.pers class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
 
@@ -50,7 +50,7 @@
           - hash_class += 'ya_paid_course_corp ' if (@course.paid? rescue false)
           - hash_class += 'ya_courses_corp ' if (params[:action] == 'courses')
           - hash_class += 'ya_webinar_corp ' if (@course.online? rescue false)
-          .btn.is__blue.ya_corp_acc class=hash_class ВЫБРАТЬ
+          .btn.is__blue.ya_corp_acc.corp class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
 

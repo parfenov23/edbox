@@ -154,14 +154,18 @@ var addCourseGroup = function (btn) {
         type: 'POST',
         url : '/api/v1/groups/add_course',
         data: data
-    }).success(function () {
-        var group_id = form.find(".selectGroupId").val();
-        $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
-        openEdnPopup();
-        clearPopup();
-        var id_course = form.find("input.courseId").val();
-        $("#titleCoursePrev" + id_course).closest("a").removeClass(".js_goToAttachmentLock");
-        show_error('Курс добавлен в группу', 3000);
+    }).success(function (data) {
+        if (data.error == undefined){
+            var group_id = form.find(".selectGroupId").val();
+            $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
+            openEdnPopup();
+            clearPopup();
+            var id_course = form.find("input.courseId").val();
+            $("#titleCoursePrev" + id_course).closest("a").removeClass(".js_goToAttachmentLock");
+            show_error('Курс добавлен в группу', 3000);
+        }else{
+            show_error(data.error, 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
