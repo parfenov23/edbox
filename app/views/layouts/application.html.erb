@@ -29,6 +29,9 @@
   <div class="close">×</div>
 </div>
 <div class="js__backing"></div>
+<% if params[:pay].present? %>
+    <input id="notifyPayMessage" type="hidden" value="<%= params[:pay] %>">
+<% end %>
 <%= render "layouts/notification" %>
 
 <% if (@course.paid? rescue true) %>

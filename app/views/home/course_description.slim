@@ -2,13 +2,6 @@
 = render "home/course_description/teaser"
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
-- if current_user.present?
-  - if bunch_course.present?
-    .ya_course_signed_visit style = 'display: none'
-  - else
-    .ya_course_unsigned_visit style = 'display: none'
-- else
-  .ya_course_not_auth_visit style = 'display: none'
 
 - if @course.announcement? && !@current_user.present?
   = render "home/course_description/popup/notify_me"
@@ -28,9 +21,9 @@
       .title Полная программа курса станет доступна в скором времени
       .action__block
         - if current_user.present?
-          .btn.is__blue.js_annonsReg data-email=current_user.email data-course_id=@course.id УВЕДОМИТЬ МЕНЯ
+          .btn.is__blue.js_annonsReg.ya_annons_course data-email=current_user.email data-course_id=@course.id УВЕДОМИТЬ МЕНЯ
         - else
-          .btn.is__blue.js_annons УВЕДОМИТЬ МЕНЯ
+          .btn.is__blue.js_annons.ya_annons_course УВЕДОМИТЬ МЕНЯ
 
   .course__title = course_title
   = render "home/course_description/progress_block", {bunch_course: bunch_course}
@@ -186,7 +179,8 @@
                     input type="hidden" name="course_id" value=@course.id
                   - ad__active = attachment.announcement? ? 'is__unreacheble' : ''
                   - ad__active = !current_user.present? ? (attachment.public ? ad__active : 'is__unreacheble js_openFormRegistration') : (current_user.view_course?(@course) ? ad__active : 'is__unreacheble js_openFormRegistration')
-                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active}").split(" ").join(" ")
+                  - ya_class = ((attachment.file_type == 'video') ? 'ya_see_video' : '')
+                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active} #{ya_class}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
                       i.icon class=attachment.class_type
@@ -210,8 +204,7 @@
             .description Станет доступным после прохождения всех материалов курса
             
 
-- if @course.paid?
-  = render "common/course/course_reg" unless current_user.present?
+= render "common/course/course_reg" unless current_user.present?
 
 = render "home/course_program/sink_button", {course: @course}
 

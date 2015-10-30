@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'schedule', to: "schedules#index"
   post 'schedule/day', to: "schedules#day_schedule"
   get "makeup/:action" => "makeup#:action"
+  post "subscription/pay" => "home#pay"
+  get ":action" => "home#:action"
   # get "makeup/create_group/name" => "makeup/create_group#name", :controller => "makeup"
   namespace :makeup do
     resources :create_group do
@@ -29,6 +31,11 @@ Rails.application.routes.draw do
     resources :director do
       collection do
         get ":action" => "director#:action"
+      end  
+    end
+    resources :billing do
+      collection do
+        get ":action" => "billing#:action"
       end
     end
   end
@@ -52,8 +59,6 @@ Rails.application.routes.draw do
       post :info
     end
   end
-
-  get ":action" => "home#:action"
 
   namespace :api do
     namespace :v1 do
@@ -224,6 +229,12 @@ Rails.application.routes.draw do
       end
       collection do
         get :all_leading
+      end
+    end
+    resources :billing do
+      member do
+        get :all
+        get :remove
       end
     end
     resources :groups do

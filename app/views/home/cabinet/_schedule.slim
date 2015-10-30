@@ -29,7 +29,7 @@ div
             .data
               .week-day = Russian.strftime(current_day, "%a")
               .date = current_day.day
-            .box.ya_schedule_panel_course_click
+            .box
 
               - schedule_current_day[:bunch_courses].each do |bunch_course|
                 - bunch_course = BunchCourse.find(bunch_course)

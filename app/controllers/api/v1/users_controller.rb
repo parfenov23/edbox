@@ -4,6 +4,7 @@ module Api::V1
   class UsersController < ::ApplicationController
     before_action :is_director, only: [:invite, :remove_user]
     skip_before_action :authorize, only: [:send_request]
+
     def info
       render json: current_user.transfer_to_json
     end
@@ -14,18 +15,26 @@ module Api::V1
     end
 
     def invite
-      arr_hash_users = []
-      emails = params[:emails]
-      emails.each do |email|
-        user = User.find_by_email(email)
-        if user.blank?
-          company_id = params[:leading].blank? ? current_user.company_id : nil
-          user = User.build_default(company_id, email)
+      find_sub = current_user.find_subscription
+      company_users = current_user.company.users.count rescue 0
+      validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
+      if validate
+        arr_hash_users = []
+        emails = params[:emails]
+        emails.each do |email|
+          user = User.find_by_email(email)
+          if user.blank?
+            company_id = params[:leading].blank? ? current_user.company_id : nil
+            user = User.build_default(company_id, email)
+          end
+          user.leading = params[:leading] if params[:leading].present?
+          arr_hash_users << user.transfer_to_json if (user.save rescue false)
         end
-        user.leading = params[:leading] if params[:leading].present?
-        arr_hash_users << user.transfer_to_json if (user.save rescue false)
+        result = {users: arr_hash_users}
+      else
+        result = {error: "Вы превысили лимит приглашения участников"}
       end
-      render json: {users: arr_hash_users}
+      render json: result
     end
 
     def remove_user
@@ -55,8 +64,8 @@ module Api::V1
 
     def update_course
       course = Course.find(params[:course_id])
-      if (bunch_course = BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
-        render json: bunch_course.as_json
+      if (BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
+        render json: {success: true}
       else
         render_error(500, 'Проверьте данные')
       end
@@ -140,7 +149,7 @@ module Api::V1
     end
 
     def my_courses
-      render json: Course.where(id: current_user.bunch_courses.where(model_type: "user").map(&:course_id)).map{|ca| ca.transfer_to_json_mini((current_user.id rescue nil))}
+      render json: Course.where(id: current_user.bunch_courses.map(&:course_id)).map { |ca| ca.transfer_to_json_mini((current_user.id rescue nil)) }
     end
 
     private

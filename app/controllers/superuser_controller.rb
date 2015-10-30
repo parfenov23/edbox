@@ -1,4 +1,5 @@
 class SuperuserController < HomeController
+  include ApplicationHelper
   layout "superuser"
   before_action :is_superuser?
 

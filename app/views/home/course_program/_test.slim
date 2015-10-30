@@ -22,7 +22,7 @@
                 div class=type_block.gsub("box", "")
                   // input#an-2-1 type="checkbox"
                   input id="an-#{question.id}-#{answer.id}" type=type_block name="answer[#{answer.question_id}][]" value="#{answer.id}"
-                  label for="an-#{question.id}-#{answer.id}"
+                  label class="#{'icon' if type_block == 'checkbox'}" for="an-#{question.id}-#{answer.id}"
                     i
                     .text = answer.text
     - add_class = "js_submitFormTest"

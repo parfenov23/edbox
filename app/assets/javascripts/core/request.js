@@ -55,8 +55,12 @@ var sendRequestForm = function(){
             data: form.serialize()
         }).success(function () {
             btn.closest(".ugly__popup").hide();
-            warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox', 'Хорошо');
-            pay_redirect(form);
+            //warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox', 'Хорошо');
+            //pay_redirect(form);
+            var item = form.closest(".item");
+            var type_account = item.find("input[name='type_account']").val();
+            var email = form.find("input[name='email']").val();
+            subscription_pay(type_account, email);
         }).error(function () {
             show_error('Ошибка', 3000);
         });
@@ -66,17 +70,6 @@ var sendRequestForm = function(){
 var change_formRequest_Input = function(){
     if($("form.formRequest").hasClass('attempt')){
         validate_request();
-    }
-};
-
-var pay_redirect = function(form){
-    var item = form.closest(".item");
-    var type_account = item.find("input[name='type_account']").val();
-    if (type_account == 'user') {
-        var email = form.find("input[name='email']").val();
-        var ya_cash = item.find(".js_yandex_cash");
-        ya_cash.find("input[name='customerNumber'], input[name='cps_email'], input[name='custEmail']").val(email);
-        ya_cash.submit();
     }
 };
 
