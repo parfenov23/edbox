@@ -39,18 +39,22 @@ module Api::V1
         arr_hash_users = emails.map do |email|
           validate = true
           user = User.find_by_email(email)
-          if user.nil?
-            validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
-          end
-          if validate
-            user = User.build_default(current_user.company_id, email) if user.nil?
+          if current_user.company.users.where(user.as_json).present?
+            if user.nil?
+              validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
+            end
+            if validate
+              user = User.build_default(current_user.company_id, email) if user.nil?
+            else
+              result[:error] = "Вы превысили лимит приглашения участников"
+            end
+            if (user.save rescue false)
+              BunchGroup.build(user.id, group.id).save
+              user.create_notify(group)
+              user.transfer_to_json
+            end
           else
-            result[:error] = "Вы превысили лимит приглашения участников"
-          end
-          if (user.save rescue false)
-            BunchGroup.build(user.id, group.id).save
-            user.create_notify(group)
-            user.transfer_to_json
+            result[:error] = "Участник с таким Email не состоит в вашей компании"
           end
         end
       end
@@ -90,24 +94,33 @@ module Api::V1
     end
 
     def add_course
-      if params[:date_complete].present?
+      if params[:date_complete].present? && params[:group_id].present?
         if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
           render json: bunch_course.as_json
         else
           render_error(500, 'Проверьте данные')
         end
       else
-        render_error(500, 'Проверьте данные')
+        # render_error(500, 'Проверьте данные')
+        te = ["Выберете группу", "Установите дату"]
+        te = (params[:date_complete].blank? && params[:group_id].blank?) ? te.join(' и ') : (params[:group_id].blank? ? te.first : te.last)
+        render json: {error: te}
       end
     end
 
     def add_courses
       hash_params = params[:courses]
-      hash_params.each do |course|
-        course = course.last
-        BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+      dates = hash_params.map{|hp| {date: hp.last[:date_complete], valid_course: !Course.find(hp.last[:course_id]).online?} }
+                .select{|d| !d[:date].present? && d[:valid_course]}
+      if !dates.present?
+        hash_params.each do |course|
+          course = course.last
+          BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+        end
+        render json: {success: true}
+      else
+        render json: {error: "Установите дату"}
       end
-      render json: {success: true}
     end
 
     def update_course

@@ -13,7 +13,7 @@ var removeCourseToGroup = function (btn) {
                 location.reload();
             }, 1000);
         } else {
-            btn.closest("li.single-course").remove();
+            btn.closest("li.single-course, figure").remove();
             show_error('Курс удален из группы', 3000);
         }
     }).error(function () {
@@ -85,8 +85,9 @@ var removeCourseMy = function (btn, text_success) {
         data: {course_id: course_id, date_complete: data_time}
     }).success(function () {
         show_error(text_success, 3000);
-        btn.closest(".js__removeCourseMyBlock").remove();
-        loadMySchedule();
+        btn.closest(".js__removeCourseMyBlock, figure").remove();
+        //loadMySchedule();
+        show_error('Курс удален!', 3000);
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -178,7 +179,7 @@ var bind_block = function () {
         changeDeadLineCourseMy($(this), $(this).data("text"));
     });
 
-    $('.edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
+    $('.js_edit-menu .js_changeDeadLineCourse').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         changeDeadLineCourse($(this));
     });
 
@@ -246,18 +247,22 @@ var addCoursesFromFavorite = function () {
         var course_params = {};
         course_params["course_id"] = course_block.data("course_id");
         course_params["group_id"] = group_id;
-        course_params["date_complete"] = course_block.find(".hidden-calendar-wrp .jsValueDatePicker").val();
+        course_params["date_complete"] = course_block.find(".hidden-calendar-wrp .jsValueDatePicker").text();
         hash_params["courses"][i] = course_params;
     });
     $.ajax({
         type: 'POST',
         url : '/api/v1/groups/add_courses',
         data: hash_params
-    }).success(function () {
-        show_error('Курсы добавлены в группу', 3000);
-        setTimeout(function () {
-            window.location.href = "/group?id=" + group_id + "&type=courses";
-        }, 1300);
+    }).success(function (data) {
+        if (data.error == undefined){
+            show_error('Курсы добавлены в группу', 3000);
+            setTimeout(function () {
+                window.location.href = "/group?id=" + group_id + "&type=courses";
+            }, 1300);
+        }else{
+            show_error(data.error, 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -305,7 +310,7 @@ $(document).ready(function () {
         changeDeadLineSectionGroup($(this), $(this).data("text"));
     });
 
-    $('.single-course .hidden-calendar-wrp .jsValueDatePicker').change(function () {
+    $('.single-course .hidden-calendar-wrp .jsValueDatePicker').bind('DOMNodeInserted DOMNodeRemoved DOMSubtreeModified', function () {
         $(this).closest(".single-course").addClass("selected");
     });
 

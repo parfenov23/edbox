@@ -25,8 +25,8 @@ var annonsReg = function(){
     }).error(function () {
         show_error('Ошибка', 3000);
     });
-    var text = "Уведомление о выходе курса будет отправлено вам на электронную почту";
-    warning(text, 'OK');
+    var popup = $("#notify");
+    popup.toggleClass('is__active');
 };
 
 
@@ -48,18 +48,21 @@ var annonsSend = function(){
     }
 };
 
-
-var annonsEmail = function(el){
-    var block = $(el.target);
+var setTimeoutAnnonsEmail;
+var annonsEmail = function(){
+    var block = $(this);
     var popup =  $(block).closest('.pop_up_confirm');
     var btn = $(popup).find('.js_annonsSend');
-    if(validateEmail(block.val())){
-        block.removeClass('error');
-        btn.removeClass('disable');
-    }else{
-        block.addClass('error');
-        btn.addClass('disable');
-    }
+    clearTimeout(setTimeoutAnnonsEmail);
+    setTimeoutAnnonsEmail = setTimeout(function () {
+        if(validateEmail(block.val())){
+            block.removeClass('error');
+            btn.removeClass('disable');
+        }else{
+            block.addClass('error');
+            btn.addClass('disable');
+        }
+    }, 150);
 };
 
 pageLoad(function(){
@@ -67,7 +70,5 @@ pageLoad(function(){
     $(document).on('click', '.js_annonsReg', annonsReg);
     $(document).on('click', '.js_annonsSend', annonsSend);
     $(document).on('click', '.js_annonsNext', annonsNext);
-    $("input.js_annonsEmail").change(function (e) {
-        annonsEmail(e);
-    });
+    $(document).on('keyup paste input propertychange', 'input.js_annonsEmail', annonsEmail);
 });

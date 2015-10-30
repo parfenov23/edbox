@@ -21,16 +21,19 @@ module Api::V1
       if validate
         arr_hash_users = []
         emails = params[:emails]
+        result = {}
         emails.each do |email|
           user = User.find_by_email(email)
           if user.blank?
             company_id = params[:leading].blank? ? current_user.company_id : nil
             user = User.build_default(company_id, email)
+          elsif params[:leading].blank?
+            result[:error] = "Участник с таким Email уже в в системе!"
           end
           user.leading = params[:leading] if params[:leading].present?
           arr_hash_users << user.transfer_to_json if (user.save rescue false)
         end
-        result = {users: arr_hash_users}
+        result[:users] = arr_hash_users
       else
         result = {error: "Вы превысили лимит приглашения участников"}
       end

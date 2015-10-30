@@ -34,6 +34,13 @@ class Attachment < ActiveRecord::Base
   default_scope { where(archive: false) } #unscoped
   default_scope { order("position ASC") } #unscoped
 
+  def next
+    return nil unless attachmentable_type == 'Section'
+    attach = attachmentable.attachments.find_by(position: (position + 1))
+    attach = attachmentable.course.sections.where(position: (attachmentable.position + 1)).attachments.first unless attach.present?
+    attach
+  end
+
   def clear_full_text
     ActionView::Base.full_sanitizer.sanitize(full_text.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
       .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')

@@ -9,14 +9,14 @@
       - if @courses.present?
         - course_each = @courses_cid.present? ? @courses_cid : @courses
         - course_each.each do |course|
-          = render "courses/course", {course: course, type: 'courses'}
+          = render "course/course", {course: course, type: 'courses'}
       - else
         - if current_user.present?
           = render "common/page_empty", {btn: false}
       - if current_user.present?
         = render "home/courses/pop_up"
 - unless current_user.present?
-  .last__chance.js_parentRequestSend
+  .last__chance.js_parentRequestSend style=(@course.blank? ? "padding-top: 64px;" : "")
     = render "common/popup_request/content"
 
 - if params[:reg].present? && params[:reg] == 'true'

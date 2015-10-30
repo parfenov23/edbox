@@ -3,8 +3,11 @@
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
 
-- if @course.announcement? && !@current_user.present?
-  = render "home/course_description/popup/notify_me"
+- if @course.announcement?
+  - if @current_user.present?
+    = render "home/course_description/popup/notify"
+  - else
+    = render "home/course_description/popup/notify_me"
   = render "home/course_description/popup/notify_next"
 
 .course__description-content.oh__nihuyase-block
@@ -204,7 +207,7 @@
             .description Станет доступным после прохождения всех материалов курса
             
 
-= render "common/course/course_reg" unless current_user.present?
+= render "common/course/course_reg"
 
 = render "home/course_program/sink_button", {course: @course}
 

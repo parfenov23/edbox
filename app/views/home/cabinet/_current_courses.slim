@@ -13,37 +13,7 @@
           - all_sections = bunch_course.bunch_sections
           - complete_proc = ((100.0 / ( all_sections.count.to_f /  all_sections.all_complete.count.to_f)).round) rescue 0
           li class=(bunch_courses_study_count > 3 ? "carusel-item" : "")
-            // completed
-            figure.corses-prev.with_progress-bar
-              = render "common/course/course_img", {course: course, w: 694, h: 384}
-              figcaption
-                .title
-                  .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
-                  .shadow
-                .author = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-                .info-block
-                  .duration
-                    = duration = course.duration_time
-                    = rus_case(duration, "час", "часа", "часов")
-                    i.icon
-                  .qty-lectures
-                    - sections_count = course.sections.count
-                    = rus_case(sections_count, "раздел", "раздела", "разделов")
-                    i.icon
-                  .completed-courses
-                    | Прошли курс
-                    i.icon
-                .progress-block
-                  .progress-label
-                    .until
-                      - unless bunch_course.model_type == "user"
-                        'Завершить до
-                        = ((l local_time(bunch_course.date_complete), :format => :short_min) rescue "Нет даты")
-                    .complite
-                      'Пройдено
-                      = "#{complete_proc}%"
-                  .progress-bar
-                    .progress-bar_inner style="width: #{complete_proc}%"
+            = render "course/course", {course: course}
     - if bunch_courses_study_count > 3
       .jcarousel-control-prev.icon.inactive 
       .jcarousel-control-next.icon 

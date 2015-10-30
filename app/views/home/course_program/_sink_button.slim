@@ -1,5 +1,5 @@
 - user = current_user
-- if user.present?
+- if user.present? && (!course.paid || (course.paid && current_user.get_account_type))
   = render "home/courses/pop_up"
   - course_assigned = current_user.bunch_courses.find_by(model_type: "user", course_id: course.id).present?
   - if user.corporate? && user.director?
