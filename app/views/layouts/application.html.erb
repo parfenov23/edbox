@@ -34,7 +34,7 @@
 <% end %>
 <%= render "layouts/notification" %>
 
-<% if (@course.paid? rescue true) %>
+<% if ((!current_user.present? || !current_user.view_course?(@course)) rescue true) %>
     <%= render "common/popup_request/request" %>
 <% end %>
 <% if params[:action] != "sign_up" && @block_registr != false %>
