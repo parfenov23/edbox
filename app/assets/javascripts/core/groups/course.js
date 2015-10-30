@@ -254,11 +254,15 @@ var addCoursesFromFavorite = function () {
         type: 'POST',
         url : '/api/v1/groups/add_courses',
         data: hash_params
-    }).success(function () {
-        show_error('Курсы добавлены в группу', 3000);
-        setTimeout(function () {
-            window.location.href = "/group?id=" + group_id + "&type=courses";
-        }, 1300);
+    }).success(function (data) {
+        if (data.error == undefined){
+            show_error('Курсы добавлены в группу', 3000);
+            setTimeout(function () {
+                window.location.href = "/group?id=" + group_id + "&type=courses";
+            }, 1300);
+        }else{
+            show_error(data.error, 3000);
+        }
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });

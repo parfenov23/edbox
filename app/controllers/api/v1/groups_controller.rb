@@ -94,24 +94,33 @@ module Api::V1
     end
 
     def add_course
-      if params[:date_complete].present?
+      if params[:date_complete].present? && params[:group_id].present?
         if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
           render json: bunch_course.as_json
         else
           render_error(500, 'Проверьте данные')
         end
       else
-        render_error(500, 'Проверьте данные')
+        # render_error(500, 'Проверьте данные')
+        te = ["Выберете группу", "Установите дату"]
+        te = (params[:date_complete].blank? && params[:group_id].blank?) ? te.join(' и ') : (params[:group_id].blank? ? te.first : te.last)
+        render json: {error: te}
       end
     end
 
     def add_courses
       hash_params = params[:courses]
-      hash_params.each do |course|
-        course = course.last
-        BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+      dates = hash_params.map{|hp| {date: hp.last[:date_complete], valid_course: !Course.find(hp.last[:course_id]).online?} }
+                .select{|d| !d[:date].present? && d[:valid_course]}
+      if !dates.present?
+        hash_params.each do |course|
+          course = course.last
+          BunchCourse.build(course[:course_id], course[:group_id], course[:date_complete], "group", nil)
+        end
+        render json: {success: true}
+      else
+        render json: {error: "Установите дату"}
       end
-      render json: {success: true}
     end
 
     def update_course
