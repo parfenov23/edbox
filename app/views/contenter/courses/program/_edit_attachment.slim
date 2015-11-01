@@ -66,7 +66,7 @@
           i.icon.text
           .selectText Аннонсируемый материал
 
-    .editFileUpload.includeValidateForm data-validate= "present_file"
+    .editFileUpload.includeValidateForm.form_group data-validate= "present_file"
       = render "contenter/courses/help_error"
       .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
         textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"

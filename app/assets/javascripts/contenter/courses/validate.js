@@ -104,7 +104,12 @@ var validateAttachment = function () {
                     arr_errors[arr_errors.length] = "Введите описание материала"
                 }
                 if (block_err.data('validate') == "present_file"){
-                    arr_errors[arr_errors.length] = "Вы забыли прикрепить материал"
+                    if(block_err.find(".attachmentShow").data('type') != "webinar"){
+                        arr_errors[arr_errors.length] = "Вы забыли прикрепить материал"
+                    }else{
+                        arr_errors[arr_errors.length] = "Проверьте дату вебинара"
+                    }
+
                 }
             });
         }
@@ -195,6 +200,20 @@ var validateSections = function(){
     });
 };
 
+var validateWebinar = function(){
+    var webinars = $(".addedWebinar.itemFile");
+    $.each(webinars, function (n, elem) {
+        var arr_errors = [];
+        var webinar = $(elem);
+        var date = webinar.find(".startDate input");
+        var time_h = webinar.find(".startHour input[data-type='hour']");
+        var time_m = webinar.find(".startHour input[data-type='min']");
+        if (!date.count_text_input()) arr_errors[arr_errors.length] = "Установите дату вебинара";
+        if (!time_h.count_text_input() || !time_m.count_text_input()) arr_errors[arr_errors.length] = "Установите время вебинара";
+        installErrorBlock(arr_errors, webinar.closest(".editFileUpload"), false);
+    });
+};
+
 var allValidateForms = function () {
     if (formInputIdCourse().val() != "new"){
         validateTestQuestion();
@@ -202,6 +221,7 @@ var allValidateForms = function () {
         validatePresentFile();
         validateSections();
         validateFinalTest();
+        validateWebinar();
         validateAttachment();
         ////
         validateCourse();
