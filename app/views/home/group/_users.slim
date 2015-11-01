@@ -10,8 +10,16 @@
 - count_members = @group.bunch_groups.count
 - text_title = "Не добавлено ни одного пользователя"
 - text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
-.members__title.h__text_15-24 = text_title
-
+.members__title.h__text_15-24 
+  span = text_title
+  .upgrade__tarif
+    .btn.btn-flat ИЗМЕНИТЬ ТАРИФ
+    
+    
+.tarif__is_full
+  span Вы пригласили максимальное количество пользователей согласно вашему тарифу
+  .btn.is__blue ИЗМЕНИТЬ ТАРИФ
+    
 - if current_user.director
   .container
     .members.ingroups
@@ -20,6 +28,7 @@
         form.form
           input.input.searchMember type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
           .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
+            .qty__left Осталось 10 приглашений
             .tooltip.is__bottom Отправить приглашение пользователям
 
       ul.members__in_system.director style="display:none;"
