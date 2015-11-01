@@ -192,17 +192,17 @@ figure.basic__module {
 }
 
 figure.shot__module  {
-  margin: 0;
   @include white__block(1, 0);
+  @include clearfix;
+  margin: 0;
   padding: 16px;
-  display: flex;
-  justify-content: flex-start;
   height: 128px;
   .image {
     width: 176px;
     height: 96px;
     margin-right: 24px;
     position: relative;
+    float: left;
     img {
       width: 100%;
     }
@@ -220,7 +220,8 @@ figure.shot__module  {
     }
   }
   figcaption {
-    width: 700px;
+    width: calc(100% - 200px);
+    float: left;
     .title {
       margin-bottom: 8px;
       position: relative;
