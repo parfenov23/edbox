@@ -151,9 +151,8 @@
   .empty-title {
     text-align   : center;
     margin-bottom: 21px;
-    font-size    : 34px;
-    line-height  : 40px;
-    font-weight  : 500;
+    font-size    : 24px;
+    line-height  : 32px;
   }
 
   .empty-description {
@@ -167,7 +166,7 @@
   .possible__action-list {
     @include middle-block(933px);
     @include white__block(1,0);
-    margin-bottom: 32px;
+    margin-bottom: 48px;
 
     .item {
       padding         : 21px 256px 18px 151px;
@@ -290,6 +289,7 @@
   }
 
   .choose-course {
+    @include middle-block(936px);
     @include clearfix;
     background-color: #e6e6e6;
     padding         : 16px 24px 24px 48px;
