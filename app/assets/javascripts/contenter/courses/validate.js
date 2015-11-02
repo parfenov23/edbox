@@ -208,7 +208,9 @@ var validateWebinar = function(){
         var date = webinar.find(".startDate input");
         var time_h = webinar.find(".startHour input[data-type='hour']");
         var time_m = webinar.find(".startHour input[data-type='min']");
+        var duration = webinar.find(".duration input[name='webinar[duration]']");
         if (!date.count_text_input()) arr_errors[arr_errors.length] = "Установите дату вебинара";
+        if (!duration.count_text_input()) arr_errors[arr_errors.length] = "Установите продолжительность вебинара";
         if (!time_h.count_text_input() || !time_m.count_text_input()) arr_errors[arr_errors.length] = "Установите время вебинара";
         installErrorBlock(arr_errors, webinar.closest(".editFileUpload"), false);
     });
