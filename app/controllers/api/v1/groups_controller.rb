@@ -102,7 +102,7 @@ module Api::V1
         end
       else
         # render_error(500, 'Проверьте данные')
-        te = ["Выберете группу", "Установите дату"]
+        te = ["Выберите группу", "Установите дату"]
         te = (params[:date_complete].blank? && params[:group_id].blank?) ? te.join(' и ') : (params[:group_id].blank? ? te.first : te.last)
         render json: {error: te}
       end
