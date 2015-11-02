@@ -319,6 +319,9 @@ GEM
       thin (~> 1.5.0)
     skylight (0.8.0)
       activesupport (>= 3.0.0)
+    slackistrano (0.1.12)
+      capistrano (>= 3.0.1)
+      json
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -426,6 +429,7 @@ DEPENDENCIES
   sass-rails
   sdoc (~> 0.4.0)
   skylight
+  slackistrano
   slim (~> 2.0.0)
   spawnling (~> 2.1)
   sqlite3
@@ -438,3 +442,6 @@ DEPENDENCIES
   websocket-rails!
   whenever
   without-rails
+
+BUNDLED WITH
+   1.10.4
