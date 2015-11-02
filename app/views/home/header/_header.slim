@@ -12,7 +12,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     - else
       a.page__icon.item href=backUrl
         i.back.icon
-    .page__title = titlePage
+    .page__title class=(classPageTitle rescue nil) = titlePage
     .page__children
       - menu_nav_links(namePage).each do |item|
         - add_params = item[:add_params].present? ? item[:add_params] : {}

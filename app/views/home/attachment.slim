@@ -1,6 +1,8 @@
 - back_url = !@course.material? ? "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}" : 'backCourse'
 - header_title = !@course.material? ? @attachment.title : @course.title
-= render "home/header/header", {namePage: "courseMaterial", titlePage: header_title, btnBack: true, backUrl: back_url}
+= render "home/header/header", {namePage: "courseMaterial", 
+  titlePage: header_title, btnBack: true, 
+  backUrl: back_url, classPageTitle: "is__gray"}
 - if current_user.present?
   = render "home/course_program/right_sidebar/notes_aside"
 - unless @course.material? || !current_user.present?
