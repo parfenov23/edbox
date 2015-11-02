@@ -201,7 +201,7 @@ var validateSections = function(){
 };
 
 var validateWebinar = function(){
-    var webinars = $(".addedWebinar.itemFile");
+    var webinars = $(".addedWebinar.itemFile.attachmentShow");
     $.each(webinars, function (n, elem) {
         var arr_errors = [];
         var webinar = $(elem);
