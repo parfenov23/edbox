@@ -1,7 +1,104 @@
-$director__table_first_col_width: 273px;
-$director__table_common_col_width: 214px;
+$director__table_first_col_width: 250px;
+$director__table_common_col_width: 216px;
 $director__table_border_style: 1px solid black__color(decoration__color);
 
+.inner.director__statistic__user_info {
+  width: 792px;
+  padding: 48px 0 32px 0;
+  .membership {
+    position: absolute;
+    right: 32px;
+    top: 29px;
+    cursor: pointer;
+    .visible__part {
+      @include text__setting(normal__typo, secondary__color);
+    }
+    &:hover {
+      .hidden-list {
+        display: block;
+        width: 272px;
+        li {
+          @include eclipses;
+          @include text__setting(smallest__typo);
+          padding-bottom: 8px;
+          height: auto;
+        }
+      }
+    }
+  }
+  .user__info {
+    margin-bottom: 48px;
+    .ava {
+      @include middle-block(64px);
+      height: 64px;
+      margin-bottom: 8px;
+    }
+    .name {
+      @include text__setting(header__typo_1);
+      text-align: center;
+    }
+  }
+  .course__status_tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 29px;
+    li {
+      @include text__setting(normal__typo);
+      padding: 0 8px;
+      margin: 0 8px;
+      cursor: pointer;
+      padding-bottom: 8px;
+      &.is__active {
+        border-bottom: 2px solid $primaryColor;
+      }
+    }
+  }
+  .courses__list {
+    max-height: 420px;
+    overflow: auto;
+    padding-top: 10px;
+    figure.shot__module {
+      @include white__block(1, 1);
+      margin: 0 32px 16px 32px;
+      height: 130px;
+      .title {
+        position: relative;
+        padding-right: 160px;
+        .inner {
+          overflow: hidden;
+          white-space: normal;
+          height: 56px;
+          @include text__setting(header__typo_1);
+          margin-bottom: 20px;
+        }
+        .status {
+          @include text__setting(normal__typo);
+          position: absolute;
+          top: 0;
+          right: 0;
+          &.overdue {
+            color: #F50057;
+          }
+        }
+      }
+      figcaption .info__block .right-col {
+        padding-top: 3px;
+        color: black__color(secondary__color);
+      }
+    }
+
+    .create__group.group__list {
+      width: 728px;
+      .item {
+        padding-left: 24px;
+        .info .description {
+          width: auto;
+          @include text__setting(small__typo);
+        }
+      }
+    }
+  }
+}
 
 .director__statistic {
   @include middle-block(1128px);
@@ -75,17 +172,35 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     .action__header {
       display: flex;
       justify-content: space-between;
-      padding: 20px 32px 24px 32px;
+      padding: 17px 32px 26px 32px;
       .dropdown__flash {
         float: left;
+        width: auto;
+        margin-top: 2px;
+        .visible__part {
+          background: rgba(0,0,0,0.06);
+          border-radius: 2px;
+          padding: 5px 9px 4px 32px;
+          color: black__color(secondary__color);
+          i {
+            left: 10px;
+            top: 5px;
+            font-size: 16px;
+          }
+        }
+        .hidden__list {
+          li {
+            @include text__setting(normal__typo, secondary__color);
+          }
+        }
       }
     }
     .table__paginator {
       display: flex;
-      justify-content: flex-start;
+      justify-content: flex-end;
       width: 175px;
       padding-left: 4px;
-      margin-right: -5px;
+      margin-right: -2px;
       .block__counter {
         @include text__setting(normal__typo, secondary__color);
         margin-right: 33px;
@@ -112,7 +227,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     .first__item {
       width: $director__table_first_col_width;
       float: left;
-      height: 90px;
+      height: 88px;
     }
   }
   .course__title__list {
@@ -121,15 +236,23 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     overflow: hidden;
     .wrp {
       width: 10000%;
+      @include transition;
     }
     .item {
-      height: 90px;
+      @include text__setting(normal__typo, secondary__color);
+      height: 88px;
       width: $director__table_common_col_width;
       border-left: $director__table_border_style;
       float: left;
-      padding: 18px 8px 24px 12px;
+      padding: 12px 8px 24px 15px;
+      cursor: pointer;
       .icon {
-
+        @include inline-block;
+        margin-bottom: -2px;
+        margin-right: 5px;
+      }
+      &:hover {
+        color: $primaryColor;
       }
     }
   }
@@ -147,7 +270,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
         @include inline-block;
         width: 32px;
         height: 32px;
-        margin-right: 12px;
+        margin-right: 15px;
         img {
           width: 100%;
         }
@@ -157,6 +280,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
         @include eclipses;
         @include text__setting(normal__typo, secondary__color);
         width: 149px;
+        padding-top: 5px;
       }
     }
   }
@@ -172,11 +296,13 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     float: left;
     width: $director__table_common_col_width;
     .item {
+      @include text__setting(normal__typo);
       height: 64px;
       border-left: $director__table_border_style;
       border-top: $director__table_border_style;
       line-height: 64px;
-      text-align: center;
+      text-align: left;
+      padding: 0 12px;
       &.overdue {
         color: #F50057;
       }

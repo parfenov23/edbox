@@ -35,7 +35,7 @@ section.landing__courses__list
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 6
       .action__block
-        .btn.is__blue СМОТРЕТЬ ВСЕ КУРСЫ
+        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ КУРСЫ
 section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас более 70 часов уникальных уроков, которые усилят ваши продажи

@@ -17,6 +17,11 @@
           label.js_updateTypeCourse data-id=@course.id data-type_id="false" for=@course.id.to_s+"true"
             span Бесплатный
 
+        - if @course.announcement?
+          .startDate style='margin-left : 50px;'
+            span.text Дата начала:
+            input.datapicker__trigger.js_announce_time data-type="date_time" placeholder="Ничего не выбрано" value=(date_time.strftime("%d.%m.%y") rescue nil) readonly='readonly'
+
     .type__course__ready__publication__block
       - text_btn = @course.public ? "СНЯТЬ С ПУБЛИКАЦИИ" : "ОПУБЛИКОВАТЬ"
       - if @course.validate.select{|k, v| v == false}.present?

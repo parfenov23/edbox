@@ -7,6 +7,34 @@
 
 .members__title {
   margin-bottom: 27px;
+  padding-right: 150px;
+  position: relative;
+  .upgrade__tarif {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    .btn {
+
+    }
+  }
+}
+.tarif__is_full {
+  @include clearfix;
+  background: #EEEEEE;
+  border-radius: 2px;
+  padding: 12px 32px;
+  margin-bottom: 32px;
+  span {
+    float: left;
+    width: 70%;
+    font-size: 15px;
+    padding-top: 6px;
+  }
+  .btn {
+    width: 145px;
+    float: right;
+  }
 }
 .members {
   .title {
@@ -69,7 +97,7 @@
       padding : 0 32px;
 
       .input {
-        width  : calc(100% - 30px);
+        width  : calc(100% - 200px);
         border : 0;
         padding: 0;
         font   : 400 13px/20px "Roboto";
@@ -85,14 +113,25 @@
         top       : 50%;
         right     : 32px;
         margin    : -13px 0 0;
-        width     : 22px;
+        width     : 190px;
         height    : 26px;
-
+        .qty__left {
+          @include text__setting(smallest__typo, secondary__color);
+          float: left;
+          margin-top: 4px;
+          opacity: 0;
+          @include transition;
+          &.is__active {
+            opacity: 1;
+            @include transition;
+          }
+        }
         &:before {
           font   : 22px/22px "Icons";
           color  : rgba(0, 0, 0, .54);
           content: "\e719";
           cursor : pointer;
+          float: right;
         }
       }
     }
