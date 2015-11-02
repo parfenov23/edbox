@@ -80,6 +80,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1', require: false
   gem 'capistrano-rvm', '~> 0.1', require: false
   gem 'capistrano3-unicorn'
+  gem 'slackistrano', require: false
   gem 'net-ssh', '~> 2.7.0'
   gem 'guard-livereload', '~> 2.4', require: false
   # gem 'spring'
