@@ -23,6 +23,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log',
 set :pty, false
 set :keep_releases, 3
 set :whenever_roles, [:app]
+set :slack_webhook, "https://hooks.slack.com/services/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"
 
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
