@@ -58,19 +58,20 @@ shiftTableBody = ->
 
 
 stikyTableHeader = ->
-  headerTopCoord = $('.director__stat_table').offset()
-  toFix = false
-  $(window).on 'scroll', ->
-    switch
-      when $(window).scrollTop() + 64 > headerTopCoord.top && toFix == false
-        toFix = true
-        $('.director__stat_table').addClass 'fixed__header'
-        console.log 1
-      when $(window).scrollTop() + 64 < headerTopCoord.top && toFix == true
-        toFix = false
-        $('.director__stat_table').removeClass 'fixed__header'
+  if $('.director__stat_table').length
+    headerTopCoord = $('.director__stat_table').offset()
+    toFix = false
+    $(window).on 'scroll', ->
+      switch
+        when $(window).scrollTop() + 64 > headerTopCoord.top && toFix == false
+          toFix = true
+          $('.director__stat_table').addClass 'fixed__header'
+          console.log 1
+        when $(window).scrollTop() + 64 < headerTopCoord.top && toFix == true
+          toFix = false
+          $('.director__stat_table').removeClass 'fixed__header'
 
-        console.log 2
+          console.log 2
 
 
 $(document).ready ->

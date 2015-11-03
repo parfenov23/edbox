@@ -77,10 +77,11 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
         - hash_class = ''
         - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
         - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
-        - if (@course.paid? rescue false)
-          .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
-        - else
-          .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
+        a.btn.is__blue href="/sign_up" ЗРЕГИСТРИРОВАТЬСЯ
+        /- if (@course.paid? rescue false)
+        /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
+        /- else
+        /  .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
 
 - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
