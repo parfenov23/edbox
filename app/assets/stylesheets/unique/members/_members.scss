@@ -9,6 +9,9 @@
   margin-bottom: 27px;
   padding-right: 150px;
   position: relative;
+  span {
+    color: black__color(secondary__color);
+  }
   .upgrade__tarif {
     position: absolute;
     top: 0;

@@ -9,6 +9,12 @@ class Company < ActiveRecord::Base
     company
   end
 
+  def residue_users
+    find_sub = users.where(director: true).last.find_subscription.user_count rescue 0
+    company_users = users.count rescue 0
+    find_sub - company_users
+  end
+
   def transfer_to_json
     as_json(include: {users:{ only: [:id, :first_name, :last_name, :email]} })
   end
