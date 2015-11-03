@@ -141,6 +141,7 @@ $(document).ready(function () {
     $(".auth__enter .btn-holder #submit").click(function (e) {
         e.preventDefault();
         validate();
+        console.log(123)
         if ($(".js_registrationUser input.error").length == 0){
             var btn = $(this);
             var form = btn.closest("form");
@@ -277,6 +278,9 @@ $(document).ready(function () {
                 if(! block.closest(".corporate_acc").hasClass("active")){
                     block.removeClass("error");
                 }
+            }
+            if (block.attr("id") == "paramsInputTypeAccount"){
+                block.removeClass("error");
             }
         });
 

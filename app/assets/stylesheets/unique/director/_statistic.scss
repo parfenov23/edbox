@@ -173,6 +173,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
       display: flex;
       justify-content: space-between;
       padding: 17px 32px 26px 32px;
+      height: 78px;
       .dropdown__flash {
         float: left;
         width: auto;
@@ -221,9 +222,28 @@ $director__table_border_style: 1px solid black__color(decoration__color);
         }
       }
     }
+    &.fixed__header {
+      padding-top: 166px;
+      .action__header {
+        position: fixed;
+        top: 64px;
+        left: 50%;
+        margin-left: -564px;
+        width: 1128px;
+        background-color: #fff;
+        z-index: 10;
+      }
+      .psevdo__table__header {
+        @extend .action__header;
+        top: 142px;
+        height: 88px;
+        padding: 0;
+      }
+    }
   }
   .psevdo__table__header {
     @include clearfix;
+    height: 88px;
     .first__item {
       width: $director__table_first_col_width;
       float: left;

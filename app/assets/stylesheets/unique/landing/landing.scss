@@ -51,7 +51,7 @@
 }
 .landing__banner {
   margin-top: 64px;
-  background: url("landing__banner.png") 50% 0 no-repeat #fff;
+  background: url("landing__banner.jpg") 50% 0 no-repeat #fff;
   padding-top: 64px;
   padding-bottom: 19px;
   .section__title {
@@ -127,6 +127,7 @@
     padding-left: 97px;
     margin-bottom: 15px;
     figure {
+      cursor: default;
       margin: 0;
       float: left;
       width: 264px;

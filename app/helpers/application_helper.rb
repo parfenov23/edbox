@@ -12,8 +12,8 @@ module ApplicationHelper
   end
 
   def text_type_material
-    {"edit" => "Текстовый материал", "video" => "Видео-материал",
-     "audio" => "Аудио-материал", "pdf" => "PDF", "img" => "Изображение",
+    {"edit" => "Текст", "video" => "Видео",
+     "audio" => "Аудио", "pdf" => "PDF", "img" => "Изображение",
      "file" => "Материал для скачивания", "test" => "Тест", "online__course" => "Вебинар"}
   end
 

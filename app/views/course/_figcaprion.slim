@@ -17,11 +17,11 @@ figcaption
       .title = course.title
     - if assigned
       - bunch_course = course.find_bunch_course(current_user.id, nil)
-      = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user"
+      = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user" && action_block
   .info__block
     .type
-      - type = course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : ""))
-      - text = course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс")
+      - type = (course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : "")) rescue '')
+      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс") rescue 'курс')
       i.icon class=type
       = text
     - if course.announcement? || course.online?
