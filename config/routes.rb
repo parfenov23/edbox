@@ -77,6 +77,7 @@ Rails.application.routes.draw do
           post :all_leading
           post :add_leading
           post :remove_leading
+          post :create_room
         end
       end
 
