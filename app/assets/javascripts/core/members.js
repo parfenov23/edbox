@@ -6,34 +6,39 @@ invitedEmpty = function () {
 
 invitedMemberDelete = function () {
     $(document).on('click', '.members__invite .cancel', function () {
-        console.log($(this));
-        console.log($(this).closest('.invited__item'));
         $(this).closest('.invited__item').remove();
         invitedEmpty();
+        installCountResidue(+1);
     });
 };
 
 appendMember = function (member) {
-    var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if(installCountResidue() > 0){
+        var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-    if (emailRegexp.test(member) == false){
-        if (member.length > 0){
-            show_error('Неправильный email', 3000);
-        }
-    } else {
-        if ($(".invited__item div[data-email='" + member + "']").length == 0){
-            $('.members__invite .invited').show();
-            $('.members__invite .input').val('');
-            $('<li class="invited__item">' +
-                '<div class="email" data-email="' + member + '">' + member + '</div>' +
-                '<div class="cancel">×</div>' +
-                '</li>')
-                .appendTo('.members__invite .invited');
+        if (emailRegexp.test(member) == false){
+            if (member.length > 0){
+                show_error('Неправильный email', 3000);
+            }
         } else {
-            show_error('Email уже добавленн', 3000);
-            $('.members__invite .input').val('');
+            if ($(".invited__item div[data-email='" + member + "']").length == 0){
+                $('.members__invite .invited').show();
+                $('.members__invite .input').val('');
+                $('<li class="invited__item">' +
+                    '<div class="email" data-email="' + member + '">' + member + '</div>' +
+                    '<div class="cancel">×</div>' +
+                    '</li>')
+                    .appendTo('.members__invite .invited');
+                installCountResidue(-1);
+            } else {
+                show_error('Email уже добавленн', 3000);
+                $('.members__invite .input').val('');
+            }
         }
+    }else{
+        show_error('Вы привысили лимит приглашения участников', 3000);
     }
+
 
 
 };
@@ -189,6 +194,18 @@ addSearchMember = function () {
     });
 };
 
+var installCountResidue = function(n){
+    var count_residue_users = $(".members .count_residue_users");
+    if (count_residue_users.length){
+        if (n == undefined) n =0;
+        var count = count_residue_users.data('count');
+        var result_count = count + n;
+        count_residue_users.data('count', result_count);
+        count_residue_users.text(result_count + " " + declOfNum(result_count, ["приглашение", "приглашения", "приглашений"]));
+        return result_count;
+    }
+};
+
 $(document).ready(function () {
     invitedEmpty();
     invitedMemberDelete();
@@ -200,10 +217,12 @@ $(document).ready(function () {
     searchMember();
     addSearchMember();
     addedValidMember();
+    installCountResidue();
 
     $(document).on('click', ".js__multi__action .js_removeUser", function () {
         confirm("Вы действительно хотите удалить участников?", function () {
             deleteInvitedMember();
         });
     });
+
 });

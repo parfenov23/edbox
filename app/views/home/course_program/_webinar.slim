@@ -12,4 +12,8 @@
   .inner-content
     #course
       .text__description
-        .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
+        /- if (current_user.present? && course.leading?(current_user.id))
+        - if (current_user.present? && true)
+          .title.js_createWebRoom data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
+        - else
+          .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
