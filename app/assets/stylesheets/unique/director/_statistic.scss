@@ -128,12 +128,13 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     padding: 22px 55px 24px 25px;
     position: relative;
     margin-bottom: 48px;
+    box-shadow: none;
     .delete {
       position: absolute;
       top: 16px;
       right: 16px;
       font-size: 24px;
-      color: black__color(secondary__color);
+      color: black__color(decoration__color);
       cursor: pointer;
     }
   }
@@ -165,10 +166,18 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     margin-bottom: 46px;
     .dropdown__flash {
       float: left;
+      .hidden__list {
+        li {
+          @include text__setting(normal__typo, secondary__color);
+        }
+      }
     }
   }
   .director__stat_table {
     @include white__block(1, 0);
+    .is__grey__bg {
+      background-color: black__color(decoration__color);
+    }
     .action__header {
       display: flex;
       justify-content: space-between;
@@ -286,6 +295,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
       padding: 14px 19px 15px 35px;
       width: $director__table_first_col_width;
       border-top: $director__table_border_style;
+      cursor: pointer;
       .ava {
         @include inline-block;
         width: 32px;
@@ -317,6 +327,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     width: $director__table_common_col_width;
     .item {
       @include text__setting(normal__typo);
+      cursor: pointer;
       height: 64px;
       border-left: $director__table_border_style;
       border-top: $director__table_border_style;
