@@ -3,6 +3,41 @@ function validateEmail($email) {
     return emailReg.test($email);
 }
 
+function checkPassword(password) {
+    var s_letters = "qwertyuiopasdfghjklzxcvbnm"; // Буквы в нижнем регистре
+    var b_letters = "QWERTYUIOPLKJHGFDSAZXCVBNM"; // Буквы в верхнем регистре
+    var digits = "0123456789"; // Цифры
+    var specials = "!@#$%^&*()_-+=\|/.,:;[]{}"; // Спецсимволы
+    var is_s = false; // Есть ли в пароле буквы в нижнем регистре
+    var is_b = false; // Есть ли в пароле буквы в верхнем регистре
+    var is_d = false; // Есть ли в пароле цифры
+    var is_sp = false; // Есть ли в пароле спецсимволы
+    for (var i = 0; i < password.length; i++) {
+        /* Проверяем каждый символ пароля на принадлежность к тому или иному типу */
+        if (!is_s && s_letters.indexOf(password[i]) != -1) is_s = true;
+        else if (!is_b && b_letters.indexOf(password[i]) != -1) is_b = true;
+        else if (!is_d && digits.indexOf(password[i]) != -1) is_d = true;
+        else if (!is_sp && specials.indexOf(password[i]) != -1) is_sp = true;
+    }
+    var rating = 0;
+    var text = "";
+    var klass = "";
+    if (is_s) rating++; // Если в пароле есть символы в нижнем регистре, то увеличиваем рейтинг сложности
+    if (is_b) rating++; // Если в пароле есть символы в верхнем регистре, то увеличиваем рейтинг сложности
+    if (is_d) rating++; // Если в пароле есть цифры, то увеличиваем рейтинг сложности
+    if (is_sp) rating++; // Если в пароле есть спецсимволы, то увеличиваем рейтинг сложности
+    /* Далее идёт анализ длины пароля и полученного рейтинга, и на основании этого готовится текстовое описание сложности пароля */
+    if (password.length < 6 && rating < 3 && password.length >= 4) klass = "lvl-2", text = "Простой";
+    else if (password.length < 4 && rating < 3) klass = "lvl-1", text = "Очень простой";
+    else if (password.length < 6 && rating >= 3) klass = "lvl-3", text = "Средний";
+    else if (password.length >= 8 && rating < 3) klass = "lvl-3", text = "Средний";
+    else if (password.length >= 8 && rating >= 3) klass = "lvl-4", text = "Очень простой";
+    else if (password.length >= 6 && rating == 1) klass = "lvl-2", text = "Очень простой";
+    else if (password.length >= 6 && rating > 1 && rating < 4) klass = "lvl-3", text = "Средний";
+    else if (password.length >= 6 && rating == 4) klass = "lvl-4", text = "Сложный";
+    return [klass, text]; // Форму не отправляем
+}
+
 function view_px_block(block) {
     var win_height = $(window).height();
     var curr_pos = block.position().top;
@@ -70,6 +105,11 @@ function fixed_btn_save(){
 }
 
 $(document).ready(function () {
+    $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function(){
+        var valPass = checkPassword($(this).val());
+        $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0] );
+        $(this).closest(".com__input-item").find(".error__msg").text(valPass[1]);
+    });
 
     $(".js_LendingGoToSubscription").on('click', function(){
         $('html,body').animate({
@@ -101,6 +141,10 @@ $(document).ready(function () {
             }
         }
 
+        $.each( $(".phoenix-input"), function(n, e){
+            if ($(e).count_text_input()) $(e).closest(".com__input-item").removeClass("empty").addClass("is__noFocus");
+        })
+
     }
 
     $(window).scroll(function () {
@@ -110,7 +154,7 @@ $(document).ready(function () {
         fixed_btn_save();
     });
     fixed_btn_save();
-    $(".auth__enter-first .btn-holder #submit").click(function (e) {
+    $(".js_FormAuth #submit").click(function (e) {
         e.preventDefault();
         var btn = $(this);
         var form = btn.closest("form");
@@ -138,10 +182,9 @@ $(document).ready(function () {
         });
     });
 
-    $(".auth__enter .btn-holder #submit").click(function (e) {
+    $(".js_registrationUser #submit").click(function (e) {
         e.preventDefault();
         validate();
-        console.log(123)
         if ($(".js_registrationUser input.error").length == 0){
             var btn = $(this);
             var form = btn.closest("form");
@@ -263,24 +306,24 @@ $(document).ready(function () {
         $.each($('input'), function (k, el) {
             var block = $(el);
             if (! block.val()){
-                block.addClass('error');
+                block.addClass('error').closest(".com__input-item").addClass("error");
             }else{
-                block.removeClass('error');
+                block.removeClass('error').closest(".com__input-item").removeClass("error");
             }
             if (block.attr("name") == "user[email]"){
                 if(validateEmail(block.val())){
-                    block.removeClass('error');
+                    block.removeClass('error').closest(".com__input-item").removeClass("error");
                 }else{
-                    block.addClass('error');
+                    block.addClass('error').closest(".com__input-item").addClass("error");
                 }
             }
             if (block.attr("name") == "company[name]"){
                 if(! block.closest(".corporate_acc").hasClass("active")){
-                    block.removeClass("error");
+                    block.removeClass("error").closest(".com__input-item").removeClass("error");
                 }
             }
             if (block.attr("id") == "paramsInputTypeAccount"){
-                block.removeClass("error");
+                block.removeClass("error").closest(".com__input-item").removeClass("error");
             }
         });
 
@@ -293,7 +336,12 @@ $(document).ready(function () {
         if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)) {
             inputPass.addClass("error");
             inputRePass.addClass("error");
-            show_error('Короткий пароль', 3000);
+            if(inputPass.count_text_input() > 0 ){
+                if(inputPass.count_text_input() <= 3) show_error('Короткий пароль', 3000);
+                if(inputPass.val() != inputRePass.val()) show_error('Проверьте правильность повтора пороля', 3000);
+            }else{
+                show_error('Поле не может быть пустым', 3000);
+            }
             $("#alert").css("z-index", "9999");
         }else{
             inputPass.removeClass("error");
