@@ -42,20 +42,7 @@ var publicationCourse = function (){
     return true;
 };
 
-var publicationCourseWebinar = function(){
-    var btn = $(this);
-    $.ajax({
-        type: 'POST',
-        url : '/api/v1/courses/' + btn.data('id') + "/public_webinar"
-    }).success(function (data) {
-    }).error(function () {
-        show_error('Произошла ошибка', 3000);
-    });
-    return true;
-};
-//public_webinar
 pageLoad(function(){
     $(document).on('click', '#contenterPublication .js_updateTypeCourse', updateTypeCourse);
     $(document).on('click', '#contenterPublication .js_publicationCourse', publicationCourse);
-    $(document).on('click', '#contenterPublication .js_publicationCourseWebinar', publicationCourseWebinar);
 });
