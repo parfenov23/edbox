@@ -14,13 +14,21 @@
   - else
     .members
       .title Чтобы добавить участника, введите его email и отправьте приглашение.
+  - count_residue_users = current_user.company.residue_users
+  - if current_user.director? && count_residue_users <= 0
+    .tarif__is_full
+      span Вы пригласили максимальное количество пользователей согласно вашему тарифу
+      /.btn.is__blue ИЗМЕНИТЬ ТАРИФ
   .container
     .members
       .members__invite
         ul.invited
         form.form
-          input.input type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
+          input.input.showResidueUsers type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
           .plane.js_inviteUser.js__tooltip
+            .qty__left
+              'Осталось
+              span.count_residue_users data-count=count_residue_users 10 приглашений
             .tooltip.is__bottom Отправить приглашение пользователям
 
   .members.container

@@ -12,13 +12,14 @@
 - text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
 .members__title.h__text_15-24 
   span = text_title
-  .upgrade__tarif
-    .btn.btn-flat ИЗМЕНИТЬ ТАРИФ
+  /.upgrade__tarif
+  /  a.btn.btn-flat ИЗМЕНИТЬ ТАРИФ
     
-    
-.tarif__is_full
-  span Вы пригласили максимальное количество пользователей согласно вашему тарифу
-  .btn.is__blue ИЗМЕНИТЬ ТАРИФ
+- count_residue_users = current_user.company.residue_users
+- if current_user.director? && count_residue_users <= 0
+  .tarif__is_full
+    span Вы пригласили максимальное количество пользователей согласно вашему тарифу
+    /.btn.is__blue ИЗМЕНИТЬ ТАРИФ
     
 - if current_user.director
   .container
@@ -28,7 +29,9 @@
         form.form
           input.input.searchMember type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
           .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
-            .qty__left Осталось 10 приглашений
+            .qty__left
+              'Осталось
+              span.count_residue_users data-count=count_residue_users 10 приглашений
             .tooltip.is__bottom Отправить приглашение пользователям
 
       ul.members__in_system.director style="display:none;"
