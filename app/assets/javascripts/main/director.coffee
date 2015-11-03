@@ -1,9 +1,16 @@
 normalShift = (dir, shEl) ->
   deltaMove = 216 * 4
   currMarg = parseInt(shEl.css('marginLeft'))
-  shEl.css (
-    marginLeft: currMarg + deltaMove * -dir
-  )
+
+  shEl.stop(true).queue 'fx', ->
+    $(shEl).css (
+      marginLeft: currMarg + deltaMove * -dir
+    ).dequeue('fx')
+
+  # shEl.css (
+  #   marginLeft: currMarg + deltaMove * -dir
+  # )
+
 shotShift = (dir, shEl, resedue) ->
   deltaMove = 216 * resedue
   currMarg = parseInt(shEl.css('marginLeft'))
@@ -70,16 +77,30 @@ stikyTableHeader = ->
         toFix = false
         $('.director__stat_table').removeClass 'fixed__header'
 
-        console.log 2
+rowSelect = ->
+  $('.table__column .item, .name__column .item').hover  (->
+    indexCell = $(@).index()
+    nameArr = $('.name__column .item')
+    statusColumnArr = $('.table__column')
+    $(nameArr[indexCell]).addClass('is__grey__bg')
+    statusColumnArr.map () ->
+      statusCellArr= $(@).find('.item')
+      $(statusCellArr[indexCell]).addClass('is__grey__bg')), ->
+        indexCell = $(@).index()
+        nameArr = $('.name__column .item')
+        statusColumnArr = $('.table__column')
+        $(nameArr[indexCell]).removeClass('is__grey__bg')
+        statusColumnArr.map () ->
+          statusCellArr= $(@).find('.item')
+          $(statusCellArr[indexCell]).removeClass('is__grey__bg')
 
 
 $(document).ready ->
-
-  $(document).on 'click', '.miracle__notification .delete', ->
-    $(@)
-      .closest '.miracle__notification'
-      .fadeOut()
-
-  stikyTableHeader()
-
-  shiftTableBody()
+  if $('.director__statistic')
+    $(document).on 'click', '.miracle__notification .delete', ->
+      $(@)
+        .closest '.miracle__notification'
+        .fadeOut()
+    stikyTableHeader()
+    shiftTableBody()
+    rowSelect()
