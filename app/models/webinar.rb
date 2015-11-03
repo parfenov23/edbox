@@ -18,28 +18,32 @@ class Webinar < ActiveRecord::Base
 
   def create_room_in_schedule
     scheduler = Rufus::Scheduler.start_new
+    scheduler.at "#{date_start}" do
+      create_room
+    end
+    scheduler.start
+  end
+
+  def create_room
     server_bb = BigbluebuttonServer.last
     unless server_bb.present?
       server_bb = BigbluebuttonServer.create({name: "Adconsult Webinar",
                                               url: "http://95.213.182.34/bigbluebutton/api",
                                               salt: "e332144d6725ac8864d92cbf96ddb0df", version: "0.9"})
     end
-    scheduler.at "#{date_start}" do
-      ActiveRecord::Base.connection_pool.with_connection do
-        bb = BigbluebuttonRoom.where(name: attachment.title).last
-        bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-        # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
-        config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
-        bb.update({
-                    meetingid: config_meeting[:meetingID],
-                    attendee_api_password: config_meeting[:attendeePW],
-                    moderator_api_password: config_meeting[:moderatorPW]
-                  })
-        self.bigbluebutton_room_id = bb.id
-        save
-      end
+    ActiveRecord::Base.connection_pool.with_connection do
+      bb = BigbluebuttonRoom.where(name: attachment.title).last
+      bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
+      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
+      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
+      bb.update({
+                  meetingid: config_meeting[:meetingID],
+                  attendee_api_password: config_meeting[:attendeePW],
+                  moderator_api_password: config_meeting[:moderatorPW]
+                })
+      self.bigbluebutton_room_id = bb.id
+      save
     end
-    scheduler.start
   end
 
   def url_bigbluebuttom(user_id, type="user")
