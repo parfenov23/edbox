@@ -21,7 +21,11 @@
 <% if Rails.env.production? %>
     <% websocket_url = "#{request.host}:3001/node/websocket" %>
 <% end %>
-
+<% if params[:dev] == "true" %>
+  <style media="screen">
+    * {     background-color: rgba(0,255,0,0.1); }
+  </style>
+<% end %>
 <body class="࿕" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
 <%= yield %>
 <div id="alert">
