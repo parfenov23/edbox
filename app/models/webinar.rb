@@ -16,14 +16,6 @@ class Webinar < ActiveRecord::Base
     (minute_diff > 0 && minute_diff < duration) ? true : false
   end
 
-  def create_room_in_schedule
-    scheduler = Rufus::Scheduler.start_new
-    scheduler.at "#{date_start}" do
-      create_room
-    end
-    scheduler.start
-  end
-
   def create_room
     server_bb = BigbluebuttonServer.last
     unless server_bb.present?
