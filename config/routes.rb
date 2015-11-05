@@ -153,7 +153,6 @@ Rails.application.routes.draw do
           post :update_type
           post :update_teaser
           post :remove_teaser
-          post :public_webinar
           post :complete_material
         end
       end
