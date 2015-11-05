@@ -62,13 +62,16 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
               .text
                 .name = current_user.full_name
                 .login = current_user.email
-
+            .sub__info
+              .title У вас бесплатный аккаунт
+              .description.overdue Вы можете просматривать только бесплатные курсы и материалы 
             ul.menu
               li.menu__item
                 a.menu__item-link.menu__item-profile href="/profile" Профиль
 
             .bottom
               /.btn__raised.add__acc добавить аккаунт
+              a.btn.is__orange КУПИТЬ ПОДПИСКУ
               a.btn.btn-flat.exit href="/sign_out" выход
     - else
       .page__action style="margin-right: 22px;"
