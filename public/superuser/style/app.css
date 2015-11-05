@@ -68,11 +68,11 @@ input[readonly] {
     background-color : #2B669A;
     color            : white;
 }
-#BillingTable thead tr th.headerSortUp{
+#BillingTable thead tr th.tablesorter-headerAsc{
     background-color: #FCF8E3;
     color: black;
 }
-#BillingTable thead tr th.headerSortDown{
+#BillingTable thead tr th.tablesorter-headerDesc{
     background-color: #d9edf7;
     color: black;
 }
