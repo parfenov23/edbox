@@ -67,11 +67,16 @@ module Api::V1
 
     def update_course
       course = Course.find(params[:course_id])
-      if (BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections]))
-        render json: {success: true}
+      find_bunch_course = course.find_bunch_course(current_user.id)
+      if find_bunch_course.present? && find_bunch_course.model_type == "group"
+        ligament_course = find_bunch_course.ligament_course
+        sections = ligament_course.ligament_sections.map{|ls| [ls.section_id.to_s, ls.date_complete.to_s]}.to_h
+        result = (BunchCourse.build(course.id, find_bunch_course.group_id, ligament_course.date_complete.to_s, "group", nil, sections) rescue false)
       else
-        render_error(500, 'Проверьте данные')
+        result = BunchCourse.build(course.id, nil, nil, "user", current_user.id, params[:sections])
       end
+
+      render json: result.as_json
     end
 
     def remove_course

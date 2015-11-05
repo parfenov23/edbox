@@ -94,7 +94,7 @@ class BunchCourse < ActiveRecord::Base
     ligament_course.course.sections.not_empty.each do |section|
       ligament_section = LigamentSection.find_or_create_by({section_id: section.id, ligament_course_id: ligament_course.id})
       current_section = (sections_hash[section.id.to_s] rescue nil)
-      ligament_section.date_complete = Time.parse(current_section).end_of_day if current_section.present?
+      ligament_section.date_complete = (Time.parse(current_section).end_of_day rescue nil) if current_section.present?
       ligament_section.save
     end
     bunch_groups.each do |bunch_group|
