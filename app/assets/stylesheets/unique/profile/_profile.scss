@@ -31,6 +31,9 @@
     .description {
       @include text__setting(normal__typo, secondary__color);
       margin-bottom: 17px;
+      &.is__black {
+        color: black__color(base__color);
+      }
     }
     p {
       margin-bottom: 8px;
