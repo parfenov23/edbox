@@ -1,5 +1,5 @@
 var subscription_pay = function (type, email, data) {
-    if (data == undefined) data = {type_account: type, email: email}
+    if (data == undefined) data = {type_account: type, email: email};
     $.ajax({
         type: 'POST',
         url : '/subscription/pay',

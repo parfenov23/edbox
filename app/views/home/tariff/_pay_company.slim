@@ -65,7 +65,8 @@
             input type="hidden" name="sum" value=hash_date[:default_price]
             input type="hidden" name="count_month" value=hash_date[:date]
             input type="hidden" name="email" value=current_user.email
-            input type="hidden" name="account_type" value=sub_type
+            input type="hidden" name="type_account" value=sub_type
+            input type="hidden" name="type_order" value=(sub.present? ? "Продление" : "Новая подписка")
             span = hash_date[:default_price]
             = " ₽"
       .legend

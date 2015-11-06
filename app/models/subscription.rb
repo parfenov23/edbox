@@ -19,6 +19,7 @@ class Subscription < ActiveRecord::Base
       company = Company.build({name: params[:company_name]})
       company.save
       user.company = company
+      user.corporate = true
       user.save
     end
     sub.user_count = params[:user_count].to_i
@@ -26,6 +27,9 @@ class Subscription < ActiveRecord::Base
     sub.subscriptiontable_type = subscription_model.class.to_s
     sub.subscriptiontable_id = subscription_model.id
     sub.active = false
+    sub.note = "Тип аккаунта: #{params[:type_account]}. Кол-во пользователей: #{params[:user_count]}. " +
+      "Кол-во месяцев: #{params[:count_month]}. " +
+      "Тип подписки: #{params[:type_order]}"
     sub
   end
 

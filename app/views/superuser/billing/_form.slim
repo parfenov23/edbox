@@ -28,6 +28,11 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
 
   .form-group
     label
+      | Заметка:
+    input.form-control name="subscription[note]" type="text" value="#{@subscription.note}"
+
+  .form-group
+    label
       | Активный?:
     = check_box("subscription", "active", {checked: @subscription.active})
   input type="hidden" name="_method" value="#{method}"
