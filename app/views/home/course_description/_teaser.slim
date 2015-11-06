@@ -36,8 +36,20 @@
 .presentation__block
   .shadow
 
-  img src = @course.get_image_path
-  - if course_video.present? && !@course.online?
-    .play__btn.js_openAndPlayVideoFullScreen
-      i.icon.play
-      span Смотреть тизер
+  - if params[:block] == 'on'
+    .webinar__teaser_wrp
+      .webinar_info
+        .title 27 января в 13:00 (Мск)
+        .description Встреча для обсуждения кривизны пространства-время вокруг больших чёрных женщин
+      / .webinar__teaser_action
+      /   i.icon.email_cl
+      /   .label СООБЩИТЬ МНЕ
+      .webinar__teaser_action
+        i.icon.play_gosha
+        .label ПРИСОЕДИНИТЬСЯ
+  - else
+    img src = @course.get_image_path
+    - if course_video.present? && !@course.online?
+      .play__btn.js_openAndPlayVideoFullScreen
+        i.icon.play
+        span Смотреть тизер
