@@ -280,4 +280,17 @@ i.icon {
     }
   }
 
+  &.email_cl {
+    &::before {
+      content: "\E6E3";
+    }
+  }
+
+
+  &.play_gosha {
+    &::before {
+      content: "\E6B9";
+    }
+  }
+
 }
