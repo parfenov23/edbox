@@ -1,0 +1,6 @@
+.profile__new
+  .profile__section.sub_info__block
+    .main__title Ваш тариф: «#{(sub.user? ? 'Индивидульный' : 'Корпоративный')}»
+    = render "home/tariff/description", {sub: sub}
+    .action__block
+      a.btn.is__orange href="/payment"  ПРОДЛИТЬ СЕЙЧАС

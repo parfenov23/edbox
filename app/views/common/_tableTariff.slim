@@ -1,0 +1,128 @@
+- sub = (sub rescue nil)
+.compare__table
+  table#divToBeScrolledTo
+    thead
+      tr
+        th
+        th
+          .text__wrp
+            |Корпоративный
+            - if current_user.present? && (sub.company? rescue false)
+              span Ваш текущий план подписки
+        th
+          .text__wrp
+            |Индивидуальный
+            - if current_user.present? && (sub.user? rescue false)
+              span Ваш текущий план подписки
+
+        th
+          .text__wrp
+            | Бесплатный
+            - if current_user.present? && sub.blank?
+              span Ваш текущий план подписки
+    tbody
+      tr
+        td
+          .text__wrp Просмотр бесплатных курсов, вебинаров и материалов онлайн-университета
+        td
+          i.icon.done
+        td
+          i.icon.done
+        td
+          i.icon.done
+      tr
+        td
+          .text__wrp Обновления онлайн-университета
+        td
+          i.icon.done
+        td
+          i.icon.done
+        td
+          i.icon.done
+      tr
+        td
+          .text__wrp Доступ ко всем платным материалам, вебинарам и курсам системы
+        td
+          i.icon.done
+        td
+          i.icon.done
+        td
+      tr
+        td
+          .text__wrp Возможность формировать личное расписание
+        td
+          i.icon.done
+        td
+          i.icon.done
+        td
+      tr
+        td
+          .text__wrp Формирование групп обучающихся  и назначение группового расписания  для сотрудников
+        td
+          i.icon.done
+        td
+        td
+      tr
+        td
+          .text__wrp Бонусные корпоративные программы  и предложения
+        td
+          i.icon.done
+        td
+        td
+      tr
+        td
+          .text__wrp Аналитика эффективности корпоративного обучения
+        td
+          i.icon.done
+        td
+        td
+    tfoot
+      - if current_user.blank?
+        tr
+          td
+          td
+            .price
+              |2 990 ₽/мес.
+              span + 990 ₽/мес. за сотрудника
+            .action__block
+              .btn.is__blue.js_openFormRegistration.selectType data-type="corp" ОПЛАТИТЬ
+          td
+            .price 1 490 ₽/мес.
+            .action__block
+              .btn.is__blue.js_openFormRegistration.selectType data-type="pers" ОПЛАТИТЬ
+          td
+            .price Бесплатно
+            .action__block
+              a.btn.btn-flat.is__border href="/sign_up" ВЫБРАТЬ
+      - else
+        tr
+          td
+          td
+            .price
+              |2 990 ₽/мес.
+              span + 990 ₽/мес. за сотрудника
+            .action__block
+              - if (sub.company? rescue false) || (sub.user? rescue false)
+                - if (sub.company? rescue false)
+                  a.btn.is__blue href="/payment" продлить
+                - else
+                  a.btn.is__blue href="/payment?type=company" оплатить
+              - elsif (sub.blank?)
+                a.btn.is__blue href="/payment?type=company" ОПЛАТИТЬ
+              - else
+                .btn.is__blue.disable ОПЛАТИТЬ
+          td
+            .price 1 490 ₽/мес.
+            .action__block
+              - if (sub.user? rescue false)
+                a.btn.is__blue href="/payment" продлить
+              - elsif (sub.blank? && !current_user.director?)
+                a.btn.is__blue href="/payment?type=user" продлить
+              - else
+                .btn.is__blue.disable ОПЛАТИТЬ
+          td
+            .price Бесплатно
+            .action__block
+              .btn.is__blue.disable ВЫБРАТЬ
+
+

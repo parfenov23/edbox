@@ -1,7 +1,10 @@
 - title titlePage
 / header#page__header.with__img
 - valid_img_page = ["course_description", "other_white"]
-header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
+- hclass = [(valid_img_page.include?(namePage) ? "with__img" : "")]
+- hclass += ['is__white'] if (!noWhite rescue true)
+- hclass += ['scroll_white'] if (noWhite rescue false)
+header#page__header.adaptive__title class=hclass.join(" ")
   .left-col
     - unless (btnBack rescue false)
       .page__icon.item
@@ -83,7 +86,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
         /- else
         /  .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
 
-- if current_user.present?
+      - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
     .info__block
       .top__logo
@@ -134,7 +137,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     / .btm__logo
     /   img src = "/assets/adcons__grey.svg"
 
-- if (comment rescue false)
+  - if (comment rescue false)
   #js-comment.courses-aside
     .close-filter.icon Комментарии
     #disqus_thread

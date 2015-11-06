@@ -89,94 +89,7 @@ section.landing__compare__table
     .content__block
       .section__title Получайте полезные знания вместе с Edbox!
       .description В Edbox вы можете обучаться как индивидуально, так и в рамках компании. Выберите подходящий вам формат и зарегистрируйте аккаунт.
-      .compare__table
-        table#divToBeScrolledTo
-          thead
-            tr
-              th
-              th
-                .text__wrp Корпоративный
-              th
-                .text__wrp Индивидуальный
-              th
-                .text__wrp
-                  | Бесплатный
-                  span Ваш текущий план подписки
-          tbody
-            tr
-              td
-                .text__wrp Просмотр бесплатных курсов, вебинаров и материалов онлайн-университета
-              td
-                i.icon.done
-              td
-                i.icon.done
-              td
-                i.icon.done
-            tr
-              td
-                .text__wrp Обновления онлайн-университета
-              td
-                i.icon.done
-              td
-                i.icon.done
-              td
-                i.icon.done
-            tr
-              td
-                .text__wrp Доступ ко всем платным материалам, вебинарам и курсам системы
-              td
-                i.icon.done
-              td
-                i.icon.done
-              td
-            tr
-              td
-                .text__wrp Возможность формировать личное расписание
-              td
-                i.icon.done
-              td
-                i.icon.done
-              td
-            tr
-              td
-                .text__wrp Формирование групп обучающихся  и назначение группового расписания  для сотрудников
-              td
-                i.icon.done
-              td
-              td
-            tr
-              td
-                .text__wrp Бонусные корпоративные программы  и предложения
-              td
-                i.icon.done
-              td
-              td
-            tr
-              td
-                .text__wrp Аналитика эффективности корпоративного обучения
-              td
-                i.icon.done
-              td
-              td
-          tfoot
-            tr
-              td
-              td
-                .price
-                  |2 990 ₽/мес. 
-                  span + 990 ₽/мес. за сотрудника
-                .action__block
-                  .btn.is__blue.js_openFormRegistration.selectType data-type="corp" ОПЛАТИТЬ
-              td
-                .price 1 490 ₽/мес.
-                .action__block
-                  .btn.is__blue.js_openFormRegistration.selectType data-type="pers" ОПЛАТИТЬ
-              td
-                .price Бесплатно
-                .action__block
-                  a.btn.btn-flat.is__border href="/sign_up" ВЫБРАТЬ
-
-
+      = render "common/tableTariff"
 footer
   .left-col
     img src="/images/ad__logo.png" /

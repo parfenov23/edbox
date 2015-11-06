@@ -309,6 +309,16 @@ var back_url = function (type, find_link, default_result) {
 
 $(document).ready(function () {
     back_url();
+    if ($("header.scroll_white").length) {
+        $(document).scroll(function(){
+            if( $(document).scrollTop() > 0 ){
+                $("header.scroll_white").addClass("is__white")
+            }else{
+                $("header.scroll_white").removeClass("is__white")
+            }
+        });
+    }
+
     $(document).on('click', '.js_closeAllPopup', function (e) {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
     });
@@ -356,7 +366,7 @@ $(document).ready(function () {
         }
     })
 
-    if ($("input[name='ip_user']").length) $("input[name='ip_user']").val(myIP());
+    //if ($("input[name='ip_user']").length) $("input[name='ip_user']").val(myIP());
     $("input[name='current_link_page']").val(window.location.href);
 
     $('video').bind('contextmenu', function () { return false; });

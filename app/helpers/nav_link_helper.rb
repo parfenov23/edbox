@@ -35,7 +35,8 @@ module NavLinkHelper
 
   def profile_nav_links
     [
-      {title: "Профиль", link: "/profile"}
+      {title: "Профиль", link: "/profile"},
+      {title: "Тариф", link: "/tariff"}
     ]
   end
 

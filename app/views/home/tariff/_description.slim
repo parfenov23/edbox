@@ -1,0 +1,19 @@
+.description
+  - if sub.overdue?
+    p.overdue Подписка закончилась
+  - if sub.company?
+    p
+      'Текущая подписка для
+      b = rus_case(sub.user_count, 'сотрудника', 'сотрудников', 'сотрудников')
+      |, чтобы добавить сотрудников перейдите к продлению подписки
+  p
+    'Действует до
+    b = ltime(sub.date_to, '', 'short_date')
+  p
+    'Подписка была оплачена
+    b = ltime(sub.created_at, '', 'long')
+  p
+    'Сумма последнего платежа
+    b = "#{sub.sum} ₽"
+  - unless sub.overdue?
+    p.is__blue Рекомендуемая дата следующего платежа #{ltime(sub.date_to - 3.day, '', 'long_without_time')}

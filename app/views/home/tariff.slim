@@ -1,0 +1,9 @@
+= render "home/header/header", {namePage: "profile", titlePage: "Тариф"}
+- sub = current_user.find_subscription
+.inner-content
+  - if sub.blank?
+    = render "home/tariff/free", {sub: sub}
+  - else
+    = render "home/tariff/block", {sub: sub}
+  .content__block
+    = render "common/tableTariff", {sub: sub}

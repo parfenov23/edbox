@@ -19,7 +19,7 @@ var deleteMemberToGroup = function (group_id) {
     }).success(function () {
         form.remove();
         $(".js__multi__action.multi__choice").removeClass("is__active");
-        show_error('Пользователи удаленны из группы', 3000);
+        show_error('Пользователи удалены из группы', 3000);
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
