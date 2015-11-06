@@ -258,4 +258,5 @@ ru:
       short_min: "%d %b"
       short_min_y: "%d %b %y"
       short_date: "%d %B"
+      time: "%H:%M"
     pm: вечера
