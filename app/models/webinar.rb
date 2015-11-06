@@ -7,6 +7,10 @@ class Webinar < ActiveRecord::Base
     as_json
   end
 
+  def course
+    attachment.attachmentable.course
+  end
+
   def find_course
     attachment.attachmentable.course rescue nil
   end
@@ -25,9 +29,31 @@ class Webinar < ActiveRecord::Base
     end
     ActiveRecord::Base.connection_pool.with_connection do
       bb = BigbluebuttonRoom.where(name: attachment.title).last
-      bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
+      if bb.blank?
+        leads_txt = '.'
+        if ligament_leads.present?
+          if ligament_leads.count == 1
+            leads_txt = "вести сегодняшний вебинар будет #{ligament_leads.first.user.first_name}."
+          else
+            names = ligament_leads.pluck(:first_name)
+            leads_txt = "вести сегодняшний вебинар будут #{names.joins(', ')}"
+          end
+        end
+        welcome_msg = "Добро пожаловать на #{course.title rescue nil}: #{attachment.tile}. Начало вебинара запланировано на #{ltime(date_start, '', 'time')} по Москве#{leads_txt}"
+        moderator_only_message = "1. Проверьте микрофон и камеру 2. Не забудьте настроить права участников 3. Проверьте записывается ли вебинар 4. Настройте white board, добавьте материалы"
+        bb = BigbluebuttonRoom.create({
+                                        server_id: server_bb.id,
+                                        name: attachment.title,
+                                        moderator_key: "12345",
+                                        duration: 480,
+                                        record_meeting: true,
+                                        auto_start_recording: true,
+                                        allow_start_stop_recording: true,
+                                        welcome_msg: welcome_msg,
+                                        moderator_only_message: moderator_only_message
+                                      })
+      end
+      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid)
       bb.update({
                   meetingid: config_meeting[:meetingID],
                   attendee_api_password: config_meeting[:attendeePW],

@@ -29,14 +29,18 @@
       margin-top: 8px;
     }
     .description {
-      @include text__setting(normal__typo);
+      @include text__setting(normal__typo, secondary__color);
       margin-bottom: 17px;
+      &.is__black {
+        color: black__color(base__color);
+      }
     }
     p {
       margin-bottom: 8px;
     }
     b {
       font-weight: 500;
+      color: black__color(base__color);
     }
     .action__block {
       display: flex;
