@@ -39,7 +39,7 @@ class Webinar < ActiveRecord::Base
             leads_txt = "вести сегодняшний вебинар будут #{names.joins(', ')}"
           end
         end
-        welcome_msg = "Добро пожаловать на #{course.title rescue nil}: #{attachment.tile}. Начало вебинара запланировано на #{ltime(date_start, '', 'time')} по Москве#{leads_txt}"
+        welcome_msg = "Добро пожаловать на #{(course.title rescue nil)}: #{attachment.tile}. Начало вебинара запланировано на #{ltime(date_start, '', 'time')} по Москве#{leads_txt}"
         moderator_only_message = "1. Проверьте микрофон и камеру 2. Не забудьте настроить права участников 3. Проверьте записывается ли вебинар 4. Настройте white board, добавьте материалы"
         bb = BigbluebuttonRoom.create({
                                         server_id: server_bb.id,
