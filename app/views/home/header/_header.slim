@@ -77,7 +77,10 @@ header#page__header.adaptive__title class=hclass.join(" ")
             .bottom
               /.btn__raised.add__acc добавить аккаунт
               - unless (current_user.corporate? && !current_user.director?)
-                a.btn.is__orange href="/tariff" = (sub.blank? ? "КУПИТЬ ПОДПИСКУ" : "ПРОДЛИТЬ ПОДПИСКУ")
+                - if sub.blank?
+                  a.btn.is__orange href="/tariff" КУПИТЬ ПОДПИСКУ
+                - else
+                  a.btn.is__orange href="/payment" ПРОДЛИТЬ ПОДПИСКУ
               a.btn.btn-flat.exit href="/sign_out" выход
     - else
       .page__action style="margin-right: 22px;"
