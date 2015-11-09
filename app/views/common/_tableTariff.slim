@@ -117,7 +117,7 @@
               - if (sub.user? rescue false)
                 a.btn.is__blue href="/payment" продлить
               - elsif (sub.blank? && !current_user.director?)
-                a.btn.is__blue href="/payment?type=user" продлить
+                a.btn.is__blue href="/payment?type=user" ОПЛАТИТЬ
               - else
                 .btn.is__blue.disable ОПЛАТИТЬ
           td
