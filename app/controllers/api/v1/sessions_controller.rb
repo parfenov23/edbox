@@ -15,6 +15,7 @@ module Api::V1
       end
     end
 
+
     def registration
       permit_params = user_params
       permit_params[:corporate] = "true" if (params[:company][:name].to_s.length > 0 rescue false)

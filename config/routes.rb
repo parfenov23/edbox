@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get :sign_in, to: "enter#sign_in"
   get :sign_up, to: "enter#sign_up"
   get :sign_out, to: "enter#sign_out"
+  get :reset_pass, to: "enter#reset_pass"
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
   bigbluebutton_routes :default

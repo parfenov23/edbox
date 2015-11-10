@@ -104,6 +104,24 @@ function fixed_btn_save(){
     }
 }
 
+var resetPassword = function(){
+    var data = $(this).closest("form").serialize();
+    $.ajax({
+        type   : 'POST',
+        url    : '/api/v1/sessions/recover_password',
+        data   : data,
+        success: function (data) {
+            show_error('Вам на почту выслан новый пароль', 3000);
+            setTimeout(function(){
+                window.location.href = '/sign_in'
+            }, 1000)
+        },
+        error  : function () {
+            show_error('Пользователя с таким Email не существует', 3000);
+        }
+    });
+};
+
 $(document).ready(function () {
     $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function(){
         var valPass = checkPassword($(this).val());
@@ -116,6 +134,9 @@ $(document).ready(function () {
             scrollTop: $("#divToBeScrolledTo").offset().top - 64
         });
     });
+
+    $(document).on('click', '.js_FormAuthResetPass .js_resetPassword', resetPassword);
+
     if ($("form.js_registrationUser").length){
         (function() {
             $('.phoenix-input').phoenix();
