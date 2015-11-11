@@ -1,7 +1,10 @@
 - title titlePage
 / header#page__header.with__img
 - valid_img_page = ["course_description", "other_white"]
-header#page__header.adaptive__title.is__white class=(valid_img_page.include?(namePage) ? "with__img" : "" )
+- hclass = [(valid_img_page.include?(namePage) ? "with__img" : "")]
+- hclass += ['is__white'] if (!noWhite rescue true)
+- hclass += ['scroll_white'] if (noWhite rescue false)
+header#page__header.adaptive__title class=hclass.join(" ")
   .left-col
     - unless (btnBack rescue false)
       .page__icon.item
@@ -62,13 +65,22 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
               .text
                 .name = current_user.full_name
                 .login = current_user.email
-
+            - sub = current_user.find_subscription
+            - if sub.blank?
+              .sub__info
+                .title У вас бесплатный аккаунт
+                .description.overdue Вы можете просматривать только бесплатные курсы и материалы
             ul.menu
               li.menu__item
                 a.menu__item-link.menu__item-profile href="/profile" Профиль
 
             .bottom
               /.btn__raised.add__acc добавить аккаунт
+              - unless (current_user.corporate? && !current_user.director?)
+                - if sub.blank?
+                  a.btn.is__orange href="/tariff" КУПИТЬ ПОДПИСКУ
+                - else
+                  a.btn.is__orange href="/payment" ПРОДЛИТЬ ПОДПИСКУ
               a.btn.btn-flat.exit href="/sign_out" выход
     - else
       .page__action style="margin-right: 22px;"
@@ -77,10 +89,11 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
         - hash_class = ''
         - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
         - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
-        - if (@course.paid? rescue false)
-          .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
-        - else
-          .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
+        a.btn.is__blue href="/sign_up" ЗРЕГИСТРИРОВАТЬСЯ
+        /- if (@course.paid? rescue false)
+        /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
+        /- else
+        /  .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
 
 - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
@@ -133,7 +146,7 @@ header#page__header.adaptive__title.is__white class=(valid_img_page.include?(nam
     / .btm__logo
     /   img src = "/assets/adcons__grey.svg"
 
-- if (comment rescue false)
+  - if (comment rescue false)
   #js-comment.courses-aside
     .close-filter.icon Комментарии
     #disqus_thread

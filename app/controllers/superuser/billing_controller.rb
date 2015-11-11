@@ -70,7 +70,7 @@ module Superuser
 
     def sub_params
       params.require(:subscription).permit(:date_from, :date_to, :subscriptiontable_type, :sum,
-                                           :subscriptiontable_id, :active, :user_count).compact.select { |k, v| v != "" } rescue {}
+                                           :subscriptiontable_id, :active, :user_count, :note).compact.select { |k, v| v != "" } rescue {}
     end
 
   end

@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   end
 
   def find_subscription(active = true, find_time=false, type="last")
-    model = director? ? (company rescue self) : self
+    model = director? ? (company rescue self) : (corporate? ? (company rescue self) : self )
     time = Time.current
     subs = model.subscriptions.where(active: active)
     if find_time

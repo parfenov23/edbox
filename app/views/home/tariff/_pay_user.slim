@@ -1,0 +1,56 @@
+.billing__wrp
+  .content__block
+    .page__title
+      img src="/assets/header__edbox.svg"
+    .tarif__info
+      .title Проверьте ваш заказ
+      .description
+        p
+          |Вы покупаете «
+          b Индивидуальный
+          |» пакет доступа к Edbox и получите возможности:
+        ul
+          li
+            i.icon.done
+            | Просмотра бесплатных курсов, вебинаров и материалов онлайн-университета
+          li
+            i.icon.done
+            | Подписку на обновления онлайн-университета
+          li
+            i.icon.done
+            | Доступа ко всем платным материалам, вебинарам и курсам системы
+          li
+            i.icon.done
+            | Формировать личное расписание
+
+      - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
+      - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
+      form.privet__calc.parentPriceTariff data-user_price=hash_date[:user_price]
+        .duration
+          .title Продолжительность
+          .dropdown__flash.js__dropdown_toggle date-n=hash_date[:n]
+            .visible__part
+              span
+                = hash_date[:date]
+              i.icon.to__drop
+            ul.hidden__list.js_editPriceMonthTariff data-user_price=hash_date[:user_price] data-type=sub_type
+              - hash_date[:all_months].each do |month|
+                li data-price=month[:price] = month[:month]
+        .sum
+          .title Итого
+          .qty
+            input type="hidden" name="sum" value=hash_date[:default_price]
+            input type="hidden" name="email" value=current_user.email
+            input type="hidden" name="count_month" value=hash_date[:date]
+            span = hash_date[:default_price]
+            = " ₽"
+      .legend
+        | Подписка начнет действовать сразу после одобрения менеджером,
+        br
+        | обычно это занимает не более 24 часов, к вам на почту придет уведомление.
+      .action__block
+        a.btn href="/tariff" ОТМЕНА
+        .btn.is__blue.js_submitFormEditTariff ПЕРЕЙТИ К ОПЛАТЕ
+    .help__info
+      p Если возникли вопросы, вы можете позвонить нам
+      p +7 495 258-46-42

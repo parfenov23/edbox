@@ -3,7 +3,10 @@
   #course
     h2 = @course.title
     .title = @course.description
-.last__chance.js_parentRequestSend
-  = render "common/popup_request/content"
-
+/.last__chance.js_parentRequestSend
+/  = render "common/popup_request/content"
+- h = "Материал доступен после регистрации" if !@course.paid
+- h = "Материал доступен по платной подписке" if @course.paid
+- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке Edbox"
+= render "common/course/course_reg", {header: h, info: i}
 = render "home/footer/footer"

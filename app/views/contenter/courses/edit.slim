@@ -10,7 +10,8 @@
     - course_img = course.attachments.where(file_type: "image", size: "full").last
     - img = course_img.file.url rescue "/uploads/course_default_image.png?mini_magick"
     - img_valid = !img.include?("mini_magick")
-
+    .shadow
+    
     img.teaserImageChange src = img
     video.teaserVideoChange {
       controls="" height="400" width="800"

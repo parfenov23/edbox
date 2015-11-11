@@ -1,28 +1,20 @@
-.auth
-    .auth__box
-        .logo
-            img src="assets/logo.svg"
-        .auth__title-top
-            img.logo__img src="assets/logo_auth.svg"
-        form.auth__top.auth__enter-first data-redirect=(params[:redirect].present? ? "/course_description?id=#{params[:redirect]}" : '')
-            .auth__title Авторизация
-            .input-wrp.email
-                input placeholder="Email" name="user[email]" type="text"
-                hr
-            .input-wrp.password
-                input placeholder="Пароль" name="user[password]" type="password"
-                hr
-            /.what__wrp
-            /    a.what__wrp-link href="/#signin/problems" Проблемы со входом?
-
-            .create__acc
-                a.auth__what href="/sign_up" Создать новый аккаунт
-            .btn-holder
-                button.btn.is__blue.ya_old_acc#submit Войти
-            //.auth__bottom
-            /  .title Авторизоваться через:
-            /  ul.social__links
-            /    li.social__links-item.social__links-item-fb Facebook
-            /    li.social__links-item.social__links-item-vk Вконтакте
-            /    li.social__links-item.social__links-item-od Одноклассники
-            /
+.reg__wrp
+  .logo__frst
+    img src="/assets/header__edbox.svg"
+  .logo__scnd
+    img src="/assets/header__adconsult.svg"
+  form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description?id=#{params[:redirect]}" : '')
+    .title Авторизация
+    .com__input-item.item.empty
+      input.form-control.floating-label name="user[email]" type="email" placeholder="Логин"
+      .error__msg Обязательное поле
+      hr
+    .com__input-item.item.empty
+      input.form-control.floating-label name="user[password]" type="password" placeholder="Пароль"
+      .error__msg Обязательное поле
+      hr
+    .forgot__pass
+      a href="/reset_pass" Забыли пароль?
+    .action__block
+      a.btn.btn-flat href="/sign_up" СОЗДАТЬ АККАУНТ
+      .btn.is__blue#submit ВОЙТИ

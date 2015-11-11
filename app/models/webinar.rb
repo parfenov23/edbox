@@ -7,6 +7,10 @@ class Webinar < ActiveRecord::Base
     as_json
   end
 
+  def course
+    attachment.attachmentable.course
+  end
+
   def find_course
     attachment.attachmentable.course rescue nil
   end
@@ -14,14 +18,6 @@ class Webinar < ActiveRecord::Base
   def in_progress?
     minute_diff = (Time.now.utc - date_start).to_i/60
     (minute_diff > 0 && minute_diff < duration) ? true : false
-  end
-
-  def create_room_in_schedule
-    scheduler = Rufus::Scheduler.start_new
-    scheduler.at "#{date_start}" do
-      create_room
-    end
-    scheduler.start
   end
 
   def create_room
@@ -33,9 +29,29 @@ class Webinar < ActiveRecord::Base
     end
     ActiveRecord::Base.connection_pool.with_connection do
       bb = BigbluebuttonRoom.where(name: attachment.title).last
-      bb = BigbluebuttonRoom.create({server_id: server_bb.id, name: attachment.title, moderator_key: "12345"}) if bb.blank?
-      # config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: duration.to_i})
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, {duration: 480})
+      if bb.blank?
+        bb = BigbluebuttonRoom.create(
+          {
+            server_id: server_bb.id,
+            name: attachment.title,
+            moderator_key: "12345",
+          })
+      end
+
+      leads_txt = '.'
+      if ligament_leads.present?
+        lead_user_ids = ligament_leads.pluck(:user_id)
+        names = User.where(id: lead_user_ids).pluck(:first_name)
+        leads_txt = "вести сегодняшний вебинар #{ApplicationController.helpers.rus_case(ligament_leads.count, 'будет', 'будут', 'будут')} #{names.join(', ')}."
+      end
+      welcome_msg = "Добро пожаловать на #{(course.title rescue nil)}: #{attachment.title}. Начало вебинара запланировано на #{ApplicationController.helpers.ltime(date_start, '', 'time')} по Москве#{leads_txt}"
+
+      meet_opt = {
+        :welcome => welcome_msg,
+        :record => true,
+        :duration => 480,
+      }
+      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, meet_opt)
       bb.update({
                   meetingid: config_meeting[:meetingID],
                   attendee_api_password: config_meeting[:attendeePW],

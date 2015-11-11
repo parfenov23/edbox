@@ -256,9 +256,13 @@ $(document).ready ->
     input = $('.js__stuf_count input')
     futVal = parseInt(input.val()) + parseInt($(@).data 'delta')
     input.val(futVal)
-    if futVal > 0
+    input.change()
+    min_val = 1
+    if (input.data('default') != undefined )
+      min_val = parseInt(input.data('default'))
+    if futVal > min_val
       $('.js__stuf_count').removeClass 'is__empty'
-    else if futVal == 0
+    else if futVal == min_val
       $('.js__stuf_count').addClass 'is__empty'
 
 

@@ -15,9 +15,10 @@
           = render "common/page_empty", {btn: false}
       - if current_user.present?
         = render "home/courses/pop_up"
-- unless current_user.present?
-  .last__chance.js_parentRequestSend style=(@course.blank? ? "padding-top: 64px;" : "")
-    = render "common/popup_request/content"
+
+- h = "Получай полезные знания вместе с Edbox"
+- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке Edbox"
+= render "common/course/course_reg", {header: h, info: i}
 
 - if params[:reg].present? && params[:reg] == 'true'
   #regtype.js_regFromLanding data-type=params[:type]  style = 'display: none'

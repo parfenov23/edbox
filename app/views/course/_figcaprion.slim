@@ -7,13 +7,16 @@ figcaption
         .right-col = !course.paid ? "Бесплатно" : nil
     - else
       .authors = !course.paid ? "Бесплатно" : nil
+  - link = "/course_description?id=#{course.id}"
   -  if current_user.present? && !assigned && course.material?
     - redirect_att = "/course_description?id=#{course.id}"
     - add_class = "js_addCourseToMyCourse"
+  - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
+    - link = "/course_no_reg?id=#{course.id}"
   form data-redirect=(redirect_att rescue nil) data-alert="false"
     - if course.material?
       input type="hidden" name="course_id" value=course.id
-    a.goToCourse class=(add_class rescue nil) href="/course_description?id=#{course.id}"
+    a.goToCourse class=(add_class rescue nil) href=link
       .title = course.title
     - if assigned
       - bunch_course = course.find_bunch_course(current_user.id, nil)
