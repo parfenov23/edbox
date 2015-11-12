@@ -33,8 +33,8 @@ class Subscription < ActiveRecord::Base
     sub
   end
 
-  def overdue?
-    date_to.end_of_day < Time.now.end_of_day
+  def overdue?(day=0)
+    (date_to.end_of_day - day.day - 1.hour) < Time.current.end_of_day
   end
 
   def user?
@@ -64,6 +64,10 @@ class Subscription < ActiveRecord::Base
       difference += 12 * (b.year - a.year)
     end
     (difference + b.month - a.month).abs.round
+  end
+
+  def residue_day
+    (((date_to.end_of_day - Time.current.end_of_day).abs/ 60)/(24*60)).round
   end
 
   def self.default_all_month_and_price(type)

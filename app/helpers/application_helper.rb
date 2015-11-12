@@ -82,12 +82,33 @@ module ApplicationHelper
       time_where_arr << time_to
     end
     array_where = [condition_where_arr.join(" ")]
-    time_where_arr.each{|time_where| array_where << time_where}
+    time_where_arr.each { |time_where| array_where << time_where }
     array_where
   end
 
   def rus_case(count, n1, n2, n3)
     "#{count} #{Russian.p(count, n1, n2, n3)}"
+  end
+
+  def profile_header_text(sub=nil)
+    if sub.nil?
+      {title: "У вас бесплатный аккаунт", desc: "Вы можете просматривать только бесплатные курсы и материалы", show_btn: true}
+    else
+      desc = if !sub.overdue? && !sub.overdue?(7)
+               "Действует до #{ltime(sub.date_to, '', 'long_without_time')}"
+             elsif sub.overdue?(7) && !sub.overdue?(1)
+               r_day = sub.residue_day
+               "Действует еще #{rus_case(r_day, 'день', 'дня', 'дней')}, продлите подписку"
+             elsif sub.overdue?(1) && !sub.overdue?
+               "Действует до завтра, продлите подписку"
+             else
+               "Подписка закончится сегодня"
+             end
+      sub_title = sub.company? ? "Корпоративная подписка" : "Индивидуальная подписка"
+      sub_class = sub.overdue?(3) ? "overdue" : ""
+      sub_btn = sub.overdue?(7) ? true : false
+      {title: sub_title, desc: desc, class: sub_class, show_btn: sub_btn}
+    end
   end
 
   def rus_case_label(count, n1, n2, n3)
