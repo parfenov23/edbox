@@ -1,0 +1,13 @@
+.inner-content
+  #course
+    - if course.material?
+      h2 = course.title
+      .title = course.description
+    .text__description
+      .title = attachment.title
+      .description = attachment.description
+      .icon__block
+        i.icon.video
+      
+    .video__content
+      iframe allowfullscreen="" frameborder="0" width="800" height="600" mozallowfullscreen="" src=attachment.full_text webkitallowfullscreen=""
