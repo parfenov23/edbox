@@ -33,7 +33,7 @@
       = render "contenter/courses/help_error"
       input.uploadFileInput type="file" id="inputFile_#{attachment.id}" name="attachment[file]" data-type="file"
       input.validateAttachmentFileType.js_fileType type="hidden" value=attachment.file_type
-      - unless attachment.file.file.present? || ["description", "test", "webinar", "announcement"].include?(attachment.file_type)
+      - unless attachment.file.file.present? || ["description", "test", "webinar", "announcement", "vimeo"].include?(attachment.file_type)
         .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="description"
           i.icon.text
           .selectText Написать текст
@@ -71,6 +71,8 @@
       .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
         textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
           = attachment.full_text
+      .addedVimeo.itemFile data-type="vimeo" class=(attachment.file_type == "vimeo" ? "attachmentShow" : "")
+        input.js_onChangeEditAttachment name="attachment[full_text]" value=attachment.full_text
       .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
         .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
           .titleName = (attachment.file.file.original_filename rescue "Без имени")

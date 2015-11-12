@@ -76,6 +76,13 @@ validatePresentFile = function () {
                     arr_errors[arr_errors.length] = "Текст не может быть пустым";
                 }
             }
+            if (input.val() == "vimeo"){
+                var input = blockEditFile.find(".addedVimeo input");
+                if (!$(input).val().length){
+                    arr_errors[arr_errors.length] = "Введите ссылку на видео";
+                }
+                console.log('sadasdasdasdasdasd');
+            }
         }
         if (! arr_errors.length){
             block_error_view.removeClass("error");
