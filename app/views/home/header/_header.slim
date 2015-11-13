@@ -89,7 +89,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
         - hash_class = ''
         - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
         - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
-        a.btn.is__blue href="/sign_up" ЗРЕГИСТРИРОВАТЬСЯ
+        a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
         /- if (@course.paid? rescue false)
         /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
         /- else
