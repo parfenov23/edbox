@@ -5,7 +5,7 @@
       .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
         /- hash_class = ((@course.online? rescue false) ? 'ya_webinar_reg' : '')
-        a.btn.is__blue href="/sign_up" ЗРЕГИСТРИРОВАТЬСЯ
+        a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
         /- if @course.paid?
         /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg class=hash_class Регистрация
         /- else
