@@ -9,7 +9,7 @@
   = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
 - unless @attachment.download
   - case @attachment.file_type
-  - when "audio", "video", "description", "pdf"
+  - when "audio", "video", "description", "pdf", 'vimeo'
     = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
     = render "common/course/adova_btn_new"
   - when "test"

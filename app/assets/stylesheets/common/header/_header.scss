@@ -509,6 +509,9 @@
         line-height : 36px;
         margin-right: 0;
       }
+      &.btn_right{
+        justify-content: flex-end;
+      }
     }
   }
   .menu__apps {
