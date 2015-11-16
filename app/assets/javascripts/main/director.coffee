@@ -8,11 +8,8 @@ shiftTableBody = ->
   x = 0
   y = 0
   atRight = false
-
   normalShift = (dir, shEl) ->
     anim = true
-    console.log 'anime norm   ' + anim
-
     deltaMove = 216 * 4
     currMarg = parseInt(shEl.css('marginLeft'))
     shEl.css (
@@ -20,10 +17,7 @@ shiftTableBody = ->
     )
     setTimeout (->
       anim = false
-      console.log 'anime norm 22   ' + anim
-
-    ), 700
-
+    ), 300
   shotShift = (dir, shEl, resedue) ->
     anim = true
     console.log 'anime shot  ' + anim
@@ -34,13 +28,7 @@ shiftTableBody = ->
       )
     setTimeout (->
       anim = false
-      console.log 'anime  shot 22   ' + anim
-
     ), 700
-
-
-  console.log 'anime gl    ' + anim
-
   $(document).on 'click', '.js__move__table_col.is__active', ->
     if anim == false
       dir = $(@).data 'direction'
@@ -49,8 +37,6 @@ shiftTableBody = ->
         when y == 0 # первый раз
           normalShift(dir, movedTabletsPart)
           $('.js__move__table_col').addClass 'is__active'
-          console.log 'anime cl    ' + anim
-
         when x == 0 #переход к первому экрану
           if atRight # мы подходим к началу, но были уже в правом конце
             shotShift(dir, movedTabletsPart, resedue)
