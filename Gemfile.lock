@@ -202,6 +202,7 @@ GEM
     minitest (5.8.0)
     mono_logger (1.1.0)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
     net-http-digest_auth (1.4)
@@ -413,6 +414,7 @@ DEPENDENCIES
   mailcatcher (= 0.6.1)
   mechanize
   mini_magick (= 4.2.7)
+  multi_xml
   net-ssh (~> 2.7.0)
   pg (= 0.18.3)
   pry
@@ -442,3 +444,6 @@ DEPENDENCIES
   websocket-rails!
   whenever
   without-rails
+
+BUNDLED WITH
+   1.10.4

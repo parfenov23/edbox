@@ -1,3 +1,4 @@
+# require 'ApiClients::WebinarRu'
 class Webinar < ActiveRecord::Base
   belongs_to :attachment
   belongs_to :bigbluebutton_room
@@ -69,6 +70,11 @@ class Webinar < ActiveRecord::Base
       password = type == "user" ? bbbroom.attendee_api_password : bbbroom.moderator_api_password
       bbbroom.server.api.join_meeting_url(bbbroom.meetingid, (user.full_name rescue "Слушатель"), password)
     end
+  end
+
+  def self.create_wru
+    a = ::ApiClients::WebinarRu.new
+    a.get('Create.php', {name: 'Тест вебинар', time: 'Thu, 17 Nov 2015 08:41:55 GMT', description: 'Тест вебинар - не обращайте внимание' , access: 'open'})
   end
 
 end
