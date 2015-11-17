@@ -57,6 +57,10 @@
               i.icon.video
               .selectText Вставить видео
 
+            .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="vimeo"
+              i.icon.video
+              .selectText Вставить вимео
+
             - add_class = attachment.file_type == "audio" ? "active" : ""
             .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'audio/*')" class=add_class data-type="audio" data-id=att_id
               i.icon.audio
@@ -80,6 +84,8 @@
           .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
             textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
               = attachment.full_text
+          .addedVimeo.itemFile data-type="vimeo" class=(attachment.file_type == "vimeo" ? "attachmentShow" : "")
+            input.js_onChangeEditAttachment name="attachment[full_text]" value=attachment.full_text
           .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
             .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
               .titleName = (attachment.file.file.original_filename rescue "Без имени")
