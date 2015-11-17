@@ -26,7 +26,10 @@
     * {     background-color: rgba(0,255,0,0.1); }
   </style>
 <% end %>
-<body class="࿕" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
+<% if (params[:controller] == 'makeup' && params[:action] == 'landing') %>
+  <% land_class = 'landing__page' %>
+<% end %>
+<body class="࿕ <%= land_class %>" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
 <%= yield %>
 <div id="alert">
   <div class="text"></div>
