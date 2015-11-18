@@ -34,21 +34,10 @@ module ApiClients
     # 7. Скачивание файлов заметок
     # http://my.webinar.ru/api0/GetNotes.php?key={key}&event_id={eventId}
 
-    # DEFAULT_SUBDOMAIN = 'parfenov23'
-    # DEFAULT_HOST = 'amocrm.ru'
-    # DEFAULT_API_PATH = '/private/api/v2/json'
-
-    # def create_new_webinar
-    #   agent = Mechanize.new
-    #   page = agent.get(@base_url + "/api/user_info", {
-    #                                                  "api_key" => @api_key
-    #                                                })
-    #   @user = JSON.parse(page.content)["user"]
-    # end
     API_KEY = '8e73f6bde3ba1eea55d1aa50f3df9c48'
     BASE_URL = 'http://my.webinar.ru/api0/'
 
-    def initialize(options = {})
+    def initialize
       @conn = Faraday.new(url: BASE_URL) do |faraday|
         faraday.request :json
         faraday.request :url_encoded

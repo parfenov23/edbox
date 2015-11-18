@@ -73,8 +73,10 @@ class Webinar < ActiveRecord::Base
   end
 
   def self.create_wru
-    a = ::ApiClients::WebinarRu.new
-    a.get('Create.php', {name: 'Тест вебинар', time: 'Thu, 17 Nov 2015 08:41:55 GMT', description: 'Тест вебинар - не обращайте внимание' , access: 'open'})
+    client = ::ApiClients::WebinarRu.new
+
+    client.get('Create.php', {name: 'Тест вебинар', time: '1447822991', description: 'Тест вебинар - не обращайте внимание' , access: 'open'})
+    client.get('GetStatus.php', {event_id: '631811'})
   end
 
 end
