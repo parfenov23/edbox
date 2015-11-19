@@ -1,5 +1,5 @@
 class DropBbb < ActiveRecord::Migration
-  def self.down
+  def change
     drop_table :bigbluebutton_meetings  if ActiveRecord::Base.connection.table_exists? :bigbluebutton_meetings
     drop_table :bigbluebutton_playback_formats  if ActiveRecord::Base.connection.table_exists? :bigbluebutton_playback_formats
     drop_table :bigbluebutton_playback_types  if ActiveRecord::Base.connection.table_exists? :bigbluebutton_playback_types

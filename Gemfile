@@ -23,10 +23,6 @@ gem 'thin', '~> 1.5.0'
 gem 'babosa'
 gem 'activerecord-session_store'
 
-#===================== webinar
-gem 'bigbluebutton_rails', github: 'mconf/bigbluebutton_rails', branch: 'master'
-#=====================
-
 # Frontend
 gem 'uglifier'
 gem 'sass-rails'
