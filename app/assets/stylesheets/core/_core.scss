@@ -215,6 +215,71 @@
         top : 14px;
       }
     }
+    .image__prv {
+      margin-bottom: 24px;
+      > .title {
+        font-size: 15px;
+        color: rgba(0,0,0,0.26);
+        line-height: 24px;
+        margin-bottom: 8px;
+      }
+      .item {
+        @include white__block(1, 0);
+        width: 280px;
+        height: 88px;
+        padding-left: 88px;
+        position: relative;
+        .image {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 88px;
+          height: 88px;
+          -webkit-border-top-left-radius: 2px;
+          -webkit-border-bottom-left-radius: 2px;
+          -moz-border-radius-topleft: 2px;
+          -moz-border-radius-bottomleft: 2px;
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+          overflow: hidden;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+        .info {
+          padding-left: 16px;
+          padding-top: 16px;
+          .title {
+            position: relative;
+            padding-right: 30px;
+            width: 100%;
+            margin-bottom: 20px;
+            span {
+              @include eclipses;
+              display: block;
+              font-size: 13px;
+              color: rgba(0,0,0,0.54);
+              line-height: 20px;
+            }
+            i {
+              position: absolute;
+              top: 1px;
+              right: 12px;
+              color: rgba(0, 0, 0, 0.54);
+              font-size: 18px;
+            }
+          }
+          .weight {
+            font-size: 13px;
+            color: rgba(0,0,0,0.87);
+            line-height: 20px;
+          }
+
+        }
+      }
+    }
     .form_group {
       position : relative;
       @include blockHelpError;
@@ -245,18 +310,42 @@
           outline : none;
           resize  : none;
         }
+        .addTag {
+          @include clearfix;
+          .btn {
+            float: left;
+
+          }
+        }
+
       }
     }
     .itemDetailInfo {
-      position   : relative;
       @include blockHelpError;
+      position   : relative;
+      padding    : 48px 0px 24px 0px;
+      border-top : 1px solid #E8E8E8;
       .helpError {
         i.icon.help {
           top : 28px;
         }
       }
-      padding    : 24px 0px 24px 0px;
-      border-top : 1px solid #E8E8E8;
+      .description__Item .addCategory {
+        @include clearfix;
+        .btn {
+          float: left;
+
+        }
+      }
+      .addTag {
+        @include clearfix;
+        .btn {
+          float: left;
+
+        }
+      }
+
+
       .title__Item {
         color          : #757575;
         font-size      : 24px;
