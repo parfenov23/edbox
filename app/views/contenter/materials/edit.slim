@@ -20,6 +20,20 @@
         .description
           textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание материала" name="course[description]" data-autoresize=""
             = course.description
+            
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" Добавить обложку
+            
+      .image__prv
+        .title Обложка материала
+        .item
+          .image
+            img src="/uploads/pic2.png"
+          .info
+            .title 
+              span Создание материала Создание материала
+              i.icon.del
+            .weight 1.25mb
       .itemDetailInfo.validateCourseCategories.validateFormCourse
         .description__Item
           .allCategoriesDescriptionCourse
@@ -30,15 +44,20 @@
                 .remove.js_removeBunchCategoryFromCourse data-id=category.id
           .addCategory.js_clickFromCreateCourseContenter
             .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
-        .description__Item
-          .allTagDescriptionCourse
-            - course.bunch_tags.each do |bunch_tag|
-              - tag = bunch_tag.tag
-              .tag
-                = tag.title
-                .remove.js_removeBunchTagFromCourse data-id=tag.id
-          .addTag.js_clickFromCreateCourseContenter
-            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+        / .description__Item
+        .allTagDescriptionCourse
+          - course.bunch_tags.each do |bunch_tag|
+            - tag = bunch_tag.tag
+            .tag
+              = tag.title
+              .remove.js_removeBunchTagFromCourse data-id=tag.id
+              
+                
+        .addTag.js_clickFromCreateCourseContenter
+          .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+          
+          
+      .    
       .itemDetailInfo
         - valid_arr = ["description", "webinar", "test"]
         - vaft = attachment.file_type
