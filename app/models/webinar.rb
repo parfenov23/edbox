@@ -25,7 +25,7 @@ class Webinar < ActiveRecord::Base
     resp = client.get('Create.php', {name: attachment.title, time: date_start.to_i, description: attachment.title , access: access})
     resp['event']['event_id']
     if resp['event'].present? && resp['event']['status'] == 'ok'
-      self.event = resp['event']['status'].to_i
+      self.event = resp['event']['event_id'].to_i
       save
     end
     # {"event"=>{"status"=>"ok", "event_id"=>"632915"}}

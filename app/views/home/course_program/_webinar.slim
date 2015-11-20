@@ -1,13 +1,14 @@
 - webinar = @attachment.webinar
-- if webinar.bigbluebutton_room.present?
+- if webinar.event.present?
   .inner-content.webinar_attachment
     /javascript:
     //  window.location.href = "#{raw webinar.url_bigbluebuttom(current_user.id)}";
-    - if current_user.present?
-      - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
-    - else
-      - hash_attr = {src: (raw webinar.url_bigbluebuttom(nil, "user") )}
-    iframe width="100%" style="position: static; height: 95vh;border: none;" *hash_attr
+    /- if current_user.present?
+    /  - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
+    /- else
+    /  - hash_attr = {src: (raw webinar.url_bigbluebuttom(nil, "user") )}
+    /iframe width="100%" style="position: static; height: 95vh;border: none;" *hash_attr
+    iframe src="http://my.webinar.ru/event/#{webinar.event}/?t=1&export=1" width="100%" style="position: static; height: 95vh;border: none;"
 - else
   .inner-content
     #course
