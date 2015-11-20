@@ -30,12 +30,23 @@
 
         form.profile__block.profile__password
             .title Создание нового пароля
-            .input-wrp.password
-                input type="password" name="password" placeholder="Введите пароль"
-                hr
-            .input-wrp.password
-                input type="password" name="password_repeat" placeholder="Повторите пароль"
-                hr
+            
+            .com__input-item.item.empty.error.lvl-4
+              input.form-control.floating-label name="pass1" type="password" placeholder="Пароль"
+              .error__msg Ой все
+              hr
+            .com__input-item.item.empty.error.lvl-4
+              input.form-control.floating-label name="pass1" type="password" placeholder="Пароль"
+              .error__msg Ой все
+              hr
+
+            
+            / .input-wrp.password
+            /     input type="password" name="password" placeholder="Введите пароль"
+            /     hr
+            / .input-wrp.password
+            /     input type="password" name="password_repeat" placeholder="Повторите пароль"
+            /     hr
             .btn-holder
                 .btn.btn-raised.is__orange#submit сохранить
 
