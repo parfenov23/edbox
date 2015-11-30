@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get :reset_pass, to: "enter#reset_pass"
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
-  bigbluebutton_routes :default
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"
@@ -78,7 +77,9 @@ Rails.application.routes.draw do
           post :all_leading
           post :add_leading
           post :remove_leading
-          post :create_room
+          post :event_create
+          post :event_start
+          post :event_stop
         end
       end
 

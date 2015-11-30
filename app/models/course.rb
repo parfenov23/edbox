@@ -19,6 +19,8 @@ class Course < ActiveRecord::Base
   default_scope { order("created_at DESC") }
   USERID_TOJSON = nil
 
+  after_save :do_webinar, :if => :public
+
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
     if (width == nil) && (height == nil)
@@ -193,6 +195,15 @@ class Course < ActiveRecord::Base
 
   def assigned?(user_id)
     user_id.present? ? bunch_courses.where(user_id: user_id).present? : false
+  end
+
+  def do_webinar
+    sections.attachments.where(file_type: 'webinar').each do |attachment|
+      attachment.webinar.eventCreate
+      ligament_leads.each do |ligament_lead|
+        attachment.webinar.eventRegUser(ligament_lead.user, 'administrator')
+      end
+    end
   end
 
 

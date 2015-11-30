@@ -1,7 +1,7 @@
 class Webinar < ActiveRecord::Base
   belongs_to :attachment
-  belongs_to :bigbluebutton_room
   has_many :ligament_leads, dependent: :destroy
+  has_many :user_webinars, :dependent => :destroy
 
   def transfer_to_json
     as_json
@@ -20,55 +20,61 @@ class Webinar < ActiveRecord::Base
     (minute_diff > 0 && minute_diff < duration) ? true : false
   end
 
-  def create_room
-    server_bb = BigbluebuttonServer.last
-    unless server_bb.present?
-      server_bb = BigbluebuttonServer.create({name: "Adconsult Webinar",
-                                              url: "http://95.213.182.34/bigbluebutton/api",
-                                              salt: "e332144d6725ac8864d92cbf96ddb0df", version: "0.9"})
-    end
-    ActiveRecord::Base.connection_pool.with_connection do
-      bb = BigbluebuttonRoom.where(name: attachment.title).last
-      if bb.blank?
-        bb = BigbluebuttonRoom.create(
-          {
-            server_id: server_bb.id,
-            name: attachment.title,
-            moderator_key: "12345",
-          })
-      end
+  def after_save
+    eventUpdate if self.event.present?
+  end
 
-      leads_txt = '.'
-      if ligament_leads.present?
-        lead_user_ids = ligament_leads.pluck(:user_id)
-        names = User.where(id: lead_user_ids).pluck(:first_name)
-        leads_txt = "вести сегодняшний вебинар #{ApplicationController.helpers.rus_case(ligament_leads.count, 'будет', 'будут', 'будут')} #{names.join(', ')}."
-      end
-      welcome_msg = "Добро пожаловать на #{(course.title rescue nil)}: #{attachment.title}. Начало вебинара запланировано на #{ApplicationController.helpers.ltime(date_start, '', 'time')} по Москве#{leads_txt}"
-
-      meet_opt = {
-        :welcome => welcome_msg,
-        :record => true,
-        :duration => 480,
-      }
-      config_meeting = bb.server.api.create_meeting(bb.name, bb.meetingid, meet_opt)
-      bb.update({
-                  meetingid: config_meeting[:meetingID],
-                  attendee_api_password: config_meeting[:attendeePW],
-                  moderator_api_password: config_meeting[:moderatorPW]
-                })
-      self.bigbluebutton_room_id = bb.id
+  def eventCreate
+    client = ::ApiClients::WebinarRu.new
+    access = 'open'
+    resp = client.get('Create.php', {name: attachment.title, time: date_start.to_i, description: attachment.title, access: access})
+    if resp['event'].present? && resp['event']['status'] == 'ok'
+      self.event = resp['event']['event_id'].to_i
       save
     end
   end
 
-  def url_bigbluebuttom(user_id, type="user")
-    bbbroom = bigbluebutton_room rescue nil
-    if bbbroom.present?
-      user = User.find(user_id) rescue nil
-      password = type == "user" ? bbbroom.attendee_api_password : bbbroom.moderator_api_password
-      bbbroom.server.api.join_meeting_url(bbbroom.meetingid, (user.full_name rescue "Слушатель"), password)
+  def eventUpdate
+    client = ::ApiClients::WebinarRu.new
+    access = 'open'
+    resp = client.get('Update.php', {event_id: self.event, name: attachment.title, time: date_start.to_i, description: attachment.title, access: access})
+    resp['event'].present? && resp['event']['status'] == 'ok'
+  end
+
+  def eventStatus
+    client = ::ApiClients::WebinarRu.new
+    resp = client.get('GetStatus.php', {event_id: event})
+    resp['event']['stage'] if resp['event'].present? && resp['event']['status'] == 'ok'
+  end
+
+  def eventRun(runStatus = 'START')
+    client = ::ApiClients::WebinarRu.new
+    resp = client.get('Status.php', {event_id: event, stage: runStatus})
+    resp['event'].present? && resp['event']['status'] == 'ok'
+  end
+
+  def eventStart
+    eventRun('START')
+  end
+
+  def eventStop
+    eventRun('STOP')
+  end
+
+  def eventRegUser(user, role='user')
+    client = ::ApiClients::WebinarRu.new
+    resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
+    if resp['guestList'].present? && resp['guestList']['status'] == 'ok'
+      UserWebinar.create(webinar_id: self.id, user_id: user.id, url: resp['guestList']['guest']['uri'])
     end
   end
 
+  # def url_bigbluebuttom(user_id, type="user")
+  #   bbbroom = bigbluebutton_room rescue nil
+  #   if bbbroom.present?
+  #     user = User.find(user_id) rescue nil
+  #     password = type == "user" ? bbbroom.attendee_api_password : bbbroom.moderator_api_password
+  #     bbbroom.server.api.join_meeting_url(bbbroom.meetingid, (user.full_name rescue "Слушатель"), password)
+  #   end
+  # end
 end

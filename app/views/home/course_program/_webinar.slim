@@ -1,18 +1,26 @@
 - webinar = @attachment.webinar
-- if webinar.bigbluebutton_room.present?
-  .inner-content.webinar_attachment
-    /javascript:
-    //  window.location.href = "#{raw webinar.url_bigbluebuttom(current_user.id)}";
-    - if current_user.present?
-      - hash_attr = {src: (raw webinar.url_bigbluebuttom(current_user.id, (course.leading?(current_user.id) ? "moderator" : "user") ))}
-    - else
-      - hash_attr = {src: (raw webinar.url_bigbluebuttom(nil, "user") )}
-    iframe width="100%" style="position: static; height: 95vh;border: none;" *hash_attr
+- if current_user.present?
+  - status = webinar.eventStatus
+  - if status == 'ACTIVE'
+    .inner-content
+      #course
+        .text__description
+          - if course.leading?(current_user.id)
+            .title.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
+          - else
+            .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
+  - elsif status == 'START'
+    - if webinar.user_webinars.where(user_id: current_user).last.present?
+      - url = webinar.user_webinars.where(user_id: current_user).last.url
+      .inner-content.webinar_attachment
+        iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
+  - elsif status == 'STOP'
+    .inner-content
+      #course
+        .text__description
+          .title style="text-align: center;" = 'Вебинар завершен'
 - else
   .inner-content
     #course
       .text__description
-        - if (current_user.present? && course.leading?(current_user.id))
-          .title.js_createWebRoom data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
-        - else
-          .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
+        .title style="text-align: center;" = 'Зарегистрируйтесь'
