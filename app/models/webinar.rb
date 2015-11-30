@@ -1,6 +1,7 @@
 class Webinar < ActiveRecord::Base
   belongs_to :attachment
   has_many :ligament_leads, dependent: :destroy
+  has_many :user_webinars, :dependent => :destroy
 
   def transfer_to_json
     as_json
@@ -14,10 +15,14 @@ class Webinar < ActiveRecord::Base
     attachment.attachmentable.course rescue nil
   end
 
-  # def in_progress?
-  #   minute_diff = (Time.now.utc - date_start).to_i/60
-  #   (minute_diff > 0 && minute_diff < duration) ? true : false
-  # end
+  def in_progress?
+    minute_diff = (Time.now.utc - date_start).to_i/60
+    (minute_diff > 0 && minute_diff < duration) ? true : false
+  end
+
+  def after_save
+    eventUpdate if self.event.present?
+  end
 
   def eventCreate
     client = ::ApiClients::WebinarRu.new
@@ -56,14 +61,12 @@ class Webinar < ActiveRecord::Base
     eventRun('STOP')
   end
 
-  def eventRegUser(user = '', role='user')
+  def eventRegUser(user, role='user')
     client = ::ApiClients::WebinarRu.new
-    username = 'Тимур Вассерманов'
-    email = 'testvasser@mail.ru'
-    role = 'administrator'
-    resp = client.get('Register.php', {event_id: event, username: username, email: email, role: role})
-    # resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
-    resp['guestList']['guest']['uri'] if resp[user'guestList'].present? && resp['guestList']['status'] == 'ok'
+    resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
+    if resp['guestList'].present? && resp['guestList']['status'] == 'ok'
+      UserWebinar.create(webinar_id: self.id, user_id: user.id, url: resp['guestList']['guest']['uri'])
+    end
   end
 
   # def url_bigbluebuttom(user_id, type="user")
