@@ -209,3 +209,45 @@
     text-align: center;
   }
 }
+
+
+
+.landing__page {
+  min-width: 1000px;
+  @media only screen and  (max-width: 1130px) {
+    .landing__inner {
+      width: 100%;
+    }
+    .landing__banner .banner__img iframe {
+      top: 19px;
+      left: 50%;
+      margin-left: -159px;
+      height: 227px;
+      width: 361px;
+    }
+    .landing__courses__list .courses__list_inner, .landing__advantages__list .advantages__list {
+      text-align: center;
+    }
+    .landing__courses__list .courses__list_inner figure, .landing__advantages__list .advantages__list figure {
+      @include inline-block;
+      float: none;
+      margin: 0 24px 32px 0;
+    }
+    .landing__advantages__list .advantages__list figure  {
+      margin-bottom: 44px;
+      margin-right: 75px;
+    }
+    .content__block .compare__table {
+      width: 100%;
+    }
+    .content__block td {
+      width: 230px;
+    }
+    .content__block td:first-child {
+      width: auto;
+    }
+  }
+  footer {
+    height: 250px;
+  }
+}
