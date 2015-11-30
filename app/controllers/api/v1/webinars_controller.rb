@@ -35,9 +35,21 @@ module Api::V1
       render json: {success: true}
     end
 
-    def create_room
+    def event_create
       webinar = find_webinar
-      webinar.create_in_api
+      webinar.eventCreate
+      render json: {success: true}
+    end
+
+    def event_start
+      webinar = find_webinar
+      webinar.eventStart
+      render json: {success: true}
+    end
+
+    def event_stop
+      webinar = find_webinar
+      webinar.eventStop
       render json: {success: true}
     end
 

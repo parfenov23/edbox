@@ -8,12 +8,16 @@
     /- else
     /  - hash_attr = {src: (raw webinar.url_bigbluebuttom(nil, "user") )}
     /iframe width="100%" style="position: static; height: 95vh;border: none;" *hash_attr
-    iframe src="http://my.webinar.ru/event/#{webinar.event}/?t=1&export=1" width="100%" style="position: static; height: 95vh;border: none;"
+
+    /iframe src="http://my.webinar.ru/event/#{webinar.event}/?t=1&export=1" width="100%" style="position: static; height: 95vh;border: none;"
+    iframe src="http://my.webinar.ru/event/connect/637979/31b1cf5822a3922853e2ae6bac04081c/" width="100%" style="position: static; height: 95vh;border: none;"
+    /iframe src="http://my.webinar.ru/event/connect/637445/a5f6625c0a546a25bed3e01d77367ec9/" width="100%" style="position: static; height: 95vh;border: none;"
 - else
   .inner-content
     #course
       .text__description
         - if (current_user.present? && course.leading?(current_user.id))
-          .title.js_createWebRoom data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
+          .title.js_eventCreate data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Создать вебинар #{@attachment.title}"
+          .title.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
         - else
           .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
