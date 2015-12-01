@@ -1,0 +1,7 @@
+- if user.present?
+  - if user.user_webinars.find_by(webinar_id: webinar.id).present?
+    .btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id Отменить регистрацию на вебинар
+  - else
+    .btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id Зарегистрироваться на вебинар
+- else
+  a.btn href="/sign_up" Зарегистрируйтесь
