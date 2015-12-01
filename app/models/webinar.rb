@@ -69,12 +69,11 @@ class Webinar < ActiveRecord::Base
     end
   end
 
-  # def url_bigbluebuttom(user_id, type="user")
-  #   bbbroom = bigbluebutton_room rescue nil
-  #   if bbbroom.present?
-  #     user = User.find(user_id) rescue nil
-  #     password = type == "user" ? bbbroom.attendee_api_password : bbbroom.moderator_api_password
-  #     bbbroom.server.api.join_meeting_url(bbbroom.meetingid, (user.full_name rescue "Слушатель"), password)
-  #   end
-  # end
+  def eventUnRegUser(user)
+    client = ::ApiClients::WebinarRu.new
+    resp = client.delete('User.php', {event_id: event, email: user.email})
+    if resp['user'].present? && resp['user']['status'] == 'ok'
+      user_webinars.where(user_id: user.id).destroy_all
+    end
+  end
 end

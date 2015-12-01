@@ -53,6 +53,28 @@ module Api::V1
       render json: {success: true}
     end
 
+    def event_reg_user
+      webinar = find_webinar
+      user = User.find params[:user_id]
+      if user.present?
+        webinar.eventRegUser(user)
+        render json: {success: true}
+      else
+        render json: {success: false}
+      end
+    end
+
+    def event_un_reg_user
+      webinar = find_webinar
+      user = User.find params[:user_id]
+      if user.present?
+        webinar.eventUnRegUser(user)
+        render json: {success: true}
+      else
+        render json: {success: false}
+      end
+    end
+
     def create
     end
 

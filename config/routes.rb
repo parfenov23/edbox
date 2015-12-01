@@ -80,6 +80,8 @@ Rails.application.routes.draw do
           post :event_create
           post :event_start
           post :event_stop
+          post :event_reg_user
+          post :event_un_reg_user
         end
       end
 

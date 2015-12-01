@@ -56,6 +56,15 @@ module ApiClients
       {}
     end
 
+    def delete(path, params = {}, headers = {})
+      @conn.delete do |req|
+        req.headers.merge!(headers)
+        req.url path, params.merge(key: API_KEY)
+      end.body
+    rescue
+      {}
+    end
+
     # def post(path, params = {})
     #   @conn.post do |req|
     #     req.headers['Content-Type'] = 'application/json'
