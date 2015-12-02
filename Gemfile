@@ -61,7 +61,7 @@ gem 'spawnling', '~>2.1'
 gem 'whenever', :require => false
 gem 'rufus-scheduler'
 #======
-
+gem 'yandex-money-sdk' # yandex api money
 group :production do
   gem 'skylight'
 end
