@@ -1,7 +1,13 @@
-- if user.present?
-  - if user.user_webinars.find_by(webinar_id: webinar.id).present?
-    .btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id Отменить регистрацию на вебинар
+.btn_online_reg
+  - if user.present?
+    - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
+    - if user.user_webinars.find_by(webinar_id: webinar.id).present?
+      a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+        |Отменить регистрацию на вебинар
+    - else
+      a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+        |Зарегистрироваться на вебинар
+    - if current_user.director?
+      a.btn.is__blue.disable ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
   - else
-    .btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id Зарегистрироваться на вебинар
-- else
-  a.btn href="/sign_up" Зарегистрируйтесь
+    a.btn.is__blue href="/sign_up" Зарегистрируйтесь

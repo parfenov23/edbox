@@ -44,15 +44,21 @@ var eventStop = function () {
 };
 
 var eventRegUser = function () {
-    var web_id = $(this).data('webinar_id');
-    var user_id = $(this).data('user_id');
+    var btn = $(this);
+    var web_id = btn.data('webinar_id');
+    var user_id = btn.data('user_id');
     if (typeof web_id != 'undefined'){
         $.ajax({
             type: 'POST',
             url : '/api/v1/webinars/' + web_id + '/event_reg_user',
             data: {user_id: user_id}
         }).success(function () {
-            window.location.reload();
+            //window.location.reload();
+            var tsucces = "Вебинар начнется "+ btn.closest('form').find('.title').text() +", мы уведомим вас за 3 часа, " +
+                "а так же за 5 минут до начала вебинара на электронную почту " +
+                $('.menu__user .login').text();
+            warning(tsucces, 'OK');
+            $('.js_actionYesStart').on('click', function(){window.location.reload()});
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
