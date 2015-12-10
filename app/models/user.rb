@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :notifications, :dependent => :destroy
   has_many :notes, :dependent => :destroy
   has_many :subscriptions, :as => :subscriptiontable, :dependent => :destroy
+  has_many :user_webinars, :dependent => :destroy
 
   before_create :create_hash_key
   validates :email, presence: true

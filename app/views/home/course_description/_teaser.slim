@@ -11,7 +11,8 @@
 
 - if @course.online?
   - att_public = current_user.present? ? [true, false] : true
-  - all_webinars = @course.sections.attachments.where(public: att_public).webinars
+  /- all_webinars = @course.sections.attachments.where(public: att_public).webinars
+  - all_webinars = @course.sections.attachments.webinars
   - if all_webinars.present?
     - first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
     - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
@@ -30,6 +31,7 @@
           //  && current_user.view_course?(@course)
           .action__block class=((current_user.present?) ? "js_addCourseToMyCourse" : "")
             a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
+        = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user}
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 
