@@ -657,7 +657,7 @@
   position      : absolute;
   top           : 208px;
   left          : 50%;
-  margin-left   : -276px;
+  margin-left   : -324px;
   background    : black__color('secondary__color');
   border-radius : 2px;
   z-index       : 99;
@@ -668,8 +668,8 @@
       @include text__setting('normal__typo');
       //color         : #FFF;
       margin-bottom : 16px;
-      color: #ee8738;
-      font-size: 20px;
+      color         : #EE8738;
+      font-size     : 20px;
     }
     .description {
       @include text__setting('normal__typo');
@@ -688,8 +688,8 @@
     text-align    : center;
     a.btn {
       display : inline-block;
-      &:first-child{
-        margin-right: 11px;
+      &:first-child {
+        margin-right : 11px;
       }
     }
   }
