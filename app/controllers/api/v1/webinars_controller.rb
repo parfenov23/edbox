@@ -58,6 +58,7 @@ module Api::V1
       user = User.find params[:user_id]
       if user.present?
         webinar.eventRegUser(user)
+        HomeMailer.reg_webinar(webinar, user).deliver
         render json: {success: true}
       else
         render json: {success: false}
@@ -69,6 +70,7 @@ module Api::V1
       user = User.find params[:user_id]
       if user.present?
         webinar.eventUnRegUser(user)
+        HomeMailer.unreg_webinar(webinar, user).deliver
         render json: {success: true}
       else
         render json: {success: false}

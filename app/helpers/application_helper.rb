@@ -47,6 +47,12 @@ module ApplicationHelper
     request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
   end
 
+  def current_domain(port=3000)
+    beta = "betaed.masshtab.am"
+    prduction = "ed.masshtab.am"
+    Rails.env.development? ? "http://localhost:#{port}" : (Rails.root.to_s.start_with?("beta") ? "http://#{beta}" : "http://#{prduction}")
+  end
+
   def layout_title
     d = @page_title.nil? ? "" : " | "
     @page_title.to_s + d + "Edbox"
