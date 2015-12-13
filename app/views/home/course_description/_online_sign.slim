@@ -8,6 +8,14 @@
       a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
         |Зарегистрироваться на вебинар
     - if current_user.director?
-      a.btn.is__blue.disable ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
+      .btn.is__blue.js_openHiddenList
+        |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
+        ul.block_hidden_list
+          li
+            |Группа 1
+            .remove
+          li
+            |Группа 2
+            .remove
   - else
     a.btn.is__blue href="/sign_up" Зарегистрируйтесь

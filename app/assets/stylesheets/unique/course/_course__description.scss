@@ -679,18 +679,50 @@
   }
   .action__block {
     border-top : 1px solid rgba(255, 255, 255, 0.3);
-    .btn {
-
-    }
   }
   .btn_online_reg {
     margin        : 0 auto;
     margin-bottom : 24px;
     text-align    : center;
-    a.btn {
+    .btn {
       display : inline-block;
       &:first-child {
         margin-right : 11px;
+      }
+
+      .block_hidden_list {
+        position         : absolute;
+        width            : 100%;
+        margin-left      : -8px;
+        background-color : white;
+        color            : rgba(0, 0, 0, 0.54);
+        margin-top       : -31px;
+        border-radius    : 2px;
+        text-align       : left;
+        padding          : 12px 0px 12px 0px;
+        text-transform: none;
+        display          : none;
+        li {
+          padding   : 0px 16px 0px 16px;
+          font-size : 16px;
+          .remove {
+            display         : inline-block;
+            float           : right;
+            margin-top      : 6px;
+            text-shadow     : 0 1px 0 #FFF;
+            text-decoration : none;
+            color           : #777;
+            font            : 20px/100% arial, sans-serif;
+            cursor          : pointer;
+            &:after {
+              content : "×";
+            }
+          }
+          &:hover {
+            color      : #000;
+            background : rgba(0, 0, 0, 0.12);
+          }
+        }
       }
     }
   }
