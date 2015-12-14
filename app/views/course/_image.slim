@@ -1,9 +1,13 @@
 .image
   - if course.material?
-    - attachment = course.attachments.last
-    img src="/assets/orange-waves.svg"
-    .type__icon
-      i.icon class=(attachment.file_type rescue "other")
+    - if course.teaser.blank?
+      - attachment = course.attachments.last
+      img src="/assets/orange-waves.svg"
+      .type__icon
+        i.icon class=(attachment.file_type rescue "other")
+    - else
+      img src = course.teaser.get_image_path(694, 384)
+      .fade
   - else
     img src = course.get_image_path(694, 384)
     .fade

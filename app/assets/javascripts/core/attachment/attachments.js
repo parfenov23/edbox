@@ -53,12 +53,15 @@ var eventRegUser = function () {
             url : '/api/v1/webinars/' + web_id + '/event_reg_user',
             data: {user_id: user_id}
         }).success(function () {
-            //window.location.reload();
-            var tsucces = "Вебинар начнется "+ btn.closest('form').find('.title').text() +", мы уведомим вас за 3 часа, " +
-                "а так же за 5 минут до начала вебинара на электронную почту " +
-                $('.menu__user .login').text();
-            warning(tsucces, 'OK');
-            $('.js_actionYesStart').on('click', function(){window.location.reload()});
+            if (btn.data('alert') != false){
+                var tsucces = "Вебинар начнется " + btn.closest('form').find('.title').text() + ", мы уведомим вас за 3 часа, " +
+                    "а так же за 5 минут до начала вебинара на электронную почту " +
+                    $('.menu__user .login').text();
+                warning(tsucces, 'OK');
+                $('.js_actionYesStart').on('click', function () {window.location.reload()});
+            } else {
+                window.location.href = btn.data('href');
+            }
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
@@ -83,7 +86,7 @@ var eventUnRegUser = function () {
     return true;
 };
 
-pageLoad(function(){
+pageLoad(function () {
     $(document).on('click', '.js_eventCreate', eventCreate);
     $(document).on('click', '.js_eventStart', eventStart);
     $(document).on('click', '.js_eventStop', eventStop);

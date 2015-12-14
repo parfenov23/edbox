@@ -1,21 +1,27 @@
 .btn_online_reg
-  - if user.present?
-    - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
-    - if user.user_webinars.find_by(webinar_id: webinar.id).present?
-      a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-        |Отменить регистрацию на вебинар
-    - else
-      a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-        |Зарегистрироваться на вебинар
-    - if current_user.director?
-      .btn.is__blue.js_openHiddenList
-        |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
-        ul.block_hidden_list
-          li
-            |Группа 1
-            .remove
-          li
-            |Группа 2
-            .remove
+  - if webinar.in_progress?
+    - attachment = webinar.attachment
+    a.btn.is__blue.js_addCourseToMyCourse.js_eventRegUser{
+      data-alert='false' data-href="/attachment?id=#{attachment.id}" data-user_id=user.id data-webinar_id=webinar.id }
+      |ПЕРЕЙТИ
   - else
-    a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+    - if user.present?
+      - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
+      - if user.user_webinars.find_by(webinar_id: webinar.id).present?
+        a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+          |Отменить регистрацию на вебинар
+      - else
+        a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+          |Зарегистрироваться на вебинар
+      - if current_user.director?
+        .btn.is__blue.js_openHiddenList
+          |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
+          ul.block_hidden_list
+            li
+              |Группа 1
+              .remove
+            li
+              |Группа 2
+              .remove
+    - else
+      a.btn.is__blue href="/sign_up" Зарегистрируйтесь

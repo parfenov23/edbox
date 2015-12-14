@@ -33,6 +33,22 @@ module Api::V1
       render json: bunch_tag.tag.as_json
     end
 
+    def update_teaser_material
+      course = find_course
+      teaser = course.teaser || Teaser.create({course: course})
+      attachment = teaser.attachment || Attachment.new
+      attachment = attachment.update_file(teaser, params[:file])
+      attachment.update({size: 'full', file_type: 'image'})
+      teaser.update({attachment_id: attachment.id})
+      render json: attachment.transfer_to_json
+    end
+
+    def remove_teaser_material
+      course = find_course
+      course.teaser.destroy
+      render json: {success: true}
+    end
+
     def add_category
       course = find_course
       course.bunch_categories.destroy_all

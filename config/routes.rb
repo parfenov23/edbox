@@ -150,6 +150,8 @@ Rails.application.routes.draw do
           get :info
           post :add_tag
           post :add_category
+          post :update_teaser_material
+          post :remove_teaser_material
           post :remove_tag
           post :remove_category
           post :add_leading

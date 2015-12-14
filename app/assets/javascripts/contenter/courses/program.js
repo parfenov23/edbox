@@ -627,6 +627,46 @@ var removeLeadingToWebinar = function (btn) {
     });
 };
 
+var openFormUploadTeaser = function () {
+    $(".upload_teaser_material input").click();
+};
+
+var updateMaterialTeaser = function () {
+    var btn = $(this);
+    var form = btn.closest("form");
+    $.ajax({
+        type       : 'POST',
+        url        : '/api/v1/courses/' + btn.data('id') + "/update_teaser_material",
+        processData: false,
+        contentType: false,
+        cache      : false,
+        data       : form.serializefiles()
+    }).success(function (data) {
+        var block_teaser = $(".itemDetailInfo.material_teaser");
+        block_teaser.find(".prev_teaser").removeClass("hide");
+        block_teaser.find(".js_openFormUploadTeaser").addClass("hide");
+        block_teaser.find(".prev_teaser .image img").attr('src', data.file.url);
+        block_teaser.find(".prev_teaser .info .title span").text(data.file_name);
+        block_teaser.find(".prev_teaser .info .weight").text(data.file_size.toString() + "  байт");
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
+var deleteTeaserMaterial = function(){
+    var btn = $(this);
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/courses/' + btn.data('id') + "/remove_teaser_material"
+    }).success(function (data) {
+        var block_teaser = $(".itemDetailInfo.material_teaser");
+        block_teaser.find(".prev_teaser").addClass("hide");
+        block_teaser.find(".js_openFormUploadTeaser").removeClass("hide");
+    }).error(function () {
+        show_error('Произошла ошибка', 3000);
+    });
+};
+
 $(document).ready(function () {
     loadBindOnChangeInput();
     bindEventDocument({
@@ -651,6 +691,8 @@ $(document).ready(function () {
     $(document).on("click", ".selectAttachment", selectAttachment);
 
     $(document).on("click", ".js_addLeadingToWebinar", addLeadingToWebinar);
+    $(document).on("click", ".js_openFormUploadTeaser", openFormUploadTeaser);
+    $(document).on("click", ".js_deleteTeaserMaterial", deleteTeaserMaterial);
 
     $(document).on("click", ".js_removeLeadingToWebinar", function () {
         var btn = $(this);
@@ -684,6 +726,8 @@ $(document).ready(function () {
             removeAnswerToQuestion($(this));
         }
     });
+    $(".upload_teaser_material input").change(updateMaterialTeaser);
+
     removeExtraElement();
     sortableSections();
 });

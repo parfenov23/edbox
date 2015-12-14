@@ -28,10 +28,6 @@
           - else
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-        - if first_webinar.in_progress?
-          //  && current_user.view_course?(@course)
-          .action__block class=((current_user.present?) ? "js_addCourseToMyCourse" : "")
-            a.btn href="/attachment?id=#{attachment.id}" ПЕРЕЙТИ
         = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user}
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title

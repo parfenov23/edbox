@@ -216,65 +216,65 @@
       }
     }
     .image__prv {
-      margin-bottom: 24px;
+      margin-bottom : 24px;
       > .title {
-        font-size: 15px;
-        color: rgba(0,0,0,0.26);
-        line-height: 24px;
-        margin-bottom: 8px;
+        font-size     : 15px;
+        color         : rgba(0, 0, 0, 0.26);
+        line-height   : 24px;
+        margin-bottom : 8px;
       }
       .item {
         @include white__block(1, 0);
-        width: 280px;
-        height: 88px;
-        padding-left: 88px;
-        position: relative;
+        width        : 280px;
+        height       : 88px;
+        padding-left : 88px;
+        position     : relative;
         .image {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 88px;
-          height: 88px;
-          -webkit-border-top-left-radius: 2px;
-          -webkit-border-bottom-left-radius: 2px;
-          -moz-border-radius-topleft: 2px;
-          -moz-border-radius-bottomleft: 2px;
-          border-top-left-radius: 2px;
-          border-bottom-left-radius: 2px;
-          overflow: hidden;
-          img{
-            width: 100%;
-            height: 100%;
+          position                          : absolute;
+          top                               : 0;
+          left                              : 0;
+          width                             : 88px;
+          height                            : 88px;
+          -webkit-border-top-left-radius    : 2px;
+          -webkit-border-bottom-left-radius : 2px;
+          -moz-border-radius-topleft        : 2px;
+          -moz-border-radius-bottomleft     : 2px;
+          border-top-left-radius            : 2px;
+          border-bottom-left-radius         : 2px;
+          overflow                          : hidden;
+          img {
+            width  : 100%;
+            height : 100%;
           }
 
         }
         .info {
-          padding-left: 16px;
-          padding-top: 16px;
+          padding-left : 16px;
+          padding-top  : 16px;
           .title {
-            position: relative;
-            padding-right: 30px;
-            width: 100%;
-            margin-bottom: 20px;
+            position      : relative;
+            padding-right : 30px;
+            width         : 100%;
+            margin-bottom : 20px;
             span {
               @include eclipses;
-              display: block;
-              font-size: 13px;
-              color: rgba(0,0,0,0.54);
-              line-height: 20px;
+              display     : block;
+              font-size   : 13px;
+              color       : rgba(0, 0, 0, 0.54);
+              line-height : 20px;
             }
             i {
-              position: absolute;
-              top: 1px;
-              right: 12px;
-              color: rgba(0, 0, 0, 0.54);
-              font-size: 18px;
+              position  : absolute;
+              top       : 1px;
+              right     : 12px;
+              color     : rgba(0, 0, 0, 0.54);
+              font-size : 18px;
             }
           }
           .weight {
-            font-size: 13px;
-            color: rgba(0,0,0,0.87);
-            line-height: 20px;
+            font-size   : 13px;
+            color       : rgba(0, 0, 0, 0.87);
+            line-height : 20px;
           }
 
         }
@@ -295,7 +295,7 @@
       background-color : rgba(255, 255, 255, 0);
       border           : 0;
       border-bottom    : 1px solid #949494;
-      color            : #fff;
+      color            : #FFF;
       outline          : none;
       font-size        : 36px;
       margin-bottom    : 24px;
@@ -313,7 +313,7 @@
         .addTag {
           @include clearfix;
           .btn {
-            float: left;
+            float : left;
 
           }
         }
@@ -325,6 +325,19 @@
       position   : relative;
       padding    : 48px 0px 24px 0px;
       border-top : 1px solid #E8E8E8;
+      &.material_teaser {
+        .btn {
+          display : inline-block;
+          &.hide {
+            display : none;
+          }
+        }
+        .prev_teaser {
+          &.hide {
+            display : none;
+          }
+        }
+      }
       .helpError {
         i.icon.help {
           top : 28px;
@@ -333,18 +346,16 @@
       .description__Item .addCategory {
         @include clearfix;
         .btn {
-          float: left;
-
+          //float : left;
         }
       }
       .addTag {
         @include clearfix;
         .btn {
-          float: left;
+          float : left;
 
         }
       }
-
 
       .title__Item {
         color          : #757575;
@@ -370,8 +381,10 @@
           }
         }
         .addTag {
-          display : inline-block;
-          width   : 118px;
+          display  : inline-block;
+          width    : 118px;
+          position : relative;
+          top      : 10px;
         }
         .addCategory {
           display : inline-block;

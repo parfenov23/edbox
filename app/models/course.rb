@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_many :ligament_leads, :dependent => :destroy
   has_many :notices, :dependent => :destroy
+  has_one :teaser, dependent: :destroy
   belongs_to :user
   has_one :test, :as => :testable, :dependent => :destroy
   scope :publication, -> { where(public: true) }

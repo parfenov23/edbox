@@ -59,6 +59,14 @@ class Attachment < ActiveRecord::Base
     attachment
   end
 
+  def update_file(model, new_file)
+    self.file = new_file
+    self.attachmentable_type = model.class.to_s
+    self.attachmentable_id = model.id
+    save
+    self
+  end
+
   def validate
     valid_title = title.present? && description.present?
     valid_file = (!["test", "description", "webinar", "announcement", "vimeo"].include?(file_type)) ? file.present? : valid_other

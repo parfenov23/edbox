@@ -5,7 +5,10 @@
   - else
     - bunch_course = course.find_bunch_course(current_user.id, ["group", "user"])
     - attachment = course.attachments.last
-    i.icon.icon_material class=(attachment.file_type rescue "other")
+    - if course.teaser.blank?
+      i.icon.icon_material class=(attachment.file_type rescue "other")
+    - else
+      img src = course.teaser.get_image_path(w, h)
   - unless (bunch_course.complete rescue false)
     - progress = bunch_course.progress rescue 0
     - if progress == 0
