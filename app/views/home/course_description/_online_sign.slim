@@ -1,11 +1,11 @@
 .btn_online_reg
-  - if webinar.in_progress?
-    - attachment = webinar.attachment
-    a.btn.is__blue.js_addCourseToMyCourse.js_eventRegUser{
-      data-alert='false' data-href="/attachment?id=#{attachment.id}" data-user_id=user.id data-webinar_id=webinar.id }
-      |ПЕРЕЙТИ
-  - else
-    - if user.present?
+  - if user.present?
+    - if webinar.in_progress?
+      - attachment = webinar.attachment
+      a.btn.is__blue.js_addCourseToMyCourse.js_eventRegUser{
+        data-alert='false' data-href="/attachment?id=#{attachment.id}" data-user_id=user.id data-webinar_id=webinar.id }
+        |ПЕРЕЙТИ
+    - else
       - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
       - if user.user_webinars.find_by(webinar_id: webinar.id).present?
         a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
@@ -23,5 +23,5 @@
             li
               |Группа 2
               .remove
-    - else
-      a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+  - else
+    a.btn.is__blue href="/sign_up" Зарегистрируйтесь
