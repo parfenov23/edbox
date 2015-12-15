@@ -628,15 +628,28 @@ var removeLeadingToWebinar = function (btn) {
 };
 
 var openFormUploadTeaser = function () {
-    $(".upload_teaser_material input").click();
+    var openFormWindow = function () {
+        $(".upload_teaser_material input").click();
+    };
+
+    if (formInputIdCourse().val() == "new"){
+        createCourseContenterProgram(function(){});
+        setTimeout(function(){
+            openFormWindow();
+        }, 300);
+
+    }else{
+        openFormWindow();
+    }
 };
 
 var updateMaterialTeaser = function () {
     var btn = $(this);
     var form = btn.closest("form");
+    var input_id = formInputIdCourse();
     $.ajax({
         type       : 'POST',
-        url        : '/api/v1/courses/' + btn.data('id') + "/update_teaser_material",
+        url        : '/api/v1/courses/' + input_id.val() + "/update_teaser_material",
         processData: false,
         contentType: false,
         cache      : false,
@@ -653,11 +666,12 @@ var updateMaterialTeaser = function () {
     });
 };
 
-var deleteTeaserMaterial = function(){
+var deleteTeaserMaterial = function () {
     var btn = $(this);
+    var input_id = formInputIdCourse();
     $.ajax({
         type: 'POST',
-        url : '/api/v1/courses/' + btn.data('id') + "/remove_teaser_material"
+        url : '/api/v1/courses/' + input_id.val() + "/remove_teaser_material"
     }).success(function (data) {
         var block_teaser = $(".itemDetailInfo.material_teaser");
         block_teaser.find(".prev_teaser").addClass("hide");
