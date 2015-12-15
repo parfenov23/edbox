@@ -82,6 +82,8 @@ Rails.application.routes.draw do
           post :event_stop
           post :event_reg_user
           post :event_un_reg_user
+          post :event_reg_group
+          post :event_unreg_group
         end
       end
 

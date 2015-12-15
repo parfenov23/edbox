@@ -1,6 +1,6 @@
 .btn_online_reg
-  - if user.present?
-    - if webinar.in_progress?
+  - if user.present? && course.available(user)
+    - if webinar.in_progress? || webinar.ligament_leads.where(user_id: user.id).present?
       - attachment = webinar.attachment
       a.btn.is__blue.js_addCourseToMyCourse.js_eventRegUser{
         data-alert='false' data-href="/attachment?id=#{attachment.id}" data-user_id=user.id data-webinar_id=webinar.id }
@@ -17,11 +17,12 @@
         .btn.is__blue.js_openHiddenList
           |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
           ul.block_hidden_list
-            li
-              |Группа 1
-              .remove
-            li
-              |Группа 2
-              .remove
-  - else
+            - current_user.company.groups.each do |group|
+              li.js_regGroupOnWebinar data-id=webinar.id data-group_id=group.id
+                = group.first_name
+                - class_remove = group.group_webinar.present? ? "" : "hide"
+                .remove.js_unregGroupFromWeinar class=class_remove data-id=webinar.id data-group_id=group.id
+  - elsif user.blank?
     a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+  - elsif !course.available(user)
+    a.btn.is__blue href="/tariff" Доступен по подписке

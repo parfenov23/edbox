@@ -28,7 +28,7 @@
           - else
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-        = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user}
+        = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user, course: @course}
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 

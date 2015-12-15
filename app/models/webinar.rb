@@ -2,6 +2,7 @@ class Webinar < ActiveRecord::Base
   belongs_to :attachment
   has_many :ligament_leads, dependent: :destroy
   has_many :user_webinars, :dependent => :destroy
+  has_many :group_webinars, dependent: :destroy
 
   def transfer_to_json
     as_json
@@ -13,6 +14,13 @@ class Webinar < ActiveRecord::Base
 
   def find_course
     attachment.attachmentable.course rescue nil
+  end
+
+  def clear_users
+    user_webinars.each do |user_webinar|
+      eventRegUser(user_webinar.user)
+    end
+    group_webinars.destroy_all
   end
 
   def in_progress?
@@ -62,6 +70,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRegUser(user, role='user')
+    HomeMailer.reg_webinar(self, user).deliver
     client = ::ApiClients::WebinarRu.new
     resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
     if resp['guestList'].present? && resp['guestList']['status'] == 'ok'

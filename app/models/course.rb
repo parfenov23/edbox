@@ -78,6 +78,10 @@ class Course < ActiveRecord::Base
   #   account_type_relation.account_type rescue nil
   # end
 
+  def available(user)
+    !paid ? true : (user.get_account_type ? true : false)
+  end
+
   def push_if_create
     Thread.new do
       `rake user_notify:new_course[#{id}]`

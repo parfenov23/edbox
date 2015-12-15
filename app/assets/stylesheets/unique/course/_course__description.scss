@@ -718,6 +718,9 @@
             &:after {
               content : "×";
             }
+            &.hide{
+              display: none;
+            }
           }
           &:hover {
             color      : #000;
