@@ -100,6 +100,8 @@ module ApplicationHelper
     if sub.nil?
       {title: "У вас бесплатный аккаунт", desc: "Вы можете просматривать только бесплатные курсы и материалы", show_btn: true}
     else
+
+      #binding.pry
       desc = if !sub.overdue? && !sub.overdue?(7)
                "Действует до #{ltime(sub.date_to, '', 'long_without_time')}"
              elsif sub.overdue?(7) && !sub.overdue?(1)
@@ -107,8 +109,10 @@ module ApplicationHelper
                "Действует еще #{rus_case(r_day, 'день', 'дня', 'дней')}, продлите подписку"
              elsif sub.overdue?(1) && !sub.overdue?
                "Действует до завтра, продлите подписку"
-             else
+             elsif sub.overdue? && !sub.overdue?(-1)
                "Подписка закончится сегодня"
+             else
+               "Подписка закончилась"
              end
       sub_title = sub.company? ? "Корпоративная подписка" : "Индивидуальная подписка"
       sub_class = sub.overdue?(3) ? "overdue" : ""
