@@ -10,7 +10,7 @@
 - att_id = attachment.id.present? ? attachment.id : "new"
 .contenter#materialEditContenter
   form.upload_teaser_material
-    input name='file' data-id=course.id type="file" accept="image/*"
+    input name='file' data-id=course.id type="file" accept="image/*" id="fileTeaserImgForm_#{course.id}"
   form.course__description-content.oh__nihuyase-block.js_courseContenter.form_edit data-id=att_id
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id

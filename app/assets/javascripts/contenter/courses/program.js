@@ -661,6 +661,7 @@ var updateMaterialTeaser = function () {
         block_teaser.find(".prev_teaser .image img").attr('src', data.file.url);
         block_teaser.find(".prev_teaser .info .title span").text(data.file_name);
         block_teaser.find(".prev_teaser .info .weight").text(data.file_size.toString() + "  байт");
+        clearFileInputField(form.find("input").attr('id'));
     }).error(function () {
         show_error('Произошла ошибка', 3000);
     });
@@ -740,7 +741,8 @@ $(document).ready(function () {
             removeAnswerToQuestion($(this));
         }
     });
-    $(".upload_teaser_material input").change(updateMaterialTeaser);
+
+    $(document).on('change', '.upload_teaser_material input', updateMaterialTeaser);
 
     removeExtraElement();
     sortableSections();
