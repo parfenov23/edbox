@@ -1,13 +1,17 @@
-.btn_online_reg
-  - if user.present?
-    - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
-    - if user.user_webinars.find_by(webinar_id: webinar.id).present?
-      a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-        |Отменить регистрацию на вебинар
+- if webinar.in_progress? && current_user.present?
+  .action__block.btn_online_reg class=((current_user.present?) ? "js_addCourseToMyCourse" : "")
+    a.btn.is__blue href="/attachment?id=#{webinar.attachment_id}" ПЕРЕЙТИ
+- else
+  .btn_online_reg
+    - if user.present?
+      - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
+      - if user.user_webinars.find_by(webinar_id: webinar.id).present?
+        a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+          |Отменить регистрацию на вебинар
+      - else
+        a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
+          |Зарегистрироваться на вебинар
+      - if current_user.director? && !webinar.in_progress?
+        a.btn.is__blue.disable ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
     - else
-      a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-        |Зарегистрироваться на вебинар
-    - if current_user.director?
-      a.btn.is__blue.disable ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
-  - else
-    a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+      a.btn.is__blue href="/sign_up" Зарегистрируйтесь

@@ -20,6 +20,10 @@ class Webinar < ActiveRecord::Base
     (minute_diff > 0 && minute_diff < duration) ? true : false
   end
 
+  def leading?(user_id)
+    ligament_leads.where(user_id: user_id).present?
+  end
+
   def after_save
     eventUpdate if self.event.present?
   end
