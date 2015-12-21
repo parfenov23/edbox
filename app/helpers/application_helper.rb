@@ -55,7 +55,7 @@ module ApplicationHelper
 
   def layout_title
     d = @page_title.nil? ? "" : " | "
-    @page_title.to_s + d + "Edbox"
+    @page_title.to_s + d + "ADCONSULT.Online"
   end
 
   def title(page_title)
