@@ -47,9 +47,15 @@ module ApplicationHelper
     request.original_url.gsub("http://#{request.host}", "").gsub(":#{request.port}", "")
   end
 
+  def current_domain(port=3000)
+    beta = "betaed.masshtab.am"
+    prduction = "ed.masshtab.am"
+    Rails.env.development? ? "http://localhost:#{port}" : (Rails.root.to_s.scan("beta").present? ? "http://#{beta}" : "http://#{prduction}")
+  end
+
   def layout_title
     d = @page_title.nil? ? "" : " | "
-    @page_title.to_s + d + "Edbox"
+    @page_title.to_s + d + "ADCONSULT.Online"
   end
 
   def title(page_title)
@@ -101,8 +107,10 @@ module ApplicationHelper
                "Действует еще #{rus_case(r_day, 'день', 'дня', 'дней')}, продлите подписку"
              elsif sub.overdue?(1) && !sub.overdue?
                "Действует до завтра, продлите подписку"
-             else
+             elsif sub.overdue? && !sub.overdue?(-1)
                "Подписка закончится сегодня"
+             else
+               "Подписка закончилась"
              end
       sub_title = sub.company? ? "Корпоративная подписка" : "Индивидуальная подписка"
       sub_class = sub.overdue?(3) ? "overdue" : ""

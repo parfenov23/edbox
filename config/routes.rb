@@ -82,6 +82,8 @@ Rails.application.routes.draw do
           post :event_stop
           post :event_reg_user
           post :event_un_reg_user
+          post :event_reg_group
+          post :event_unreg_group
         end
       end
 
@@ -150,6 +152,8 @@ Rails.application.routes.draw do
           get :info
           post :add_tag
           post :add_category
+          post :update_teaser_material
+          post :remove_teaser_material
           post :remove_tag
           post :remove_category
           post :add_leading

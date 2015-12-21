@@ -33,7 +33,9 @@ module Api::V1
     end
 
     def remove
-      find_attachment.destroy
+      attachment = find_attachment
+      attachment.webinar.clear_users if attachment.webinar.present?
+      attachment.destroy
       render json: {success: true}
     end
 

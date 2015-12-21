@@ -1,5 +1,7 @@
 # encoding: utf-8
 class HomeMailer < ActionMailer::Base
+  include ApplicationHelper
+  helper_method :domain
   default :from => 'ADCONSULT ONLINE <info@masshtab.am>'
   # layout 'home_email', :except => [:order_product_user]
 
@@ -31,4 +33,30 @@ class HomeMailer < ActionMailer::Base
     @course = course
     mail(:to => @email, :subject => 'Вы подписались на обновления Edbox ADCONSULT')
   end
+
+  def reg_webinar(webinar, user)
+    @webinar = webinar
+    @attachment = @webinar.attachment
+    @user = user
+    date_start = (@webinar.date_start + User.time_zone.hour)
+    @date_start = "#{parse_russian_date(date_start)} (по Мск)"
+
+    mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
+  end
+
+  def unreg_webinar(webinar, user)
+    @webinar = webinar
+    @attachment = @webinar.attachment
+    @user = user
+
+    mail(:to => @user.email, :subject => "Вы отменили регистрацию на вебинар #{@attachment.title}")
+  end
+
+  private
+
+  def domain
+    @domain ||= current_domain(5000)
+    @domain
+  end
+
 end

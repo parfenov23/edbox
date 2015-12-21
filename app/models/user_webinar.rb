@@ -1,4 +1,4 @@
 class UserWebinar < ActiveRecord::Base
-  belongs_to :users
-  belongs_to :webinars
+  belongs_to :user
+  belongs_to :webinar
 end

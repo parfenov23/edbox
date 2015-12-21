@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   has_many :bunch_courses, :dependent => :destroy
   has_many :ligament_courses, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
+  has_one :group_webinar, dependent: :destroy
   EXCEPT_ATTR = ["created_at", "updated_at"]
 
   def transfer_to_json

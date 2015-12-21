@@ -1,0 +1,11 @@
+'#{@user.full_name}, вы зарегистривовались на вебинар
+a href="#{domain}/attachment?id=#{@attachment.id}" =' @attachment.title
+|в системе онлайн-обучения Edbox.
+br
+b
+  'Вебинар пройдет #{@date_start},
+'за 3 часа и за 5 минут до начала мы пришлем вам письмо с
+|напоминанием.
+br
+br
+a href="#{domain}/mail_notify?type=off" Не получать уведомления

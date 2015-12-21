@@ -1,9 +1,11 @@
-- if webinar.in_progress? && current_user.present?
-  .action__block.btn_online_reg class=((current_user.present?) ? "js_addCourseToMyCourse" : "")
-    a.btn.is__blue href="/attachment?id=#{webinar.attachment_id}" ПЕРЕЙТИ
-- else
-  .btn_online_reg
-    - if user.present?
+.btn_online_reg
+  - if user.present? && course.available(user)
+    - if webinar.in_progress? || webinar.ligament_leads.where(user_id: user.id).present?
+      - attachment = webinar.attachment
+      a.btn.is__blue.js_addCourseToMyCourse.js_eventRegUser{
+        data-alert='false' data-href="/attachment?id=#{attachment.id}" data-user_id=user.id data-webinar_id=webinar.id }
+        |ПЕРЕЙТИ
+    - else
       - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
       - if user.user_webinars.find_by(webinar_id: webinar.id).present?
         a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
@@ -11,7 +13,16 @@
       - else
         a.btn.js_eventRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
           |Зарегистрироваться на вебинар
-      - if current_user.director? && !webinar.in_progress?
-        a.btn.is__blue.disable ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
-    - else
-      a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+      - if current_user.director?
+        .btn.is__blue.js_openHiddenList
+          |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
+          ul.block_hidden_list
+            - current_user.company.groups.each do |group|
+              li.js_regGroupOnWebinar data-id=webinar.id data-group_id=group.id
+                = group.first_name
+                - class_remove = group.group_webinar.present? ? "" : "hide"
+                .remove.js_unregGroupFromWeinar class=class_remove data-id=webinar.id data-group_id=group.id
+  - elsif user.blank?
+    a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+  - elsif !course.available(user)
+    a.btn.is__blue href="/tariff" Доступен по подписке

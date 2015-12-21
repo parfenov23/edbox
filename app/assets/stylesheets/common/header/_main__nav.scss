@@ -42,9 +42,10 @@
     @include transition;
   }
   .info__block {
-    position     : relative;
+      bottom: 0;
+    position     : absolute;
     height       : 42px;
-    margin-bottom: 24px;
+    margin-bottom: 95px;
     padding      : 0 16px;
     .top__logo {
       position: absolute;

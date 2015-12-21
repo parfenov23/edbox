@@ -2,6 +2,7 @@ class Webinar < ActiveRecord::Base
   belongs_to :attachment
   has_many :ligament_leads, dependent: :destroy
   has_many :user_webinars, :dependent => :destroy
+  has_many :group_webinars, dependent: :destroy
 
   def transfer_to_json
     as_json
@@ -15,6 +16,13 @@ class Webinar < ActiveRecord::Base
     attachment.attachmentable.course rescue nil
   end
 
+  def clear_users
+    user_webinars.each do |user_webinar|
+      eventRegUser(user_webinar.user)
+    end
+    group_webinars.destroy_all
+  end
+
   def in_progress?
     minute_diff = (Time.now.utc - date_start).to_i/60
     (minute_diff > 0 && minute_diff < duration) ? true : false
@@ -26,6 +34,14 @@ class Webinar < ActiveRecord::Base
 
   def after_save
     eventUpdate if self.event.present?
+  end
+
+  def start?
+    status == 'START'
+  end
+
+  def stop?
+    status == 'STOP'
   end
 
   def eventCreate
@@ -52,6 +68,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRun(runStatus = 'START')
+    update({status: runStatus})
     client = ::ApiClients::WebinarRu.new
     resp = client.get('Status.php', {event_id: event, stage: runStatus})
     resp['event'].present? && resp['event']['status'] == 'ok'
@@ -66,6 +83,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRegUser(user, role='user')
+    HomeMailer.reg_webinar(self, user).deliver
     client = ::ApiClients::WebinarRu.new
     resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
     if resp['guestList'].present? && resp['guestList']['status'] == 'ok'

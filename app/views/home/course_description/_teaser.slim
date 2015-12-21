@@ -16,7 +16,7 @@
   - if all_webinars.present?
     - first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
     - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
-    - if first_webinar.present?
+    - if first_webinar.present? && !first_webinar.stop?
       - attachment = first_webinar.attachment
       - date_start = (first_webinar.date_start + User.time_zone.hour)
       form.webinar__teaser data-alert="false"
@@ -28,7 +28,7 @@
           - else
             .title Сейчас онлайн:
           .description = "#{attachment.attachmentable.position}.#{attachment.position} #{attachment.title}"
-        = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user}
+        = render 'home/course_description/online_sign', {webinar: first_webinar, user: current_user, course: @course}
 
   span style="display:none;" id="titleCoursePrev#{@course.id}" = @course.title
 

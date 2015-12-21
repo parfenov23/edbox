@@ -53,6 +53,36 @@ module Api::V1
       render json: {success: true}
     end
 
+    def event_reg_group
+      webinar = find_webinar
+      group = Group.find(params[:group_id])
+      group_webinar = group.group_webinar
+      if group_webinar.blank?
+        group.bunch_groups.each do |bunch_group|
+          webinar.eventRegUser(bunch_group.user)
+        end
+        GroupWebinar.create({webinar_id: webinar.id, group_id: group.id})
+        render json: {success: true}
+      else
+        render json: {success: false}
+      end
+    end
+
+    def event_unreg_group
+      webinar = find_webinar
+      group = Group.find(params[:group_id])
+      group_webinar = group.group_webinar
+      if group_webinar.present?
+        group.bunch_groups.each do |bunch_group|
+          webinar.eventUnRegUser(bunch_group.user)
+        end
+        group_webinar.destroy
+        render json: {success: true}
+      else
+        render json: {success: false}
+      end
+    end
+
     def event_reg_user
       webinar = find_webinar
       user = User.find params[:user_id]
@@ -69,6 +99,7 @@ module Api::V1
       user = User.find params[:user_id]
       if user.present?
         webinar.eventUnRegUser(user)
+        HomeMailer.unreg_webinar(webinar, user).deliver
         render json: {success: true}
       else
         render json: {success: false}

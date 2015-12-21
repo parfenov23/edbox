@@ -9,6 +9,8 @@
 - attachment = course.attachments.present? ? course.attachments.last : course.attachments.new
 - att_id = attachment.id.present? ? attachment.id : "new"
 .contenter#materialEditContenter
+  form.upload_teaser_material
+    input name='file' data-id=course.id type="file" accept="image/*" id="fileTeaserImgForm_#{course.id}"
   form.course__description-content.oh__nihuyase-block.js_courseContenter.form_edit data-id=att_id
     input type="hidden" name="course[id]" value=params[:id]
     input type="hidden" name="course[user_id]" value=current_user.id
@@ -20,20 +22,24 @@
         .description
           textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание материала" name="course[description]" data-autoresize=""
             = course.description
-            
-          .addTag.js_clickFromCreateCourseContenter
-            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" Добавить обложку
-            
-      .image__prv
-        .title Обложка материала
-        .item
-          .image
-            img src="/uploads/pic2.png"
-          .info
-            .title 
-              span Создание материала Создание материала
-              i.icon.del
-            .weight 1.25mb
+
+      .itemDetailInfo.material_teaser
+        - teaser = course.teaser
+        - class_btn = teaser.present? ? "hide" : ""
+        - class_prev = teaser.present? ? "" : "hide"
+        - attachment_teaser = teaser.attachment rescue nil
+        .btn.btn-flat.js_openFormUploadTeaser class=class_btn Добавить обложку
+        .image__prv.prev_teaser class=class_prev
+          .title Обложка материала
+          .item
+            .image
+              img src=(attachment_teaser.file.url rescue nil)
+            .info
+              .title
+                span = attachment_teaser.file_name rescue nil
+                i.icon.del.js_deleteTeaserMaterial data-id=course.id
+              .weight #{attachment_teaser.file.size rescue nil} байт
+
       .itemDetailInfo.validateCourseCategories.validateFormCourse
         .description__Item
           .allCategoriesDescriptionCourse
@@ -44,20 +50,18 @@
                 .remove.js_removeBunchCategoryFromCourse data-id=category.id
           .addCategory.js_clickFromCreateCourseContenter
             .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
-        / .description__Item
-        .allTagDescriptionCourse
-          - course.bunch_tags.each do |bunch_tag|
-            - tag = bunch_tag.tag
-            .tag
-              = tag.title
-              .remove.js_removeBunchTagFromCourse data-id=tag.id
-              
-                
-        .addTag.js_clickFromCreateCourseContenter
-          .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
-          
-          
-      .    
+        .description__Item
+          .allTagDescriptionCourse
+            - course.bunch_tags.each do |bunch_tag|
+              - tag = bunch_tag.tag
+              .tag
+                = tag.title
+                .remove.js_removeBunchTagFromCourse data-id=tag.id
+
+
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+
       .itemDetailInfo
         - valid_arr = ["description", "webinar", "test"]
         - vaft = attachment.file_type

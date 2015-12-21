@@ -181,18 +181,13 @@ var addCourseMySchedule = function () {
         url : '/api/v1/users/update_course',
         data: data
     }).success(function () {
-        //$("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/cabinet'");
-        //openEdnPopup();
-        //var id_course = form.find("input.courseId").val();
-        //$("#titleCoursePrev" + id_course).closest("a").removeClass("js_goToAttachmentLock");
-        //clearPopup();
         var time_redirect = 0;
         if (form.data('alert') != false){
             time_redirect = 1500;
             show_error('Курс добавлен в мои курсы', 3000);
         }
         setTimeout(function(){
-            if(form.data('redirect') != undefined){
+            if(form.data('redirect') != undefined && !btn.hasClass('js_eventUnRegUser')){
                 window.location.href = form.data('redirect');
             }
         }, time_redirect);
