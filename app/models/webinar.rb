@@ -36,12 +36,19 @@ class Webinar < ActiveRecord::Base
     eventUpdate if self.event.present?
   end
 
+  def auto_start
+    minute_diff = (Time.now.utc - date_start).to_i/60
+    if minute_diff >= -15 && !start?
+      eventRun
+    end
+  end
+
   def start?
-    status == 'START'
+    eventStatus == 'START'
   end
 
   def stop?
-    status == 'STOP'
+    eventStatus == 'STOP'
   end
 
   def eventCreate
@@ -87,7 +94,8 @@ class Webinar < ActiveRecord::Base
     client = ::ApiClients::WebinarRu.new
     resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
     if resp['guestList'].present? && resp['guestList']['status'] == 'ok'
-      UserWebinar.create(webinar_id: self.id, user_id: user.id, url: resp['guestList']['guest']['uri'])
+      user_webinar = UserWebinar.find_or_create_by(webinar_id: self.id, user_id: user.id)
+      user_webinar.update(url: resp['guestList']['guest']['uri'])
     end
   end
 
