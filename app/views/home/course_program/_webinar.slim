@@ -6,7 +6,7 @@
       #course
         .text__description
           - if webinar.leading?(current_user.id)
-            .title.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
+            .btn.is__blue.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
           - else
             .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
   - elsif status == 'START'

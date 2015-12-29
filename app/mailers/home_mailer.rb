@@ -2,13 +2,14 @@
 class HomeMailer < ActionMailer::Base
   include ApplicationHelper
   helper_method :domain
-  default :from => 'ADCONSULT ONLINE <info@masshtab.am>'
+  NAME_SYSTEM = 'ADCONSULT ONLINE'
+  default :from => "#{NAME_SYSTEM} <info@masshtab.am>"
   # layout 'home_email', :except => [:order_product_user]
 
   def welcome_latter(user, new_password)
     @user = user
     @new_password = new_password
-    mail(:to => @user.email, :subject => "Добро пожаловать в ADCONSULT ONLINE!")
+    mail(:to => @user.email, :subject => "Добро пожаловать в #{NAME_SYSTEM}!")
   end
 
   def sendRequest(params)
@@ -31,7 +32,7 @@ class HomeMailer < ActionMailer::Base
   def notice_confirm(email, course)
     @email = email
     @course = course
-    mail(:to => @email, :subject => 'Вы подписались на обновления Edbox ADCONSULT')
+    mail(:to => @email, :subject => "Вы подписались на обновления #{NAME_SYSTEM}")
   end
 
   def reg_webinar(webinar, user)

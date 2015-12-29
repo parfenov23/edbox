@@ -1,6 +1,6 @@
 '#{@user.full_name}, вы отменили регистрацию на вебинар
 a href="#{domain}/attachment?id=#{@attachment.id}" =' @attachment.title
-|в системе онлайн-обучения Edbox.
+|в системе онлайн-обучения #{HomeMailer::NAME_SYSTEM}.
 br
 'Если вы все еще хотите участвовать в вебинаре или отменили регистрацию случайно,
 a href="#{domain}/attachment?id=#{@attachment.id}" то зарегистрируйтесь снова
