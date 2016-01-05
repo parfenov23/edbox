@@ -38,9 +38,7 @@ class Webinar < ActiveRecord::Base
 
   def auto_start
     minute_diff = (Time.now.utc - date_start).to_i/60
-    if minute_diff >= -15 && !start?
-      eventRun
-    end
+    eventRun if minute_diff >= -15 && !start?
   end
 
   def start?

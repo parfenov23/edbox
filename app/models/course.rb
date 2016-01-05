@@ -16,11 +16,11 @@ class Course < ActiveRecord::Base
   scope :publication, -> { where(public: true) }
   scope :materials, -> { where(type_course: "material") }
   scope :webinars, -> { where(type_course: "online") }
-  scope :announcement, -> { joins(sections: [:attachments]).where({"attachments.file_type" => "announcement"})}
+  scope :announcement, -> { joins(sections: [:attachments]).where({"attachments.file_type" => "announcement"}) }
   default_scope { order("created_at DESC") }
   USERID_TOJSON = nil
 
-  after_save :do_webinar, :if => :public
+  before_update :do_webinar, :if => :public
 
   def create_img(image_path, width, height)
     attachment_img = MiniMagick::Image.open(image_path)
@@ -204,9 +204,12 @@ class Course < ActiveRecord::Base
 
   def do_webinar
     sections.attachments.where(file_type: 'webinar').each do |attachment|
-      attachment.webinar.eventCreate
-      ligament_leads.each do |ligament_lead|
-        attachment.webinar.eventRegUser(ligament_lead.user, 'administrator')
+      webinar = attachment.webinar
+      if webinar.event.blank?
+        webinar.eventCreate
+        webinar.ligament_leads.each do |ligament_lead|
+          webinar.eventRegUser(ligament_lead.user, 'administrator')
+        end
       end
     end
   end
