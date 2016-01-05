@@ -3,6 +3,10 @@ module ApplicationHelper
     time + (User.time_zone).hour
   end
 
+  def rub
+    "руб."
+  end
+
   def default_img(img)
     if img.present?
       "data:image/gif;base64,#{img}"

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :director do
       collection do
         get ":action" => "director#:action"
-      end  
+      end
     end
     resources :billing do
       collection do
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       end
     end
   end
-# get "test_websocket" => "home#test_websocket"
+  # get "test_websocket" => "home#test_websocket"
   # get 'nod'
   match "node/websocket", :to => WebsocketRails::ConnectionManager.new, :via => [:get, :post]
   resources :tests, only: [] do
@@ -325,4 +325,9 @@ Rails.application.routes.draw do
     end
   end
 
+  #yandex money
+  get '/money/purse/refill', :to => 'money/purse#refill', :as => :refill #пополнение кошелька
+  post '/money/purse/refill_process', :to => 'money/purse#refill_process', :as => :refill_process #/пополнение/счета
+  get '/money/purse/payment_fail', :to => 'money/purse#payment_fail', :as => :payment_fail #/платеж/не/прошел
+  get '/money/purse/payment_success/:secure_code', :to => 'money/purse#payment_success', :as => :payment_success #/платеж/прошел/:secure_code
 end
