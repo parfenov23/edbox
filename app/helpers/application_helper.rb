@@ -3,6 +3,10 @@ module ApplicationHelper
     time + (User.time_zone).hour
   end
 
+  def rub
+    "руб."
+  end
+
   def default_img(img)
     if img.present?
       "data:image/gif;base64,#{img}"
@@ -48,9 +52,7 @@ module ApplicationHelper
   end
 
   def current_domain(port=3000)
-    beta = "betaed.masshtab.am"
-    prduction = "ed.masshtab.am"
-    Rails.env.development? ? "http://localhost:#{port}" : (Rails.root.to_s.scan("beta").present? ? "http://#{beta}" : "http://#{prduction}")
+    $env_mode.current_domain
   end
 
   def layout_title

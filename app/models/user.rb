@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
   has_many :courses, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
   has_many :test_results, dependent: :destroy
-  has_many :notifications, :dependent => :destroy
-  has_many :notes, :dependent => :destroy
-  has_many :subscriptions, :as => :subscriptiontable, :dependent => :destroy
-  has_many :user_webinars, :dependent => :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :notes, dependent: :destroy
+  has_many :subscriptions, as: :subscriptiontable, dependent: :destroy
+  has_many :user_webinars, dependent: :destroy
+  has_many :incoming_moneys, dependent: :destroy
 
   before_create :create_hash_key
   validates :email, presence: true
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
     result
   end
 
-  def find_subscription(active = true, find_time=false, type="last")
+  def find_subscription(active = true, find_time=true, type="last")
     model = director? ? (company rescue self) : (corporate? ? (company rescue self) : self )
     time = Time.current
     subs = model.subscriptions.where(active: active)

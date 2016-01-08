@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 # gem 'mysql2'
 gem 'pg', '0.18.3'
+gem 'activerecord-postgres-hstore'
 gem 'activejob'
 
 # gem 'jquery-rails'

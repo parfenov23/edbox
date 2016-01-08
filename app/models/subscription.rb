@@ -27,6 +27,15 @@ class Subscription < ActiveRecord::Base
     sub.subscriptiontable_type = subscription_model.class.to_s
     sub.subscriptiontable_id = subscription_model.id
     sub.active = false
+    current_sub = user.find_subscription
+    date_from = current_sub.present? ? current_sub.date_from : Time.now.beginning_of_day
+    sub.date_from = date_from
+    if current_sub.present?
+      date_to = params[:count_month].scan('месяц').present? ? (current_sub.date_to + params[:count_month].to_i.month) : current_sub.date_to
+    else
+      date_to = Time.now.beginning_of_day + params[:count_month].to_i.month
+    end
+    sub.date_to = date_to
     sub.note = "Тип аккаунта: #{params[:type_account]}. Кол-во пользователей: #{params[:user_count]}. " +
       "Кол-во месяцев: #{params[:count_month]}. " +
       "Тип подписки: #{params[:type_order]}"

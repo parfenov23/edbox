@@ -1,0 +1,7 @@
+p Подождите, Вы будете перенаправлены на страницу Яндекс Денег
+form#ext_auth_required action=@acs_uri
+  input type="hidden" name="cps_context_id" value=@acs_params["cps_context_id"]
+  input type="hidden" name="paymentType" value=@acs_params["paymentType"]
+
+javascript:
+  document.forms["ext_auth_required"].submit();

@@ -45,6 +45,10 @@ GEM
       activemodel (= 4.1.8)
       activesupport (= 4.1.8)
       arel (~> 5.0.0)
+    activerecord-postgres-hstore (0.7.8)
+      activerecord (>= 3.1)
+      pg-hstore (>= 1.1.5)
+      rake
     activerecord-session_store (0.1.1)
       actionpack (>= 4.0.0, < 5)
       activerecord (>= 4.0.0, < 5)
@@ -210,6 +214,7 @@ GEM
       shellany (~> 0.0)
     ntlm-http (0.1.1)
     pg (0.18.3)
+    pg-hstore (1.2.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -372,6 +377,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-page_caching
   activejob
+  activerecord-postgres-hstore
   activerecord-session_store
   autoprefixer-rails
   babosa
