@@ -1,6 +1,9 @@
 defaults: &defaults
   port: 5000
 
+beta:
+  <<: *defaults
+
 development:
   <<: *defaults
 
