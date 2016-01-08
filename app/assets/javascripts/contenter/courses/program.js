@@ -668,7 +668,6 @@ var updateMaterialTeaser = function () {
 };
 
 var deleteTeaserMaterial = function () {
-    var btn = $(this);
     var input_id = formInputIdCourse();
     $.ajax({
         type: 'POST',
