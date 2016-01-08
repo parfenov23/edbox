@@ -3,3 +3,6 @@ defaults: &defaults
 
 development:
   <<: *defaults
+
+production:
+  port: 80
