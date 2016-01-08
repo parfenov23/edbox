@@ -1,6 +1,29 @@
-require 'yandex_money/api'
-$yandex_money = YandexMoney::Wallet.build_obtain_token_url(
-  "CDFCA42FEB998A53B0194C6830E62866EABF9A1EC4FE333778B2A38B77F99BF8",
-  'http://betaed.masshtab.am/',
-  "account-info operation-history" # SCOPE
-)
+class YMsecrets
+  def initialize
+    @shop_id = 104413
+    @scid = 37078
+    @apps = {
+      development: 'B33A384400106B587DF3583318CA4847DE86E53D9A3A26E41E0A9AFF9C050F4F',
+      beta: '',
+      production: ''
+    }
+  end
+
+  def app_id
+    @apps[$env_mode.to_key]
+  end
+
+  def shop_id
+    @shop_id
+  end
+
+  def scid
+    @scid
+  end
+
+  def to_h
+    {shop_id: shop_id, scid: scid, app_id: app_id}
+  end
+end
+
+$ym_secrets = YMsecrets.new

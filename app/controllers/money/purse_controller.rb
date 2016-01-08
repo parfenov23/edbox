@@ -2,65 +2,74 @@ module Money
   class PurseController < MoneyController
     #Пополнение счета
     def refill
-      @amount = 100
+      redirect_to "/courses?pay=" + ((session[:ym][:success] rescue false) ? 'success' : 'fail')
     end
 
     def refill_process
-      amount = params[:amount]
+      subscription = create_subscription(params)
+      session[:ym] = {}
+      amount = $env_mode.dev? ? 1 : ($env_mode.beta? ? 1 : params[:sum])
       # Инициализация модуля Яндекс Деньги
       ym = YandexMoneyHelper::YM.new
-      err = "Ошибка работы с модулем оплаты "
-      if !ym.successful
-        err << ym.error if Rails.env.development?
-        session[:money_error] = err
-        redirect_to refill_path
-        return
-      end
+      not_ym_successful(ym) if !ym.successful
       # Прием платежа на кошелек Яндекс Денег
-      res = ym.recieve_payment(amount, "#{current_user.id}: #{current_user.email}")
-      #binding.pry
-      if !ym.successful
-        err << ym.error if Rails.env.development?
-        session[:money_error] = err
-        redirect_to refill_path
-        return
-      end
+      res = ym.recieve_payment(amount, "#{current_user.full_name}(#{current_user.email})")
+      not_ym_successful(ym) if !ym.successful
       # Требуется внешняя аутентификация пользователя
-      if res.status != "ext_auth_required"
-        err = "Нет запроса на внешнюю авторизацию"
-        err << "status: #{res.status} error: #{res.error}" if Rails.env.development?
-        session[:money_error] = err
-        redirect_to refill_path
-        return
-      end
+      not_ym_successful(res) if res.status != "ext_auth_required"
       # Сохраняем проверочный код платежа в сессии
-      session[:ym_secure_code] = ym.secure_code
-      session[:ym_amount] = amount
+      session[:ym][:secure_code] = ym.secure_code
+      session[:ym][:amount] = amount
+      session[:ym][:subscription] = subscription.id
 
       # Отсылаем методом POST acs_params:
       @acs_params = res.acs_params
       @acs_uri = res.acs_uri
-      # render :refill_process
     end
 
     def payment_fail
-      session[:money_error] = "Платеж не прошел"
+      session[:ym][:success] = false
+      Subscription.find(session[:ym][:subscription]).destroy rescue nil
+      session[:ym][:subscription] = nil
       redirect_to refill_path
     end
 
     def payment_success
       secure_code = params[:secure_code]
 
-      if session[:ym_secure_code].to_i != secure_code.to_i
-        session[:money_error] = "Не верный проверочный код платежа. Платеж не прошел"
-        session[:ym_secure_code] = nil
-        session[:amount] = nil
+      if session[:ym][:secure_code].to_i != secure_code.to_i
+        session[:ym][:success] = false
+        Subscription.find(session[:ym][:subscription]).destroy rescue nil
       else #если платеж прошел успешно
         @inc = IncomingMoney.create(:user => current_user, :data => params.to_h )
-        session[:money_error] = nil
-        session[:money_success] = "Платеж прошел"
+        all_subs = current_user.find_subscription([true, false], false, false)
+        all_subs.update_all(active: false)
+        all_subs.where(id: session[:ym][:subscription]).update_all(active: true)
+        session[:ym][:success] = true
       end
       redirect_to refill_path
+    end
+
+    private
+
+    def not_ym_successful(ym)
+      err = "Ошибка работы с модулем оплаты"
+      err << "status: #{(ym.status rescue nil)} error: #{ym.error}" if Rails.env.development?
+      Subscription.find(session[:ym][:subscription]).destroy rescue nil
+      session[:ym][:success] = false
+      session[:ym][:subscription] = nil
+      session[:ym][:error] = err
+      redirect_to refill_path
+      return
+    end
+
+    def create_subscription(params_sub)
+      user = User.where(email: params_sub[:email]).last
+      user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
+      (params_sub[:type_account] == "user" ? params_sub[:sum] = 1490.00 : params_sub[:sum] = 50000.00) if params[:sum].blank?
+      subscription = Subscription.build(params_sub)
+      subscription.save
+      subscription
     end
   end
 end

@@ -13,7 +13,7 @@ var subscription_pay = function (type, email, data) {
 pageLoad(function () {
     var input_notify = $("input#notifyPayMessage");
     if (input_notify.length){
-        if (input_notify.val() == "success") warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox.', 'Хорошо');
-        if (input_notify.val() == "fail") warning('При оформлении зайвки произошли проблемы, попробуйте еще раз.', 'Хорошо');
+        if (input_notify.val() == "success") warning('Оплата успешно прошла.', 'Хорошо');
+        if (input_notify.val() == "fail") warning('При оплате произошла ошибка, попробуйте еще раз.', 'Хорошо');
     }
 });

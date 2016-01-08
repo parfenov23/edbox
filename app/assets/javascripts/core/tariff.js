@@ -55,8 +55,10 @@ var replaceSumTitle = function () {
 
 var submitFormEditTariff = function () {
     var form = $(this).closest(".content__block").find("form");
-    var data = form.serialize();
-    subscription_pay('', '', data);
+    //var data = form.serialize();
+    form.submit();
+    //console.log(data);
+    //subscription_pay('', '', data);
 };
 
 pageLoad(function () {

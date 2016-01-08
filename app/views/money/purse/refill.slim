@@ -1,6 +1,7 @@
 = form_tag(refill_process_path, method: "post") do
   = label_tag(:amount, "Сумма без учета комисси банка, #{rub}:")
   = number_field_tag :amount,  @amount ,in: 1..10000, step: 1
+  input type='hidden' name='test_money' value='true'
   = submit_tag "Пополнить", :class => "button"
 = session[:money_error]
 = session[:money_success]
