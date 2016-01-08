@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20151229223510) do
 
   create_table "incoming_moneys", force: true do |t|
     t.integer  "user_id"
-    t.hstore   "data"
+    t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
