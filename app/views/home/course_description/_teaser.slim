@@ -16,7 +16,7 @@
   - if all_webinars.present?
     - first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
     - first_webinar = all_webinars.where(["date_start >= ?", first_time]).order("date_start ASC").first
-    - first_webinar.auto_start
+    - first_webinar.auto_start if first_webinar.present?
     - if first_webinar.present? && !first_webinar.stop?
       - attachment = first_webinar.attachment
       - date_start = (first_webinar.date_start + User.time_zone.hour)

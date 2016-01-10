@@ -1,5 +1,5 @@
 '#{@user.full_name}, вы зарегистривовались на вебинар
-a href="#{domain}/attachment?id=#{@attachment.id}" =' @attachment.title
+a href="#{$env_mode.current_domain}/attachment?id=#{@attachment.id}" =' @attachment.title
 |в системе онлайн-обучения #{HomeMailer::NAME_SYSTEM}.
 br
 b
@@ -8,4 +8,4 @@ b
 |напоминанием.
 br
 br
-a href="#{domain}/mail_notify?type=off" Не получать уведомления
+a href="#{$env_mode.current_domain}/mail_notify?type=off" Не получать уведомления
