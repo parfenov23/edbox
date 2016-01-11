@@ -8,7 +8,7 @@ module Money
     def refill_process
       subscription = create_subscription(params)
       session[:ym] = {}
-      amount = $env_mode.dev? ? 1 : ($env_mode.beta? ? 1 : params[:sum])
+      amount = $env_mode.dev? ? 1 : ($env_mode.beta? ? 100 : params[:sum])
       # Инициализация модуля Яндекс Деньги
       ym = YandexMoneyHelper::YM.new
       not_ym_successful(ym) if !ym.successful
