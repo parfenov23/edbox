@@ -2,7 +2,11 @@ module Money
   class PurseController < MoneyController
     #Пополнение счета
     def refill
-      redirect_to "/courses?pay=" + ((session[:ym][:success] rescue false) ? 'success' : 'fail')
+      param_pay = ((session[:ym][:success] rescue false) ? 'success' : 'fail')
+      unless session[:ym][:success]
+        param_pay += '_money' if current_user.incoming_moneys.last.data["reason"] == "not-enough-funds"
+      end
+      redirect_to "/courses?pay=" + param_pay
     end
 
     def refill_process
@@ -30,6 +34,7 @@ module Money
     def payment_fail
       session[:ym][:success] = false
       Subscription.find(session[:ym][:subscription]).destroy rescue nil
+      IncomingMoney.create(:user => current_user, :data => params.to_h )
       session[:ym][:subscription] = nil
       redirect_to refill_path
     end
