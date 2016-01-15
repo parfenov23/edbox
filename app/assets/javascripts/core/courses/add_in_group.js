@@ -187,7 +187,7 @@ var addCourseMySchedule = function () {
             show_error('Курс добавлен в мои курсы', 3000);
         }
         setTimeout(function(){
-            if(form.data('redirect') != undefined && !btn.hasClass('js_eventUnRegUser')){
+            if(form.data('redirect') != undefined && !btn.hasClass('js_eventUnRegUser') && !btn.hasClass('js_eventRegUser')){
                 window.location.href = form.data('redirect');
             }
         }, time_redirect);

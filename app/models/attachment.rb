@@ -41,6 +41,10 @@ class Attachment < ActiveRecord::Base
     attach
   end
 
+  def link
+    "/attachment?id=#{id}"
+  end
+
   def clear_full_text
     ActionView::Base.full_sanitizer.sanitize(full_text.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
       .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
