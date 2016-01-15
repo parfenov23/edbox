@@ -15,5 +15,7 @@ pageLoad(function () {
     if (input_notify.length){
         if (input_notify.val() == "success") warning('Оплата успешно прошла.', 'Хорошо');
         if (input_notify.val() == "fail") warning('При оплате произошла ошибка, попробуйте еще раз.', 'Хорошо');
+        if (input_notify.val() == "fail_money") warning('При оплате произошла ошибка, недостаточно средств на счете. Попробуйте еще раз.', 'Хорошо');
+
     }
 });
