@@ -1,11 +1,14 @@
 .btn_online_reg
   - if user.present? && course.available(user)
-    - if webinar.in_progress? || webinar.ligament_leads.where(user_id: user.id).present? || webinar.auto_start?
+    - user_leads = webinar.ligament_leads.where(user_id: user.id).present?
+    - if webinar.in_progress? || user_leads || webinar.auto_start?
       - attachment = webinar.attachment
-      - class_reg = webinar.user_webinars.where(user_id: current_user.id).blank? ? 'js_eventRegUser' : ''
-      a.btn.is__blue.js_addCourseToMyCourse{
+      - class_reg = []
+      - class_reg += webinar.user_webinars.where(user_id: current_user.id).blank? ? ['js_eventRegUser'] : []
+      - class_reg += !user_leads ? ['js_addCourseToMyCourse'] : ['js_goToUrl']
+      a.btn.is__blue{
         data-alert='false' data-href=attachment.link data-user_id=user.id data-webinar_id=webinar.id
-        class=class_reg
+        class=class_reg.join(' ')
         }
         |ПЕРЕЙТИ
     - else

@@ -323,6 +323,10 @@ $(document).ready(function () {
         if ($(e.target).hasClass("js_closeAllPopup")) $(this).hide()
     });
 
+    $(document).on('click', '.js_goToUrl', function (e) {
+        window.location.href = $(this).data('href');
+    });
+
     $(document).on('click', 'figure.basic__module, figure.shot__module', function (e) {
         var cabinte_block_valid = (! $(e.target).closest(".com__director-btn").length && ! $(e.target).hasClass(".com__director-btn"))
         if (! $(e.target).closest(".action-btn").length && ! $(e.target).hasClass("action-btn") && cabinte_block_valid){
