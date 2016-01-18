@@ -1,5 +1,6 @@
 = render "home/header/header", {namePage: "other", titlePage: 'Статистика'}
 - folder_render = 'director/statistic'
+= render "#{folder_render}/user_popup"
 .inner-content
   .director__statistic
     -# render "#{folder_render}/notify"

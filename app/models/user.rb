@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
+  scope :statistics, ->(course) { all.map { |user| user.statistic(course) } }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at", "group_id"]
 
   def self.build(params)
@@ -60,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def find_subscription(active = true, find_time=true, type="last")
-    model = director? ? (company rescue self) : (corporate? ? (company rescue self) : self )
+    model = director? ? (company rescue self) : (corporate? ? (company rescue self) : self)
     time = Time.current
     subs = model.subscriptions.where(active: active)
     if find_time
@@ -157,6 +158,11 @@ class User < ActiveRecord::Base
 
   def notify_json(type=nil)
     {}
+  end
+
+  def statistic(course)
+    bunch_course = course.find_bunch_course(id, ["group", "user"])
+    {id: id, course: (bunch_course.stat_status rescue nil)}
   end
 
   private

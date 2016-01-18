@@ -1,6 +1,6 @@
 .name__column
   - @users.each do |user|
-    .item
+    .item.js_openPopupUserStatistic data-id=user.id
       .ava
         img src=default_img(current_user.avatar)
       .name = user.full_name

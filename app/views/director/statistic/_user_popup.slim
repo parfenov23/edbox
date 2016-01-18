@@ -1,0 +1,26 @@
+/ is__active
+.pop_up_confirm.all_user_statistics
+  - @users.each do |user|
+    - bunch_groups = user.bunch_groups
+    .inner.director__statistic__user_info data-user_id=user.id
+      .last_auth Последний вход: #{ltime(user.last_auth, '', 'short_min_y')}
+      .membership
+        .visible__part Состоит в #{rus_case(bunch_groups.count, 'группе', 'группах', 'группах')}
+        ul.hidden-list
+          - bunch_groups.each do |bunch_group|
+            li = bunch_group.group.first_name
+
+      .user__info
+        .ava
+          img src=default_img(current_user.avatar)
+        .name = user.full_name
+
+      ul.course__status_tabs
+        li На прохождении (12)
+        li Просроченно(1)
+        li Завершенно (2)
+        - if bunch_groups.present?
+        li.is__active Группы (#{bunch_groups.count})
+      .courses__list
+        -# render "director/statistic/popup/course"
+        = render "director/statistic/popup/group", {bunch_groups: bunch_groups}

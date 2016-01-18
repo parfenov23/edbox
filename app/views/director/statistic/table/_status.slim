@@ -3,19 +3,7 @@
     / user 1
     - @courses.each do |course|
       .table__column
+        - statistic = @users.statistics(course)
         - @users.each do |user|
-          .item 1 Пройденно 45%
-          .item 2 Завершен. Тест: 46%
-          .item 3 Назначен 25.06.15
-          .item 4 Просрочен на 3 дня
-          .item 1 Опубликован 25.06.15
-          .item 1 Пройденно 45%
-          .item 1 Завершен. Тест: 46%
-          .item 1 Назначен 25.06.15
-          .item 1 Просрочен на 3 дня
-          .item 1 Опубликован 25.06.15
-          .item 1 Пройденно 45%
-          .item 1 Завершен. Тест: 46%
-          .item 1 Назначен 25.06.15
-          .item 1 Просрочен на 3 дня
-          .item 1 Опубликован 25.06.15
+          - user_status = statistic.select{|h| h[:id] == user.id}.last
+          .item = user_status[:course]

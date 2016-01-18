@@ -2,6 +2,6 @@
   .course__title__list
     .wrp
       - @courses.each do |course|
-        .item
+        .item.js_goToUrl data-href=course.url
           i.icon.courses
           = course.title

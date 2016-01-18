@@ -74,6 +74,10 @@ class Course < ActiveRecord::Base
     sections_validate && test_validate
   end
 
+  def url
+    "/course_description?id=#{id}"
+  end
+
   # def get_type
   #   account_type_relation.account_type rescue nil
   # end

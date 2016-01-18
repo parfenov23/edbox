@@ -1,0 +1,9 @@
+.create__group.group__list
+  - bunch_groups.each do |bunch_group|
+    - group = bunch_group.group
+    .item.js_goToUrl data-href='/group?id=#{group.id}'
+      .info
+        .title.adaptive__title
+          .left-col.h__text_15-24 = group.first_name
+          .right-col.h__text_12-16 = rus_case(group.bunch_groups.count, 'участник', 'участника', 'участников')
+        .description.h__text_13-20 = group.description.present? ? group.description : "Нет описания"

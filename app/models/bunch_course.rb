@@ -149,6 +149,30 @@ class BunchCourse < ActiveRecord::Base
     with_exclusive_scope { find(:all) }
   end
 
+  def stat_status
+    if !overdue?
+      unless complete
+        progress = self.progress rescue 0
+        if progress == 0
+          "Назначен #{created_at + User.time_zone.hour}" if model_type == "group"
+        else
+          "Пройденно #{progress}%"
+        end
+      else
+        unless course.test.present?
+          "Пройденно"
+        else
+          user_result = course.test.test_results.where(user_id: user_id).last
+          user_result.present? ? " Тест пройден на #{user_result.percent}%" : "Тест"
+        end
+      end
+    else
+      date = ApplicationController.helpers.time_current_day(date_complete) rescue 0
+      count_over = ApplicationController.helpers.rus_case(date.abs, 'день', 'дня', 'дней')
+      "Просрочен на #{count_over}"
+    end
+  end
+
   def notify_json(type=nil)
     case type
       when "new"

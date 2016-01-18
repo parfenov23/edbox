@@ -5,6 +5,13 @@ $director__table_border_style: 1px solid black__color(decoration__color);
 .inner.director__statistic__user_info {
   width: 792px;
   padding: 48px 0 32px 0;
+  display: none;
+  .last_auth {
+    position: absolute;
+    left: 32px;
+    top: 29px;
+    @include text__setting(normal__typo, secondary__color);
+  }
   .membership {
     position: absolute;
     right: 32px;
