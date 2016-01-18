@@ -1,0 +1,7 @@
+- if @courses.present?
+  .course__title__list
+    .wrp
+      - @courses.each do |course|
+        .item
+          i.icon.courses
+          = course.title

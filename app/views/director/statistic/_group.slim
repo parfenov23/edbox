@@ -1,0 +1,20 @@
+.director__statistic__filtre
+  .dropdown__flash.js__dropdown_toggle
+    .visible__part
+      | Все группы
+      i.icon.to__drop
+    ul.hidden__list
+      li Все группы
+      - @groups.each do |group|
+        li.js_goToUrl data-href="?group_id=#{group.id}"
+          = group.first_name
+  /.dropdown__flash.js__dropdown_toggle
+  /  .visible__part
+  /    | Все категории
+  /    i.icon.to__drop
+  /  ul.hidden__list
+  /    li Все категории
+  /    li Интернет-продажи
+  /    li Продажи
+  /    li Тайм-менеджмент
+  /    li Продуктивность

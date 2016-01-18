@@ -1,0 +1,6 @@
+.name__column
+  - @users.each do |user|
+    .item
+      .ava
+        img src=default_img(current_user.avatar)
+      .name = user.full_name

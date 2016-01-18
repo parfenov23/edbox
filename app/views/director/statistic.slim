@@ -1,0 +1,28 @@
+= render "home/header/header", {namePage: "other", titlePage: 'Статистика'}
+- folder_render = 'director/statistic'
+.inner-content
+  .director__statistic
+    -# render "#{folder_render}/notify"
+    = render "#{folder_render}/group"
+
+    - if @courses.present? && @users.present?
+      .director__stat_table
+        .action__header
+          = render "#{folder_render}/export"
+          .table__paginator
+            .action__block
+              .prev
+                i.icon.less.js__move__table_col data-direction="-1"
+              .next
+                i.icon.more.js__move__table_col.is__active data-direction="1"
+        .psevdo__table__header
+          .first__item
+          = render "#{folder_render}/table/course_list"
+        .psevdo__table__body
+          = render "#{folder_render}/table/users"
+          = render "#{folder_render}/table/status"
+
+    - else
+      .title style="text-align: center;"
+        |Ничего нет
+

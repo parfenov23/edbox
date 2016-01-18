@@ -5,6 +5,10 @@ class Group < ActiveRecord::Base
   has_many :ligament_courses, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
   has_one :group_webinar, dependent: :destroy
+
+  scope :all_users, -> { User.where(id: joins(:bunch_groups).select('bunch_groups.user_id').map(&:user_id)) }
+  scope :all_courses, -> { Course.where(id: joins(:bunch_courses).select('bunch_courses.course_id').map(&:course_id)) }
+
   EXCEPT_ATTR = ["created_at", "updated_at"]
 
   def transfer_to_json
