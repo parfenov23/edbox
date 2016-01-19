@@ -76,50 +76,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
       .top__logo
         img src="/assets/adcons__grey.svg"
     .menu__list
-      - unless current_user.contenter
-        .item class=(namePage == "cabinet" ? "is__active" : "")
-          i.cabinet.icon
-          a.label href="/cabinet" Мой кабинет
-        .item class=(namePage == "courses" ? "is__active" : "")
-          i.biblio.icon
-          a.label href="/courses" Библиотека
-
-      - if current_user.corporate? && current_user.director? && !current_user.contenter
-        - company = current_user.company
-        - if company.present? && company.groups.present?
-          .item class=(namePage == "schedule" ? "is__active" : "")
-            i.schedule.icon
-            a.label href="/schedule" Расписание
-
-      - if current_user.corporate && !current_user.contenter
-        .item class=(namePage == "group" ? "is__active" : "")
-          i.groups.icon
-          a.label href="/group" Группы
-        - if current_user.director
-          .item class=(namePage == "members" ? "is__active" : "")
-            i.groups.icon
-            a.label href="/members" Участники
-
-      - if current_user.contenter
-        .item class=(namePage == "contenter_admin" ? "is__active" : "")
-          i.schedule.icon
-          a.label href="/contenter/admin/categories" Администрирование
-        .item class=(namePage == "contenter" ? "is__active" : "")
-          i.schedule.icon
-          a.label href="/contenter/courses" Шеф Контент
-
-    /.item
-    /  i.stat.icon
-    /  .label Статистика
-    /.item
-    /  i.favorites.icon
-    /  .label Закладки
-    /.item
-    /  i.notes.icon
-    /  .label Заметки
-
-    / .btm__logo
-    /   img src = "/assets/adcons__grey.svg"
+      = render "home/header/items/all_items", {namePage: namePage}
 
   - if (comment rescue false)
   #js-comment.courses-aside

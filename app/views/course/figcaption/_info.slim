@@ -1,4 +1,6 @@
-.authors = course.ligament_leads.map{|ll| ll.user.full_name }.join(", ")
+- if (leads rescue true)
+  - authors = course.ligament_leads.map{|ll| ll.user.full_name }.join(", ")
+  .authors = authors
 .info__block.adaptive__title
   .left-col
     .item.type

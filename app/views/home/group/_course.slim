@@ -32,33 +32,3 @@ li.single-course.favorite-item data-course_id=course.id
                   .calendar-holder.datapicker__trigger.incDocumentReady
 
       = render "course/figcaption/info", {course: course, type: "shot__module"}
-        /a.edit-date href="#"
-        /  i.icon-uniE8A3
-        /.hidden-calendar-wrp
-        /  ul.hidden-list
-        /    - text_data = "Установить дату окончания курса"
-        /    li data-show="hidden-calendar"
-        /      input.datapicker__trigger.jsValueDatePicker value=text_data name="courses[date_complete]" placeholder=text_data
-    /.courses-info
-    /  .top-line
-    /    - if current_user.director
-    /      .edit-menu.js__select-calendar
-    /        a.edit-date href="#"
-    /          i.icon-uniE8A3
-    /        .hidden-calendar-wrp
-    /          ul.hidden-list
-    /            - text_data = "Установить дату окончания курса"
-    /            li data-show="hidden-calendar"
-    /              input.datapicker__trigger.jsValueDatePicker value=text_data name="courses[date_complete]" placeholder=text_data
-    /
-    /  .courses-autor = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-    /  .details-nav
-    /    ul
-    /      li.hours
-    /        i.icon
-    /        - duration = (course.duration_time rescue 0)
-    /        = rus_case(duration, "минута", "минуты", "минут")
-    /      li.lections
-    /        i.icon
-    /        - count_sections = course.sections.count
-    /        = rus_case(count_sections, "раздел", "раздела", "разделов")

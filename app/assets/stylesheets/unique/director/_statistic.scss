@@ -64,6 +64,14 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     max-height: 420px;
     overflow: auto;
     padding-top: 10px;
+    .courses_info_statistic{
+      li{
+        display: none;
+        &.active{
+          display: block;
+        }
+      }
+    }
     figure.shot__module {
       @include white__block(1, 1);
       margin: 0 32px 16px 32px;

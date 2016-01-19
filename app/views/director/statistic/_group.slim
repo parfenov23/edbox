@@ -1,10 +1,10 @@
 .director__statistic__filtre
   .dropdown__flash.js__dropdown_toggle
     .visible__part
-      | Все группы
+      = params[:group_id].present? ? Group.find(params[:group_id]).first_name : 'Все группы'
       i.icon.to__drop
     ul.hidden__list
-      li Все группы
+      li.js_goToUrl data-href='?' Все группы
       - @groups.each do |group|
         li.js_goToUrl data-href="?group_id=#{group.id}"
           = group.first_name

@@ -13,6 +13,7 @@ class BunchCourse < ActiveRecord::Base
   scope :find_bunch_sections, -> { BunchSection.where(bunch_course_id: ids) }
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
   scope :uniq_by_course_id, -> { select(:course_id).distinct }
+  scope :all_type_courses, -> { all_type_courses_hash(all) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -26,6 +27,20 @@ class BunchCourse < ActiveRecord::Base
         build_to_user(course_id, user_id, nil, date_complete, type, nil, sections_hash)
     end
     true
+  end
+
+  def self.all_type_courses_hash(models)
+    arr_hashs = []
+    model_overdue = models.overdue
+    arr_hashs += [{type: 'overdue', models: model_overdue, title: 'Просроченно'}] if model_overdue.present?
+
+    model_study = models.in_study
+    arr_hashs += [{type: 'in_study', models: model_study, title: 'На прохождении'}] if model_study.present?
+
+    model_complete = models.where(complete: true)
+    arr_hashs += [{type: 'complete', models: model_complete, title: 'Завершенно'}] if model_complete.present?
+
+    arr_hashs
   end
 
   def status

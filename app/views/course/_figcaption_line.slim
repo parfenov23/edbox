@@ -2,5 +2,8 @@ figcaption
   .title
     a.goToCourse href="/course_description?id=#{course.id}"
       .inner = course.title
-    = render "course/ligament_action_menu", {ligament_course: ligament_course}
-  = render "course/figcaption/info", {course: course, ligament_course: ligament_course, type: type}
+    - if (action_menu rescue true)
+      = render "course/ligament_action_menu", {ligament_course: ligament_course}
+    - else
+      .status class=(text_status.scan('Просрочен').present? ? 'overdue' : nil ) = (text_status rescue nil)
+  = render "course/figcaption/info", {course: course, ligament_course: ligament_course, type: type, leads: (leads rescue true)}

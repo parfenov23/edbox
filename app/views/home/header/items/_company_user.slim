@@ -1,0 +1,7 @@
+.item class=(namePage == "group" ? "is__active" : "")
+  i.groups.icon
+  a.label href="/group" Группы
+- if current_user.director
+  .item class=(namePage == "members" ? "is__active" : "")
+    i.groups.icon
+    a.label href="/members" Участники

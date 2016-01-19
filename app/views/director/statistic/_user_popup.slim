@@ -15,12 +15,20 @@
           img src=default_img(current_user.avatar)
         .name = user.full_name
 
-      ul.course__status_tabs
-        li На прохождении (12)
-        li Просроченно(1)
-        li Завершенно (2)
+      - all_bunch_courses = user.bunch_courses.in_group
+      - hash_my_courses = all_bunch_courses.all_type_courses
+      ul.course__status_tabs.js_statisticPopupTabs
+        - hash_my_courses.each do |hash_my_course|
+          li data-type=hash_my_course[:type] = "#{hash_my_course[:title]} (#{hash_my_course[:models].count})"
         - if bunch_groups.present?
-        li.is__active Группы (#{bunch_groups.count})
+          li.is__active data-type='group' Группы (#{bunch_groups.count})
       .courses__list
-        -# render "director/statistic/popup/course"
-        = render "director/statistic/popup/group", {bunch_groups: bunch_groups}
+        ul.courses_info_statistic
+          - hash_my_courses.each do |hash_my_course|
+            li data-type=hash_my_course[:type]
+              - hash_my_course[:models].each do |bunch_course|
+                = render "director/statistic/popup/course", {bunch_course: bunch_course}
+
+          - if bunch_groups.present?
+            li.active data-type='group'
+              = render "director/statistic/popup/group", {bunch_groups: bunch_groups}
