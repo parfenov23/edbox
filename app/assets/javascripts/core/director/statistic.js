@@ -21,7 +21,9 @@ pageLoad(function () {
     $(document).on('click', '.js_openPopupUserStatistic', js_openPopupUserStatistic);
     $(document).on('click', '.pop_up_confirm.all_user_statistics', function(e){
         if($(e.target).hasClass('all_user_statistics')){
-            $(".pop_up_confirm.all_user_statistics").removeClass('is__active');
+            var popup = $(".pop_up_confirm.all_user_statistics");
+            popup.removeClass('is__active');
+            popup.find(".director__statistic__user_info").hide();
         }
     });
     $(document).on('click', '.js_statisticPopupTabs li', statisticPopupTabs)
