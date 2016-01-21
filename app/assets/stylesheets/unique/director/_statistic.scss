@@ -20,6 +20,7 @@ $director__table_border_style: 1px solid black__color(decoration__color);
     .visible__part {
       @include text__setting(normal__typo, secondary__color);
     }
+    
     &:hover {
       .hidden-list {
         display: block;
