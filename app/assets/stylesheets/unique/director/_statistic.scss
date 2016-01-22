@@ -8,8 +8,8 @@ $director__table_border_style: 1px solid black__color(decoration__color);
   display: none;
   .last_auth {
     position: absolute;
-    left: 32px;
     top: 29px;
+    left: 32px;
     @include text__setting(normal__typo, secondary__color);
   }
   .membership {
