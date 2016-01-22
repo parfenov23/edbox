@@ -45,6 +45,16 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
   end
 
+  def reg_webinar_lead(webinar, user)
+    @webinar = webinar
+    @attachment = @webinar.attachment
+    @user = user
+    date_start = (@webinar.date_start + User.time_zone.hour)
+    @date_start = "#{parse_russian_date(date_start)} (по Мск)"
+
+    mail(:to => @user.email, :subject => "Вы назначены ведущим вебинара #{@attachment.title}")
+  end
+
   def unreg_webinar(webinar, user)
     @webinar = webinar
     @attachment = @webinar.attachment

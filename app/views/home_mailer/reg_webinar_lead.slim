@@ -1,0 +1,11 @@
+'#{@user.full_name}, вы назначены ведущим на вебинар
+a href="#{$env_mode.current_domain}/attachment?id=#{@attachment.id}" =' @attachment.title
+|в системе онлайн-обучения #{HomeMailer::NAME_SYSTEM}.
+br
+b
+  'Вебинар назначен на #{@date_start},
+'за 3 часа и за 5 минут до начала мы пришлем вам письмо с
+|напоминанием.
+br
+br
+a href="#{$env_mode.current_domain}/mail_notify?type=off" Не получать уведомления
