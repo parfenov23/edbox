@@ -149,6 +149,9 @@ class User < ActiveRecord::Base
 
   def welcome_letter(new_password)
     HomeMailer.welcome_latter(self, new_password).deliver
+    EmailNotif.all.each do |email_notif|
+      HomeMailer.email_notifs(email_notif.email, self).deliver
+    end
   end
 
   def create_notify(model, type=nil, repeat=false)

@@ -266,6 +266,11 @@ Rails.application.routes.draw do
         get :remove
       end
     end
+    resources :email_notifs do
+      member do
+        get :remove
+      end
+    end
     resources :sections do
       member do
         get :remove

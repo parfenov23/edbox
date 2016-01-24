@@ -1,0 +1,9 @@
+- action_url = @email_notif.id.nil? ? "/superuser/email_notifs" : "/superuser/email_notifs/#{@email_notif.id}"
+- method = @email_notif.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Email:
+    input.form-control name="email_notifs[email]" type="text" value="#{@email_notif.email}"
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

@@ -1,7 +1,8 @@
 class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg, :help, :help_answer, :pay, :index]
+                                     :courses, :attachment, :course_no_reg,
+                                     :help, :help_answer, :pay, :index, :auth_user]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -167,6 +168,11 @@ class HomeController < ActionController::Base
       end
     end
 
+  end
+
+  def auth_user
+    session[:user_key] = params[:key] if User.where(user_key: params[:key]).present?
+    redirect_to '/'
   end
 
   private

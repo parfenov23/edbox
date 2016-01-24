@@ -8,7 +8,8 @@ nav.navbar.navbar-default
                         {url: "/superuser/tags", title: "Все теги"},
                         {url: "/superuser/tests/all", title: "Все тесты"},
                         {url: "/superuser/ask_questions", title: "FAQ"},
-                        {url: "/superuser/billing", title: "Биллинг"}]
+                        {url: "/superuser/billing", title: "Биллинг"},
+                        {url: "/superuser/email_notifs", title: "Emails"}]
         - arr_nav_li.each do |li_nav|
             - class_li = li_nav[:url] == request.fullpath.to_s ? "active" : ""
             li class="#{class_li}"

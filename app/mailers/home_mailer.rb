@@ -12,6 +12,11 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Добро пожаловать в #{NAME_SYSTEM}!")
   end
 
+  def email_notifs(email, user)
+    @user = user
+    mail(:to => email, :subject => "Регистрация в #{NAME_SYSTEM}!")
+  end
+
   def sendRequest(params)
     @params = params
     mail(:to => 'bazhan@masshtab.am, leads@romanpivovarov.ru, leads@adconsult.club, roman.pivovarov@gmail.com', :subject => "Заявка с Edbox", :reply_to => @params[:email])
@@ -26,7 +31,7 @@ class HomeMailer < ActionMailer::Base
   def notice_letter(email, course)
     @email = email
     @course = course
-    mail(:to => @email, :subject => 'В Edbox вышел курс, который вы ждали')
+    mail(:to => @email, :subject => "В #{NAME_SYSTEM} вышел курс, который вы ждали")
   end
 
   def notice_confirm(email, course)
