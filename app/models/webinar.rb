@@ -4,7 +4,7 @@ class Webinar < ActiveRecord::Base
   has_many :user_webinars, :dependent => :destroy
   has_many :group_webinars, dependent: :destroy
 
-  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time]).order("date_start ASC").select{|web| web.id if !web.stop?} ) }
+  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time]).order("date_start ASC").select { |web| web.id if !web.stop? }) }
 
   def transfer_to_json
     as_json
@@ -39,8 +39,12 @@ class Webinar < ActiveRecord::Base
   end
 
   def auto_start?
+    valid_time_start? && !start?
+  end
+
+  def valid_time_start?
     minute_diff = (Time.now.utc - date_start).to_i/60
-    minute_diff >= -15 && !start?
+    minute_diff >= -15
   end
 
   def auto_start
@@ -94,7 +98,11 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRegUser(user, role='user')
-    HomeMailer.reg_webinar(self, user).deliver
+    unless ligament_leads.where(user_id: user.id).present?
+      HomeMailer.reg_webinar(self, user).deliver
+    else
+      HomeMailer.reg_webinar_lead(self, user).deliver
+    end
     client = ::ApiClients::WebinarRu.new
     resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
     if resp['guestList'].present? && resp['guestList']['status'] == 'ok'
