@@ -1,10 +1,11 @@
 class Subscription < ActiveRecord::Base
   belongs_to :subscriptiontable, :polymorphic => true
   HELPERS = ApplicationController.helpers
-  USER_PRICE = 1490
 
-  COMPANY_PRICE = 2990
-  COMPANY_PRICE_USER = 990
+  billing_price = BillingPrice.default
+  USER_PRICE = billing_price.user_price
+  COMPANY_PRICE = billing_price.company_price
+  COMPANY_PRICE_USER = billing_price.company_user_price
 
   def self.build(params)
     sub = new(find_params(params))

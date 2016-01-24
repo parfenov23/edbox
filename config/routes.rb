@@ -245,6 +245,10 @@ Rails.application.routes.draw do
         get :all
         get :remove
       end
+      collection do
+        get :edit_price
+        post :update_price
+      end
     end
     resources :groups do
       member do

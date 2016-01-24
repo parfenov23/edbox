@@ -1,0 +1,19 @@
+form.form-horizontal action="/superuser/billing/update_price" method="post" enctype="multipart/form-data"
+  h5 Цены указаны за один месяц
+  .form-group
+    label
+      | Индивидуальный аккаунт:
+    input.form-control name="billing_price[user_price]" type="text" value="#{@billing_price.user_price}"
+
+  .form-group
+    label
+      | Корпоративный аккаунт:
+    input.form-control name="billing_price[company_price]" type="text" value="#{@billing_price.company_price}"
+
+  .form-group
+    label
+      | Стоимость корпаративного пользователя:
+    input.form-control name="billing_price[company_user_price]" type="text" value="#{@billing_price.company_user_price}"
+
+  input type="hidden" name="_method" value="post"
+  button.btn.btn-primary type="submit" Сохранить

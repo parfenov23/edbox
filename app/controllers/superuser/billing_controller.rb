@@ -51,6 +51,15 @@ module Superuser
       redirect_to :back
     end
 
+    def edit_price
+      @billing_price = BillingPrice.default
+    end
+
+    def update_price
+      BillingPrice.default.update(billing_price_params)
+      redirect_to :back
+    end
+
     private
 
     def find_subscription
@@ -59,6 +68,12 @@ module Superuser
 
     def find_user
       User.find(params[:id])
+    end
+
+    def billing_price_params
+      params.require(:billing_price).permit(:user_price,
+                                            :company_price,
+                                            :company_user_price).compact.select { |k, v| v != "" && v.to_i != 0 } rescue {}
     end
 
     def user_params
