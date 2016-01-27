@@ -2,10 +2,19 @@ class Subscription < ActiveRecord::Base
   belongs_to :subscriptiontable, :polymorphic => true
   HELPERS = ApplicationController.helpers
 
-  billing_price = BillingPrice.default
-  USER_PRICE = billing_price.user_price
-  COMPANY_PRICE = billing_price.company_price
-  COMPANY_PRICE_USER = billing_price.company_user_price
+  BILLING_PRICE = BillingPrice.default
+
+  def user_price
+    BILLING_PRICE.user_price
+  end
+
+  def company_price
+    BILLING_PRICE.company_price
+  end
+
+  def company_price_user
+    BILLING_PRICE.company_user_price
+  end
 
   def self.build(params)
     sub = new(find_params(params))
@@ -82,7 +91,7 @@ class Subscription < ActiveRecord::Base
 
   def self.default_all_month_and_price(type)
     arr_hash = []
-    month_price_sum = (type == "company" ? (COMPANY_PRICE + COMPANY_PRICE_USER) : USER_PRICE)
+    month_price_sum = (type == "company" ? (company_price + company_price_user) : user_price)
     12.times do |i|
       n = i + 1
       arr_hash << {
@@ -95,7 +104,7 @@ class Subscription < ActiveRecord::Base
 
   def all_month_and_price
     arr_hash = []
-    month_price_sum = company? ? COMPANY_PRICE : USER_PRICE
+    month_price_sum = company? ? company_price : user_price
     12.times do |i|
       n = i + 1
       arr_hash << {
@@ -111,8 +120,8 @@ class Subscription < ActiveRecord::Base
   def self.default_config(type)
     {
       date: "1 месяц", n: 1,
-      user_company_price: COMPANY_PRICE_USER,
-      default_price: (type == "company" ? (COMPANY_PRICE + COMPANY_PRICE_USER) : USER_PRICE),
+      user_company_price: company_price_user,
+      default_price: (type == "company" ? (company_price + company_price_user) : user_price),
       all_months: default_all_month_and_price(type),
       count_users: 1
     }
@@ -124,7 +133,7 @@ class Subscription < ActiveRecord::Base
       all_months: all_month_and_price,
       default_price: 0,
       count_users: user_count,
-      user_company_price: COMPANY_PRICE_USER,
+      user_company_price: company_price_user,
     }
   end
 
