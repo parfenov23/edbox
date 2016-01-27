@@ -77,17 +77,18 @@
         td
         td
     tfoot
+      - billing_price = BillingPrice.default
       - if current_user.blank?
         tr
           td
           td
             .price
-              |2 990 ₽/мес.
+              |#{billing_price.company_price} ₽/мес.
               span + 990 ₽/мес. за сотрудника
             .action__block
               .btn.is__blue.js_openFormRegistration.selectType data-type="corp" ОПЛАТИТЬ
           td
-            .price 1 490 ₽/мес.
+            .price #{number_with_delimiter(billing_price.user_price.to_i, delimiter: ' ')} ₽/мес.
             .action__block
               .btn.is__blue.js_openFormRegistration.selectType data-type="pers" ОПЛАТИТЬ
           td
@@ -99,8 +100,8 @@
           td
           td
             .price
-              |2 990 ₽/мес.
-              span + 990 ₽/мес. за сотрудника
+              |#{number_with_delimiter(billing_price.company_price.to_i, delimiter: ' ')} ₽/мес.
+              span + #{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} ₽/мес. за сотрудника
             .action__block
               - if (sub.company? rescue false) || (sub.user? rescue false)
                 - if (sub.company? rescue false)
@@ -112,7 +113,7 @@
               - else
                 .btn.is__blue.disable ОПЛАТИТЬ
           td
-            .price 1 490 ₽/мес.
+            .price #{number_with_delimiter(billing_price.user_price.to_i, delimiter: ' ')} ₽/мес.
             .action__block
               - if (sub.user? rescue false)
                 a.btn.is__blue href="/payment" продлить
