@@ -78,7 +78,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'adconsult.online' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "s02.atomsmtp.com",
+    :address              => "smtp-pulse.com",
     :port                 => 2525,
     :domain               => "masshtab.am",
     :user_name            => "prisakar@aim-m.ru",
