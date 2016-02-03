@@ -28,7 +28,7 @@ class EnvMode
     domains = {
       development: "http://localhost:#{port}",
       beta: "http://betaed.masshtab.am",
-      prduction: "http://ed.masshtab.am"
+      production: "http://adconsult.online"
     }
     domains[to_key]
   end
