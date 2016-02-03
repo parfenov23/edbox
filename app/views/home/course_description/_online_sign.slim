@@ -29,6 +29,6 @@
                 - class_remove = group.group_webinar.present? ? "" : "hide"
                 .remove.js_unregGroupFromWeinar class=class_remove data-id=webinar.id data-group_id=group.id
   - elsif user.blank?
-    a.btn.is__blue href="/sign_up" Зарегистрируйтесь
+    a.btn.is__blue href="/sign_in" Принять участие в вебинаре
   - elsif !course.available(user)
     a.btn.is__blue href="/tariff" Доступен по подписке
