@@ -8,3 +8,5 @@
             = link_to("Удалить ведущего", "/superuser/users/#{leading.id}/remove", class: "btn btn-danger pull-right")
             a.btn.btn-success.pull-right href="/superuser/users/#{leading.id}/edit" style="margin-right: 5px;"
                 | Редактировать
+            a.btn.btn-info.pull-right href=leading.auth_url style="margin-right: 5px;" target="_blank"
+                | >
