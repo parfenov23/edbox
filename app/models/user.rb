@@ -168,6 +168,11 @@ class User < ActiveRecord::Base
     {id: id, course: (bunch_course.stat_status rescue nil)}
   end
 
+  def auth_url(params = {})
+    params[:key] = user_key
+    "#{$env_mode.current_domain}/auth_user?" + params.map{|k, v| "#{k}=#{CGI.escape(v)}"}.join("&")
+  end
+
   private
 
   def create_hash_key

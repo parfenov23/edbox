@@ -171,8 +171,9 @@ class HomeController < ActionController::Base
   end
 
   def auth_user
+    url_params = params.map{|k, v| [k.to_sym, CGI.unescape(v)]}.to_h
     session[:user_key] = params[:key] if User.where(user_key: params[:key]).present?
-    redirect_to '/'
+    redirect_to url_params[:redirect].present? ? url_params[:redirect] : '/'
   end
 
   private

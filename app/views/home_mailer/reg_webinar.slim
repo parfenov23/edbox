@@ -1,5 +1,6 @@
+- url_auth = @user.auth_url({redirect: "/attachment?id=#{@attachment.id}"})
 '#{@user.full_name}, вы зарегистривовались на вебинар
-a href="#{$env_mode.current_domain}/attachment?id=#{@attachment.id}" =' @attachment.title
+a href=url_auth =' @attachment.title
 |в системе онлайн-обучения #{HomeMailer::NAME_SYSTEM}.
 br
 b
