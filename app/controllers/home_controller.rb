@@ -51,7 +51,8 @@ class HomeController < ActionController::Base
     unless (@course.material? rescue false)
       valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
       valid_redirect = current_user.present? ? valid_added : @attachment.public
-      unless @attachment.present? && valid_redirect
+      course_leading = attachment.class_type == 'webinar' ? attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false
+      unless @attachment.present? && valid_redirect && course_leading
         redirect_to "/"
       end
     end
