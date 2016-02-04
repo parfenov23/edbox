@@ -58,6 +58,8 @@ module Api::V1
       group = Group.find(params[:group_id])
       group_webinar = group.group_webinar
       if group_webinar.blank?
+        course = webinar.attachment.attachmentable.course
+        BunchCourse.build(course.id, group.id, webinar.date_start.to_s, "group", nil, nil)
         group.bunch_groups.each do |bunch_group|
           webinar.eventRegUser(bunch_group.user)
         end
@@ -73,6 +75,8 @@ module Api::V1
       group = Group.find(params[:group_id])
       group_webinar = group.group_webinar
       if group_webinar.present?
+        course = webinar.attachment.attachmentable.course
+        BunchCourse.where(group_id: group.id, course_id: course.id).destroy_all
         group.bunch_groups.each do |bunch_group|
           webinar.eventUnRegUser(bunch_group.user)
         end
