@@ -307,6 +307,20 @@ var back_url = function (type, find_link, default_result) {
     return result;
 }
 
+function get_name_browser(){
+    var ua = navigator.userAgent;
+    if (ua.search(/Chrome/) > 0) return 'Chrome';
+    if (ua.search(/Firefox/) > 0) return 'Firefox';
+    if (ua.search(/Opera/) > 0) return 'Opera';
+    if (ua.search(/Safari/) > 0) return 'Safari';
+    if (ua.search(/MSIE/) > 0) return 'IE';
+    return 'Не определен';
+}
+
+function get_browser(name){
+    return get_name_browser() == name
+}
+
 $(document).ready(function () {
     back_url();
     if ($("header.scroll_white").length) {

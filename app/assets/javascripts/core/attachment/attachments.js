@@ -86,10 +86,20 @@ var eventUnRegUser = function () {
     return true;
 };
 
+goToWebinar = function(){
+    if (get_browser('Safari')){
+        var iframe = $(".webinar_attachment iframe");
+        if (iframe.length){
+            window.location.href = iframe.attr('src')
+        }
+    }
+};
+
 pageLoad(function () {
     $(document).on('click', '.js_eventCreate', eventCreate);
     $(document).on('click', '.js_eventStart', eventStart);
     $(document).on('click', '.js_eventStop', eventStop);
     $(document).on('click', '.js_eventRegUser', eventRegUser);
     $(document).on('click', '.js_eventUnRegUser', eventUnRegUser);
+    if ($(".webinar_attachment").length) goToWebinar();
 });
