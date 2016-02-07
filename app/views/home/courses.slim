@@ -16,8 +16,8 @@
       - if current_user.present?
         = render "home/courses/pop_up"
 
-- h = "Получай полезные знания вместе с Edbox"
-- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке Edbox"
+- h = "Получай полезные знания вместе с #{$env_mode.name_title}"
+- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
 = render "common/course/course_reg", {header: h, info: i}
 
 - if params[:reg].present? && params[:reg] == 'true'

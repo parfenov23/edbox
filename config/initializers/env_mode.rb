@@ -41,6 +41,10 @@ class EnvMode
     config[:port]
   end
 
+  def name_title
+    "ADCONSULT.ONLINE"
+  end
+
   def to_s
     @mode
   end
