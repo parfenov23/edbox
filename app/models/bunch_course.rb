@@ -169,7 +169,8 @@ class BunchCourse < ActiveRecord::Base
       unless complete
         progress = self.progress rescue 0
         if progress == 0
-          "Назначен #{created_at + User.time_zone.hour}" if model_type == "group"
+          use_time = (created_at + User.time_zone.hour).strftime("%Y-%m-%d")
+          "Назначен #{use_time}" if model_type == "group"
         else
           "Пройденно #{progress}%"
         end

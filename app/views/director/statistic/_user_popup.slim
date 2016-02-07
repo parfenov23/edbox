@@ -4,11 +4,11 @@
     - bunch_groups = user.bunch_groups
     .inner.director__statistic__user_info data-user_id=user.id
       .last_auth Последний вход: #{ltime(user.last_auth, '', 'short_min_y')}
-      .membership
-        .visible__part Состоит в #{rus_case(bunch_groups.count, 'группе', 'группах', 'группах')}
-        ul.hidden-list
-          - bunch_groups.each do |bunch_group|
-            li = bunch_group.group.first_name
+      /.membership
+      /  .visible__part Состоит в #{rus_case(bunch_groups.count, 'группе', 'группах', 'группах')}
+      /  ul.hidden-list
+      /    - bunch_groups.each do |bunch_group|
+      /      li = bunch_group.group.first_name
 
       .user__info
         .ava

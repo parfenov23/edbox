@@ -27,4 +27,6 @@ pageLoad(function () {
         }
     });
     $(document).on('click', '.js_statisticPopupTabs li', statisticPopupTabs)
+
+    if ($(".director__stat_table .course__title__list .item").length < 5) $(".director__stat_table .table__paginator").hide();
 });

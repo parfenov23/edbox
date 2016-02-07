@@ -6,4 +6,5 @@
         - statistic = @users.statistics(course)
         - @users.each do |user|
           - user_status = statistic.select{|h| h[:id] == user.id}.last
-          .item = user_status[:course]
+          - class_block = user_status[:course].scan("Просрочен").present? ? 'overdue' : ''
+          .item.js_openPopupUserStatistic class=class_block data-id=user.id = user_status[:course]
