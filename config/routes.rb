@@ -157,6 +157,7 @@ Rails.application.routes.draw do
           post :remove_teaser_material
           post :remove_tag
           post :remove_category
+          post :remove
           post :add_leading
           post :remove_leading
           post :update_type

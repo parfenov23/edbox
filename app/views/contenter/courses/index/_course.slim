@@ -9,9 +9,11 @@
       - courses.order("created_at DESC").each do |course|
         - link = "/contenter/courses/#{course.id}/edit"
         - link = "/contenter/materials/#{course.id}/edit" if course.material?
-        figure.corses-prev.compact.js__removeCourseMyBlock onclick='window.location.href="#{link}"'
-          = render "common/course/course_img", {course: course, w: 694, h: 384}
-          figcaption
+        figure.corses-prev.compact.js__removeCourseMyBlock
+          div onclick='window.location.href="#{link}"'
+            = render "common/course/course_img", {course: course, w: 694, h: 384}
+          .remove.js_removeCourseConteter data-id=course.id
+          figcaption onclick='window.location.href="#{link}"'
             .title.with_btn
               .inner = course.title
               .shadow

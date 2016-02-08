@@ -113,6 +113,11 @@ module Api::V1
       render json: {success: true}
     end
 
+    def remove
+      find_course.destroy
+      render json: {success: true}
+    end
+
     private
 
     def find_course

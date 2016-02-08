@@ -1113,3 +1113,21 @@
     }
   }
 }
+
+.inner-content.contenter{
+  .carusel-wrp{
+    .info-box{
+      .course-prev-list{
+        .corses-prev{
+          @include btnRemove;
+          .remove {
+            position: relative;
+            z-index: 99;
+            float: right;
+            right: 12px;
+          }
+        }
+      }
+    }
+  }
+}
