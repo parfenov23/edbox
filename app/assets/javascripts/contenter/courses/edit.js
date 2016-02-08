@@ -326,14 +326,18 @@ pageLoad(function () {
         });
     }
 
+    var time_create_course;
     $(document).on('click', '#courseEditContenter form.addedTeaser', function(){
         var form = $('form.course__description-content');
         var id_course = formInputIdCourse().val();
-        if (id_course == "new"){
-            createCourseContenter(form.serialize());
-        } else {
-            updateCourseContenter(form.serialize(), id_course);
-        }
+        clearTimeout(time_create_course);
+        time_create_course = setTimeout(function() {
+            if (id_course == "new"){
+                createCourseContenter(form.serialize());
+            } else {
+                updateCourseContenter(form.serialize(), id_course);
+            }
+        }, 50);
     });
 
     $('#courseEditContenter #inputFile_teaserImg,#courseEditContenter #inputFile_teaserVideo').change(changeTeaserCourse);
