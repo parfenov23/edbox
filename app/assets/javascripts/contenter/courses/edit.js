@@ -225,11 +225,12 @@ var removeLigamentLeadFromCourse = function () {
 var changeTeaserCourse = function () {
     var input = $(this);
     var form = input.closest('form');
+    var course_id = formInputIdCourse();
     var presentation_block = input.closest('.presentation__block');
     show_error('Идет загрузка файла', 10000);
     $.ajax({
         type       : 'POST',
-        url        : '/api/v1/courses/' + input.data('id') + "/update_teaser",
+        url        : '/api/v1/courses/' + course_id.val() + "/update_teaser",
         processData: false,
         contentType: false,
         cache      : false,
@@ -261,10 +262,11 @@ var changeTeaserCourse = function () {
 var removeTeaserToCourse = function () {
     var btn = $(this);
     var presentation_block = btn.closest('.presentation__block');
+    var course_id = formInputIdCourse().val();
     confirm("Вы действительно хотите удалить тизер?", function () {
         $.ajax({
             type: 'POST',
-            url : '/api/v1/courses/' + btn.data('course_id') + "/remove_teaser",
+            url : '/api/v1/courses/' + course_id + "/remove_teaser",
             data: {type: btn.data("type")}
         }).success(function (data) {
             if (btn.data('type') == "video"){
@@ -294,7 +296,7 @@ var addToggleUlCreateCourse = function () {
 var announcement = function () {
     var btn = $(this);
     $(btn).closest('.upload_attachments').removeClass('includeValidateForm error');
-}
+};
 
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
@@ -323,6 +325,16 @@ pageLoad(function () {
             video_block.play();
         });
     }
+
+    $(document).on('click', '#courseEditContenter form.addedTeaser', function(){
+        var form = $('form.course__description-content');
+        var id_course = formInputIdCourse().val();
+        if (id_course == "new"){
+            createCourseContenter(form.serialize());
+        } else {
+            updateCourseContenter(form.serialize(), id_course);
+        }
+    });
 
     $('#courseEditContenter #inputFile_teaserImg,#courseEditContenter #inputFile_teaserVideo').change(changeTeaserCourse);
 });
