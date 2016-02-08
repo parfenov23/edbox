@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, as: :subscriptiontable, dependent: :destroy
   has_many :user_webinars, dependent: :destroy
   has_many :incoming_moneys, dependent: :destroy
+  has_many :ligament_leads, dependent: :destroy
 
   before_create :create_hash_key
   validates :email, presence: true
