@@ -1,6 +1,7 @@
 shiftTableBody = ->
   colArr = $('.table__column')
   movedTabletsPart = $('.status__table .wrp, .course__title__list .wrp')
+  countTableItems = $('.director__stat_table .psevdo__table__header .course__title__list .item')
   factor = 4
   anim = false
   qtyNormalMove = Math.floor(colArr.length / factor)
@@ -65,6 +66,8 @@ shiftTableBody = ->
           else if x < y #передумали и вернулись назад
             normalShift(dir, movedTabletsPart)
       y = x
+      if ((x + 1) * 4) >= countTableItems.length
+        $(@).removeClass 'is__active'
     else if anim
       console.log 'hz'
 
