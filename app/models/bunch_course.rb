@@ -142,6 +142,7 @@ class BunchCourse < ActiveRecord::Base
     end
     bunch_course.date_complete = date_complete
     bunch_course.save
+    HomeMailer.reg_course(course, user).deliver unless course.online?
     sections.each do |section|
       current_section = (sections_hash[section.id.to_s] rescue nil)
       if type == "group"

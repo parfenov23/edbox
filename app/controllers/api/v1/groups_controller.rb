@@ -94,7 +94,9 @@ module Api::V1
     end
 
     def add_course
-      if params[:date_complete].present? && params[:group_id].present?
+      course = Course.find(params[:course_id])
+      date_valid = course.online? ? true : params[:date_complete].present?
+      if date_valid && params[:group_id].present?
         if (bunch_course = BunchCourse.build(params[:course_id], params[:group_id], params[:date_complete], "group", nil, params[:sections]) rescue false)
           render json: bunch_course.as_json
         else

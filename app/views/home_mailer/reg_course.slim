@@ -1,0 +1,6 @@
+- url_auth = @user.auth_url({redirect: "/course_description?id=#{@course.id}"})
+'#{@user.full_name}, вы подписаны на курс
+a href=url_auth =' @course.title
+br
+br
+a href=url_auth Перейти

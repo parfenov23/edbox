@@ -50,6 +50,13 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
   end
 
+  def reg_course(course, user)
+    @course = course
+    @user = user
+
+    mail(:to => @user.email, :subject => "Вы подписаны на курс #{@course.title}")
+  end
+
   def reg_webinar_lead(webinar, user)
     @webinar = webinar
     @attachment = @webinar.attachment
