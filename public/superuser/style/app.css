@@ -76,3 +76,7 @@ input[readonly] {
     background-color: #d9edf7;
     color: black;
 }
+
+.tablesorter td .btn-primary{
+    margin-left: 3px;
+}
