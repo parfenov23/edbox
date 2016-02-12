@@ -68,15 +68,21 @@ input[readonly] {
     background-color : #2B669A;
     color            : white;
 }
-#BillingTable thead tr th.tablesorter-headerAsc{
-    background-color: #FCF8E3;
-    color: black;
-}
-#BillingTable thead tr th.tablesorter-headerDesc{
-    background-color: #d9edf7;
-    color: black;
+
+#BillingTable thead tr th.tablesorter-headerAsc {
+    background-color : #FCF8E3;
+    color            : black;
 }
 
-.tablesorter td .btn-primary{
-    margin-left: 3px;
+#BillingTable thead tr th.tablesorter-headerDesc {
+    background-color : #D9EDF7;
+    color            : black;
+}
+
+.tablesorter tbody {
+    background-color : white;
+}
+
+.tablesorter td .btn-primary {
+    margin-left : 3px;
 }
