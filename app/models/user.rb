@@ -64,11 +64,13 @@ class User < ActiveRecord::Base
   def find_subscription(active = true, find_time=true, type="last")
     model = director? ? (company rescue self) : (corporate? ? (company rescue self) : self)
     time = Time.current
-    subs = model.subscriptions.where(active: active)
-    if find_time
-      subs = subs.where(["date_from < ? and date_to > ?", time, time])
+    subs = model.subscriptions.where(active: active) rescue nil
+    if subs.present?
+      if find_time
+        subs = subs.where(["date_from < ? and date_to > ?", time, time])
+      end
+      type == "last" ? subs.last : subs
     end
-    type == "last" ? subs.last : subs
   end
 
   def get_account_type
@@ -171,7 +173,7 @@ class User < ActiveRecord::Base
 
   def auth_url(params = {})
     params[:key] = user_key
-    "#{$env_mode.current_domain}/auth_user?" + params.map{|k, v| "#{k}=#{CGI.escape(v)}"}.join("&")
+    "#{$env_mode.current_domain}/auth_user?" + params.map { |k, v| "#{k}=#{CGI.escape(v)}" }.join("&")
   end
 
   private
