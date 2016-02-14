@@ -16,6 +16,7 @@
   <script src="//vjs.zencdn.net/4.12/video.js"></script>
   <%= render "layouts/pixel/facebook_pixel" if Rails.env.production? %>
   <%= render "layouts/pixel/facebook_pixel_profile" if (Rails.env.production? && (params[:action] == 'cabinet')) %>
+  <%= render "layouts/zendesk_widget" if $env_mode.prod? %>
 </head>
 <% websocket_url = "#{request.host}:#{request.port}/node/websocket" %>
 <% if Rails.env.production? %>
@@ -49,7 +50,6 @@
 <% end %>
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if Rails.env.production? %>
-<%= render "layouts/zendesk_widget" if Rails.env.production? %>
 <%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production? %>
 </body>
 </html>
