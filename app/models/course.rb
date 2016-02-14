@@ -154,9 +154,16 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def find_bunch_course(user_id, type=nil, group_id=nil)
+  def find_bunch_course(user_id, type=nil, group_id=nil, best=false)
     hash_expression = {course_id: id, user_id: user_id, group_id: group_id, model_type: type}.compact
-    bunch_courses.where(hash_expression).last
+    bcs = bunch_courses.where(hash_expression)
+    if best
+      max_prog = bcs.map(&:progress).max
+      bcs.select {|bc| bc.progress == max_prog }.last
+    else
+      bcs.last
+    end
+
   end
 
 

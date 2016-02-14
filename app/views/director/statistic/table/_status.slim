@@ -3,7 +3,7 @@
     / user 1
     - @courses.each do |course|
       .table__column
-        - statistic = @users.statistics(course)
+        - statistic = @users.statistics(course, "group", true)
         - @users.each do |user|
           - user_status = statistic.select{|h| h[:id] == user.id}.last
           - class_block = user_status[:course].to_s.scan("Просрочен").present? ? 'overdue' : ''
