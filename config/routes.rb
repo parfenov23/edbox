@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "makeup/:action" => "makeup#:action"
   post "subscription/pay" => "home#pay"
   get "director/:action" => "director#:action"
+  get "director/statistic/:action" => "director#:action"
   get ":action" => "home#:action"
   # get "makeup/create_group/name" => "makeup/create_group#name", :controller => "makeup"
   namespace :makeup do

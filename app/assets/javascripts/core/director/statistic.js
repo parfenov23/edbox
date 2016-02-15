@@ -17,6 +17,11 @@ var statisticPopupTabs = function(){
     }
 };
 
+var exportStatistic = function(){
+    var btn = $(this);
+    window.location.href = '/director/statistic/' + btn.data('type') + '?group=' + btn.data('group');
+};
+
 pageLoad(function () {
     $(document).on('click', '.js_openPopupUserStatistic', js_openPopupUserStatistic);
     $(document).on('click', '.pop_up_confirm.all_user_statistics', function(e){
@@ -27,6 +32,7 @@ pageLoad(function () {
         }
     });
     $(document).on('click', '.js_statisticPopupTabs li', statisticPopupTabs)
+    $(document).on('click', '.js_exportStatistic', exportStatistic);
 
     if ($(".director__stat_table .course__title__list .item").length < 5) $(".director__stat_table .table__paginator").hide();
 });

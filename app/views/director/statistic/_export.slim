@@ -1,9 +1,10 @@
-.dropdown__flash.js__dropdown_toggle style='opacity: 0'
+.dropdown__flash.js__dropdown_toggle
   .visible__part
     i.icon.exit
     | Экспортировать
   ul.hidden__list
-    li Microsoft Excel
-    li PDF
-    li Keynote 09
-    li Microsoft Word
+    li.js_exportStatistic data-type='csv' data-group=(params[:group_id].present? ? params[:group_id] : 'all') CSV
+    /li Microsoft Excel
+    /li PDF
+    /li Keynote 09
+    /li Microsoft Word
