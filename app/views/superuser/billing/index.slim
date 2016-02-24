@@ -34,21 +34,20 @@ table#BillingTable.tablesorter.table.table-bordered
   tbody
     - @users.each do |user|
       - sub = user.find_subscription([false, true], false)
-      - if sub.present?
-        tr
-          td = user.id
-          td = user.email
-          td = user.corporate ? "Корпоративный" : "Личный"
-          td = user.get_account_type ? "Оплачено" : "Не оплачено"
-          td = (user.corporate ? user.company.users.count : nil) rescue nil
-          td = ltime(user.created_at, '', 'short_min_y')
-          td = sub.present? ? sub.date_string : "Нет подписки"
-          td
-            - if sub.present?
-              a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
-              a.btn.btn-primary.col-lg-offset-1 href="/superuser/billing/#{user.id}/all"
-                |Все подписки
-            - else
-              - model = user.director? ? (user.company rescue user) : user
-              a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
-                |Создать
+      tr
+        td = user.id
+        td = user.email
+        td = user.corporate ? "Корпоративный" : "Личный"
+        td = user.get_account_type ? "Оплачено" : "Не оплачено"
+        td = (user.corporate ? user.company.users.count : nil) rescue nil
+        td = ltime(user.created_at, '', 'short_min_y')
+        td = sub.present? ? sub.date_string : "Нет подписки"
+        td
+          - if sub.present?
+            a.btn.btn-primary href="/superuser/billing/#{sub.id}/edit" Редактировать
+            a.btn.btn-primary.col-lg-offset-1 href="/superuser/billing/#{user.id}/all"
+              |Все подписки
+          - else
+            - model = user.director? ? (user.company rescue user) : user
+            a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
+              |Создать
