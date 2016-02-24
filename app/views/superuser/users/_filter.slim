@@ -37,5 +37,10 @@ form.form-inline.form_filter
           span.input-group-addon До
           input.form-control.datepicker.input-sm type="text" name="user[sub_to]" placeholder="по" value=user_params[:sub_to]
   .row
+    .col-lg-4
+      .form-group
+        label Email:
+        input.form-control type="text" name="user[email]" value=user_params[:email]
+  .row
     .col-lg-2
       button.btn.btn-primary Применить
