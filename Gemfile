@@ -44,6 +44,11 @@ gem 'rails-i18n'
 gem 'less-rails', '~> 2.7.0'
 gem 'therubyracer', :platforms => :ruby
 
+#===================== resque
+gem 'resque'
+gem 'resque-scheduler'
+#============================
+
 #===================== websocket
 gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'sync_fixes'
 gem 'hiredis'
