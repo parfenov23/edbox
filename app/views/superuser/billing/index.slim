@@ -49,5 +49,6 @@ table#BillingTable.tablesorter.table.table-bordered
               |Все подписки
           - else
             - model = user.director? ? (user.company rescue user) : user
-            a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
-              |Создать
+            - if model.present?
+              a.btn.btn-primary href="/superuser/billing/new?subscription[subscriptiontable_type]=#{model.class.to_s}&subscription[subscriptiontable_id]=#{model.id}"
+                |Создать
