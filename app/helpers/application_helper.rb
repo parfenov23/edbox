@@ -128,4 +128,9 @@ module ApplicationHelper
   def rus_case_label(count, n1, n2, n3)
     "#{Russian.p(count, n1, n2, n3)}"
   end
+
+  def social_share_link(soc_name, path, title)
+    "http://www.addthis.com/bookmark.php?v=300&winname=addthis&lng=ru&s=#{soc_name}&url=#{$env_mode.current_domain + path}&title=#{title}
+      &frommenu=1&uud=1&ct=1&uct=1&tt=0&captcha_provider=nucaptcha"
+  end
 end
