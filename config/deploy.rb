@@ -30,10 +30,10 @@ namespace :deploy do
   # , 'deploy:websocket_restart'
 
   task :resque_restart do
-    Rake::Task['resque:restart_workers'].invoke
+    `RAILS_ENV=production bundle exec rake resque:restart_workers`
   end
 
-  task :restart do
+  task :restart doå
     invoke 'unicorn:legacy_restart'
   end
 
