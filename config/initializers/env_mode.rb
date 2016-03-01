@@ -52,6 +52,10 @@ class EnvMode
   def to_key
     to_s.to_sym
   end
+
+  def current_time
+    Time.now + (User.time_zone).hour
+  end
 end
 
 $env_mode = EnvMode.new

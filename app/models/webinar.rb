@@ -118,4 +118,21 @@ class Webinar < ActiveRecord::Base
       user_webinars.where(user_id: user.id).destroy_all
     end
   end
+
+  def create_job(date_time_start = (date_start - 5.minute))
+    WebinarMailJob.run(date_time_start, id)
+  end
+
+  def job
+    WebinarMailJob.find(id)
+  end
+
+  def remove_job
+    WebinarMailJob.remove(id)
+  end
+
+  def rebuild_job
+    remove_job
+    create_job
+  end
 end

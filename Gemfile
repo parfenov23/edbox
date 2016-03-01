@@ -47,6 +47,7 @@ gem 'therubyracer', :platforms => :ruby
 #===================== resque
 gem 'resque'
 gem 'resque-scheduler'
+gem 'resque-status'
 #============================
 
 #===================== websocket

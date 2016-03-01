@@ -295,6 +295,8 @@ GEM
       redis (~> 3.0)
       resque (~> 1.25)
       rufus-scheduler (~> 2.0)
+    resque-status (0.5.0)
+      resque (~> 1.19)
     ruby-graphviz (1.2.2)
     rufus-scheduler (2.0.24)
       tzinfo (>= 0.3.22)
@@ -431,6 +433,7 @@ DEPENDENCIES
   redis-rails
   resque
   resque-scheduler
+  resque-status
   rufus-scheduler
   russian
   sass-rails

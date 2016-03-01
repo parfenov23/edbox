@@ -29,6 +29,10 @@ namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
   # , 'deploy:websocket_restart'
 
+  task :resque_restart do
+    invoke 'resque:restart_workers'
+  end
+
   task :restart do
     invoke 'unicorn:legacy_restart'
   end
@@ -46,9 +50,6 @@ namespace :deploy do
   #   `RAILS_ENV=production bundle exec rake websocket_rails:start_server`
   # end
   #
-  # task :websocket_start do
-  #   `rake websocket:start_server`
-  # end
   #
   # task :websocket_stop do
   #   `rake websocket:stop_server`
