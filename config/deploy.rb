@@ -30,8 +30,7 @@ namespace :deploy do
   # , 'deploy:websocket_restart'
 
   task :resque_restart do
-    p "123"
-    #invoke 'resque:restart_workers'
+    Rake::Task['resque:restart_workers'].invoke
   end
 
   task :restart do
