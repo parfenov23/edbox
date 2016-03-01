@@ -25,10 +25,12 @@ set :keep_releases, 3
 set :whenever_roles, [:app]
 set :slack_webhook, "https://hooks.slack.com/services/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"
 
+load 'lib/tasks/resque.rake'
+
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
   # , 'deploy:websocket_restart'
-
+  #
   # task :resque_restart do
   #   `RAILS_ENV=production bundle exec rake resque:restart_workers`
   # end
@@ -54,5 +56,5 @@ namespace :deploy do
   # task :websocket_stop do
   #   `rake websocket:stop_server`
   # end
-  # after "deploy", 'deploy:resque_restart'
+  after "deploy", 'resque:restart_workers'
 end
