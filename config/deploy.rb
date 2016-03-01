@@ -33,7 +33,7 @@ namespace :deploy do
     `RAILS_ENV=production bundle exec rake resque:restart_workers`
   end
 
-  task :restart doå
+  task :restart do
     invoke 'unicorn:legacy_restart'
   end
 
