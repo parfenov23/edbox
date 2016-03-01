@@ -56,5 +56,5 @@ namespace :deploy do
   # task :websocket_stop do
   #   `rake websocket:stop_server`
   # end
-  after "deploy", 'resque:restart_workers'
+  # after "deploy", 'resque:restart_workers'
 end
