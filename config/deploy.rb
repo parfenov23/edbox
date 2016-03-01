@@ -27,6 +27,7 @@ set :slack_webhook, "https://hooks.slack.com/services/T03NCJVBY/B0DL1R295/7AXSC9
 
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
+  after :deploy, 'resque:restart_workers'
   # , 'deploy:websocket_restart'
 
   task :resque_restart do
