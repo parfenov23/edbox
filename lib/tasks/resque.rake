@@ -25,13 +25,13 @@ namespace :resque do
   task :setup => :environment
 
   desc "Restart running workers"
-  task :restart_workers do
+  task :restart_workers => [ :environment ] do
     Rake::Task['resque:stop_workers'].invoke
     Rake::Task['resque:start_workers'].invoke
   end
 
   desc "Quit running workers"
-  task :stop_workers do
+  task :stop_workers => [ :environment ] do
     pids = Array.new
     Resque.workers.each do |worker|
       pids = pids | worker.worker_pids[0...-1]
@@ -50,7 +50,7 @@ namespace :resque do
   end
 
   desc "Start workers"
-  task :start_workers do
+  task :start_workers => [ :environment ] do
     run_worker("*")
     # run_worker("high")
   end
