@@ -30,14 +30,18 @@ module Superuser
     end
 
     def create
-      sub = Subscription.new(sub_params)
+      find_params = sub_params
+      find_params[:sum] = find_params[:sum].to_f if find_params[:sum].blank?
+      sub = Subscription.new(find_params)
       sub.save
       redirect_to edit_superuser_billing_path(sub.id)
     end
 
     def update
+      find_params = sub_params
+      find_params[:sum] = find_params[:sum].to_f if find_params[:sum].blank?
       sub = find_subscription
-      sub.update(sub_params)
+      sub.update(find_params)
       redirect_to :back
     end
 
