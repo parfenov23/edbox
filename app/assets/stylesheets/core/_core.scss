@@ -897,10 +897,9 @@
           display : none;
         }
         &.open-state {
-          height  : 100%;
-          width   : calc(100% + 64px);
-          margin  : 12px -64px 12px -64px;
-          padding : 13px 16px 16px 64px;
+          height: 100%;
+          width: 100%;
+          padding: 16px 16px 16px 16px;
           .info_test {
             display : none;
           }

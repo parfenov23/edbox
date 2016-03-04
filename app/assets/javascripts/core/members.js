@@ -24,7 +24,7 @@ appendMember = function (member) {
             var ul_users = $(".members.ingroups .members__in_system");
             var search_users_email = ul_users.find("li[data-email*='" + member + "']");
             if (search_users_email.length) installCountResidue(+1);
-            if (installCountResidue() > 0){
+            if (installCountResidue() > 0 || installCountResidue() == undefined){
                 $('.members__invite .invited').show();
                 $('.members__invite .input').val('');
                 $('<li class="invited__item">' +
