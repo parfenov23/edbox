@@ -75,6 +75,20 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Вы отменили регистрацию на вебинар #{@attachment.title}")
   end
 
+  def soon_began_webinar(user, webinar)
+    @webinar = webinar
+    @attachment = @webinar.attachment
+    @user = user
+
+    mail(:to => @user.email, :subject => "Через 5 минут начнется вебинар #{@attachment.title}")
+  end
+
+  def support_back(user, text)
+    @email = user.email rescue nil
+    @error = text
+    mail(:to => 'parfenov407@gmail.com', :subject => "Ошибка в системе Adconsult.online")
+  end
+
   private
 
   def domain

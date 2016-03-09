@@ -1,0 +1,4 @@
+every_two_minute_job:
+ cron: "59 23 * * *"
+ class: WebinarMailJob
+ description: “every two minute job”

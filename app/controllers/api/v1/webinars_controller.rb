@@ -10,6 +10,7 @@ module Api::V1
         webinar_params_permit[:date_start] = curr_time
       end
       webinar.update(webinar_params_permit)
+      webinar.rebuild_job if webinar.date_start > Time.current
       render json: webinar.transfer_to_json
     end
 

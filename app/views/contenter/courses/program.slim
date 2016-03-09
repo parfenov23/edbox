@@ -21,7 +21,7 @@
       .section.add_new.js_addTestToCourse.validateTest data-id=course.id class=(test.present? ? "hideBtnFinalTest" : "") *hash_param
         = render "contenter/courses/help_error"
         .btn.btn-flat ДОБАВИТЬ ФИНАЛЬНЫЙ ТЕСТ
-      .test_block.js__toggle-state.programm__block.closed-state.parentValidAttachment#finalTestCourse style=(test.present? ? "" : "display:none;")
+      .test_block.js__toggle-state.programm__block.closed-state.parentValidAttachment#finalTestCourse.attachment.item style=(test.present? ? "" : "display:none;")
         - if test.present?
           = render "contenter/courses/program/final_test", {test: test}
 

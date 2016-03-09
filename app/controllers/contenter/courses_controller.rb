@@ -12,12 +12,22 @@ module Contenter
     def edit
     end
 
+    def program
+      redirect_to publication_contenter_course_path(id: params[:id]) if find_course.public
+    end
+
     def publication
       begin
-        @course = Course.find(params[:id])
+        @course = find_course
       rescue
         redirect_to "contenter/courses/new/edit"
       end
+    end
+
+    private
+
+    def find_course
+      Course.find(params[:id])
     end
 
   end

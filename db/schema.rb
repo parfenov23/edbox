@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124181854) do
+ActiveRecord::Schema.define(version: 20160302091907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -271,7 +271,7 @@ ActiveRecord::Schema.define(version: 20160124181854) do
     t.datetime "date_to"
     t.integer  "subscriptiontable_id"
     t.string   "subscriptiontable_type"
-    t.float    "sum"
+    t.float    "sum",                    default: 0.0
     t.boolean  "active",                 default: true
     t.datetime "created_at"
     t.datetime "updated_at"

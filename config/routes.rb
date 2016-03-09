@@ -342,4 +342,6 @@ Rails.application.routes.draw do
   post '/money/purse/refill_process', :to => 'money/purse#refill_process', :as => :refill_process #/пополнение/счета
   get '/money/purse/payment_fail', :to => 'money/purse#payment_fail', :as => :payment_fail #/платеж/не/прошел
   get '/money/purse/payment_success/:secure_code', :to => 'money/purse#payment_success', :as => :payment_success #/платеж/прошел/:secure_code
+
+  get '*unmatched_route', :to => "home#page_404"
 end

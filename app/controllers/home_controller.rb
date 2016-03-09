@@ -6,8 +6,8 @@ class HomeController < ActionController::Base
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
+  rescue_from Exception, with: :error_message if $env_mode.prod?
   # caches_page :courses
-
   def index
     @block_registr = false
     unless current_user.nil?
@@ -29,6 +29,7 @@ class HomeController < ActionController::Base
   end
 
   def profile
+    ssss
     @current_user = current_user
   end
 
@@ -172,9 +173,20 @@ class HomeController < ActionController::Base
   end
 
   def auth_user
-    url_params = params.map{|k, v| [k.to_sym, CGI.unescape(v)]}.to_h
+    url_params = params.map { |k, v| [k.to_sym, CGI.unescape(v)] }.to_h
     session[:user_key] = params[:key] if User.where(user_key: params[:key]).present?
     redirect_to url_params[:redirect].present? ? url_params[:redirect] : '/'
+  end
+
+  def error_message(e)
+    text = "<br/>#{e.message} -- #{e.class}<br/>#{e.backtrace.join("<br/>")}"
+
+    HomeMailer.support_back(current_user, text).deliver
+    render "common/page_500", :status => 500, :layout => "application"
+  end
+
+  def page_404
+    render "common/page_404", :status => 404, :layout => "application"
   end
 
   private

@@ -2,3 +2,6 @@
 
 require ::File.expand_path('../config/environment', __FILE__)
 run Rails.application
+#============ resque
+require 'resque/server'
+run Rack::URLMap.new "/" => Edbox::Application,  "/resque" => Resque::Server.new
