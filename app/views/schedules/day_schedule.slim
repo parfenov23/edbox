@@ -8,7 +8,7 @@
                 .duration__with-icon
                     i.icon
                     |#{course.duration} часа
-            - if @current_user.director? || !@current_user.corporate?
+            - if current_user.director? || !current_user.corporate?
                 .com__director-btn.js__select-calendar
                     a.edit-date href="#"
                         i.icon-uniE8A3
@@ -37,7 +37,7 @@
                     /.duration__with-icon
                         i.icon
                         |32 часа
-                    - if @current_user.director? || !@current_user.corporate?
+                    - if current_user.director? || !current_user.corporate?
                         .com__director-btn.js__select-calendar
                             a.edit-date href="#"
                                 i.icon-uniE8A3

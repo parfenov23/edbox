@@ -138,22 +138,26 @@ class HomeController < ActionController::Base
 
   def course_description
     # @favorite_courses = current_user.favorite_courses
-    @course = Course.find(params[:id])
-    bunch_course = current_user.bunch_courses.where(course_id: @course.id).last rescue nil
-    test_final = @course.test
-    if test_final.present?
-      test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
-      if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank? && params[:attachment_id].present?
-        redirect_to "/tests/#{test_final.id}/run"
+    @course = Course.find_by_id(params[:id])
+    if @course.present?
+      bunch_course = current_user.bunch_courses.where(course_id: @course.id).last rescue nil
+      test_final = @course.test
+      if test_final.present?
+        test_final_result = (test_final.test_results.where(user_id: current_user.id).last) rescue true
+        if bunch_course.present? && (bunch_course.full_complete? rescue false) && test_final_result.blank? && params[:attachment_id].present?
+          redirect_to "/tests/#{test_final.id}/run"
+        end
       end
-    end
-    if @course.material?
-      attachment = @course.attachments.last
-      unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
-        redirect_to "/courses?type=material"
-      else
-        redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
+      if @course.material?
+        attachment = @course.attachments.last
+        unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
+          redirect_to "/courses?type=material"
+        else
+          redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
+        end
       end
+    else
+      page_404
     end
   end
 
