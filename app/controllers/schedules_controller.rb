@@ -1,8 +1,7 @@
 require 'calendar'
 class SchedulesController < HomeController
   def index
-    @current_user = current_user
-    unless @current_user.corporate? && @current_user.director?
+    unless current_user.corporate? && current_user.director?
       return render '/home/error'
     end
 
@@ -10,7 +9,7 @@ class SchedulesController < HomeController
     @today = params[:date].to_date if (params[:date].to_date rescue false)
     days = Calendar.get_calendar(@today.year, @today.month)
 
-    company = @current_user.company
+    company = current_user.company
     unless company.present? && company.groups.present?
       return render '/home/error'
     end
