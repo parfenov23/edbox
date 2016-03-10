@@ -25,5 +25,3 @@ input#namePageGroup type="hidden" value=(@group.first_name rescue 'Нет гру
           = render 'home/group/form', {type: 'new'}
           = render 'home/group/form', {type: 'edit', group: @group}
           .md-overlay.js_closePopupFormGroup
-
-= render "home/footer/footer"

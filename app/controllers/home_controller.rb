@@ -29,7 +29,6 @@ class HomeController < ActionController::Base
   end
 
   def profile
-    ssss
     @current_user = current_user
   end
 

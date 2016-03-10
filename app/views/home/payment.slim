@@ -1,3 +1,4 @@
+- page_footer_init(false)
 = render "home/header/header", {namePage: "other", titlePage: "Продление подписки", btnBack: true, backUrl: '/tariff', noWhite: true}
 - sub = current_user.find_subscription rescue nil
 - sub = (sub.subscriptiontable_type.downcase == params[:type] ? sub : nil) if sub.present? && params[:type].present?

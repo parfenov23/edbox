@@ -59,6 +59,7 @@ module ApplicationHelper
     $env_mode.current_domain
   end
 
+  # Заголовок страницы
   def layout_title
     d = @page_title.nil? ? "" : " | "
     @page_title.to_s + d + "ADCONSULT.Online"
@@ -71,6 +72,17 @@ module ApplicationHelper
   def page_title(default_title = '')
     @page_title || default_title
   end
+  #################
+
+  #Фоотер для страницы
+  def page_footer_init(page_footer)
+    @page_footer = page_footer
+  end
+
+  def page_footer
+    @page_footer.nil? ? true : @page_footer
+  end
+  ##################
 
   def schedule_line
     [{month: 1, title: "Январь"}, {month: 2, title: "Февраль"},
