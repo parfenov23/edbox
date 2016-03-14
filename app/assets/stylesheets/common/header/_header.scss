@@ -528,6 +528,17 @@
     background    : #FFF;
     cursor        : default;
     .menu__notifications-top {
+      .not_present_content {
+        height     : 186px;
+        text-align : center;
+        span {
+          padding-top : 80px;
+          display     : block;
+          font-size   : 15px;
+          line-height : 24px;
+          color       : rgba(0, 0, 0, 0.54);
+        }
+      }
       .list {
         padding  : 2px 0px 2px 0px;
         height   : 186px;
