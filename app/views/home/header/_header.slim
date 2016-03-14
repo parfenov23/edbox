@@ -78,7 +78,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
       .top__logo
         img src="/assets/adcons__grey.svg"
     .menu__list
-      = render "home/header/items/all_items", {namePage: namePage}
+      = render "home/header/items/all_items", {namePage: namePage} if current_user.present?
 
   - if (comment rescue false)
   #js-comment.courses-aside
