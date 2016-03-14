@@ -176,6 +176,14 @@ class User < ActiveRecord::Base
     "#{$env_mode.current_domain}/auth_user?" + params.map { |k, v| "#{k}=#{CGI.escape(v)}" }.join("&")
   end
 
+  def no_read_news
+    News.where.not("#{id} = ANY (users_id)")
+  end
+
+  def read_news
+    News.where("#{id} = ANY (users_id)")
+  end
+
   private
 
   def create_hash_key

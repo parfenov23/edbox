@@ -121,5 +121,3 @@
           .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
             - if attachment.test.present?
               = render "contenter/courses/program/test", {test: attachment.test}
-
-= render "home/footer/footer"

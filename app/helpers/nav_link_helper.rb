@@ -62,12 +62,12 @@ module NavLinkHelper
 
   def contenter_courses_new_nav_links
     id = params[:id].present? ? params[:id] : "new"
-    course = Course.find(params[:id])
+    course = id == 'new' ? nil : Course.find(params[:id])
     course_validate = course.validate rescue {}
     desc_valid = course_validate.select { |k, v| k == :description && v == false }.present? ? "error" : ""
     prog_valid = course_validate.select { |k, v| k == :program && v == false }.present? ? "error" : ""
     type_course = params[:type_course].present? ? "?type_course=#{params[:type_course]}" : ""
-    disable = course.public ? "disable" : nil
+    disable = course.public ? "disable" : nil rescue nil
     [
       {title: "Описание", link: "/contenter/courses/#{id}/edit#{type_course}",
        add_params: {class: "contenter_courses_edit #{desc_valid}"}

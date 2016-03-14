@@ -1,0 +1,12 @@
+#js-news.courses-aside.help__contenter
+  .close-filter.icon Новости
+  .help__wrp.js__baron
+    .wrp
+      - News.all.reverse.each do |news|
+        .item data-id=news.id
+          .wrp
+            i.icon
+            .title = news.title
+          .hidden__block.js__baron
+            .title.icon = news.title
+            .description = raw news.description

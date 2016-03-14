@@ -1,295 +1,300 @@
 i.icon {
   &.cabinet {
     &::before {
-      content: "\E8D9";
+      content : "\E8D9";
     }
   }
   &.biblio {
     &::before {
-      content: "\E8DE";
+      content : "\E8DE";
     }
   }
   &.back {
     &::before {
-      content: "\e893";
+      content : "\e893";
     }
   }
 
   &.add {
     &::before {
-      content: "\e6fb";
+      content : "\e6fb";
     }
   }
 
   &.courses {
     &::before {
-      content: "\E6B2";
+      content : "\E6B2";
     }
   }
 
   &.other {
     &::before {
-      content: "\E6B2";
+      content : "\E6B2";
     }
   }
 
   &.webinar {
     &::before {
-      content: "\E833";
+      content : "\E833";
     }
   }
 
   &.image {
     &::before {
-      content: "\E87A";
+      content : "\E87A";
     }
   }
 
   &.video {
     &::before {
-      content: "\E833";
+      content : "\E833";
     }
   }
 
   &.audio {
     &::before {
-      content: "\E7B0";
+      content : "\E7B0";
     }
   }
 
   &.text {
     &::before {
-      content: "\E621";
+      content : "\E621";
     }
   }
 
   &.test {
     &::before {
-      content: "\E615";
+      content : "\E615";
     }
   }
 
   &.teg {
     &::before {
-      content: "\E87A";
+      content : "\E87A";
     }
   }
 
   &.burger {
     &::before {
-      content: "\E7FA";
+      content : "\E7FA";
     }
   }
 
   &.groups {
     &::before {
-      content: "\E8D6";
+      content : "\E8D6";
     }
   }
 
   &.more {
     &::before {
-      content: "\E7BA";
+      content : "\E7BA";
     }
   }
 
   &.stat {
     &::before {
-      content: "\E60F";
+      content : "\E60F";
     }
   }
 
   &.favorites {
     &::before {
-      content: "\E619";
+      content : "\E619";
     }
   }
   &.notes {
     &::before {
-      content: "\E67A";
+      content : "\E67A";
     }
   }
 
   &.search {
     &::before {
-      content: "\E65F";
+      content : "\E65F";
     }
   }
 
   &.schedule {
     &::before {
-      content: "\E8AF";
+      content : "\E8AF";
     }
   }
 
-  &.notification {
+  &.notification_i {
     &::before {
-      content: "\E8CF";
+      content : "\E8CF";
     }
   }
 
   &.calendar {
     &::before {
-      content: "\E892";
+      content : "\E892";
     }
   }
 
   &.filter {
     &::before {
-      content: "\E855";
+      content : "\E855";
     }
   }
 
   &.star {
     &::before {
-      content: "\E631";
+      content : "\E631";
     }
   }
   &.duration {
     &::before {
-      content: "\E71F";
+      content : "\E71F";
     }
   }
 
   &.file {
     &::before {
-      content: "\E614";
+      content : "\E614";
     }
   }
 
   &.pdf {
     &::before {
-      content: "\E78F";
+      content : "\E78F";
     }
   }
 
   &.programm {
     &::before {
-      content: "\E625";
+      content : "\E625";
     }
   }
 
   &.edit {
     &::before {
-      content: "\E706";
+      content : "\E706";
     }
   }
   &.del {
     &::before {
-      content: "\E620";
+      content : "\E620";
     }
   }
 
   &.help {
     &::before {
-      content: "\E639";
+      content : "\E639";
     }
   }
   &.next {
     &::before {
-      content: "\E897"
+      content : "\E897"
     }
   }
 
   &.done {
     &::before {
-      content: "\E899"
+      content : "\E899"
     }
   }
   &.dark__info {
     &::before {
-      content: "\E638"
+      content : "\E638"
     }
   }
 
   &.online__course {
     &::before {
-      content: "\E6CC"
+      content : "\E6CC"
     }
   }
 
   &.circle__add {
     &::before {
-      content: "\E6FE"
+      content : "\E6FE"
     }
   }
 
   &.delete {
     &::before {
-      content: "\E702"
+      content : "\E702"
     }
   }
 
   &.dropdown {
     &::before {
-      content: "\E7B4"
+      content : "\E7B4"
     }
   }
 
   &.play {
     &::before {
-      content: "\E6BA";
+      content : "\E6BA";
     }
   }
 
   &.to__unfold {
     &::before {
-      content: "\E8A5";
+      content : "\E8A5";
     }
   }
 
   &.to__close {
     &::before {
-      content: "\E8A6";
+      content : "\E8A6";
     }
   }
 
   &.img {
     &::before {
-      content: "\E824";
+      content : "\E824";
     }
   }
 
   &.sect {
     &::before {
-      content: "\E640";
+      content : "\E640";
     }
   }
 
   &.to__drop {
     &::before {
-      content: "\E894";
+      content : "\E894";
     }
   }
 
   &.less {
     &::before {
-      content: "\E7B5";
+      content : "\E7B5";
     }
   }
 
   &.more {
     &::before {
-      content: "\E7B6";
+      content : "\E7B6";
     }
   }
 
   &.exit {
     &::before {
-      content: "\E626";
+      content : "\E626";
     }
   }
 
   &.email_cl {
     &::before {
-      content: "\E6E3";
+      content : "\E6E3";
     }
   }
 
-
   &.play_gosha {
     &::before {
-      content: "\E6B9";
+      content : "\E6B9";
+    }
+  }
+
+  &.eye {
+    &::before {
+      content : "\e69a";
     }
   }
 

@@ -145,4 +145,16 @@ module ApplicationHelper
     "http://www.addthis.com/bookmark.php?v=300&winname=addthis&lng=ru&s=#{soc_name}&url=#{$env_mode.current_domain + path}&title=#{title}
       &frommenu=1&uud=1&ct=1&uct=1&tt=0&captcha_provider=nucaptcha"
   end
+
+  def user_news
+    if current_user.present?
+      no_read_news = current_user.no_read_news
+      no_read_news_count = no_read_news.count
+      if no_read_news_count < 5
+        (no_read_news + current_user.read_news.last(5 - no_read_news_count)).sort.reverse
+      end
+    else
+      News.last(5)
+    end
+  end
 end

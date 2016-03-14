@@ -71,8 +71,10 @@ Rails.application.routes.draw do
           post :remove
         end
       end
+
       resources :notices do
       end
+
       resources :webinars do
         member do
           post :remove
@@ -98,6 +100,12 @@ Rails.application.routes.draw do
       resources :answers do
         member do
           post :remove
+        end
+      end
+
+      resources :news do
+        member do
+          post :read
         end
       end
 
@@ -220,6 +228,7 @@ Rails.application.routes.draw do
         post :remove
       end
     end
+
     resources :page_questions do
       member do
         post :remove
@@ -231,6 +240,13 @@ Rails.application.routes.draw do
         get :remove
       end
     end
+
+    resources :news do
+      member do
+        get :remove
+      end
+    end
+
     resources :users do
       member do
         get :remove

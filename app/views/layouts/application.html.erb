@@ -32,7 +32,7 @@
 <% end %>
 <body class="࿕ <%= land_class %>" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
 <%= yield %>
-<%# binding.pry %>
+<%= render "common/notify_news_aside" %>
 <%= render "home/footer/footer" if page_footer %>
 <div id="alert">
   <div class="text"></div>

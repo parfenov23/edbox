@@ -13,7 +13,9 @@ module Contenter
     end
 
     def program
-      redirect_to publication_contenter_course_path(id: params[:id]) if find_course.public
+      if params[:id] != 'new'
+        redirect_to publication_contenter_course_path(id: params[:id]) if find_course.public
+      end
     end
 
     def publication

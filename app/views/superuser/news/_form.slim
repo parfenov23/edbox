@@ -1,0 +1,14 @@
+- action_url = @news.id.nil? ? "/superuser/news" : "/superuser/news/#{@news.id}"
+- method = @news.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="news[title]" type="text" value="#{@news.title}"
+  .form-group
+    label
+      | Описание:
+    textarea name="news[description]" = @news.description
+
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
