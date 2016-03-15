@@ -225,6 +225,7 @@ $(document).ready(function () {
                 //    company: company
                 //},
                 success: function (m) {
+                    fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
                     if(form.data('redirect') == undefined){
                         window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');

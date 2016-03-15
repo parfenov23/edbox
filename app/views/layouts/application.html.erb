@@ -14,44 +14,53 @@
   <link href="/assets/app.css" rel="stylesheet">
   <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
   <script src="//vjs.zencdn.net/4.12/video.js"></script>
-  <%= render "layouts/pixel/facebook_pixel" if Rails.env.production? %>
-  <%= render "layouts/pixel/facebook_pixel_profile" if (Rails.env.production? && (params[:action] == 'cabinet')) %>
+  <%= render "layouts/pixel/facebook_pixel" if $env_mode.prod? %>
   <%= render "layouts/zendesk_widget" if $env_mode.prod? %>
 </head>
-<% websocket_url = "#{request.host}:#{request.port}/node/websocket" %>
-<% if Rails.env.production? %>
-    <% websocket_url = "#{request.host}:3001/node/websocket" %>
-<% end %>
+
 <% if params[:dev] == "true" %>
-  <style media="screen">
-    * {     background-color: rgba(0,255,0,0.1); }
-  </style>
+    <style media="screen">
+        * {
+            background-color : rgba(0, 255, 0, 0.1);
+        }
+    </style>
 <% end %>
+
 <% if ((params[:controller] == 'makeup' && params[:action] == 'landing') || (params[:controller] == 'home' && params[:action] == 'index')) %>
-  <% land_class = 'landing__page' %>
+    <% land_class = 'landing__page' %>
 <% end %>
-<body class="࿕ <%= land_class %>" data-uri="<%= websocket_url %>" data-prod="<%= Rails.env.production? %>">
+
+<body class="࿕ <%= land_class %>" data-uri="<%= websocket_url %>" data-prod="<%= $env_mode.prod? %>">
+
 <%= yield %>
+
 <%= render "common/notify_news_aside" %>
 <%= render "home/footer/footer" if page_footer %>
+
 <div id="alert">
   <div class="text"></div>
   <div class="close">×</div>
 </div>
 <div class="js__backing"></div>
+
 <% if params[:pay].present? %>
     <input id="notifyPayMessage" type="hidden" value="<%= params[:pay] %>">
 <% end %>
+
 <%= render "layouts/notification" %>
 
 <% if ((!current_user.present? || !current_user.view_course?(@course)) rescue true) %>
     <%= render "common/popup_request/request" %>
 <% end %>
+
 <% if params[:action] != "sign_up" && @block_registr != false %>
     <%= render "home/course_description/registration_webinar" %>
 <% end %>
+
 <%= render "layouts/pop_up_confirm" %>
-<%= render "layouts/yandex_metrika" if Rails.env.production? %>
-<%= render "layouts/pixel/vkontakte_pixel" if Rails.env.production? %>
+<%= render "layouts/yandex_metrika" if $env_mode.prod? %>
+<%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
+
+<input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
 </body>
 </html>

@@ -157,4 +157,8 @@ module ApplicationHelper
       News.last(5)
     end
   end
+
+  def websocket_url
+    (!$env_mode.prod? ? "#{request.host}:#{request.port}" : "#{request.host}:3001") + '/node/websocket'
+  end
 end

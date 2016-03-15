@@ -19,6 +19,15 @@
 //= require_tree ./websocket
 //= require_tree ./contenter
 
+var env_mode = function (type) {
+    var input_type = $("#typeEnvModeCurrentServer").val();
+    return (type == input_type)
+}
+
+var fbq_env = function(type){
+    if (env_mode('production')) fbq('track', type);
+}
+
 function declOfNum(number, titles) {
     cases = [2, 0, 1, 1, 1, 2];
     return titles[(number % 100 > 4 && number % 100 < 20)?2:cases[(number % 10 < 5)?number % 10:5]];
@@ -307,7 +316,7 @@ var back_url = function (type, find_link, default_result) {
     return result;
 }
 
-function get_name_browser(){
+function get_name_browser() {
     var ua = navigator.userAgent;
     if (ua.search(/Chrome/) > 0) return 'Chrome';
     if (ua.search(/Firefox/) > 0) return 'Firefox';
@@ -317,17 +326,17 @@ function get_name_browser(){
     return 'Не определен';
 }
 
-function get_browser(name){
+function get_browser(name) {
     return get_name_browser() == name
 }
 
 $(document).ready(function () {
     back_url();
-    if ($("header.scroll_white").length) {
-        $(document).scroll(function(){
-            if( $(document).scrollTop() > 0 ){
+    if ($("header.scroll_white").length){
+        $(document).scroll(function () {
+            if ($(document).scrollTop() > 0){
                 $("header.scroll_white").addClass("is__white")
-            }else{
+            } else {
                 $("header.scroll_white").removeClass("is__white")
             }
         });
@@ -344,8 +353,8 @@ $(document).ready(function () {
     $(document).on('click', 'figure.basic__module, figure.shot__module', function (e) {
         var cabinte_block_valid = (! $(e.target).closest(".com__director-btn").length && ! $(e.target).hasClass(".com__director-btn"))
         if (! $(e.target).closest(".action-btn").length && ! $(e.target).hasClass("action-btn") && cabinte_block_valid){
-            if(!$(e.target).hasClass("action__menu") && !$(e.target).closest(".action__menu").length){
-                if(!$(e.target).hasClass('left-image') && !$(e.target).closest('.left-image').length){
+            if (! $(e.target).hasClass("action__menu") && ! $(e.target).closest(".action__menu").length){
+                if (! $(e.target).hasClass('left-image') && ! $(e.target).closest('.left-image').length){
                     var link = $(this).find("a.goToCourse");
                     if (link.length){
                         link[0].click();
