@@ -1,50 +1,13 @@
 #notify_next.pop_up_confirm
   .inner.explore
-    .title Исследуйте библиотеку Edbox
+    .title Исследуйте библиотеку #{$env_mode.name_title}
     .description Тонны полезных материалов от лучших специалистов отрасли.
     .material__list
       - course_annons_ids = Course.announcement.map(&:id).uniq
-      - courses_no_annons = Course.where.not(id: course_annons_ids).first(3)
+      - courses_no_annons = Course.where.not(id: course_annons_ids).publication.first(3)
       - courses_no_annons.each do |course|
-        figure.basic__module
-          .image
-            / .fade
-            img src = course.get_image_path(694, 384)
-            /.type__icon
-              i.icon.edit
-            - category = (course.bunch_categories.last.category.title rescue nil)
-            - if category.present?
-              .category
-                i.icon.teg
-                = category
-            /.status Опубликован 25.06.15
-          figcaption
-            .authors
-            a.title href="/course_description?id=#{course.id}"
-              = course.title
-            /.info__block
-              .type
-                i.icon.edit
-                | Текстовый материал
-
-      /figure.basic__module
-        .image
-          / .fade
-          img src="/assets/orange-waves.svg"
-          .type__icon
-            i.icon.edit
-          .category
-            i.icon.teg
-            |Продажи
-          .status Опубликован 25.06.15
-        figcaption
-          .authors
-          .title Расчеты предсказывают, что инерциальная навигация подчеркивает интеллект. Основание интегрирует знак. Астатическая система координат Булгакова осмысляет центр сил. Если пренебречь малыми величинами, то видно, что внешнее ко
-          .info__block
-            .type
-              i.icon.edit
-              | Текстовый материал
+        = render "course/course", {course: course, type: 'courses'}
 
     .action__block
-      /.btn.btn-flat.js_annonsNext НЕ СЕЙЧАС
+      .btn.btn-flat.js_annonsNext НЕ СЕЙЧАС
       a.btn.is__blue href='courses' ПЕРЕЙТИ В БИБЛИОТЕКУ

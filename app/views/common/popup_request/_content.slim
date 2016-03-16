@@ -1,10 +1,10 @@
 .wrp
-  .title Получайте полезные знания вместе с Edbox!
+  .title Получайте полезные знания вместе с #{$env_mode.name_title}!
   - if params[:v].present?
     .video__te
       iframe allowfullscreen="" frameborder="0" height="416" width="745" mozallowfullscreen="" src="https://player.vimeo.com/video/141645435" webkitallowfullscreen=""
   .description 
-    |В Edbox вы можете обучаться как индивидуально, так и в рамках компании. 
+    |В #{$env_mode.name_title} вы можете обучаться как индивидуально, так и в рамках компании. 
     br
     |Выберите подходящий вам формат и зарегистрируйте аккаунт.
   .plane__list
@@ -27,7 +27,7 @@
     .item.pidor__raz.js_openHiddenPart data-type="left" data-hide="input[name='fio'], input[name='company'], p[name='first_part']" data-type_account="user"
       .visibile__part
         .title Личный аккаунт
-        .description Получите неограниченный доступ ко всем онлайн-курсам, вебинарам, материалам и обновлениям Edbox ADCONSULT.
+        .description Получите неограниченный доступ ко всем онлайн-курсам, вебинарам, материалам и обновлениям #{$env_mode.name_title}.
         .price.h__text_24-32 1490 ₽/мес
         .action__block
           - hash_class = ''
@@ -41,7 +41,7 @@
     .item.pidor__dva.js_openHiddenPart data-type="right" data-show="input[name='fio'], input[name='company'], p[name='first_part']" data-type_account="corp"
       .visibile__part
         .title Корпоративный аккаунт
-        .description Зарегистрируйте корпоративный аккаунт  и пригласите ваших сотрудников в Edbox. Назначайте курсы и развивайте компетенции  всех сотрудников компании.
+        .description Зарегистрируйте корпоративный аккаунт  и пригласите ваших сотрудников в #{$env_mode.name_title}. Назначайте курсы и развивайте компетенции  всех сотрудников компании.
         .price.h__text_24-32
           |2990 ₽/мес
           span + 990 ₽/пользователь
