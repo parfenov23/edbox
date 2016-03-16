@@ -121,7 +121,8 @@ class HomeController < ActionController::Base
   # end
 
   def course_no_reg
-    @course = Course.find(params[:id])
+    @course = Course.find_by_id(params[:id])
+    page_404 if @course.blank?
   end
 
   def pay
