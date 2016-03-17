@@ -4,15 +4,15 @@ class Subscription < ActiveRecord::Base
 
   BILLING_PRICE = BillingPrice.default
 
-  def user_price
+  def self.user_price
     BILLING_PRICE.user_price
   end
 
-  def company_price
+  def self.company_price
     BILLING_PRICE.company_price
   end
 
-  def company_price_user
+  def self.company_price_user
     BILLING_PRICE.company_user_price
   end
 
