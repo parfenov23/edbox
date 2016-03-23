@@ -104,7 +104,7 @@ class Subscription < ActiveRecord::Base
 
   def all_month_and_price
     arr_hash = []
-    month_price_sum = company? ? company_price : user_price
+    month_price_sum = company? ? self.class.company_price : self.class.user_price
     12.times do |i|
       n = i + 1
       arr_hash << {
@@ -133,7 +133,7 @@ class Subscription < ActiveRecord::Base
       all_months: all_month_and_price,
       default_price: 0,
       count_users: user_count,
-      user_company_price: company_price_user,
+      user_company_price: self.class.company_price_user,
     }
   end
 
