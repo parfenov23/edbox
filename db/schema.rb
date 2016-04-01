@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314074125) do
+ActiveRecord::Schema.define(version: 20160329120207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,14 @@ ActiveRecord::Schema.define(version: 20160314074125) do
     t.datetime "announcement_date"
   end
 
+  create_table "deliveries", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "users_id",    default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "email_notifs", force: true do |t|
     t.string   "email"
     t.datetime "created_at"
@@ -184,6 +192,25 @@ ActiveRecord::Schema.define(version: 20160314074125) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invoice_notifications", force: true do |t|
+    t.integer  "invoice_id"
+    t.text     "pay_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoice_notifications", ["invoice_id"], name: "index_invoice_notifications_on_invoice_id", using: :btree
+
+  create_table "invoices", force: true do |t|
+    t.integer  "payment_id"
+    t.float    "amount",     default: 0.0
+    t.datetime "paid_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invoices", ["payment_id"], name: "index_invoices_on_payment_id", using: :btree
 
   create_table "ligament_courses", force: true do |t|
     t.integer  "course_id"
@@ -247,6 +274,15 @@ ActiveRecord::Schema.define(version: 20160314074125) do
     t.string   "title"
     t.text     "content"
     t.integer  "ask_question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.float    "amount",                 default: 0.0
+    t.float    "real_amount"
+    t.string   "gateway_code"
+    t.string   "gateway_payment_method"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

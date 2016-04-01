@@ -1,0 +1,18 @@
+- action_url = @delivery.id.nil? ? "/superuser/delivery" : "/superuser/delivery/#{@delivery.id}"
+- method = @delivery.id.nil? ? "post" : "put"
+
+form.form-horizontal action="#{action_url}" method="post" enctype="multipart/form-data"
+  .form-group
+    label
+      | Название:
+    input.form-control name="delivery[title]" type="text" value="#{@delivery.title}"
+  .form-group
+    label
+      | Тело письма:
+    textarea.form-control.description name="delivery[description]" type="text"
+      = raw @delivery.description
+
+  input type="hidden" name="delivery[users_id]" value="#{@users.ids}"
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
+  a.btn.btn-success href="/superuser/delivery/help" target='blank' style='margin-left: 5px;'  Помощь

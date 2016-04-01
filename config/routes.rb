@@ -241,6 +241,17 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :delivery do
+      member do
+        get :remove
+        get :send_mail
+      end
+      collection do
+        get :result
+        get :help
+      end
+    end
+
     resources :news do
       member do
         get :remove

@@ -2,19 +2,19 @@
 class HomeMailer < ActionMailer::Base
   include ApplicationHelper
   helper_method :domain
-  NAME_SYSTEM = 'ADCONSULT ONLINE'
-  default :from => "#{NAME_SYSTEM} <info@masshtab.am>"
+
+  default :from => "#{$env_mode.name_title} <info@masshtab.am>"
   # layout 'home_email', :except => [:order_product_user]
 
   def welcome_latter(user, new_password)
     @user = user
     @new_password = new_password
-    mail(:to => @user.email, :subject => "Добро пожаловать в #{NAME_SYSTEM}!")
+    mail(:to => @user.email, :subject => "Добро пожаловать в #{$env_mode.name_title}!")
   end
 
   def email_notifs(email, user)
     @user = user
-    mail(:to => email, :subject => "Регистрация в #{NAME_SYSTEM}!")
+    mail(:to => email, :subject => "Регистрация в #{$env_mode.name_title}!")
   end
 
   def sendRequest(params)
@@ -31,13 +31,13 @@ class HomeMailer < ActionMailer::Base
   def notice_letter(email, course)
     @email = email
     @course = course
-    mail(:to => @email, :subject => "В #{NAME_SYSTEM} вышел курс, который вы ждали")
+    mail(:to => @email, :subject => "В #{$env_mode.name_title} вышел курс, который вы ждали")
   end
 
   def notice_confirm(email, course)
     @email = email
     @course = course
-    mail(:to => @email, :subject => "Вы подписались на обновления #{NAME_SYSTEM}")
+    mail(:to => @email, :subject => "Вы подписались на обновления #{$env_mode.name_title}")
   end
 
   def reg_webinar(webinar, user)
@@ -86,7 +86,7 @@ class HomeMailer < ActionMailer::Base
   def support_back(user, text)
     @email = user.email rescue nil
     @error = text
-    mail(:to => 'parfenov407@gmail.com', :subject => "Ошибка в системе Adconsult.online")
+    mail(:to => 'parfenov407@gmail.com', :subject => "Ошибка в системе #{$env_mode.name_title}")
   end
 
   private

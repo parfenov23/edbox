@@ -1,0 +1,46 @@
+javascript:
+  $(document).ready(function () {
+    $("#BillingTable").tablesorter({headers: { 7:{sorter: false}}});
+    $("#openFilterBilling").on('click', function(){
+      $(this).hide();
+      $(".formFilter").show();
+    });
+    $('.form-group .input-daterange.datepicker').datepicker({
+      dateFormat: "mm/dd/yy",
+      language  : "ru"
+    });
+  });
+- user_params = params[:user].present? ? params[:user] : {}
+a.btn.btn-primary href='/superuser/delivery/result?#{@all_params.to_query}' style='margin-right: 15px; margin-bottom: 5px;' target='blank'
+  |Результатов: #{@all_users.count}
+.formFilter style="display:none;"
+  form.form-inline.form_filter
+    .row
+      .col-lg-4
+        .form-group
+          label Тип:
+          - array_type = [["Все", nil], ["Индивидуальный", false], ["Корпоративный", true]]
+          = select_tag 'user[corporate]', options_for_select(array_type, user_params[:corporate]), {:class => 'form-control'}
+
+        .form-group
+          label Роль:
+          - array_type = [["Все", nil], ["Пользователь", false], ["Директор", true]]
+          = select_tag 'user[role]', options_for_select(array_type, user_params[:role]), {:class => 'form-control'}
+    .row
+      .col-lg-4
+        input.form-control type='text' name='user[id]' placeholder="id" value=user_params[:id]
+        input.form-control type='text' name='user[email]' placeholder="email" value=user_params[:email]
+    .row
+      .col-lg-4
+        .form-group
+          label Дата подписки:
+          .input-daterange.input-group.datepicker
+            input.form-control.datepicker.input-sm type="text" name="user[sub_from]" placeholder="c" value=user_params[:sub_from]
+            span.input-group-addon До
+            input.form-control.datepicker.input-sm type="text" name="user[sub_to]" placeholder="по" value=user_params[:sub_to]
+    .row
+      .col-lg-2
+        button.btn.btn-primary Применить
+.btn.btn-primary#openFilterBilling Открыть фильтр
+
+= render 'superuser/delivery/form'
