@@ -6,6 +6,6 @@
       span
         = email_notif.email
       a.btn.btn-danger.pull-right href="/superuser/email_notifs/#{email_notif.id}/remove"  data-method='delete'
-        | Удалить
+        = btn_delete
       a.btn.btn-success.pull-right href="/superuser/email_notifs/#{email_notif.id}/edit" style="margin-right: 5px;"
-        | Редактировать
+        = btn_edit

@@ -6,8 +6,8 @@
       span
         = user.email
       a.btn.btn-danger.pull-right href="/superuser/users/#{user.id}/remove" data-method='delete'
-        | Удалить
+        = btn_delete
       a.btn.btn-success.pull-right href="/superuser/users/#{user.id}/edit" style="margin-right: 5px;"
-        | Редактировать
+        = btn_edit
       a.btn.btn-info.pull-right href=user.auth_url style="margin-right: 5px;" target="_blank"
           | >

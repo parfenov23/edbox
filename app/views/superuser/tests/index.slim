@@ -1,14 +1,14 @@
 .list-group.row
-    .list-group-item.active
-        - if params[:section_id].present?
-            a.btn.btn-success href="/superuser/tests/new?section_id=#{params[:section_id]}"  Добавить тест
-        - else
-            | Тесты
-    - @tests.each do |test|
-        .list-group-item.col-md-6
-            span
-                = test.title
-            a.btn.btn-danger.pull-right href="/superuser/tests/#{test.id}/remove"  data-method='delete'
-                | Удалить
-            a.btn.btn-success.pull-right href="/superuser/tests/#{test.id}/edit" style="margin-right: 5px;"
-                | Редактировать
+  .list-group-item.active
+    - if params[:section_id].present?
+      a.btn.btn-success href="/superuser/tests/new?section_id=#{params[:section_id]}"  Добавить тест
+    - else
+      | Тесты
+  - @tests.each do |test|
+    .list-group-item.col-md-6
+      span
+        = test.title
+      a.btn.btn-danger.pull-right href="/superuser/tests/#{test.id}/remove" data-method='delete'
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/tests/#{test.id}/edit" style="margin-right: 5px;"
+        = btn_edit

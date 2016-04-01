@@ -6,6 +6,6 @@
       span
         = news.title
       a.btn.btn-danger.pull-right href="/superuser/news/#{news.id}/remove"  data-method='delete'
-        | Удалить
+        = btn_delete
       a.btn.btn-success.pull-right href="/superuser/news/#{news.id}/edit" style="margin-right: 5px;"
-        | Редактировать
+        = btn_edit

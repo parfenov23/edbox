@@ -175,6 +175,10 @@ class Course < ActiveRecord::Base
     duration.to_i
   end
 
+  def webinar_users_count
+    sections.map{|sec| sec.attachments.map{|att| att.webinar.user_webinars.count} }.map{|arr| arr.sum}.sum rescue 0
+  end
+
   def clear_description
     ActionView::Base.full_sanitizer.sanitize(description.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
       .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"').gsub('&mdash;', '—')

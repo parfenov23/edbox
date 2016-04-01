@@ -7,8 +7,8 @@
       span
         = delivery.title
       a.btn.btn-danger.pull-right href="/superuser/delivery/#{delivery.id}/remove" data-method='delete'
-        | Удалить
+        = btn_delete
       a.btn.btn-success.pull-right href="/superuser/delivery/#{delivery.id}/edit" style="margin-right: 5px;"
-        | Редактировать
+        = btn_edit
       a.btn.btn-primary.pull-right href="/superuser/delivery/#{delivery.id}/send_mail" style="margin-right: 5px;"
         | &rArr;

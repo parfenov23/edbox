@@ -161,4 +161,12 @@ module ApplicationHelper
   def websocket_url
     (!$env_mode.prod? ? "#{request.host}:#{request.port}" : "#{request.host}:3001") + '/node/websocket'
   end
+
+  def btn_edit
+    raw "&#9998;"
+  end
+
+  def btn_delete
+    raw "&#10006;"
+  end
 end

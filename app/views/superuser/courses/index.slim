@@ -1,11 +1,15 @@
 .list-group.row
-    .list-group-item.active
-        a.btn.btn-success href="/superuser/courses/new"  Добавить курс
-    - @courses.each do |course|
-        .list-group-item.col-md-6
-            span
-                = course.title
-            a.btn.btn-danger.pull-right href="/superuser/courses/#{course.id}/remove"  data-method='delete'
-                | Удалить
-            a.btn.btn-success.pull-right href="/superuser/courses/#{course.id}/edit" style="margin-right: 5px;"
-                | Редактировать
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/courses/new"  Добавить курс
+    a.btn.btn-success href="/superuser/courses?type=online"  Вебинары
+  - @courses.each do |course|
+    .list-group-item.col-md-4
+      span
+        = course.title
+      a.btn.btn-danger.pull-right href="/superuser/courses/#{course.id}/remove" data-method='delete'
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/courses/#{course.id}/edit" style="margin-right: 5px;"
+        = btn_edit
+      - if course.online?
+        .btn.btn-info.pull-right style="margin-right: 5px;"
+          = course.webinar_users_count

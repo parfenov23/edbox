@@ -3,7 +3,7 @@ module Superuser
   class CoursesController < SuperuserController
 
     def index
-      @courses = Course.all
+      @courses = params[:type].blank? ? Course.all : Course.webinars
     end
 
     def edit
