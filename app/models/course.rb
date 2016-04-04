@@ -288,4 +288,8 @@ class Course < ActiveRecord::Base
     end
     result
   end
+
+  def min_date_webinar
+    sections.attachments.webinars.order("date_start ASC").first.date_start rescue nil
+  end
 end

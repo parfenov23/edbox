@@ -1,4 +1,4 @@
-- categories = BunchCategory.where(course_id: @courses.ids).select(:category_id).distinct.map(&:category)
+- categories = BunchCategory.where(course_id: @courses.map(&:id)).select(:category_id).distinct.map(&:category)
 - if categories.count > 1
   .category__filter_list
     - get_type = params[:type].present? ? "?type=#{params[:type]}&cid=" : "?cid="

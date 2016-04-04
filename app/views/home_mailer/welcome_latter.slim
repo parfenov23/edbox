@@ -2,19 +2,19 @@
 p
   | Приветствуем вас!
   br
-  | Спасибо за регистрацию в ADCONSULT ONLINE!
+  | Спасибо за регистрацию в #{$env_mode.name_title}!
 p
   | Ваш логин: #{@user.email}
   br
   | Ваш пароль: #{@new_password}
 p
-  | Для входа в ADCONSULT ONLINE, пожалуйста, просто перейдите по ссылке: <br>
+  | Для входа в #{$env_mode.name_title}, пожалуйста, просто перейдите по ссылке: <br>
   br
   a href=@user.auth_url Авторизация
 p
   | Если у вас возникнут какие-либо сложности или вопросы, смело пишите нам на edbox@adconsult.ru или звоните +7 495 258-46-42.
 p
-  | С теплотой, команда ADCONSULT ONLINE
+  | С теплотой, команда #{$env_mode.name_title}
 p
   ' P.S. Не забудьте, помимо текущих
   a href="http://#{baseUrl}/courses" онлайн-курсов

@@ -45,16 +45,20 @@ class HomeController < ActionController::Base
   end
 
   def attachment
-    @attachment = Attachment.where(id: params[:id]).last
-    @section = @attachment.attachmentable rescue nil
-    @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
-    unless (@course.material? rescue false)
-      valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
-      valid_redirect = current_user.present? ? valid_added : @attachment.public
-      course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
-      unless @attachment.present? && valid_redirect || course_leading
-        redirect_to "/"
+    @attachment = Attachment.find_by_id(params[:id])
+    if @attachment.present?
+      @section = @attachment.attachmentable rescue nil
+      @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
+      unless (@course.material? rescue false)
+        valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+        valid_redirect = current_user.present? ? valid_added : @attachment.public
+        course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
+        unless @attachment.present? && valid_redirect || course_leading
+          redirect_to "/"
+        end
       end
+    else
+      redirect_to "/"
     end
   end
 
@@ -89,6 +93,7 @@ class HomeController < ActionController::Base
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : "course"
     @courses = Course.all.publication.where(type_course: type_course)
+    @courses = @courses.sort {|a,b| a.min_date_webinar <=> b.min_date_webinar} if params[:type] == "online"
     if params[:cid].present?
       @courses_cid = @courses.joins(:bunch_categories).where("bunch_categories.category_id" => params[:cid])
     end

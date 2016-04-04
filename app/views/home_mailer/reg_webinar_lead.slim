@@ -1,7 +1,7 @@
 - url_auth = @user.auth_url({redirect: "/attachment?id=#{@attachment.id}"})
 '#{@user.full_name}, вы назначены ведущим на вебинар
 a href=url_auth =' @attachment.title
-|в системе онлайн-обучения #{HomeMailer::NAME_SYSTEM}.
+|в системе онлайн-обучения #{$env_mode.name_title}.
 br
 b
   'Вебинар назначен на #{@date_start},
