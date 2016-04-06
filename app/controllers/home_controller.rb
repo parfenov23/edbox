@@ -93,10 +93,10 @@ class HomeController < ActionController::Base
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : "course"
     @courses = Course.all.publication.where(type_course: type_course)
-    @courses = @courses.sort {|a,b| a.min_date_webinar <=> b.min_date_webinar} if params[:type] == "online"
     if params[:cid].present?
       @courses_cid = @courses.joins(:bunch_categories).where("bunch_categories.category_id" => params[:cid])
     end
+    @courses = @courses.sort {|a,b| a.min_date_webinar <=> b.min_date_webinar} if params[:type] == "online"
   end
 
   def programm
