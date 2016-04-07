@@ -2,7 +2,7 @@ class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user]
+                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
