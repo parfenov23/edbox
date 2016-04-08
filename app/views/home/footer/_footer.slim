@@ -9,7 +9,7 @@ footer
       span.link
         a href='/info_pay' Правила платежей
   .right-col
-    = render "home/footer/social_counter" if $env_mode.dev?
+    = render "home/footer/social_counter" if !$env_mode.dev?
     .developers
       .logo
         img src="/images/logo.svg"
