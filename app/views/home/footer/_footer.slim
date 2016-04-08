@@ -1,6 +1,13 @@
 footer
   .left-col
-    img src="/images/ad__logo.png"
+    img style='float: left;' src="/images/ad__logo.png"
+    .infoPay
+      .icon_pay
+        img.cloud src="/pay_icon/cp.png"
+        img.masterCard src="/pay_icon/mcard.png"
+        img.visa src="/pay_icon/visa.png"
+      span.link
+        a href='/info_pay' Правила платежей
   .right-col
     = render "home/footer/social_counter" if !$env_mode.dev?
     .developers

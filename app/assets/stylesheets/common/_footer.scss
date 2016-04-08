@@ -6,6 +6,24 @@ footer {
   background-color : #FFF;
   padding-top      : 23px;
   .left-col {
+    width : 370px;
+    .infoPay {
+      width : 204px;
+      float : right;
+      .icon_pay {
+        margin-bottom : 5px;
+        img {
+          width : 54px;
+          &.masterCard, &.visa {
+            margin-left : 20px;
+          }
+        }
+      }
+      .link a{
+        color: #ee8738;
+      }
+    }
+
   }
   .right-col {
     @include clearfix;
