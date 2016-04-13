@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :user_webinars, dependent: :destroy
   has_many :incoming_moneys, dependent: :destroy
   has_many :ligament_leads, dependent: :destroy
+  has_many :accounts, dependent: :destroy
 
   before_create :create_hash_key
   validates :email, presence: true

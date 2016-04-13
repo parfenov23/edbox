@@ -61,14 +61,20 @@ gem 'redis-rack-cache' #
 gem 'rack-fiber_pool'
 gem 'spawnling', '~>2.1'
 #=====================
+
 #======= cron
 gem 'whenever', :require => false
 gem 'rufus-scheduler'
 #======
+
+#===== payments
+#gem 'cloud_payments'
 gem 'yandex-money-sdk' # yandex api money
 group :production do
   gem 'skylight'
 end
+gem 'activemerchant', github: 'softeamco/active_merchant'
+#=====
 
 group :development do
   gem 'rails-erd'

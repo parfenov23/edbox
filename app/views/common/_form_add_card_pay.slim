@@ -1,0 +1,35 @@
+/.h__PopupDisplayFlex
+.pop_up_confirm.noCloseToggleState#paymentsPopup
+  .inner style="padding-bottom: 24px;"
+    script src="https://widget.cloudpayments.ru/bundles/checkout"
+    link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    form#paymentFormSample autocomplete="off" data-public_id=$cloud_payments.public_id
+      .card-num.input-wrp.name.card-input
+        .input_text
+          input data-cp="cardNumber" type="text" placeholder='Номер карты' required=true autofocus=true
+          hr
+        span.input-group-addon
+          i.cardLogo.fa.fa-credit-card style="color:#ee8738;font-size:2rem;"
+      .card-userName.input-wrp.name.card-input
+        input data-cp="name" type="text" placeholder='Имя держателя (как на карте)'
+        hr
+
+      .dateAndCvv
+        .blockDate
+          span.hidden-xs Срок действия
+          .card-date.input-wrp
+            input.card-input data-cp="expDateMonthYear" type="text" placeholder='ММ / ГГ'
+            hr
+        .blockCVV
+          span.visible-xs-inline Код безопасности
+          .card-CVV.input-wrp
+            input.card-input data-cp="cvv" type="text" placeholder='CVV'
+            hr
+
+      .addCart.btn.is__blue Привязать карту
+    div id='3ds' style="display: none;"
+      form#secure_card action="" method="post" target="myIframe"
+        input name="PaReq" type="hidden" value=""
+        input name="MD" type="hidden" value=""
+        input name="TermUrl" type="hidden" value="#{$env_mode.current_domain}/api/v1/payments/post3ds"
+      iframe name="myIframe" width=500 height=450 frameborder="0" src=""
