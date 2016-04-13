@@ -184,7 +184,8 @@ class HomeController < ActionController::Base
   def auth_user
     url_params = params.map { |k, v| [k.to_sym, CGI.unescape(v)] }.to_h
     session[:user_key] = params[:key] if User.where(user_key: params[:key]).present?
-    redirect_to url_params[:redirect].present? ? url_params[:redirect] : '/'
+    redirect_url = url_params[:redirect].present? ? url_params[:redirect] : '/'
+    render html: "<script>document.cookie = 'user_key=#{params[:key]}';window.location.href='#{redirect_url}';</script>".html_safe
   end
 
   def error_message(e)
