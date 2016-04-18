@@ -91,6 +91,15 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :payments do
+        collection do
+          post :update_card
+          post :post3ds
+          post :remove_card
+          post :purchase
+        end
+      end
+
       resources :questions do
         member do
           post :remove
