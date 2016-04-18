@@ -1,0 +1,16 @@
+= render "home/header/header", {namePage: "profile", titlePage: "Платежи"}
+.inner-content
+  .content#profile
+    - current_card = current_user.accounts.first.title rescue nil
+    - if current_card.present?
+      .tizer__block
+        .title Текущая карта: #{current_card}
+        .action__block
+          .btn.is__blue.js_removePaymentCard Удалить
+    - else
+      .tizer__block
+        .title У вас нет привязанной карты
+        .action__block
+          .btn.is__blue.js_openPopupAddCard Добавить
+
+= render "common/form_add_card_pay"

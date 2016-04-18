@@ -1,0 +1,45 @@
+#paymentFormSample {
+  width  : 500px;
+  margin : 0 auto;
+  input {
+    font-size  : 24px;
+    text-align : center;
+  }
+  .card-input {
+    width : 100%;
+  }
+  .card-num {
+    .input_text {
+      float : left;
+      width : 100%;
+    }
+    .input-group-addon {
+      float       : right;
+      position    : absolute;
+      margin-left : -42px;
+    }
+    input {
+      padding-right : 42px;
+      padding-left  : 42px;
+    }
+  }
+  .dateAndCvv {
+    overflow : hidden;
+    .blockCVV {
+      float : right;
+      width : 30%;
+      .card-CVV {
+        width : 100%;
+      }
+    }
+
+    .blockDate {
+      float : left;
+      width : 25%;
+      .card-date {
+        width : 100%;
+      }
+    }
+  }
+
+}

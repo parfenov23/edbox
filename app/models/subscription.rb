@@ -127,6 +127,14 @@ class Subscription < ActiveRecord::Base
     }
   end
 
+  def parent_user
+    if user?
+      self.subscriptiontable
+    else
+      self.subscriptiontable.users.find_by_director(true)
+    end
+  end
+
   def config
     {
       date: HELPERS.ltime(date_to, '', 'short_min_y'), n: 0,
@@ -138,6 +146,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.find_params(params)
+    params = ActionController::Parameters.new(params) if params.class == Hash
     params.permit(:date_from, :date_to, :subscriptiontable_type, :sum,
                   :subscriptiontable_id, :active).compact.select { |k, v| v != "" } rescue {}
   end

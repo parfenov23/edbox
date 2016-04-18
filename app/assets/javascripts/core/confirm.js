@@ -1,7 +1,7 @@
 var btn_yes_action = function(){};
 
 function confirm(text, action){
-    var popup = $(".pop_up_confirm");
+    var popup = $(".pop_up_confirm").not(".pop_up_confirm.noConfirmOpen");
     popup.find(".inner .description").text(text);
     btn_yes_action = action;
     popup.addClass("h__PopupDisplayFlex");
