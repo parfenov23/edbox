@@ -96,6 +96,7 @@ Rails.application.routes.draw do
           post :update_card
           post :post3ds
           post :remove_card
+          post :purchase
         end
       end
 

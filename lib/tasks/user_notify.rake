@@ -33,4 +33,8 @@ namespace :user_notify do
     end
   end
 
+  task payments_account: :environment do
+    User.payments_account
+  end
+
 end

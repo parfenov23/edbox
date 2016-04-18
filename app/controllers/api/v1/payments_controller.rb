@@ -15,16 +15,35 @@ module Api::V1
       else
         response_params = response.params
         if response_params and response_params['PaReq'].present?
-          resp = { json: { response: response_params, type: '3ds' }, status: 422 }
+          resp = {json: {response: response_params, type: '3ds'}, status: 422}
         else
-          resp = { json: { response: response, type: 'error' }, status: 422 }
+          resp = {json: {response: response, type: 'error'}, status: 422}
         end
       end
       render resp
     end
 
     def purchase
-
+      subscription = create_subscription(params)
+      amount = params[:sum]
+      account = current_user.accounts.first
+      result = false
+      if account.present?
+        options = {
+          AccountId: current_user.email,
+          Currency: $cloud_payments.currency,
+          Description: "Оплата подписки"
+        }
+        response = $cloud_payments.gateway.purchase(account.token, amount, options, false)
+        if response.success?
+          current_user.incoming_moneys.create(data: response.params)
+          current_user.sub_active(subscription)
+          result = true
+        end
+      else
+        subscription.destroy
+      end
+      render json: {success: result}, status: (result ? 200 : 422)
     end
 
     def remove_card
@@ -37,9 +56,9 @@ module Api::V1
       if response.success?
         resp = success_transaction(response.params)
       else
-        resp = { message: response.message }
+        resp = {message: response.message}
       end
-      @response = { response: resp, success: response.success? }
+      @response = {response: resp, success: response.success?}
       render html: "<script> var resp = #{@response.to_json.html_safe};parent.window.showMessage(resp);</script>".html_safe
     end
 
@@ -49,7 +68,7 @@ module Api::V1
       current_user.accounts.destroy_all
       current_user.accounts.create(parametrize(result))
       current_user.incoming_moneys.create(data: result)
-      {json: { response: result, type: 'success' } }
+      {json: {response: result, type: 'success'}}
     end
 
     def parametrize(rp)
@@ -57,6 +76,15 @@ module Api::V1
        card_first_six: rp["CardFirstSix"],
        card_last_four: rp["CardLastFour"],
        issuer_bank_country: rp["IssuerBankCountry"]}
+    end
+
+    def create_subscription(params_sub)
+      user = User.where(email: params_sub[:email]).last
+      user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
+      subscription = Subscription.build(params_sub)
+      #subscription.active = true
+      subscription.save
+      subscription
     end
   end
 end

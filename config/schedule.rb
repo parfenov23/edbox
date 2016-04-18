@@ -23,6 +23,10 @@ every :day, :at => '12pm' do
   rake "user_notify:close_overdue_course"
 end
 
+every :day, :at => '12pm' do
+  rake "user_notify:payments_account"
+end
+
 # webinar_date = ::Webinar.last.date_start + 5.hour
 # webinar_date_s = "50 #{webinar_date.hour} #{webinar_date.day} #{webinar_date.month} * #{webinar_date.year}"
 # every webinar_date_s do

@@ -52,4 +52,12 @@ class Company < ActiveRecord::Base
     users.where(director: true)
   end
 
+  def sub_price_month
+    Subscription.company_price + Subscription.company_price_user*sub_count_user
+  end
+
+  def sub_count_user
+    users.count-1
+  end
+
 end

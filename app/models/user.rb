@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
-  scope :statistics, ->(course, type, best) { all.map { |user| user.statistic(course, type,  best) } }
+  scope :statistics, ->(course, type, best) { all.map { |user| user.statistic(course, type, best) } }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at", "group_id"]
 
   def self.build(params)
@@ -183,6 +183,53 @@ class User < ActiveRecord::Base
 
   def read_news
     News.where("#{id} = ANY (users_id)")
+  end
+
+  def self.payments_account
+    users = User.select { |u| !u.get_account_type && u.subscriptions.present? }
+    users = User.find(
+      users.map do |u|
+        u.subscription_model.subscriptions.last.parent_user.id
+      end.uniq
+    )
+    users.each do |user|
+      sub_model = user.subscription_model
+      params_sub = {
+        user_id: user.id,
+        sum: sub_model.sub_price_month,
+        user_count: sub_model.sub_count_user,
+        count_month: 1,
+        email: user.email,
+        type_account: sub_model.class == Company ? "company" : "user"
+      }
+      subscription = Subscription.build(params_sub)
+      account = user.accounts.last
+      if account.present?
+        response = $cloud_payments.gateway.purchase(account.token, params_sub[:sum], $cloud_payments.default_options(user), false)
+        if response.success?
+          subscription.save
+          user.sub_active(subscription)
+        end
+      end
+    end
+  end
+
+  def sub_price_month
+    Subscription.user_price
+  end
+
+  def sub_count_user
+    0
+  end
+
+  def subscription_model
+    company.present? ? company : self
+  end
+
+  def sub_active(sub)
+    all_subs = find_subscription([true, false], false, false)
+    all_subs.update_all(active: false)
+    all_subs.where(id: sub.id).update_all(active: true)
   end
 
   private

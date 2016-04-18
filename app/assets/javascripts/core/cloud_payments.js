@@ -10,7 +10,7 @@ var includePaymentMethods = function () {
                 url : '/api/v1/payments/update_card',
                 data: {cryptogram: cryptogram, name: user_name, card: card_number}
             }).success(function (data) {
-                show_error('Карта успешно сохранена', 3000);
+                pageReloadPayment();
             }).error(function (data) {
                 var data_json = data.responseJSON;
                 if (data_json.type == '3ds'){
@@ -19,7 +19,6 @@ var includePaymentMethods = function () {
                     show_error('Ошибка', 3000);
                 }
             });
-            // сформирована криптограмма, можем отправлять на сервер в метод контроллера purchase, этот метод отвечает success, если все ок, иначе может потребоваться 3ds
         }
     };
 
@@ -33,6 +32,50 @@ var includePaymentMethods = function () {
     });
 };
 
+var pageReloadPayment = function () {
+    $("#3ds").hide();
+    form().show();
+    $("#paymentsPopup").removeClass("h__PopupDisplayFlex");
+    if (form().data('reload')){
+        show_error('Карта успешно сохранена', 3000);
+        setTimeout(function () {
+            window.location.reload();
+        }, 1500);
+    } else {
+        var btn = $("form.tarif__info .action__block .btn.js_openPopupAddCard");
+        btn.removeClass('js_openPopupAddCard').addClass('js_paymentAccount');
+    }
+};
+
+var paymentAccount = function (type) {
+    var valid = form().data('payment');
+    if (type == "btn") valid = true;
+    if (valid){
+        var sum = $(".parentPriceTariff .qty span").text();
+        confirm("Вы уверены что хотите оплатить подписку? C вашего счета будет списано " + sum + " ₽", function () {
+            purchase_pay();
+        });
+    }
+};
+
+var purchase_pay = function () {
+    var form = $("form.tarif__info");
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/payments/purchase',
+        data: form.serialize()
+    }).success(function (data) {
+        if (data.success){
+            show_error('Оплата успешно прошла', 3000);
+            setTimeout(function () {
+                window.location.href='/profile';
+            }, 1500);
+        }else{
+            show_error('Произошла ошибка', 3000);
+        }
+    });
+};
+
 var updateForm3ds = function (json) {
     var form = $("form#secure_card");
     form.find("[name='PaReq']").val(json.PaReq);
@@ -43,14 +86,14 @@ var updateForm3ds = function (json) {
     form.closest("#3ds").show();
 };
 
-var removePaymentCard = function(){
+var removePaymentCard = function () {
     var btn = $(this);
     $.ajax({
         type: 'POST',
         url : '/api/v1/payments/remove_card'
     }).success(function () {
         show_error('Карта успешно удаленна', 3000);
-        setTimeout(function(){
+        setTimeout(function () {
             window.location.reload();
         }, 1500);
     }).error(function () {
@@ -58,7 +101,7 @@ var removePaymentCard = function(){
     });
 };
 
-var openPopupAddCard = function(){
+var openPopupAddCard = function () {
     $("#paymentsPopup").addClass("h__PopupDisplayFlex");
 };
 
@@ -86,7 +129,6 @@ pageLoad(function () {
         $(document).on('click', '#paymentFormSample .addCart', createCryptogram);
         $(document).on('click', '.js_removePaymentCard', removePaymentCard);
         $(document).on('click', '.js_openPopupAddCard', openPopupAddCard);
-
     }
 });
 
@@ -97,12 +139,16 @@ var form = function () {
 window.showMessage = function (result) {
     var status = result.response.json.type;
     if (status == 'success'){
-        $("#3ds").hide();
-        form().show();
-        $("#paymentsPopup").removeClass("h__PopupDisplayFlex");
-        show_error('Карта успешно сохранена', 3000);
-        setTimeout(function(){
-            window.location.reload();
-        }, 1500);
+        pageReloadPayment();
+        setTimeout(function () {
+            paymentAccount();
+        }, 1000);
+
     }
 };
+
+pageLoad(function () {
+    $(document).on('click', '.js_paymentAccount', function(){
+        paymentAccount('btn');
+    });
+});

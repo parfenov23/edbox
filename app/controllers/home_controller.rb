@@ -137,8 +137,8 @@ class HomeController < ActionController::Base
     (params_sub[:type_account] == "user" ? params_sub[:sum] = 1490.00 : params_sub[:sum] = 50000.00) if params[:sum].blank?
     subscription = Subscription.build(params_sub)
     subscription.save
-    html = render_to_string 'common/popup_request/_yandex_cash', :layout => false, :locals => {params_sub: params_sub, :subscription => subscription}
-    render text: html
+    #html = render_to_string 'common/popup_request/_yandex_cash', :layout => false, :locals => {params_sub: params_sub, :subscription => subscription}
+    #render text: html
   end
 
   def course_description
