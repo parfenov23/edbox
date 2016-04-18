@@ -16,7 +16,7 @@
 //= require_tree ./core
 
 //= require websocket_rails/main
-//= require_tree ./websocket
+// require_tree ./websocket
 //= require_tree ./contenter
 
 var env_mode = function (type) {
