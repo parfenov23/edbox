@@ -72,6 +72,7 @@ module ApplicationHelper
   def page_title(default_title = '')
     @page_title || default_title
   end
+
   #################
 
   #Фоотер для страницы
@@ -82,6 +83,7 @@ module ApplicationHelper
   def page_footer
     @page_footer.nil? ? true : @page_footer
   end
+
   ##################
 
   def schedule_line
@@ -168,5 +170,14 @@ module ApplicationHelper
 
   def btn_delete
     raw "&#10006;"
+  end
+
+  def class_block_attachment(attachment)
+    ad__active = attachment.announcement? ? 'is__unreacheble' : ''
+    if current_user.present?
+      (current_user.view_course?(@course) ? ad__active : 'is__unreacheble js_alertErrorSubscription')
+    else
+      (attachment.public ? ad__active : 'is__unreacheble js_openFormRegistration')
+    end
   end
 end

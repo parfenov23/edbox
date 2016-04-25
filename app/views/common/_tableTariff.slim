@@ -84,7 +84,7 @@
           td
             .price
               |#{billing_price.company_price} ₽/мес.
-              span + 990 ₽/мес. за сотрудника
+              span + #{billing_price.company_user_price.to_i} ₽/мес. за сотрудника
             .action__block
               .btn.is__blue.js_openFormRegistration.selectType data-type="corp" ОПЛАТИТЬ
           td

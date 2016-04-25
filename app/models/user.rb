@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   def self.build(params)
     params[:first_name] = "Пользователь" if params[:first_name].to_s == ""
     user = new(params)
-    user.password = params[:password]
+    user.password = (params[:password].present? ? params[:password] : SecureRandom.hex(8))
     user.welcome_letter(params[:password])
     user
   end

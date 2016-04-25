@@ -18,9 +18,10 @@ var selectType = function(type){
 };
 
 var openFormRegistrationAuth = function(){
-    var popup = $("#openFormRegistrationAuth");
-    popup.show();
-    $(document).scrollTop( popup.offset().top);
+    window.location.href = '/sign_up';
+    //var popup = $("#openFormRegistrationAuth");
+    //popup.show();
+    //$(document).scrollTop( popup.offset().top);
 };
 
 var regFromLanding = function(regtype){

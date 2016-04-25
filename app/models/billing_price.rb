@@ -1,9 +1,5 @@
 class BillingPrice < ActiveRecord::Base
   def self.default
-    if last.present?
-      last
-    else
-      create
-    end
+    last.present? ? last : create
   end
 end

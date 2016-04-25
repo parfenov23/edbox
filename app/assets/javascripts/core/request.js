@@ -51,19 +51,15 @@ var sendRequestForm = function(){
     if ((!error_inputs.length) && (validate_offer(form))){
         $.ajax({
             type: 'POST',
-            url : '/api/v1/users/send_request',
+            url : '/api/v1/sessions/registration',
             data: form.serialize()
-        }).success(function () {
-            btn.closest(".ugly__popup").hide();
-            //warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox', 'Хорошо');
-            //pay_redirect(form);
-            var item = form.closest(".item");
-            var type_account = item.find("input[name='type_account']").val();
-            var email = form.find("input[name='email']").val();
-            if (type_account == "user"){
-                subscription_pay(type_account, email);
+        }).success(function (m) {
+            var type_account = form.find("input[name='type_account']").val();
+            $.cookie('user_key', m.user_key);
+            if (type_account == "/corp"){
+                window.location.href = '/payment?type=company'
             }else{
-                warning('Заявка успешно отправлена, скоро вы получите письмо с доступами в Edbox', 'Хорошо');
+                window.location.href = '/payment?type=user'
             }
         }).error(function () {
             show_error('Ошибка', 3000);
@@ -77,7 +73,14 @@ var change_formRequest_Input = function(){
     }
 };
 
+var alertErrorSubscription = function(){
+    confirm("Для просмотра платного контента необходимо купить подписку! Вы хотите купить подписку?", function () {
+        window.location.href='/tariff';
+    });
+};
+
 pageLoad(function () {
     $(document).on('click', '.js_sendRequestForm', sendRequestForm);
+    $(document).on('click', '.js_alertErrorSubscription', alertErrorSubscription);
     $('form.formRequest input').change(change_formRequest_Input)
 });
