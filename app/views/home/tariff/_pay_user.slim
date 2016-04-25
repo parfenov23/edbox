@@ -25,7 +25,7 @@
 
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
-      form.privet__calc.parentPriceTariff.tarif__info data-user_price=hash_date[:user_price] action='/purchase' method='POST'
+      form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
         .duration
           .title Продолжительность
           .dropdown__flash.js__dropdown_toggle date-n=hash_date[:n]

@@ -42,7 +42,7 @@ var pageReloadPayment = function () {
             window.location.reload();
         }, 1500);
     } else {
-        var btn = $("form.tarif__info .action__block .btn.js_openPopupAddCard");
+        var btn = $("form.tariffPay .action__block .btn.js_openPopupAddCard");
         btn.removeClass('js_openPopupAddCard').addClass('js_paymentAccount');
     }
 };
@@ -59,7 +59,7 @@ var paymentAccount = function (type) {
 };
 
 var purchase_pay = function () {
-    var form = $("form.tarif__info");
+    var form = $("form.tariffPay");
     $.ajax({
         type: 'POST',
         url : '/api/v1/payments/purchase',
