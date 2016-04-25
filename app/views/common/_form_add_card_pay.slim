@@ -26,7 +26,7 @@
             input.card-input data-cp="cvv" type="text" placeholder='CVV'
             hr
 
-      .addCart.btn.is__blue Привязать карту
+      .addCart.btn.is__blue = (btn_name rescue "Привязать карту")
     div id='3ds' style="display: none;"
       form#secure_card action="" method="post" target="myIframe"
         input name="PaReq" type="hidden" value=""

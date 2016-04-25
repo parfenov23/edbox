@@ -60,6 +60,7 @@ var paymentAccount = function (type) {
 
 var purchase_pay = function () {
     var form = $("form.tariffPay");
+    show_error('Идет Загрузка ', 3000);
     $.ajax({
         type: 'POST',
         url : '/api/v1/payments/purchase',

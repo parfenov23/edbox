@@ -5,4 +5,4 @@
 - file_name = params[:type].blank? ? sub.subscriptiontable_type.downcase : params[:type]
 = render "home/tariff/pay_#{file_name}", {sub: sub} if file_name == "user" || file_name == "company"
 - if current_user.accounts.blank?
-  = render "common/form_add_card_pay", {reload_page: false, payment: true}
+  = render "common/form_add_card_pay", {reload_page: false, payment: true, btn_name: "Продолжить оплату"}
