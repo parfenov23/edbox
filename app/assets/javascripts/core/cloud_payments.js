@@ -106,26 +106,29 @@ var openPopupAddCard = function () {
     $("#paymentsPopup").addClass("h__PopupDisplayFlex");
 };
 
+var includeTypeCard = function(){
+    var input = $("[data-cp='cardNumber']");
+    var block_logo = $('#paymentFormSample .cardLogo');
+    block_logo.removeClass('fa-cc-visa fa-cc-mastercard');
+    if (input.val().substring(0, 1) == 4){
+        block_logo.addClass('fa-cc-visa');
+    }
+
+    if (input.val().substring(0, 2) == 51 ||
+        input.val().substring(0, 2) == 52 ||
+        input.val().substring(0, 2) == 53 ||
+        input.val().substring(0, 2) == 54 ||
+        input.val().substring(0, 2) == 55){
+        block_logo.addClass('fa-cc-mastercard');
+    }
+};
+
 pageLoad(function () {
     if ($("#paymentFormSample").length){
         includePaymentMethods();
-
-        $("#paymentFormSample [data-cp='cardNumber']").change(function () {
-            var input = $("[data-cp='cardNumber']");
-            var block_logo = $('#paymentFormSample .cardLogo');
-            block_logo.removeClass('fa-cc-visa fa-cc-mastercard');
-            if (input.val().substring(0, 1) == 4){
-                block_logo.addClass('fa-cc-visa');
-            }
-
-            if (input.val().substring(0, 2) == 51 ||
-                input.val().substring(0, 2) == 52 ||
-                input.val().substring(0, 2) == 53 ||
-                input.val().substring(0, 2) == 54 ||
-                input.val().substring(0, 2) == 55){
-                block_logo.addClass('fa-cc-mastercard');
-            }
-        });
+        $("input[data-cp='cardNumber']").mask("9999 9999 9999 9999", {completed: includeTypeCard});
+        $("input[data-cp='expDateMonthYear']").mask("99/99", {placeholder:"ММ/ГГ"});
+        $("#paymentFormSample [data-cp='cardNumber']").change(includeTypeCard);
 
         $(document).on('click', '#paymentFormSample .addCart', createCryptogram);
         $(document).on('click', '.js_removePaymentCard', removePaymentCard);

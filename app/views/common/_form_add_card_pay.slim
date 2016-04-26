@@ -2,6 +2,7 @@
 .pop_up_confirm.noCloseToggleState.noConfirmOpen#paymentsPopup
   .inner style="padding-bottom: 24px;"
     script src="https://widget.cloudpayments.ru/bundles/checkout"
+    script src='/jq.mask.min.js'
     link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
     form#paymentFormSample autocomplete="off" data-public_id=$cloud_payments.public_id data-reload=(reload_page rescue true).to_s data-payment=(payment rescue false).to_s
       .card-num.input-wrp.name.card-input
@@ -23,7 +24,7 @@
         .blockCVV
           span.visible-xs-inline Код безопасности
           .card-CVV.input-wrp
-            input.card-input data-cp="cvv" type="text" placeholder='CVV'
+            input.card-input data-cp="cvv" type="password" placeholder='CVV'
             hr
 
       .addCart.btn.is__blue = (btn_name rescue "Привязать карту")

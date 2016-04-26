@@ -16,10 +16,22 @@
 /*]]>*/</script>
 <!-- End of adconsult Zendesk Widget script -->
 <style>
-  a#reformal_tab img{
-      width: 130px;
-      padding-bottom: 10px;
-  }
+    a#reformal_tab img {
+        width          : 130px;
+        padding-bottom : 10px;
+    }
+
+    .phoneHelp {
+        text-align       : center;
+        background-color : #fb9251;
+        border-radius    : 5px 5px 0px 0px;
+        color            : white;
+        line-height      : 34px;
+    }
+
+    #reformal_widget {
+        background-color : #fb9251 !important;
+    }
 </style>
 <script type="text/javascript">
     var reformalOptions = {
@@ -38,6 +50,19 @@
         script.src = ('https:' == document.location.protocol?'https://':'http://') + 'media.reformal.ru/widgets/v3/reformal.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     })();
+    $(document).ready(function () {
+        $(document).on('click', 'a#reformal_tab', function () {
+            var intervalValidBlock;
+            intervalValidBlock = setInterval(function () {
+                console.log(1);
+                if ($("#reformal_widget").length){
+                    $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 9733623</div>"));
+                    clearInterval(intervalValidBlock);
+                    console.log(2);
+                }
+            }, 100);
+        });
+    });
 </script>
 <noscript>
   <a href="http://reformal.ru">
