@@ -12,14 +12,11 @@ footer
     = render "home/footer/social_counter" if !$env_mode.dev?
     .developers
       .logo
-        img src="/images/logo.svg"
+        img src="/images/phone.png"
       .info
         p
-          'Разработано в
-          a href="http://masshtab.am" Masshtab
-          |, 2015
-/      .address
-        |г. Екатеринбург, пер. Химиков, дом 3, оф. 303-305
-        br
-        | тел: +7 (343) 287-09-21; +7 (343) 287-09-22
-        a href="mailto:info@masshtab.am" info@masshtab.am
+          'Службы поддержки
+          - url = "http://adonline2016.reformal.ru"
+          a href=url onclick="$('#reformal_tab').click();return false;" onmouseover="Reformal.widgetPreload();" onmouseout="Reformal.widgetAbortPreload();"
+            |+7 926 97 33 623
+
