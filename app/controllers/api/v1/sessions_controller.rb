@@ -18,6 +18,7 @@ module Api::V1
 
     def registration
       permit_params = user_params
+      permit_params[:email] = permit_params[:email].downcase
       permit_params[:corporate] = "true" if (params[:company][:name].to_s.length > 0 rescue false)
       permit_params[:director] = permit_params[:corporate].to_s
       if permit_params[:director].to_s == "true"
@@ -36,7 +37,7 @@ module Api::V1
     end
 
     def recover_password
-      result = (User.find_by_email(params[:email]).random_password rescue nil)
+      result = (User.find_by_email(params[:email].downcase).random_password rescue nil)
       if result.present?
         render json: {success: true}
       else
