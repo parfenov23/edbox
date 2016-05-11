@@ -184,4 +184,8 @@ module ApplicationHelper
       (attachment.public ? ad__active : 'is__unreacheble js_openFormRegistration')
     end
   end
+
+  def current_action
+    params[:controller] + "/" + params[:action]
+  end
 end
