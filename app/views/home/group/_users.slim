@@ -48,7 +48,7 @@
     ul.members__in_system class="#{current_user.director ? 'director' : ''}"
       - bunch_groups.each do |bunch_group|
         - member = bunch_group.user
-        li.members__in_system-item.js_clickItemMember data-id="#{member.id}"
+        li.members__in_system-item.js_clickItemMember data-id="#{member.id}" class=(current_user.director? ? '' : 'noHeaderOpen')
           .ava.icon
             img src=default_img(member.avatar)
           .name.h__text_15-24  = member.full_name
