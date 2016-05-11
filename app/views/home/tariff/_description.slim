@@ -4,9 +4,10 @@
   - if sub.company?
     - unless (current_user.corporate? && !current_user.director?)
       p
-        'Текущая подписка для
+        'Ваша текущая подписка позволяет добавить —
         b = rus_case(sub.user_count, 'сотрудника', 'сотрудников', 'сотрудников')
-        |, чтобы добавить сотрудников перейдите к продлению подписки
+        '. Для того, чтобы увеличить их количество — пожалуйста, перейдите в раздел
+        a.is__blue href='/payment' Подписка
   p
     'Действует до
     b = ltime(sub.date_to, '', 'long_without_time')

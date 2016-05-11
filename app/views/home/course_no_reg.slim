@@ -7,5 +7,5 @@
 /  = render "common/popup_request/content"
 - h = "Материал доступен после регистрации" if !@course.paid
 - h = "Материал доступен по платной подписке" if @course.paid
-- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
+- i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
 = render "common/course/course_reg", {header: h, info: i}

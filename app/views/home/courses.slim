@@ -16,7 +16,7 @@
   = render "common/page_empty", {btn: false}
 
 - h = "Получайте полезные знания вместе с #{$env_mode.name_title}"
-- i = "Зарегестрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
+- i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
 = render "common/course/course_reg", {header: h, info: i}
 
 - if params[:reg].present? && params[:reg] == 'true'
