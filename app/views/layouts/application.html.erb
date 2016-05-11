@@ -14,19 +14,23 @@
   <link href="/assets/app.css" rel="stylesheet">
   <!--<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">-->
   <!--<script src="//vjs.zencdn.net/4.12/video.js"></script>-->
-  <%= render "layouts/pixel/facebook_pixel" if $env_mode.prod? %>
-  <%= render "layouts/users_helper" if $env_mode.prod? && !current_page?("/") %>
-  <script type="text/javascript">
-      (function (w, d, s, u, h, a, m) {
-          w[h] = w[h] || function () {(w[h].q = w[h].q || []).push(arguments)};
-          a = d.createElement(s), m = d.getElementsByTagName(s)[0];
-          a.async = 1;
-          a.src = u;
-          a.charset = 'utf-8';
-          m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', '//hintarea.com/hint.js', '_hintArea');
-      _hintArea("start");
-  </script>
+  <% if $env_mode.prod? %>
+      <%= render "layouts/pixel/facebook_pixel" %>
+      <%= render "layouts/users_helper" %>
+      <% unless current_page?("/") %>
+          <script type="text/javascript">
+              (function (w, d, s, u, h, a, m) {
+                  w[h] = w[h] || function () {(w[h].q = w[h].q || []).push(arguments)};
+                  a = d.createElement(s), m = d.getElementsByTagName(s)[0];
+                  a.async = 1;
+                  a.src = u;
+                  a.charset = 'utf-8';
+                  m.parentNode.insertBefore(a, m)
+              })(window, document, 'script', '//hintarea.com/hint.js', '_hintArea');
+              _hintArea("start");
+          </script>
+      <% end %>
+  <% end %>
 </head>
 
 <% if params[:dev] == "true" %>
