@@ -34,7 +34,7 @@ module Superuser
       find_params[:sum] = find_params[:sum].to_f if find_params[:sum].blank?
       sub = Subscription.new(find_params)
       sub.save
-      redirect_to edit_superuser_billing_path(sub.id)
+      redirect_to edit_superuser_billing_path(sub.id, params: {error: "save"})
     end
 
     def update

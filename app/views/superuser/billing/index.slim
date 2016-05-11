@@ -25,10 +25,10 @@ table#BillingTable.tablesorter.table.table-bordered
     tr
       th ID
       th Email
+      th ФИО
       th Тип
       th Статус
       th Кол-во
-      th Дата регистрации
       th Срок подписки
       th Действия
   tbody
@@ -37,10 +37,10 @@ table#BillingTable.tablesorter.table.table-bordered
       tr
         td = user.id
         td = user.email
+        td = user.full_name
         td = user.corporate ? "Корпоративный" : "Личный"
         td = user.get_account_type ? "Оплачено" : "Не оплачено"
         td = (user.corporate ? user.company.users.count : nil) rescue nil
-        td = ltime(user.created_at, '', 'short_min_y')
         td = sub.present? ? sub.date_string : "Нет подписки"
         td
           - if sub.present?

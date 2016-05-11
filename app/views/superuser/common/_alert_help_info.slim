@@ -1,0 +1,8 @@
+- if params[:error].present?
+  - hash_alert = {"error" => ["danger", "Проверьте данны"],
+                  "user_present" => ["danger", "Пользователь с таким Email уже существует"],
+                  "length_pass" => ["danger", "Пароль не должен быть меньше 6 символов"],
+                  "save" => ["success", "Сохраненно"]}
+  - status = hash_alert[params[:error]]
+  - if status.present?
+    .alert#NotifyAlertHelp class="alert-#{status.first}" role="alert" = status.last

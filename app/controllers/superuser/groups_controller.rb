@@ -18,7 +18,7 @@ module Superuser
     def create
       group = Group.new(params_group)
       group.save
-      redirect_to edit_superuser_group_path(group.id, params: {company_id: group.company_id})
+      redirect_to edit_superuser_group_path(group.id, params: {company_id: group.company_id, error: "save"})
     end
 
     def update

@@ -16,7 +16,7 @@ module Superuser
     def create
       news = News.new(params_news)
       news.save
-      redirect_to edit_superuser_news_path(news.id)
+      redirect_to edit_superuser_news_path(news.id, params: {error: "save"})
     end
 
     def update

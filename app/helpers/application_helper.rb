@@ -172,6 +172,10 @@ module ApplicationHelper
     raw "&#10006;"
   end
 
+  def delete_confirm
+    {onclick: "return confirm('Вы уверены что хотите удалить?')"}
+  end
+
   def class_block_attachment(attachment)
     ad__active = attachment.announcement? ? 'is__unreacheble' : ''
     if current_user.present?

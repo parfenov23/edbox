@@ -1,13 +1,15 @@
 .list-group.row
   .list-group-item.active
     a.btn.btn-success href="/superuser/users/new"  Добавить нового пользователя
+    a.btn.btn-info style="margin-left: 10px;" href="/superuser/users?type=user"  Индивидуалы
+    a.btn.btn-info href="/superuser/users?type=corp"  Корпоративы
   - @users.each do |user|
     .list-group-item.col-md-6
       span
         = user.email
-      a.btn.btn-danger.pull-right href="/superuser/users/#{user.id}/remove" data-method='delete'
+      a.btn.btn-danger.pull-right href="/superuser/users/#{user.id}/remove" data-method='delete' *delete_confirm
         = btn_delete
       a.btn.btn-success.pull-right href="/superuser/users/#{user.id}/edit" style="margin-right: 5px;"
         = btn_edit
       a.btn.btn-info.pull-right href=user.auth_url style="margin-right: 5px;" target="_blank"
-          | >
+        | >

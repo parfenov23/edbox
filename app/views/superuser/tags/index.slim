@@ -5,7 +5,7 @@
     .list-group-item.col-md-6
       span
         = tag.title
-      a.btn.btn-danger.pull-right href="/superuser/tags/#{tag.id}/remove" data-method='delete'
+      a.btn.btn-danger.pull-right href="/superuser/tags/#{tag.id}/remove" data-method='delete' *delete_confirm
         = btn_delete
       a.btn.btn-success.pull-right href="/superuser/tags/#{tag.id}/edit" style="margin-right: 5px;"
         = btn_edit

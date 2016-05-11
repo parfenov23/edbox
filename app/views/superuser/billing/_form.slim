@@ -4,11 +4,11 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
   .form-group
     label Дата подписки:
     .input-daterange.input-group.datepicker
-      - date_from = (@subscription.date_from.strftime('%d.%m.%Y %H:%M') rescue nil)
-      input.form-control.datepicker.input-sm type="text" name="subscription[date_from]" placeholder="c (d.m.y H:M) UTC" value=date_from
+      - date_from = (@subscription.date_from.strftime('%d.%m.%Y') rescue nil)
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_from]" placeholder="c день.месяц.год" value=date_from
       span.input-group-addon До
       - date_to = (@subscription.date_to.strftime('%d.%m.%Y %H:%M') rescue nil)
-      input.form-control.datepicker.input-sm type="text" name="subscription[date_to]" placeholder="по (d.m.y H:M)) UTC" value=date_to
+      input.form-control.datepicker.input-sm type="text" name="subscription[date_to]" placeholder="по день.месяц.год" value=date_to
   .form-group
     label
       | Сумма:
@@ -17,11 +17,11 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
     label
       | Количество пользователей:
     input.form-control name="subscription[user_count]" type="text" value="#{@subscription.user_count}"
-  .form-group
+  .form-group style="display: none;"
     label Модель:
     - array_type = [["Компания", "Company"], ["Пользователь", "User"]]
     = select_tag 'subscription[subscriptiontable_type]', options_for_select(array_type, @subscription.subscriptiontable_type), {:class => 'form-control'}
-  .form-group
+  .form-group style="display: none;"
     label
       | ID модели:
     input.form-control name="subscription[subscriptiontable_id]" type="text" value="#{@subscription.subscriptiontable_id}"

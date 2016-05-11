@@ -2,6 +2,7 @@ module Superuser
   class UsersController < SuperuserController
     def index
       @users = User.where(user_params)
+      @users = @users.where(corporate: (params[:type] == "user" ? false : true)) if params[:type].present?
     end
 
     def edit
@@ -16,22 +17,27 @@ module Superuser
     end
 
     def create
-      user = User.build(user_params)
-      if user.valid? && user_params[:password].length >= 4
-        user.save
-        if params[:company_id].to_s != ""
-          redirect_to edit_superuser_company_path(params[:company_id])
-        else
-          if user.leading
-            redirect_to all_leading_superuser_users_path
-          else
-            redirect_to edit_superuser_user_path(user.id, params: {back_url: params[:back_url]})
-          end
-        end
+      if User.where(email: user_params[:email]).present?
+        redirect_to new_superuser_user_path(error: "user_present")
       else
-        back_url = new_superuser_user_path
-        params_error = "?company_id=#{params[:company_id]}&error=error&back_url=#{params[:back_url]}"
-        redirect_to back_url + params_error
+        user = User.build(user_params)
+        if user.valid? && user_params[:password].length >= 6
+          user.save
+          if params[:company_id].to_s != ""
+            redirect_to edit_superuser_company_path(params[:company_id])
+          else
+            if user.leading
+              redirect_to all_leading_superuser_users_path
+            else
+              redirect_to edit_superuser_user_path(user.id, params: {back_url: params[:back_url], error: 'save'})
+            end
+          end
+        else
+          back_url = new_superuser_user_path
+          error = user_params[:password].length < 6 ? "length_pass" : "error"
+          params_error = "?company_id=#{params[:company_id]}&error=#{error}&back_url=#{params[:back_url]}"
+          redirect_to back_url + params_error
+        end
       end
     end
 
@@ -44,7 +50,7 @@ module Superuser
         if params[:company_id].to_s != ""
           redirect_to edit_superuser_company_path(params[:company_id])
         else
-          redirect_to edit_superuser_user_path(user.id)
+          redirect_to edit_superuser_user_path(user.id, params: {error: 'save'})
         end
       else
         back_url = "/superuser/users/#{params[:id]}/edit"

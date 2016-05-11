@@ -16,7 +16,7 @@ a.btn.btn-primary href='/superuser/delivery/result?#{@all_params.to_query}' styl
 .formFilter style="display:none;"
   form.form-inline.form_filter
     .row
-      .col-lg-4
+      .col-lg-5
         .form-group
           label Тип:
           - array_type = [["Все", nil], ["Индивидуальный", false], ["Корпоративный", true]]
@@ -26,6 +26,11 @@ a.btn.btn-primary href='/superuser/delivery/result?#{@all_params.to_query}' styl
           label Роль:
           - array_type = [["Все", nil], ["Пользователь", false], ["Директор", true]]
           = select_tag 'user[role]', options_for_select(array_type, user_params[:role]), {:class => 'form-control'}
+
+        .form-group
+          label Статус:
+          - array_type = [["Все", nil], ["Бесплатно", false]]
+          = select_tag 'user[billing]', options_for_select(array_type, user_params[:billing]), {:class => 'form-control'}
     .row
       .col-lg-4
         input.form-control type='text' name='user[id]' placeholder="id" value=user_params[:id]

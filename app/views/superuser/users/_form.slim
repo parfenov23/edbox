@@ -1,6 +1,3 @@
-- if params[:error] == "error"
-  .alert.alert-danger role="alert"
-    |Проверьте данные
 - action_url = @user.id.nil? ? "/superuser/users" : "/superuser/users/#{@user.id}"
 - method = @user.id.nil? ? "post" : "put"
 form.form-horizontal action="#{action_url}" method="post"
@@ -29,10 +26,10 @@ form.form-horizontal action="#{action_url}" method="post"
       | Ведущий?:
     - check = params[:leading].nil? ? @user.leading : (params[:leading].to_s == "true" ? true : false)
     = check_box("user", "leading", {checked: check})
-  .form-group
-    label
-      | Оплачено?:
-    = check_box("user", "paid", {checked: @user.paid})
+  /.form-group
+  /  label
+  /    | Оплачено?:
+  /  = check_box("user", "paid", {checked: @user.paid})
   .form-group
     label
       | Superuser?:

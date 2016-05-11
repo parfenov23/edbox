@@ -5,7 +5,7 @@
         .list-group-item.col-md-6
             span
                 = question.title
-            a.btn.btn-danger.pull-right href="/superuser/questions/#{question.id}/remove"  data-method='delete'
+            a.btn.btn-danger.pull-right href="/superuser/questions/#{question.id}/remove"  data-method='delete' *delete_confirm
                 | Удалить
             a.btn.btn-success.pull-right href="/superuser/questions/#{question.id}/edit" style="margin-right: 5px;"
                 | Редактировать

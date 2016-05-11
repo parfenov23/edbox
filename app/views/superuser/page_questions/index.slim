@@ -5,7 +5,7 @@
     .list-group-item.col-md-6
       span
         = ask_question.title
-      a.btn.btn-danger.pull-right href="/superuser/ask_questions/#{ask_question.id}/remove" data-method='delete'
+      a.btn.btn-danger.pull-right href="/superuser/ask_questions/#{ask_question.id}/remove" data-method='delete' *delete_confirm
         = btn_delete
       a.btn.btn-success.pull-right href="/superuser/ask_questions/#{ask_question.id}/edit" style="margin-right: 5px;"
         = btn_edit

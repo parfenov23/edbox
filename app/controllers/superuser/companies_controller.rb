@@ -16,7 +16,7 @@ module Superuser
     def create
       company = Company.new({first_name: params[:first_name]})
       company.save
-      redirect_to edit_superuser_company_path(company.id)
+      redirect_to edit_superuser_company_path(company.id, params: {error: "save"})
     end
 
     def update

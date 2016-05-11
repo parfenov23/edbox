@@ -15,12 +15,12 @@ module Superuser
 
     def create
       EmailNotif.new(params_email_notif).save
-      redirect_to superuser_email_notifs_path
+      redirect_to superuser_email_notifs_path(params: {error: "save"})
     end
 
     def update
       find_email_notif.update(params_email_notif)
-      redirect_to superuser_email_notifs_path
+      redirect_to superuser_email_notifs_path(params: {error: "save"})
     end
 
     def remove

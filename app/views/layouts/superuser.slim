@@ -17,4 +17,13 @@ html
     body
         .well
             = render 'layouts/superuser/header'
+            = render 'superuser/common/alert_help_info'
             = yield
+            javascript:
+              $(document).ready(function () {
+                if ($("#NotifyAlertHelp").length){
+                  setTimeout(function(){
+                    $("#NotifyAlertHelp").remove();
+                  }, 2000);
+                }
+              });
