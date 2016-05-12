@@ -17,11 +17,13 @@ module Superuser
     end
 
     def create
-      if User.where(email: user_params[:email]).present?
+      params_user = user_params
+      params_user[:email] = params_user[:email].downcase.gsub(" ","")
+      if User.where(email: params_user[:email]).present?
         redirect_to new_superuser_user_path(error: "user_present")
       else
-        user = User.build(user_params)
-        if user.valid? && user_params[:password].length >= 6
+        user = User.build(params_user)
+        if user.valid? && params_user[:password].length >= 6
           user.save
           if params[:company_id].to_s != ""
             redirect_to edit_superuser_company_path(params[:company_id])
@@ -34,7 +36,7 @@ module Superuser
           end
         else
           back_url = new_superuser_user_path
-          error = user_params[:password].length < 6 ? "length_pass" : "error"
+          error = params_user[:password].length < 6 ? "length_pass" : "error"
           params_error = "?company_id=#{params[:company_id]}&error=#{error}&back_url=#{params[:back_url]}"
           redirect_to back_url + params_error
         end
