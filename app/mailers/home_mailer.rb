@@ -30,6 +30,7 @@ class HomeMailer < ActionMailer::Base
 
   def notice_letter(email, course)
     @email = email
+    @user = User.find_by_email(email)
     @course = course
     mail(:to => @email, :subject => "В #{$env_mode.name_title} вышел курс, который вы ждали")
   end
@@ -37,6 +38,7 @@ class HomeMailer < ActionMailer::Base
   def notice_confirm(email, course)
     @email = email
     @course = course
+    @user = User.find_by_email(email)
     mail(:to => @email, :subject => "Вы подписались на обновления #{$env_mode.name_title}")
   end
 
@@ -44,8 +46,7 @@ class HomeMailer < ActionMailer::Base
     @webinar = webinar
     @attachment = @webinar.attachment
     @user = user
-    date_start = (@webinar.date_start + User.time_zone.hour)
-    @date_start = "#{parse_russian_date(date_start)} (по Мск)"
+    @date_start = (@webinar.date_start + User.time_zone.hour)
 
     mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
   end
@@ -80,7 +81,7 @@ class HomeMailer < ActionMailer::Base
     @attachment = @webinar.attachment
     @user = user
 
-    mail(:to => @user.email, :subject => "Через 5 минут начнется вебинар #{@attachment.title}")
+    mail(:to => @user.email, :subject => "Через 15 минут начнется вебинар #{@attachment.title}")
   end
 
   def support_back(user, text)

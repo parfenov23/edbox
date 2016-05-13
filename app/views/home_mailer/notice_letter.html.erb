@@ -44,8 +44,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -69,7 +69,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                          <h1 class="null">Ваши логин&nbsp;и пароль</h1>
+                          <h1 class="null">Наконец-то!</h1>
 
                         </td>
                       </tr>
@@ -110,20 +110,15 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
                           <br>
-<span><%= @user.full_name %>, вы только что запросили восстановление вашего логина и вашего пароля.<br>
+<span><%= @user.full_name rescue nil %>, спешим к вам с новостью!<br>
 <br>
-<em>(Ну, мы надеемся, что это были вы — в противном случае это значит, что кто-то раскусил вас, узнал ваш e-mail и теперь может строить вам каверзные козни, злокозненные
-  каверзы и... еще что-то в этом роде).</em><br>
+Онлайн-курс, на который вы подписывались ранее и который был на тот момент еще в стадии производства, наконец-то, завершен, опубликован и доступен к просмотру и изучению.<br>
 <br>
-С логином всё просто — это ваша электронная почта, на которую, мы, собственно, и пишем вам сейчас:<br>
+Речь идет вот об этом курсе:<br>
 <br>
-<strong><%= @user.email %></strong><br>
-<br>
-А ваш новый пароль — вот:<br>
-<br>
-<strong><%= @new_password %></strong></span><br>
+<strong><%= @course.title %></strong></span><br>
                           <br>
-                          Попробуете залогиниться? Работает?<br>
+                          Пожалуйста, приступайте!<br>
                           &nbsp;
                         </td>
                       </tr>
@@ -149,11 +144,8 @@
                       <tbody>
                       <tr>
                         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
-                          <a class="mcnButton " title="ВОЙТИ В <%= $env_mode.name_title %>" href="<%= @user.auth_url %>" target="_blank" style="font-weight: normal;letter-spacing: 
-                                  1px;
-                                  line-height: 
-                                  100%;text-align: center;text-decoration: none;color: #FFFFFF;">ВОЙТИ
-                            В <%= $env_mode.name_title %></a>
+                          <a class="mcnButton " title="ПЕРЕЙТИ К КУРСУ" href="<%= @user.auth_url({redirect: "/course_description?id=#{@course.id}"}) %>" target="_blank" style="font-weight: normal;letter-spacing: 1px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ
+                            К КУРСУ</a>
                         </td>
                       </tr>
                       </tbody>
@@ -176,8 +168,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -201,7 +193,8 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                          <em>Если не получается — обязательно&nbsp;<a href="mailto:supportadonline@adconsult.ru" target="_blank">напишите нам</a>.<br>
+                          <em>Если возникнут сложности или что-нибудь пойдет не так — то не стесняйтесь, пожалуйста, и
+                            <a href="mailto:supportadonline@adconsult.ru" target="_blank">свяжитесь с нами</a>. Спасибо!<br>
                             <br>
                             С теплотой,<br>
                             команда <%= $env_mode.name_title %>.</em>
@@ -235,8 +228,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -254,11 +247,11 @@
                     <!--[if mso]>
                     <td valign="top" width="600" style="width:600px;">
                     <![endif]-->
-
+                    <%= render "home_mailer/style_html_mailer/footer_info" %>
                     <!--[if mso]>
                     </td>
                     <![endif]-->
-                    <%= render "home_mailer/style_html_mailer/footer_info" %>
+
                     <!--[if mso]>
                     </tr>
                     </table>

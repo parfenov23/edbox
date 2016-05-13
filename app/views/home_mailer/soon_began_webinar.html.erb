@@ -44,8 +44,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -69,7 +69,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                          <h1 class="null">Ваши логин&nbsp;и пароль</h1>
+                          <h1 class="null">Запасайтесь попкорном!</h1>
 
                         </td>
                       </tr>
@@ -110,20 +110,30 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
                           <br>
-<span><%= @user.full_name %>, вы только что запросили восстановление вашего логина и вашего пароля.<br>
+<span><%= @user.full_name %>, вебинар, на который вы записались некоторое время назад, начнется уже через 15 минут.<br>
 <br>
-<em>(Ну, мы надеемся, что это были вы — в противном случае это значит, что кто-то раскусил вас, узнал ваш e-mail и теперь может строить вам каверзные козни, злокозненные
-  каверзы и... еще что-то в этом роде).</em><br>
+Вот этот вебинар:<br>
 <br>
-С логином всё просто — это ваша электронная почта, на которую, мы, собственно, и пишем вам сейчас:<br>
+<strong><%= @attachment.title %></strong><br>
 <br>
-<strong><%= @user.email %></strong><br>
+Он состоится:<br>
 <br>
-А ваш новый пароль — вот:<br>
+  <% date_time = (@attachment.webinar.date_start + (User.time_zone).hour) %>
+  <strong><%= date_time.strftime("%d.%m") %> в <%= date_time.strftime("%H:%M") %>
+    по московскому времени.
+  </strong><br>
 <br>
-<strong><%= @new_password %></strong></span><br>
+То есть, уже через 15 минут.<br>
+<br>
+Заваривайте скорее кофе, ставьте чайник, плесните себе в бокал полпальца виски — и устраивайтесь поудобнее.<br>
+<br>
+Если вы планируете выходить в прямой эфир, чтобы во время вебинара пообщаться с коллегами, то проверьте, пожалуйста, работоспособность своего микрофона, наушников и видеокамеры. Про наушники — особенно важно, ведь только так можно избежать вечного эха в ушах у всей группы.<br>
+<br>
+Словом, если вы звонили когда-нибудь в прямой эфир на радио — вы уже проинструктированы: «отойдите подальше от радиоприемника» :).<br>
+<br>
+Устроились? Кофе запаслись?&nbsp;</span><br>
                           <br>
-                          Попробуете залогиниться? Работает?<br>
+                          Тогда начинаем!<br>
                           &nbsp;
                         </td>
                       </tr>
@@ -149,11 +159,8 @@
                       <tbody>
                       <tr>
                         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
-                          <a class="mcnButton " title="ВОЙТИ В <%= $env_mode.name_title %>" href="<%= @user.auth_url %>" target="_blank" style="font-weight: normal;letter-spacing: 
-                                  1px;
-                                  line-height: 
-                                  100%;text-align: center;text-decoration: none;color: #FFFFFF;">ВОЙТИ
-                            В <%= $env_mode.name_title %></a>
+                          <a class="mcnButton " title="К ВЕБИНАРУ!" href="<%= @user.auth_url({redirect: "/attachment?id=#{@attachment.id}"}) %>" target="_blank" style="font-weight: normal;letter-spacing: 1px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">К
+                            ВЕБИНАРУ!</a>
                         </td>
                       </tr>
                       </tbody>
@@ -176,8 +183,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -201,7 +208,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                          <em>Если не получается — обязательно&nbsp;<a href="mailto:supportadonline@adconsult.ru" target="_blank">напишите нам</a>.<br>
+                          <em>Поаккуратней там с виски!<br>
                             <br>
                             С теплотой,<br>
                             команда <%= $env_mode.name_title %>.</em>
@@ -235,8 +242,8 @@
                       </tbody>
                     </table>
                     <!--
-                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
-                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                      <td class="mcnDividerBlockInner" style="padding: 18px;">
+                      <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
                     -->
                   </td>
                 </tr>
@@ -254,11 +261,11 @@
                     <!--[if mso]>
                     <td valign="top" width="600" style="width:600px;">
                     <![endif]-->
-
+                    <%= render "home_mailer/style_html_mailer/footer_info" %>
                     <!--[if mso]>
                     </td>
                     <![endif]-->
-                    <%= render "home_mailer/style_html_mailer/footer_info" %>
+
                     <!--[if mso]>
                     </tr>
                     </table>
