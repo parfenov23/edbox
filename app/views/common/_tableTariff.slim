@@ -83,8 +83,8 @@
           td
           td
             .price
-              |#{billing_price.company_price} ₽/мес.
-              span + #{billing_price.company_user_price.to_i} ₽/мес. за сотрудника
+              |#{billing_price.company_user_price.to_i} ₽/мес. за сотрудника
+              span + Директор бесплатно
             .action__block
               .btn.is__blue.js_openFormRegistration.selectType data-type="corp" ОПЛАТИТЬ
           td
@@ -100,8 +100,8 @@
           td
           td
             .price
-              |#{number_with_delimiter(billing_price.company_price.to_i, delimiter: ' ')} ₽/мес.
-              span + #{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} ₽/мес. за сотрудника
+              |#{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} ₽/мес. за сотрудника
+              span + Диреткор бесплатно
             .action__block
               - if (sub.company? rescue false) || (sub.user? rescue false)
                 - if (sub.company? rescue false)

@@ -4,10 +4,14 @@ var editPriceMonthTariff = function () {
     var price_block = parent_block.find(".sum .qty span");
     price_block.text(btn.data('price'));
     parent_block.find("input[name='sum']").val(btn.data('price'));
+
+    ///////////////////////
     btn.closest("ul").hide();
     parent_block.find(".duration .visible__part span").text(btn.text());
     parent_block.find("input[name='count_month']").val(btn.text());
     btn.closest("ul").find('li.active').removeClass('active');
+    //////////////////////
+
     btn.addClass('active');
     if ($(".js_editChangeCountUsersCompany").length){
         addUserSumToPrice($(".js_editChangeCountUsersCompany"));
@@ -22,9 +26,11 @@ var addUserSumToPrice = function (input) {
     var def_cUsers = parseInt(input.data('default'));
     var intVal = parseInt(input.val());
     var oneUserPrice = parseInt(parent_block.data('user_price'));
-    var user_price = oneUserPrice * (intVal - def_cUsers);
+    var priceActive = $(".js_editPriceMonthTariff li.active");
+    var count_month = parseInt(priceActive.text());
 
-    var priceActive = $(".js_editPriceMonthTariff li.active")
+    var user_price = oneUserPrice * (intVal - def_cUsers) * count_month;
+
 
     if (priceActive.length){
         current_price = parseInt(priceActive.data('price'));

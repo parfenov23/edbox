@@ -228,8 +228,10 @@ class User < ActiveRecord::Base
 
   def sub_active(sub)
     all_subs = find_subscription([true, false], false, false)
-    all_subs.update_all(active: false)
-    all_subs.where(id: sub.id).update_all(active: true)
+    if all_subs.present?
+      all_subs.update_all(active: false)
+      all_subs.where(id: sub.id).update_all(active: true)
+    end
   end
 
   private
