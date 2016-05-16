@@ -1,4 +1,4 @@
-- title "ADCONSULT.ONLINE — продавайте больше с каждым днем!"
+- title "#{$env_mode.name_title} — продавайте больше с каждым днем!"
 header.landing__header
   .logo
     a href=""
@@ -11,11 +11,11 @@ header.landing__header
 section.landing__banner
   .landing__inner
     .section__title.is__white
-      |Онлайн-курсы, систематические вебинары,
-      br
-      |интенсивные программы обучения 
+      |Онлайн-курсы, вебинары в прямом эфире
       br
       |от ведущих практиков продаж
+      br
+      |и большой архив скриптов и шаблонов
     .action__block
       a.btn.btn-flat.is__border.is__white href="/sign_up" НАЧАТЬ БЕСПЛАТНО
       .btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
@@ -23,9 +23,9 @@ section.landing__banner
       img src="/assets/landing__banner_img.png"
       iframe allowfullscreen="" frameborder="0" width="398" height="250" mozallowfullscreen="" src="https://player.vimeo.com/video/141645435" webkitallowfullscreen=""
     .description
-      |ADCONSULT.ONLINE – это актуальные и практические занятия, вебинары
-      br
-      |и курсы по увеличению продаж для специалистов с различным уровнем знаний и навыков.
+      '#{$env_mode.name_title} – это десятки онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
+      |вебинары, тесты и аттестация для сотрудников рекламных агентств, медиакомпаний и СМИ.
+
 section.landing__courses__list
   .landing__inner
     .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на ваши финансовые результаты
@@ -40,7 +40,7 @@ section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас на платформе более 150 уникальных уроков, тестов, материалов и образовательных курсов, которые помогут вам продавать больше и чаще
     .description
-      |ADCONSULT.ONLINE — это материалы от практиков, работающих в 83 регионах нашей страны. Сильнейшие спикеры, директора по продажам и владельцы медийных бизнесов расскажут вам о том, как:
+      '#{$env_mode.name_title} — Эксперты и преподаватели #{$env_mode.name_title} научат вас как…
     .advantages__list
       figure
         .image

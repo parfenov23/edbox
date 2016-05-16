@@ -34,6 +34,8 @@ var addUserSumToPrice = function (input) {
 
     if (priceActive.length){
         current_price = parseInt(priceActive.data('price'));
+    }else{
+        user_price = oneUserPrice * (intVal - def_cUsers);
     }
 
     if (def_cUsers < intVal){

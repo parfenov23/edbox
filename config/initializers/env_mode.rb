@@ -42,7 +42,7 @@ class EnvMode
   end
 
   def name_title
-    "ADCONSULT.ONLINE"
+    "ADCONSULT Online"
   end
 
   def to_s
