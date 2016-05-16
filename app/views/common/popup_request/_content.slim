@@ -29,7 +29,7 @@
       .visibile__part
         .title Личный аккаунт
         .description Получите неограниченный доступ ко всем онлайн-курсам, вебинарам, материалам и обновлениям #{$env_mode.name_title}.
-        .price.h__text_24-32 #{billing_price.user_price.to_i} ₽/мес
+        .price.h__text_24-32 #{billing_price.user_price.to_i} рублей в месяц
         .action__block
           - hash_class = ''
           - hash_class += 'ya_paid_course_pers ' if (@course.paid? rescue false)
@@ -44,8 +44,8 @@
         .title Корпоративный аккаунт
         .description Зарегистрируйте корпоративный аккаунт  и пригласите ваших сотрудников. Назначайте курсы и развивайте компетенции  всех сотрудников компании.
         .price.h__text_24-32
-          |#{billing_price.company_price.to_i} ₽/мес
-          span + #{billing_price.company_user_price.to_i} ₽/пользователь
+          |#{billing_price.company_user_price.to_i} рублей в месяц
+          span за каждого сотрудника
         .action__block
           - hash_class = ''
           - hash_class += 'ya_paid_course_corp ' if (@course.paid? rescue false)
