@@ -2,11 +2,16 @@
   <tbody>
   <tr>
 
-    <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
+    <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;color:#5b4141;
+            font-family:Helvetica;font-size:16px;line-height:150%;text-align:left">
 
-      <a href="mailto:supportadonline@adconsult.ru" target="_blank">Написать в службу поддержки.</a><br>
+      <a href="mailto:supportadonline@adconsult.ru" target="_blank" style="color:#2baadf;font-weight:normal;text-decoration:underline">
+        Написать в службу поддержки.
+      </a><br>
       <% if @user.present? %>
-          <a href="<%= @user.auth_url({redirect: "/profile"}) %>" target="_blank">Редактировать аккаунт.</a>
+          <a href="<%= @user.auth_url({redirect: "/profile"}) %>" target="_blank" style="color:#2baadf;font-weight:normal;text-decoration:underline">
+            Редактировать аккаунт.
+          </a>
       <% end %>
     </td>
   </tr>
