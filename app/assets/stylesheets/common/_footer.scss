@@ -1,13 +1,13 @@
 footer {
-  height           : 120px;
+  //height           : 120px;
   display          : flex;
   justify-content  : space-between;
-  padding          : 0 172px;
+  padding          : 0 150px 24px;
   background-color : #FFF;
   padding-top      : 23px;
   .left-col {
-    min-width: 340px;
-    width : 370px;
+    min-width : 340px;
+    width     : 370px;
     .infoPay {
       width : 204px;
       float : right;
@@ -20,14 +20,14 @@ footer {
           }
         }
       }
-      .link a{
-        color: #ee8738;
+      .link a {
+        color : #EE8738;
       }
     }
 
   }
   .right-col {
-    min-width: 348px;
+    min-width : 348px;
     @include clearfix;
     .social-likes {
       display       : block;
@@ -63,4 +63,70 @@ footer {
       }
     }
   }
+  .inthis {
+    text-align : center;
+    //border     : 2px solid gray;
+    width      : 100%;
+    .block {
+      //margin         : 10pt;
+      //padding        : 10pt;
+      //border         : 1px solid red;
+      //border-radius  : 4pt;
+      //width          : 200px;
+      //height         : 100px;
+      display        : inline-block;
+      text-align     : left;
+      vertical-align : middle;
+      width          : 25%;
+      padding-right  : 24px;
+      .title {
+        font-weight    : 600;
+        font-size      : 18px;
+        padding-bottom : 8px;
+        color          : rgba(0, 0, 0, 0.87);
+      }
+      ul {
+        li {
+          padding-top : 8px;
+          min-height  : 24px;
+          color       : rgba(0, 0, 0, 0.54);
+          a {
+            color     : rgba(0, 0, 0, 0.54);
+            font-size : 14px;
+          }
+        }
+      }
+      &.contact__info {
+        padding-bottom : 4px;
+        .title {
+          padding-bottom : 0px;
+        }
+        .send__message___back {
+          padding-top : 0;
+          i {
+            font-size    : 13px;
+            margin-right : 4px;
+            position     : relative;
+            top          : 2px;
+          }
+          a {
+            font-size : 11px;
+          }
+        }
+        .social {
+          a {
+            margin-right : 5px;
+            font-size    : 24px;
+          }
+        }
+        .other {
+          padding-bottom : 20px;
+        }
+        .copywrite {
+          font-size : 12px;
+        }
+      }
+    }
+  }
+
 }

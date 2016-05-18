@@ -1,22 +1,61 @@
 footer
-  .left-col
-    img style='float: left;' src="/images/ad__logo.png"
-    .infoPay
-      .icon_pay
-        img.cloud src="/pay_icon/cp.png"
-        img.masterCard src="/pay_icon/mcard.png"
-        img.visa src="/pay_icon/visa.png"
-      span.link
-        a href='/info_pay' Правила платежей
-  .right-col
-    = render "home/footer/social_counter" if !$env_mode.dev?
-    .developers
-      .logo
-        img src="/images/phone.png"
-      .info
-        p
-          'Службы поддержки
-          - url = "http://adonline2016.reformal.ru"
-          a href=url onclick="$('#reformal_tab').click();return false;"
-            |+7 926 97 33 623
+  .inthis
+    .block
+      .title #{$env_mode.name_title}
+      ul
+        li
+          a href="/courses" Библиотека
+        li
+          a href="/courses?type=course" Курсы
+        li
+          a href="/courses?type=online" Вебинары
+        li
+          a href="/courses?type=material" Материалы
+    .block
+      .title Сервисы и документы
+      ul
+        li
+          a href="/sign_up" Регистрация
+        li
+          a href="/sign_in" Авторизация
+        li
+          a href="/oferta" Пользовательское соглашение
+        li
+          a href="/info_pay" Правила платежей
+    .block
+      .title Помощь и потдержка
+      ul
+        li
+          a href="#" Сообщить о проблеме
+        li
+          a href="#" Написать отзыв
+        li
+          a href="#" Предложить идею
+        li
+          a href="#" Задать вопрос
+    .block.contact__info
+      .title +7 926 973 36 23
+      ul
+        li.send__message___back
+          i.icon.email_cl
+          a href="mailto:supportadonline@adconsult.ru" Обратная связь
+        li.other
+        li.social
+          a href="#"
+            i.icon.gplus
+          a href="#"
+            i.icon.twitter
+          a href="#"
+            i.icon.vk
+          a href="#"
+            i.icon.fb
+          a href="#"
+            i.icon.in
+          a href="#"
+            i.icon.youtube
+          a href="#"
+            i.icon.rss
+        li.copywrite ©#{$env_mode.name_title}, 2015-2016
+
+
 

@@ -298,4 +298,42 @@ i.icon {
     }
   }
 
+  &.vk {
+    &::before {
+      content : "\e906";
+    }
+  }
+  &.rss {
+    &::before {
+      content : "\e900";
+    }
+  }
+  &.fb {
+    &::before {
+      content : "\e901";
+    }
+  }
+  &.youtube {
+    &::before {
+      content : "\e902";
+    }
+  }
+
+  &.in {
+    &::before {
+      content : "\e903";
+    }
+  }
+  &.gplus {
+    &::before {
+      content : "\e904";
+    }
+  }
+  &.twitter {
+    &::before {
+      content : "\e905";
+    }
+  }
+
+
 }

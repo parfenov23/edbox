@@ -1,253 +1,268 @@
 .landing__header {
   @include clearfix;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 64px;
-  background-color: rgba(255, 255, 255, .87);
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
-  z-index: 99;
+  position         : fixed;
+  top              : 0;
+  left             : 0;
+  width            : 100%;
+  height           : 64px;
+  background-color : rgba(255, 255, 255, .87);
+  box-shadow       : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+  z-index          : 99;
   .logo {
-    margin-left: 20px;
-    margin-right: 16px;
-    float: left;
-    width: 168px;
-    padding-top: 14px;
+    margin-left  : 20px;
+    margin-right : 16px;
+    float        : left;
+    width        : 168px;
+    padding-top  : 14px;
     a {
-      img{
-        width: 100%;
+      img {
+        width : 100%;
       }
     }
   }
   .logo__legend {
-    font-size: 14px;
-    line-height: 20px;
-    float: left;
-    padding-top: 23px;
-    color: black__color(secondary__color);
+    font-size   : 14px;
+    line-height : 20px;
+    float       : left;
+    padding-top : 23px;
+    color       : black__color(secondary__color);
   }
   .action__block {
-    width: 290px;
-    float: right;
-    padding-top: 16px;
+    width       : 290px;
+    float       : right;
+    padding-top : 16px;
     .btn {
-      float: left;
-      margin-right: 8px;
+      float        : left;
+      margin-right : 8px;
     }
   }
 }
+
 .landing__inner {
   @include middle-block(1128px);
-  padding-bottom: 64px;
+  padding-bottom : 64px;
   .section__title {
     @include text__setting(header__typo_3);
-    text-align: center;
-    font-weight: 300;
+    text-align  : center;
+    font-weight : 300;
     &.is__white {
-      color: #fff;
+      color : #FFF;
     }
   }
 }
+
 .landing__banner {
-  margin-top: 64px;
-  background: url("landing__banner.jpg") 50% 0 no-repeat #fff;
-  padding-top: 64px;
-  padding-bottom: 19px;
+  margin-top     : 64px;
+  background     : url("landing__banner.jpg") 50% 0 no-repeat #FFF;
+  padding-top    : 64px;
+  padding-bottom : 19px;
   .section__title {
     @include middle-block(683px);
-    margin-bottom: 32px;
+    margin-bottom : 32px;
   }
-  .action__block  {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 38px;
+  .action__block {
+    display         : flex;
+    justify-content : center;
+    margin-bottom   : 38px;
     .btn {
-      margin: 0 16px;
-      height: 40px;
-      line-height: 40px;
-      font-size: 16px;
-      padding: 0 16px;
+      margin      : 0 16px;
+      height      : 40px;
+      line-height : 40px;
+      font-size   : 16px;
+      padding     : 0 16px;
     }
     .is__white {
-      color: #fff;
-      border-color: #fff;
+      color        : #FFF;
+      border-color : #FFF;
       &:hover {
-        background: rgba(255, 255, 255,0.08);
+        background : rgba(255, 255, 255, 0.08);
       }
     }
   }
-  .banner__img  {
-    text-align: center;
-    margin-bottom: 24px;
-    position: relative;
+  .banner__img {
+    text-align    : center;
+    margin-bottom : 24px;
+    position      : relative;
     img {
-      width: 100%;
+      width : 100%;
     }
     iframe {
-      position: absolute;
-      top: 21px;
-      left: 50%;
-      margin-left: -176px;
-      height: 250px;
-      width: 398px;
+      position    : absolute;
+      top         : 21px;
+      left        : 50%;
+      margin-left : -176px;
+      height      : 250px;
+      width       : 398px;
 
     }
   }
   .description {
     @include text__setting(header__typo_1);
     @include middle-block(770px);
-    text-align: center;
+    text-align : center;
   }
 }
+
 .landing__courses__list {
-  padding-top: 83px;
+  padding-top : 83px;
   .section__title {
     @include middle-block(985px);
-    margin-bottom: 64px;
+    margin-bottom : 64px;
   }
   .courses__list_inner {
     @include clearfix;
-    margin-bottom: 16px;
+    margin-bottom : 16px;
     figure {
-      float: left;
-      margin: 0 24px 32px 0;
-      &:nth-child(3n){
-        margin-right: 0;
+      float  : left;
+      margin : 0 24px 32px 0;
+      &:nth-child(3n) {
+        margin-right : 0;
       }
     }
   }
   .action__block {
-    display: flex;
-    justify-content: center;
+    display         : flex;
+    justify-content : center;
   }
 }
+
 .landing__advantages__list {
-  padding-top: 78px;
-  background-color: #fff;
+  padding-top      : 78px;
+  background-color : #FFF;
   .section__title {
     @include middle-block(920px);
-    margin-bottom: 37px;
+    margin-bottom : 37px;
   }
   .description {
     @include text__setting(header__typo_1);
     @include middle-block(860px);
-    text-align: center;
-    margin-bottom: 64px;
+    text-align    : center;
+    margin-bottom : 64px;
   }
   .advantages__list {
     @include clearfix;
-    padding-left: 97px;
-    margin-bottom: 15px;
+    padding-left  : 97px;
+    margin-bottom : 15px;
     figure {
-      cursor: default;
-      margin: 0;
-      float: left;
-      width: 264px;
-      height: 368px;
-      margin-bottom: 44px;
-      margin-right: 75px;
+      cursor        : default;
+      margin        : 0;
+      float         : left;
+      width         : 264px;
+      height        : 368px;
+      margin-bottom : 44px;
+      margin-right  : 75px;
       .image {
-        height: 264px;
-        margin-bottom: 30px;
+        height        : 264px;
+        margin-bottom : 30px;
         img {
-          width: 100%;
+          width : 100%;
         }
       }
       .title {
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
+        font-size   : 20px;
+        line-height : 24px;
+        text-align  : center;
       }
       &:nth-child(3n) {
-        margin-right: 0;
+        margin-right : 0;
       }
     }
   }
   .action__block {
-    display: flex;
-    justify-content: center;
+    display         : flex;
+    justify-content : center;
   }
 }
+
 .landing__question {
-  background: url("pic_2.png") 50% 0 no-repeat;
+  background : url("pic_2.png") 50% 0 no-repeat;
   .landing__inner {
-    padding-top: 64px;
+    padding-top : 64px;
   }
   .section__title {
-    @include middle-block(670px);
-    margin-bottom: 33px;
+    //@include middle-block(670px);
+    margin-bottom : 33px;
   }
-  .description {
-    @include middle-block(970px);
-    @include text__setting(header__typo_1);
-    color: #fff;
-    margin-bottom: 64px;
-  }
-  .action__block  {
-    display: flex;
-    justify-content: center;
-    .is__white {
-      height: 40px;
-      line-height: 40px;
-      padding: 0 16px;
-      font-size: 16px;
-      background-color: #fff;
+  .block_content {
+    display        : inline-block;
+    text-align     : left;
+    vertical-align : middle;
+    width          : 50%;
+    padding        : 0px 8px 0px 32px;
+    .title {
+      margin-bottom : 16px;
+    }
+    .description {
+      //@include middle-block(970px);
+      @include text__setting(header__typo_1);
+      color         : #FFF;
+      margin-bottom : 32px;
+    }
+    .action__block {
+      display         : flex;
+      justify-content : center;
+      .is__white {
+        height           : 40px;
+        line-height      : 40px;
+        padding          : 0 16px;
+        font-size        : 16px;
+        background-color : #FFF;
 
+      }
     }
   }
+
 }
+
 .landing__compare__table {
-  padding-top: 51px;
+  padding-top : 51px;
   .section__title {
-    margin-bottom: 25px;
+    margin-bottom : 25px;
   }
   .description {
     @include middle-block(750px);
     @include text__setting(header__typo_1);
-    margin-bottom: 72px;
-    text-align: center;
+    margin-bottom : 72px;
+    text-align    : center;
   }
 }
 
-
-
 .landing__page {
-  min-width: 1000px;
-  @media only screen and  (max-width: 1130px) {
+  min-width : 1000px;
+  @media only screen and (max-width : 1130px) {
     .landing__inner {
-      width: 100%;
+      width : 100%;
     }
     .landing__banner .banner__img iframe {
-      top: 19px;
-      left: 50%;
-      margin-left: -159px;
-      height: 227px;
-      width: 361px;
+      top         : 19px;
+      left        : 50%;
+      margin-left : -159px;
+      height      : 227px;
+      width       : 361px;
     }
     .landing__courses__list .courses__list_inner, .landing__advantages__list .advantages__list {
-      text-align: center;
+      text-align : center;
     }
     .landing__courses__list .courses__list_inner figure, .landing__advantages__list .advantages__list figure {
       @include inline-block;
-      float: none;
-      margin: 0 24px 32px 0;
+      float  : none;
+      margin : 0 24px 32px 0;
     }
-    .landing__advantages__list .advantages__list figure  {
-      margin-bottom: 44px;
-      margin-right: 75px;
+    .landing__advantages__list .advantages__list figure {
+      margin-bottom : 44px;
+      margin-right  : 75px;
     }
     .content__block .compare__table {
-      width: 100%;
+      width : 100%;
     }
     .content__block td {
-      width: 230px;
+      width : 230px;
     }
     .content__block td:first-child {
-      width: auto;
+      width : auto;
     }
   }
-  footer {
-    height: 120px;
-  }
+  //footer {
+  //  height: 120px;
+  //}
 }

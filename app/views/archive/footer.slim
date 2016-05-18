@@ -1,0 +1,21 @@
+footer
+  .left-col
+    img style='float: left;' src="/images/ad__logo.png"
+    .infoPay
+      .icon_pay
+        img.cloud src="/pay_icon/cp.png"
+        img.masterCard src="/pay_icon/mcard.png"
+        img.visa src="/pay_icon/visa.png"
+      span.link
+        a href='/info_pay' Правила платежей
+  .right-col
+    = render "home/footer/social_counter" if !$env_mode.dev?
+    .developers
+      .logo
+        img src="/images/phone.png"
+      .info
+        p
+          'Службы поддержки
+          - url = "http://adonline2016.reformal.ru"
+          a href=url onclick="$('#reformal_tab').click();return false;"
+            |+7 926 97 33 623
