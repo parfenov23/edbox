@@ -334,6 +334,11 @@ i.icon {
       content : "\e905";
     }
   }
+  &.insta {
+    &::before {
+      content : "\e907";
+    }
+  }
 
 
 }

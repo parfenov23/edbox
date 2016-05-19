@@ -25,14 +25,16 @@ footer
     .block
       .title Помощь и потдержка
       ul
+        - url = "http://adonline2016.reformal.ru"
+        - onclick="$('#reformal_tab').click();return false;"
         li
-          a href="#" Сообщить о проблеме
+          a href="#{url}" onclick="#{onclick}" Сообщить о проблеме
         li
-          a href="#" Написать отзыв
+          a href="#{url}" onclick="#{onclick}" Написать отзыв
         li
-          a href="#" Предложить идею
+          a href="#{url}" onclick="#{onclick}" Предложить идею
         li
-          a href="#" Задать вопрос
+          a href="#{url}" onclick="#{onclick}" Задать вопрос
     .block.contact__info
       .title +7 926 973 36 23
       ul
@@ -41,20 +43,20 @@ footer
           a href="mailto:supportadonline@adconsult.ru" Обратная связь
         li.other
         li.social
-          a href="#"
+          a href="https://plus.google.com/116073902045448332695"
             i.icon.gplus
-          a href="#"
+          a href="https://twitter.com/adconsult_ru?lang=ru"
             i.icon.twitter
-          a href="#"
+          a href="http://vk.com/ADCONSULT"
             i.icon.vk
-          a href="#"
+          a href="http://facebook.com/ADCONSULT"
             i.icon.fb
-          a href="#"
+          a href="http://linkedin.com/company/adconsult"
             i.icon.in
-          a href="#"
+          a href="http://youtube.com/ADCONSULT"
             i.icon.youtube
-          a href="#"
-            i.icon.rss
+          a href="https://www.instagram.com/adconsult.russia"
+            i.icon.insta
         li.copywrite ©#{$env_mode.name_title}, 2015-2016
 
 

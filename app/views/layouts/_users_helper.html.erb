@@ -57,9 +57,10 @@
         $(document).on('click', 'a#reformal_tab', function () {
             var intervalValidBlock;
             intervalValidBlock = setInterval(function () {
-                console.log(1);
                 if ($("#reformal_widget").length){
-                    $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 97 33 623</div>"));
+                    if(!$("#reformal_widget .phoneHelp").length){
+                        $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 97 33 623</div>"));
+                    }
                     clearInterval(intervalValidBlock);
                 }
             }, 100);
