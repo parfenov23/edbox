@@ -81,7 +81,6 @@ validatePresentFile = function () {
                 if (!$(input).val().length){
                     arr_errors[arr_errors.length] = "Введите ссылку на видео";
                 }
-                console.log('sadasdasdasdasdasd');
             }
         }
         if (! arr_errors.length){
