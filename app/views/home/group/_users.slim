@@ -69,5 +69,5 @@
               .send.h__text_15-24  Пройдено #{rus_case(complete_course, "курс", "курса", "курсов")} из #{all_group_course_member.count}
             - else
               - overdue_courses_count = overdue_courses.count
-              - tl = "#{rus_case_label(overdue_courses_count, "Просрочен", "Просроченно", "Просроченно")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
+              - tl = "#{rus_case_label(overdue_courses_count, "Просрочен", "Просрочено", "Просрочено")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
               .send.h__text_15-24.overdue = tl
