@@ -26,6 +26,7 @@ module Api::V1
     end
 
     def update
+      # binding.pry
       attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
       # attachment.work_to_video

@@ -72,7 +72,7 @@
         textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
           = attachment.full_text
       .addedVimeo.itemFile data-type="vimeo" class=(attachment.file_type == "vimeo" ? "attachmentShow" : "")
-        input.js_onChangeEditAttachment name="attachment[full_text]" value=attachment.full_text
+        input.js_onChangeEditAttachment name="attachment[full_texts]" value=attachment.full_text
       .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
         .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
           .titleName = (attachment.file.file.original_filename rescue "Без имени")
