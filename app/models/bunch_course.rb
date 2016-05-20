@@ -40,7 +40,7 @@ class BunchCourse < ActiveRecord::Base
     arr_hashs = []
     # models = BunchCourse.where(id: bc.select(:course_id).uniq.ids)
     model_overdue = models.overdue.uniq_by(:course_id)
-    arr_hashs += [{type: 'overdue', models: model_overdue, title: 'Просроченно'}] if model_overdue.present?
+    arr_hashs += [{type: 'overdue', models: model_overdue, title: 'Просрочено'}] if model_overdue.present?
 
     model_study = models.in_study.uniq_by(:course_id)
     arr_hashs += [{type: 'in_study', models: model_study, title: 'На прохождении'}] if model_study.present?
@@ -62,7 +62,7 @@ class BunchCourse < ActiveRecord::Base
       count_over = ApplicationController.helpers.rus_case(date.abs, 'день', 'дня', 'дней')
       hash = {k: 'overdue', v: "Просрочен на #{count_over}"}
     end
-    hash = {k: 'completed', v: 'Пройденно'} if bc_complete
+    hash = {k: 'completed', v: 'Пройдено'} if bc_complete
     hash
   end
 
@@ -181,11 +181,11 @@ class BunchCourse < ActiveRecord::Base
           use_time = date_complete.strftime("%Y-%m-%d")
           "Назначен до #{use_time}" if model_type == "group"
         else
-          "Пройденно #{progress}%"
+          "Пройдено #{progress}%"
         end
       else
         unless course.test.present?
-          "Пройденно"
+          "Пройдено"
         else
           user_result = course.test.test_results.where(user_id: user_id).last
           user_result.present? ? " Тест пройден на #{user_result.percent}%" : "Тест"

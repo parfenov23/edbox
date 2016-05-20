@@ -63,26 +63,26 @@
             .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
 
       .itemDetailInfo
-        - valid_arr = ["description", "webinar", "test"]
+        - valid_arr = ["description", "webinar", "test", "video"]
         - vaft = attachment.file_type
         .upload_attachments style=((attachment.file.file.present? || valid_arr.include?(vaft)) ? "display:none;" : "" )
           input.uploadFileInput type="file" id="inputFile_#{att_id}" name="attachment[file]" data-type="file"
           input.validateAttachmentFileType type="hidden" value=attachment.file_type
           input type="hidden" name="attachment[attachmentable_type]" value="Course"
           input type="hidden" name="attachment[attachmentable_id]" value=params[:id]
-          - unless attachment.file.file.present? || ["description", "test", "webinar"].include?(attachment.file_type)
+          - unless attachment.file.file.present? || ["description", "test", "webinar", "video"].include?(attachment.file_type)
             .selectAttachment.js_setAttachmentType data-id=att_id data-type="description"
               i.icon.text
               .selectText Написать текст
 
-            - add_class = attachment.file_type == "video" ? "active" : ""
-            .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'video/*')" class=add_class data-type="video" data-id=att_id
+            /- add_class = attachment.file_type == "video" ? "active" : ""
+            /.selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'video/*')" class=add_class data-type="video" data-id=att_id
+            /  i.icon.video
+            /  .selectText Вставить видео
+
+            .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="video"
               i.icon.video
               .selectText Вставить видео
-
-            .selectAttachment.js_setAttachmentType data-id=attachment.id data-type="vimeo"
-              i.icon.video
-              .selectText Вставить вимео
 
             - add_class = attachment.file_type == "audio" ? "active" : ""
             .selectAttachment.js_setAttachmentType onclick="openInputFile('inputFile_#{att_id}', 'audio/*')" class=add_class data-type="audio" data-id=att_id
@@ -107,8 +107,9 @@
           .addedTxtDescription.itemFile data-type="description" class=(attachment.file_type == "description" ? "attachmentShow" : "")
             textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
               = attachment.full_text
-          .addedVimeo.itemFile data-type="vimeo" class=(attachment.file_type == "vimeo" ? "attachmentShow" : "")
-            input.js_onChangeEditAttachment name="attachment[full_text]" value=attachment.full_text
+          .addedTxtDescription.itemFile data-type="video" class=(attachment.file_type == "video" ? "attachmentShow" : "")
+            textarea.js_onChangeEditAttachment name="attachment[embed_video]" style="width:100%; height: 100px;"
+              = attachment.embed_video
           .addedFileInfo.itemFile data-type="file" class=( (attachment.file_type != "description" && attachment.file.file.present?) ? "attachmentShow" : "")
             .fileInfo onclick="openInputFile('inputFile_#{attachment.id}', '#{attachment.uploadType}')"
               .titleName = (attachment.file.file.original_filename rescue "Без имени")

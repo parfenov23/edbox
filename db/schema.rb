@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412064400) do
+ActiveRecord::Schema.define(version: 20160520080612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.text     "full_text"
     t.integer  "position"
     t.boolean  "public",              default: false
+    t.text     "embed_video"
   end
 
   create_table "bigbluebutton_room_options", force: true do |t|

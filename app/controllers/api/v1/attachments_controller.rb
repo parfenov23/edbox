@@ -26,7 +26,6 @@ module Api::V1
     end
 
     def update
-      # binding.pry
       attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
       # attachment.work_to_video
@@ -93,7 +92,8 @@ module Api::V1
     end
 
     def params_attachment
-      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration, :attachmentable_type, :attachmentable_id).compact rescue {}
+      params.require(:attachment).permit(:title, :description, :file, :full_text,
+                                         :duration, :attachmentable_type, :attachmentable_id, :embed_video).compact rescue {}
     end
 
     def find_user
