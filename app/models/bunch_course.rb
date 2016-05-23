@@ -14,7 +14,7 @@ class BunchCourse < ActiveRecord::Base
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
   scope :uniq_by_course_id, -> { select(:course_id).distinct }
   scope :all_type_courses, -> { all_type_courses_hash(all) }
-  scope :uniq_by, -> (type){ uniq_by_type(all, type) }
+  scope :uniq_by, -> (type) { uniq_by_type(all, type) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -31,8 +31,8 @@ class BunchCourse < ActiveRecord::Base
   end
 
   def self.uniq_by_type(models, type)
-    arr = models.map{|model| model.method(type).call}.uniq
-    arr_ids = arr.map{|one| models.where(type => one).last.id}
+    arr = models.map { |model| model.method(type).call }.uniq
+    arr_ids = arr.map { |one| models.where(type => one).last.id }
     models.where(id: arr_ids)
   end
 
@@ -142,7 +142,11 @@ class BunchCourse < ActiveRecord::Base
     end
     bunch_course.date_complete = date_complete
     bunch_course.save
-    HomeMailer.reg_course(course, user).deliver unless course.online?
+    if group_id.blank?
+      HomeMailer.reg_course(course, user).deliver unless course.online?
+    else
+      HomeMailer.reg_course_director(course, user, bunch_course).deliver unless course.online?
+    end
     sections.each do |section|
       current_section = (sections_hash[section.id.to_s] rescue nil)
       if type == "group"
