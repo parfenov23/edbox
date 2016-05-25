@@ -3,6 +3,7 @@ class DeliveryMailer < ActionMailer::Base
 
   def send_mail(email, title, description)
     @description = description
+    @title = title
     mail(to: email, subject: title)
   end
 end
