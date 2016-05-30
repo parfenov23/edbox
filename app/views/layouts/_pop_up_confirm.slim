@@ -1,7 +1,33 @@
 .pop_up_confirm.noCloseToggleState
-    .inner.allgood
-        .description
-            |Вы уверены?
-        .action-btn
-            .btn.btn-raised.is__orange.js_actionYesStart да
-            .btn.btn-flat.js_closePopupConfirmNo нет
+  .inner.allgood
+    .description
+      |Вы уверены?
+    .action-btn
+      .btn.btn-raised.is__orange.js_actionYesStart да
+      .btn.btn-flat.js_closePopupConfirmNo нет
+
+
+// Модальное окно картинки
+.pop_up_confirm.noCloseToggleState.popup__img.noConfirmOpen
+  .inner.allgood
+    .title
+    img.imgView src='/cert.png'
+    javascript:
+      pageLoad(function () {
+        if (window.pluso)if (typeof window.pluso.start == "function") return;
+        if (window.ifpluso == undefined){
+          window.ifpluso = 1;
+          var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+          s.type = 'text/javascript';
+          s.charset = 'UTF-8';
+          s.async = true;
+          s.src = ('https:' == window.location.protocol?'https':'http') + '://share.pluso.ru/pluso-like.js';
+          var h = d[g]('body')[0];
+          h.appendChild(s);
+        }
+      });
+    - hash_params = {'data-background' => 'transparent','data-description' => 'Сертификат За прохождение курса : Супермен в продаже!',
+                     'data-options' => 'medium,round,line,vertical,nocounter,theme=08',
+                     'data-services' => 'vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print',
+                     'data-title' => 'Сертификат 221', 'data-url' => 'http://google.com'}
+    .pluso *hash_params

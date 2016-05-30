@@ -12,6 +12,14 @@ gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'actionpack-page_caching'
 
+# ============= HTML to IMG
+gem 'imgkit'
+gem 'wkhtmltopdf'
+gem 'wkhtmltoimage-binary'
+
+gem 'rmagick', '2.13.2'
+# =======================
+
 gem 'unicorn'
 gem 'faraday'
 gem 'bootstrap-material-design', '~> 0.1.7'

@@ -172,6 +172,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    imgkit (1.6.1)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -324,6 +325,7 @@ GEM
       rufus-scheduler (~> 2.0)
     resque-status (0.5.0)
       resque (~> 1.19)
+    rmagick (2.13.2)
     ruby-graphviz (1.2.2)
     rufus-scheduler (2.0.24)
       tzinfo (>= 0.3.22)
@@ -411,6 +413,8 @@ GEM
       chronic (>= 0.6.3)
     without-rails (1.1.1)
       railties
+    wkhtmltoimage-binary (0.12.2)
+    wkhtmltopdf (0.1.2)
     yandex-money-sdk (1.0.5)
       httparty (~> 0.13, >= 0.13.1)
       recursive-open-struct (~> 0.5.0)
@@ -443,6 +447,7 @@ DEPENDENCIES
   faraday_middleware
   guard-livereload (~> 2.4)
   hiredis
+  imgkit
   jbuilder (~> 2.0)
   less-rails (~> 2.7.0)
   mailcatcher (= 0.6.1)
@@ -463,6 +468,7 @@ DEPENDENCIES
   resque
   resque-scheduler
   resque-status
+  rmagick (= 2.13.2)
   rufus-scheduler
   russian
   sass-rails
@@ -481,4 +487,6 @@ DEPENDENCIES
   websocket-rails!
   whenever
   without-rails
+  wkhtmltoimage-binary
+  wkhtmltopdf
   yandex-money-sdk

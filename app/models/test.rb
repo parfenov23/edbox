@@ -1,4 +1,6 @@
 class Test < ActiveRecord::Base
+  require 'resize_image'
+
   belongs_to :section
   has_many :questions, :dependent => :destroy
   has_many :test_results, dependent: :destroy
@@ -64,10 +66,10 @@ class Test < ActiveRecord::Base
     if answer.present?
       user_result = get_result(answer)
       result = self.test_results.new({
-                                user_id: user_id,
-                                right_answers: user_result[:right_answers],
-                                all_questions: user_result[:all_questions],
-                                result: user_result[:result]})
+                                       user_id: user_id,
+                                       right_answers: user_result[:right_answers],
+                                       all_questions: user_result[:all_questions],
+                                       result: user_result[:result]})
       if testable_type == "Attachment"
         bunch_attachment = testable.bunch_attachment(user_id)
         if bunch_attachment.present?
@@ -78,5 +80,21 @@ class Test < ActiveRecord::Base
       end
       result.save ? result : false
     end
+  end
+
+  def certificate(user)
+    root_path = "#{Rails.root}/public"
+    file_path = "/system/tests_cert/#{id}_#{user.id}.png"
+    full_path = root_path + file_path
+    dir = File.dirname(full_path)
+    FileUtils.mkdir_p(dir) unless File.directory?(dir)
+    unless File.file?(full_path)
+      FileUtils.cp("#{Rails.root}/public/uploads/cert.png", full_path)
+      test_model = testable
+      ResizeImage.add_text(full_path, user.full_name, 535, 660)
+      ResizeImage.add_text(full_path, test_model.title, 535, 820)
+      ResizeImage.add_text(full_path, (test_model.ligament_leads.first.user.full_name rescue 'Нет'), 952, 1038, 24)
+    end
+    file_path
   end
 end

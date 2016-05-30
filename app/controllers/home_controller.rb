@@ -2,7 +2,7 @@ class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay]
+                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -96,7 +96,7 @@ class HomeController < ActionController::Base
     if params[:cid].present?
       @courses_cid = @courses.joins(:bunch_categories).where("bunch_categories.category_id" => params[:cid])
     end
-    @courses = @courses.sort {|a,b| a.min_date_webinar <=> b.min_date_webinar} if params[:type] == "online"
+    @courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
   end
 
   def programm
@@ -197,6 +197,11 @@ class HomeController < ActionController::Base
 
   def page_404
     render "common/page_404", :status => 404, :layout => "application"
+  end
+
+  def user
+    @user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
+    @user_tests = Test.where(id: @user.test_results.where(result: 100).map(&:test_id).uniq)
   end
 
   private

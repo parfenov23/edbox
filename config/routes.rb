@@ -67,6 +67,7 @@ Rails.application.routes.draw do
       resources :tests do
         member do
           get :get_test
+          get :certificate
           post :result
           post :remove
         end

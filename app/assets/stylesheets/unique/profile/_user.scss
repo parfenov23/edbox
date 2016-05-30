@@ -1,197 +1,77 @@
 #user_public {
-  .profile__block {
-    position: relative;
-    @include clearfix;
-    @include white__block(1, 0);
-    width   : 920px;
-    margin  : 0 auto 24px;
-    padding : 24px 24px 72px 64px;
+  .contentTableInfoUser {
+    border-bottom  : 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom : 38px;
+    margin-bottom  : 38px;
+    position       : relative;
+    .profile__block {
+      position : relative;
+      @include clearfix;
+      @include white__block(1, 0);
+      width    : 920px;
+      margin   : 0 auto 24px;
+      padding  : 24px 24px 24px 64px;
+    }
+
+    .profile__main {
+      .avatar {
+        position      : relative;
+        float         : left;
+        width         : 128px;
+        height        : 128px;
+        margin        : 0 32px 0 0;
+        border-radius : 100%;
+
+        .ava {
+          max-width     : 100%;
+          min-width     : 100%;
+          border-radius : 100%;
+        }
+      }
+
+      .data {
+        float : left;
+        width : 450px;
+
+        .name {
+          font   : 400 18px/1 "Roboto";
+          color  : rgba(0, 0, 0, .87);
+          margin : 0 0 12px;
+        }
+
+        .other__info {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+          line-height : 20px;
+        }
+      }
+    }
+
   }
-
-  .profile__main {
-    .avatar {
-      position     : relative;
-      float        : left;
-      width        : 128px;
-      height       : 128px;
-      margin       : 0 32px 0 0;
-      border-radius: 100%;
-
-      .ava {
-        max-width    : 100%;
-        min-width    : 100%;
-        border-radius: 100%;
-      }
-
-      input {
-        display: none;
-      }
-
-      &:hover {
-        .upload__block {
-          position     : absolute;
-          top          : 0;
-          left         : 0;
-          width        : 128px;
-          height       : 128px;
-          border-radius: 50%;
-          overflow     : hidden;
-          background   : url("ava-upload.png") 50% 50% no-repeat;
-          z-index      : 2;
-          cursor       : pointer;
-
-          input {
-            display    : block;
-            width      : 300px;
-            margin-left: -170px;
-            position   : absolute;
-            z-index    : 3;
-            cursor     : pointer;
-            height     : 128px;
-            opacity    : 0;
+  .actual-courses {
+    .carusel-wrp {
+      .info-box {
+        .course-prev-list {
+          .cert {
+            width          : 264px;
+            display        : inline-block;
+            vertical-align : top;
+            margin         : 0px;
+            zoom           : 1;
+            content        : "";
+            float          : none;
+            margin-right   : 10px;
+            margin-bottom  : 10px;
+            border-radius  : 2px;
+            box-shadow     : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+            overflow       : hidden;
+            cursor: pointer;
+            &:nth-child(4) {
+              margin-right : 0;
+            }
           }
         }
       }
-    }
-
-    .data {
-      float: left;
-      width: 450px;
-
-      .name {
-        font  : 400 18px/1 "Roboto";
-        color : rgba(0,0,0,.87);
-        margin: 0 0 12px;
-      }
-
-      .state {
-        font  : 400 13px/1 "Roboto";
-        color : rgba(0,0,0,.87);
-        margin: 0 0 24px;
-      }
-
-      .account {
-        font         : 400 13px/1 "Roboto";
-        color        : rgba(0,0,0,.54);
-        margin-bottom: 8px;
-
-        .number {
-          color: rgba(0,0,0,.87);
-        }
-      }
-
-      .tets {
-        font-size  : 13px;
-        color      : rgba(0,0,0,0.54);
-        line-height: 20px;
-      }
-    }
-  }
-
-  .profile__password {
-    padding: 24px 24px 72px 32px;
-
-    .title {
-      font  : 400 18px/18px "Roboto";
-      color : rgba(0,0,0,.54);
-      margin: 0 0 32px;
-    }
-
-    .password {
-      margin: 0 0 12px;
-      font  : 400 13px/13px "Roboto";
-      color : rgba(0,0,0,.26);
-    }
-  }
-
-  .profile__block-tariff {
-    &.profile__tariff-free {
-      padding: 32px 32px 48px;
-    }
-
-    &.profile__tariff-buy {
-      padding   : 32px;
-      background: #fff3eb;
-
-      .text {
-        font  : 400 13px/18px "Roboto";
-        color : rgba(0,0,0,.54);
-        margin: 0 0 20px;
-
-        &:last-child {
-          margin: 0;
-        }
-
-        &.black {
-          color: rgba(0,0,0,.87);
-        }
-      }
-    }
-
-    &.profile__tariff-paid {
-      padding: 32px;
-    }
-    overflow: hidden;
-
-    .title {
-      float : left;
-      width : 70%;
-      font  : 400 18px/24px "Roboto";
-      color : rgba(0,0,0,.87);
-      margin: 0 5% 8px 0;
-    }
-
-    .time {
-      float     : right;
-      width     : 25%;
-      font      : 400 13px/18px "Roboto";
-      color     : rgba(0,0,0,.54);
-      margin    : 0 0 8px;
-      text-align: right;
-    }
-
-    .quantity {
-      font : 400 13px/20px "Roboto";
-      color: rgba(0,0,0,.87);
-    }
-
-    .info {
-      border-top: 1px solid #e0e0e0;
-      overflow  : hidden;
-      margin    : 24px 0 0;
-      padding   : 24px 0 0;
-
-      &__item {
-        float: left;
-        width: calc(100%/3);
-        font : 400 13px/18px "Roboto";
-        color: rgba(0,0,0,.54);
-
-        &-top {
-          margin: 0 0 24px;
-        }
-
-        &-bottom {
-
-        }
-      }
-    }
-  }
-
-  .profile__account {
-    padding: 24px 24px 72px 32px;
-
-    .title {
-      font-size    : 18px;
-      color        : rgba(0,0,0,0.87);
-      line-height  : 24px;
-      margin-bottom: 8px;
-    }
-
-    .description {
-      font-size  : 13px;
-      color      : rgba(0,0,0,0.54);
-      line-height: 18px;
     }
   }
 }

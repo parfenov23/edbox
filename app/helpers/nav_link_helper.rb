@@ -38,7 +38,8 @@ module NavLinkHelper
     [
       {title: "Профиль", link: "/profile"},
       {title: "Тариф", link: "/tariff"},
-      {title: "Платежи", link: "/payments"}
+      {title: "Платежи", link: "/payments"},
+      {title: "Публичная страница", link: "/user?user_id=#{current_user.id}"}
     ]
   end
 

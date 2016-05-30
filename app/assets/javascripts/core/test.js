@@ -25,15 +25,27 @@ var warningTestText = function (invalidTestItemsIds) {
 
 var testResult = function (response) {
     var form = $('#tests');
-    var text = 'Поздравляем! Вы сдали тест. Вы прошли тест с результатом ' +
-        response.result + '%. Если вы хотите улучшить свой результат, ' +
-        'вы может пересдать тест и мы засчитаем вашу лучшую попытку.';
+    if (response.result < 100) {
+        var text = 'Поздравляем! Вы сдали тест. Вы прошли тест с результатом ' +
+            response.result + '%. Если вы хотите улучшить свой результат, ' +
+            'вы может пересдать тест и мы засчитаем вашу лучшую попытку.';
 
-    confirm(text, function () {
-        window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
-    });
-    $(".pop_up_confirm .js_closePopupConfirmNo").hide();
-    $(".pop_up_confirm .js_actionYesStart").text('OK');
+        confirm(text, function () {
+            window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
+        });
+        $(".pop_up_confirm .js_closePopupConfirmNo").hide();
+        $(".pop_up_confirm .js_actionYesStart").text('OK');
+    }else{
+        openPopupImg(response.certificate, 'Поздравляем вы прошли тест на 100 баллов!');
+        $(document).on('click', '.pop_up_confirm', function (event) {
+            var evt = evt || event;
+            var target = evt.target || evt.srcElement;
+            if ($(target).hasClass("pop_up_confirm")){
+                window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
+            }
+        });
+    }
+
     //warning(text, 'ОК');
 };
 

@@ -17,21 +17,39 @@ function warning(text, actionText){
     popup.addClass("h__PopupDisplayFlex");
 }
 
-//var closePopupConfirm = function (event) {
-//    var evt = evt || event;
-//    var target = evt.target || evt.srcElement;
-//    if ($(target).closest(".pop_up_confirm").length == 0 || $(target).hasClass("js_closePopupConfirmNo") > 0 || $(target).hasClass("pop_up_confirm") > 0){
-//        defaultConfirm();
-//    }
-//};
+var closePopupConfirm = function (event) {
+    var evt = evt || event;
+    var target = evt.target || evt.srcElement;
+    if ($(target).hasClass("pop_up_confirm")){
+        defaultConfirm();
+    }
+};
 
 var defaultConfirm = function(){
     var popup = $(".pop_up_confirm");
     popup.removeClass("h__PopupDisplayFlex");
+    popup.find(".title").show();
     btn_yes_action = function(){console.log("no_action")};
 };
 
+var openPopupImg = function(src, title){
+    var popup = $(".pop_up_confirm.popup__img");
+    popup.find("img").attr('src', src);
+    if (title == undefined){
+        popup.find(".title").hide();
+    }else{
+        popup.find(".title").text(title);
+    }
+    popup.addClass("h__PopupDisplayFlex");
+};
+
+var openPopupImgBtn = function(){
+    openPopupImg($(this).attr('src'));
+};
+
 $(document).ready(function () {
+    $(document).on('click', '.pop_up_confirm', closePopupConfirm);
+    $(document).on('click', '.js_openPopupImgBtn', openPopupImgBtn);
     $(document).on('click', '.pop_up_confirm .action-btn .js_closePopupConfirmNo', defaultConfirm);
     $(document).on('click', '.pop_up_confirm .action-btn .js_actionYesStart', function(){
         btn_yes_action();

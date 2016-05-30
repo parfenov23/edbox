@@ -1,0 +1,27 @@
+.pop_up_confirm.popup__img {
+  .inner.allgood {
+    position       : relative;
+    display        : inline-block;
+    vertical-align : middle;
+    margin         : 0 auto;
+    text-align     : left;
+    max-width      : 100%;
+    padding        : 0;
+    width          : initial;
+    .imgView {
+      width      : auto;
+      height     : auto;
+      display    : block;
+      max-height : 600px;
+    }
+    .pluso {
+      position : absolute;
+      top      : 0;
+    }
+    .title {
+      padding-top   : 8px;
+      text-align    : center;
+      margin-bottom : 0;
+    }
+  }
+}

@@ -1,5 +1,7 @@
 module Api::V1
   class TestsController < ::ApplicationController
+    require 'resize_image'
+
     def get_test
       test = find_test
       render json: test.transfer_to_json
@@ -9,7 +11,9 @@ module Api::V1
       test = find_test
       result = test.result(current_user.id, params[:answer])
       if result
-        render json: result.as_json
+        json_hash = result.as_json
+        json_hash[:certificate] = result.result == 100 ? test.certificate(current_user) : false
+        render json: json_hash
       else
         render json: {success: false}
       end
@@ -31,6 +35,11 @@ module Api::V1
       else
         render json: test.transfer_to_json
       end
+    end
+
+    def certificate
+      result = find_test.certificate(current_user)
+      render html: "<img src='#{result}' style='width:1100px;'/>".html_safe
     end
 
     def update
