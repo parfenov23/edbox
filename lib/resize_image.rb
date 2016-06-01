@@ -1,4 +1,7 @@
+require 'resize_image'
 class ResizeImage
+  require 'RMagick'
+
   def self.crop(path)
     img = MiniMagick::Image.open(path)
     img.format "jpg"
