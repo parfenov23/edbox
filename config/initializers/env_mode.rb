@@ -24,13 +24,13 @@ class EnvMode
     @mode == 'beta'
   end
 
-  def current_domain
+  def current_domain(dName = to_key)
     domains = {
       development: "http://localhost:#{port}",
       beta: "http://betaed.masshtab.am",
       production: "http://adconsult.online"
     }
-    domains[to_key]
+    domains[dName]
   end
 
   def config

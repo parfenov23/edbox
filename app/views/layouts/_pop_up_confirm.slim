@@ -13,25 +13,10 @@
     .title
     img.imgView src='/cert.png'
     script src="/pluso.js"
-    /javascript:
-    //  pageLoad(function () {
-    //    if (window.pluso)if (typeof window.pluso.start == "function") return;
-    //    if (window.ifpluso == undefined){
-    //      window.ifpluso = 1;
-    //      var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
-    //      s.type = 'text/javascript';
-    //      s.charset = 'UTF-8';
-    //      s.async = true;
-    //      s.src = ('https:' == window.location.protocol?'https':'http') + '://share.pluso.ru/pluso-like.js';
-    //      var h = d[g]('body')[0];
-    //      h.appendChild(s);
-    //    }
-    //  });
-    -# url_social = "#{$env_mode.current_domain}/course_description?id=#{@course.id}"
     - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
                      'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
                      'data-services' => 'vkontakte,odnoklassniki,facebook,twitter,google,moimir,email',
-                     'data-title' => "#{$env_mode.name_title}", 'data-url' => "#{$env_mode.current_domain}"}
+                     'data-title' => "#{$env_mode.name_title}", 'data-url' => "#{$env_mode.current_domain(:production)}"}
     .shareBtn
       span.textShare Поделитесь сертификатом
       .pluso *hash_params
