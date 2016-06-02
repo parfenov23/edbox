@@ -12,6 +12,7 @@ module Api::V1
       result = test.result(current_user.id, params[:answer])
       if result
         json_hash = result.as_json
+        json_hash[:course_id] = test.testable.id
         json_hash[:course_name] = test.testable.title
         json_hash[:certificate] = result.result == 100 ? test.certificate(current_user) : false
         render json: json_hash

@@ -77,5 +77,6 @@
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
 
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
+<input id="typeEnvModeCurrentDomain" type="hidden" value="<%= $env_mode.current_domain %>">
 </body>
 </html>

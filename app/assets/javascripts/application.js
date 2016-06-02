@@ -24,7 +24,11 @@ var env_mode = function (type) {
     return (type == input_type)
 }
 
-var fbq_env = function(type){
+var current_domain = function () {
+    return $("#typeEnvModeCurrentDomain").val();
+}
+
+var fbq_env = function (type) {
     if (env_mode('production')) fbq('track', type);
 }
 

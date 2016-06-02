@@ -2,7 +2,8 @@ class HomeController < ActionController::Base
   helper_method :current_user
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user]
+                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
+                                     :course_cert]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -202,6 +203,10 @@ class HomeController < ActionController::Base
   def user
     @user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
     @user_tests = Test.where(id: @user.test_results.where(result: 100).map(&:test_id).uniq)
+  end
+
+  def course_cert
+    render :layout => false
   end
 
   private
