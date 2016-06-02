@@ -32,13 +32,14 @@ var defaultConfirm = function(){
     btn_yes_action = function(){console.log("no_action")};
 };
 
-var openPopupImg = function(src, title){
+var openPopupImg = function(src, title, info){
     var popup = $(".pop_up_confirm.popup__img");
     popup.find("img").attr('src', src);
     if (title == undefined){
         popup.find(".title").hide();
     }else{
         popup.find(".title").text(title);
+        if (info != undefined) popup.find(".title").append($("<p>" + info + "</p>"))
     }
     popup.addClass("h__PopupDisplayFlex");
 };

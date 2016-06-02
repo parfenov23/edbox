@@ -14,14 +14,40 @@
       display    : block;
       max-height : 600px;
     }
-    .pluso {
-      position : absolute;
-      top      : 0;
-    }
+    //.pluso {
+    //  position : absolute;
+    //  top      : 0;
+    //}
     .title {
-      padding-top   : 8px;
-      text-align    : center;
-      margin-bottom : 0;
+      padding          : 12px 48px;
+      margin-bottom    : 0;
+      background-color : #EE8738;
+      color            : white;
+      p {
+        line-height : 18px;
+        padding-top : 4px;
+        font-size   : 14px;
+        font-weight : 200;
+        width       : 746px;
+      }
+    }
+    .shareBtn {
+      width         : 100%;
+      padding       : 16px;
+      background    : #473332;
+      border-radius : 0;
+      color         : white;
+      .pluso-wrap {
+        .pluso-more {
+          display : none !important;
+        }
+      }
+      .textShare {
+        position  : relative;
+        top       : -10px;
+        margin    : 5px 12px;
+        font-size : 18px;
+      }
     }
   }
 }

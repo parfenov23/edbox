@@ -27,7 +27,12 @@
         }
       });
     - hash_params = {'data-background' => 'transparent','data-description' => 'Сертификат За прохождение курса : Супермен в продаже!',
-                     'data-options' => 'medium,round,line,vertical,nocounter,theme=08',
-                     'data-services' => 'vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print',
-                     'data-title' => 'Сертификат 221', 'data-url' => 'http://google.com'}
-    .pluso *hash_params
+                     'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
+                     'data-services' => 'vkontakte,odnoklassniki,facebook,twitter,google,moimir,email',
+                     'data-title' => 'Сертификат 221', 'data-url' => 'http://betaed.masshtab.am/system/tests_cert/40_57.png'}
+    .shareBtn
+      span.textShare Поделитесь сертификатом
+      .pluso *hash_params
+      span.textShare или распечатайте его
+      - hash_params["data-services"] = "print"
+      .pluso *hash_params
