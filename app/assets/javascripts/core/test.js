@@ -38,15 +38,15 @@ var testResult = function (response) {
         });
         $(".pop_up_confirm .js_actionYesStart").text('Пересдать тест');
     } else {
+        openPopupImg(response.certificate,
+            'Поздравляем вас!',
+            'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
+            ' продовать больше и чаще.');
         var elemPluso = document.querySelectorAll("div.pluso")[0];
         elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
         elemPluso.pluso.params.image = current_domain() + response.certificate;
         elemPluso.pluso.params.title = "Я получил сертефикат";
         elemPluso.pluso.params.description = response.course_name;
-        openPopupImg(response.certificate,
-            'Поздравляем вас!',
-            'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
-            ' продовать больше и чаще.');
         $(document).on('click', '.pop_up_confirm', function (event) {
             var evt = evt || event;
             var target = evt.target || evt.srcElement;
@@ -55,7 +55,6 @@ var testResult = function (response) {
             }
         });
     }
-
     //warning(text, 'ОК');
 };
 
