@@ -40,7 +40,10 @@ var testResult = function (response) {
     } else {
         document.querySelectorAll("div.pluso")[0].pluso.params.url =
             //current_domain() + "/course_description?id=" + response.course_id + "&cert_id=" + response.test_id + "&user_id=" + response.user_id;
-            "http://beta.masshtab.am" + "/course_cert?id=" + response.course_id + "&cert_id=" + response.test_id + "&user_id=" + response.user_id;
+            "http://betaed.masshtab.am" + "/course_description?id=102";
+        document.querySelectorAll("div.pluso")[0].pluso.params.image = "http://betaed.masshtab.am/cert.png";
+        document.querySelectorAll("div.pluso")[0].pluso.params.title = "Я получил сертефикат";
+        document.querySelectorAll("div.pluso")[0].pluso.params.description = "6 причин вновь полюбить оффлайн-рекламу и не бояться интернета";
         openPopupImg(response.certificate,
             'Поздравляем вас!',
             'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
