@@ -42,11 +42,7 @@ var testResult = function (response) {
             'Поздравляем вас!',
             'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
             ' продовать больше и чаще.');
-        var elemPluso = document.querySelectorAll("div.pluso")[0];
-        elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
-        elemPluso.pluso.params.image = current_domain() + response.certificate;
-        elemPluso.pluso.params.title = "Я получил сертефикат";
-        elemPluso.pluso.params.description = response.course_name;
+
         $(document).on('click', '.pop_up_confirm', function (event) {
             var evt = evt || event;
             var target = evt.target || evt.srcElement;
@@ -54,6 +50,11 @@ var testResult = function (response) {
                 window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
             }
         });
+        var elemPluso = document.querySelectorAll("div.pluso")[0];
+        elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
+        elemPluso.pluso.params.image = current_domain() + response.certificate;
+        elemPluso.pluso.params.title = "Я получил сертефикат";
+        elemPluso.pluso.params.description = response.course_name;
     }
     //warning(text, 'ОК');
 };
