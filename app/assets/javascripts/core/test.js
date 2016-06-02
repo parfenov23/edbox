@@ -40,7 +40,7 @@ var testResult = function (response) {
     } else {
         document.querySelectorAll("div.pluso")[0].pluso.params.url =
             //current_domain() + "/course_description?id=" + response.course_id + "&cert_id=" + response.test_id + "&user_id=" + response.user_id;
-            "http://beta.masshtab.am" + "/course_description?id=" + response.course_id + "&cert_id=" + response.test_id + "&user_id=" + response.user_id;
+            "http://beta.masshtab.am" + "/course_cert?id=" + response.course_id + "&cert_id=" + response.test_id + "&user_id=" + response.user_id;
         openPopupImg(response.certificate,
             'Поздравляем вас!',
             'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
