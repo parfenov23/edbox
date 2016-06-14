@@ -139,6 +139,27 @@ var elemFullScreen = function (elem, btn) {
     }
 }
 
+var isMobile = {
+    Android   : function () {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function () {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS       : function () {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera     : function () {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows   : function () {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any       : function () {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+
 var includeDatePicker = function (block) {
     if (block != undefined){
         block.datepicker({
@@ -334,7 +355,20 @@ function get_browser(name) {
     return get_name_browser() == name
 }
 
+
 $(document).ready(function () {
+    if (isMobile.any()){
+        $(".js__backing").click(function () {console.log('close menu')})
+        $(window).scroll(function () {
+            if (window.where_scroll == "down") {
+                if ($(window).scrollTop() > 200){
+                    $("header").addClass("hide_header");
+                }
+            }else{
+                $("header").removeClass("hide_header");
+            }
+        });
+    }
     back_url();
     if ($("header.scroll_white").length){
         $(document).scroll(function () {

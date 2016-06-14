@@ -12,7 +12,8 @@
   .inner.allgood
     .title
     img.imgView src='/cert.png'
-    script src="/pluso.js"
+    - if !$env_mode.dev?
+      script src="/pluso.js"
     - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
                      'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
                      'data-services' => 'vkontakte,odnoklassniki,facebook,twitter,google,moimir,email',

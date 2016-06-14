@@ -20,7 +20,7 @@
 
     - bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
     - unless bunch_course.present?
-      = course.updated_at
+      - course.updated_at
       .status Опубликован #{course.updated_at.strftime("%d.%m.%y")}
     - else
       - hash = bunch_course.status

@@ -1,0 +1,22 @@
+@media only screen and (max-width : 800px) {
+  // Главная страница
+  @import "index";
+  @import "sign_in";
+  ////////////////
+  @import "cabinet"; // мой кабинет
+  @import "courses"; // страница курсов
+  @import "course_description"; // страница описания курса
+  @import "attachment"; // страница материала и теста
+
+  //Профиль пользователя
+  @import "profile";
+  @import "payments";
+  //////////////////
+
+  header{
+    transition-duration: 300ms;
+    &.hide_header{
+      top: -100px !important;
+    }
+  }
+}

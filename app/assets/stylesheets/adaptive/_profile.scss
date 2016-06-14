@@ -1,0 +1,32 @@
+body {
+  .inner-content {
+    #profile {
+      width : 100%;
+      .profile__block {
+        width   : 100%;
+        padding : 4px 8px 72px 8px;
+        .avatar {
+          padding-left : calc(50% - 64px);
+          width        : 100%;
+          .ava {
+            width     : 100%;
+            height    : 100%;
+            max-width : 128px;
+            min-width : 128px;
+          }
+        }
+        .data {
+          width : 100%;
+          .account{
+            span{
+              display: block;
+              &.number{
+                padding-top: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
