@@ -143,7 +143,7 @@ class BunchCourse < ActiveRecord::Base
     bunch_course.date_complete = date_complete
     bunch_course.save
     if group_id.blank?
-      HomeMailer.reg_course(course, user).deliver unless course.online?
+      # HomeMailer.reg_course(course, user).deliver unless course.online?
     else
       HomeMailer.reg_course_director(course, user, bunch_course).deliver unless course.online?
     end
