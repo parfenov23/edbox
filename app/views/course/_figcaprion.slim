@@ -24,7 +24,7 @@ figcaption
   .info__block
     .type
       - type = (course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : "")) rescue '')
-      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс") rescue 'курс')
+      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Курс") rescue 'курс')
       i.icon class=type
       = text
     - if course.announcement? || course.online?
