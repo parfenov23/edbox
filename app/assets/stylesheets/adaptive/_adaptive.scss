@@ -13,10 +13,20 @@
   @import "payments";
   //////////////////
 
-  header{
-    transition-duration: 300ms;
-    &.hide_header{
-      top: -100px !important;
+  @import "groups"; // страница управление группой
+
+  header {
+    transition-duration : 300ms;
+    &.hide_header {
+      top : -100px !important;
+    }
+  }
+
+  #alert {
+    width  : 100%;
+    bottom : 0px;
+    .text {
+      font-size : 12px;
     }
   }
 }

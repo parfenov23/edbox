@@ -1,0 +1,125 @@
+body {
+  header {
+    .item.js_openPopupNewGroup {
+      display : block !important;
+    }
+  }
+  .content.inner-content#groups {
+    padding-top : 64px;
+    width       : 100%;
+
+    .members__title {
+      padding-right : 0;
+    }
+    .tarif__is_full span {
+      width : 100%;
+    }
+    .container {
+      .members {
+        .members__invite {
+          .form {
+            .searchMember, input.input {
+              width : calc(100% - 50px);
+            }
+            .plane {
+              width : 50px;
+              .qty__left {
+                display : none;
+              }
+            }
+          }
+        }
+        .members__in_system.director {
+          li.members__in_system-item {
+            padding : 4px 8px;
+            .ava {
+              margin : 8px 8px 0px 0px;
+            }
+            .name, .email {
+              width : 240px;
+            }
+          }
+        }
+      }
+    }
+    .container.members {
+      .members__in_system.director {
+        li.members__in_system-item {
+          padding : 4px 8px;
+          .ava {
+            margin : 8px 8px 0px 0px;
+          }
+          .name, .email {
+            width : 240px;
+          }
+        }
+      }
+    }
+    .manage-group {
+      .group-menu {
+        position   : initial;
+        margin-top : 16px;
+        ul {
+          li {
+            width        : 24px;
+            height       : 24px;
+            float        : none;
+            text-align   : initial;
+            margin-right : 8px;
+            display      : inline-block;
+            a {
+              span {
+                display : none;
+              }
+            }
+          }
+        }
+      }
+      .courses-lists {
+        #box1 {
+          .container {
+            .container-inner {
+              padding : 4px 4px;
+              .btn-group {
+                display : none;
+              }
+              .courses-list {
+                figure {
+                  height : 100%;
+                  .title {
+                    .inner {
+                      font-size : 16px;
+                    }
+                    .action__menu {
+                      display : none;
+                    }
+                  }
+                  .image {
+                    width  : 80px;
+                    height : 100%;
+                  }
+                  figcaption {
+                    width : calc(100% - 104px);
+                    .info__block.adaptive__title {
+                      .left-col {
+                        .item:not(.type) {
+                          display : none;
+                        }
+                      }
+                      .right-col {
+                        font-size : 10px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .modal-2.md-modal.md-effect-1.md-show {
+      width : 100%;
+    }
+  }
+}
