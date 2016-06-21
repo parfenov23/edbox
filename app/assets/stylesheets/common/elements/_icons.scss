@@ -26,6 +26,11 @@ i.icon {
       content : "\E6B2";
     }
   }
+  &.new_courses {
+    &::before {
+      content : "\e908";
+    }
+  }
 
   &.other {
     &::before {

@@ -6,9 +6,11 @@ figcaption
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
         .right-col = !course.paid ? "Бесплатно" : nil
     - else
-      .authors = !course.paid ? "Бесплатно" : nil
+      .authors
+        - if !course.paid
+          .free_material = 'Бесплатно'
   - link = "/course_description?id=#{course.id}"
-  -  if current_user.present? && !assigned && course.material?
+  - if current_user.present? && !assigned && course.material?
     - redirect_att = "/course_description?id=#{course.id}"
     - add_class = "js_addCourseToMyCourse"
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
@@ -23,8 +25,9 @@ figcaption
       = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user" && action_block
   .info__block
     .type
-      - type = (course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : "")) rescue '')
-      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Курс") rescue 'курс')
+      - cmaterial = course.material?
+      - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
+      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
       i.icon class=type
       = text
     - if course.announcement? || course.online?
