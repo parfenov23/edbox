@@ -56,7 +56,7 @@ var sendRequestForm = function(){
         }).success(function (m) {
             var type_account = form.find("input[name='type_account']").val();
             $.cookie('user_key', m.user_key);
-            if (type_account == "/corp"){
+            if (type_account == "corp"){
                 window.location.href = '/payment?type=company'
             }else{
                 window.location.href = '/payment?type=user'

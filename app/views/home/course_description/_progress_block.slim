@@ -1,7 +1,7 @@
 - unless current_user.present?
   .progress__block
     .title.adaptive__title.h__no_margin
-      - course_type = (@course.online? ? 'Вебинар' : 'Курс')
+      - course_type = (@course.online? ? 'Вебинар' : 'Онлайн-курс')
       .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
         /- hash_class = ((@course.online? rescue false) ? 'ya_webinar_reg' : '')

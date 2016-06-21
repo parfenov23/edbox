@@ -10,10 +10,11 @@ header.landing__header
 
 section.landing__banner
   .landing__inner
-    .section__title.is__white
+    // is__white
+    .section__title
       |Онлайн-курсы, вебинары в прямом эфире
       br
-      |от ведущих практиков продаж
+      |от ведущих практиков рекламного бизнеса
       br
       |и большой архив скриптов и шаблонов
     .action__block
@@ -28,19 +29,19 @@ section.landing__banner
 
 section.landing__courses__list
   .landing__inner
-    .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на ваши финансовые результаты
+    .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на вашу работу и вашу зарплату
     - courses = Course.publication.where(type_course: "course")
     .courses__list_inner
       - courses.first(6).each do |course|
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 6
       .action__block
-        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ КУРСЫ
+        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
 section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас на платформе более 150 уникальных уроков, тестов, материалов и образовательных курсов, которые помогут вам продавать больше и чаще
     .description
-      '#{$env_mode.name_title} — Эксперты и преподаватели #{$env_mode.name_title} научат вас как…
+      'Эксперты и преподаватели #{$env_mode.name_title} научат вас как…
     .advantages__list
       figure
         .image

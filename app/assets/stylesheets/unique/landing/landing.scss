@@ -57,7 +57,7 @@
   padding-top    : 64px;
   padding-bottom : 19px;
   .section__title {
-    @include middle-block(683px);
+    @include middle-block(686px);
     margin-bottom : 32px;
   }
   .action__block {
@@ -84,13 +84,15 @@
     margin-bottom : 24px;
     position      : relative;
     img {
-      width : 100%;
+      left     : -21px;
+      position : relative;
+      width    : 100%;
     }
     iframe {
       position    : absolute;
       top         : 21px;
       left        : 50%;
-      margin-left : -176px;
+      margin-left : -197px;
       height      : 250px;
       width       : 398px;
 
@@ -236,7 +238,7 @@
     .landing__banner .banner__img iframe {
       top         : 19px;
       left        : 50%;
-      margin-left : -159px;
+      margin-left : -180px;
       height      : 227px;
       width       : 361px;
     }
