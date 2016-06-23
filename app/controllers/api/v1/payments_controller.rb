@@ -23,6 +23,11 @@ module Api::V1
       render resp
     end
 
+    def order_bill
+      HomeMailer.order_bill(params, current_user).deliver
+      render json: {success: true}
+    end
+
     def purchase
       subscription = create_subscription(params)
       amount = params[:sum]

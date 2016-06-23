@@ -18,7 +18,13 @@ var selectType = function(type){
 };
 
 var openFormRegistrationAuth = function(){
-    window.location.href = '/sign_up';
+    var btn= $(this);
+    if(btn.data('type') == "free") {
+        window.location.href = '/courses';
+    }else{
+        window.location.href = '/payment?type=' + btn.data('type') + "&page=reg";
+    }
+    //window.location.href = '/sign_up';
     //var popup = $("#openFormRegistrationAuth");
     //popup.show();
     //$(document).scrollTop( popup.offset().top);

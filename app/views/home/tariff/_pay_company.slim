@@ -1,41 +1,70 @@
 .billing__wrp
   .content__block
     .page__title
-      img src="/assets/header__adconsult.svg"
+      /img src="/assets/header__adconsult.svg"
     form.tarif__info.tariffPay action='/money/purse/refill_process' method='POST'
-      .title Проверьте ваш заказ
+      .title Полный корпоративный аккаунт
       .description
-        p
-          |Вы покупаете «
-          b Корпоративный
-          |» пакет доступа к #{$env_mode.name_title} и получите возможности:
+        /p
+        /  |Вы покупаете «
+        /  b Корпоративный
+        /  |» пакет доступа к #{$env_mode.name_title} и получите возможности:
         ul
           li
             i.icon.done
-            | Просмотра бесплатных курсов, вебинаров и материалов онлайн-университета
+            | Личный кабинет руководителя
           li
             i.icon.done
-            | Подписку на обновления онлайн-университета
+            | Формирование групп слушателей
           li
             i.icon.done
-            | Доступа ко всем платным материалам, вебинарам и курсам системы
+            | Создание группового расписания
           li
             i.icon.done
-            | Формировать личное расписание
+            | Все онлайн-курсы всех экспертов
           li
             i.icon.done
-            | Формировать группы обучающихся и назначать групповое расписание для сотрудников
+            | Все вебинары в прямом эфире без ограничений
           li
             i.icon.done
-            | Бонусные корпоративные программы и предложения
+            | Все материалы в библиотеке
           li
             i.icon.done
-            | Аналитика эффективности корпоративного обучения
+            | Все будущие обновления контента
+        ul.right
+          li
+            i.icon.done
+            | Контроль за обучением сотрудников
+          li
+            i.icon.done
+            | Персональные рекомендации
+          li
+            i.icon.done
+            | Отчеты о ходе обучения сотрудников
+          li
+            i.icon.done
+            | Личный кабинет и статистика слушателя
+          li
+            i.icon.done
+            | Формирование личного расписания
+          li
+            i.icon.done
+            | Тесты, экзамены и проверка знаний
+          li
+            i.icon.done
+            | Сертификаты об окончании курсов
+
         .company__name
-          - company_name = (current_user.company.first_name rescue nil)
+          - company = current_user.company
+          - company_name = company.present? ? company.first_name : nil
           .com__input-item.item class=(company_name.present? ? 'is__noFocus' : 'empty')
             input.form-control.floating-label type="text" placeholder="Введите название вашей компании" value=company_name name="company_name"
-            .error__msg Ой все
+            .error__msg Обязательное поле
+            hr
+          - company_phone = company.present? ? company.phone : nil
+          .com__input-item.item.right class=(company_name.present? ? 'is__noFocus' : 'empty')
+            input.form-control.floating-label type="tel" placeholder="Введите ваш номер телефона" value=company_name name="company_phone"
+            .error__msg Обязательное поле
             hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
@@ -67,17 +96,19 @@
             input type="hidden" name="email" value=current_user.email
             input type="hidden" name="type_account" value=sub_type
             input type="hidden" name="type_order" value=(sub.present? ? "Продление" : "Новая подписка")
-            span = hash_date[:default_price]
+            span = hash_date[:default_price].to_i
             = " ₽"
       .legend
-        | Подписка начнет действовать сразу после одобрения менеджером,
+        | Подписка начнет действовать сразу после настройки вашего корпоративного аккаунта нашим менеджером.
         br
-        | обычно это занимает не более 24 часов, к вам на почту придет уведомление.
+        ' Обычно это занимает несколько часов после поступления оплаты на расчетный счет ADCONSULT Online (ООО «Рекламный консалтинг»). Как только аккаунт будет готов,
+        |мы лично свяжемся с вами и оповестим вас об этом.
       .action__block
-        a.btn href="/tariff" ОТМЕНА
+        a.btn.btn-flat href="/tariff" ОТМЕНА
         /.btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
         - class_btn = current_user.accounts.present? ? "js_paymentAccount" : "js_openPopupAddCard"
-        .btn.is__blue class=class_btn ОПЛАТИТЬ
+        .btn.is__blue class=class_btn ОПЛАТИТЬ ПО КАРТЕ
+        .btn.is__blue.js_orderBill style="margin-left: 16px;" Заказать счет
     .help__info
       p Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
       p +7 926 973 36 23

@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   def self.build(params)
     company = new
     company.first_name = params[:name]
+    company.phone = params[:phone]
     company
   end
 

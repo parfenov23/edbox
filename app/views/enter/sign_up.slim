@@ -1,10 +1,20 @@
+header.landing__header
+  .logo
+    a href="/"
+      img src="/assets/adcons__grey.svg"
+  .logo__legend Онлайн-университет по продажам рекламы
+  .action__block
+    a.btn.btn-flat href="/sign_in" ВОЙТИ
+    - reg_type = params[:type_reg].present? ? "?type_reg=#{params[:type_reg]}" : ''
+    a.btn.btn-flat.is__border href="/sign_up#{reg_type}" ЗАРЕГИСТРИРОВАТЬСЯ
 // .error.lvl-2 lvl-3 lvl-4
 .reg__wrp
   .logo__frst
-    img src="/assets/header__edbox.svg"
+    /img src="/assets/header__edbox.svg"
   .logo__scnd
-    img src="/assets/header__adconsult.svg"
-  form.reg__form.js_registrationUser
+    /img src="/assets/header__adconsult.svg"
+  - hash_redirect = params[:type_reg].present? ? {'data-redirect' => "/payment?type=#{params[:type_reg]}"} : {}
+  form.reg__form.js_registrationUser *hash_redirect
     .title Регистрация
     .com__input-item.item.empty
       input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Ваше имя"

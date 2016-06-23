@@ -98,6 +98,7 @@ Rails.application.routes.draw do
           post :post3ds
           post :remove_card
           post :purchase
+          post :order_bill
         end
       end
 

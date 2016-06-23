@@ -136,6 +136,10 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.js_FormAuthResetPass .js_resetPassword', resetPassword);
+    $(document).on('click', '.jsOpenLandingCompareTable', function(){
+        $(this).closest(".popupRequestRegistration").find("section.landing__compare__table").show();
+        $(this).closest(".showInfo").hide();
+    });
 
     if ($("form.js_registrationUser").length){
         (function() {
@@ -228,7 +232,7 @@ $(document).ready(function () {
                     fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
                     if(form.data('redirect') == undefined){
-                        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
+                        $("#formCourseRegPopUp").show();
                     }else{
                         window.location.href = form.data('redirect');
                     }

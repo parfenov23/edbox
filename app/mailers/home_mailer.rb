@@ -58,6 +58,12 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Вы подписаны на курс #{@course.title}")
   end
 
+  def order_bill(params, user)
+    @params = params
+    @user = user
+    mail(:to => 'supportadonline@adconsult.ru', :subject => "Заявка на выставление счета")
+  end
+
   def reg_course_director(course, user, bunch_course)
     @course = course
     @user = user

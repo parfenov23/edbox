@@ -4,6 +4,7 @@
     script src="https://widget.cloudpayments.ru/bundles/checkout"
     script src='/jq.mask.min.js'
     link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    p.infoProgress style="display: none;" Подождите, идет загрузка...
     form#paymentFormSample autocomplete="off" data-public_id=$cloud_payments.public_id data-reload=(reload_page rescue true).to_s data-payment=(payment rescue false).to_s
       .card-num.input-wrp.name.card-input
         .input_text
@@ -21,11 +22,13 @@
           .card-date.input-wrp
             input.card-input data-cp="expDateMonthYear" type="text" placeholder='ММ / ГГ'
             hr
-        .blockCVV
-          span.visible-xs-inline Код безопасности
-          .card-CVV.input-wrp
-            input.card-input data-cp="cvv" type="password" placeholder='CVV'
-            hr
+        .blockCVVInfo
+          .info Три цифры с обратной стороны карты
+          .blockCVV
+            span.visible-xs-inline Код безопасности
+            .card-CVV.input-wrp
+              input.card-input data-cp="cvv" type="password" placeholder='CVV'
+              hr
 
       .addCart.btn.is__blue = (btn_name rescue "Привязать карту")
     div id='3ds' style="display: none;"

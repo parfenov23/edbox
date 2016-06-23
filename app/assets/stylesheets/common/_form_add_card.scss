@@ -25,11 +25,24 @@
   }
   .dateAndCvv {
     overflow : hidden;
-    .blockCVV {
-      float : right;
-      width : 30%;
-      .card-CVV {
-        width : 100%;
+    .blockCVVInfo {
+      display : inline-block;
+      width   : 43%;
+      float   : right;
+      .info {
+        width      : 60px;
+        font-size  : 8px;
+        text-align : right;
+        display    : inline-block;
+        margin-top : 16px;
+        color      : rgba(0, 0, 0, 0.50);
+      }
+      .blockCVV {
+        max-width : 150px;
+        float     : right;
+        .card-CVV {
+          width : 100%;
+        }
       }
     }
 

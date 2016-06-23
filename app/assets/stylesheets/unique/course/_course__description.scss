@@ -625,6 +625,7 @@
 }
 
 .ugly__popup {
+  overflow-y       : auto;
   position         : absolute;
   z-index          : 9999;
   top              : 0;
@@ -716,8 +717,8 @@
             &:after {
               content : "×";
             }
-            &.hide{
-              display: none;
+            &.hide {
+              display : none;
             }
           }
           &:hover {

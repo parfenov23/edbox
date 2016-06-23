@@ -13,6 +13,14 @@ body {
           .hidden-xs, .visible-xs-inline {
             font-size : 12px;
           }
+          .blockDate {
+            width : 34%;
+          }
+          .blockCVVInfo {
+            .info {
+              display : none;
+            }
+          }
           input.card-input {
             font-size : 18px;
           }

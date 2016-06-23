@@ -1,5 +1,17 @@
+var openInfoProgress = function (type) {
+    console.log(123);
+    if (type != "close"){
+        $("#paymentsPopup .infoProgress").show();
+        $("#paymentsPopup  form#paymentFormSample").hide();
+    } else {
+        $("#paymentsPopup .infoProgress").hide();
+    }
+};
+
 var includePaymentMethods = function () {
     createCryptogram = function () {
+        if(!validate_company_form()) return false ;
+        openInfoProgress();
         var user_name = form().find("input[data-cp='name']").val();
         var card_number = form().find("input[data-cp='cardNumber']").val();
         var result = checkout.createCryptogramPacket();
@@ -69,21 +81,22 @@ var purchase_pay = function () {
         if (data.success){
             show_error('Оплата успешно прошла', 3000);
             setTimeout(function () {
-                window.location.href='/profile';
+                window.location.href = '/profile';
             }, 1500);
-        }else{
+        } else {
             show_error('Произошла ошибка', 3000);
         }
     });
 };
 
 var updateForm3ds = function (json) {
+    $("form#paymentFormSample").hide();
     var form = $("form#secure_card");
     form.find("[name='PaReq']").val(json.PaReq);
     form.find("[name='MD']").val(json.TransactionId);
     form.attr("action", json.AcsUrl);
     form.submit();
-    $("form#paymentFormSample").hide();
+    openInfoProgress('close');
     form.closest("#3ds").show();
 };
 
@@ -103,10 +116,11 @@ var removePaymentCard = function () {
 };
 
 var openPopupAddCard = function () {
+    if(!validate_company_form()) return false ;
     $("#paymentsPopup").addClass("h__PopupDisplayFlex");
 };
 
-var includeTypeCard = function(){
+var includeTypeCard = function () {
     var input = $("[data-cp='cardNumber']");
     var block_logo = $('#paymentFormSample .cardLogo');
     block_logo.removeClass('fa-cc-visa fa-cc-mastercard');
@@ -127,7 +141,7 @@ pageLoad(function () {
     if ($("#paymentFormSample").length){
         includePaymentMethods();
         $("input[data-cp='cardNumber']").mask("9999 9999 9999 9999", {completed: includeTypeCard});
-        $("input[data-cp='expDateMonthYear']").mask("99/99", {placeholder:"ММ/ГГ"});
+        $("input[data-cp='expDateMonthYear']").mask("99/99", {placeholder: "ММ/ГГ"});
         $("#paymentFormSample [data-cp='cardNumber']").change(includeTypeCard);
 
         $(document).on('click', '#paymentFormSample .addCart', createCryptogram);
@@ -141,18 +155,59 @@ var form = function () {
 };
 
 window.showMessage = function (result) {
-    var status = result.response.json.type;
-    if (status == 'success'){
-        pageReloadPayment();
-        setTimeout(function () {
-            paymentAccount();
-        }, 1000);
+    if (result.success){
+        var status = result.response.json.type;
+        if (status == 'success'){
+            pageReloadPayment();
+            setTimeout(function () {
+                paymentAccount();
+            }, 1000);
 
+        }
+    } else {
+        $("#3ds").hide();
+        $("#paymentFormSample").show();
+        $("#paymentsPopup").removeClass('h__PopupDisplayFlex');
+        show_error('Произошла ошибка', 3000);
     }
 };
 
+var orderBill = function(){
+    if(validate_company_form()){
+        var form = $(this).closest("form").serialize();
+        $.ajax({
+            type: 'POST',
+            url : '/api/v1/payments/order_bill',
+            data: form
+        }).success(function () {
+            show_error('Заявка отправленна', 3000);
+            setTimeout(function () {
+                window.location.href = '/'
+            }, 1500);
+        }).error(function () {
+            show_error('Произошла ошибка', 3000);
+        });
+    }
+};
+
+var validate_company_form = function(){
+    var result = true;
+    if($(".company__name").length){
+        $(".com__input-item").removeClass("error");
+        $(".company__name input").each(function(i, e){
+            if (!$(e).val().length){
+                result = false;
+                $(e).closest(".com__input-item").addClass("error");
+            }
+        })
+    }
+    return result;
+};
+
 pageLoad(function () {
-    $(document).on('click', '.js_paymentAccount', function(){
+    $(document).on('click', '.js_paymentAccount', function () {
         paymentAccount('btn');
     });
+    //$(".company__name input[name='company_phone']").mask("9 (999) 9999-999");
+    $(document).on('click', '.js_orderBill', orderBill)
 });
