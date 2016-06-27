@@ -189,6 +189,15 @@ module ApplicationHelper
     params[:controller] + "/" + params[:action]
   end
 
+  def split_string_two_part(string, max_size=40)
+    first_string = ''
+    last_string = ''
+    string.split(' ').each do |s|
+      first_string.length <= max_size ? (first_string += s + ' ') : last_string += s + ' '
+    end
+    return [first_string, last_string]
+  end
+
   def array_table_tariff_info
     [['8 стартовых бесплатных базовых онлайн-курсов', true],
      ['Бесплатные вебинары экспертов 1 раз в 2 месяца', true],

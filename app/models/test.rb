@@ -7,6 +7,8 @@ class Test < ActiveRecord::Base
   belongs_to :testable, :polymorphic => true
   default_scope { order("id ASC") }
 
+  include ApplicationHelper
+
   def transfer_to_json
     as_json.merge(questions: questions.map(&:transfer_to_json))
   end
@@ -92,8 +94,16 @@ class Test < ActiveRecord::Base
       FileUtils.cp("#{Rails.root}/public/uploads/cert.png", full_path)
       test_model = testable
       ResizeImage.add_text(full_path, user.full_name, 535, 660)
-      ResizeImage.add_text(full_path, test_model.title, 535, 820)
+      course_title = test_model.title
+      if course_title.length > 40
+        course_title = split_string_two_part(course_title)
+        ResizeImage.add_text(full_path, course_title.first, 535, 780)
+        ResizeImage.add_text(full_path, course_title.last, 535, 830)
+      else
+        ResizeImage.add_text(full_path, course_title, 535, 820)
+      end
       ResizeImage.add_text(full_path, (test_model.ligament_leads.first.user.full_name rescue 'Нет'), 952, 1038, 24)
+      ResizeImage.add_text(full_path, (), 480, 1038, 24)
     end
     file_path
   end
