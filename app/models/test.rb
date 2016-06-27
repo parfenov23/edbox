@@ -103,7 +103,7 @@ class Test < ActiveRecord::Base
         ResizeImage.add_text(full_path, course_title, 535, 820)
       end
       ResizeImage.add_text(full_path, (test_model.ligament_leads.first.user.full_name rescue 'Нет'), 952, 1038, 24)
-      ResizeImage.add_text(full_path, (), 480, 1038, 24)
+      ResizeImage.add_text(full_path, (Time.now.strftime('%d.%m.%Y')), 480, 1038, 24)
     end
     file_path
   end
