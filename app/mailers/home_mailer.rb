@@ -61,7 +61,7 @@ class HomeMailer < ActionMailer::Base
   def order_bill(params, user)
     @params = params
     @user = user
-    mail(:to => 'supportadonline@adconsult.ru', :subject => "Заявка на выставление счета")
+    mail(:to => 'corporateonline@robot.zapier.com', :subject => "Заявка на выставление счета")
   end
 
   def reg_course_director(course, user, bunch_course)
