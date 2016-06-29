@@ -15,6 +15,8 @@ var createCourseContenterProgram = function (action, new_create) {
         }
         if (type_course == "material"){
             if (new_create == "new_attachment"){
+                $('form.form_edit').data('id', data.id);
+                $('form.form_edit').attr('data-id', data.id);
                 $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
                 onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
             }
@@ -91,9 +93,10 @@ var openEditFileAfterUpload = function (btn) {
 
 var ajaxUpdateSection = function (type, btn) {
     var form = btn.closest("form");
+    var id_form = form.data("id");
     $.ajax({
         type       : 'PUT',
-        url        : '/api/v1/' + type + '/' + form.attr("data-id"),
+        url        : '/api/v1/' + type + '/' + id_form,
         processData: false,
         contentType: false,
         cache      : false,
