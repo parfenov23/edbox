@@ -8,7 +8,7 @@
     form#paymentFormSample autocomplete="off" data-public_id=$cloud_payments.public_id data-reload=(reload_page rescue true).to_s data-payment=(payment rescue false).to_s
       .card-num.input-wrp.name.card-input
         .input_text
-          input data-cp="cardNumber" type="text" placeholder='Номер карты' required=true autofocus=true
+          input data-cp="cardNumber" type="text" placeholder='Номер карты' required=true
           hr
         span.input-group-addon
           i.cardLogo.fa.fa-credit-card style="color:#ee8738;font-size:2rem;"

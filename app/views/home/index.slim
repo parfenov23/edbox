@@ -33,6 +33,10 @@ section.landing__courses__list
     .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на вашу работу и вашу зарплату
     - courses = Course.publication.where(type_course: "course")
     .courses__list_inner
+      javascript:
+        pageLoad(function () {
+          $(document).on('click', "figure", function () { window.location.href = '/sign_up' });
+        });
       - courses.first(6).each do |course|
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 6

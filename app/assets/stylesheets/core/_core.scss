@@ -897,9 +897,9 @@
           display : none;
         }
         &.open-state {
-          height: 100%;
-          width: 100%;
-          padding: 16px 16px 16px 16px;
+          height  : 100%;
+          width   : 100%;
+          padding : 16px 16px 16px 16px;
           .info_test {
             display : none;
           }
@@ -1113,19 +1113,48 @@
   }
 }
 
-.inner-content.contenter{
-  .carusel-wrp{
-    .info-box{
-      .course-prev-list{
-        .corses-prev{
+.inner-content.contenter {
+  .carusel-wrp {
+    .info-box {
+      .course-prev-list {
+        .corses-prev {
           @include btnRemove;
           .remove {
-            position: relative;
-            z-index: 99;
-            float: right;
-            right: 12px;
+            position : relative;
+            z-index  : 99;
+            float    : right;
+            right    : 12px;
           }
         }
+      }
+    }
+  }
+}
+
+.plane__list {
+  .item.pidor__dva, .item.pidor__raz {
+    .visibile__part {
+      height : 296px;
+      .title {
+        font-size : 18px;
+      }
+      .miniText {
+        font-size : 11px !important;
+      }
+    }
+  }
+  .item.pidor__dva {
+    .visibile__part {
+      .title {
+        margin-bottom : 8px;
+      }
+    }
+  }
+  .item.pidor__raz {
+    .visibile__part {
+      .price {
+        padding-top   : 12px;
+        margin-bottom : 36px;
       }
     }
   }

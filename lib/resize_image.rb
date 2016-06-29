@@ -42,11 +42,12 @@ class ResizeImage
     image.resize("#{img_width}x#{img_height}")
   end
 
-  def self.add_text(path, text, x, y, size=40, z=75)
+  def self.add_text(path, text, x, y, size=40, z=75, center=true)
     canvas = Magick::ImageList.new(path)
     gc = Magick::Draw.new
     gc.pointsize(size)
-    gc.text(x,y, text.center(z - text.length))
+    center ? text = text.center(z - text.length) : text = text
+    gc.text(x,y, text)
 
     gc.draw(canvas)
     canvas.write(path)

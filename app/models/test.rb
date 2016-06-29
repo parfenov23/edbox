@@ -93,16 +93,18 @@ class Test < ActiveRecord::Base
     unless File.file?(full_path)
       FileUtils.cp("#{Rails.root}/public/uploads/cert.png", full_path)
       test_model = testable
+      ResizeImage.add_text(full_path, "OC 2000#{id}#{user.id}", 535, 500)
       ResizeImage.add_text(full_path, user.full_name, 535, 660)
       course_title = test_model.title
       if course_title.length > 40
         course_title = split_string_two_part(course_title)
-        ResizeImage.add_text(full_path, course_title.first, 535, 780)
-        ResizeImage.add_text(full_path, course_title.last, 535, 830)
+        ResizeImage.add_text(full_path, course_title.first, 500, 780)
+        ResizeImage.add_text(full_path, course_title.last, 500, 830)
       else
         ResizeImage.add_text(full_path, course_title, 535, 820)
       end
-      ResizeImage.add_text(full_path, (test_model.ligament_leads.first.user.full_name rescue 'Нет'), 952, 1038, 24)
+      lfull_name = (test_model.ligament_leads.first.user.full_name rescue 'Нет')
+      ResizeImage.add_text(full_path, lfull_name, 1080, 1038, 24, 72, false)
       ResizeImage.add_text(full_path, (Time.now.strftime('%d.%m.%Y')), 480, 1038, 24)
     end
     file_path
