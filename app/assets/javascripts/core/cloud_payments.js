@@ -1,5 +1,4 @@
 var openInfoProgress = function (type) {
-    console.log(123);
     if (type != "close"){
         $("#paymentsPopup .infoProgress").show();
         $("#paymentsPopup  form#paymentFormSample").hide();
@@ -31,6 +30,10 @@ var includePaymentMethods = function () {
                     show_error('Ошибка', 3000);
                 }
             });
+        }else{
+            openInfoProgress('close');
+            $("#paymentFormSample").show();
+            show_error('В введенных вами данных допущена ошибка', 3000);
         }
     };
 

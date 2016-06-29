@@ -1139,7 +1139,10 @@
         font-size : 18px;
       }
       .miniText {
-        font-size : 11px !important;
+        font-size   : 11px !important;
+        padding     : 12px 0px;
+        line-height : 14px !important;
+        font-style  : italic;
       }
     }
   }

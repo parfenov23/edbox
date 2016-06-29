@@ -1,11 +1,12 @@
 var openFormRegistration = function(){
-    var btn = $(this);
-    var popup = $("#formCourseRegPopUp");
-    popup.show();
-    $(document).scrollTop( popup.offset().top);
-    if($(this).hasClass("selectType")){
-        selectType(btn.data('type'));
-    }
+    //var btn = $(this);
+    //var popup = $("#formCourseRegPopUp");
+    //popup.show();
+    //$(document).scrollTop( popup.offset().top);
+    //if($(this).hasClass("selectType")){
+    //    selectType(btn.data('type'));
+    //}
+    window.location.href='/sign_up'
 };
 
 var selectType = function(type){
