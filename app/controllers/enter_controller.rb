@@ -6,7 +6,7 @@ class EnterController < ActionController::Base
   end
 
   def sign_up
-    redirect_to "/payment?type=#{params[:type_reg]}" if params[:type_reg].present?
+    # redirect_to "/payment?type=#{params[:type_reg]}&page=reg" if params[:type_reg].present?
   end
 
   def sign_out

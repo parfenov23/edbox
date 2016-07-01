@@ -13,7 +13,7 @@ header.landing__header
     /img src="/assets/header__edbox.svg"
   .logo__scnd
     /img src="/assets/header__adconsult.svg"
-  - hash_redirect = params[:type_reg].present? ? {'data-redirect' => "/payment?type=#{params[:type_reg]}"} : {}
+  - hash_redirect = params[:type_reg].present? ? {'data-redirect' => "/payment?type=#{params[:type_reg]}&page=reg"} : {}
   form.reg__form.js_registrationUser *hash_redirect
     .title Регистрация
     .com__input-item.item.empty
