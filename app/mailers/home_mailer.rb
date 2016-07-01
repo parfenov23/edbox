@@ -58,10 +58,10 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Вы подписаны на курс #{@course.title}")
   end
 
-  def order_bill(params, user)
+  def order_bill(email, params, user)
     @params = params
     @user = user
-    mail(:to => 'corporateonline@robot.zapier.com', :subject => "Заявка на выставление счета")
+    mail(:to => email, :subject => "Заявка на выставление счета")
   end
 
   def reg_course_director(course, user, bunch_course)

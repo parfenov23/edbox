@@ -9,7 +9,7 @@ var openInfoProgress = function (type) {
 
 var includePaymentMethods = function () {
     createCryptogram = function () {
-        if(!validate_company_form()) return false ;
+        if (! validate_company_form()) return false;
         openInfoProgress();
         var user_name = form().find("input[data-cp='name']").val();
         var card_number = form().find("input[data-cp='cardNumber']").val();
@@ -30,7 +30,7 @@ var includePaymentMethods = function () {
                     show_error('Ошибка', 3000);
                 }
             });
-        }else{
+        } else {
             openInfoProgress('close');
             $("#paymentFormSample").show();
             show_error('В введенных вами данных допущена ошибка', 3000);
@@ -119,7 +119,7 @@ var removePaymentCard = function () {
 };
 
 var openPopupAddCard = function () {
-    if(!validate_company_form()) return false ;
+    if (! validate_company_form()) return false;
     $("#paymentsPopup").addClass("h__PopupDisplayFlex");
 };
 
@@ -175,30 +175,34 @@ window.showMessage = function (result) {
     }
 };
 
-var orderBill = function(){
-    if(validate_company_form()){
+var orderBill = function () {
+    if (validate_company_form()){
         var form = $(this).closest("form").serialize();
         $.ajax({
             type: 'POST',
             url : '/api/v1/payments/order_bill',
             data: form
         }).success(function () {
-            show_error('Заявка отправленна', 3000);
-            setTimeout(function () {
-                window.location.href = '/'
-            }, 1500);
+            //show_error('Заявка отправленна', 3000);
+            //setTimeout(function () {
+            //    window.location.href = '/'
+            //}, 1500);
+            warning('Спасибо! Ваша заявка получена. В ближайшее время сотрудник ADCONSULT Online свяжется с вами.', 'Хорошо',
+                function () {
+                    window.location.href = '/'
+                })
         }).error(function () {
             show_error('Произошла ошибка', 3000);
         });
     }
 };
 
-var validate_company_form = function(){
+var validate_company_form = function () {
     var result = true;
-    if($(".company__name").length){
+    if ($(".company__name").length){
         $(".com__input-item").removeClass("error");
-        $(".company__name input").each(function(i, e){
-            if (!$(e).val().length){
+        $(".company__name input").each(function (i, e) {
+            if (! $(e).val().length){
                 result = false;
                 $(e).closest(".com__input-item").addClass("error");
             }

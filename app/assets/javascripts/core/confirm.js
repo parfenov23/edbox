@@ -8,12 +8,13 @@ function confirm(text, action){
 
 }
 
-function warning(text, actionText){
-    var popup = $('.pop_up_confirm');
+function warning(text, actionText, btnAction){
+    var popup = $('.pop_up_confirm').not('.popup__img, .pop_up_confirm.noConfirmOpen');
     popup.find('.inner .description').text(text);
     popup.find('.action-btn .js_closePopupConfirmNo').attr('style', 'display:none');
     popup.find('.action-btn .js_actionYesStart').text(actionText);
-    btn_yes_action = defaultConfirm;
+    if (btnAction == undefined) btnAction = defaultConfirm;
+    btn_yes_action = btnAction;
     popup.addClass("h__PopupDisplayFlex");
 }
 

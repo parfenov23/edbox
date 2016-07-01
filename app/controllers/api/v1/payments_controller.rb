@@ -24,7 +24,9 @@ module Api::V1
     end
 
     def order_bill
-      HomeMailer.order_bill(params, current_user).deliver
+      ['adconsult@mail.amocrm.ru', 'roman.pivovarov@gmail.com', 'bataline@gmail.com', 'corporateonline@robot.zapier.com'].each do |email|
+        HomeMailer.order_bill(email, params, current_user).deliver
+      end
       render json: {success: true}
     end
 
