@@ -46,7 +46,13 @@ var openPopupImg = function(src, title, info){
 };
 
 var openPopupImgBtn = function(){
-    openPopupImg($(this).attr('src'));
+    var btn = $(this);
+    openPopupImg(btn.attr('src'));
+    var elemPluso = document.querySelectorAll("div.pluso")[0];
+    elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + btn.data('course_id');
+    elemPluso.pluso.params.image = current_domain() + btn.attr('src');
+    elemPluso.pluso.params.title = "Я получил сертефикат";
+    elemPluso.pluso.params.description = btn.data('course_name');
 };
 
 $(document).ready(function () {
