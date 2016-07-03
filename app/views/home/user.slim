@@ -21,4 +21,4 @@
         .info-box
           .course-prev-list
             - @user_tests.each do |test|
-              img.cert.js_openPopupImgBtn src=test.certificate(@user)
+              img.cert.js_openPopupImgBtn src=test.certificate(@user) data-course_id=test.testable.id data-course_name=test.testable.title
