@@ -51,9 +51,10 @@ var testResult = function (response) {
             }
         });
         var elemPluso = document.querySelectorAll("div.pluso")[0];
-        elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
+        //elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
+        elemPluso.pluso.params.url = current_domain();
         elemPluso.pluso.params.image = current_domain() + response.certificate;
-        elemPluso.pluso.params.title = "Я получил сертефикат";
+        elemPluso.pluso.params.title = "Ура! Я только что получил сертификат ADCONSULT Online!";
         elemPluso.pluso.params.description = response.course_name;
     }
     //warning(text, 'ОК');
