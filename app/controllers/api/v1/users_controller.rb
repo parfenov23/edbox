@@ -59,6 +59,7 @@ module Api::V1
 
       if user.valid?
         user.update(permit_params)
+        user.update({social: params[:user][:social]})
         render json: user.transfer_to_json
       else
         render_error(500, 'Проверьте данные')
@@ -177,7 +178,7 @@ module Api::V1
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name,
                                    :password, :director, :corporate,
-                                   :company_id, :job)
+                                   :company_id, :job, :social)
     end
 
   end

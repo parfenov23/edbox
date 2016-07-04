@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :incoming_moneys, dependent: :destroy
   has_many :ligament_leads, dependent: :destroy
   has_many :accounts, dependent: :destroy
+  serialize :social, ActiveRecord::Coders::Hstore
 
   before_create :create_hash_key
   validates :email, presence: true

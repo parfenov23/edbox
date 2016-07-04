@@ -37,6 +37,12 @@
           font   : 400 18px/1 "Roboto";
           color  : rgba(0, 0, 0, .87);
           margin : 0 0 12px;
+          .social{
+            margin-left: 20px;
+            a{
+              margin-left: 4px;
+            }
+          }
         }
 
         .other__info {
