@@ -51,7 +51,7 @@ var testResult = function (response) {
             }
         });
         var elemPluso = document.querySelectorAll("div.pluso")[0];
-        var cert_id = response.certificate.replace('/', '').replace('.png', '');
+        var cert_id = response.certificate.replace('/system/tests_cert/', '').replace('.png', '');
         //elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
         elemPluso.pluso.params.url = current_domain() + '/course_cert?id=' + cert_id + "&course_id=" + response.course_id;
         elemPluso.pluso.params.image = current_domain() + response.certificate;
