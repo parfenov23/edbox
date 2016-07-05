@@ -206,7 +206,7 @@ class HomeController < ActionController::Base
   end
 
   def course_cert
-    @course = Course.find(params[:course_id])
+    @course = Course.find(params[:course_id]) rescue nil
     @user_cert_id = "#{params[:id]}.png"
     render :layout => false
   end
