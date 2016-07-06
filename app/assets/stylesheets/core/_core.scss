@@ -1162,3 +1162,40 @@
     }
   }
 }
+
+#btnPrintPage {
+  position              : relative;
+  z-index               : 1;
+  display               : inline-block;
+  padding               : 0;
+  -webkit-border-radius : 22px;
+  -moz-border-radius    : 22px;
+  border-radius         : 22px;
+  background            : transparent;
+  text-align            : left;
+  font-size             : 0;
+  line-height           : 0;
+  .pluso-wrap {
+    position              : relative;
+    z-index               : 1;
+    display               : inline-block;
+    padding               : 0 5px 5px 0;
+    -webkit-border-radius : 6px;
+    -moz-border-radius    : 6px;
+    border-radius         : 6px;
+    background            : transparent;
+    text-align            : left;
+    font-size             : 0;
+    line-height           : 0;
+  }
+  a {
+    background-position : -713px 0;
+    background-image    : url(http://share.pluso.ru/img/pluso-like/square/medium/08.png);
+    display             : inline-block;
+    vertical-align      : inherit;
+    margin              : 3px 0 0 3px;
+    padding             : 0;
+    width               : 30px;
+    height              : 30px;
+  }
+}

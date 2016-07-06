@@ -10,6 +10,7 @@
 //= require ./vendor/material/ripples
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
+//= require ./vendor/jquery.printPage
 //= require ./vendor/fullscrn
 //= require_tree ./main
 
@@ -355,8 +356,8 @@ function get_browser(name) {
     return get_name_browser() == name
 }
 
-
 $(document).ready(function () {
+    $(".buttonPrint").printPage();
     if (isMobile.any()){
         $(".js__backing").click(function () {console.log('close menu')})
         $(window).scroll(function () {

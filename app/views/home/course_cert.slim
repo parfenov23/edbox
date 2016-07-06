@@ -11,7 +11,11 @@ meta name="twitter:url" content="#{$env_mode.current_domain}/course_cert?id=#{@p
 meta name="twitter:title" content="Ура! Я только что получил сертификат ADCONSULT Online!"
 meta name="twitter:description" content="#{(@course.title rescue nil)}"
 meta name="twitter:image" content="#{$env_mode.current_domain}/system/tests_cert/#{@user_cert_id}"
-javascript:
-  window.onload = function () {
-    window.location.href='/'
-  };
+
+- if params[:print].blank?
+  javascript:
+    window.onload = function () {
+      window.location.href='/'
+    };
+- else
+  img src='#{$env_mode.current_domain}/system/tests_cert/#{@user_cert_id}' style='width: 100%'

@@ -50,11 +50,13 @@ var openPopupImgBtn = function () {
     openPopupImg(btn.attr('src'));
 
     var elemPluso = document.querySelectorAll("div.pluso")[0];
-    elemPluso.pluso.params.url = current_domain() + '/course_cert?id=' + btn.data('id') + '&course_id=' + btn.data('course_id');
+    var url_page = current_domain() + '/course_cert?id=' + btn.data('id') + '&course_id=' + btn.data('course_id');
+    elemPluso.pluso.params.url = url_page;
     elemPluso.pluso.params.image = current_domain() + btn.attr('src');
 
     elemPluso.pluso.params.title = "Ура! Я только что получил сертификат ADCONSULT Online!";
     elemPluso.pluso.params.description = btn.data('course_name');
+    $("#btnPrintPage a").attr('href', url_page + '&print=true');
 };
 
 $(document).ready(function () {

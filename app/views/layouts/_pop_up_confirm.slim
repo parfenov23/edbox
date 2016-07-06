@@ -12,7 +12,7 @@
   .inner.allgood
     .title
     img.imgView src='/cert.png'
-    - if !$env_mode.dev?
+    - if $env_mode.dev?
       script src="/pluso.js"
     - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
                      'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
@@ -22,5 +22,14 @@
       span.textShare Поделитесь сертификатом
       .pluso *hash_params
       span.textShare или распечатайте его
-      - hash_params["data-services"] = "print"
-      .pluso *hash_params
+      /- hash_params["data-services"] = "print"
+      /.pluso *hash_params
+      /#btnPrintPage
+      /  .pluso-wrap
+      /    a class="buttonPrint" href='/course_cert?id=1_1&print=true' Print
+      /
+      #btnPrintPage
+        .pluso-010010010101-08
+          span.pluso-wrap style="background:transparent"
+            a.buttonPrint href="/course_cert?id=1_1&print=true"
+
