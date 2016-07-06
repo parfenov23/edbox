@@ -12,7 +12,7 @@
   .inner.allgood
     .title
     img.imgView src='/cert.png'
-    - if $env_mode.dev?
+    - if !$env_mode.dev?
       script src="/pluso.js"
     - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
                      'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
