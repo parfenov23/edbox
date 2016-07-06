@@ -310,7 +310,13 @@
 
     .data {
       float: left;
-      width: 450px;
+      width: 524px;
+      .infoProfile, .social{
+        display: inline-block;
+      }
+      .social{
+        margin-left: 12px;
+      }
 
       .name {
         font  : 400 18px/1 "Roboto";

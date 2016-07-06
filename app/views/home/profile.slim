@@ -1,57 +1,52 @@
 = render "home/header/header", {namePage: "profile", titlePage: "Профиль"}
 .inner-content
-    .content#profile
-        form.profile__block.profile__main
-            .avatar
-                img.ava src="#{default_img(current_user.avatar)}"
-                .upload__block
-                    input#imgInp name="ava" type="file"
-            .data
-                .input-wrp.name
-                    input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
-                    hr
-                .input-wrp.name
-                    input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
-                    hr
-                .input-wrp.state
-                    input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
-                    hr
-                - social = current_user.social
-                .input-wrp.state
-                    input type="text" name="user[social][vk]" placeholder="Vkontakte" value="#{social["vk"]}"
-                    hr
-                .input-wrp.state
-                    input type="text" name="user[social][fb]" placeholder="Facebook" value="#{social["fb"]}"
-                    hr
-                .input-wrp.state
-                    input type="text" name="user[social][twitter]" placeholder="Twitter" value="#{social["twitter"]}"
-                    hr
-                .account
-                    span>Ваш персональный ID:
-                    span.number
-                        = current_user.user_key
-                .tets
-                    'Это ваш идентификационный номер в #{$env_mode.name_title}. Он
-                    'понадобится вам для участия в различных акциях и
-                    |специальных предложениях от #{$env_mode.name_title}.
-            .btn-holder
-                .btn.btn-raised.is__orange#submit сохранить
+  .content#profile
+    form.profile__block.profile__main
+      .avatar
+        img.ava src="#{default_img(current_user.avatar)}"
+        .upload__block
+          input#imgInp name="ava" type="file"
+      .data
+        .infoProfile
+          .input-wrp.name
+            input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
+            hr
+          .input-wrp.name
+            input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
+            hr
+          .input-wrp.state
+            input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
+            hr
+        .social
+          - social = current_user.social
+          .input-wrp.name
+            input type="text" name="user[social][vk]" placeholder="Vkontakte" value="#{social["vk"]}"
+            hr
+          .input-wrp.name
+            input type="text" name="user[social][fb]" placeholder="Facebook" value="#{social["fb"]}"
+            hr
+          .input-wrp.state
+            input type="text" name="user[social][twitter]" placeholder="Twitter" value="#{social["twitter"]}"
+            hr
+        .account
+          span>Ваш персональный ID:
+          span.number
+            = current_user.user_key
+          .tets
+            'Это ваш идентификационный номер в #{$env_mode.name_title}. Он
+            'понадобится вам для участия в различных акциях и
+            |специальных предложениях от #{$env_mode.name_title}.
+      .btn-holder
+        .btn.btn-raised.is__orange#submit сохранить
 
 
-        form.profile__block.profile__password
-            .title Создание нового пароля
-            .input-wrp.password
-                input type="password" name="password" placeholder="Введите пароль"
-                hr
-            .input-wrp.password
-                input type="password" name="password_repeat" placeholder="Повторите пароль"
-                hr
-            .btn-holder
-                .btn.btn-raised.is__orange#submit сохранить
-
-
-        /form.profile__block.profile__account
-            .title Корпоративный аккаунт 
-            /.description 23 пользователя в компании
-            .btn-holder
-                .btn.btn-raised.is__orange.ya_profile_update#submit ИЗМЕНИТЬ НА ПЕРСОНАЛЬНЫЙ
+    form.profile__block.profile__password
+      .title Создание нового пароля
+      .input-wrp.password
+        input type="password" name="password" placeholder="Введите пароль"
+        hr
+      .input-wrp.password
+        input type="password" name="password_repeat" placeholder="Повторите пароль"
+        hr
+      .btn-holder
+        .btn.btn-raised.is__orange#submit сохранить
