@@ -20,15 +20,16 @@
     - if current_user.corporate && current_user.director
       .select.group.js_show
         i.icon
-        - groups = current_user.company.groups
-        - if params[:group_id].present?
-          - group_find = groups.where(id: params[:group_id]).last
-        .select-trigger.titleSelectGroup = group_find.first_name rescue "Выберите группу"
-        input.selectGroupId type='hidden' name='group_id' value=(group_find.id rescue nil)
-        ul.hidden.listGroup
-          - groups.each do |group|
-            li.js_psevdo-select.selectGroup data-id="#{group.id}"
-              = group.first_name
+        - groups = current_user.company.groups rescue []
+        - if groups.present?
+          - if params[:group_id].present?
+            - group_find = groups.where(id: params[:group_id]).last
+          .select-trigger.titleSelectGroup = group_find.first_name rescue "Выберите группу"
+          input.selectGroupId type='hidden' name='group_id' value=(group_find.id rescue nil)
+          ul.hidden.listGroup
+            - groups.each do |group|
+              li.js_psevdo-select.selectGroup data-id="#{group.id}"
+                = group.first_name
     .calendar
       i.icon
       .calendar-trigger Установите срок прохождения курса
