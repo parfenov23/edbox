@@ -216,6 +216,7 @@ pageLoad(function () {
     $(document).on('click', '.js_paymentAccount', function () {
         paymentAccount('btn');
     });
+
     if($(".company__name input[name='company_phone']").length){
         $(".company__name input[name='company_phone']").mask("8 (999) 9999-999");
     }
