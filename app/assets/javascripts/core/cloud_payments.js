@@ -187,6 +187,7 @@ var orderBill = function () {
             //setTimeout(function () {
             //    window.location.href = '/'
             //}, 1500);
+
             warning('Спасибо! Ваша заявка получена. В ближайшее время сотрудник ADCONSULT Online свяжется с вами.', 'Продолжить',
                 function () {
                     window.location.href = '/'
