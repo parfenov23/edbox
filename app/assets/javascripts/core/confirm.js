@@ -54,7 +54,7 @@ var openPopupImgBtn = function () {
     elemPluso.pluso.params.url = url_page;
     elemPluso.pluso.params.image = current_domain() + btn.attr('src');
 
-    elemPluso.pluso.params.title = "Ура! Я только что получил сертификат ADCONSULT Online!";
+    elemPluso.pluso.params.title = "Горжусь сертификатом ADCONSULT Online!";
     elemPluso.pluso.params.description = btn.data('course_name');
     $("#btnPrintPage a").attr('href', url_page + '&print=true');
 };

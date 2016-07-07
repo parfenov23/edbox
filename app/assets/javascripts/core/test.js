@@ -40,7 +40,7 @@ var testResult = function (response) {
     } else {
         openPopupImg(response.certificate,
             'Поздравляем вас!',
-            'Вы только что успешно сдали итоговый тест курса «' + response.course_name + '». Этот сертификат - ваш! Вместе с навыками и знаниями, которые позволят вам' +
+            'Вы только что успешно сдали итоговый тест курса «' + $.trim(response.course_name) + '». Этот сертификат — ваш. Вместе с навыками и знаниями, которые позволят вам' +
             ' продовать больше и чаще.');
 
         $(document).on('click', '.pop_up_confirm', function (event) {
@@ -56,7 +56,7 @@ var testResult = function (response) {
         //elemPluso.pluso.params.url = current_domain() + "/course_description?id=" + response.course_id;
         elemPluso.pluso.params.url = url_page;
         elemPluso.pluso.params.image = current_domain() + response.certificate;
-        elemPluso.pluso.params.title = "Ура! Я только что получил сертификат ADCONSULT Online!";
+        elemPluso.pluso.params.title = "Горжусь сертификатом ADCONSULT Online!";
         elemPluso.pluso.params.description = response.course_name;
         $("#btnPrintPage a").attr('href', url_page + '&print=true');
     }

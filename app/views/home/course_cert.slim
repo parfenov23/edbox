@@ -13,9 +13,10 @@ meta name="twitter:description" content="#{(@course.title rescue nil)}"
 meta name="twitter:image" content="#{$env_mode.current_domain}/system/tests_cert/#{@user_cert_id}"
 
 - if params[:print].blank?
+  - url = @course.present? ? "/course_description?id=#{@course.id}" : "/"
   javascript:
     window.onload = function () {
-      window.location.href='/'
+      window.location.href = "#{url}";
     };
 - else
   img src='#{$env_mode.current_domain}/system/tests_cert/#{@user_cert_id}' style='width: 100%'
