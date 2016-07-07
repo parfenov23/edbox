@@ -218,7 +218,7 @@ pageLoad(function () {
     });
 
     if($(".company__name input[name='company_phone']").length){
-        $(".company__name input[name='company_phone']").mask("8 (999) 9999-999");
+        $(".company__name input[name='company_phone']").mask("8 (999) 9999?-9999");
     }
 
     $(document).on('click', ".company__name input[name='company_phone']", function () {
