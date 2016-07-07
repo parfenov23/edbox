@@ -220,6 +220,7 @@ pageLoad(function () {
     if($(".company__name input[name='company_phone']").length){
         $(".company__name input[name='company_phone']").mask("8 (999) 9999-999");
     }
+
     $(document).on('click', ".company__name input[name='company_phone']", function () {
         var btn = $(this);
         btn.closest(".com__input-item").removeClass('empty');
