@@ -202,7 +202,7 @@ class HomeController < ActionController::Base
 
   def user
     @user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
-    @user_tests = Test.where(id: @user.test_results.where(result: 100).map(&:test_id).uniq)
+    @user_tests = Test.where(id: (@user.test_results.where(result: 100).map(&:test_id).uniq rescue []))
   end
 
   def course_cert
