@@ -62,8 +62,8 @@
             .error__msg Обязательное поле
             hr
           - company_phone = company.present? ? company.phone : nil
-          .com__input-item.item.right class=(company_name.present? ? 'is__noFocus' : 'empty')
-            input.form-control.floating-label type="tel" placeholder="Введите ваш номер телефона" value=company_name name="company_phone"
+          .com__input-item.item.right class=(company_phone.present? ? 'is__noFocus' : 'empty')
+            input.form-control.floating-label type="tel" placeholder="Введите ваш номер телефона" value=company_phone name="company_phone"
             .error__msg Обязательное поле
             hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]

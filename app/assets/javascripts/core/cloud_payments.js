@@ -187,7 +187,7 @@ var orderBill = function () {
             //setTimeout(function () {
             //    window.location.href = '/'
             //}, 1500);
-            warning('Спасибо! Ваша заявка получена. В ближайшее время сотрудник ADCONSULT Online свяжется с вами.', 'Хорошо',
+            warning('Спасибо! Ваша заявка получена. В ближайшее время сотрудник ADCONSULT Online свяжется с вами.', 'Продолжить',
                 function () {
                     window.location.href = '/'
                 })
@@ -215,6 +215,12 @@ pageLoad(function () {
     $(document).on('click', '.js_paymentAccount', function () {
         paymentAccount('btn');
     });
-    //$(".company__name input[name='company_phone']").mask("9 (999) 9999-999");
+    $(".company__name input[name='company_phone']").mask("8 (999) 9999-999");
+    $(document).on('click', ".company__name input[name='company_phone']", function () {
+        var btn = $(this);
+        btn.closest(".com__input-item").removeClass('empty');
+    });
+
+
     $(document).on('click', '.js_orderBill', orderBill)
 });
