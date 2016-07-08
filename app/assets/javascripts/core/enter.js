@@ -239,6 +239,7 @@ $(document).ready(function () {
 
                 },
                 error  : function (m) {
+
                     show_error(m.responseJSON.error, 3000);
                 }
             });
