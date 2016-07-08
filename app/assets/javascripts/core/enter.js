@@ -29,11 +29,11 @@ function checkPassword(password) {
     /* Далее идёт анализ длины пароля и полученного рейтинга, и на основании этого готовится текстовое описание сложности пароля */
     if (password.length < 6 && rating < 3 && password.length >= 4) klass = "lvl-2", text = "Простой";
     else if (password.length < 4 && rating < 3) klass = "lvl-1", text = "Очень простой";
-    else if (password.length < 6 && rating >= 3) klass = "lvl-3", text = "Средний";
-    else if (password.length >= 8 && rating < 3) klass = "lvl-3", text = "Средний";
-    else if (password.length >= 8 && rating >= 3) klass = "lvl-4", text = "Очень простой";
-    else if (password.length >= 6 && rating == 1) klass = "lvl-2", text = "Очень простой";
-    else if (password.length >= 6 && rating > 1 && rating < 4) klass = "lvl-3", text = "Средний";
+    else if (password.length < 6 && rating >= 3) klass = "lvl-3", text = "Хороший";
+    else if (password.length >= 8 && rating < 3) klass = "lvl-3", text = "Хороший";
+    else if (password.length >= 8 && rating >= 3) klass = "lvl-4", text = "Сложный";
+    else if (password.length >= 6 && rating == 1) klass = "lvl-2", text = "Хороший";
+    else if (password.length >= 6 && rating > 1 && rating < 4) klass = "lvl-3", text = "Хороший";
     else if (password.length >= 6 && rating == 4) klass = "lvl-4", text = "Сложный";
     return [klass, text]; // Форму не отправляем
 }
