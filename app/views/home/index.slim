@@ -38,8 +38,7 @@ section.landing__courses__list
           $(document).on('click', "figure", function () { window.location.href = '/sign_up' });
         });
       - courses.first(6).each do |course|
-        - 5.times do
-          = render "course/course", {course: course, type: 'courses'}
+        = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 6
       .action__block
         a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
@@ -108,6 +107,6 @@ section.landing__compare__table
         br
         |Выберите подходящий вам формат и зарегистрируйте аккаунт.
       = render "common/tableTariff"
-/! begin paysto verification
-/a href="http://paysto.ru/fromshop=23056" target="_blank"  Совместно с PAYSTO
-/! end paysto verification
+      /! begin paysto verification
+      /a href="http://paysto.ru/fromshop=23056" target="_blank"  Совместно с PAYSTO
+      /! end paysto verification
