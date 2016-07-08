@@ -238,8 +238,8 @@ $(document).ready(function () {
                     }
 
                 },
-                error  : function () {
-                    show_error('Произошла ошибка регистрации', 3000);
+                error  : function (data) {
+                    show_error(data.responseJSON.error, 3000);
                 }
             });
         }

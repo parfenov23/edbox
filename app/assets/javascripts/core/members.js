@@ -116,6 +116,7 @@ sendInvintations = function () {
 
 sendInvintationsInGroup = function () {
     $('.members__invite .js_inviteUserGroup').click(function () {
+        show_error('Идет загрузка...', 3000);
         var btn = $(this);
         if (! $('.invited__item').length == 0){
             var data = $.map($('.members__invite .invited__item .email'), function (el) {

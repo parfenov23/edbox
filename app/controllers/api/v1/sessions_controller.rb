@@ -32,7 +32,10 @@ module Api::V1
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)
-        render_error(401, 'Не удалось пройти регистрацию, проверьте введенные данные')
+        t1 = 'Пользователь с таким Email уже зарегестрирован'
+        t2 = 'Не удалось пройти регистрацию, проверьте введенные данные'
+        error_title = User.find_by_email(permit_params[:email]).present? ? t1 : t2
+        render_error(401, error_title)
       end
     end
 
