@@ -238,8 +238,8 @@ $(document).ready(function () {
                     }
 
                 },
-                error  : function (data) {
-                    show_error(data.responseJSON.error, 3000);
+                error  : function (m) {
+                    show_error(m.responseJSON.error, 3000);
                 }
             });
         }
