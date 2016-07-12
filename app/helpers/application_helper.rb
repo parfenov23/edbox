@@ -87,12 +87,12 @@ module ApplicationHelper
   ##################
 
   def schedule_line
-    [{month: 1, title: "Январь"}, {month: 2, title: "Февраль"},
-     {month: 3, title: "Март"}, {month: 4, title: "Апрель"},
-     {month: 5, title: "Май"}, {month: 6, title: "Июнь"},
-     {month: 7, title: "Июль"}, {month: 8, title: "Август"},
-     {month: 9, title: "Сентябрь"}, {month: 10, title: "Октябрь"},
-     {month: 11, title: "Ноябрь"}, {month: 12, title: "Декабрь"}]
+    [{month: 1, title: "Январь", r: 'Января'}, {month: 2, title: "Февраль", r: 'Февраля'},
+     {month: 3, title: "Март", r: 'Марта'}, {month: 4, title: "Апрель", r: 'Апреля'},
+     {month: 5, title: "Май", r: 'Мая'}, {month: 6, title: "Июнь", r: 'Июня'},
+     {month: 7, title: "Июль", r: 'Июля'}, {month: 8, title: "Август", r: 'Августа'},
+     {month: 9, title: "Сентябрь", r: 'Сентября'}, {month: 10, title: "Октябрь", r: 'Октября'},
+     {month: 11, title: "Ноябрь", r: 'Ноября'}, {month: 12, title: "Декабрь", r: 'Декабря'}]
   end
 
   def make_up_where_from_date(time_from, time_to, frist_field="created_at >=", last_field="created_at <=")
@@ -114,6 +114,10 @@ module ApplicationHelper
 
   def rus_case(count, n1, n2, n3)
     "#{count} #{Russian.p(count, n1, n2, n3)}"
+  end
+
+  def rus_schedule_line(n)
+    schedule_line[n-1][:r]
   end
 
   def profile_header_text(sub=nil)
