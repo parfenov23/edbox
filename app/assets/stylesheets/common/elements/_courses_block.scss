@@ -129,7 +129,7 @@ figure.basic__module {
       }
       .time__date {
         width      : 100%;
-        @include text__setting(normal__typo, secondary__color);
+        @include text__setting(smallest__typo, secondary__color);
         text-align : right;
       }
 
