@@ -1,4 +1,3 @@
-require 'Mechanize'
 require 'social/vk'
 require 'social/fb'
 class Socials
