@@ -122,6 +122,30 @@ var resetPassword = function(){
     });
 };
 
+function reg_the_social(params){
+    var data = params;
+    var form = $(".js_registrationUser #submit").closest('form');
+    $.ajax({
+        type   : 'POST',
+        url    : '/api/v1/sessions/registration',
+        data   : {user: data},
+        success: function (m) {
+            fbq_env('CompleteRegistration');
+            $.cookie('user_key', m.user_key);
+            if(form.data('redirect') == undefined){
+                $("#formCourseRegPopUp").show();
+            }else{
+                window.location.href = form.data('redirect');
+            }
+
+        },
+        error  : function (m) {
+
+            show_error(m.responseJSON.error, 3000);
+        }
+    });
+}
+
 $(document).ready(function () {
     $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function(){
         var valPass = checkPassword($(this).val());

@@ -1,3 +1,13 @@
+- if params[:type].present?
+  javascript:
+    var url = document.URL;
+    if (url.search("#access_token") > 0){
+      window.location.href = url.replace('#access_token', '&access_token')
+    } else {
+      pageLoad(function(){
+        reg_the_social(#{@info.to_json.html_safe})
+      });
+    }
 header.landing__header
   .logo
     a href="/"

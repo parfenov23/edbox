@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def default_img(img)
     if img.present?
-      "data:image/gif;base64,#{img}"
+      img.scan(/http(.*):\/\//).present? ? img : "data:image/gif;base64,#{img}"
     else
       "/images/ava.png"
     end

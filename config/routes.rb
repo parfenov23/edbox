@@ -138,6 +138,7 @@ Rails.application.routes.draw do
           post :registration
           post :recover_password
           get :signout
+          get :social
         end
       end
       resources :companies, only: [] do

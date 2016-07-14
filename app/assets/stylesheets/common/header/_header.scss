@@ -414,8 +414,10 @@
           margin : 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px "Roboto";
-          color : rgba(0, 0, 0, .54);
+          font      : 400 13px/20px "Roboto";
+          color     : rgba(0, 0, 0, .54);
+          max-width : 200px;
+          overflow  : hidden;
         }
       }
     }
