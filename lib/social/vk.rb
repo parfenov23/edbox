@@ -26,7 +26,7 @@ class Vk
   end
 
   def self.inputs_info
-    "photo_max_orig,city,verified,contacts"
+    "photo_max_orig,city,verified,contacts,email"
   end
 
   def self.vk_params(params)
