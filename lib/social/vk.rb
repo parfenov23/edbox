@@ -16,7 +16,7 @@ class Vk
   end
 
   def self.auth_url
-    "https://oauth.vk.com/authorize?client_id=#{app_id}&display=page&redirect_uri=#{$env_mode.current_domain}/sign_up?type=vk&scope=email&response_type=token&v=5.52"
+    "https://oauth.vk.com/authorize?client_id=#{app_id}&display=page&redirect_uri=#{$env_mode.current_domain}/sign_up?type=vk&scope=email,offline&response_type=token&v=5.52"
   end
 
   private
