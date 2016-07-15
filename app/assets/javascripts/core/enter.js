@@ -144,6 +144,18 @@ function reg_the_social(params){
             show_error(m.responseJSON.error, 3000);
         }
     });
+};
+
+
+function getTokenGplusAuth(data_g){
+    $.ajax({
+        type   : 'POST',
+        url    : 'https://www.googleapis.com/oauth2/v4/token',
+        data   : data_g,
+        success: function (m) {
+            window.location.href = '/sign_up?type=gplus&access_token=' + m.access_token;
+        }
+    });
 }
 
 $(document).ready(function () {

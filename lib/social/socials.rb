@@ -1,5 +1,7 @@
 require 'social/vk'
 require 'social/fb'
+require 'social/gplus'
+
 class Socials
   def self.info(type, params)
     type.capitalize.constantize.info(params) rescue {}

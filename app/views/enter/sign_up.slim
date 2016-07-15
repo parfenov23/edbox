@@ -1,13 +1,25 @@
 - if params[:type].present?
   javascript:
     var url = document.URL;
-    if (url.search("#access_token") > 0){
-      window.location.href = url.replace('#access_token', '&access_token')
-    } else {
-      pageLoad(function(){
-        reg_the_social(#{@info.to_json.html_safe})
-      });
+    if (url.search("type=gplus&code=") > 0){
+      var data_gplus = {
+        client_id: "#{Gplus.app_id}",
+        client_secret: "#{Gplus.secret_key}",
+        redirect_uri: "#{$env_mode.current_domain}/sign_up?type=gplus",
+        grant_type: "authorization_code",
+        code: "#{params[:code]}"
+      };
+      getTokenGplusAuth(data_gplus);
+    }else{
+      if (url.search("#access_token") > 0){
+        window.location.href = url.replace('#access_token', '&access_token')
+      } else {
+        pageLoad(function () {
+          reg_the_social(#{@info.to_json.html_safe})
+        });
+      }
     }
+
 header.landing__header
   .logo
     a href="/"
