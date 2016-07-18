@@ -10,5 +10,4 @@
         i.icon.video
 
     .video__content
-      iframe
-        = raw attachment.embed_video
+      = raw Nokogiri::HTML::DocumentFragment.parse(attachment.embed_video).to_html
