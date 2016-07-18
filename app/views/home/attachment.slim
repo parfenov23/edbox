@@ -3,6 +3,7 @@
 = render "home/header/header", {namePage: "courseMaterial", 
   titlePage: header_title, btnBack: true, 
   backUrl: back_url, classPageTitle: "is__gray"}
+span style="display: none;" data-test=current_user.id data-test2=@attachment.file_type data-test3=@attachment.id
 #attachmentCourseProgram
   - if current_user.present?
     = render "home/course_program/right_sidebar/notes_aside"

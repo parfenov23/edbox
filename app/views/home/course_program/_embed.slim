@@ -8,6 +8,6 @@
       .description = attachment.description
       .icon__block
         i.icon.video
-      
+
     .video__content
-      = raw attachment.embed_video
+      = raw Nokogiri::HTML::DocumentFragment.parse(attachment.embed_video).to_html
