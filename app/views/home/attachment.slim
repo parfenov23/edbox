@@ -12,13 +12,16 @@ span style="display: none;" data-test=current_user.id data-test2=@attachment.fil
   - unless @attachment.download
     - case @attachment.file_type
     - when "audio", "video", "description", "pdf", 'vimeo'
+      span style="display: none;" data-test="1"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
       = render "common/course/adova_btn_new"
     - when "test"
+      span style="display: none;" data-test="78"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
     - when "webinar"
+      span style="display: none;" data-test="98"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
   - else
-    span style="display: none;" data-test="3"
+    span style="display: none;" data-test="5"
     = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
     = render "common/course/adova_btn_new"
