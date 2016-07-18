@@ -12,6 +12,7 @@
     - case @attachment.file_type
     - when "audio", "video", "description", "pdf", 'vimeo'
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+      span style="display: none;" data-test=current_user.id data-test2=@attachment.file_type data-test3=@attachment.id
       = render "common/course/adova_btn_new"
     - when "test"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
