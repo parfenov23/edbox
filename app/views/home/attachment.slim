@@ -12,8 +12,8 @@ span style="display: none;" data-test=current_user.id data-test2=@attachment.fil
   - unless @attachment.download
     - case @attachment.file_type
     - when "audio", "video", "description", "pdf", 'vimeo'
-      span style="display: none;" data-test="1"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+      span style="display: none;" data-test="1"
       = render "common/course/adova_btn_new"
     - when "test"
       span style="display: none;" data-test="78"
