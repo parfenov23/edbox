@@ -34,7 +34,7 @@ var testResult = function (response) {
             window.location.reload();
         });
         $(".pop_up_confirm .js_closePopupConfirmNo").text('Принять мои результаты').click(function () {
-            window.location.href = '/course_description/' + form.data('course_id') + '?attachment_id=' + form.data('att_id');
+            window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id');
         });
         $(".pop_up_confirm .js_actionYesStart").text('Пересдать тест');
     } else {
@@ -47,7 +47,7 @@ var testResult = function (response) {
             var evt = evt || event;
             var target = evt.target || evt.srcElement;
             if ($(target).hasClass("pop_up_confirm")){
-                window.location.href = '/course_description/' + form.data('course_id') + '?attachment_id=' + form.data('att_id')
+                window.location.href = '/course_description?id=' + form.data('course_id') + '&attachment_id=' + form.data('att_id')
             }
         });
         var elemPluso = document.querySelectorAll("div.pluso")[0];

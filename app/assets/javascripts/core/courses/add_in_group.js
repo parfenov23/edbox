@@ -256,7 +256,7 @@ var goToAttachmentLock = function (event) {
 };
 var goToAttachment = function(){
     var btn = $(this);
-    window.location.href = "/attachment/"+btn.attr('data-id');
+    window.location.href = "/attachment?id="+btn.attr('data-id');
 };
 $(document).ready(function () {
     $(document).on('click', '#js-favorite-courses .header .add-group, ' +

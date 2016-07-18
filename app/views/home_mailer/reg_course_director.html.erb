@@ -151,8 +151,7 @@
                       <tbody>
                       <tr>
                         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
-                          <a class="mcnButton " title="ПЕРЕЙТИ К КУРСУ" href='<%= @user.auth_url({redirect: "/course_description/#{@course.id}"}) %>' target="_blank"
-                             style="font-weight: normal; letter-spacing: 1px; line-height: 100%;
+                          <a class="mcnButton " title="ПЕРЕЙТИ К КУРСУ" href='<%= @user.auth_url({redirect: "/course_description?id=#{@course.id}"}) %>' target="_blank" style="font-weight: normal; letter-spacing: 1px; line-height: 100%;
                                   text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ К КУРСУ</a>
                         </td>
                       </tr>

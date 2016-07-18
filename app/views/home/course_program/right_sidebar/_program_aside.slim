@@ -20,7 +20,7 @@
               - if bunch_attachment.present?
                 - class_item = (section_attachment.id == attachment.id) ? "current" : ""
                 - class_item += bunch_attachment.complete ? " done" : ""
-                - hash_item = {onclick: "window.location.href = '/attachment/#{section_attachment.id}'"}
+                - hash_item = {onclick: "window.location.href = '/attachment?id=#{section_attachment.id}'"}
                 li.item class=class_item *hash_item
                   i.icon class=section_attachment.find_type
                   .title = section_attachment.title

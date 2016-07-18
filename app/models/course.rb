@@ -75,7 +75,7 @@ class Course < ActiveRecord::Base
   end
 
   def url
-    "/course_description/#{id}"
+    "/course_description?id=#{id}"
   end
 
   # def get_type
@@ -142,7 +142,7 @@ class Course < ActiveRecord::Base
           title: "Добавлен новый курс в библиотеку.",
           body: "Обратите внимание! В библиотеку добавлен новый курс — «#{title}». Возможно, стоит назначить этот курс кому-либо из ваших групп слушателей? ",
           timeClose: 0,
-          linkGo: "/course_description/#{id}"
+          linkGo: "/course_description?id=#{id}"
         }
       when "remove"
         {

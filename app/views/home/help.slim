@@ -9,6 +9,6 @@
           .description = raw ask_question.description
           .list
             - ask_question.page_questions.each do |page_question|
-              a.item href="/help_answer/#{page_question.id}"
+              a.item href="/help_answer?id=#{page_question.id}"
                 = raw page_question.title
                 i.icon

@@ -159,7 +159,7 @@ class HomeController < ActionController::Base
         unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
           redirect_to "/courses?type=material"
         else
-          redirect_to attachment.present? ? "/attachment/#{attachment.id}" : "/"
+          redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
         end
       end
     else
@@ -173,10 +173,10 @@ class HomeController < ActionController::Base
     unless except_params.include?(params[:id])
       if current_user.director
         @group = (current_user.company.groups.find(params[:id]) rescue nil)
-        redirect_to "/group/#{(current_user.company.groups.first.id rescue "new")}" unless @group.present?
+        redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless @group.present?
       elsif current_user.corporate
         @group = (current_user.my_groups.find(params[:id]) rescue nil)
-        redirect_to "/group/#{(current_user.my_groups.first.id rescue "no_group")}" unless @group.present?
+        redirect_to "/group?id=#{(current_user.my_groups.first.id rescue "no_group")}" unless @group.present?
       end
     end
 

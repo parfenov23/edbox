@@ -4,7 +4,7 @@
       img src="/assets/logo.svg" 
     .auth__title-top
       img.logo__img src="/assets/logo_auth.svg"
-    - redirect_url = "/course_description/#{@course.id}" rescue "/courses"
+    - redirect_url = "/course_description?id=#{@course.id}" rescue "/courses"
     form.auth__top.auth__enter.js_registrationUser data-redirect=redirect_url
       .auth__title Регистрация
       .auth__reg-block
