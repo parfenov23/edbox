@@ -10,10 +10,8 @@ span style="display: none;" data-test=current_user.id data-test2=@attachment.fil
   - unless @course.material? || !current_user.present?
     = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
   - unless @attachment.download
-    span style="display: none;" data-test="1"
     - case @attachment.file_type
     - when "audio", "video", "description", "pdf", 'vimeo'
-      span style="display: none;" data-test="2"
       = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
       = render "common/course/adova_btn_new"
     - when "test"

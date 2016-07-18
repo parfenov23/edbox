@@ -1,4 +1,6 @@
+span style="display: none;" data-test="3"
 - if current_user.present?
+  span style="display: none;" data-test="4"
   - bsid = (@section.bunch_section(current_user.id).id rescue nil)
   - redirect_url = "/course_description?id=#{@course.id}"
   - attachs_next = (@attachment.next rescue nil)
