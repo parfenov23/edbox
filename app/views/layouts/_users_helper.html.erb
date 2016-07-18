@@ -19,17 +19,18 @@
     a#reformal_tab img {
         width          : 130px;
         padding-bottom : 10px;
+        display        : none;
     }
 
     .phoneHelp {
-        text-align: center;
-        background-color: #fb9251 ;
-        border-radius: 5px 5px 0px 0px;
-        line-height: 34px;
-        padding-bottom: 5px;
-        padding-top: 5px;
-        font-size: x-large;
-        color: white;
+        text-align       : center;
+        background-color : #fb9251;
+        border-radius    : 5px 5px 0px 0px;
+        line-height      : 34px;
+        padding-bottom   : 5px;
+        padding-top      : 5px;
+        font-size        : x-large;
+        color            : white;
     }
 
     #reformal_widget {
@@ -58,7 +59,7 @@
             var intervalValidBlock;
             intervalValidBlock = setInterval(function () {
                 if ($("#reformal_widget").length){
-                    if(!$("#reformal_widget .phoneHelp").length){
+                    if (! $("#reformal_widget .phoneHelp").length){
                         $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 97 33 623</div>"));
                     }
                     clearInterval(intervalValidBlock);
@@ -67,7 +68,7 @@
         });
     });
 </script>
-<noscript style="display: none;">
+<noscript>
   <a href="http://reformal.ru">
     <img src="http://media.reformal.ru/reformal.png"/>
   </a>
