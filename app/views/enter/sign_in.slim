@@ -3,7 +3,7 @@
     img src="/assets/header__edbox.svg"
   .logo__scnd
     img src="/assets/header__adconsult.svg"
-  form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description?id=#{params[:redirect]}" : '')
+  form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description/#{params[:redirect]}" : '')
     .title Авторизация
     .com__input-item.item.empty
       input.form-control.floating-label name="user[email]" type="email" placeholder="Логин"

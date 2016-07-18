@@ -18,6 +18,16 @@ Rails.application.routes.draw do
   get "director/:action" => "director#:action"
   get "director/statistic/:action" => "director#:action"
   get ":action" => "home#:action"
+
+  #home routes
+  get "course_description/:id" => "home#course_description"
+  get "attachment/:id" => "home#attachment"
+  get "user/:id" => "home#user"
+  get "courses/:type" => "home#courses"
+  get "group/:id" => "home#group"
+  get "help_answer/:id" => "home#help_answer"
+  #########
+
   # get "makeup/create_group/name" => "makeup/create_group#name", :controller => "makeup"
   namespace :makeup do
     resources :create_group do

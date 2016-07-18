@@ -28,9 +28,9 @@ module NavLinkHelper
   def courses_nav_links
     [
       {title: "Все вместе", link: "/courses"},
-      {title: "Онлайн-курсы", link: "/courses?type=course"},
-      {title: "Вебинары", link: "/courses?type=online"},
-      {title: "Справочные материалы", link: "/courses?type=material"}
+      {title: "Онлайн-курсы", link: "/courses/course"},
+      {title: "Вебинары", link: "/courses/online"},
+      {title: "Справочные материалы", link: "/courses/material"}
     ]
   end
 
@@ -39,7 +39,7 @@ module NavLinkHelper
       {title: "Профиль", link: "/profile"},
       {title: "Тариф", link: "/tariff"},
       {title: "Платежи", link: "/payments"},
-      {title: "Публичная страница", link: "/user?user_id=#{current_user.id}"}
+      {title: "Публичная страница", link: "/user/#{current_user.id}"}
     ]
   end
 
@@ -121,11 +121,11 @@ module NavLinkHelper
   def group_nav_link
     if current_user.director
       current_user.company.groups.map do |group|
-        {title: group.first_name, link: "/group?id=#{group.id}"}
+        {title: group.first_name, link: "/group/#{group.id}"}
       end
     elsif current_user.corporate
       current_user.my_groups.map do |group|
-        {title: group.first_name, link: "/group?id=#{group.id}"}
+        {title: group.first_name, link: "/group/#{group.id}"}
       end
     end
   end
