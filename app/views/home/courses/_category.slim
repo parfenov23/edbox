@@ -1,7 +1,7 @@
 - categories = BunchCategory.where(course_id: @courses.map(&:id)).select(:category_id).distinct.map(&:category)
 - if categories.count > 1
   .category__filter_list
-    - get_type = params[:type].present? ? "?type=#{params[:type]}&cid=" : "?cid="
+    - get_type = params[:type].present? ? "/#{params[:type]}?cid=" : "?cid="
     a.item class=(!params[:cid].present? ? "is__checked" : "") href="/courses#{get_type.gsub('&cid=', '').gsub('?cid=', '')}" Все
     - categories.each do |category|
       a.item href="/courses#{get_type}#{category.id}" class=((category.id == params[:cid].to_i) ? "is__checked" : "" ) = category.title

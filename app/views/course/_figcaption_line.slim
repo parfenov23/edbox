@@ -1,6 +1,6 @@
 figcaption
   .title
-    a.goToCourse href="/course_description?id=#{course.id}"
+    a.goToCourse href="/course_description/#{course.id}"
       .inner = course.title
     - if (action_menu rescue true)
       = render "course/ligament_action_menu", {ligament_course: ligament_course}

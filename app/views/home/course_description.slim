@@ -148,7 +148,7 @@
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
                 - class_add_course = (!current_user.present? && attachment.public) ? "js_goToAttachment" : " "
                 - if current_user.present? && current_user.view_course?(@course) && !attachment.announcement?
-                  - redirect_att = "/attachment?id=#{attachment.id}"
+                  - redirect_att = "/attachment/#{attachment.id}"
                   - class_add_course += "js_addCourseToMyCourse"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
