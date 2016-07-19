@@ -6,11 +6,11 @@
   form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description/#{params[:redirect]}" : '')
     .title Авторизация
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[email]" type="email" placeholder="Логин"
+      input.form-control.floating-label name="user[email]" type="email" placeholder="Ваш логин (e-mail)"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[password]" type="password" placeholder="Пароль"
+      input.form-control.floating-label name="user[password]" type="password" placeholder="Ваш пароль"
       .error__msg Обязательное поле
       hr
     .forgot__pass
