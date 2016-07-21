@@ -2,7 +2,7 @@
 - bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
 - fclass = [(type != "shot__module" ? "basic__module" : ""), type]
 - fclass += ["completed"] if bunch_course.complete rescue false
-- fclass += ["basic__mat"] if course.material?
+- fclass += ["basic__mat"] if course.material? || course.instrument?
 figure class=fclass.join(' ')
   = render "course/image", {course: course, type: type, model_type: (model_type rescue nil)}
   - if type != "shot__module"

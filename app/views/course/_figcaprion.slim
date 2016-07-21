@@ -1,7 +1,7 @@
 - assigned = (course.assigned?(current_user.id) rescue false)
 figcaption
   - unless type == "short__ver"
-    - unless course.material?
+    - unless course.material? || course.instrument?
       .adaptive__title
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
         - if !course.paid
@@ -17,7 +17,7 @@ figcaption
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
     - link = "/course_no_reg?id=#{course.id}"
   form data-redirect=(redirect_att rescue nil) data-alert="false"
-    - if course.material?
+    - if course.material? || course.instrument?
       input type="hidden" name="course_id" value=course.id
     a.goToCourse class=(add_class rescue nil) href=link
       .title = course.title
@@ -26,9 +26,9 @@ figcaption
       = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user" && action_block
   .info__block
     .type
-      - cmaterial = course.material?
+      - cmaterial = course.material? || course.instrument?
       - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
-      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
+      - text = (cmaterial ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
       i.icon class=type
       = text
     - if course.announcement? || course.online?

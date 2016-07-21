@@ -63,6 +63,12 @@ class HomeController < ActionController::Base
     end
   end
 
+  def instrument
+    @attachment = Attachment.find_by_id(params[:id])
+    @section = @attachment.attachmentable rescue nil
+    @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
+  end
+
   def audio
     @current_user = current_user
     attachment = (Attachment.find(params[:id]) rescue nil)
@@ -154,12 +160,17 @@ class HomeController < ActionController::Base
           redirect_to "/tests/#{test_final.id}/run"
         end
       end
-      if @course.material?
+      if @course.material? || @course.instrument?
         attachment = @course.attachments.last
-        unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
-          redirect_to "/courses/material"
+        unless @course.instrument?
+          unless (@course.find_bunch_course(current_user.id).present? rescue !attachment.public)
+            redirect_to "/courses/material"
+          else
+            redirect_to attachment.present? ? "/attachment/#{attachment.id}" : "/"
+          end
         else
-          redirect_to attachment.present? ? "/attachment/#{attachment.id}" : "/"
+          attachment = @course.attachments.where.not(full_text: '').last
+          redirect_to attachment.present? ? "/instrument/#{attachment.id}" : '/courses/instrument'
         end
       end
     else

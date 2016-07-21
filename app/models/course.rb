@@ -117,6 +117,10 @@ class Course < ActiveRecord::Base
     type_course == "material"
   end
 
+  def instrument?
+    type_course == "instrument"
+  end
+
   def online?
     type_course == "online"
   end

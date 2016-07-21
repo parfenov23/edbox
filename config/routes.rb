@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   #home routes
   get "course_description/:id" => "home#course_description"
   get "attachment/:id" => "home#attachment"
+  get "instrument/:id" => "home#instrument"
   get "user/:id" => "home#user"
   get "courses/:type" => "home#courses"
   get "group/:id" => "home#group"
@@ -375,6 +376,15 @@ Rails.application.routes.draw do
         get :publication
       end
     end
+
+    resources :instruments do
+      collection do
+      end
+      member do
+        get :publication
+      end
+    end
+
     resources :admin do
       collection do
         get :tags

@@ -2,13 +2,13 @@ function init_tiny() {
     tinymce.init({
         selector: "textarea.js_includeTiny",
         height  : 300,
-        menu    : { // this is the complete default configuration
-            //edit   : {title : 'Редактирование'  , items : 'undo redo | cut copy paste pastetext | selectall'},
-            insert: {title: 'Insert', items: 'link media | template hr'},
-            //format : {title : 'Форматирование', items : 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
-            table : {title: 'Table', items: 'inserttable tableprops deletetable | cell row column'},
-            tools : {title: 'Tools', items: 'spellchecker code'}
-        },
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste imagetools"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
         setup   : function (editor) {
             editor.on('change', function (e) {
                 var editor_tiny = $(e.target.editorContainer);

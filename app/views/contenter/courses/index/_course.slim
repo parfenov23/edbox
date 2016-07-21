@@ -9,6 +9,7 @@
       - courses.order("created_at DESC").each do |course|
         - link = "/contenter/courses/#{course.id}/edit"
         - link = "/contenter/materials/#{course.id}/edit" if course.material?
+        - link = "/contenter/instruments/#{course.id}/edit" if course.instrument?
         figure.corses-prev.compact.js__removeCourseMyBlock
           div onclick='window.location.href="#{link}"'
             = render "common/course/course_img", {course: course, w: 694, h: 384}
@@ -22,4 +23,5 @@
               - title_auth = course.ligament_leads.first.user.full_name rescue "Нет ведущего"
               - title_auth = "Материал" if course.material?
               - title_auth = "Вебинар" if course.online?
+              - title_auth = "Инструмент" if course.instrument?
               = title_auth

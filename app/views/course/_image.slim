@@ -1,5 +1,5 @@
 .image
-  - if course.material?
+  - if course.material? || course.instrument?
     - if course.teaser.blank?
       - attachment = course.attachments.last
       img src="/assets/orange-waves.svg"

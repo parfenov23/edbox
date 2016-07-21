@@ -1,0 +1,66 @@
+= render "home/header/header", {namePage: "contenter_instruments_new", titlePage: "Создание инструмента продаж", btnBack: true, backUrl: "/contenter/courses"}
+- course = params[:id] == "new" ? Course.new : Course.find(params[:id])
+- course.type_course = "instrument"
+= render "contenter/courses/edit/right_bar/tags", {course: course}
+= render "contenter/courses/edit/right_bar/categories", {course: course}
+= render "contenter/courses/edit/right_bar/leadings", {course: course}
+= javascript_include_tag "/tinymce/tinymce.min.js"
+= javascript_include_tag "/tinymce/contenter_start.js"
+- attachment = course.attachments.present? ? course.attachments.last : course.attachments.new
+- att_id = attachment.id.present? ? attachment.id : "new"
+.contenter#materialEditContenter
+  form.upload_teaser_material
+    input name='file' data-id=course.id type="file" accept="image/*" id="fileTeaserImgForm_#{course.id}"
+  form.course__description-content.oh__nihuyase-block.js_courseContenter.form_edit data-id=att_id
+    input type="hidden" name="course[id]" value=params[:id]
+    input type="hidden" name="course[user_id]" value=current_user.id
+    input#typeCourseInputVal type="hidden" name="course[type_course]" value=course.type_course
+    .course__info
+      .form_group.detail__info.validateFormCourse
+        .title
+          input.courseTitle.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название инструмента" name="course[title]" value=course.title
+
+      .itemDetailInfo.material_teaser
+        - teaser = course.teaser
+        - class_btn = teaser.present? ? "hide" : ""
+        - class_prev = teaser.present? ? "" : "hide"
+        - attachment_teaser = teaser.attachment rescue nil
+        .btn.btn-flat.js_openFormUploadTeaser class=class_btn Добавить обложку
+        .image__prv.prev_teaser class=class_prev
+          .title Обложка материала
+          .item
+            .image
+              img src=(attachment_teaser.file.url rescue nil)
+            .info
+              .title
+                span = attachment_teaser.file_name rescue nil
+                i.icon.del.js_deleteTeaserMaterial data-id=course.id
+              .weight #{attachment_teaser.file.size rescue nil} байт
+
+      .itemDetailInfo.validateCourseCategories.validateFormCourse
+        .description__Item
+          .allCategoriesDescriptionCourse
+            - course.bunch_categories.each do |bunch_category|
+              - category = bunch_category.category
+              .category
+                = category.title
+                .remove.js_removeBunchCategoryFromCourse data-id=category.id
+          .addCategory.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
+        .description__Item
+          .allTagDescriptionCourse
+            - course.bunch_tags.each do |bunch_tag|
+              - tag = bunch_tag.tag
+              .tag
+                = tag.title
+                .remove.js_removeBunchTagFromCourse data-id=tag.id
+
+
+          .addTag.js_clickFromCreateCourseContenter
+            .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
+
+      .itemDetailInfo
+        .editFileUpload.includeValidateForm data-validate="present_file"
+          .addedTxtDescription.itemFile data-type="description" class='attachmentShow'
+            textarea.js_includeTiny.js_onChangeEditAttachment name="attachment[full_text]"
+              = attachment.full_text

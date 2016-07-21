@@ -16,6 +16,8 @@ module NavLinkHelper
         contenter_courses_new_nav_links
       when "contenter_materials_new"
         contenter_materials_new_nav_links
+      when "contenter_instruments_new"
+        contenter_materials_new_nav_links("instruments")
       when "contenter_admin"
         contenter_admin_nav_links
       when "profile"
@@ -30,7 +32,8 @@ module NavLinkHelper
       {title: "Все вместе", link: "/courses"},
       {title: "Онлайн-курсы", link: "/courses/course"},
       {title: "Вебинары", link: "/courses/online"},
-      {title: "Справочные материалы", link: "/courses/material"}
+      {title: "Справочные материалы", link: "/courses/material"},
+      {title: "Инструменты продаж", link: "/courses/instrument"}
     ]
   end
 
@@ -51,13 +54,13 @@ module NavLinkHelper
     ]
   end
 
-  def contenter_materials_new_nav_links
+  def contenter_materials_new_nav_links(type="materials")
     id = params[:id].present? ? params[:id] : "new"
     [
-      {title: "Описание", link: "/contenter/materials/#{id}/edit",
+      {title: "Описание", link: "/contenter/#{type}/#{id}/edit",
        add_params: {class: "contenter_courses_edit"}
       },
-      {title: "Публикация", link: "/contenter/materials/#{id}/publication",
+      {title: "Публикация", link: "/contenter/#{type}/#{id}/publication",
        add_params: {class: "contenter_courses_public"}
       }
     ]

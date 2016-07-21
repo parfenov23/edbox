@@ -118,10 +118,10 @@
               .titleName = (attachment.file.file.original_filename rescue "Без имени")
               .fileType
                 i.icon.content class=attachment.class_type
-            /.fileDuration
-            /  .titleDuration Продолжительность материала в минутах
-            /  input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]" value=attachment.duration
-            /
+          /.fileDuration
+          /  .titleDuration Продолжительность материала в минутах
+          /  input.inputDuration.js_onChangeEditAttachment placeholder="0" name="attachment[duration]" value=attachment.duration
+          /
           .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
             - if attachment.test.present?
               = render "contenter/courses/program/test", {test: attachment.test}

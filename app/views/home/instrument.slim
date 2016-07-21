@@ -1,0 +1,12 @@
+= render "home/header/header", {namePage: "other",
+                                titlePage: @course.title, btnBack: true,
+                                backUrl: '/courses/instrument', classPageTitle: "is__gray"}
+
+#attachmentCourseProgram
+  .inner-content
+    #course
+      .text__content.text__content_inner
+        #js__toTogglescreen.toggle__screen.icon
+        /.separator
+        #js__text-content.js__baron.text__inner
+          = raw Nokogiri::HTML::DocumentFragment.parse(@attachment.full_text).to_html
