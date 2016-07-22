@@ -307,6 +307,12 @@ i.icon {
     &::before {
       content : "\e906";
     }
+    &.square {
+      &::before {
+        content : "\e909";
+        color   : #6383A8;
+      }
+    }
   }
   &.rss {
     &::before {
@@ -316,6 +322,12 @@ i.icon {
   &.fb {
     &::before {
       content : "\e901";
+    }
+    &.square {
+      &::before {
+        content : "\e90a";
+        color   : #365899;
+      }
     }
   }
   &.youtube {
@@ -333,6 +345,12 @@ i.icon {
     &::before {
       content : "\e904";
     }
+    &.square {
+      &::before {
+        content : "\e90b";
+        color   : #656564;
+      }
+    }
   }
   &.twitter {
     &::before {
@@ -344,6 +362,5 @@ i.icon {
       content : "\e907";
     }
   }
-
 
 }
