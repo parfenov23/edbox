@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   get "group/:id" => "home#group"
   get "help_answer/:id" => "home#help_answer"
   #########
-
+  ### upload img instrument
+  post "tinymce_assets" => "contenter/instruments#upload_file_img"
+  #################
   # get "makeup/create_group/name" => "makeup/create_group#name", :controller => "makeup"
   namespace :makeup do
     resources :create_group do

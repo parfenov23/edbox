@@ -391,6 +391,11 @@ GEM
     timers (4.0.1)
       hitimes
     tins (1.6.0)
+    tinymce-rails (3.5.8.3)
+      railties (>= 3.1.1)
+    tinymce-rails-imageupload (3.5.8.6)
+      railties (>= 3.1)
+      tinymce-rails (~> 3.5.8.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -482,6 +487,7 @@ DEPENDENCIES
   streamio-ffmpeg
   therubyracer
   thin (~> 1.5.0)
+  tinymce-rails-imageupload
   uglifier
   unicorn
   websocket-rails!

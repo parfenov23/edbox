@@ -11,6 +11,15 @@ module Contenter
     def edit
     end
 
+    def upload_file_img
+      att = Attachment.create(file: params[:file])
+      render json: {
+               image: {
+                 url: att.file.url
+               }
+             }, content_type: "text/html"
+    end
+
     def publication
       begin
         @course = Course.find(params[:id])

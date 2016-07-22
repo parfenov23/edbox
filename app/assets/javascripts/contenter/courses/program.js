@@ -21,6 +21,7 @@ var createCourseContenterProgram = function (action, new_create) {
                 onChangeEditAttachment($(".upload_attachments input[name='attachment[attachmentable_type]']"));
             }
         }
+        if (type_course == "instrument") type_link = "instruments";
         history.pushState({}, '', "/contenter/" + type_link + "/" + data.id + "/edit");
         var header = $("#page__header .page__children");
         header.find(".contenter_courses_edit").attr('href', '/contenter/' + type_link + '/' + data.id + '/edit');

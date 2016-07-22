@@ -1,6 +1,16 @@
 = render "home/header/header", {namePage: "other",
                                 titlePage: @course.title, btnBack: true,
                                 backUrl: '/courses/instrument', classPageTitle: "is__gray"}
+javascript:
+  pageLoad(function(){
+    $.each($(".text__inner img"), function (n, e) {
+      var elem = $(e);
+      if (elem.attr('alt').length){
+        elem.after($("<figure><p>" + elem.prop('outerHTML') + "</p><figcaption style='text-align: center;font-size: 14px;font-style: italic;color: rgba(0, 0, 0, 0.50);'>" + elem.attr('alt') + "</figcaption></figure>"));
+        elem.remove();
+      }
+    });
+  });
 
 #attachmentCourseProgram
   .inner-content

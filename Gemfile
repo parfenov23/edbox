@@ -83,7 +83,9 @@ group :production do
 end
 gem 'activemerchant', github: 'softeamco/active_merchant'
 #=====
-
+#====== tinymce
+gem 'tinymce-rails-imageupload'
+#=============
 group :development do
   gem 'rails-erd'
   gem 'better_errors'

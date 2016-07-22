@@ -19,6 +19,12 @@
       .form_group.detail__info.validateFormCourse
         .title
           input.courseTitle.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите название инструмента" name="course[title]" value=course.title
+      .form_group.detail__info.validateFormCourse
+        .title
+          input.courseTitle.js_onChangeEditCourse.js_validateCourseTitle placeholder="Open Graph заголовок" name="course[og][title]" value=course.og["title"]
+      .form_group.detail__info.validateFormCourse
+        .title
+          input.courseTitle.js_onChangeEditCourse.js_validateCourseTitle placeholder="Open Graph описание" name="course[og][description]" value=course.og["description"]
 
       .itemDetailInfo.material_teaser
         - teaser = course.teaser

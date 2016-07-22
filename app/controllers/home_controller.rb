@@ -3,7 +3,7 @@ class HomeController < ActionController::Base
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
                                      :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
-                                     :course_cert]
+                                     :course_cert, :instrument]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -67,6 +67,7 @@ class HomeController < ActionController::Base
     @attachment = Attachment.find_by_id(params[:id])
     @section = @attachment.attachmentable rescue nil
     @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
+    @og = @course.og_all
   end
 
   def audio

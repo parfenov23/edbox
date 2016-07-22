@@ -1,5 +1,6 @@
 require 'resize_image'
 class Course < ActiveRecord::Base
+  serialize :og, ActiveRecord::Coders::Hstore
   has_many :sections, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
@@ -38,6 +39,10 @@ class Course < ActiveRecord::Base
 
   def audiences
     bunch_courses.map(&:user_id).uniq.count
+  end
+
+  def og_all
+    og.merge({"img" => (teaser.attachment.file.url rescue nil)}).compact
   end
 
   def announcement

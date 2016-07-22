@@ -22,7 +22,7 @@ module Api::V1
 
     def update
       course = find_course
-      course.update(params_course)
+      course.update(params_course.merge({og: params[:course][:og]}).compact)
       course.notice_users
       render json: course.transfer_to_json
     end
