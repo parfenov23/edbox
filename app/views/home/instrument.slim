@@ -1,6 +1,8 @@
+- title_page = @og["title"].present? ? @og["title"] : @course.title
 = render "home/header/header", {namePage: "other",
                                 titlePage: @course.title, btnBack: true,
                                 backUrl: '/courses/instrument', classPageTitle: "is__gray"}
+- title title_page
 javascript:
   pageLoad(function(){
     $.each($(".text__inner img"), function (n, e) {
