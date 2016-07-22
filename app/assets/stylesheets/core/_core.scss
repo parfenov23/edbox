@@ -1199,3 +1199,6 @@
     height              : 30px;
   }
 }
+iframe[src*="static/partners"] {
+  display: none;
+}
