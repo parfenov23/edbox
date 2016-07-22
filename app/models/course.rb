@@ -42,7 +42,7 @@ class Course < ActiveRecord::Base
   end
 
   def og_all
-    img = (course? || online? ? attachments.first.file.url : teaser.attachment.file.url) rescue '/images/title_img.png'
+    img = (course? || online? ? get_image_path : teaser.attachment.file.url) rescue '/images/title_img.png'
     og.merge!({"title" => title}) if og["title"].blank?
     og.merge!({"description" => description}) if og["description"].blank?
     og.merge!({"img" => img}).compact
