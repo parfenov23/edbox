@@ -153,6 +153,7 @@ class HomeController < ActionController::Base
     # @favorite_courses = current_user.favorite_courses
     @course = Course.find_by_id(params[:id])
     if @course.present?
+      @og = @course.og_all
       bunch_course = current_user.bunch_courses.where(course_id: @course.id).last rescue nil
       test_final = @course.test
       if test_final.present?

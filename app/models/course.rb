@@ -42,7 +42,10 @@ class Course < ActiveRecord::Base
   end
 
   def og_all
-    og.merge({"img" => (teaser.attachment.file.url rescue nil)}).compact
+    img = (course? || online? ? attachments.first.file.url : teaser.attachment.file.url) rescue '/images/title_img.png'
+    og.merge!({"title" => title}) if og["title"].blank?
+    og.merge!({"description" => description}) if og["description"].blank?
+    og.merge!({"img" => img}).compact
   end
 
   def announcement
@@ -128,6 +131,10 @@ class Course < ActiveRecord::Base
 
   def online?
     type_course == "online"
+  end
+
+  def course?
+    type_course == "course"
   end
 
   def leading?(user_id)

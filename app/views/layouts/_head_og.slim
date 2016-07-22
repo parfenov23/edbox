@@ -1,15 +1,20 @@
 - if @og.present?
-  meta name="description" content=@og["description"]
+  - if @og["title"].present?
+    meta content=@og["title"] property="og:title"
+    meta name="twitter:title" content=@og["title"]
+  - if @og["description"]
+    meta content=@og["description"] property="og:description"
+    meta name="description" content=@og["description"]
+    meta name="twitter:description" content=@og["description"]
 
-  meta content=@og["title"] property="og:title"
-  meta content=@og["description"] property="og:description"
   meta content=@og["img"] property="og:url"
   meta content=@og["img"] property="og:image"
   meta content=@og["img"] property="og:image:url"
+  meta name="twitter:image" content=@og["img"]
+
+
   meta content="image/jpeg" property="og:image:type"
   meta content="article" property="og:type"
-
   meta name="twitter:card" content="summary"
-  meta name="twitter:title" content=@og["title"]
-  meta name="twitter:description" content=@og["description"]
-  meta name="twitter:image" content=@og["img"]
+
+
