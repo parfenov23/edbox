@@ -1,4 +1,6 @@
 - if @og.present?
+  meta name="description" content=@og["description"]
+
   meta content=@og["title"] property="og:title"
   meta content=@og["description"] property="og:description"
   meta content=@og["img"] property="og:url"
