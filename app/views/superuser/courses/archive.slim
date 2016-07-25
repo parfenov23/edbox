@@ -1,0 +1,12 @@
+.list-group.row
+  - @courses.each do |course|
+    .list-group-item.col-md-4
+      span
+        = course.title
+      a.btn.btn-success.pull-right href="/superuser/courses/#{course.id}/un_archive" data-method='delete' *un_archive_confirm
+        = btn_complete
+      a.btn.btn-danger.pull-right href="/superuser/courses/#{course.id}/un_remove" style="margin-right: 5px;"
+        = btn_delete
+      - if course.online?
+        .btn.btn-info.pull-right style="margin-right: 5px;"
+          = course.webinar_users_count

@@ -318,6 +318,11 @@ Rails.application.routes.draw do
     resources :courses do
       member do
         get :remove
+        get :un_remove
+        get :un_archive
+      end
+      collection do
+        get :archive
       end
     end
     resources :email_notifs do

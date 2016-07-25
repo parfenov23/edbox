@@ -114,7 +114,8 @@ module Api::V1
     end
 
     def remove
-      find_course.destroy
+      # find_course.destroy
+      find_course.update(archive: true)
       render json: {success: true}
     end
 

@@ -176,8 +176,16 @@ module ApplicationHelper
     raw "&#10006;"
   end
 
+  def btn_complete
+    raw "&#10003;"
+  end
+
   def delete_confirm
     {onclick: "return confirm('Вы уверены что хотите удалить?')"}
+  end
+
+  def un_archive_confirm
+    {onclick: "return confirm('Вы уверены что хотите востановить?')"}
   end
 
   def class_block_attachment(attachment)
