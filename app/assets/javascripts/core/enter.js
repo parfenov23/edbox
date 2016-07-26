@@ -162,6 +162,7 @@ var validRegClickOfert = function () {
     var btn = $(this);
     if (!btn.closest('form').find(".auth_agree.checkbox__holder input.checkbox").is(':checked')){
         $('input.checkbox').addClass('error');
+        show_error("Пожалуйста, отметьте, что вы согласны с пользовательским соглашением", 3000);
         return false;
     }
 };
