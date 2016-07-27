@@ -16,7 +16,18 @@ function init_tiny() {
                 var form = editor_tiny.closest("form");
                 var textarea = form.find("textarea[name='attachment[full_text]']");
                 textarea.val(e.target.getBody().innerHTML);
-                onChangeEditAttachment(editor_tiny);
+                if (textarea.length){
+                    onChangeEditAttachment(editor_tiny);
+                }else{
+                    editor_tiny.closest(".description").find("textarea").val(e.target.getBody().innerHTML);
+                    var input_id = formInputIdCourse();
+                    var id_course = input_id.val();
+                    if (id_course == "new"){
+                        createCourseContenter(form.serialize());
+                    } else {
+                        updateCourseContenter(form.serialize(), id_course);
+                    }
+                }
             });
         }
     });
