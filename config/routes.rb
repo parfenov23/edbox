@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   get "attachment/:id" => "home#attachment"
   get "instrument/:id" => "home#instrument"
   get "user/:id" => "home#user"
+
+  get "courses/rss" => "home#courses_rss", format: 'rss'
   get "courses/:type" => "home#courses"
+  get "courses/:type/rss" => "home#courses_rss", format: 'rss'
+
   get "group/:id" => "home#group"
   get "help_answer/:id" => "home#help_answer"
   #########

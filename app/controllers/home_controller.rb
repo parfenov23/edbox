@@ -107,6 +107,13 @@ class HomeController < ActionController::Base
     @courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
   end
 
+  def courses_rss
+    self.courses
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   def programm
     @course = Course.find(params[:id])
     @sections = @course.sections
