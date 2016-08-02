@@ -4,6 +4,11 @@ form.form-horizontal action="#{action_url}" method="post"
     .form-group
         label
             | Название:
-        input.form-control name="tag[title]" type="text" value="#{@tag.title}"
-    input type="hidden" name="_method" value="#{method}"
+        input.form-control name="tag[title]" type="text" value=@tag.title
+    input type="hidden" name="_method" value=method
+    input type="hidden" name="tag[tagtable_type]" value=@tag.tagtable_type
+    input type="hidden" name="tag[tagtable_id]" value=@tag.tagtable_id
     button.btn.btn-primary type="submit" Сохранить
+- if @tag.id.present?
+  a.btn.btn-success href="/superuser/tags/#{@tag.id}/subtag"
+    |Подкатегория

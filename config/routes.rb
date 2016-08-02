@@ -362,6 +362,7 @@ Rails.application.routes.draw do
     resources :tags do
       member do
         get :remove
+        get :subtag
       end
     end
     resources :attachments do

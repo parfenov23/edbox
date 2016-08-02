@@ -1,0 +1,12 @@
+- action_url = @tag.id.nil? ? "/superuser/tags" : "/superuser/tags/#{@tag.id}"
+- method = @tag.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="tag[title]" type="text" value="#{@tag.title}"
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
+- if @tag.id.present?
+  a.btn.btn-success href="/superuser/tags/#{@tag.id}/subtag"
+    |Подкатегория
