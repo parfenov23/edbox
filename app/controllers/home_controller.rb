@@ -1,5 +1,6 @@
 class HomeController < ActionController::Base
   helper_method :current_user
+  helper_method :subdomain
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
                                      :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
@@ -249,6 +250,11 @@ class HomeController < ActionController::Base
   def current_user
     @current_user ||= User.find_by(user_key: session[:user_key]) if session[:user_key]
     @current_user
+  end
+
+  def subdomain
+    @subdomain ||= $env_mode.subdomain(request)
+    @subdomain
   end
 
   def authorize

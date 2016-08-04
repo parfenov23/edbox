@@ -24,13 +24,21 @@ class EnvMode
     @mode == 'beta'
   end
 
+  def subdomain(request=nil)
+    request.present? ? request.subdomain.gsub(".#{beta_subdomain}", '').gsub(beta_subdomain, '') : request
+  end
+
   def current_domain(dName = to_key)
     domains = {
-      development: "http://localhost:#{port}",
-      beta: "http://betaed.masshtab.am",
+      development: "http://server.dev:#{port}",
+      beta: "http://#{beta_subdomain}.masshtab.am",
       production: "http://adconsult.online"
     }
     domains[dName]
+  end
+
+  def beta_subdomain
+    "betaed"
   end
 
   def config

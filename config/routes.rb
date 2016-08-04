@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post "subscription/pay" => "home#pay"
   get "director/:action" => "director#:action"
   get "director/statistic/:action" => "director#:action"
+  # get 'courses' => 'superuser/home#index', :constraints => { :subdomain => /.+/ }
   get ":action" => "home#:action"
 
   #home routes
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   get "instrument/:id" => "home#instrument"
   get "user/:id" => "home#user"
 
+  # get 'courses' => 'home#courses', :constraints => { :subdomain => /.+/ }
   get "courses/rss" => "home#courses_rss", format: 'rss'
   get "courses/:type" => "home#courses"
   get "courses/:type/rss" => "home#courses_rss", format: 'rss'
