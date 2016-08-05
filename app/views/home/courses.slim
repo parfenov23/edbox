@@ -2,7 +2,6 @@
 = render "home/courses/filter"
 - if (current_user.corporate rescue false)
   = render "home/courses/groups"
-
 - if @courses.present?
   .inner-content
     = render "home/courses/category"

@@ -103,6 +103,31 @@
         border : 1px solid $primaryColor;
       }
     }
+    .parent_tag {
+      padding-bottom : 8px;
+      .title {
+        margin        : 0 16px 0px 4px;
+        padding       : 8px 4px 8px 4px;
+        border-bottom : 1px solid #BFBFBF;
+        &:hover {
+          cursor           : pointer;
+          background-color : rgba(117, 117, 117, 0.12);
+        }
+      }
+      ul {
+        padding-top   : 8px;
+        display       : none;
+        border-bottom : 1px solid #EE8738;
+        margin-left   : 14px;
+        & > li {
+          //margin-left : 14px;
+          &.last_subtag {
+            display     : inline;
+            margin-left : 4px;
+          }
+        }
+      }
+    }
   }
 }
 

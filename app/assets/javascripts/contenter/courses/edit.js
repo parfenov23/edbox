@@ -299,6 +299,18 @@ var announcement = function () {
     $(btn).closest('.upload_attachments').removeClass('includeValidateForm error');
 };
 
+var openTreeTagsLeftSideBar = function(){
+    var btn = $(this);
+    var block = btn.closest(".parent_tag").find("ul:first");
+    if (block.is(":visible")){
+        block.hide();
+    }else{
+        block.show();
+    }
+
+
+};
+
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
@@ -342,4 +354,5 @@ pageLoad(function () {
     });
 
     $('#courseEditContenter #inputFile_teaserImg,#courseEditContenter #inputFile_teaserVideo').change(changeTeaserCourse);
+    $(document).on('click', '#js-course-tags .all__Tags .parent_tag .title', openTreeTagsLeftSideBar)
 });
