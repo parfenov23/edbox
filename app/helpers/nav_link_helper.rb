@@ -33,7 +33,7 @@ module NavLinkHelper
       {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
       {title: "Вебинары", link: "/courses/online", type: "online"},
       {title: "Справочные материалы", link: "/courses/material", type: "material"},
-      {title: "Инструменты продаж", link: "/courses/instrument", type: "instrument"}
+      {title: "Инструменты", link: "/courses/instrument", type: "instrument"}
     ]
   end
 

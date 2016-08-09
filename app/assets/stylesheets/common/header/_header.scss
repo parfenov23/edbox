@@ -126,6 +126,10 @@
     &.is__gray {
       color : black__color(secondary__color);
     }
+    img {
+      width      : 168px;
+      margin-top : -8px;
+    }
   }
 
   .page__children {
