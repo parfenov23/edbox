@@ -74,7 +74,7 @@ class Course < ActiveRecord::Base
   end
 
   def description_validate
-    title.present? && description.present? && bunch_categories.present?
+    title.present? && description.present? # && bunch_categories.present?
   end
 
   def program_validate

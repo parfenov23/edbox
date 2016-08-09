@@ -71,18 +71,18 @@
         .description
           textarea.js_onChangeEditCourse.js_includeTiny.js_validateCourseTitle placeholder="Введите описание курса" name="course[description]"
             = course.description
-      .itemDetailInfo.validateCourseCategories.validateFormCourse
-        = render "contenter/courses/help_error"
-        .title__Item Категории
-        .description__Item
-          .allCategoriesDescriptionCourse
-            - course.bunch_categories.each do |bunch_category|
-              - category = bunch_category.category
-              .category
-                = category.title
-                .remove.js_removeBunchCategoryFromCourse data-id=category.id
-          .addCategory.js_clickFromCreateCourseContenter
-            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
+      /.itemDetailInfo.validateCourseCategories.validateFormCourse
+      /  = render "contenter/courses/help_error"
+      /  .title__Item Категории
+      /  .description__Item
+      /    .allCategoriesDescriptionCourse
+      /      - course.bunch_categories.each do |bunch_category|
+      /        - category = bunch_category.category
+      /        .category
+      /          = category.title
+      /          .remove.js_removeBunchCategoryFromCourse data-id=category.id
+      /    .addCategory.js_clickFromCreateCourseContenter
+      /      .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
       .itemDetailInfo
         .title__Item Теги
         .description__Item

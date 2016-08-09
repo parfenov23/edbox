@@ -1,0 +1,4 @@
+.category__filter_list
+  .btn.is__orange.js_openLeftSideBar data-id="js-filter-courses" Быстрый поиск
+  - if params[:tid].present? && @courses_tid.blank?
+    .statusBar По запросу '#{Tag.find(params[:tid]).title}' ничего не найдено

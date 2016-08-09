@@ -30,10 +30,10 @@ module NavLinkHelper
   def courses_nav_links
     [
       {title: "Все вместе", link: "/courses"},
-      {title: "Онлайн-курсы", link: "/courses/course"},
-      {title: "Вебинары", link: "/courses/online"},
-      {title: "Справочные материалы", link: "/courses/material"},
-      {title: "Инструменты продаж", link: "/courses/instrument"}
+      {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
+      {title: "Вебинары", link: "/courses/online", type: "online"},
+      {title: "Справочные материалы", link: "/courses/material", type: "material"},
+      {title: "Инструменты продаж", link: "/courses/instrument", type: "instrument"}
     ]
   end
 

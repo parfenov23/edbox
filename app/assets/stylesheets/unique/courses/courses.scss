@@ -1,109 +1,116 @@
 
 .new-courses-holder {
-    .content-courses {
-        position : relative;
-        .new-top-title {
-            position    : absolute;
-            left        : 0;
-            top         : 40px;
-            font-size   : 20px;
-            color       : $primaryColor;
-            line-height : 32px;
-        }
-        .new-btm-title {
-            position    : absolute;
-            left        : 0;
-            bottom      : -60px;
-            font-size   : 20px;
-            color       : #999;
-            line-height : 32px;
-        }
-        .new-label {
-            position         : absolute;
-            right            : 0;
-            top              : 40px;
-            font-size        : 13px;
-            color            : #FFF;
-            line-height      : 18px;
-            background-color : $primaryColor;
-            height           : 32px;
-            line-height      : 32px;
-            padding          : 0 9px;
-            a {
-                color : #FFF;
-            }
-        }
-        .corses-prev {
-            &:nth-child(3) {
-                margin-right : 0;
-            }
-        }
+  .content-courses {
+    position : relative;
+    .new-top-title {
+      position    : absolute;
+      left        : 0;
+      top         : 40px;
+      font-size   : 20px;
+      color       : $primaryColor;
+      line-height : 32px;
     }
+    .new-btm-title {
+      position    : absolute;
+      left        : 0;
+      bottom      : -60px;
+      font-size   : 20px;
+      color       : #999;
+      line-height : 32px;
+    }
+    .new-label {
+      position         : absolute;
+      right            : 0;
+      top              : 40px;
+      font-size        : 13px;
+      color            : #FFF;
+      line-height      : 18px;
+      background-color : $primaryColor;
+      height           : 32px;
+      line-height      : 32px;
+      padding          : 0 9px;
+      a {
+        color : #FFF;
+      }
+    }
+    .corses-prev {
+      &:nth-child(3) {
+        margin-right : 0;
+      }
+    }
+  }
 }
 
 .courses-description {
-    @import "unique/courses/description/description";
-    border-radius : 2px;
+  @import "unique/courses/description/description";
+  border-radius : 2px;
 
 }
 
 .image-bg {
-    position        : fixed;
-    top             : 0;
-    left            : 0;
-    width           : 100%;
-    height          : 100%;
-    background-size : cover;
-    -webkit-filter  : url(#blur);
-    filter          : url(#blur);
-    -webkit-filter  : blur(16px);
-    filter          : blur(16px);
-    filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius="16");
-    z-index         : -1;
-    background-size: cover !important;
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  width           : 100%;
+  height          : 100%;
+  background-size : cover;
+  -webkit-filter  : url(#blur);
+  filter          : url(#blur);
+  -webkit-filter  : blur(16px);
+  filter          : blur(16px);
+  filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius="16");
+  z-index         : -1;
+  background-size : cover !important;
 }
 
 .corses-prev {
-    .image {
-        img {
-            width: 347px;
-            height: 192px;
-        }
+  .image {
+    img {
+      width  : 347px;
+      height : 192px;
     }
+  }
 }
 
 .category__filter_list {
   @include middle-block(1128px);
-  display: flex;
-  justify-content: flex-start;
+  display         : flex;
+  justify-content : flex-start;
+  .statusBar {
+    @include text__setting(smallest__typo, secondary__color);
+    line-height : 31px;
+    margin-left: 16px;
+    font-size: 14px;
+  }
   .item {
-    max-width: 296px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 8px;
-    border: 1px solid #979797;
-    border-radius: 2px;
+    max-width     : 296px;
+    height        : 32px;
+    line-height   : 32px;
+    padding       : 0 8px;
+    border        : 1px solid #979797;
+    border-radius : 2px;
     /* Подрядчик: */
-    font-size: 15px;
-    color: black__color('secondary__color');
-    margin-right: 16px;
-    margin-bottom: 16px;
-    cursor: pointer;
+    font-size     : 15px;
+    color         : black__color('secondary__color');
+    margin-right  : 16px;
+    margin-bottom : 16px;
+    cursor        : pointer;
     @include eclipses;
     &:hover {
-      color: $primaryColor;
-      border-color: $primaryColor;
+      color        : $primaryColor;
+      border-color : $primaryColor;
     }
     &.is__checked {
-      background-color: $primaryColor;
-      color: #fff;
-      border-color: $primaryColor;
+      background-color : $primaryColor;
+      color            : #FFF;
+      border-color     : $primaryColor;
     }
   }
 }
+
 .courses-list {
-    @include clearfix;
-    @import "common/elements/courses_block";
+  @include clearfix;
+  @import "common/elements/courses_block";
 }
 
 @import "unique/courses/add-course";
