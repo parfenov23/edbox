@@ -107,10 +107,12 @@ figure.basic__module {
     }
     .title {
       padding       : 0 16px;
-      @include text__setting(header__typo_1);
+      @include text__setting(small__typo);
       height        : 56px;
       overflow      : hidden;
       margin-bottom : 16px;
+      font-size     : 16px;
+      line-height   : 19px;
     }
     .info__block {
       padding         : 0 16px;
