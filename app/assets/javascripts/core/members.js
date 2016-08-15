@@ -204,7 +204,7 @@ var installCountResidue = function (n) {
     var count_residue_users = $(".members .count_residue_users");
     if (count_residue_users.length){
         if (n == undefined && n < 0) n = 0;
-        var count = count_residue_users.attr('data-count');
+        var count = parseInt(count_residue_users.attr('data-count'));
         var result_count = count + n;
 
         count_residue_users.data('count', result_count);
