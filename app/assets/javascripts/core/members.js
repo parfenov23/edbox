@@ -205,6 +205,7 @@ var installCountResidue = function (n) {
     if (count_residue_users.length){
         if (n == undefined || n < 0) n = 0;
         var count = parseInt(count_residue_users.attr('data-count'));
+        if (count < 0) count = 0;
         var result_count = count + n;
         count_residue_users.data('count', result_count);
         count_residue_users.attr('data-count', result_count);
