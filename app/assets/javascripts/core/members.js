@@ -206,7 +206,6 @@ var installCountResidue = function (n) {
         if (n == undefined || n < 0) n = 0;
         var count = parseInt(count_residue_users.attr('data-count'));
         var result_count = count + n;
-
         count_residue_users.data('count', result_count);
         count_residue_users.attr('data-count', result_count);
         count_residue_users.text(result_count + " " + declOfNum(result_count, ["приглашение", "приглашения", "приглашений"]));
