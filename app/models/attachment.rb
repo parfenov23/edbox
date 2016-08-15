@@ -42,7 +42,7 @@ class Attachment < ActiveRecord::Base
   end
 
   def link
-    "/attachment/#{id}"
+    "/attachment?id=#{id}"
   end
 
   def clear_full_text

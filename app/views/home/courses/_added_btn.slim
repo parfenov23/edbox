@@ -10,12 +10,12 @@
           .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в расписание группы
 
         - if find_bunch_course_group.blank?
-          form data-redirect="/course_description/#{course.id}"
+          form data-redirect="/course_description?id=#{course.id}"
             input type="hidden" name="course_id" value=course.id
             .schedule.icon.js_for-tooltip.js_addCourseToMyCourse
               .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы
       - else
-        form data-redirect="/course_description/#{course.id}"
+        form data-redirect="/course_description?id=#{course.id}"
           input type="hidden" name="course_id" value=course.id
           .add.icon.js_for-tooltip.js_addCourseToMyCourse
             .mdl-shadow-2dp.com-top-tooltip.js_tooltip Добавить в мои курсы

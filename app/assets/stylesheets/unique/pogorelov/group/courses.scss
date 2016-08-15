@@ -127,7 +127,7 @@
   color       : rgba(40, 46, 62, .54);
 }
 
-input[type="text"] {
+input[type="text"], .md-modal textarea {
 
   //@extend %extend_1;
   &:focus {
@@ -227,7 +227,7 @@ input[type="submit"] {
         text-align    : center;
         color         : $primaryColor;
         border        : 2px solid $primaryColor;
-        z-index: 999;
+        z-index       : 999;
 
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius : 48px;
@@ -257,8 +257,8 @@ input[type="submit"] {
     margin-right : 2px;
   }
   .action-btn {
-    display: flex;
-    justify-content: flex-end;
+    display         : flex;
+    justify-content : flex-end;
     .btn {
 
     }
@@ -305,16 +305,26 @@ input[type="submit"] {
     //position : relative;
     //z-index  : 1;
   }
-  h2 {
-    font-size   : 15px;
-    font-weight : 400;
-    line-height : 24px;
-    color       : black__color('base__color');
+  //h2 {
+  //  font-size   : 15px;
+  //  font-weight : 400;
+  //  line-height : 24px;
+  //  color       : black__color('base__color');
+  //}
+  form {
+    padding-right : 12px;
+    .input-wrp {
+      width : 100%;
+    }
   }
   .button-area {
-    text-align : right;
+    padding-top : 16px;
+    text-align  : right;
     li:first-child {
       margin-right : 26px;
+    }
+    .btn:first-child {
+      margin-right: 8px;
     }
   }
 
@@ -562,9 +572,9 @@ input[type="submit"] {
     margin-bottom : 33px;
   }
   .md-content > div {
-    font-weight : normal;
-    margin      : 0;
-    padding     : 32px 16px 8px 25px;
+    //font-weight : normal;
+    //margin      : 0;
+    //padding     : 32px 16px 8px 25px;
   }
 }
 

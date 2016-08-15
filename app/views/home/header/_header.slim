@@ -22,16 +22,20 @@ header#page__header.adaptive__title class=hclass.join(" ")
         a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") *add_params
           = item[:title]
       .line
+    - if namePage == "group"
+      .page__action.dopActionAddGroup
+        .item.js_openPopupNewGroup
+          i.add.icon
   .right-col
     - if current_user.present?
       .page__action
         a.item href="/help"
           i.help.icon
         = render "home/header/notify_news"
-        - if namePage == "group"
-          - if current_user.director
-            .item.js_openPopupNewGroup
-              i.add.icon
+        /- if namePage == "group"
+        /  - if current_user.director
+        /    .item.js_openPopupNewGroup
+        /      i.add.icon
         - if namePage == "contenter_courses"
           - if current_user.contenter
             /a.item href="/contenter/courses/new/edit"

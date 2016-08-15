@@ -135,7 +135,7 @@
   .page__children {
     position        : relative;
     display         : flex;
-    padding-top     : 14px;
+    padding-top     : 16px;
     justify-content : flex-start;
     .item {
       font-size      : 15px;
@@ -173,6 +173,13 @@
     display         : flex;
     padding-top     : 19px;
     justify-content : flex-start;
+    &.dopActionAddGroup {
+      padding-top  : 16px;
+      padding-left : 8px;
+      i::before{
+        color : $primaryColor !important;
+      }
+    }
     .btn {
       margin-right : 8px;
     }

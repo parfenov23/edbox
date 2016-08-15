@@ -4,10 +4,11 @@
 .info__block.adaptive__title
   .left-col
     .item.type
-      - type = course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : ""))
-      - text = course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс")
-      i.icon class=type style="position: absolute;"
-      = text
+      - cmaterial = course.material? || course.instrument?
+      - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
+      - text = (cmaterial ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
+      i.icon class=(!course.instrument? ? type : "text")
+      = !course.instrument? ? text : "Инструмент"
     .item
       i.icon.sect
       = rus_case(course.sections.count, "раздел", "раздела", "разделов")

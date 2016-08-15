@@ -11,7 +11,9 @@ invitedMemberDelete = function () {
         installCountResidue(+ 1);
     });
 };
-
+var those_present_user = function(member){
+    return $(".members.ingroups .members__in_system.director li[data-email*='" + member + "']").length
+};
 appendMember = function (member) {
     var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (emailRegexp.test(member) == false){
@@ -21,9 +23,7 @@ appendMember = function (member) {
     } else {
 
         if ($(".invited__item div[data-email='" + member + "']").length == 0){
-            var ul_users = $(".members.ingroups .members__in_system");
-            var search_users_email = ul_users.find("li[data-email*='" + member + "']");
-            if (search_users_email.length) installCountResidue(+1);
+            if (those_present_user(member)) installCountResidue(+1);
             if (installCountResidue() > 0 || installCountResidue() == undefined){
                 $('.members__invite .invited').show();
                 $('.members__invite .input').val('');
@@ -32,7 +32,9 @@ appendMember = function (member) {
                     '<div class="cancel">×</div>' +
                     '</li>')
                     .appendTo('.members__invite .invited');
-                installCountResidue(- 1);
+                if(!those_present_user(member)){
+                    installCountResidue(- 1);
+                }
             } else {
                 show_error('Вы привысили лимит приглашения участников', 3000);
             }
@@ -201,7 +203,7 @@ addSearchMember = function () {
 var installCountResidue = function (n) {
     var count_residue_users = $(".members .count_residue_users");
     if (count_residue_users.length){
-        if (n == undefined) n = 0;
+        if (n == undefined && n < 0) n = 0;
         var count = count_residue_users.data('count');
         var result_count = count + n;
         count_residue_users.data('count', result_count);

@@ -3,7 +3,7 @@
     i.icon
     - course = (note.attachment.attachmentable.course rescue nil)
     - if course.present?
-      span onclick="window.location.href = '/course_description/#{course.id}'" Курс “#{course.title}”
+      span onclick="window.location.href = '/course_description?id=#{course.id}'" Курс “#{course.title}”
     .action__block
       /i.icon.edit
       i.icon.delete.js_noteDestroy data-note_id = note.id
