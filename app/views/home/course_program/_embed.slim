@@ -8,6 +8,7 @@
       .description = attachment.description
       .icon__block
         i.icon.video
-
-    .video__content
-      = raw Nokogiri::HTML::DocumentFragment.parse(attachment.embed_video).to_html
+    .inner__video
+      = render "home/course_program/action_btn_video"
+      .video__content
+        = raw Nokogiri::HTML::DocumentFragment.parse(attachment.embed_video).to_html

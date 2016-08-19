@@ -222,6 +222,38 @@
       }
     }
   }
+  .inner__video {
+    .action__block_video {
+      width      : 48px;
+      text-align : center;
+      float      : right;
+      left       : 48px;
+      position   : relative;
+      .item {
+        height : 48px;
+        cursor : pointer;
+        &.complete {
+          background-color : #EE8738;
+        }
+        &.reload {
+          i {
+            font-size : 28px;
+            top       : calc(50% - 14px);
+          }
+          background-color : #EF6C00;
+        }
+        &.back__to__program {
+          background-color : #E65100;
+        }
+      }
+      i {
+        top       : calc(50% - 18px);
+        position  : relative;
+        color     : #FFF;
+        font-size : 36px;
+      }
+    }
+  }
   .video__content {
     position       : relative;
     padding-bottom : 56%;

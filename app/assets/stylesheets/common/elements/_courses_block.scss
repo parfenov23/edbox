@@ -197,7 +197,11 @@ figure.basic__module {
       .info__block {
         @include text__setting(smallest__typo, secondary__color);
         .type {
-          width : 57%;
+          font-size : 10px;
+          width     : 57%;
+        }
+        .time__date {
+          font-size : 10px;
         }
       }
     }
