@@ -79,7 +79,7 @@
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
-
+<%= render "layouts/help_notif_user" %>
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
 <input id="typeEnvModeCurrentDomain" type="hidden" value="<%= $env_mode.current_domain %>">
 <script>

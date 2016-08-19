@@ -11,6 +11,7 @@
 //= require ./vendor/material/material
 //= require ./vendor/jquery.phoenix
 //= require ./vendor/jquery.printPage
+//= require ./vendor/jquery_session
 //= require ./vendor/fullscrn
 //= require_tree ./main
 
