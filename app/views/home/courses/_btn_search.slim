@@ -2,3 +2,14 @@
   .btn.is__orange.js_openLeftSideBar data-id="js-filter-courses" Быстрый поиск
   - if params[:tid].present? && @courses_tid.blank?
     .statusBar По запросу '#{Tag.find(params[:tid]).title}' ничего не найдено
+  .sortTableCourses
+    .select.js__selectSortCourses.js__openHiddenListUl
+      i.icon
+      - title_name = {'title' => "названию", 'created_at' => 'дате'}[params[:sort]]
+      .select-trigger Сортировать по #{title_name}
+      .close__ul__hidden
+      ul.hidden
+        li
+          a href="/courses?#{current_params.merge({sort: 'title'}).to_query}" По названию
+        li
+          a href="/courses?#{current_params.merge({sort: 'created_at'}).to_query}" По дате

@@ -458,17 +458,28 @@ $(document).ready(function () {
         $(this).find('.group-list').hide();
     });
 
-    $('body').on('click', function (e) {
-        var list;
-        $(document).trigger('click.dropdown');
-        list = $(e.target).closest('.select').find('ul.hidden').show();
-        $(document).bind('click.dropdown', function (ev) {
-            if (e.target !== ev.target){
-                list.hide();
-                return $(document).unbind('click.dropdown');
-            }
-        });
+    $(document).on('click', '.js__openHiddenListUl', function(e){
+        if (!$(e.target).closest('ul.hidden').length){
+            var parent_block = $(this).closest('.select');
+            parent_block.find("ul.hidden, .close__ul__hidden").show();
+        }
+        if($(e.target).hasClass('close__ul__hidden')){
+            var parent_block = $(this).closest('.select');
+            parent_block.find("ul.hidden, .close__ul__hidden").hide();
+        }
     });
+
+    //$('body').on('click', function (e) {
+    //    var list;
+    //    $(document).trigger('click.dropdown');
+    //    list = $(e.target).closest('.select').find('ul.hidden').show();
+    //    $(document).bind('click.dropdown', function (ev) {
+    //        if (e.target !== ev.target){
+    //            list.hide();
+    //            return $(document).unbind('click.dropdown');
+    //        }
+    //    });
+    //});
 
     show_error = function (text, duration) {
         var el = $('#alert');

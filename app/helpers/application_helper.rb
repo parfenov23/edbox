@@ -120,6 +120,13 @@ module ApplicationHelper
     schedule_line[n-1][:r]
   end
 
+  def current_params
+    hash_params = params
+    hash_params.delete(:controller)
+    hash_params.delete(:action)
+    hash_params
+  end
+
   def profile_header_text(sub=nil)
     if sub.nil?
       {title: "У вас бесплатный аккаунт", desc: "Вы можете просматривать только бесплатные курсы и материалы", show_btn: true}

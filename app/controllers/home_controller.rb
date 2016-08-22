@@ -106,6 +106,7 @@ class HomeController < ActionController::Base
       @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid])
     end
     @courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
+    @courses = @courses.unscoped.order("#{params[:sort]} DESC") if ['title', 'created_at'].include?(params[:sort])
   end
 
   def courses_rss

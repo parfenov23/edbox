@@ -18,7 +18,7 @@
       li style="display:none;"
 
     - if current_user.corporate && current_user.director
-      .select.group.js_show
+      .select.group.js_show.js__openHiddenListUl
         i.icon
         - groups = current_user.company.groups rescue []
         - if groups.present?
