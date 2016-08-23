@@ -459,16 +459,16 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.js__openHiddenListUl', function(e){
-        if (!$(e.target).closest('ul.hidden').length){
+        var dop_valid = !$(e.target).is('a') && !$(e.target).closest('a').length;
+        if (!$(e.target).closest('ul.hidden').length && dop_valid){
             var parent_block = $(this).closest('.select');
             parent_block.find("ul.hidden, .close__ul__hidden").show();
         }
-        if($(e.target).hasClass('close__ul__hidden')){
+        if($(e.target).hasClass('close__ul__hidden') && dop_valid){
             var parent_block = $(this).closest('.select');
             parent_block.find("ul.hidden, .close__ul__hidden").hide();
         }
     });
-
 
     //$('body').on('click', function (e) {
     //    var list;

@@ -95,7 +95,6 @@
       content        : "";
       min-height     : 26px;
       top            : 6px;
-
       i {
         position  : absolute;
         left      : 0;
@@ -103,8 +102,13 @@
         &::before {
           content : "\e900";
         }
+        &.DESC {
+          color : $primaryColor;
+        }
+        &.ASC {
+          color : rgba(0, 0, 0, 0.54);
+        }
       }
-
       .close__ul__hidden {
         position : fixed;
         left     : 0;
