@@ -8,6 +8,7 @@
   .action__block
     .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
 .container
+  h3.label__name Учатники группы
   .container-inner
     - count_members = @group.bunch_groups.count
     - text_title = "Не добавлено ни одного пользователя"

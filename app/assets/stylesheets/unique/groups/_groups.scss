@@ -137,10 +137,10 @@
 }
 
 .icon-edit {
-  width   : 14px;
-  height  : 14px;
-  display : inline;
-  line-height: 32px;
+  width       : 14px;
+  height      : 14px;
+  display     : inline;
+  line-height : 32px;
   &::before {
     font-family : "Icons";
     content     : "\E706";
@@ -227,6 +227,14 @@
 .container {
   margin-bottom : 11px;
   @include white__block(1, 0);
+  .label__name {
+    position    : absolute;
+    left        : -114px;
+    width       : 79px;
+    text-align  : right;
+    color       : rgba(0, 0, 0, 0.54);
+    line-height : 18px;
+  }
 }
 
 .container-inner {
@@ -252,13 +260,12 @@
 .group {
   position      : relative;
   margin-bottom : 19px;
-  &.error{
-    .bar:before, .bar:after{
-      background: #F50057;
+  &.error {
+    .bar:before, .bar:after {
+      background : #F50057;
     }
   }
 }
-
 
 .group textarea {
   resize   : none;
