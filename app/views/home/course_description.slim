@@ -185,4 +185,4 @@
 
 = render "home/course_program/sink_button", {course: @course}
 
-= render "common/social_buttons", {url: @course.url} if $env_mode.dev?
+= render "common/social_buttons", {url: @course.url} if !$env_mode.dev?
