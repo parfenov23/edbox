@@ -105,6 +105,41 @@
   }
 }
 
+.landing__counter {
+  padding-top      : 32px;
+  background-color : #5B4141;
+  color            : $primaryColor;
+  .landing__inner {
+    display                 : -webkit-box;
+    display                 : -webkit-flex;
+    display                 : -ms-flexbox;
+    display                 : flex;
+    -webkit-box-pack        : justify;
+    -webkit-justify-content : space-between;
+    -ms-flex-pack           : justify;
+    justify-content         : space-between;
+    padding-bottom          : 32px;
+  }
+  .counter {
+    width      : 188px;
+    text-align : center;
+    .counter__circle {
+      width         : 124px;
+      height        : 124px;
+      border-radius : 50%;
+      border        : 2px solid $primaryColor;
+      margin-left   : calc(50% - 62px);
+      font-size     : 48px;
+      padding-top   : calc(50% - 62px);
+    }
+    .counter__title {
+      font-size   : 20px;
+      padding-top : 8px;
+    }
+  }
+
+}
+
 .landing__courses__list {
   padding-top : 83px;
   .section__title {

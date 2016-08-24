@@ -27,7 +27,24 @@ section.landing__banner
     .description
       '#{$env_mode.name_title} – это десятки онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
       |вебинары, тесты и аттестация для сотрудников рекламных агентств, медиакомпаний и СМИ.
-
+section.landing__counter
+  .landing__inner
+    .counter
+      .counter__circle = Course.all.publication.count
+      .counter__title
+        |Материалов, вебинаров и курсов
+    .counter
+      .counter__circle = Company.count
+      .counter__title
+        |Зарегистрированных компаний
+    .counter
+      .counter__circle = User.count
+      .counter__title
+        |Активных участников
+    .counter
+      .counter__circle = TestResult.where(result: 100).map { |t| [t.user_id, t.test_id] }.uniq.count
+      .counter__title
+        |Выданных сертефикатов
 section.landing__courses__list
   .landing__inner
     .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на вашу работу и вашу зарплату
