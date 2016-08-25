@@ -1,7 +1,7 @@
 <% params_social_links = Hash[ [:facebook, :vk, :twitter].map{|k| [k, social_share_link(k, url, @page_title)] } ] %>
 <div class="at4-share-outer-right addthis-smartlayers addthis-smartlayers-desktop" aria-labelledby="at4-share-label" role="region">
   <div id="at4-share" class="addthis_32x32_style atss atss-right addthis-animated slideInRight at4-show">
-    <a class="at-share-btn at-svc-facebook" href="<%= params_social_links[:facebook] %>">
+    <a class="at-share-btn at-svc-facebook" href="<%= params_social_links[:facebook] %>" target="_blank">
       <span class="at-icon-wrapper" style="background-color: rgb(59, 89, 152);">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Facebook" alt="Facebook" class="at-icon at-icon-facebook">
         <g>
@@ -10,7 +10,7 @@
       </svg>
       </span>
     </a>
-    <a class="at-share-btn at-svc-vk" href="<%= params_social_links[:vk] %>">
+    <a class="at-share-btn at-svc-vk" href="<%= params_social_links[:vk] %>" target="_blank">
       <span class="at-icon-wrapper" style="background-color: rgb(99, 131, 168);">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="VKontakte" alt="VKontakte" class="at-icon at-icon-vk">
           <g>
@@ -19,7 +19,7 @@
         </svg>
       </span>
     </a>
-    <a class="at-share-btn at-svc-twitter" href="<%= params_social_links[:twitter] %>">
+    <a class="at-share-btn at-svc-twitter" href="<%= params_social_links[:twitter] %>" target="_blank">
       <span class="at-icon-wrapper" style="background-color: rgb(85, 172, 238);">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Twitter" alt="Twitter" class="at-icon at-icon-twitter">
           <g>

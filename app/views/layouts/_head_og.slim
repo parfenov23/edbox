@@ -3,9 +3,10 @@
     meta content=@og["title"] property="og:title"
     meta name="twitter:title" content=@og["title"]
   - if @og["description"]
-    meta content=@og["description"] property="og:description"
-    meta name="description" content=@og["description"]
-    meta name="twitter:description" content=@og["description"]
+    - description = sanitize @og["description"], :tags=>[]
+    meta content=description property="og:description"
+    meta name="description" content=description
+    meta name="twitter:description" content=description
 
   meta content=@og["img"] property="og:url"
   meta content=@og["img"] property="og:image"

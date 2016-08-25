@@ -86,6 +86,9 @@ gem 'activemerchant', github: 'softeamco/active_merchant'
 #====== tinymce
 gem 'tinymce-rails-imageupload'
 #=============
+#========== sms center
+gem 'smsc'
+#==========
 group :development do
   gem 'rails-erd'
   gem 'better_errors'
