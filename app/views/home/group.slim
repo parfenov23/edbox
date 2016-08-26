@@ -11,7 +11,7 @@ input#namePageGroup type="hidden" value=(@group.first_name rescue 'Нет гру
       .item.manage-group
         /= render "home/group/left_menu"
         .container
-          h3.label__name Название и описание
+          h3.label__name Название группы
           = render 'home/group/info'
         = render "home/group/users"
         = render "home/group/courses"
