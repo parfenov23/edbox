@@ -7,15 +7,16 @@
     meta content=description property="og:description"
     meta name="description" content=description
     meta name="twitter:description" content=description
+  - img_url = ($env_mode.current_domain + @og["img"])
+  meta content=img_url property="og:url"
+  meta content=img_url property="og:image"
+  meta content=img_url property="og:image:url"
+  meta name="twitter:image" content=img_url
 
-  meta content=@og["img"] property="og:url"
-  meta content=@og["img"] property="og:image"
-  meta content=@og["img"] property="og:image:url"
-  meta name="twitter:image" content=@og["img"]
 
-
-  meta content="image/jpeg" property="og:image:type"
+  /meta content="image/jpeg" property="og:image:type"
   meta content="article" property="og:type"
   meta name="twitter:card" content="summary"
+  meta name="og:site_name" content=$env_mode.name_title
 
 
