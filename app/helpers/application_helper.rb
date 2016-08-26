@@ -156,7 +156,7 @@ module ApplicationHelper
 
   def social_share_link(soc_name, path, title, img)
     "http://www.addthis.com/bookmark.php?v=300&winname=addthis&lng=ru&s=#{soc_name}&url=#{$env_mode.current_domain + path}&title=#{title}
-      &frommenu=1&uud=1&ct=1&uct=1&tt=0&captcha_provider=nucaptchapicture=#{img}"
+      &frommenu=1&uud=1&ct=1&uct=1&tt=0&captcha_provider=nucaptcha&picture=#{img}"
   end
 
   def user_news
