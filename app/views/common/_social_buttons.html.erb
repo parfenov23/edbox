@@ -2,7 +2,7 @@
 display=popup&href=#{$env_mode.current_domain + url}&
 picture=#{$env_mode.current_domain + @og["img"]}&
 title=#{@page_title}&
-description=#{@og["description"]}&
+description=#{sanitize @og["description"], tags: []}&
 redirect_uri=#{$env_mode.current_domain}" %>
 <% params_social_links = Hash[[:facebook, :vk, :twitter].map { |k| [k, social_share_link(k, url, @page_title, @og["img"])] }] %>
 <div class="at4-share-outer-right addthis-smartlayers addthis-smartlayers-desktop" aria-labelledby="at4-share-label" role="region">
