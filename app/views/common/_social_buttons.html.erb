@@ -1,10 +1,13 @@
-<% url_fb =
-"https://www.facebook.com/dialog/share?app_id=1718642978353463&display=popup&href=#{url}&picture=#{@og["img"]}&title=#{@page_title}&description=#{@og["description"]}&redirect_uri=#{url}"
-%>
-<% params_social_links = Hash[ [:facebook, :vk, :twitter].map{|k| [k, social_share_link(k, url, @page_title, @og["img"])] } ] %>
+<% url_fb ="https://www.facebook.com/dialog/share?app_id=1718642978353463&
+display=popup&href=#{$env_mode.current_domain + url}&
+picture=#{$env_mode.current_domain + @og["img"]}&
+title=#{@page_title}&
+description=#{@og["description"]}&
+redirect_uri=#{$env_mode.current_domain}" %>
+<% params_social_links = Hash[[:facebook, :vk, :twitter].map { |k| [k, social_share_link(k, url, @page_title, @og["img"])] }] %>
 <div class="at4-share-outer-right addthis-smartlayers addthis-smartlayers-desktop" aria-labelledby="at4-share-label" role="region">
   <div id="at4-share" class="addthis_32x32_style atss atss-right addthis-animated slideInRight at4-show">
-    <a class="at-share-btn at-svc-facebook" href="<%= params_social_links[:facebook] %>" target="_blank">
+    <a class="at-share-btn at-svc-facebook" href="<%= url_fb %>" target="_blank">
       <span class="at-icon-wrapper" style="background-color: rgb(59, 89, 152);">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Facebook" alt="Facebook" class="at-icon at-icon-facebook">
         <g>
@@ -22,7 +25,7 @@
         </svg>
       </span>
     </a>
-    <a class="at-share-btn at-svc-twitter" href="<%= url_fb %>" target="_blank">
+    <a class="at-share-btn at-svc-twitter" href="<%= params_social_links[:twitter] %>" target="_blank">
       <span class="at-icon-wrapper" style="background-color: rgb(85, 172, 238);">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" title="Twitter" alt="Twitter" class="at-icon at-icon-twitter">
           <g>
