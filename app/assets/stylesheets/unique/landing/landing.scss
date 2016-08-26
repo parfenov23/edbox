@@ -45,6 +45,7 @@
     @include text__setting(header__typo_3);
     text-align  : center;
     font-weight : 300;
+    font-size   : 32px;
     &.is__white {
       color : #FFF;
     }
