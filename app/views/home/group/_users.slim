@@ -8,7 +8,7 @@
   .action__block
     .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
 .container
-  h3.label__name Учатники группы
+  h3.label__name Участники группы
   .container-inner
     - count_members = @group.bunch_groups.count
     - text_title = "Не добавлено ни одного пользователя"
@@ -30,7 +30,7 @@
           .members__invite
             ul.invited
             form.form
-              input.input.searchMember type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
+              input.input.searchMember type="text" placeholder="Введите адреса электронной почты через пробел и нажмите «Отправить»"
               .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
                 .qty__left
                   'Осталось
