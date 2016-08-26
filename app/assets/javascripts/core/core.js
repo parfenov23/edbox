@@ -35,11 +35,22 @@ var searchFilterTagFind = function(){
 };
 
 pageLoad(function () {
-    var back_item_link = $("a.item[href='backCourse']")
+    var back_item_link = $("a.item[href='backCourse']");
     if (back_item_link.length){
         back_item_link.attr('href', back_url('find', ["courses", 'cabinet']))
 
     }
     $(document).on('click', '#js-filter-courses .parentTreeUl .parent_tag .title', rightFilterShowSubsidiary);
     $(document).on('click', '.last_subtag .js__searchFilterTagFind', searchFilterTagFind);
+
+    $('embed').mousedown(function(event){
+        event.preventDefault();
+        if(event.button == 0){
+            console.log('disable');
+        } else if(event.button == 1){
+            console.log('disable');
+        } else if(event.button == 2){
+            console.log('disable');
+        }
+    });
 });

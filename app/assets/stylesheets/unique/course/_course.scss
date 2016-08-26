@@ -3,6 +3,12 @@
     padding-top    : 64px;
     padding-bottom : 64px;
   }
+  .text__content{
+    embed{
+      top      : -52px;
+      position : relative;
+    }
+  }
 }
 
 #course {
@@ -132,6 +138,10 @@
         @include middle-block(941px);
         background-color : #FFF;
         padding          : 64px;
+      }
+      embed {
+        top      : -119px;
+        position : relative;
       }
     }
     h2 {

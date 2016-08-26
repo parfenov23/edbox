@@ -856,6 +856,10 @@
     .js__hiddenVideo {
       height : 100% !important;
     }
+    embed {
+      top      : -119px;
+      position : relative;
+    }
   }
 }
 
@@ -1108,7 +1112,7 @@
           margin-bottom : 30px;
           color         : black__color('base__color');
         }
-        img{
+        img {
           width : 100%;
         }
       }
