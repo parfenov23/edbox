@@ -1,5 +1,7 @@
 .category__filter_list
-  .btn.is__orange.js_openLeftSideBar data-id="js-filter-courses" Быстрый поиск
+  .btn.is__orange.js_openLeftSideBar data-id="js-filter-courses"
+    i.icon.search style='padding-right: 4px;font-size: 12px;'
+    |Быстрый поиск
   - if params[:tid].present? && @courses_tid.blank?
     .statusBar По запросу '#{Tag.find(params[:tid]).title}' ничего не найдено
   .sortTableCourses
