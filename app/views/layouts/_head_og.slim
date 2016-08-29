@@ -1,4 +1,5 @@
 - if @og.present?
+  meta content="article" property="og:type"
   - if @og["title"].present?
     meta content=@og["title"] property="og:title"
     meta name="twitter:title" content=@og["title"]
@@ -15,7 +16,6 @@
 
 
   //meta content="image/jpeg" property="og:image:type"
-  meta content="article" property="og:type"
   meta name="twitter:card" content="summary"
   meta name="og:site_name" content=$env_mode.name_title
 
