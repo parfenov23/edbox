@@ -161,6 +161,12 @@ module Api::V1
       render json: Course.where(id: current_user.bunch_courses.map(&:course_id)).map { |ca| ca.transfer_to_json_mini((current_user.id rescue nil)) }
     end
 
+    def include_phone
+      sms = Smsc::Sms.new('adconsult', 'lolopo123', 'utf-8')           # encoding is optional - utf-8 by default
+      sms.message("Код подтверждения: #{params[:code]}", [params[:phone]], sender: "adconsult.online")
+      render json: {success: true}
+    end
+
     private
 
     def find_favorite_course

@@ -34,6 +34,10 @@ var searchFilterTagFind = function(){
     window.location.href = '/courses?tid=' + btn.data('id');
 };
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 pageLoad(function () {
     var back_item_link = $("a.item[href='backCourse']");
     if (back_item_link.length){

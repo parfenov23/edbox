@@ -224,6 +224,7 @@ Rails.application.routes.draw do
           post :remove_section_deadline
           post :remove_user_leading
           post :send_request
+          post :include_phone
           get :my_courses
         end
         member do

@@ -389,6 +389,34 @@ select.form-control {
       color       : rgba(0, 0, 0, 0.26);
       line-height : 24px;
     }
+    &:focus ~ .bar:before, &:focus ~ .bar:after,
+    input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
+      width : 50%;
+    }
+  }
+
+  .bar {
+    position : relative;
+    display  : block;
+    width    : 100%;
+    &:after, &:before, {
+      content: "";
+      height: 2px;
+      width: 0;
+      bottom: 0;
+      position: absolute;
+      background: #ee8738;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
+    }
+    &:before {
+      left: 50%;
+    }
+    &:after {
+      right: 50%;
+    }
+
   }
 
   &.textarea {
