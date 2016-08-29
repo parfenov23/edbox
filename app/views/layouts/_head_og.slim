@@ -1,11 +1,11 @@
 - if @og.present?
   - img_url = ($env_mode.current_domain + @og["img"])
-  meta content="article" property="og:type"
-  meta content=current_link property="og:url"
-  meta content=img_url property="og:image"
-  meta content=@og["title"] property="og:title"
+  meta property="fb:app_id" content='1718642978353463'
+  meta property="og:type" content="article"
+  meta property="og:url" content=($env_mode.current_domain + current_link)
+  meta property="og:title" content=@og["title"]
+  meta property="og:image" content=img_url
 
-  meta content='1718642978353463' property="fb:app_id"
   - if @og["title"].present?
     meta name="twitter:title" content=@og["title"]
   - if @og["description"]
