@@ -1,4 +1,5 @@
 - if @og.present?
+  - img_url = ($env_mode.current_domain + @og["img"])
   meta content="article" property="og:type"
   meta content=current_link property="og:url"
   meta content=img_url property="og:image"
@@ -12,7 +13,6 @@
     meta content=description property="og:description"
     meta name="description" content=description
     meta name="twitter:description" content=description
-  - img_url = ($env_mode.current_domain + @og["img"])
   //meta content=img_url property="og:url"
   meta content=img_url property="og:image:url"
   meta name="twitter:image" content=img_url
