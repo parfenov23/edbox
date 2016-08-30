@@ -75,11 +75,13 @@ var paymentAccount = function (type) {
 
 var purchase_pay = function () {
     var form = $("form.tariffPay");
+    var data = form.serializeArray();
+    data.push({name: 'phone', value: $('input[type="tel"]').val()});
     show_error('Идет Загрузка ', 3000);
     $.ajax({
         type: 'POST',
         url : '/api/v1/payments/purchase',
-        data: form.serialize()
+        data: $.param(data)
     }).success(function (data) {
         if (data.success){
             show_error('Оплата успешно прошла', 3000);

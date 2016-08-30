@@ -11,7 +11,9 @@
           .input-wrp.name
             = @user.full_name
             span.social
-              - @user.social.each do |k, v|
+              - socials = @user.social
+              - socials.delete(:phone)
+              - socials.each do |k, v|
                 - if v.present?
                   a href=v target="blank"
                     i.icon class=k

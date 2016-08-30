@@ -34,6 +34,7 @@ module Api::V1
       subscription = create_subscription(params)
       amount = params[:sum]
       account = current_user.accounts.first
+      current_user.update({social: current_user.social.merge({phone: params[:phone]})})
       result = false
       if account.present?
         options = {

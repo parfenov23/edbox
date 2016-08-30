@@ -13,6 +13,7 @@
 //= require ./vendor/jquery.printPage
 //= require ./vendor/jquery_session
 //= require ./vendor/fullscrn
+//= require ./vendor/jq.mask.min
 //= require_tree ./main
 
 //= require_tree ./core

@@ -35,7 +35,12 @@
           li
             i.icon.done
             | Сертификат об окончании курсов
-
+      .company__name
+        - user_phone = current_user.social['phone']
+        .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
+          input.form-control.floating-label type="tel" data-valid='true' placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
+          .error__msg Обязательное поле
+          hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
       form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
@@ -75,3 +80,13 @@
     .help__info
       p Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
       p +7 926 973 36 23
+
+.popValidateCodePhone
+  .inner.allgood
+    .description На ваш номер было отправлено смс с проверочным кодом:
+    .input-wrp.name
+      input type="text" placeholder="Введите проверочный код"
+      input.idValuePhoneCode type='hidden'
+      span.bar
+    .action-btn
+      .btn.btn-raised.is__orange.js__checkValidPhoneCode Проверить
