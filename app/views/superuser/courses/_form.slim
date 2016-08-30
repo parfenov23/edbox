@@ -1,47 +1,50 @@
 - action_url = @course.id.nil? ? "/superuser/courses" : "/superuser/courses/#{@course.id}"
 - method = @course.id.nil? ? "post" : "put"
 form.form-horizontal action="#{action_url}" method="post" enctype="multipart/form-data"
-    .form-group
-        label
-            | Название:
-        input.form-control name="course[title]" type="text" value="#{@course.title}"
-    .form-group
-        label
-            | Превью:
-        - unless @course.id.nil?
-            .image
-                img src = @course.get_image_path(347, 192)
-        input name="image" type="file"
-    .form-group
-        label
-            | Описание:
-            a#open_descriptio href="javascript:void(0)" style="padding-left: 5px" Открыть
-        textarea.form-control.description name="course[description]" type="text" style="display:none;"
-            = @course.description
-    /.form-group
-    /    label
-    /        | Введите продолжительность курса:
-    /    input.form-control name="course[duration]" type="text" value="#{@course.duration}"
-    .form-group
-        label
-            | Ведущий:
-        - arr_leading = [["Нет", nil]]
-        - User.leading.map { |leading| arr_leading << ["#{leading.first_name} #{leading.last_name}", leading.id] }
-        = select_tag 'course[paid]', options_for_select(arr_leading.collect { |al| [al.first, al.last] }, @course.user_id), {:class => 'form-control'}
-    .form-group
-        label
-          | Платный?:
-        - check = !@course.paid.nil? ? @course.paid : false
-        = check_box('course', 'paid', { checked: @course.paid })
+  .form-group
     label
-        | Теги:
-    .checkbox
-        - course_tags = @course.bunch_tags.map{|bt| bt.tag_id}
-        - @tags.each do |tag|
-            label style="margin-right: 10px"
-                - checked = course_tags.include?(tag.id)
-                = check_box_tag 'tags[]', tag.id, checked
-                = tag.title
-    hr
-    input type="hidden" name="_method" value="#{method}"
-    button.btn.btn-primary type="submit" Сохранить
+      | Название:
+    input.form-control name="course[title]" type="text" value="#{@course.title}"
+    label
+      | Дата публикации:
+    input.form-control name="course[updated_at]" type="text" value="#{@course.updated_at}"
+  /.form-group
+  /  label
+  /    | Превью:
+  /  - unless @course.id.nil?
+  /    .image
+  /      img src = @course.get_image_path(347, 192)
+  /  input name="image" type="file"
+  /.form-group
+  /  label
+  /    | Описание:
+  /    a#open_descriptio href="javascript:void(0)" style="padding-left: 5px" Открыть
+  /  textarea.form-control.description name="course[description]" type="text" style="display:none;"
+  /    = @course.description
+  //.form-group
+  //    label
+  //        | Введите продолжительность курса:
+  //    input.form-control name="course[duration]" type="text" value="#{@course.duration}"
+  /.form-group
+  /  label
+  /    | Ведущий:
+  /  - arr_leading = [["Нет", nil]]
+  /  - User.leading.map { |leading| arr_leading << ["#{leading.first_name} #{leading.last_name}", leading.id] }
+  /  = select_tag 'course[paid]', options_for_select(arr_leading.collect { |al| [al.first, al.last] }, @course.user_id), {:class => 'form-control'}
+  /.form-group
+  /  label
+  /    | Платный?:
+  /  - check = !@course.paid.nil? ? @course.paid : false
+  /  = check_box('course', 'paid', {checked: @course.paid})
+  /label
+  /  | Теги:
+  /.checkbox
+  /  - course_tags = @course.bunch_tags.map { |bt| bt.tag_id }
+  /  - @tags.each do |tag|
+  /    label style="margin-right: 10px"
+  /      - checked = course_tags.include?(tag.id)
+  /      = check_box_tag 'tags[]', tag.id, checked
+  /      = tag.title
+  hr
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
