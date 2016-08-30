@@ -176,7 +176,7 @@ function read_help(type) { // обновление галочки у польз�
     });
 }
 
-pageLoad(function(){
+pageLoad(function () {
     if ($(".help_notif").data("user") && $(".help_notif").data("show")){
         set_help();
         $(".help_notif .next_btn").click(function () {
@@ -184,11 +184,11 @@ pageLoad(function(){
             if (btn.attr('onclick') != undefined){
                 var name_click = btn.attr('onclick');
                 var timeout = 50;
-                if(name_click.search('close_') > 0) timeout = 1;
-                setTimeout(function(){
+                if (name_click.search('close_') > 0) timeout = 1;
+                setTimeout(function () {
                     set_help(btn.data("step_next"));
                 }, timeout);
-            }else{
+            } else {
                 set_help(btn.data("step_next"));
             }
 
