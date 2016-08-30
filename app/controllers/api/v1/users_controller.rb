@@ -167,6 +167,11 @@ module Api::V1
       render json: {success: true}
     end
 
+    def update_help
+      current_user.update({help: false})
+      render json: {success: true}
+    end
+
     private
 
     def find_favorite_course

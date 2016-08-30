@@ -1,5 +1,5 @@
 .overflowContentHelp
-.help_notif data-show="true"
+.help_notif data-user=current_user.present?.to_s data-show=(current_user.help rescue false).to_s
   .help_content
     .title
       = $env_mode.name_title

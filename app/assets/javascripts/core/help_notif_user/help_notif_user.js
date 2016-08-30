@@ -168,34 +168,35 @@ var cumulativeOffset = function (element) {
 };
 
 function read_help(type) { // обновление галочки у пользователя показывать или нет
-    //$.ajax({
-    //    type   : "get",
-    //    url    : "/update_help",
-    //    data   : {view: type},
-    //    success: function (response) {
-    //    }
-    //});
+    $.ajax({
+        type   : "post",
+        url    : "/api/v1/users/update_help",
+        success: function (response) {
+        }
+    });
 }
 
-pageLoad({
-    //$.session.set('step_help', 0);
-    //set_help();
-    //$(".help_notif .next_btn").click(function () {
-    //    var btn = $(this);
-    //    if (btn.attr('onclick') != undefined){
-    //        var name_click = btn.attr('onclick');
-    //        var timeout = 50;
-    //        if(name_click.search('close_') > 0) timeout = 1;
-    //        setTimeout(function(){
-    //            set_help(btn.data("step_next"));
-    //        }, timeout);
-    //    }else{
-    //        set_help(btn.data("step_next"));
-    //    }
-    //
-    //
-    //});
-    //$(".help_notif .help_content .close_help").click(function () {
-    //    set_help(all_helps().length);
-    //});
+pageLoad(function(){
+    if ($(".help_notif").data("user") && $(".help_notif").data("show")){
+        set_help();
+        $(".help_notif .next_btn").click(function () {
+            var btn = $(this);
+            if (btn.attr('onclick') != undefined){
+                var name_click = btn.attr('onclick');
+                var timeout = 50;
+                if(name_click.search('close_') > 0) timeout = 1;
+                setTimeout(function(){
+                    set_help(btn.data("step_next"));
+                }, timeout);
+            }else{
+                set_help(btn.data("step_next"));
+            }
+
+
+        });
+        $(".help_notif .help_content .close_help").click(function () {
+            set_help(all_helps().length);
+        });
+    }
+
 });
