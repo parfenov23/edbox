@@ -32,7 +32,7 @@ var current_domain = function () {
 }
 
 var fbq_env = function (type) {
-    if (env_mode('production')) fbq('track', type);
+    //if (env_mode('production')) fbq('track', type);
 }
 
 function declOfNum(number, titles) {
