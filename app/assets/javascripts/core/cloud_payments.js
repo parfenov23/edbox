@@ -210,7 +210,7 @@ var validate_company_form = function () {
                 $(e).closest(".com__input-item").addClass("error");
             }
         });
-        if($('.form-control[type="tel"]').attr('data-valid') == "false"){
+        if ($('.form-control[type="tel"]').attr('data-valid') == "false"){
             result = false;
         }
     }
@@ -235,15 +235,15 @@ var include_phone = function () {
     }
 };
 
-var checkValidPhoneCode = function(){
+var checkValidPhoneCode = function () {
     var block = $(".popValidateCodePhone");
     var input_code = block.find('input[type="text"]').val();
     var valid_code = block.find('input.idValuePhoneCode').val();
     if (input_code == valid_code){
         show_error('Успешно', 3000);
         block.css('display', 'none');
-        $('.form-control[type="tel"]').attr('data-valid', 'true')
-    }else{
+        $('.form-control[type="tel"]').attr('data-valid', 'true');
+    } else {
         show_error('Вы ввели неправильный проверочный код', 3000);
     }
 };
