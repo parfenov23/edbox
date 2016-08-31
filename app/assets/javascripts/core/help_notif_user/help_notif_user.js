@@ -181,8 +181,8 @@ pageLoad(function () {
         $(".help_notif .next_btn").click(function () {
             var btn = $(this);
             if (btn.attr('onclick') != undefined){
-                var name_click = btn.attr('onclick');
                 var timeout = 50;
+                var name_click = btn.attr('onclick');
                 if (name_click.search('close_') > 0) timeout = 1;
                 setTimeout(function () {
                     set_help(btn.data("step_next"));
