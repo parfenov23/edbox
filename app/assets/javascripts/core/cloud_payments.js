@@ -240,8 +240,9 @@ var checkValidPhoneCode = function () {
     var input_code = block.find('input[type="text"]').val();
     var valid_code = block.find('input.idValuePhoneCode').val();
     if (input_code == valid_code){
-        $('.form-control[type="tel"]').attr('data-valid', 'true');
         show_error('Успешно', 3000);
+        $('.form-control[type="tel"]').attr('data-valid', 'true');
+
         block.css('display', 'none');
     } else {
         show_error('Вы ввели неправильный проверочный код', 3000);
