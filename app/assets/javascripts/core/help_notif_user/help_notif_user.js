@@ -175,7 +175,6 @@ function read_help(type) { // обновление галочки у польз�
         }
     });
 }
-
 pageLoad(function () {
     if ($(".help_notif").data("user") && $(".help_notif").data("show")){
         set_help();
