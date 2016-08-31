@@ -209,14 +209,17 @@ var validate_company_form = function () {
                 result = false;
                 $(e).closest(".com__input-item").addClass("error");
             }
-        })
+        });
+        if($('.form-control[type="tel"]').attr('data-valid') == "false"){
+            result = false;
+        }
     }
     return result;
 };
 
 var include_phone = function () {
     var input = $(this);
-    if (input.val().length && input.attr('data-valid') == 'true'){
+    if (input.val().length){
         var code = getRandomInt(1000, 9999);
         $.ajax({
             type: 'POST',
@@ -239,6 +242,7 @@ var checkValidPhoneCode = function(){
     if (input_code == valid_code){
         show_error('Успешно', 3000);
         block.css('display', 'none');
+        $('.form-control[type="tel"]').attr('data-valid', 'true')
     }else{
         show_error('Вы ввели неправильный проверочный код', 3000);
     }

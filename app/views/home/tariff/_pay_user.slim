@@ -38,7 +38,7 @@
       .company__name
         - user_phone = current_user.social['phone']
         .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
-          input.form-control.floating-label type="tel" data-valid='true' placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
+          input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
           .error__msg Обязательное поле
           hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
