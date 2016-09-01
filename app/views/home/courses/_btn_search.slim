@@ -20,9 +20,9 @@
       .close__ul__hidden
       ul.hidden
         li
-          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'DESC'}).to_query}" По названию А-Я
+          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'ASC'}).to_query}" По названию А-Я
         li
-          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'ASC'}).to_query}" По названию Я-А
+          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'DESC'}).to_query}" По названию Я-А
         li
           a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'DESC'}).to_query}" Сначала новые
         li
@@ -30,4 +30,4 @@
         li
           a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
         li
-          a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платыне
+          a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные

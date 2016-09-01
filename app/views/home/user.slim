@@ -1,5 +1,5 @@
 - class_header = current_user.present? ? "profile" : "other"
-- title = @user.full_name
+- title = (@user.full_name rescue 'Без имени')
 = render "home/header/header", {namePage: class_header, titlePage: title}
 .inner-content
   .cabinet__block#user_public
@@ -9,7 +9,7 @@
           img.ava src="#{default_img(@user.avatar)}" style="height:100%"
         .data
           .input-wrp.name
-            = @user.full_name
+            = title
             span.social
               - socials = @user.social
               - socials.delete('phone')
@@ -25,7 +25,7 @@
     .actual-courses
       = render "home/user_public/my_courses"
       .carusel-wrp
-        .title Сертефикаты пользователя
+        .title Выданные сертификаты
         .info-box
           .course-prev-list
             - @user_tests.each do |test|

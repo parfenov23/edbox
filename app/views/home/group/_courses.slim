@@ -22,7 +22,7 @@
             ul.courses-list
               - ligament_courses.each do |ligament_course|
                 - course = ligament_course.course
-                = render "course/course", {course: course, type: "shot__module", ligament_course: ligament_course, action_block: true}
+                = render "course/course", {course: course, type: "shot__module", ligament_course: ligament_course, action_block: current_user.director}
                 -# render "home/group/course", {ligament_course: ligament_course, type: "ligament"}
 
       = render "home/group/popup/my_course"

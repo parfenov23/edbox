@@ -22,7 +22,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
         a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") *add_params
           = item[:title]
       .line
-    - if namePage == "group"
+    - if namePage == "group" && current_user.director
       .page__action.dopActionAddGroup
         .item.js_openPopupNewGroup
           i.add.icon

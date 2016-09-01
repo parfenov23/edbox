@@ -220,8 +220,9 @@ class HomeController < ActionController::Base
   end
 
   def user
-    @user = params[:user_id].present? ? User.find(params[:user_id]) : current_user
+    @user = params[:id].present? ? User.find(params[:id]) : current_user
     @user_tests = Test.where(id: (@user.test_results.where(result: 100).map(&:test_id).uniq rescue []))
+    render "common/page_404", :status => 404, :layout => "application" if @user.blank?
   end
 
   def course_cert
