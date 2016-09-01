@@ -53,12 +53,12 @@ header#page__header.adaptive__title class=hclass.join(" ")
                   a href="/contenter/instruments/new/edit" Инструмент
             /.item.js_openLeftSideBar data-id="js-help"
             /  i.help.icon
-        - if namePage == "courseMaterial"
-          .item.js_openLeftSideBar data-id="js-notification-courses"
-            i.notes.icon
-          - unless (@course.material? rescue true)
-            .item.js_openLeftSideBar data-id="js-programm-courses"
-              i.programm.icon
+        /- if namePage == "courseMaterial"
+        /  .item.js_openLeftSideBar data-id="js-notification-courses"
+        /    i.notes.icon
+        /  - unless (@course.material? rescue true)
+        /    .item.js_openLeftSideBar data-id="js-programm-courses"
+        /      i.programm.icon
         - if (comment rescue false)
           .item
             i.calendar.icon.js_openLeftSideBar data-id="js-comment"

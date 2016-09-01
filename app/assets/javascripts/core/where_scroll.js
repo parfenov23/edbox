@@ -19,5 +19,5 @@ $(window).scroll(function (event) {
 
     tempScrollTop = currentScrollTop;
     tempScrollTopTime = currentScrollTopTime;
-    console.log(window.where_scroll)
+    //console.log(window.where_scroll)
 });

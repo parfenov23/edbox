@@ -85,9 +85,14 @@ var purchase_pay = function () {
     }).success(function (data) {
         if (data.success){
             show_error('Оплата успешно прошла', 3000);
-            setTimeout(function () {
-                window.location.href = '/profile';
-            }, 1500);
+            if($('.form-control[type="tel"]').attr('data-valid') != 'true' ){
+                include_phone($('.form-control[type="tel"]'));
+            }else{
+                setTimeout(function () {
+                    window.location.href = '/profile';
+                }, 1500);
+            }
+
         } else {
             show_error('Произошла ошибка', 3000);
         }
@@ -210,15 +215,14 @@ var validate_company_form = function () {
                 $(e).closest(".com__input-item").addClass("error");
             }
         });
-        if ($('.form-control[type="tel"]').attr('data-valid') == "false"){
-            result = false;
-        }
+        //if ($('.form-control[type="tel"]').attr('data-valid') == "false"){
+        //    result = false;
+        //}
     }
     return result;
 };
 
-var include_phone = function () {
-    var input = $(this);
+var include_phone = function (input) {
     if (input.val().length){
         var code = getRandomInt(1000, 9999);
         $.ajax({
@@ -242,8 +246,10 @@ var checkValidPhoneCode = function () {
     if (input_code == valid_code){
         show_error('Успешно', 3000);
         $('.form-control[type="tel"]').attr('data-valid', 'true');
-
         block.css('display', 'none');
+        setTimeout(function () {
+            window.location.href = '/profile';
+        }, 1500);
     } else {
         show_error('Вы ввели неправильный проверочный код', 3000);
     }
@@ -255,7 +261,7 @@ pageLoad(function () {
     });
 
     if ($(".company__name input[name='company_phone']").length){
-        $(".company__name input[name='company_phone']").mask("8 (999) 9999?-9999");
+        $(".company__name input[name='company_phone']").mask("+7 (999) 999-99-99");
     }
 
     $(document).on('click', ".company__name input[name='company_phone']", function () {
@@ -266,6 +272,6 @@ pageLoad(function () {
 
     $(document).on('click', '.js_orderBill', orderBill);
 
-    $('.form-control[type="tel"]').change(include_phone);
+    //$('.form-control[type="tel"]').change(include_phone);
     $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode)
 });

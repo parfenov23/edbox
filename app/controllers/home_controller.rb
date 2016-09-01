@@ -127,6 +127,7 @@ class HomeController < ActionController::Base
 
   def cabinet
     @favorite_courses = current_user.favorite_courses
+    @user_tests = Test.where(id: (current_user.test_results.where(result: 100).map(&:test_id).uniq rescue []))
     # redirect_to "/schedule" unless current_user.director
   end
 

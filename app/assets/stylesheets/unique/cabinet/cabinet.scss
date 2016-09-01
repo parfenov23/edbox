@@ -478,6 +478,24 @@
               margin-right: 0;
             }
           }
+          .cert {
+            width          : 264px;
+            display        : inline-block;
+            vertical-align : top;
+            margin         : 0px;
+            zoom           : 1;
+            content        : "";
+            float          : none;
+            margin-right   : 10px;
+            margin-bottom  : 10px;
+            border-radius  : 2px;
+            box-shadow     : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+            overflow       : hidden;
+            cursor: pointer;
+            &:nth-child(4) {
+              margin-right : 0;
+            }
+          }
         }
       }
     }
