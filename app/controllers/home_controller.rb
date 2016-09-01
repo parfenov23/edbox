@@ -11,6 +11,9 @@ class HomeController < ActionController::Base
   rescue_from Exception, with: :error_message if $env_mode.prod?
   # caches_page :courses
   def index
+    @og = {'title' => 'Заголовок: ADCONSULT Online — продавайте больше с каждым днем! ',
+           'description' => 'Онлайн-курсы, вебинары в прямом эфире от ведущих практиков рекламного бизнеса и большой архив скриптов и шаблонов',
+           'img' => '/images/index_ogg.jpg'}
     @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
@@ -101,9 +104,11 @@ class HomeController < ActionController::Base
   def courses
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
-    @courses = Course.all.publication.where(type_course: type_course)
-    @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
+    @courses = Course.all
     course_sorting
+    @courses = @courses.publication.where(type_course: type_course)
+    @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
+
   end
 
   def courses_rss
