@@ -180,7 +180,7 @@ class HomeController < ActionController::Base
           unless (@course.find_bunch_course(current_user.id).present? rescue !attachment.public)
             redirect_to "/courses/material"
           else
-            redirect_to attachment.present? && current_user.view_course?(@course) ? "/attachment/#{attachment.id}" : "/"
+            redirect_to attachment.present? && (current_user.view_course?(@course) rescue false) ? "/attachment/#{attachment.id}" : "/"
           end
         else
           attachment = @course.attachments.where.not(full_text: '').last
