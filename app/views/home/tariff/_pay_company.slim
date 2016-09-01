@@ -114,12 +114,4 @@
       p Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
       p +7 926 973 36 23
 
-.popValidateCodePhone
-  .inner.allgood
-    .description На ваш номер было отправлено смс с проверочным кодом:
-    .input-wrp.name
-      input type="text" placeholder="Введите проверочный код"
-      input.idValuePhoneCode type='hidden'
-      span.bar
-    .action-btn
-      .btn.btn-raised.is__orange.js__checkValidPhoneCode Проверить
+= render "home/tariff/check_valid_phone"
