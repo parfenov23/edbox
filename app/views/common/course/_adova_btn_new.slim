@@ -1,7 +1,7 @@
 - if current_user.present?
   = render "home/courses/pop_up" if current_user.director?
   - bsid = (@section.bunch_section(current_user.id).id rescue nil)
-  - redirect_url = "/course_description?id=#{@course.id}"
+  - redirect_url = "/course_description/#{@course.id}"
   - attachs_next = (@attachment.next rescue nil)
   - if attachs_next.present?
     - redirect_url = "/attachment?id=#{attachs_next.id}"
