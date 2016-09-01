@@ -3,8 +3,8 @@
     padding-top    : 64px;
     padding-bottom : 64px;
   }
-  .text__content{
-    embed{
+  .text__content {
+    embed {
       top      : -52px;
       position : relative;
     }
@@ -255,12 +255,35 @@
         &.back__to__program {
           background-color : #E65100;
         }
+        &:hover {
+          .help_btn {
+            opacity : 1;
+          }
+        }
       }
       i {
         top       : calc(50% - 18px);
         position  : relative;
         color     : #FFF;
         font-size : 36px;
+      }
+      .help_btn {
+        position          : absolute;
+        margin-top        : 50%;
+        right             : calc(-100% - 42px);
+        background        : rgba(0, 0, 0, 0.54);
+        border-radius     : 2px;
+        font-size         : 11px;
+        color             : #FFF;
+        line-height       : 22px;
+        padding           : 0 8px;
+        -webkit-transform : translate(0, -50%);
+        -ms-transform     : translate(0, -50%);
+        transform         : translate(0, -50%);
+        overflow          : hidden;
+        white-space       : nowrap;
+        text-overflow     : ellipsis;
+        opacity           : 0;
       }
     }
   }
