@@ -192,7 +192,8 @@ figure.basic__module {
       padding-top : 16px;
 
       .title {
-        @include text__setting(normal__typo);
+        @include text__setting(small__typo);
+        width : 254px;
       }
       .info__block {
         @include text__setting(smallest__typo, secondary__color);
