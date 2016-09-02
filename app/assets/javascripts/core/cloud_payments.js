@@ -246,6 +246,7 @@ var checkValidPhoneCode = function () {
     if (input_code == valid_code){
         show_error('Успешно', 3000);
         $('.form-control[type="tel"]').attr('data-valid', 'true');
+
         block.css('display', 'none');
         setTimeout(function () {
             window.location.href = '/profile';
@@ -255,18 +256,29 @@ var checkValidPhoneCode = function () {
     }
 };
 
+var change_mask_phone = function(code){
+    if(code == undefined) code = '+7 (999) 999-99-99';
+    $(".company__name input[name='company_phone']").mask(code);
+};
+
 pageLoad(function () {
     $(document).on('click', '.js_paymentAccount', function () {
         paymentAccount('btn');
     });
 
     if ($(".company__name input[name='company_phone']").length){
-        $(".company__name input[name='company_phone']").mask("+7 (999) 999-99-99");
+        change_mask_phone();
     }
 
     $(document).on('click', ".company__name input[name='company_phone']", function () {
         var btn = $(this);
         btn.closest(".com__input-item").removeClass('empty');
+    });
+
+    $('.company__name #code_code_id').change(function(){
+        var code = $(this).val();
+        change_mask_phone(code);
+        console.log(1)
     });
 
 

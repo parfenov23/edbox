@@ -147,6 +147,23 @@
         width   : 280px;
         &.right {
           float : right;
+          select {
+            position              : absolute;
+            width                 : 84px;
+            left                  : calc(100% - 84px);
+            top                   : -6px;
+            -webkit-border-radius : 2px;
+            background-position   : 97% center;
+            background-repeat     : no-repeat;
+            border                : 1px solid #FFF;
+            color                 : #464646;
+            font-size             : inherit;
+            overflow              : hidden;
+            text-overflow         : ellipsis;
+            white-space           : nowrap;
+            padding-right         : 27px;
+            z-index               : 2;
+          }
         }
       }
 
@@ -376,6 +393,10 @@
       font-size     : 20px;
       line-height   : 28px;
       margin-bottom : 16px;
+    }
+
+    .title__hint {
+      @include text__setting(smallest__typo, not_active__color);
     }
 
     .description {
