@@ -222,6 +222,7 @@ var validate_company_form = function () {
     return result;
 };
 
+
 var checkValidPhoneCode = function () {
     var block = $(".popValidateCodePhone");
     var input_code = block.find('input[type="text"]').val();
