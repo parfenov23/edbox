@@ -210,7 +210,7 @@ var validate_company_form = function () {
     var result = true;
     if ($(".company__name").length){
         $(".com__input-item").removeClass("error");
-        $(".company__name input").each(function (i, e) {
+        $(".company__name input").not('input[name="code_coupon"]').each(function (i, e) {
             if (! $(e).val().length){
                 result = false;
                 $(e).closest(".com__input-item").addClass("error");
@@ -278,9 +278,18 @@ pageLoad(function () {
     $('.company__name #code_code_id').change(function(){
         var code = $(this).val();
         change_mask_phone(code);
-        console.log(1)
     });
 
+    $('.company__name input[name="code_coupon"]').change(function(){
+        var code = $(this).val();
+        if (code == "adconsultlovesyou"){
+            var form = $('form .qty');
+            var sum = parseInt(form.find("input[name='sum']").val())/2;
+            form.find("input[name='sum']").val(sum);
+            form.find("span").text(sum);
+            $(this).closest('.com__input-item').remove();
+        }
+    });
 
     $(document).on('click', '.js_orderBill', orderBill);
 

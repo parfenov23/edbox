@@ -36,6 +36,10 @@
             i.icon.done
             | Сертификат об окончании курсов
       .company__name
+        .com__input-item.item.empty
+          input.form-control.floating-label type="text" placeholder="Введите код купона" name="code_coupon"
+          .error__msg Обязательное поле
+          hr
         - user_phone = current_user.social['phone']
         .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
           = select("code", "code_id", array_mask_code_phone)
