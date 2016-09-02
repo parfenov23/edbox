@@ -260,7 +260,6 @@ var change_mask_phone = function(code){
     if(code == undefined) code = '+7 (999) 999-99-99';
     $(".company__name input[name='company_phone']").mask(code);
 };
-
 pageLoad(function () {
     $(document).on('click', '.js_paymentAccount', function () {
         paymentAccount('btn');
