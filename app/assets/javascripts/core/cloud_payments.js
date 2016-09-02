@@ -249,7 +249,7 @@ var checkValidPhoneCode = function () {
 
         block.css('display', 'none');
         setTimeout(function () {
-            window.location.href = '/profile';
+            window.location.href = '/courses';
         }, 1500);
     } else {
         show_error('Вы ввели неправильный проверочный код', 3000);
