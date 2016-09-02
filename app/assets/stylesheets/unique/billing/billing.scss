@@ -147,6 +147,9 @@
         width   : 280px;
         &.right {
           float : right;
+          input {
+            width : 196px;
+          }
           select {
             position              : absolute;
             width                 : 84px;
