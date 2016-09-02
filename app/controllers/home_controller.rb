@@ -241,7 +241,7 @@ class HomeController < ActionController::Base
   private
 
   def course_sorting
-    @courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
+    #@courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
     sort_type = params[:sort_type].present? ? params[:sort_type] : 'DESC'
     @courses = @courses.unscoped.order("#{params[:sort]} #{sort_type}") if ['title', 'created_at'].include?(params[:sort])
     @courses = @courses.where(paid: (params[:sort] == "pay_course" ? true : false)) if ['free_course', 'pay_course'].include?(params[:sort])
