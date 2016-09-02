@@ -89,7 +89,7 @@ var purchase_pay = function () {
                 include_phone($('.form-control[type="tel"]'));
             }else{
                 setTimeout(function () {
-                    window.location.href = '/profile';
+                    window.location.href = '/courses';
                 }, 1500);
             }
 
