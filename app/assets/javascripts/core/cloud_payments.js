@@ -270,17 +270,6 @@ pageLoad(function () {
         change_mask_phone();
     }
 
-    $('.company__name input[name="code_coupon"]').change(function(){
-        var code = $(this).val();
-        if (code == "adconsultlovesyou"){
-            var form = $('form .qty');
-            var sum = parseInt(form.find("input[name='sum']").val())/2;
-            form.find("input[name='sum']").val(sum);
-            form.find("span").text(sum);
-            $(this).closest('.com__input-item').remove();
-        }
-    });
-
     $(document).on('click', ".company__name input[name='company_phone']", function () {
         var btn = $(this);
         btn.closest(".com__input-item").removeClass('empty');
@@ -294,5 +283,16 @@ pageLoad(function () {
     $(document).on('click', '.js_orderBill', orderBill);
 
     //$('.form-control[type="tel"]').change(include_phone);
-    $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode)
+    $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode);
+
+    $('.company__name input[name="code_coupon"]').change(function(){
+        var code = $(this).val();
+        if (code == "adconsultlovesyou"){
+            var form = $('form .qty');
+            var sum = parseInt(form.find("input[name='sum']").val())/2;
+            form.find("input[name='sum']").val(sum);
+            form.find("span").text(sum);
+            $(this).closest('.com__input-item').remove();
+        }
+    });
 });
