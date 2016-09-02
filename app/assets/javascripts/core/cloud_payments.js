@@ -57,8 +57,9 @@ var pageReloadPayment = function () {
             window.location.reload();
         }, 1500);
     } else {
-        var btn = $("form.tariffPay .action__block .btn.js_openPopupAddCard");
-        btn.removeClass('js_openPopupAddCard').addClass('js_paymentAccount');
+        //var btn = $("form.tariffPay .action__block .btn.js_openPopupAddCard");
+        //btn.removeClass('js_openPopupAddCard').addClass('js_paymentAccount');
+        paymentAccount();
     }
 };
 

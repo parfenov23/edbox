@@ -37,8 +37,8 @@
             | Сертификат об окончании курсов
       .company__name
         - user_phone = current_user.social['phone']
-        = select("code", "code_id", array_mask_code_phone)
         .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
+          = select("code", "code_id", array_mask_code_phone)
           input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
           .error__msg Обязательное поле
           hr
