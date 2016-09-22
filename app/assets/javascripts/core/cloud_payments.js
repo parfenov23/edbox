@@ -86,12 +86,13 @@ var purchase_pay = function () {
     }).success(function (data) {
         if (data.success){
             show_error('Оплата успешно прошла', 3000);
+            var endAction = function(){
+                window.location.href = '/courses';
+            };
             if($('.form-control[type="tel"]').attr('data-valid') != 'true' ){
-                include_phone($('.form-control[type="tel"]'));
+                include_phone($('.form-control[type="tel"]'), endAction);
             }else{
-                setTimeout(function () {
-                    window.location.href = '/courses';
-                }, 1500);
+                setTimeout(endAction, 1500);
             }
 
         } else {
@@ -223,43 +224,11 @@ var validate_company_form = function () {
     return result;
 };
 
-var checkValidPhoneCode = function () {
-    var block = $(".popValidateCodePhone");
-    var input_code = block.find('input[type="text"]').val();
-    var valid_code = block.find('input.idValuePhoneCode').val();
-    if (input_code == valid_code){
-        show_error('Успешно', 3000);
-        $('.form-control[type="tel"]').attr('data-valid', 'true');
 
-        block.css('display', 'none');
-        setTimeout(function () {
-            window.location.href = '/courses';
-        }, 1500);
-    } else {
-        show_error('Вы ввели неправильный проверочный код', 3000);
-    }
-};
-
-var include_phone = function (input) {
-    if (input.val().length){
-        var code = getRandomInt(1000, 9999);
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/users/include_phone',
-            data: {phone: input.val(), code: code}
-        }).success(function () {
-            var block = $(".popValidateCodePhone");
-            block.css('display', 'flex');
-            block.find('.idValuePhoneCode').val(code);
-        }).error(function () {
-            show_error('Ошибка', 3000);
-        });
-    }
-};
 
 var change_mask_phone = function(code){
     if(code == undefined) code = '+7 (999) 999-99-99';
-    $(".company__name input[name='company_phone']").mask(code);
+    $(".company__name input[name='company_phone'], .user_phone input[name='user[social][phone]']").mask(code);
 };
 pageLoad(function () {
     $('.company__name input[name="code_coupon"]').change(function(){
@@ -277,7 +246,7 @@ pageLoad(function () {
         paymentAccount('btn');
     });
 
-    if ($(".company__name input[name='company_phone']").length){
+    if ($(".company__name input[name='company_phone'], .user_phone input[name='user[social][phone]']").length){
         change_mask_phone();
     }
 
@@ -294,6 +263,5 @@ pageLoad(function () {
     $(document).on('click', '.js_orderBill', orderBill);
 
     //$('.form-control[type="tel"]').change(include_phone);
-    $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode);
 
 });

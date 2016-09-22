@@ -46,6 +46,11 @@ header.landing__header
       input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="Пожалуйста, e-mail"
       .error__msg Обязательное поле
       hr
+    .com__input-item.item.empty.user_phone
+      = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
+      input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Пожалуйста, телефон"
+      .error__msg Обязательное поле
+      hr
     .com__input-item.item.empty
       input.form-control.floating-label autocomplete="off" name="user[password]" type="password" placeholder="Пожалуйста, придумайте пароль"
       .error__msg Обязательное поле
@@ -75,3 +80,4 @@ header.landing__header
     .action__block
       a.btn.btn-flat href='/sign_in' У МЕНЯ ЕСТЬ АККАУНТ
       .btn.is__blue.ya_new_acc#submit data-phoenix-action="remove" СОЗДАТЬ АККАУНТ
+= render "home/tariff/check_valid_phone"

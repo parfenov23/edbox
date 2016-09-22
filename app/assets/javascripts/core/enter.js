@@ -160,7 +160,7 @@ function getTokenGplusAuth(data_g) {
 
 var validRegClickOfert = function () {
     var btn = $(this);
-    if (!btn.closest('form').find(".auth_agree.checkbox__holder input.checkbox").is(':checked')){
+    if (! btn.closest('form').find(".auth_agree.checkbox__holder input.checkbox").is(':checked')){
         $('input.checkbox').addClass('error');
         show_error("Пожалуйста, отметьте, что вы согласны с пользовательским соглашением", 3000);
         return false;
@@ -256,40 +256,35 @@ $(document).ready(function () {
     $(".js_registrationUser #submit").click(function (e) {
         e.preventDefault();
         validate();
-        if ($(".js_registrationUser input.error").length == 0){
-            var btn = $(this);
-            var form = btn.closest("form");
-            var data = form.serialize();
+        var endAction = function () {
+            if ($(".js_registrationUser input.error").length == 0){
+                var btn = $(".js_registrationUser #submit");
+                var form = btn.closest("form");
+                var data = form.serialize();
 
-            //var company, data, user;
-            //user = _.omit(data, 'password_repeat', 'agreed', 'name');
-            //company = _.pick(data, 'name');
-            //console.log(user, company);
-            show_error('Подождите чуть-чуть!', 5000);
-            return $.ajax({
-                type   : 'POST',
-                url    : '/api/v1/sessions/registration',
-                data   : data,
-                //data   : {
-                //    user   : user,
-                //    company: company
-                //},
-                success: function (m) {
-                    fbq_env('CompleteRegistration');
-                    $.cookie('user_key', m.user_key);
-                    if (form.data('redirect') == undefined){
-                        $("#formCourseRegPopUp").show();
-                    } else {
-                        window.location.href = form.data('redirect');
+                show_error('Подождите чуть-чуть!');
+                return $.ajax({
+                    type   : 'POST',
+                    url    : '/api/v1/sessions/registration',
+                    data   : data,
+                    success: function (m) {
+                        fbq_env('CompleteRegistration');
+                        $.cookie('user_key', m.user_key);
+                        show_error('Успешно', 3000);
+                        if (form.data('redirect') == undefined){
+                            $("#formCourseRegPopUp").show();
+                        } else {
+                            window.location.href = form.data('redirect');
+                        }
+
+                    },
+                    error  : function (m) {
+                        show_error(m.responseJSON.error, 3000);
                     }
-
-                },
-                error  : function (m) {
-
-                    show_error(m.responseJSON.error, 3000);
-                }
-            });
-        }
+                });
+            }
+        };
+        include_phone($('.form-control[type="tel"]'), endAction);
     });
 
     $("form.auth__enter input.validInput").change(function (e) {
