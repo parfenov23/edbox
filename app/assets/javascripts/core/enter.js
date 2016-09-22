@@ -160,11 +160,27 @@ function getTokenGplusAuth(data_g) {
 
 var validRegClickOfert = function () {
     var btn = $(this);
+    var valid_error = false;
+    $('input.checkbox, .form-control[type="tel"], .com__input-item.user_phone').removeClass('error');
     if (! btn.closest('form').find(".auth_agree.checkbox__holder input.checkbox").is(':checked')){
         $('input.checkbox').addClass('error');
-        show_error("Пожалуйста, отметьте, что вы согласны с пользовательским соглашением", 3000);
-        return false;
+        valid_error = true;
     }
+    if(!$('.form-control[type="tel"]').val().length){
+        $('.form-control[type="tel"], .com__input-item.user_phone').addClass('error');
+        valid_error = true;
+    }
+
+    if (valid_error){
+        show_error("Пожалуйста, заполните обязательные поля", 3000);
+    }else{
+        var curr_href = $(this).attr('href');
+        var endAction = function(){
+            window.location.href = curr_href
+        };
+        include_phone($('.form-control[type="tel"]'), endAction);
+    }
+    return false;
 };
 
 $(document).ready(function () {
