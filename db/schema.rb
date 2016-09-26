@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830194304) do
+ActiveRecord::Schema.define(version: 20160926102322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 20160830194304) do
   end
 
   add_index "bigbluebutton_room_options", ["room_id"], name: "index_bigbluebutton_room_options_on_room_id", using: :btree
+
+  create_table "billing_coupons", force: true do |t|
+    t.string   "title"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "billing_prices", force: true do |t|
     t.float    "company_price",      default: 1.0

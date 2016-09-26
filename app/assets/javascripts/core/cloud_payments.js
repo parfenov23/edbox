@@ -233,13 +233,13 @@ var change_mask_phone = function(code){
 pageLoad(function () {
     $('.company__name input[name="code_coupon"]').change(function(){
         var code = $(this).val();
-        if (code == "adconsultlovesyou"){
+        findCoupon(code, function(data){
             var form = $('form .qty');
-            var sum = parseInt(form.find("input[name='sum']").val())/2;
+            var sum = data.price;
             form.find("input[name='sum']").val(sum);
             form.find("span").text(sum);
             $(this).closest('.com__input-item').remove();
-        }
+        });
     });
 
     $(document).on('click', '.js_paymentAccount', function () {

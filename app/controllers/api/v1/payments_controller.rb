@@ -70,6 +70,10 @@ module Api::V1
       render html: "<script> var resp = #{@response.to_json.html_safe};parent.window.showMessage(resp);</script>".html_safe
     end
 
+    def find_coupon
+      render json: (BillingCoupon.where(title: params[:coupon]).last.to_json rescue {})
+    end
+
     private
 
     def success_transaction(result)

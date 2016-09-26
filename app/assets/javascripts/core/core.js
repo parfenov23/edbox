@@ -16,20 +16,20 @@ var view_px_block = function (block) {
     return do_block
 };
 
-var rightFilterShowSubsidiary = function(){
+var rightFilterShowSubsidiary = function () {
     var btn = $(this);
     var block = btn.closest(".parent_tag").find("ul:first");
     if (block.is(":visible")){
         btn.closest(".parent_tag").removeClass("open");
         block.hide();
-    }else{
+    } else {
         btn.closest(".parent_tag").addClass("open");
         block.show();
     }
 
 };
 
-var searchFilterTagFind = function(){
+var searchFilterTagFind = function () {
     var btn = $(this);
     window.location.href = '/courses?tid=' + btn.data('id');
 };
@@ -37,6 +37,20 @@ var searchFilterTagFind = function(){
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+var findCoupon = function (coupon, callback) {
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/payments/find_coupon',
+        data: {coupon: coupon}
+    }).success(function (data) {
+        if (data != null){
+            callback(data);
+        }
+    }).error(function () {
+        show_error('Ошибка', 3000);
+    });
+};
 
 pageLoad(function () {
     var back_item_link = $("a.item[href='backCourse']");
@@ -47,13 +61,13 @@ pageLoad(function () {
     $(document).on('click', '#js-filter-courses .parentTreeUl .parent_tag .title', rightFilterShowSubsidiary);
     $(document).on('click', '.last_subtag .js__searchFilterTagFind', searchFilterTagFind);
 
-    $('embed').mousedown(function(event){
+    $('embed').mousedown(function (event) {
         event.preventDefault();
-        if(event.button == 0){
+        if (event.button == 0){
             console.log('disable');
-        } else if(event.button == 1){
+        } else if (event.button == 1){
             console.log('disable');
-        } else if(event.button == 2){
+        } else if (event.button == 2){
             console.log('disable');
         }
     });

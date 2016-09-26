@@ -118,6 +118,7 @@ Rails.application.routes.draw do
           post :remove_card
           post :purchase
           post :order_bill
+          post :find_coupon
         end
       end
 
@@ -286,6 +287,12 @@ Rails.application.routes.draw do
     end
 
     resources :news do
+      member do
+        get :remove
+      end
+    end
+
+    resources :coupons do
       member do
         get :remove
       end

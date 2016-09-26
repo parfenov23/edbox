@@ -1,0 +1,13 @@
+- action_url = @coupon.id.nil? ? "/superuser/coupons" : "/superuser/coupons/#{@coupon.id}"
+- method = @coupon.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Купон:
+        input.form-control name="coupon[title]" type="text" value="#{@coupon.title}"
+    .form-group
+        label
+            | Итоговая цена:
+        input.form-control name="coupon[price]" type="text" value="#{@coupon.price}"
+    input type="hidden" name="_method" value="#{method}"
+    button.btn.btn-primary type="submit" Сохранить
