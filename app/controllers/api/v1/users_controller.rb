@@ -59,7 +59,7 @@ module Api::V1
 
       if user.valid?
         user.update(permit_params)
-        user.update({social: params[:user][:social]})
+        user.update({social: params[:user][:social]}) if params[:user][:social].present?
         render json: user.transfer_to_json
       else
         render_error(500, 'Проверьте данные')
@@ -169,6 +169,13 @@ module Api::V1
 
     def update_help
       current_user.update({help: false})
+      render json: {success: true}
+    end
+
+    def update_phone
+      social = current_user.social
+      social["phone"] = params[:phone]
+      current_user.update({social: social})
       render json: {success: true}
     end
 

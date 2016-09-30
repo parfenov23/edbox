@@ -156,7 +156,7 @@ function getTokenGplusAuth(data_g) {
             window.location.href = '/sign_up?type=gplus&access_token=' + m.access_token;
         }
     });
-}
+};
 
 var validRegClickOfert = function () {
     var btn = $(this);
@@ -169,6 +169,8 @@ var validRegClickOfert = function () {
     if(!$('.form-control[type="tel"]').val().length){
         $('.form-control[type="tel"], .com__input-item.user_phone').addClass('error');
         valid_error = true;
+    }else{
+        $.cookie('user_phone', $('.form-control[type="tel"]').val());
     }
 
     if (valid_error){
@@ -431,5 +433,10 @@ $(document).ready(function () {
             inputPass.removeClass("error");
             inputRePass.removeClass("error");
         }
+    };
+
+    if($.cookie('user_phone') != undefined && $.cookie('user_phone') != '' && current_user()){
+        CurrentUserUpdatePhone($.cookie('user_phone'));
+        $.cookie('user_phone', '');
     }
 });

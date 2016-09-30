@@ -52,6 +52,18 @@ var findCoupon = function (coupon, callback) {
     });
 };
 
+var current_user = function(){
+    return $("#presentCurrentUser").val() == "true"
+};
+
+var CurrentUserUpdatePhone = function(phone){
+    $.ajax({
+        type: 'POST',
+        url : '/api/v1/users/update_phone',
+        data: {phone: phone}
+    })
+};
+
 pageLoad(function () {
     var back_item_link = $("a.item[href='backCourse']");
     if (back_item_link.length){

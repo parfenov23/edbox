@@ -227,6 +227,7 @@ Rails.application.routes.draw do
           post :send_request
           post :include_phone
           post :update_help
+          post :update_phone
           get :my_courses
         end
         member do
