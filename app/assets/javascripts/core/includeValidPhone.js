@@ -15,7 +15,6 @@ var checkValidPhoneCode = function () {
         show_error('Вы ввели неправильный проверочный код', 3000);
     }
 };
-
 var include_phone = function (input, action) {
     if (action != undefined){
         actionEndInclude = action;
