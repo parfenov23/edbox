@@ -255,7 +255,7 @@ pageLoad(function () {
         btn.closest(".com__input-item").removeClass('empty');
     });
 
-    $('.company__name #code_code_id').change(function(){
+    $('.company__name #code_code_id, .user_phone #code_code_id').change(function(){
         var code = $(this).val();
         change_mask_phone(code);
     });
