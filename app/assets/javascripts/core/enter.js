@@ -166,18 +166,18 @@ var validRegClickOfert = function () {
         $('input.checkbox').addClass('error');
         valid_error = true;
     }
-    if(!$('.form-control[type="tel"]').val().length){
+    if (! $('.form-control[type="tel"]').val().length){
         $('.form-control[type="tel"], .com__input-item.user_phone').addClass('error');
         valid_error = true;
-    }else{
+    } else {
         $.cookie('user_phone', $('.form-control[type="tel"]').val());
     }
 
     if (valid_error){
         show_error("Пожалуйста, заполните обязательные поля", 3000);
-    }else{
+    } else {
         var curr_href = $(this).attr('href');
-        var endAction = function(){
+        var endAction = function () {
             window.location.href = curr_href
         };
         include_phone($('.form-control[type="tel"]'), endAction);
@@ -275,34 +275,33 @@ $(document).ready(function () {
         e.preventDefault();
         validate();
         var endAction = function () {
-            if ($(".js_registrationUser input.error").length == 0){
-                var btn = $(".js_registrationUser #submit");
-                var form = btn.closest("form");
-                var data = form.serialize();
+            var btn = $(".js_registrationUser #submit");
+            var form = btn.closest("form");
+            var data = form.serialize();
 
-                show_error('Подождите чуть-чуть!');
-                return $.ajax({
-                    type   : 'POST',
-                    url    : '/api/v1/sessions/registration',
-                    data   : data,
-                    success: function (m) {
-                        fbq_env('CompleteRegistration');
-                        $.cookie('user_key', m.user_key);
-                        show_error('Успешно', 3000);
-                        if (form.data('redirect') == undefined){
-                            $("#formCourseRegPopUp").show();
-                        } else {
-                            window.location.href = form.data('redirect');
-                        }
-
-                    },
-                    error  : function (m) {
-                        show_error(m.responseJSON.error, 3000);
+            show_error('Подождите чуть-чуть!');
+            return $.ajax({
+                type   : 'POST',
+                url    : '/api/v1/sessions/registration',
+                data   : data,
+                success: function (m) {
+                    fbq_env('CompleteRegistration');
+                    $.cookie('user_key', m.user_key);
+                    show_error('Успешно', 3000);
+                    if (form.data('redirect') == undefined){
+                        $("#formCourseRegPopUp").show();
+                    } else {
+                        window.location.href = form.data('redirect');
                     }
-                });
-            }
+                },
+                error  : function (m) {
+                    show_error(m.responseJSON.error, 3000);
+                }
+            });
         };
-        include_phone($('.form-control[type="tel"]'), endAction);
+        if ($(".js_registrationUser input.error").length == 0){
+            include_phone($('.form-control[type="tel"]'), endAction);
+        }
     });
 
     $("form.auth__enter input.validInput").change(function (e) {
@@ -435,7 +434,7 @@ $(document).ready(function () {
         }
     };
 
-    if($.cookie('user_phone') != undefined && $.cookie('user_phone') != '' && current_user()){
+    if ($.cookie('user_phone') != undefined && $.cookie('user_phone') != '' && current_user()){
         CurrentUserUpdatePhone($.cookie('user_phone'));
         $.cookie('user_phone', '');
     }

@@ -94,7 +94,7 @@ module Api::V1
       user = User.where(email: params_sub[:email]).last
       user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
       subscription = Subscription.build(params_sub)
-      #subscription.active = true
+      subscription.active = true
       subscription.save
       subscription
     end

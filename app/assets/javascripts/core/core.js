@@ -128,4 +128,7 @@ var checkValidPhoneCode = function () {
 
 pageLoad(function () {
     $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode);
+    $(document).on('click', '.js__closeValidPhoneCode', function(){
+        $(this).closest('.popValidateCodePhone').hide();
+    });
 });
