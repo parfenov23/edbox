@@ -21,7 +21,7 @@ var selectType = function(type){
 var openFormRegistrationAuth = function(){
     var btn= $(this);
     if(btn.data('type') == "free") {
-        window.location.href = '/courses';
+        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
     }else{
         window.location.href = '/payment?type=' + btn.data('type') + "&page=reg";
     }

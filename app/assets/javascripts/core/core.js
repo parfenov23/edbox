@@ -94,19 +94,23 @@ var include_phone = function (input, action) {
     if (action != undefined){
         actionEndInclude = action;
     }
-    if (input.val().length){
-        var code = getRandomInt(1000, 9999);
-        $.ajax({
-            type: 'POST',
-            url : '/api/v1/users/include_phone',
-            data: {phone: input.val(), code: code}
-        }).success(function () {
-            var block = $(".popValidateCodePhone");
-            block.css('display', 'flex');
-            block.find('.idValuePhoneCode').val(code);
-        }).error(function () {
-            show_error('Ошибка', 3000);
-        });
+    if(input.length){
+        if (input.val().length){
+            var code = getRandomInt(1000, 9999);
+            $.ajax({
+                type: 'POST',
+                url : '/api/v1/users/include_phone',
+                data: {phone: input.val(), code: code}
+            }).success(function () {
+                var block = $(".popValidateCodePhone");
+                block.css('display', 'flex');
+                block.find('.idValuePhoneCode').val(code);
+            }).error(function () {
+                show_error('Ошибка', 3000);
+            });
+        }
+    }else{
+        setTimeout(actionEndInclude, 1500);
     }
 };
 

@@ -11,31 +11,10 @@
   = render "home/course_description/popup/notify_next"
 
 .course__description-content.oh__nihuyase-block
-  /.tegs__list
-    - course_bunch_tags.each do |bunch_tag|
-      - tag = bunch_tag.tag
-      .item
-        i.icon.teg
-        = tag.title
   - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
 
-  - if @course.announcement?
-    .tizer__block
-      .title Полная программа курса станет доступна в скором времени
-      .action__block
-        - if current_user.present?
-          .btn.is__blue.js_annonsReg.ya_annons_course data-email=current_user.email data-course_id=@course.id УВЕДОМИТЬ МЕНЯ
-        - else
-          .btn.is__blue.js_annons.ya_annons_course УВЕДОМИТЬ МЕНЯ
-  - else
-    - if current_user.present?
-      .tizer__block.start_studyCourse
-        .title
-        .action__block style="width: inherit;"
-          - if bunch_course.blank?
-            .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" Начать изучение курса
-          - else
-            .btn.is__blue onclick="$($('.prgr-wrp .item').not('.is__completed')[0]).click();" Продолжить изучение курса
+  = render "home/course_description/anonce_block_action", {bunch_course: bunch_course}
+
   .course__title = course_title
   = render "home/course_description/progress_block", {bunch_course: bunch_course}
   .course__info

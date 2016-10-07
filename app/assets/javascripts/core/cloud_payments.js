@@ -87,7 +87,7 @@ var purchase_pay = function () {
         if (data.success){
             show_error('Оплата успешно прошла', 3000);
             var endAction = function(){
-                window.location.href = '/courses';
+                window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
             };
             if($('.form-control[type="tel"]').attr('data-valid') != 'true' ){
                 include_phone($('.form-control[type="tel"]'), endAction);
