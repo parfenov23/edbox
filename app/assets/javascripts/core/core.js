@@ -130,7 +130,7 @@ pageLoad(function () {
     $(document).on('click', '.js__closeValidPhoneCode', function(){
         $(this).closest('.popValidateCodePhone').hide();
     });
-    
+
     $(document).on('click', '.js__checkValidPhoneCode', checkValidPhoneCode);
 
 });

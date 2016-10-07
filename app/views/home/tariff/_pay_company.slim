@@ -62,12 +62,13 @@
             .error__msg Обязательное поле
             hr
           - company_phone = current_user.social['phone']
-          .com__input-item.item.right class=(company_phone.present? ? 'is__noFocus' : 'empty')
-            = select("code", "code_id", array_mask_code_phone)
-            - valid_ph = (company_phone.present?).to_s
-            input.form-control.floating-label type="tel" data-valid=valid_ph placeholder="Введите ваш номер телефона" value=company_phone name="company_phone"
-            .error__msg Обязательное поле
-            hr
+          - if company_phone.blank?
+            .com__input-item.item.right class=(company_phone.present? ? 'is__noFocus' : 'empty')
+              = select("code", "code_id", array_mask_code_phone)
+              - valid_ph = (company_phone.present?).to_s
+              input.form-control.floating-label type="tel" data-valid=valid_ph placeholder="Введите ваш номер телефона" value=company_phone name="company_phone"
+              .error__msg Обязательное поле
+              hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
       .company__calc.parentPriceTariff data-user_price=hash_date[:user_company_price]

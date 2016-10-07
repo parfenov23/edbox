@@ -41,11 +41,12 @@
           .error__msg Обязательное поле
           hr
         - user_phone = current_user.social['phone']
-        .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
-          = select("code", "code_id", array_mask_code_phone)
-          input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
-          .error__msg Обязательное поле
-          hr
+        - if user_phone.blank?
+          .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
+            = select("code", "code_id", array_mask_code_phone)
+            input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
+            .error__msg Обязательное поле
+            hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
       form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
