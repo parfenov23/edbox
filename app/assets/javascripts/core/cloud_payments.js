@@ -224,12 +224,17 @@ var validate_company_form = function () {
     return result;
 };
 
-
-
 var change_mask_phone = function(code){
     if(code == undefined) code = '+7 (999) 999-99-99';
-    $(".company__name input[name='company_phone'], .user_phone input[name='user[social][phone]']").mask(code);
+    var input = $(".company__name input[name='company_phone'], .user_phone input[name='user[social][phone]']");
+    if (code != ""){
+        input.mask(code);
+    }else{
+        input.unmask();
+    }
 };
+
+
 pageLoad(function () {
     $('.company__name input[name="code_coupon"]').change(function(){
         var code = $(this).val();
