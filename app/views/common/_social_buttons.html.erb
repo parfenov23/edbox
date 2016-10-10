@@ -1,6 +1,6 @@
 <% url_fb ="https://www.facebook.com/dialog/share?app_id=1718642978353463&
 display=popup&href=#{$env_mode.current_domain + url}&picture=#{$env_mode.current_domain + @og["img"]}&title=#{@page_title}&
-description=#{sanitize @og["description"], tags: []}&redirect_uri=#{$env_mode.current_domain.gsub('http://', 'https://')}" %>
+description=#{sanitize @og["description"], tags: []}&redirect_uri=#{$env_mode.current_domain}" %>
 <% params_social_links = Hash[[:facebook, :vk, :twitter].map { |k| [k, social_share_link(k, url, @page_title, @og["img"])] }] %>
 <div class="at4-share-outer-right addthis-smartlayers addthis-smartlayers-desktop" aria-labelledby="at4-share-label" role="region">
   <div id="at4-share" class="addthis_32x32_style atss atss-right addthis-animated slideInRight at4-show">
