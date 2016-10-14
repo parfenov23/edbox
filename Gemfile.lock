@@ -475,7 +475,7 @@ DEPENDENCIES
   resque
   resque-scheduler
   resque-status
-  rmagick (= 2.13.2)
+  rmagick
   rufus-scheduler
   russian
   sass-rails
