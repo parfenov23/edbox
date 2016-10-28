@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get "attachment/:id" => "home#attachment"
   get "instrument/:id" => "home#instrument"
   get "user/:id" => "home#user"
+  get "course_no_reg/:id" => "home#course_no_reg"
 
   # get 'courses' => 'home#courses', :constraints => { :subdomain => /.+/ }
   get "courses/rss" => "home#courses_rss", format: 'rss'
