@@ -180,7 +180,7 @@ class HomeController < ActionController::Base
         attachment = @course.attachments.last
         unless @course.instrument?
           unless (@course.find_bunch_course(current_user.id).present? rescue !attachment.public)
-            redirect_to ((сurrent_user.blank? && @attachment.public) ? "/attachment/#{attachment.id}" : "/courses/material")
+            redirect_to "/courses/material"
           else
             redirect_to attachment.present? && (current_user.view_course?(@course) rescue false) ? "/attachment/#{attachment.id}" : "/"
           end
