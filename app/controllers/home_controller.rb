@@ -61,6 +61,8 @@ class HomeController < ActionController::Base
         unless @attachment.present? && valid_redirect || course_leading
           redirect_to "/"
         end
+      else
+        redirect_to "/course_no_reg?id=#{params[:id]}" if current_user.blank? && !@attachment.public
       end
     else
       redirect_to "/"
