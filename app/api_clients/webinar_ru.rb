@@ -34,20 +34,14 @@ module ApiClients
     # 7. Скачивание файлов заметок
     # http://my.webinar.ru/api0/GetNotes.php?key={key}&event_id={eventId}
 
-    API_KEY = '8e73f6bde3ba1eea55d1aa50f3df9c48'
-    BASE_URL = 'http://my.webinar.ru/api0/'
+    API_KEY = 'ac405d993e38d133d2a7e4c46c168333'
+    BASE_URL = 'https://userapi.webinar.ru/v3/'
 
     def initialize
-      @conn = Faraday.new(url: BASE_URL) do |faraday|
-        faraday.request :json
-        faraday.request :url_encoded
-        faraday.response :json, :content_type => /\bjson$/
-        faraday.response :xml, content_type: /\bxml$/
-        faraday.adapter :net_http
-      end
+      @conn = Faraday.new(:url => BASE_URL)
     end
 
-    def get(path, params = {}, headers = {})
+    def get(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
       @conn.get do |req|
         req.headers.merge!(headers)
         req.url path, params.merge(key: API_KEY)
@@ -65,15 +59,25 @@ module ApiClients
       {}
     end
 
-    # def post(path, params = {})
-    #   @conn.post do |req|
-    #     req.headers['Content-Type'] = 'application/json'
-    #     req.url path, @credentials
-    #     req.body = params.to_json
-    #   end.body
-    # rescue
-    #   {}
-    # end
+    def post(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
+      @conn.post do |req|
+        req.headers.merge!(headers)
+        req.url path
+        req.body = params
+      end.body
+    rescue
+      {}
+    end
+
+    def put(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
+      @conn.put do |req|
+        req.headers.merge!(headers)
+        req.url path
+        req.body = params
+      end.body
+    rescue
+      {}
+    end
 
     # def auth(login, hash)
     #   response = @conn.post('/private/api/auth.php', USER_LOGIN: login, USER_HASH: hash).body

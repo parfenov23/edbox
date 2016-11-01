@@ -54,7 +54,10 @@ module Api::V1
       #   webinar = Webinar.create({attachment_id: attachment.id})
       #   webinar.eventCreate
       # end
-      Webinar.create({attachment_id: attachment.id}) if attachment.file_type == "webinar"
+      if attachment.file_type == "webinar"
+        webinar = Webinar.create({attachment_id: attachment.id})
+        webinar.eventCreate
+      end
       attachment.install_position
       render json: attachment.transfer_to_json
     end

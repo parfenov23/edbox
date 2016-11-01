@@ -60,33 +60,62 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventCreate
-    client = ::ApiClients::WebinarRu.new
-    access = 'open'
-    resp = client.get('Create.php', {name: attachment.title, time: date_start.to_i, description: attachment.title, access: access})
-    if resp['event'].present? && resp['event']['status'] == 'ok'
-      self.event = resp['event']['event_id'].to_i
+    webinar_title = attachment.attachmentable.course.title rescue Time.now.to_i
+    resp = JSON.parse(event_client.post('events', 
+      {
+        name: webinar_title, startsAt: date_to_json, 
+        description: webinar_title, access: 4
+      }.compact))
+    #binding.pry
+    if resp['eventId'].present?
+      self.event = resp['eventId'].to_i
       save
     end
   end
 
   def eventUpdate
-    client = ::ApiClients::WebinarRu.new
-    access = 'open'
-    resp = client.get('Update.php', {event_id: self.event, name: attachment.title, time: date_start.to_i, description: attachment.title, access: access})
-    resp['event'].present? && resp['event']['status'] == 'ok'
+    h_date = {
+        name: attachment.title,
+        startsAt: date_to_json, 
+        description: attachment.title, access: 4
+    }
+    Thread.new {
+      event_client = ::ApiClients::WebinarRu.new 
+      event_client.put("organization/events/#{self.event}", h_date) 
+      event_client.put("eventsessions/#{eventSession['id']}", h_date)
+    }
+    #JSON.parse(resp)['error'].blank? rescue resp == ""
+    h_date
   end
 
   def eventStatus
-    client = ::ApiClients::WebinarRu.new
-    resp = client.get('GetStatus.php', {event_id: event})
-    resp['event']['stage'] if resp['event'].present? && resp['event']['status'] == 'ok'
+    resp = eventInfo
+    resp['eventSessions'].present? ? resp["eventSessions"].first['status'] : resp["status"]
+  end
+
+  def eventInfo
+    JSON.parse(event_client.get("organization/events/#{self.event}", {}))
+  end
+
+  def eventSession
+    session = event_client.post("events/#{event}/sessions", {})
+    session = JSON.parse(session)
+    session = eventInfo['eventSessions'].first if session["error"].present?
+    #binding.pry
+    session["id"] = session["eventSessionId"] if session["eventSessionId"].present?
+    session
+  end
+
+  def eventActive(status = 'ACTIVE')
+    resp = event_client.put("organization/events/#{self.event}", { status: status })
+    JSON.parse(resp)['error'].blank? rescue resp == ""
   end
 
   def eventRun(runStatus = 'START')
     update({status: runStatus})
-    client = ::ApiClients::WebinarRu.new
-    resp = client.get('Status.php', {event_id: event, stage: runStatus})
-    resp['event'].present? && resp['event']['status'] == 'ok'
+
+    resp = event_client.put("eventsessions/#{eventSession['id']}/#{runStatus.downcase}", {})
+    JSON.parse(resp)['error'].blank? rescue resp == ""
   end
 
   def eventStart
@@ -97,26 +126,34 @@ class Webinar < ActiveRecord::Base
     eventRun('STOP')
   end
 
-  def eventRegUser(user, role='user')
+  def eventRegUser(user, role='GUEST')
     unless ligament_leads.where(user_id: user.id).present?
       HomeMailer.reg_webinar(self, user).deliver
     else
       HomeMailer.reg_webinar_lead(self, user).deliver
     end
-    client = ::ApiClients::WebinarRu.new
-    resp = client.get('Register.php', {event_id: event, username: user.full_name, email: user.email, role: role})
-    if resp['guestList'].present? && resp['guestList']['status'] == 'ok'
-      user_webinar = UserWebinar.find_or_create_by(webinar_id: self.id, user_id: user.id)
-      user_webinar.update(url: resp['guestList']['guest']['uri'])
-    end
+    #binding.pry
+    resp = JSON.parse(event_client.post("events/#{event}/register", 
+      {
+        email: user.email,
+        name: user.first_name, 
+        secondName: user.last_name,
+        role: role
+      }))
+    user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)
+    user_webinar.update(url: resp['link'], participant_id: resp['participationId']) if (resp['error'].blank? rescue resp == "")
   end
 
   def eventUnRegUser(user)
-    client = ::ApiClients::WebinarRu.new
-    resp = client.delete('User.php', {event_id: event, email: user.email})
-    if resp['user'].present? && resp['user']['status'] == 'ok'
-      user_webinars.where(user_id: user.id).destroy_all
-    end
+    find_users_webinar = user_webinars.where(user_id: user.id)
+    participant_id = find_users_webinar.where.not(participant_id: nil).first
+    #binding.pry
+    resp = event_client.post("/participations/delete", { "participationIds[0]" => participant_id}) if participant_id.present?
+    find_users_webinar.destroy_all
+    # resp = event_client.delete('User.php', {event_id: event, email: user.email})
+    # if resp['user'].present? && resp['user']['status'] == 'ok'
+    #   
+    # end
   end
 
   def create_job(date_time_start = (date_start - 5.minute))
@@ -134,5 +171,18 @@ class Webinar < ActiveRecord::Base
   def rebuild_job
     remove_job
     create_job
+  end
+
+  private
+
+  def event_client
+    ::ApiClients::WebinarRu.new
+  end
+
+  def date_to_json
+    date_start.present? ? {
+      date: {year: date_start.year, month: date_start.month, day: date_start.day}, 
+      time: {hour: date_start.hour, minute: date_start.min} 
+    } : {}
   end
 end

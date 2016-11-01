@@ -21,6 +21,7 @@ module Api::V1
     def add_leading
       webinar = find_webinar
       ligament_lead = webinar.ligament_leads.find_or_create_by({user_id: params[:user_id]})
+      webinar.eventRegUser(ligament_lead.user, 'LECTURER')
       if params[:type] == "html"
         html_result = render_to_string "contenter/courses/program/_webinar_leading", :layout => false,
                                        :locals => {user: ligament_lead.user, webinar: webinar}

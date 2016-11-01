@@ -246,7 +246,7 @@ class Course < ActiveRecord::Base
       if webinar.event.blank?
         webinar.eventCreate
         webinar.ligament_leads.each do |ligament_lead|
-          webinar.eventRegUser(ligament_lead.user, 'administrator')
+          webinar.eventRegUser(ligament_lead.user, 'LECTURER')
         end
       end
     end
