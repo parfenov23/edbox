@@ -17,7 +17,7 @@ gem 'imgkit'
 gem 'wkhtmltopdf'
 gem 'wkhtmltoimage-binary'
 
-gem 'rmagick', '2.13.2', :require => 'RMagick'
+gem 'rmagick', '2.13.2'
 # =======================
 
 gem 'unicorn'
