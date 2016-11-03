@@ -1,6 +1,6 @@
-#require 'resize_image'
+require 'resize_image'
 class ResizeImage
-  require 'rmagick'
+  #require 'rmagick'
 
   def self.crop(path)
     img = MiniMagick::Image.open(path)
