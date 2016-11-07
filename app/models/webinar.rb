@@ -180,9 +180,10 @@ class Webinar < ActiveRecord::Base
   end
 
   def date_to_json
-    date_start.present? ? {
-      date: {year: date_start.year, month: date_start.month, day: date_start.day}, 
-      time: {hour: date_start.hour, minute: date_start.min} 
+    current_time = date_start.present? ? (date_start + 3.hour) : nil
+    current_time.present? ? {
+      date: {year: current_time.year, month: current_time.month, day: current_time.day}, 
+      time: {hour: current_time.hour, minute: current_time.min} 
     } : {}
   end
 end
