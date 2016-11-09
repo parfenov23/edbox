@@ -31,7 +31,7 @@ class EnvMode
   def current_domain(dName = to_key)
     domains = {
       development: "http://server.dev:#{port}",
-      beta: "http://#{beta_subdomain}.masshtab.am",
+      beta: "http://#{beta_subdomain}.adconsult.online",
       production: "http://adconsult.online"
       # production: "http://adconsult.online"
 
