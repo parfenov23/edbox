@@ -1,4 +1,4 @@
-deploy_to   = "/home/beta_edbox/htdocs"
+deploy_to   = "/home/beta_adonline/htdocs"
 working_directory "#{deploy_to}/current"
 pid               "#{deploy_to}/current/tmp/pids/unicorn.pid"
 
