@@ -40,7 +40,7 @@ class EnvMode
   end
 
   def beta_subdomain
-    "betaed"
+    "beta"
   end
 
   def config
