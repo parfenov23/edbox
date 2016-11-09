@@ -1,6 +1,6 @@
-set :application, 'beta_edbox'
+set :application, 'beta_adonline'
 set :user, 'beta_edbox'
-server '148.251.233.232', user: fetch(:user), roles: %w(web app db)
+server '136.243.79.27', user: fetch(:user), roles: %w(web app db)
 set :rails_env, 'production'
 set :branch, :master
 
