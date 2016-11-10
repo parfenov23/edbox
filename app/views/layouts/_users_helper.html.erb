@@ -38,6 +38,7 @@
     }
 </style>
 <script type="text/javascript">
+    $(document).ready(function () {
     var reformalOptions = {
         project_id: 973629,
         project_host: "adonline2016.reformal.ru",
@@ -53,7 +54,6 @@
         script.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'media.reformal.ru/widgets/v3/reformal.js';
         document.getElementsByTagName('head')[0].appendChild(script);
     })();
-    $(document).ready(function () {
         $(document).on('click', 'a#reformal_tab', function () {
             var intervalValidBlock;
             intervalValidBlock = setInterval(function () {
