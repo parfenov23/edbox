@@ -352,6 +352,7 @@ GEM
       thin (~> 1.5.0)
     skylight (0.8.0)
       activesupport (>= 3.0.0)
+    slack-notifier (1.5.1)
     slackistrano (0.1.12)
       capistrano (>= 3.0.1)
       json
@@ -481,6 +482,7 @@ DEPENDENCIES
   sass-rails
   sdoc (~> 0.4.0)
   skylight
+  slack-notifier
   slackistrano
   slim (~> 2.0.0)
   smsc
