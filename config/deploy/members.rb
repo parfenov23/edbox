@@ -6,4 +6,4 @@ set :branch, :members
 
 set :deploy_to, "/home/#{ fetch :user }/htdocs"
 set :unicorn_pid, "#{ fetch :deploy_to }/shared/pids/unicorn.pid"
-set :unicorn_config_path, "#{ fetch :deploy_to }/current/config/unicorn/beta.rb"
+set :unicorn_config_path, "#{ fetch :deploy_to }/current/config/unicorn/members.rb"
