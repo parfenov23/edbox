@@ -29,20 +29,20 @@ module NavLinkHelper
 
   def courses_nav_links
     [
-      {title: "Все вместе", link: "/courses"},
-      {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
+      # {title: "Все вместе", link: "/courses"},
+      # {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
       {title: "Вебинары", link: "/courses/online", type: "online"},
-      {title: "Справочные материалы", link: "/courses/material", type: "material"},
-      {title: "Инструменты", link: "/courses/instrument", type: "instrument"}
+      # {title: "Справочные материалы", link: "/courses/material", type: "material"},
+      # {title: "Инструменты", link: "/courses/instrument", type: "instrument"}
     ]
   end
 
   def profile_nav_links
     [
       {title: "Профиль", link: "/profile"},
-      {title: "Тариф", link: "/tariff"},
-      {title: "Платежи", link: "/payments"},
-      {title: "Публичная страница", link: "/user/#{current_user.id}"}
+      # {title: "Тариф", link: "/tariff"},
+      # {title: "Платежи", link: "/payments"},
+      # {title: "Публичная страница", link: "/user/#{current_user.id}"}
     ]
   end
 

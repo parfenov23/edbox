@@ -176,26 +176,26 @@ function read_help(type) { // обновление галочки у польз�
     });
 }
 pageLoad(function () {
-    if ($(".help_notif").data("user") && $(".help_notif").data("show")){
-        set_help();
-        $(".help_notif .next_btn").click(function () {
-            var btn = $(this);
-            if (btn.attr('onclick') != undefined){
-                var timeout = 50;
-                var name_click = btn.attr('onclick');
-                if (name_click.search('close_') > 0) timeout = 1;
-                setTimeout(function () {
-                    set_help(btn.data("step_next"));
-                }, timeout);
-            } else {
-                set_help(btn.data("step_next"));
-            }
+    // if ($(".help_notif").data("user") && $(".help_notif").data("show")){
+    //     set_help();
+    //     $(".help_notif .next_btn").click(function () {
+    //         var btn = $(this);
+    //         if (btn.attr('onclick') != undefined){
+    //             var timeout = 50;
+    //             var name_click = btn.attr('onclick');
+    //             if (name_click.search('close_') > 0) timeout = 1;
+    //             setTimeout(function () {
+    //                 set_help(btn.data("step_next"));
+    //             }, timeout);
+    //         } else {
+    //             set_help(btn.data("step_next"));
+    //         }
 
 
-        });
-        $(".help_notif .help_content .close_help").click(function () {
-            set_help(all_helps().length);
-        });
-    }
+    //     });
+    //     $(".help_notif .help_content .close_help").click(function () {
+    //         set_help(all_helps().length);
+    //     });
+    // }
 
 });
