@@ -2,8 +2,8 @@ class HomeController < ActionController::Base
   helper_method :current_user
   helper_method :subdomain
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
+                                     :attachment, :course_no_reg,
+                                     :help, :help_answer, :pay, :auth_user, :info_pay, :user,
                                      :course_cert, :instrument, :courses_rss]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
@@ -17,7 +17,7 @@ class HomeController < ActionController::Base
     @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
-        redirect_to '/courses'
+        redirect_to '/courses/online'
       else
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
@@ -273,7 +273,7 @@ class HomeController < ActionController::Base
   end
 
   def authorize
-    redirect_to '/courses' if current_user.nil?
+    redirect_to '/sign_in' if current_user.nil?
   end
 
   def is_corporate?

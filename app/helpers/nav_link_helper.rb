@@ -32,8 +32,8 @@ module NavLinkHelper
       # {title: "Все вместе", link: "/courses"},
       # {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
       {title: "Вебинары", link: "/courses/online", type: "online"},
-      # {title: "Справочные материалы", link: "/courses/material", type: "material"},
-      # {title: "Инструменты", link: "/courses/instrument", type: "instrument"}
+      {title: "Записи прошедших вебинаров", link: "/courses/material", type: "material"},
+      {title: "Путешествия и мероприятия ADCONSULT.Network", link: "/courses/instrument", type: "instrument"}
     ]
   end
 
