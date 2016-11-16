@@ -59,7 +59,7 @@ header.index_reg {
     @include white__block(1, 0);
     width   : 408px;
     margin  : 0 auto;
-    padding : 30px 71px 34px 70px;
+    padding : 30px 69px 34px 69px;
     .title {
       @include text__setting(header__typo_2);
       margin-bottom : 68px;
@@ -84,6 +84,7 @@ header.index_reg {
         height        : 44px;
         border        : 1px solid #B1B1B1;
         padding       : 5px;
+        font-size     : 16px;
       }
       &.social_reg {
         font-size   : 13px;
