@@ -1,20 +1,32 @@
-.reg__wrp
-  .logo__frst
-    img src="/assets/header__edbox.svg"
+header.index_reg
   .logo__scnd
-    img src="/assets/header__adconsult.svg"
+    img src="/assets/header_adconsult__new.png"
+  .right_column
+    .phone
+      a href="tel:+7 495 258-46-42"
+        |+7 495 258-46-42
+    - url = "http://adonline2016.reformal.ru"
+    - onclick="$('#reformal_tab').click();return false;"
+    a.btn.is__blue href="#{url}" onclick="#{onclick}" СВЯЗАТЬСЯ
+.reg__wrp
+  /.logo__frst
+  /  img src="/assets/header__edbox.svg"
+  /.logo__scnd
+  /  img src="/assets/header__adconsult.svg"
   form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description/#{params[:redirect]}" : '')
-    .title Авторизация
+    /.title Авторизация
+    .logo__scnd
+      img src="/assets/header_adconsult__new.png"
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[email]" type="email" placeholder="Ваш логин (e-mail)"
-      .error__msg Обязательное поле
-      hr
+      input.form-control name="user[email]" type="email" placeholder="Ваш логин (e-mail)"
+      /.error__msg Обязательное поле
+      /hr
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[password]" type="password" placeholder="Ваш пароль"
-      .error__msg Обязательное поле
-      hr
-    .forgot__pass
-      a href="/reset_pass" Забыли пароль?
+      input.form-control name="user[password]" type="password" placeholder="Ваш пароль"
+      /.error__msg Обязательное поле
+      /hr
+    /.forgot__pass
+    /  a href="/reset_pass" Забыли пароль?
     .action__block
       //.social style="font-size:24px;margin-right: 24px;"
         //a href=Socials.auth_url('vk') style="margin-right: 4px;"
@@ -23,5 +35,5 @@
           //i.icon.fb.square
         //a href=Socials.auth_url('gplus')
           //i.icon.gplus.square
-      //a.btn.btn-flat href="/sign_up" СОЗДАТЬ АККАУНТ
       .btn.is__blue#submit ВОЙТИ
+      a.btn.btn-flat href="/reset_pass" НАПОМНИТЬ ПАРОЛЬ

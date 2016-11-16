@@ -15,7 +15,6 @@
   src         : url('/font/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/font/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/font/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/font/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
-
 *, *:before, *:after {
   box-sizing : border-box;
 }
@@ -28,14 +27,14 @@ html {
 }
 
 body {
-  background-color : #f7f7f7;
+  background-color : #F7F7F7;
   height           : 100%;
   min-height       : 100%;
   height           : auto !important;
   color            : black__color('base__color');
   font-weight      : 400 !important;
-  position: relative;
-  min-width: 1200px;
+  position         : relative;
+  min-width        : 1200px;
 }
 
 input:focus {
@@ -78,13 +77,13 @@ i {
 }
 
 .inner-content {
-  padding-top : 128px;
-  min-width   : 1066px;
-  padding-bottom: 40px;
-  min-height: calc(100vh - 152px);
-  &.webinar_attachment{
-    padding-top : 62px;
-    padding-bottom: 0px;
+  padding-top    : 128px;
+  min-width      : 1066px;
+  padding-bottom : 40px;
+  min-height     : calc(100vh - 152px);
+  &.webinar_attachment {
+    padding-top    : 62px;
+    padding-bottom : 0px;
   }
   .content-video {
     position  : absolute;
@@ -165,7 +164,7 @@ i {
 
 .content#groups {
   padding-top : 125px;
-  width: 936px;
+  width       : 936px;
 }
 
 .js__baron {
@@ -184,13 +183,11 @@ i {
     height   : 100%;
     z-index  : 1;
     &.is__shadow {
-      background-color: rgba(0, 0, 0, 0.54);
-      z-index: 300;
+      background-color : rgba(0, 0, 0, 0.54);
+      z-index          : 300;
     }
   }
 }
-
-
 
 .duration__with-icon {
   padding-left : 20px;
@@ -362,16 +359,25 @@ i {
 @import "vendor/owl.carousel";
 //@import "adaptive/adaptive";
 .is__noScroll {
-  overflow: hidden;
+  overflow : hidden;
 }
+
 .h__BC-blue {
   background-color : rgba(85, 184, 255, 0.72) !important;
 }
 
-.h__PopupDisplayFlex{
-  display: flex !important;
+.h__PopupDisplayFlex {
+  display : flex !important;
+}
+
+footer {
+  background-color : #5B4141;
+  a {
+    color         : #EE8738;
+    padding-right : 12px;
+  }
 }
 
 .h__BC-green {
-  background-color: rgba(85, 255, 177, 0.72) !important;
+  background-color : rgba(85, 255, 177, 0.72) !important;
 }
