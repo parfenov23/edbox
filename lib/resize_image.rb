@@ -1,5 +1,5 @@
-require 'resize_image'
-require 'rmagick'
+#require 'resize_image'
+require 'RMagick'
 class ResizeImage
   #require 'rmagick'
 
