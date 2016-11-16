@@ -4,13 +4,6 @@ header.index_reg {
   height           : 64px;
   background-color : #5B4141;
   z-index          : 999;
-  .logo__scnd {
-    padding: 6px;
-    float : left;
-    img {
-      height : 48px;
-    }
-  }
   .right_column {
     padding : 16px;
     float   : right;
@@ -28,6 +21,14 @@ header.index_reg {
       float : right;
     }
   }
+  .logo__scnd {
+    padding: 6px;
+    float : left;
+    img {
+      height : 48px;
+    }
+  }
+
 }
 
 .reg__wrp {
