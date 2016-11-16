@@ -370,8 +370,11 @@ i {
   display : flex !important;
 }
 
-footer {
+.footer {
   background-color : #5B4141;
+  padding-top      : 23px;
+  padding-bottom   : 23px;
+  text-align       : center;
   a {
     color         : #EE8738;
     padding-right : 12px;
