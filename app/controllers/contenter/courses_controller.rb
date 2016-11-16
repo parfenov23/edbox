@@ -6,7 +6,7 @@ module Contenter
     layout "application"
 
     def index
-      @courses = Course.all
+      @courses = Course.all.where(params.slice(:public, :type_course).to_h)
     end
 
     def edit

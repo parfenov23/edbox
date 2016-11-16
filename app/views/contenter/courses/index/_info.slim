@@ -2,17 +2,21 @@
 - count_public = @courses.publication.count
 .infoCourses
   .infoItem
-    .title Опубликовано
-    .count = count_public
+    a href ="/contenter/courses?public=true"
+      .title Опубликовано
+      .count = count_public
 
   .infoItem
-    .title Всего курсов
-    .count = count_courses
+    a href ="/contenter/courses"
+      .title Всего курсов
+      .count = count_courses
 
   .infoItem
-    .title Материалы
-    .count = @courses.materials.count
+    a href ="/contenter/courses?type_course=material"
+      .title Материалы
+      .count = @courses.materials.count
 
   .infoItem
-    .title Вебинары
-    .count = @courses.webinars.count
+    a href ="/contenter/courses?type_course=online"
+      .title Вебинары
+      .count = @courses.webinars.count
