@@ -61,6 +61,7 @@
 
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if $env_mode.prod? %>
+<%= render "layouts/users_helper" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
 <%= render "layouts/help_notif_user" %>
 

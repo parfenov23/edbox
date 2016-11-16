@@ -11,13 +11,15 @@ gem 'jbuilder', '~> 2.0'
 gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'actionpack-page_caching'
+gem 'slack-notifier'
 
 # ============= HTML to IMG
 gem 'imgkit'
 gem 'wkhtmltopdf'
 gem 'wkhtmltoimage-binary'
 
-gem 'rmagick', '2.13.2'
+# gem 'rmagick', '2.13.2'
+gem 'rmagick'
 # =======================
 
 gem 'unicorn'

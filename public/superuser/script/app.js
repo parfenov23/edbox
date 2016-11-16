@@ -2,6 +2,8 @@ function init_tiny() {
     tinymce.init({
         selector             : "textarea.js_includeTiny",
         height               : 300,
+        relative_urls        : false,
+        remove_script_host   : false,
         plugins              : [
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",

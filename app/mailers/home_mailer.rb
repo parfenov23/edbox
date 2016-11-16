@@ -19,7 +19,7 @@ class HomeMailer < ActionMailer::Base
 
   def sendRequest(params)
     @params = params
-    mail(:to => 'bazhan@masshtab.am, leads@romanpivovarov.ru, leads@adconsult.club, roman.pivovarov@gmail.com', :subject => "Заявка с Edbox", :reply_to => @params[:email])
+    mail(:to => 'leads@romanpivovarov.ru, leads@adconsult.club, roman.pivovarov@gmail.com', :subject => "Заявка с Edbox", :reply_to => @params[:email])
   end
 
   def change_password(user, new_password)
@@ -100,6 +100,7 @@ class HomeMailer < ActionMailer::Base
   def support_back(user, text)
     @email = user.email rescue nil
     @error = text
+    SlackNotify.send(@error)
     mail(:to => 'parfenov407@gmail.com', :subject => "Ошибка в системе #{$env_mode.name_title}")
   end
 
