@@ -269,6 +269,6 @@ $(document).ready(function () {
     $(document).on('click', '#js-add-course-to-shedule form .js_optionDatePicker', function () {optionDatePickerCourse($(this))});
     $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
     $(document).on('click', ".js_goToAttachmentLock", goToAttachmentLock);
-    $(document).on('click', ".js_addCourseToMyCourse", addCourseMySchedule);
+    $(document).on('click', ".js_addCourseToMyCourse:not(.no_added)", addCourseMySchedule);
     $(document).on('click', ".js_goToAttachment", goToAttachment)
 });

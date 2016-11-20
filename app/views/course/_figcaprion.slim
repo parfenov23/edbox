@@ -17,6 +17,7 @@ figcaption
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
     - link = "/course_no_reg/#{course.id}"
   - if (!current_user.view_course?(course) rescue false)
+    - add_class = "js_addCourseToMyCourse no_added"
     - link = "/tariff"
   form data-redirect=(redirect_att rescue nil) data-alert="false"
     - if course.material? || course.instrument?
