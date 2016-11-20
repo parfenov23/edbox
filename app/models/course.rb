@@ -124,9 +124,12 @@ class Course < ActiveRecord::Base
 
   def first_webinar
     all_webinars = sections.attachments.webinars
-    first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
-    all_webinars.start_close(first_time).first
+    if all_webinars.present?
+      first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute rescue 0
+      all_webinars.start_close(first_time).first
+    end
   end
+
 
   def material?
     type_course == "material"
