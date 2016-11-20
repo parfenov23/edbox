@@ -124,8 +124,10 @@ class Course < ActiveRecord::Base
 
   def first_webinar
     all_webinars = sections.attachments.webinars
-    first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
-    all_webinars.start_close(first_time).first
+    if all_webinars.present?
+      first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute rescue 0
+      all_webinars.start_close(first_time).first
+    end
   end
 
   def material?
@@ -182,7 +184,7 @@ class Course < ActiveRecord::Base
     bcs = bunch_courses.where(hash_expression)
     if best
       max_prog = bcs.map(&:progress).max
-      bcs.select {|bc| bc.progress == max_prog }.last
+      bcs.select { |bc| bc.progress == max_prog }.last
     else
       bcs.last
     end
@@ -199,7 +201,7 @@ class Course < ActiveRecord::Base
   end
 
   def webinar_users_count
-    sections.map{|sec| sec.attachments.map{|att| att.webinar.user_webinars.count} }.map{|arr| arr.sum}.sum rescue 0
+    sections.map { |sec| sec.attachments.map { |att| att.webinar.user_webinars.count } }.map { |arr| arr.sum }.sum rescue 0
   end
 
   def clear_description
