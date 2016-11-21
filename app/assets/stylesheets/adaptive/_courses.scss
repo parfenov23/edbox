@@ -13,10 +13,11 @@ body {
       padding-left : 8px;
       figure.basic__module {
         margin-left : calc(50% - 350px / 2);
-
+        // до 380 пк
         @media only screen and (max-width : 380px) {
           margin-left : calc(50% - 330px / 2);
         }
+        // до 380 пк
       }
       @media only screen and (max-width : 360px) {
         padding-left : 4px;
