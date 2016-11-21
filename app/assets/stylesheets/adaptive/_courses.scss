@@ -6,14 +6,16 @@ body {
   }
   .inner-content {
     .category__filter_list {
+      width : 100%;
       .btn.js_openLeftSideBar {
         font-size : 75%;
       }
-      width : 100%;
     }
     .content-courses#courses {
       width        : 100%;
       padding-left : 8px;
+
+      // блок курсов
       figure.basic__module {
         margin-left : calc(50% - 350px / 2);
         // до 380 пк
@@ -22,6 +24,8 @@ body {
         }
         // до 380 пк
       }
+      // конец блока курсов
+
       @media only screen and (max-width : 360px) {
         padding-left : 4px;
         figure.basic__module {
