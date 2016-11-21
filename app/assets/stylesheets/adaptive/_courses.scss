@@ -7,6 +7,9 @@ body {
   .inner-content {
     .category__filter_list {
       width : 100%;
+      .btn.js_openLeftSideBar {
+        font-size : 75%;
+      }
     }
     .content-courses#courses {
       width        : 100%;
