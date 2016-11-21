@@ -1,12 +1,14 @@
 body {
   .presentation__block {
     height : 100%;
+    padding-top: 64px;
     .play__btn {
       display : none;
     }
   }
   .course__description-content {
     width : 100%;
+    margin-top: 0px;
     .course__info {
       padding : 8px;
       .adaptive__title{

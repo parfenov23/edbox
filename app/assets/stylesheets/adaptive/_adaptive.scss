@@ -21,6 +21,23 @@
     &.hide_header {
       top : -100px !important;
     }
+    .left-col{
+      .page__title{
+        width: 100%;
+        //max-width: 150px;
+        img{
+          display: none;
+        }
+      }
+      .page__children{
+        width: 100%;
+        position: relative;
+        left: 48px;
+        a{
+          overflow: visible !important;
+        }
+      }
+    }
   }
 
   #alert {

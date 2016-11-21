@@ -13,12 +13,12 @@ body {
   }
   .landing__banner {
 
-    margin-top : 0;
-    background-size: cover;
-    padding-bottom: 19px;
+    margin-top      : 0;
+    background-size : cover;
+    padding-bottom  : 19px;
     //height     : 419px;
     .landing__inner {
-      padding-bottom: 0px;
+      padding-bottom : 0px;
       .section__title {
         width : 100%;
         zoom  : 80%;
@@ -29,7 +29,7 @@ body {
         }
       }
       .banner__img {
-        display: none;
+        display : none;
         iframe {
           top         : 6%;
           left        : 50%;
@@ -43,20 +43,20 @@ body {
       }
     }
   }
-  .landing__counter{
-    .landing__inner{
-      overflow: auto;
-      .counter{
-        padding-left: 16px;
-        .counter__circle{
-          width: 64px;
-          height: 64px;
-          font-size: 24px;
-          padding-top: 16px;
-          margin-left: calc(50% - 32px);
+  .landing__counter {
+    .landing__inner {
+      overflow : auto;
+      .counter {
+        padding-left : 16px;
+        .counter__circle {
+          width       : 64px;
+          height      : 64px;
+          font-size   : 24px;
+          padding-top : 16px;
+          margin-left : calc(50% - 32px);
         }
-        .counter__title{
-          font-size: 14px;
+        .counter__title {
+          font-size : 14px;
         }
       }
     }
@@ -131,7 +131,7 @@ body {
         }
         .action__block {
           .btn {
-            font-size : 10px;
+            font-size : 45%;
           }
 
         }
@@ -145,7 +145,11 @@ body {
           width : 100%;
         }
         .compare__table {
-          zoom : 0.37;
+          width      : 100%;
+          overflow-y : auto;
+          _overflow  : auto;
+          margin     : 0 0 1em;
+          zoom       : 65%;
           //display : none;
           th .text__wrp {
             font-size : 10px;
