@@ -39,9 +39,15 @@ body {
               }
             }
             .info__block .time__date {
-              width : 55%;
+              width     : 80%;
+              font-size : 60%;
             }
           }
+        }
+      }
+      @media only screen and (max-width : 325px) {
+        figure.basic__module {
+          margin-left : calc(50% - 274px / 2);
         }
       }
     }

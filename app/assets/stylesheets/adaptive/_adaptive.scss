@@ -21,20 +21,20 @@
     &.hide_header {
       top : -100px !important;
     }
-    .left-col{
-      .page__title{
-        width: 100%;
+    .left-col {
+      .page__title {
+        width : 100%;
         //max-width: 150px;
-        img{
-          display: none;
+        img {
+          display : none;
         }
       }
-      .page__children{
-        width: 85%;
-        position: relative;
+      .page__children {
+        width    : 85%;
+        position : relative;
         //left: 48px;
-        a{
-          overflow: visible !important;
+        a {
+          overflow : visible !important;
         }
       }
     }
@@ -48,9 +48,12 @@
     }
   }
 
-  .left__aside-main-nav{
-    .info__block{
-      display: none;
+  .left__aside-main-nav {
+    .info__block {
+      display : none;
     }
   }
+  //.help_notif .help_content {
+  //  width : 320px;
+  //}
 }

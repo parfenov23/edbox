@@ -176,7 +176,7 @@ function read_help(type) { // обновление галочки у польз�
     });
 }
 pageLoad(function () {
-    if ($(".help_notif").data("user") && $(".help_notif").data("show")){
+    if ($(".help_notif").data("user") && $(".help_notif").data("show") && isMobile.any() == null){
         set_help();
         $(".help_notif .next_btn").click(function () {
             var btn = $(this);
