@@ -52,7 +52,7 @@ class EnvMode
   end
 
   def name_title
-    "ADCONSULT Online"
+    "MEMBERS ADCONSULT NETWORK"
   end
 
   def to_s
