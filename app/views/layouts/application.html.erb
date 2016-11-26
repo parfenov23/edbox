@@ -64,7 +64,7 @@
 <%= render "layouts/users_helper" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
 <%= render "layouts/help_notif_user" %>
-
+<%= render "common/tableTariffUser" if (current_user.present? && current_user.test_separate?) rescue false %>
 <input id="presentCurrentUser" type="hidden" value="<%= current_user.present? rescue false %>">
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
 <input id="typeEnvModeCurrentDomain" type="hidden" value="<%= $env_mode.current_domain %>">

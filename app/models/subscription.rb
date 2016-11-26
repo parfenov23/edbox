@@ -20,6 +20,10 @@ class Subscription < ActiveRecord::Base
     billing_price.company_user_price
   end
 
+  def self.test_user_price
+    billing_price.test_user_price
+  end
+
   def self.build(params)
     sub = new(find_params(params))
     if params[:type] == "new_user"
@@ -42,18 +46,25 @@ class Subscription < ActiveRecord::Base
     sub.subscriptiontable_id = subscription_model.id
     sub.active = false
     current_sub = user.find_subscription
-    date_from = current_sub.present? ? current_sub.date_from : Time.now.beginning_of_day
+    date_from = current_sub.present? ? current_sub.date_from : current_time_day
     sub.date_from = date_from
-    if current_sub.present?
-      date_to = params[:count_month].scan('месяц').present? ? (current_sub.date_to + params[:count_month].to_i.month) : current_sub.date_to
-    else
-      date_to = Time.now.beginning_of_day + params[:count_month].to_i.month
-    end
-    sub.date_to = date_to
+    sub.date_to = current_time_day + date_to?(params[:type].present? ? params[:type] : subscription_model.class)
     sub.note = "Тип аккаунта: #{params[:type_account]}. Кол-во пользователей: #{params[:user_count]}. " +
       "Кол-во месяцев: #{params[:count_month]}. " +
       "Тип подписки: #{params[:type_order]}"
     sub
+  end
+
+  def self.current_time_day
+    Time.now.beginning_of_day
+  end
+
+  def self.date_to?(type_order)
+    {
+      company: 1.month,
+      user: 1.month,
+      test_user: 1.day
+    }[type_order.to_s.downcase.to_sym]
   end
 
   def overdue?(day=0)
@@ -95,7 +106,7 @@ class Subscription < ActiveRecord::Base
 
   def self.default_all_month_and_price(type)
     arr_hash = []
-    month_price_sum = (type == "company" ? (company_price + company_price_user) : user_price)
+    month_price_sum = default_price(type)
     12.times do |i|
       n = i + 1
       arr_hash << {
@@ -125,10 +136,18 @@ class Subscription < ActiveRecord::Base
     {
       date: "1 месяц", n: 1,
       user_company_price: company_price_user,
-      default_price: (type == "company" ? (company_price + company_price_user) : user_price),
+      default_price: default_price(type),
       all_months: default_all_month_and_price(type),
       count_users: 1
     }
+  end
+
+  def self.default_price(type)
+    {
+      company: (company_price + company_price_user),
+      user: user_price,
+      test_user: test_user_price
+    }[type.to_sym]
   end
 
   def parent_user
@@ -141,9 +160,9 @@ class Subscription < ActiveRecord::Base
 
   def config
     {
-      date: HELPERS.ltime(date_to, '', 'short_min_y'), n: 0,
+      date: HELPERS.ltime(date_to + 1.month, '', 'short_min_y'), n: 0,
       all_months: all_month_and_price,
-      default_price: 0,
+      default_price: self.class.company_price_user,
       count_users: user_count,
       user_company_price: self.class.company_price_user,
     }

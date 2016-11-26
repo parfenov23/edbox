@@ -10,6 +10,6 @@
 - sub = current_user.find_subscription rescue nil
 - sub = (sub.subscriptiontable_type.downcase == params[:type] ? sub : nil) if sub.present? && params[:type].present?
 - file_name = params[:type].blank? ? sub.subscriptiontable_type.downcase : params[:type]
-= render "home/tariff/pay_#{file_name}", {sub: sub} if file_name == "user" || file_name == "company"
+= render "home/tariff/pay_#{file_name}", {sub: sub} if ["user", "company", "test_user"].include?(file_name)
 - if current_user.accounts.blank?
   = render "common/form_add_card_pay", {reload_page: false, payment: true, btn_name: "Продолжить оплату"}

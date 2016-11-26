@@ -270,5 +270,8 @@ $(document).ready(function () {
     $(document).on('click', ".section__deadline-title .back, .section__deadline .actionSectionDeadLine .yes", closeSelectDeadLineSections)
     $(document).on('click', ".js_goToAttachmentLock", goToAttachmentLock);
     $(document).on('click', ".js_addCourseToMyCourse:not(.no_added)", addCourseMySchedule);
+    $(document).on('click', "a[href='#tarif']", function(){
+        $(".popup_test_separator").addClass("h__PopupDisplayFlex");
+    });
     $(document).on('click', ".js_goToAttachment", goToAttachment)
 });

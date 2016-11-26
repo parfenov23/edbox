@@ -1,93 +1,98 @@
 .pop_up_confirm {
-  position        : fixed;
-  width           : 100%;
-  height          : 100%;
-  background-color: rgba(0,0,0,0.54);
-  top             : 0;
-  left            : 0;
-  z-index         : 200;
-  display         : flex;
-  justify-content : center;
-  align-items     : center;
-  display         : none;
+  position         : fixed;
+  width            : 100%;
+  height           : 100%;
+  background-color : rgba(0, 0, 0, 0.54);
+  top              : 0;
+  left             : 0;
+  z-index          : 200;
+  display          : flex;
+  justify-content  : center;
+  align-items      : center;
+  display          : none;
 
   > .inner {
-    width   : 552px;
-    height  : auto;
-    padding : 32px 24px 8px;
-    position: relative;
-    display : block;
-    @include white__block(1,0);
-    margin  : 0 auto;
-    padding-bottom: 90px;
+    width          : 552px;
+    height         : auto;
+    padding        : 32px 24px 8px;
+    position       : relative;
+    display        : block;
+    @include white__block(1, 0);
+    margin         : 0 auto;
+    padding-bottom : 90px;
+    &.last__chance {
+      width          : 100%;
+      max-width      : 784px;
+      padding-bottom : 32px;
+    }
 
     .description {
-      font-family: Roboto-Regular;
-      font-size  : 15px;
-      line-height: 24px;
+      font-family : Roboto-Regular;
+      font-size   : 15px;
+      line-height : 24px;
     }
 
     .action-btn {
-      font-size  : 14px;
-      line-height: 20px;
-      position   : absolute;
-      right      : 16px;
-      bottom     : 16px;
-      width      : 100%;
+      font-size   : 14px;
+      line-height : 20px;
+      position    : absolute;
+      right       : 16px;
+      bottom      : 16px;
+      width       : 100%;
 
       .btn {
-        float: right;
+        float : right;
 
         &:last-child {
-          margin-right: 8px;
+          margin-right : 8px;
         }
       }
 
       .cancel {
-        color: $primaryColor;
+        color : $primaryColor;
       }
 
       .yes {
-        color           : #fff;
-        background-color: $primaryColor;
+        color            : #FFF;
+        background-color : $primaryColor;
       }
     }
 
     .title {
-      font-size    : 20px;
-      line-height  : 28px;
-      margin-bottom: 16px;
+      font-size     : 20px;
+      line-height   : 28px;
+      margin-bottom : 16px;
     }
 
     .description {
-      font-size  : 15px;
-      line-height: 24px;
+      font-size   : 15px;
+      line-height : 24px;
     }
 
     &.create__name-form {
-      @include white__block(1,0);
-      padding : 32px 16px 16px 48px;
-      height  : 368px;
-      position: relative;
+      @include white__block(1, 0);
+      padding  : 32px 16px 16px 48px;
+      height   : 368px;
+      position : relative;
 
       .title {
-        margin-bottom: 45px;
+        margin-bottom : 45px;
       }
 
       .item {
-        width: 793px;
+        width : 793px;
       }
 
       .action__block {
         @include clearfix;
-        position: absolute;
-        right   : 16px;
-        bottom  : 16px;
-        display: flex;
-        justify-content: flex-end;
+        position        : absolute;
+        right           : 16px;
+        bottom          : 16px;
+        display         : flex;
+        justify-content : flex-end;
 
         .btn {
-          margin-left: 16px;
+          margin-left : 16px;
 
           &:first-child {
           }
@@ -97,127 +102,123 @@
   }
 
   &.is__active {
-    display: flex;
+    display : flex;
   }
 }
 
-
-
-
 .pop__wrp_fav {
-  height: 100%;
-  width: 100%;
-  display: none;
-  opacity: 0;
-  overflow: hidden;
-  position: fixed;
-  background: rgba(0,0,0,0.54);
-  top: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+  height          : 100%;
+  width           : 100%;
+  display         : none;
+  opacity         : 0;
+  overflow        : hidden;
+  position        : fixed;
+  background      : rgba(0, 0, 0, 0.54);
+  top             : 0;
+  left            : 0;
+  justify-content : center;
+  align-items     : center;
+  z-index         : 999;
   @include transition;
   .popup__favorite {
-    width: 984px;
-    height: 0;
-    overflow: hidden;
-    max-height: 576px;
-    background: #EEEEEE;
-    border-radius: 2px;
-    padding-bottom: 16px;
+    width          : 984px;
+    height         : 0;
+    overflow       : hidden;
+    max-height     : 576px;
+    background     : #EEE;
+    border-radius  : 2px;
+    padding-bottom : 16px;
     @include transition;
     .favorite__holder {
       > .title {
-        border-bottom: 1px solid rgba(0,0,0,0.12);
-        padding: 32px 24px 16px 24px;
+        border-bottom : 1px solid rgba(0, 0, 0, 0.12);
+        padding       : 32px 24px 16px 24px;
       }
       .course__list-wrp {
-        max-height: 414px;
-        overflow-y: auto;
-        padding: 16px 0;
+        max-height : 414px;
+        overflow-y : auto;
+        padding    : 16px 0;
         .course__list {
-          padding: 0 24px;
+          padding : 0 24px;
           .item.course__block_horizontal {
-            cursor: pointer;
-            position: relative;
+            cursor   : pointer;
+            position : relative;
             input {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 128px;
-              z-index: 1;
-              opacity: 0;
-              cursor: pointer;
+              position : absolute;
+              top      : 0;
+              left     : 0;
+              width    : 100%;
+              height   : 128px;
+              z-index  : 1;
+              opacity  : 0;
+              cursor   : pointer;
             }
           }
         }
       }
       .bottom__info {
-        border-top: 1px solid rgba(0,0,0,0.12);
-        display: flex;
-        justify-content: space-between;
-        padding-top: 29px;
-        padding-right: 17px;
-        padding-left: 23px;
+        border-top      : 1px solid rgba(0, 0, 0, 0.12);
+        display         : flex;
+        justify-content : space-between;
+        padding-top     : 29px;
+        padding-right   : 17px;
+        padding-left    : 23px;
         .legend {
-          color: black__color('secondary__color');
+          color : black__color('secondary__color');
         }
         .action__block {
-          display: flex;
-          justify-content: flex-start;
+          display         : flex;
+          justify-content : flex-start;
           .btn {
-            margin-left: 16px;
+            margin-left : 16px;
           }
         }
       }
     }
   }
   &.is__active {
-    opacity: 1;
-    overflow: visible;
+    opacity  : 1;
+    overflow : visible;
     @include transition;
-    display: flex !important;
-    .popup__favorite  {
-      height: auto;
-      overflow: visible;
+    display  : flex !important;
+    .popup__favorite {
+      height   : auto;
+      overflow : visible;
       @include transition;
     }
   }
 }
 
-
 .inner.review__popup {
-  padding-bottom: 16px;
-  height: 340px;
-  position: relative;
+  padding-bottom : 16px;
+  height         : 340px;
+  position       : relative;
   .stars {
-    display: flex;
-    justify-content: flex-start;
-    padding-top: 7px;
-    margin-bottom: 56px;
+    display         : flex;
+    justify-content : flex-start;
+    padding-top     : 7px;
+    margin-bottom   : 56px;
     .item {
-      font-size: 24px;
-      margin: 0 9px 0 0px;
-      color: black__color('secondary__color');
+      font-size : 24px;
+      margin    : 0 9px 0 0px;
+      color     : black__color('secondary__color');
       &.is__blue {
-        position: relative;
-        color: $primaryColor;
+        position : relative;
+        color    : $primaryColor;
         &:before {
-          content: "\2605";
-          position: absolute;
-          top: 0;
-          left: 0;
+          content  : "\2605";
+          position : absolute;
+          top      : 0;
+          left     : 0;
         }
       }
     }
   }
   .action__block {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    display: flex;
-    justify-content: flex-end;
+    position        : absolute;
+    right           : 16px;
+    bottom          : 16px;
+    display         : flex;
+    justify-content : flex-end;
   }
 }

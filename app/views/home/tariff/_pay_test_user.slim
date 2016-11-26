@@ -1,14 +1,10 @@
 .billing__wrp
   .content__block
     .page__title
-      /img src="/assets/header__adconsult.svg"
+    /img src="/assets/header__adconsult.svg"
     .tarif__info
-      .title Полный индивидуальный аккаунт
+      .title Тестовый индивидуальный аккаунт
       .description
-        /p
-        /  |Вы покупаете «
-        /  b Индивидуальный
-        /  |» пакет доступа к #{$env_mode.name_title} и получите возможности:
         ul
           li
             i.icon.done
@@ -36,19 +32,19 @@
             i.icon.done
             | Сертификат об окончании курсов
       .company__name
-        .com__input-item.item.empty
-          input.form-control.floating-label type="text" placeholder="Введите код купона" name="code_coupon"
-          .error__msg Обязательное поле
-          hr
+        /.com__input-item.item.empty
+        /  input.form-control.floating-label type="text" placeholder="Введите код купона" name="code_coupon"
+        /  .error__msg Обязательное поле
+        /  hr
         - user_phone = current_user.social['phone']
         - if user_phone.blank?
           .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
-            = select("code", "code_id", array_mask_code_phone)
+            = select("code", "code_id", array_mask_code_phone, selected: '+7(999)999-99-99')
             input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
             .error__msg Обязательное поле
             hr
-      - sub_type = sub.present? ? sub.subscriptiontable_type.to_s.downcase : params[:type]
-      - hash_date = sub.present? ? sub.config : Subscription.default_config(sub_type)
+      - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
+      - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
       form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
         .duration
           .title Продолжительность
@@ -65,8 +61,10 @@
             input type="hidden" name="sum" value=hash_date[:default_price]
             input type="hidden" name="email" value=current_user.email
             input type="hidden" name="count_month" value=hash_date[:date]
+            input type="hidden" name="type_order" value=params[:type]
+            input type="hidden" name="save_card" value=(params[:type] == "test_user" ? "false" : "true")
             span = hash_date[:default_price].to_i
-            /= " ₽"
+          /= " ₽"
           .title рублей в месяц
         .description
           p Доступ ко всем материалам ADCONSULT Online будет открыт сразу после оплаты.

@@ -11,7 +11,7 @@ module Api::V1
       }
       response = $cloud_payments.gateway.purchase(params[:cryptogram], 1, options, true)
       if response.success?
-        resp = success_transaction(response.params)
+        resp = params[:save_card].to_s == "true" ? success_transaction(response.params) : response.params
       else
         response_params = response.params
         if response_params and response_params['PaReq'].present?
@@ -33,7 +33,7 @@ module Api::V1
     def purchase
       subscription = create_subscription(params)
       amount = params[:sum]
-      account = current_user.accounts.first
+      account = current_user.accounts.first.token rescue nil
       current_user.update({social: current_user.social.merge({phone: params[:phone]})})
       result = false
       if account.present?
@@ -42,10 +42,11 @@ module Api::V1
           Currency: $cloud_payments.currency,
           Description: "Оплата подписки"
         }
-        response = $cloud_payments.gateway.purchase(account.token, amount, options, false)
+        response = $cloud_payments.gateway.purchase(account, amount, options, false)
         if response.success?
           current_user.incoming_moneys.create(data: response.params)
           current_user.sub_active(subscription)
+          params[:save_card] == "false" ? current_user.accounts.destroy_all : nil
           result = true
         end
       else

@@ -16,10 +16,13 @@ var includePaymentMethods = function () {
         var result = checkout.createCryptogramPacket();
         if (result.success){
             var cryptogram = result.packet;
+            var save_card = true;
+            var type_order = $("form.tariffPay input[name='type_order']").val();
+            if (type_order == "test_user") save_card = false;
             $.ajax({
                 type: 'POST',
                 url : '/api/v1/payments/update_card',
-                data: {cryptogram: cryptogram, name: user_name, card: card_number}
+                data: {cryptogram: cryptogram, name: user_name, card: card_number, save_card: save_card}
             }).success(function (data) {
                 pageReloadPayment();
             }).error(function (data) {

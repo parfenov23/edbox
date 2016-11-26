@@ -79,6 +79,10 @@ class User < ActiveRecord::Base
     find_subscription.present?
   end
 
+  def test_separate?
+    !get_account_type && !corporate?
+  end
+
   def get_account_type_name
     account_type_name = ''
     account_type_name += (get_account_type ? 'Платная' : 'Беcплатная')
