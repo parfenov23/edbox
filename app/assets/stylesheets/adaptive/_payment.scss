@@ -5,6 +5,14 @@ body {
       .page__title {
         display : none;
       }
+      .action__block.company__action {
+        .btn {
+          font-size : 44%;
+          &.btn-flat{
+            font-size : 100%;
+          }
+        }
+      }
       .tarif__info {
         width : 100%;
         > .title {
@@ -73,14 +81,7 @@ body {
           }
         }
       }
-      .action__block.company__action {
-        .btn {
-          font-size : 44%;
-          &.btn-flat{
-            font-size : 100%;
-          }
-        }
-      }
+
     }
   }
 }
