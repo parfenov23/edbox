@@ -162,7 +162,7 @@ class Subscription < ActiveRecord::Base
     {
       date: HELPERS.ltime(date_to + 1.month, '', 'short_min_y'), n: 0,
       all_months: all_month_and_price,
-      default_price: self.class.company_price_user,
+      default_price: subscriptiontable_type == "User" ? Subscription.user_price : 0,
       count_users: user_count,
       user_company_price: self.class.company_price_user,
     }

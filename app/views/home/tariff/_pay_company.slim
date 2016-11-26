@@ -106,7 +106,7 @@
         br
         ' Обычно это занимает несколько часов после поступления оплаты на расчетный счет ADCONSULT Online (ООО «Рекламный консалтинг»). Как только аккаунт будет готов,
         |мы лично свяжемся с вами и оповестим вас об этом.
-      .action__block
+      .action__block.company__action
         a.btn.btn-flat href="/tariff" ОТМЕНА
         /.btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
         - class_btn = current_user.accounts.present? ? "js_paymentAccount" : "js_openPopupAddCard"
