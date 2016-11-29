@@ -34,7 +34,7 @@ module Api::V1
       subscription = create_subscription(params)
       amount = params[:sum]
       account = current_user.accounts.first.token rescue nil
-      current_user.update({social: current_user.social.merge({phone: params[:phone]})})
+      current_user.update({social: current_user.social.merge({phone: params[:phone]})}) if params[:phone].present?
       result = false
       if account.present?
         options = {

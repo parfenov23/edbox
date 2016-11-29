@@ -21,36 +21,23 @@ var editPriceMonthTariff = function () {
 
 var addUserSumToPrice = function (input) {
     var parent_block = input.closest(".parentPriceTariff");
-    var price_block = parent_block.find(".sum .qty span");
-    var current_price = 0;
-    var def_cUsers = parseInt(input.data('default'));
-    var intVal = parseInt(input.val());
+    var price_block = parent_block.find(".sum .qty span"); // вывод конечной цены
+    var form_price = parent_block.find("input[name='sum']"); // цена на оплату
+
+    var intVal = parseInt(input.val()); // Текущие количество пользователей
+    var def_cUsers = parseInt(input.data('default')); // Количество оплаченых пользователей
     var oneUserPrice = parseInt(parent_block.data('user_price'));
-    var priceActive = $(".js_editPriceMonthTariff li.active");
-    var count_month = parseInt(priceActive.text());
+    var day_of_month = parseInt(parent_block.data("day_of_month"));
+    var residue_of_month = parseInt(parent_block.data("residue_of_month"));
 
-    var user_price = oneUserPrice * (intVal - def_cUsers) * count_month;
+    var residue_price_user = (oneUserPrice/day_of_month)*residue_of_month;
+    var new_users = intVal - def_cUsers;
 
+    var finish_price = Math.round((new_users * (residue_price_user || 0) ) + ((new_users + def_cUsers) * oneUserPrice));
 
-    if (priceActive.length){
-        current_price = parseInt(priceActive.data('price'));
-    }else{
-        user_price = oneUserPrice * (intVal - def_cUsers);
-    }
+    price_block.text(finish_price);
+    form_price.val(finish_price);
 
-    if (def_cUsers < intVal){
-        var final_price = current_price + user_price;
-        price_block.text(final_price);
-        parent_block.find("input[name='sum']").val(final_price);
-    } else {
-        if (!priceActive.length){
-            price_block.text(0);
-            parent_block.find("input[name='sum']").val(0);
-        }else{
-            price_block.text(current_price);
-            parent_block.find("input[name='sum']").val(current_price);
-        }
-    }
     replaceSumTitle();
 };
 

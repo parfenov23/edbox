@@ -11,6 +11,15 @@ body {
       }
     }
   }
+  .landing__inner {
+    .description {
+      font-size : 4vw;
+    }
+    .section__title {
+      font-size : 4.8vw;
+    }
+  }
+
   .landing__banner {
 
     margin-top      : 0;
@@ -21,7 +30,7 @@ body {
       padding-bottom : 0px;
       .section__title {
         width : 100%;
-        zoom  : 80%;
+        //zoom  : 80%;
       }
       .action__block {
         .btn {
@@ -140,11 +149,14 @@ body {
   }
   .landing__compare__table {
     .landing__inner {
+      padding-bottom : 0;
       .content__block {
+        min-height : inherit;
         .description {
           width : 100%;
         }
         .compare__table {
+          display    : none;
           width      : 100%;
           overflow-y : auto;
           _overflow  : auto;

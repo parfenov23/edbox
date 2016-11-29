@@ -52,11 +52,11 @@ var findCoupon = function (coupon, callback) {
     });
 };
 
-var current_user = function(){
+var current_user = function () {
     return $("#presentCurrentUser").val() == "true"
 };
 
-var CurrentUserUpdatePhone = function(phone){
+var CurrentUserUpdatePhone = function (phone) {
     $.ajax({
         type: 'POST',
         url : '/api/v1/users/update_phone',
@@ -94,7 +94,7 @@ var include_phone = function (input, action) {
     if (action != undefined){
         actionEndInclude = action;
     }
-    if(input.length){
+    if (input.length){
         if (input.val().length){
             var code = getRandomInt(1000, 9999);
             $.ajax({
@@ -105,11 +105,12 @@ var include_phone = function (input, action) {
                 var block = $(".popValidateCodePhone");
                 block.css('display', 'flex');
                 block.find('.idValuePhoneCode').val(code);
+                if (env_mode('development')) block.find("input:first").val(code);
             }).error(function () {
                 show_error('Ошибка', 3000);
             });
         }
-    }else{
+    } else {
         setTimeout(actionEndInclude, 1500);
     }
 };
@@ -131,7 +132,7 @@ var checkValidPhoneCode = function () {
 };
 
 pageLoad(function () {
-    $(document).on('click', '.js__closeValidPhoneCode', function(){
+    $(document).on('click', '.js__closeValidPhoneCode', function () {
         $(this).closest('.popValidateCodePhone').hide();
     });
 

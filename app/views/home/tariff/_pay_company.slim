@@ -64,31 +64,20 @@
           - company_phone = current_user.social['phone']
           - if company_phone.blank?
             .com__input-item.item.right class=(company_phone.present? ? 'is__noFocus' : 'empty')
-              = select("code", "code_id", array_mask_code_phone)
+              = select("code", "code_id", array_mask_code_phone, selected: '+7(999)999-99-99')
               - valid_ph = (company_phone.present?).to_s
               input.form-control.floating-label type="tel" data-valid=valid_ph placeholder="Введите ваш номер телефона" value=company_phone name="company_phone"
               .error__msg Обязательное поле
               hr
       - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
       - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
-      .company__calc.parentPriceTariff data-user_price=hash_date[:user_company_price]
-        .duration
-          .title Продолжительность
-          .dropdown__flash.js__dropdown_toggle date-n=hash_date[:n]
-            .visible__part
-              span
-                = hash_date[:date]
-              i.icon.to__drop
-            ul.hidden__list.js_editPriceMonthTariff data-type=sub_type
-              - n = 0
-              - hash_date[:all_months].each do |month|
-                li class=(n == 0 && sub.blank? ? (n += 1; "active") : '') data-price=month[:price] = month[:month]
+      .company__calc.parentPriceTariff data-user_price=hash_date[:user_company_price]  data-day_of_month=hash_date[:day_of_month] data-residue_of_month=hash_date[:residue_of_month]
         .qty__person
           .title Количество сотрудников
           .qty__input.js__stuf_count
             .minus
               img.js__change_qty_stuf data-delta="-1" src="/assets/minus.svg"
-            input.js_editChangeCountUsersCompany data-default=hash_date[:count_users] value=hash_date[:count_users] name="user_count"
+            input.js_editChangeCountUsersCompany data-default=hash_date[:count_users] value=hash_date[:count_users] name="user_count" disabled=true
             .plus
               img.js__change_qty_stuf data-delta="1" src="/assets/plus.svg"
         .sum

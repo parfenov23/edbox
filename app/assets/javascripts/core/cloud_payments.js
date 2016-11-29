@@ -79,8 +79,10 @@ var paymentAccount = function (type) {
 
 var purchase_pay = function () {
     var form = $("form.tariffPay");
+    var disabled = form.find(':input:disabled').removeAttr('disabled');
     var data = form.serializeArray();
     data.push({name: 'phone', value: $('input[type="tel"]').val()});
+    disabled.attr('disabled','disabled');
     show_error('Идет Загрузка ', 3000);
     $.ajax({
         type: 'POST',
@@ -92,7 +94,7 @@ var purchase_pay = function () {
             var endAction = function(){
                 window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
             };
-            if($('.form-control[type="tel"]').attr('data-valid') != 'true' ){
+            if($('.form-control[type="tel"]').attr('data-valid') != 'true' && $('.form-control[type="tel"]').length){
                 include_phone($('.form-control[type="tel"]'), endAction);
             }else{
                 setTimeout(endAction, 1500);

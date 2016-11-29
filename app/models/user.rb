@@ -29,6 +29,13 @@ class User < ActiveRecord::Base
     user
   end
 
+  def self.find_or_build_create(params)
+    user = where(email: params[:email]).last
+    user =  user.present? ? user : build(params)
+    user.save
+    user
+  end
+
   def self.auth(params)
     user = find_by_email(params[:email].downcase)
     unless user.nil?

@@ -10,6 +10,12 @@ class Company < ActiveRecord::Base
     company
   end
 
+  def self.build_create(params)
+    company = build(params)
+    company.save
+    company
+  end
+
   def residue_users
     find_sub = users.where(director: true).last.find_subscription.user_count rescue 0
     company_users = users.count rescue 0
