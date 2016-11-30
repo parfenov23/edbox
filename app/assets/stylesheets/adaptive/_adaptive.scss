@@ -46,23 +46,6 @@
     }
 
   }
-
-  #alert {
-    width  : 100%;
-    bottom : 0px;
-    .text {
-      font-size : 12px;
-    }
-  }
-
-  .left__aside-main-nav {
-    .info__block {
-      display : none;
-    }
-  }
-  //.help_notif .help_content {
-  //  width : 320px;
-  //}
   // popap с выбором тарифа
   #formCourseRegPopUp, .popup_test_separator {
     .last__chance {
@@ -89,5 +72,22 @@
       }
     }
   }//конец попапа
+  #alert {
+    width  : 100%;
+    bottom : 0px;
+    .text {
+      font-size : 12px;
+    }
+  }
+
+  .left__aside-main-nav {
+    .info__block {
+      display : none;
+    }
+  }
+  //.help_notif .help_content {
+  //  width : 320px;
+  //}
+
 
 }
