@@ -15,7 +15,7 @@ var those_present_user = function(member){
     return $(".members.ingroups .members__in_system.director li[data-email*='" + member + "']").length
 };
 appendMember = function (member) {
-    var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    var emailRegexp = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,8})$/;
     if (emailRegexp.test(member) == false){
         if (member.length > 0){
             show_error('Неправильный email', 3000);
