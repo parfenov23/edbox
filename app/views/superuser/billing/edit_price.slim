@@ -14,6 +14,11 @@ form.form-horizontal action="/superuser/billing/update_price" method="post" enct
     label
       | Стоимость корпаративного пользователя:
     input.form-control name="billing_price[company_user_price]" type="text" value="#{@billing_price.company_user_price}"
+  
+  .form-group
+    label
+      | Стоимость одного дня:
+    input.form-control name="billing_price[test_user_price]" type="text" value="#{@billing_price.test_user_price}"
 
   input type="hidden" name="_method" value="post"
   button.btn.btn-primary type="submit" Сохранить

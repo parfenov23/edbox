@@ -77,7 +77,7 @@ module Superuser
     def billing_price_params
       params.require(:billing_price).permit(:user_price,
                                             :company_price,
-                                            :company_user_price).compact.select { |k, v| v != "" } rescue {}
+                                            :company_user_price, :test_user_price).compact.select { |k, v| v != "" } rescue {}
     end
 
     def user_params

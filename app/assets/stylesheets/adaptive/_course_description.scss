@@ -12,8 +12,17 @@ body {
     .course__info {
       padding : 8px;
       .adaptive__title{
+        display: block;
+        width: 100%;
         .left-col{
-          width: 70% !important;
+          display: inline-flex !important;
+          width: 100% !important;
+        }
+        .right-col{
+          white-space: initial;
+          .item{
+            margin-bottom: 12px;
+          }
         }
       }
     }
