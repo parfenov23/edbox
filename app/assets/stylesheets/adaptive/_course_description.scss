@@ -11,6 +11,7 @@ body {
     margin-top: 0px;
     .course__info {
       padding : 8px;
+      // теги в описании курса
       .adaptive__title{
         display: block;
         width: 100%;
@@ -25,6 +26,7 @@ body {
           }
         }
       }
+      /////////////////
     }
     .tizer__block {
       height  : 100%;
