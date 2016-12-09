@@ -9,6 +9,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
     - unless (btnBack rescue false)
       .page__icon.item
         - if current_user.present?
+
           i.burger.icon.js__show-aside-main-nav
         - else
           .burger
@@ -32,14 +33,8 @@ header#page__header.adaptive__title class=hclass.join(" ")
         a.item href="/help"
           i.help.icon
         = render "home/header/notify_news"
-        /- if namePage == "group"
-        /  - if current_user.director
-        /    .item.js_openPopupNewGroup
-        /      i.add.icon
         - if namePage == "contenter_courses"
           - if current_user.contenter
-            /a.item href="/contenter/courses/new/edit"
-            /  i.add.icon
             .btn.is__blue.create__contenterCourse.js_addToggleUlCreateCourse
               span Создать
               ul
@@ -51,17 +46,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
                   a href="/contenter/materials/new/edit" Материал
                 li
                   a href="/contenter/instruments/new/edit" Инструмент
-            /.item.js_openLeftSideBar data-id="js-help"
-            /  i.help.icon
-        /- if namePage == "courseMaterial"
-        /  .item.js_openLeftSideBar data-id="js-notification-courses"
-        /    i.notes.icon
-        /  - unless (@course.material? rescue true)
-        /    .item.js_openLeftSideBar data-id="js-programm-courses"
-        /      i.programm.icon
-        - if (comment rescue false)
-          .item
-            i.calendar.icon.js_openLeftSideBar data-id="js-comment"
+
         - if namePage == "makeup"
           .item.is__no-icon.js_openLeftSideBar data-id="js-add__users"
             .btn.btn-flat ДОБАВИТЬ ПОЛЬЗОВАТЕЛЕЙ
@@ -75,10 +60,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
         - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
         - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
         a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
-        /- if (@course.paid? rescue false)
-        /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
-        /- else
-        /  .btn.is__blue.js_openFormRegistrationAuth class=hash_class Регистрация
+
 
       - if current_user.present?
   .left__aside-main-nav.js__baron.js__left-aside
@@ -87,20 +69,3 @@ header#page__header.adaptive__title class=hclass.join(" ")
         img src="/assets/adcons__grey.svg"
     .menu__list
       = render "home/header/items/all_items", {namePage: namePage} if current_user.present?
-
-  - if (comment rescue false)
-  #js-comment.courses-aside
-    .close-filter.icon Комментарии
-    #disqus_thread
-    javascript:
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'edbox';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function () {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
