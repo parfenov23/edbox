@@ -55,8 +55,10 @@
   }
   &.filter-courses {
     .all__Tags {
+      // auto scroll
       overflow: auto;
       height: 100%;
+      ///
       .parentTreeUl {
         margin-bottom : 24px;
         .title {
