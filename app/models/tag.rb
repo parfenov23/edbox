@@ -30,7 +30,7 @@ class Tag < ActiveRecord::Base
     curr_count_courses = curr_tag.count_courses
     if !curr_tag.last?
       if !course.blank? || (curr_count_courses > 0)
-        ul_contents = "<div class='parent_tag'><div class='title'>#{curr_tag.title} (#{curr_count_courses})</div><ul>"
+        ul_contents = "<div class='parent_tag open'><div class='title'>#{curr_tag.title} (#{curr_count_courses})</div><ul>"
         curr_tag.tags.each do |tag|
           ul_contents << "<li #{tag.last? ? 'class="last_subtag"' : nil}>#{html_tags(tag, course)}</li>"
         end

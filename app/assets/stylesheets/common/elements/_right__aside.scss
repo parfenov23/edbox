@@ -55,6 +55,8 @@
   }
   &.filter-courses {
     .all__Tags {
+      overflow: auto;
+      height: 100%;
       .parentTreeUl {
         margin-bottom : 24px;
         .title {
@@ -74,7 +76,7 @@
             }
           }
           ul{
-            display: none;
+            //display: none;
           }
         }
         ul {
