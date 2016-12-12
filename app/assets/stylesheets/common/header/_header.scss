@@ -29,7 +29,7 @@
   width           : 100%;
   height          : 64px;
   justify-content : space-between;
-  min-width       : 1200px;
+  //min-width       : 1200px;
 
   &.header__with_search {
     display         : flex;
@@ -95,6 +95,7 @@
   .left-col {
     display         : flex;
     justify-content : flex-start;
+    width: 100%;
   }
   .page__icon {
     line-height : 48px;

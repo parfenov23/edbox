@@ -134,8 +134,8 @@ commonToggle = (el) ->
 adaptiveTitle = ->
   $('.adaptive__title').each ->
     rightWidth = $(@).find('.right-col').width()
-    $(@).find('.left-col').css
-      width: $(@).width() - rightWidth + 'px'
+    #$(@).find('.left-col').css
+    #  width: $(@).width() - rightWidth + 'px'
 
 
 adjustHeight = (textarea) ->
