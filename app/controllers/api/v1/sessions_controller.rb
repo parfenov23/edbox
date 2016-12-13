@@ -59,7 +59,6 @@ module Api::V1
     def social
       if params[:access_token].present?
         @info = Socials.reg_params(params[:type], params)
-        binding.pry
       end
       render "enter/social"
       # render html: "".html_safe

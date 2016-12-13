@@ -40,10 +40,14 @@ class User < ActiveRecord::Base
     user = find_by_email(params[:email].downcase)
     unless user.nil?
       if user.password == params[:password]
-        user.update(user_key: SecureRandom.hex(20))
+        user.update_user_key
         user.assign_last_auth.transfer_to_json
       end
     end
+  end
+
+  def update_user_key
+    self.update(user_key: SecureRandom.hex(20))
   end
 
   def self.build_default(company_id, email)

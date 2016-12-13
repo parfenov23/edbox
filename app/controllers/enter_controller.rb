@@ -10,7 +10,10 @@ class EnterController < ActionController::Base
     if params[:access_token].present?
       @info = Socials.reg_params(params[:type], params)
       user = User.find_by_email(@info[:email])
-      redirect_to user.auth_url if user.present?
+      if user.present?
+        user.update_user_key
+        redirect_to user.auth_url 
+      end
     end
     # redirect_to "/payment?type=#{params[:type_reg]}&page=reg" if params[:type_reg].present?
   end
