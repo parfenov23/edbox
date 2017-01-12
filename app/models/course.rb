@@ -130,6 +130,9 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def one_webinar
+    sections.attachments.webinars.first
+  end
 
   def material?
     type_course == "material"

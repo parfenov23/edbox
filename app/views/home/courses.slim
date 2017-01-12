@@ -9,7 +9,13 @@
     #courses.content-courses.courses-list.cabinet__block__v2
       - course_each = @courses_tid.present? ? @courses_tid : @courses
       - course_each.each do |course|
-        = render "course/course", {course: course, type: 'courses'}
+        - view_course = true
+        - if course.online?
+          - if params[:status].nil?
+            - view_course = (!course.one_webinar.stop? ? true : false) rescue true
+          - else
+            - view_course = (course.one_webinar.present? && course.one_webinar.stop? ) ? true : false
+        = render "course/course", {course: course, type: 'courses'} if view_course
       - if current_user.present?
         = render "home/courses/pop_up"
 - else

@@ -59,6 +59,10 @@ class Webinar < ActiveRecord::Base
     eventStatus == 'STOP'
   end
 
+  def active?
+    eventStatus == 'ACTIVE'
+  end
+
   def eventCreate
     webinar_title = attachment.attachmentable.course.title rescue Time.now.to_i
     resp = JSON.parse(event_client.post('events', 
