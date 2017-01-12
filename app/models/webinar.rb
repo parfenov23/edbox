@@ -93,6 +93,54 @@ class Webinar < ActiveRecord::Base
     resp['eventSessions'].present? ? resp["eventSessions"].first['status'] : resp["status"]
   end
 
+  def eventUrl
+    session_id = eventSession['id']
+    if url.blank? && session_id.present?
+      self.url = "https://events.webinar.ru/adconsult/#{event}/stream/#{session_id}"
+      save
+    end
+    url
+  end
+
+  def eventRecordUrl
+    eventUrl.gsub("stream", "record")
+  end
+
+  def eventRecordInfo 
+    JSON.parse(event_client.get("records?id=#{event}", {}))
+  end
+
+  def eventRecords(find=nil)
+    resp = JSON.parse(event_client.get("records", {}))
+    if find.present?
+      resp = resp.detect {|f| f["link"] == find}
+    end
+    resp
+  end
+
+  def eventRecord
+    id_note = eventRecords(eventRecordUrl)["id"]
+    resp = JSON.parse(event_client.post("records/#{id_note}/conversions", {}))
+    if resp.present?
+      self.video_id = resp["id"]
+      save
+    end
+    resp
+  end
+
+  def eventRecordStatus
+    if video_id.present? 
+      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+    else
+      eventRecord
+      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+    end
+  end
+
+  def eventFileInfo
+    JSON.parse(event_client.get("fileSystem/file/#{video_id}", {}))
+  end
+
   def eventInfo
     JSON.parse(event_client.get("organization/events/#{self.event}", {}))
   end
@@ -132,7 +180,7 @@ class Webinar < ActiveRecord::Base
     else
       HomeMailer.reg_webinar_lead(self, user).deliver
     end
-    #binding.pry
+    # binding.pry
     resp = JSON.parse(event_client.post("events/#{event}/register", 
       {
         email: user.email,
@@ -147,13 +195,8 @@ class Webinar < ActiveRecord::Base
   def eventUnRegUser(user)
     find_users_webinar = user_webinars.where(user_id: user.id)
     participant_id = find_users_webinar.where.not(participant_id: nil).first
-    #binding.pry
     resp = event_client.post("/participations/delete", { "participationIds[0]" => participant_id}) if participant_id.present?
     find_users_webinar.destroy_all
-    # resp = event_client.delete('User.php', {event_id: event, email: user.email})
-    # if resp['user'].present? && resp['user']['status'] == 'ok'
-    #   
-    # end
   end
 
   def create_job(date_time_start = (date_start - 5.minute))
