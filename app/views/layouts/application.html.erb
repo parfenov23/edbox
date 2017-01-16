@@ -7,7 +7,7 @@
   </title>
   <%= render "layouts/favicon" %>
   <%= javascript_include_tag 'application' %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
   <% if @og.blank? %>
       <meta property="og:image" content="/images/title_img.png"/>
   <% end %>
@@ -16,6 +16,7 @@
   <link href="/assets/application.css" rel="stylesheet">
   <link href="/assets/app.css" rel="stylesheet">
   <%= render "layouts/head_og" %>
+  <%= render "layouts/fb" %>
   <!--<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">-->
   <!--<script src="//vjs.zencdn.net/4.12/video.js"></script>-->
 </head>
@@ -64,23 +65,12 @@
 <%= render "layouts/users_helper" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
 <%= render "layouts/help_notif_user" %>
-<%= render "common/tableTariffUser" if (current_user.present? && current_user.test_separate?) rescue false %>
+<%= render "layouts/mailru" %>
+
 <input id="presentCurrentUser" type="hidden" value="<%= current_user.present? rescue false %>">
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
 <input id="typeEnvModeCurrentDomain" type="hidden" value="<%= $env_mode.current_domain %>">
-<% if $env_mode.prod?  %>
-  <!-- BEGIN JIVOSITE CODE -->
-  <script type='text/javascript'>
-  (function(){ var widget_id = 'y8MSJJS67y';var d=document;var w=window;function l()
-  { var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}
-  if(d.readyState=='complete')
-  {l();}
-  else{if(w.attachEvent)
-  {w.attachEvent('onload',l);}
-  else
-  {w.addEventListener('load',l,false);}
-  }})();</script>
-  <!-- END JIVOSITE CODE -->
-<% end %>
+<script>
+</script>
 </body>
 </html>
