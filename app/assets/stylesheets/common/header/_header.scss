@@ -351,16 +351,16 @@
     border-radius : 0;
     &.with__img {
       .page__icon i {
-        color : rgba(0, 0, 0, .54);
+        color: white;
       }
       .page__title {
-        color : rgba(0, 0, 0, .54);
+            color: white;
       }
       .page__children .item {
-        color : rgba(0, 0, 0, .54);
+          color: white;
       }
       .page__action .item i::before {
-        color : rgba(0, 0, 0, .54);
+          color: white;
       }
     }
   }

@@ -12,11 +12,10 @@
 - if @course.online?
   - att_public = current_user.present? ? [true, false] : true
   /- all_webinars = @course.sections.attachments.where(public: att_public).webinars
-  - all_webinars = @course.sections.attachments.webinars
-  - if all_webinars.present?
-    - first_webinar = @course.first_webinar
+  - first_webinar = @course.first_webinar
+  - if first_webinar.present?
     - first_webinar.auto_start if first_webinar.present?
-    - if first_webinar.present? && !first_webinar.stop?
+    - if !first_webinar.stop?
       - attachment = first_webinar.attachment
       - date_start = (first_webinar.date_start + User.time_zone.hour)
       form.webinar__teaser data-alert="false" data-redirect=attachment.link
