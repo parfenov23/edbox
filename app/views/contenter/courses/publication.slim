@@ -4,12 +4,12 @@
     .publication__type__course
       h2 Тип курса
       .type__course__radio__block
-        .radio__btn
-          - hash = {}
-          - hash = {checked: "checked"} if @course.paid
-          input type="radio" name="publication" id=@course.id.to_s+"false" *hash
-          label.js_updateTypeCourse data-id=@course.id data-type_id="true" for=@course.id.to_s+"false"
-            span Платный
+        / .radio__btn
+        /   - hash = {}
+        /   - hash = {checked: "checked"} if @course.paid
+        /   input type="radio" name="publication" id=@course.id.to_s+"false" *hash
+        /   label.js_updateTypeCourse data-id=@course.id data-type_id="true" for=@course.id.to_s+"false"
+        /     span Платный
         .radio__btn
           - hash = {}
           - hash = {checked: "checked"} unless @course.paid

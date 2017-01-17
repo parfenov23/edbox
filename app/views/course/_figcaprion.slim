@@ -4,8 +4,8 @@ figcaption
     - unless course.material? || course.instrument?
       .adaptive__title
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-        - if !course.paid
-          .right-col = "Бесплатно"
+        / - if !course.paid
+        /   .right-col = "Бесплатно"
     - else
       .authors
         - if !course.paid

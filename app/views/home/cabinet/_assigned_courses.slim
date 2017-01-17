@@ -1,14 +1,8 @@
 .carusel-wrp
-  - title = ((type_course == 'group') rescue true) ? "Курсы, назначенные мне руководством компании" : "Материалы Библиотеки, которые меня заинтересовали"
+  - title = ((type_course == 'group') rescue true) ? "Курсы, назначенные мне руководством компании" : "Вебинары, на которые я зарегистрировался"
   .title = title
   .info-box
-    .legend-info
-      p
-        'Всего назначено:
-        = my_bunch_courses.count
-      p
-        'На изучении:
-        = my_bunch_courses.in_study.count
+
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course

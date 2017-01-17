@@ -5,7 +5,7 @@
 - if @courses.present?
   .inner-content
     -# render "home/courses/category"
-    = render "home/courses/btn_search"
+    -# render "home/courses/btn_search"
     #courses.content-courses.courses-list.cabinet__block__v2
       - course_each = @courses_tid.present? ? @courses_tid : @courses
       - course_each.each do |course|

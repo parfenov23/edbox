@@ -1,24 +1,24 @@
-.item.js_openNotifyNewsList
-  i.notification_i.icon
-  - user_no_read_news =  current_user.present? ? current_user.no_read_news.count : 0
-  - if user_no_read_news > 0
-    .notification__with-qty = user_no_read_news
-  .menu__apps
-    .menu__notifications-top
-      - all_user_news = user_news
-      - if all_user_news.present?
-        ul.list.js__baron
-          - all_user_news.each do |news|
-            li.list__item data-id=news.id class=(news.read?(current_user) ? '' : 'no_read')
-              .info.js_openArticleNews.js_readNews
-                .name
-                  /span> Новый курс:
-                  span.title = news.title
-                .time = parse_russian_date(local_time(news.created_at))
-              i.eye.icon.js_readNews
-      - else
-        .not_present_content
-          span Нет новостей
+/ .item.js_openNotifyNewsList
+/   i.notification_i.icon
+/   - user_no_read_news =  current_user.present? ? current_user.no_read_news.count : 0
+/   - if user_no_read_news > 0
+/     .notification__with-qty = user_no_read_news
+/   .menu__apps
+/     .menu__notifications-top
+/       - all_user_news = user_news
+/       - if all_user_news.present?
+/         ul.list.js__baron
+/           - all_user_news.each do |news|
+/             li.list__item data-id=news.id class=(news.read?(current_user) ? '' : 'no_read')
+/               .info.js_openArticleNews.js_readNews
+/                 .name
+/                   /span> Новый курс:
+/                   span.title = news.title
+/                 .time = parse_russian_date(local_time(news.created_at))
+/               i.eye.icon.js_readNews
+/       - else
+/         .not_present_content
+/           span Нет новостей
 
-    .menu__notifications-bottom.js_openLeftSideBar.js_closePopupNews data-id="js-news"
-      .notifications__title.js_closePopupNews Просмотреть все новости
+/     .menu__notifications-bottom.js_openLeftSideBar.js_closePopupNews data-id="js-news"
+/       .notifications__title.js_closePopupNews Просмотреть все новости
