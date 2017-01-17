@@ -194,6 +194,7 @@ class Webinar < ActiveRecord::Base
       }))
     user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)
     user_webinar.update(url: resp['link'], participant_id: resp['participationId']) if (resp['error'].blank? rescue resp == "")
+    user_webinar
   end
 
   def eventUnRegUser(user)

@@ -10,10 +10,12 @@
           - else
             .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
   - elsif status == 'START'
-    - if webinar.user_webinars.where(user_id: current_user).last.present?
-      - url = webinar.user_webinars.where(user_id: current_user).last.url
-      .inner-content.webinar_attachment
-        iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
+    // webinar.eventRegUser(user)
+    - user_webinar = webinar.user_webinars.where(user_id: current_user).last
+    - user_webinar = user_webinar.present? ? user_webinar : webinar.eventRegUser(current_user)
+    - url = user_webinar.url
+    .inner-content.webinar_attachment
+      iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
   - elsif status == 'STOP'
     .inner-content.webinar_attachment
       - if webinar.eventRecordStatus == "completed" 

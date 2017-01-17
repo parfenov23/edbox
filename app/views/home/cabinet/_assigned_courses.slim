@@ -2,7 +2,6 @@
   - title = ((type_course == 'group') rescue true) ? "Курсы, назначенные мне руководством компании" : "Вебинары, на которые я зарегистрировался"
   .title = title
   .info-box
-
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
