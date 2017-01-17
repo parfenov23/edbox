@@ -14,7 +14,7 @@
   /- all_webinars = @course.sections.attachments.where(public: att_public).webinars
   - first_webinar = @course.first_webinar
   - if first_webinar.present?
-    - first_webinar.auto_start if first_webinar.present?
+    - first_webinar.auto_start
     - if !first_webinar.stop?
       - attachment = first_webinar.attachment
       - date_start = (first_webinar.date_start + User.time_zone.hour)
