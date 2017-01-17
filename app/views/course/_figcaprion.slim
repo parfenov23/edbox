@@ -8,8 +8,8 @@ figcaption
         /   .right-col = "Бесплатно"
     - else
       .authors
-        - if !course.paid
-          .free_material = 'Бесплатно'
+        / - if !course.paid
+        /   .free_material = 'Бесплатно'
   - link = "/course_description/#{course.id}"
   - if current_user.present? && !assigned && course.material?
     - redirect_att = "/course_description/#{course.id}"
