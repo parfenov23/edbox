@@ -16,7 +16,7 @@
       li.menu__item
         a.menu__item-link.menu__item-profile href="/profile" Профиль
 
-    .bottom class=(!sub_hash[:show_btn] ? "btn_right" : "")
+    .bottom
       /.btn__raised.add__acc добавить аккаунт
       / - unless (current_user.corporate? && !current_user.director?)
       /   - if sub.blank?
