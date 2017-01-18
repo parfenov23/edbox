@@ -4,6 +4,6 @@
   .title = title
   .info-box
     .course-prev-list
-      - current_user.user_webinar.each do |my_bunch_course|
+      - my_bunch_courses.my_webinars(current_user.id).each do |my_bunch_course|
         - course = my_bunch_course.course
         = render "course/course", {course: course, type: "short__ver", model_type: type_course, action_block: true}
