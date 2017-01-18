@@ -18,10 +18,10 @@
           |Отменить регистрацию на вебинар
       - else
         a.btn.js_eventRegUser.js_addCourseToMyCourse data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-          |Зарегистрироваться на вебинар
+          = current_user.director? ? "Зарегистрироваться самому" : "Зарегистрироваться на вебинар"
       - if current_user.director?
         .btn.is__blue.js_openHiddenList
-          |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР ГРУППУ
+          |ЗАРЕГИСТРИРОВАТЬ НА ВЕБИНАР СОТРУДНИКОВ
           ul.block_hidden_list
             - current_user.company.groups.each do |group|
               li.js_regGroupOnWebinar data-id=webinar.id data-group_id=group.id

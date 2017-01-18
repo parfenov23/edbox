@@ -13,7 +13,7 @@ var closeHiddenList = function () {
 var regGroupOnWebinar = function (e){
     var btn = $(e.target);
     if (btn.hasClass("js_regGroupOnWebinar")){
-        show_error("Подождите идет регистрация группы на вебинар", 0);
+        show_error("Подождите идет регистрация сотрудников на вебинар", 0);
         $.ajax({
             type: 'POST',
             url : '/api/v1/webinars/' + btn.data('id') + "/event_reg_group",
@@ -23,7 +23,7 @@ var regGroupOnWebinar = function (e){
                 show_error("Группа зарегистрирована на вебинар", 3000);
                 btn.find(".remove").removeClass("hide");
             }else{
-                show_error("Группа уже зарегистрирована на вебинар", 3000);
+                show_error("Сотрудники уже зарегистрирована на вебинар", 3000);
             }
         }).error(function () {
             show_error('Произошла ошибка', 3000);

@@ -49,7 +49,7 @@
         /  i.duration.icon
         .item
           - audiences = (@course.bunch_courses.count rescue 0)
-          = rus_case(audiences, "слушатель", "слушателя", "слушателей")
+          = rus_case(audiences, "примет участие", "примут участие", "примут участие")
           i.groups.icon
       .right-col
         - course_bunch_tags.each do |bunch_tag|

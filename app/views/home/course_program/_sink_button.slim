@@ -2,6 +2,8 @@
 - if user.present? && (!course.paid || (course.paid && current_user.get_account_type))
   = render "home/courses/pop_up"
   - course_assigned = current_user.bunch_courses.find_by(model_type: "user", course_id: course.id).present?
+  - webinar_reg = course.first_webinar.user_webinars.where(user_id: current_user.id).present? rescue false
+  - h = {'data-user_id' => current_user.id, 'data-webinar_id' => (course.first_webinar.id rescue nil)}
   - if user.corporate? && user.director?
     .main__action.multi__action
       .inner__wrp
@@ -9,21 +11,24 @@
         - hash_params = { 'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule" }
         .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_openPopup data-id="#{course.id}" class="#{add_class}" *hash_params
           i.icon.groups
-          .main__action-tooltip Добавить в групповое расписание
+          .main__action-tooltip Заргистрироваться на вебинар моих сотрудников
 
         .hidden__actions.is__visible
           - unless course_assigned
+            - if !webinar_reg
+              form
+                input type="hidden" name="course_id" value=course.id
+                .item.main__action-tooltip-wrp.main__action-shadow.frst.js_eventRegUser *h
+                  i.icon.courses
+                  .main__action-tooltip Заргистрироваться на вебинар
+  - else
+    - unless course_assigned 
+      - if !webinar_reg
+        .main__action.multi__action
+          .inner__wrp
             form
               input type="hidden" name="course_id" value=course.id
-              .item.main__action-tooltip-wrp.main__action-shadow.frst.js_addCourseToMyCourse
+              
+              .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_eventRegUser *h
                 i.icon.courses
-                .main__action-tooltip Добавить в мои курсы
-  - else
-    - unless course_assigned
-      .main__action.multi__action
-        .inner__wrp
-          form
-            input type="hidden" name="course_id" value=course.id
-            .visible__action.is__blue.main__action-tooltip-wrp.main__action-shadow.js_addCourseToMyCourse
-              i.icon.courses
-              .main__action-tooltip Добавить в мои курсы
+                .main__action-tooltip Заргистрироваться на вебинар

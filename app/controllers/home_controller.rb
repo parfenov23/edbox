@@ -104,6 +104,8 @@ class HomeController < ActionController::Base
   end
 
   def courses
+    redirect_to "/courses/online" if params[:type].blank?
+    
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
     @courses = Course.publication.where(type_course: type_course)
