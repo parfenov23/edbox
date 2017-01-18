@@ -7,10 +7,10 @@
 - if overdue_bunch_courses.present?
   = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
 
-- group_bunch_courses = bunch_courses.in_group
+- group_bunch_courses = bunch_courses.in_group.my_webinars(current_user.id)
 - if group_bunch_courses.present?
   = render "home/cabinet/assigned_courses", {my_bunch_courses: group_bunch_courses, type_course: "group"}
 
-- my_bunch_courses = bunch_courses.my
+- my_bunch_courses = bunch_courses.my.my_webinars(current_user.id)
 - if my_bunch_courses.present?
   = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses, type_course: "user"}

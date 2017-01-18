@@ -6,7 +6,9 @@
       - users_count_valid = (current_user.company.users.count >= 2 rescue false)
       - groups_count_valid = (current_user.company.groups.present? rescue false)
       - ligament_count_valid = (LigamentCourse.where(group_id: current_user.company.groups.ids).present? rescue false)
-    - bunch_count_valid = (current_user.bunch_courses.where(model_type: 'user').present? rescue false)
+    - cid = current_user.id
+    - bcv = (current_user.bunch_courses.where(model_type: 'user').my_webinars(cid).present? rescue false)
+    - bunch_count_valid = bcv
 
     - unless users_count_valid && groups_count_valid && ligament_count_valid && bunch_count_valid
       = render 'home/cabinet/empty_courses', {users_count_valid: users_count_valid,
