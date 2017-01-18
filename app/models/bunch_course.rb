@@ -40,7 +40,7 @@ class BunchCourse < ActiveRecord::Base
   def self.arr_my_webinar(models, id)
     arr = []
     models.each do |model|
-      first_webinar = model.course.first_webinar
+      first_webinar = (model.course.first_webinar rescue nil)
       if first_webinar.present?
         arr << model if first_webinar.user_webinars.where(user_id: id).present?
       end
