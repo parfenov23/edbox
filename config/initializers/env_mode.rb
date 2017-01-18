@@ -32,7 +32,7 @@ class EnvMode
     domains = {
       development: "http://server.dev:#{port}",
       beta: "http://#{beta_subdomain}.masshtab.am",
-      production: "http://members.adconsult.online"
+      production: "http://members.adconsult.network"
       # production: "http://adconsult.online"
 
     }

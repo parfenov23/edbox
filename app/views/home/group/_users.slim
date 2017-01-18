@@ -27,15 +27,15 @@
     - if current_user.director
       .container
         .members.ingroups
-          .members__invite
-            ul.invited
-            form.form
-              input.input.searchMember type="text" placeholder="Введите адреса электронной почты через пробел и нажмите «Отправить»"
-              .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
-                .qty__left
-                  'Осталось
-                  span.count_residue_users data-count=count_residue_users 10 приглашений
-                .tooltip.is__bottom Отправить приглашение пользователям
+          / .members__invite
+            / ul.invited
+            / form.form
+            /   input.input.searchMember type="text" placeholder="Введите адреса электронной почты через пробел и нажмите «Отправить»"
+            /   .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
+            /     .qty__left
+            /       'Осталось
+            /       span.count_residue_users data-count=count_residue_users 10 приглашений
+            /     .tooltip.is__bottom Отправить приглашение пользователям
 
           ul.members__in_system.director style="display:none;"
             - @members.each do |member|

@@ -32,7 +32,7 @@ figcaption
       - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
       - text = (cmaterial ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
       i.icon class=(!course.instrument? ? type : "text")
-      = !course.instrument? ? text : "Инструмент"
+      = !course.instrument? ? text : "Путешествия"
     - if course.announcement? || course.online?
       - if course.announcement?
         - announcement_date = course.announcement_date.present? ? ltime(course.announcement_date, "", 'short_date') : 'скоро'
@@ -46,8 +46,8 @@ figcaption
           - date_webinar = "#{date_start.day} #{rus_schedule_line(date_start.month).mb_chars.downcase.to_s} #{date_start.year}"
           .time__date = "#{date_webinar_time} мск, #{date_webinar}"
     - else
-      .time__date
-        |Опубликовано: #{schedule_line[course.updated_at.month-1][:title]} #{course.updated_at.year}
+      / .time__date
+      /   |Опубликовано: #{schedule_line[course.updated_at.month-1][:title]} #{course.updated_at.year}
     - if assigned
       .progress__block
         .bar style="width:#{bunch_course.progress}%"

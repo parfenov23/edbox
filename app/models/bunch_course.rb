@@ -15,6 +15,7 @@ class BunchCourse < ActiveRecord::Base
   scope :uniq_by_course_id, -> { select(:course_id).distinct }
   scope :all_type_courses, -> { all_type_courses_hash(all) }
   scope :uniq_by, -> (type) { uniq_by_type(all, type) }
+  scope :my_webinars, -> (id) { arr_my_webinar(all, id) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -34,6 +35,17 @@ class BunchCourse < ActiveRecord::Base
     arr = models.map { |model| model.method(type).call }.uniq
     arr_ids = arr.map { |one| models.where(type => one).last.id }
     models.where(id: arr_ids)
+  end
+
+  def self.arr_my_webinar(models, id)
+    arr = []
+    models.each do |model|
+      first_webinar = model.course.first_webinar
+      if first_webinar.present?
+        arr << model if first_webinar.user_webinars.where(user_id: id).present?
+      end
+    end
+    arr
   end
 
   def self.all_type_courses_hash(models)

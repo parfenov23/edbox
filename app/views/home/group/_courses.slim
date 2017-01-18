@@ -5,20 +5,20 @@
     #box1.box.show
       .item.courses
         .container
-          h3.label__name Курсы группы
+          h3.label__name Вебинары группы
           .container-inner
-            - if current_user.director
-              .btn-group style="float: right;"
-                .btn.is__blue  Добавить
-                ul.hidden-list
-                  li
-                    a.md-trigger href="#modal-3" Из моих курсов
-                  li
-                    a.md-trigger href="#modal-4" Из библиотеки
-            h2 Курсы
+            / - if current_user.director
+            /   .btn-group style="float: right;"
+            /     .btn.is__blue  Добавить
+            /     ul.hidden-list
+            /       li
+            /         a.md-trigger href="#modal-3" Из моих вебинаров
+            /       li
+            /         a.md-trigger href="#modal-4" Из библиотеки
+            h2 Вебинары
             .data-group-create
               =' Russian.p(count_ligament_courses, "Добавлен", "Добавлено", "Добавлено")
-              = rus_case(count_ligament_courses, "курс", "курса", "курсов")
+              = rus_case(count_ligament_courses, "вебинар", "вебинара", "вебинаров")
             ul.courses-list
               - ligament_courses.each do |ligament_course|
                 - course = ligament_course.course

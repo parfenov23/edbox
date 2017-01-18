@@ -1,8 +1,9 @@
 .carusel-wrp
-  - title = ((type_course == 'group') rescue true) ? "Курсы, назначенные мне руководством компании" : "Вебинары, на которые я зарегистрировался"
+  - valid_type_group = ((type_course == 'group') rescue true)
+  - title = valid_type_group ? "Вебинары, назначенные мне руководством компании" : "Вебинары, на которые я зарегистрировался"
   .title = title
   .info-box
     .course-prev-list
-      - my_bunch_courses.each do |my_bunch_course|
+      - my_bunch_courses.my_webinars(current_user.id).each do |my_bunch_course|
         - course = my_bunch_course.course
         = render "course/course", {course: course, type: "short__ver", model_type: type_course, action_block: true}
