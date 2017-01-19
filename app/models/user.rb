@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   before_create :create_hash_key
   validates :email, presence: true
   scope :leading, -> { where(leading: true) }
-  scope :statistics, ->(course, type, best) { all.map { |user| user.statistic(course, type, best) } }
+  scope :statistics, ->(course) { all.map { |user| user.statistic(course) } }
   EXCEPT_ATTR = ["password_digest", "created_at", "updated_at", "group_id"]
 
   def self.build(params)
@@ -169,9 +169,9 @@ class User < ActiveRecord::Base
     {}
   end
 
-  def statistic(course, type=["group", "user"], best=false)
-    bunch_course = course.find_bunch_course(id, type, nil, best)
-    {id: id, course: (bunch_course.stat_status rescue nil)}
+  def statistic(course)
+    status = course.first_webinar.user_webinars.where(user_id: id).last.date_entry rescue nil
+    {id: id, course: status}
   end
 
   def auth_url(params = {})

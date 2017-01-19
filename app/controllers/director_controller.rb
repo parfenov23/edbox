@@ -15,7 +15,7 @@ class DirectorController < HomeController
     CSV.open(path, "wb") do |csv|
       csv << [""] + courses.map(&:title)
       users.each do |user|
-        statistics = courses.map{|course| user.statistic(course, "group", true)[:course]}
+        statistics = courses.map{|course| user.statistic(course)[:course]}
         csv << [user.full_name] + statistics
       end
     end

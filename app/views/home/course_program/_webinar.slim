@@ -1,6 +1,8 @@
 - webinar = @attachment.webinar
 - if current_user.present?
   - status = webinar.eventStatus
+  - user_webinar = webinar.user_webinars.where(user_id: current_user).last
+  - user_webinar.update(date_entry: Time.now)
   - if status == 'ACTIVE'
     .inner-content
       #course
@@ -11,7 +13,6 @@
             .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
   - elsif status == 'START'
     // webinar.eventRegUser(user)
-    - user_webinar = webinar.user_webinars.where(user_id: current_user).last
     - user_webinar = user_webinar.present? ? user_webinar : webinar.eventRegUser(current_user)
     - url = user_webinar.url
     .inner-content.webinar_attachment
