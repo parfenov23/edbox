@@ -23,7 +23,7 @@ var regGroupOnWebinar = function (e){
                 show_error("Группа зарегистрирована на вебинар", 3000);
                 btn.find(".remove").removeClass("hide");
             }else{
-                show_error("Сотрудники уже зарегистрирована на вебинар", 3000);
+                show_error("Сотрудники уже зарегистрированы на вебинар", 3000);
             }
         }).error(function () {
             show_error('Произошла ошибка', 3000);
