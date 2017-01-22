@@ -15,7 +15,7 @@
       - class_btn = current_user.director? ? "btn-flat is__border" : "is__blue"
       - if user.user_webinars.find_by(webinar_id: webinar.id).present?
         a.btn.js_eventUnRegUser data-user_id=user.id data-webinar_id=webinar.id class=class_btn
-          |Отменить регистрацию на вебинар
+          = current_user.director? ? "Отменить свою регистрацию" : "Отменить регистрацию на вебинар"
       - else
         a.btn.js_eventRegUser.js_addCourseToMyCourse data-user_id=user.id data-webinar_id=webinar.id class=class_btn
           = current_user.director? ? "Зарегистрироваться самому" : "Зарегистрироваться на вебинар"

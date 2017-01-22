@@ -185,16 +185,25 @@ class Webinar < ActiveRecord::Base
       HomeMailer.reg_webinar_lead(self, user).deliver
     end
     # binding.pry
-    resp = JSON.parse(event_client.post("events/#{event}/register", 
-      {
+    resp = postRegUser({
         email: user.email,
         name: user.first_name, 
         secondName: user.last_name,
         role: role
-      }))
+      })
     user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)
     user_webinar.update(url: resp['link'], participant_id: resp['participationId']) if (resp['error'].blank? rescue resp == "")
     user_webinar
+  end
+
+  def eventRegDemoUser
+    resp = postRegUser({
+        email: SecureRandom.hex(6).to_s + "@bataline.ru",
+        name: "Участник", 
+        secondName: "Вебинара",
+        role: 'GUEST'
+      })
+    resp
   end
 
   def eventUnRegUser(user)
@@ -219,6 +228,10 @@ class Webinar < ActiveRecord::Base
   def rebuild_job
     remove_job
     create_job
+  end
+
+  def postRegUser(params)
+    JSON.parse(event_client.post("events/#{event}/register", params))
   end
 
   private

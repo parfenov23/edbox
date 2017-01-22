@@ -70,11 +70,11 @@ header#page__header.adaptive__title class=hclass.join(" ")
       .page__action style="margin-right: 22px;"
         = render "home/header/notify_news"
         /.our__phone +7 (495) 258-46-42
-        a.btn.btn-flat href="/sign_in" войти
+        a.btn.is__blue href="/sign_in" войти
         - hash_class = ''
         - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
         - hash_class += 'ya_webinar_reg ' if (@course.online? rescue false)
-        a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
+        / a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
         /- if (@course.paid? rescue false)
         /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg.ya_join class=hash_class ПРИСОЕДИНИТЬСЯ
         /- else

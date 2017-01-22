@@ -12,7 +12,7 @@ if Rails.env.development?
       alias_method :default_options_alias, :default_options
 
       def default_options
-        default_options_alias.merge!(:Host => '0.0.0.0', :Port => 4000)
+        default_options_alias.merge!(:Host => '0.0.0.0', :Port => 5000)
       end
     end
   end

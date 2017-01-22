@@ -2,7 +2,7 @@ class HomeController < ActionController::Base
   helper_method :current_user
   helper_method :subdomain
   before_action :authorize, except: [:course_description, :render_file,
-                                     :attachment, :course_no_reg,
+                                     :attachment, :course_no_reg, :webinar_public,
                                      :help, :help_answer, :pay, :auth_user, :info_pay, :user,
                                      :course_cert, :instrument, :courses_rss]
   before_action :is_corporate?, only: [:group]
@@ -59,7 +59,8 @@ class HomeController < ActionController::Base
         valid_redirect = current_user.present? ? valid_added : @attachment.public
         course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
         unless @attachment.present? && valid_redirect || course_leading
-          redirect_to "/"
+          url_redirect = @attachment.webinar.present? ? "/webinar_public?id=#{@attachment.id}&t=#{SecureRandom.hex(10)}" : "/"
+          redirect_to url_redirect
         end
       else
         redirect_to "/course_no_reg/#{@course.id}" if current_user.blank? && !@attachment.public
@@ -152,6 +153,13 @@ class HomeController < ActionController::Base
   def course_no_reg
     @course = Course.find_by_id(params[:id])
     page_404 if @course.blank?
+  end
+
+  def webinar_public
+    @webinar = (Attachment.find(params[:id]).webinar rescue nil)
+    page_404 if @webinar.blank?
+
+    @user_webinar_url = @webinar.eventRegDemoUser['link']
   end
 
   def pay

@@ -1,0 +1,8 @@
+= render "home/header/header", {namePage: "other_white", titlePage: @webinar.attachment.title, btnBack: true, backUrl: "/" }
+.inner-content.webinar_attachment
+  - if @webinar.start?
+    iframe src=@user_webinar_url width="100%" style="position: static; height: 90vh;border: none;"
+  - else
+    #course
+      .text__description
+        .title style="text-align: center;" = "Вебинар #{@webinar.attachment.title} начнется #{ltime(@webinar.date_start, '', 'short')}"
