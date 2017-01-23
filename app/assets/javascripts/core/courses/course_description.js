@@ -32,7 +32,7 @@ var regGroupOnWebinar = function (e){
 };
 
 var unregGroupFromWeinar = function(){
-    show_error("Подождите идет удаление группы с вебинар", 0);
+    show_error("Подождите идет удаление сотрудников с вебинара", 0);
     var btn = $(this);
     $.ajax({
         type: 'POST',
@@ -40,10 +40,10 @@ var unregGroupFromWeinar = function(){
         data: {group_id: btn.data('group_id')}
     }).success(function (data) {
         if (data.success) {
-            show_error("Группа удалена с вебинара", 3000);
+            show_error("Сотрудники удалены с вебинара", 3000);
             btn.addClass("hide");
         }else{
-            show_error("Группа еще не зарегистрирована на вебинар", 3000);
+            show_error("Сотрудники еще не зарегистрированы на вебинар", 3000);
         }
     }).error(function () {
         show_error('Произошла ошибка', 3000);

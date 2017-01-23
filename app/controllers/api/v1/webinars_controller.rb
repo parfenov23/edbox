@@ -75,7 +75,7 @@ module Api::V1
     def event_unreg_group
       webinar = find_webinar
       group = Group.find(params[:group_id])
-      group_webinar = group.group_webinar
+      group_webinar = group.find_group_webinar(webinar.id)
       if group_webinar.present?
         course = webinar.attachment.attachmentable.course
         BunchCourse.where(group_id: group.id, course_id: course.id).destroy_all
