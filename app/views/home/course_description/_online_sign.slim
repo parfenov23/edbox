@@ -26,7 +26,7 @@
             - current_user.company.groups.each do |group|
               li.js_regGroupOnWebinar data-id=webinar.id data-group_id=group.id
                 = group.first_name
-                - class_remove = group.group_webinar.present? ? "" : "hide"
+                - class_remove = group.find_group_webinar(webinar.id).present? ? "" : "hide"
                 .remove.js_unregGroupFromWeinar class=class_remove data-id=webinar.id data-group_id=group.id
   - elsif user.blank?
     a.btn.is__blue href="/sign_in" Принять участие в вебинаре

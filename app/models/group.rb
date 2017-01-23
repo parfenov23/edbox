@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   has_many :bunch_courses, :dependent => :destroy
   has_many :ligament_courses, :dependent => :destroy
   has_many :notifications, :as => :notifytable, :dependent => :destroy
-  has_one :group_webinar, dependent: :destroy
+  has_many :group_webinars, dependent: :destroy
 
   scope :all_users, -> { User.where(id: joins(:bunch_groups).select('bunch_groups.user_id').map(&:user_id)) }
   scope :all_courses, -> { Course.where(id: joins(:bunch_courses).select('bunch_courses.course_id').map(&:course_id)) }
@@ -18,6 +18,10 @@ class Group < ActiveRecord::Base
 
   def all_courses
     Course.where(id: bunch_courses.pluck(:course_id).uniq)
+  end
+
+  def find_group_webinar(w_id)
+    group_webinars.where(webinar_id: w_id).first
   end
 
   def find_ligament_section(section_id)

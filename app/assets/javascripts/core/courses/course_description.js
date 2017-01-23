@@ -20,7 +20,7 @@ var regGroupOnWebinar = function (e){
             data: {group_id: btn.data('group_id')}
         }).success(function (data) {
             if (data.success) {
-                show_error("Группа зарегистрирована на вебинар", 3000);
+                show_error("Сотрудники зарегистрированы на вебинар", 3000);
                 btn.find(".remove").removeClass("hide");
             }else{
                 show_error("Сотрудники уже зарегистрированы на вебинар", 3000);
