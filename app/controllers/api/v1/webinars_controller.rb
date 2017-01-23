@@ -58,7 +58,7 @@ module Api::V1
     def event_reg_group
       webinar = find_webinar
       group = Group.find(params[:group_id])
-      group_webinar = group.group_webinar
+      group_webinar = group.find_group_webinar(webinar.id)
       if group_webinar.blank?
         course = webinar.attachment.attachmentable.course
         BunchCourse.build(course.id, group.id, webinar.date_start.to_s, "group", nil, nil)
