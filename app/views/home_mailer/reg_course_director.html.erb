@@ -122,13 +122,13 @@
 <br>
 Верим, что вы воспринимаете эту новость с трепетом, радостью и воодушевлением :)<br>
 <br>
-<% if @bunch_course.date_complete.present?  %>
-По решению вашего руководителя, вы должны пройти этот назначенный вам вебинар до:<br>
+Вебинар состоится:<br>
 <br>
-<strong><%= (@bunch_course.date_complete + (User.time_zone).hour).strftime("%d.%m.%y") %></strong><br>
+<% @date_start = @course.first_webinar.date_start + User.time_zone.hour %>
+<strong><%= @date_start.strftime("%d.%m") %> в <%= @date_start.strftime("%H:%M") %> по московскому времени.</strong><br>
 <br>
 Так что, не теряйте времени зря!</span>
-<% end %>
+
                         </td>
                       </tr>
                       </tbody>
