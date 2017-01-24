@@ -4,7 +4,7 @@ class Webinar < ActiveRecord::Base
   has_many :user_webinars, :dependent => :destroy
   has_many :group_webinars, dependent: :destroy
 
-  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time]).order("date_start ASC").select { |web| web.id if !web.stop? }) }
+  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time-2.hour]).order("date_start ASC").select { |web| web.id if !web.stop? }) }
   scope :courses, -> { Course.where(id: all.map{|w| w.course.id rescue nil}) }
 
   def transfer_to_json
