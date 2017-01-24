@@ -123,11 +123,11 @@ class Course < ActiveRecord::Base
   end
 
   def first_webinar
-    all_webinars = sections.attachments.webinars
-    if all_webinars.present?
-      first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute rescue 0
-      all_webinars.start_close(first_time).first
-    end
+    all_webinars = sections.attachments.webinars.first
+    # if all_webinars.present?
+    #   first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute rescue 0
+    #   all_webinars.start_close(first_time).first
+    # end
   end
 
   def one_webinar
