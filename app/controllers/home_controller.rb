@@ -113,7 +113,7 @@ class HomeController < ActionController::Base
     course_sorting
     @courses = @courses.where(type_course: type_course, public: true)
     @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
-
+    @courses = @courses.webinars.all_webinars.start_close(Time.now.utc).courses if params[:type] == "online"
   end
 
   def courses_rss

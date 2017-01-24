@@ -18,6 +18,7 @@ class Course < ActiveRecord::Base
   scope :materials, -> { where(type_course: "material") }
   scope :webinars, -> { where(type_course: "online") }
   scope :announcement, -> { joins(sections: [:attachments]).where({"attachments.file_type" => "announcement"}) }
+  scope :all_webinars, -> { Webinar.where(id: all.map{|c| c.first_webinar.id rescue nil } )}
   default_scope { order("created_at DESC") }
   default_scope { where(archive: false) }
   USERID_TOJSON = nil
