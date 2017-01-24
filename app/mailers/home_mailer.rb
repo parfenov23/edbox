@@ -68,7 +68,7 @@ class HomeMailer < ActionMailer::Base
     @course = course
     @user = user
     @bunch_course = bunch_course
-    mail(:to => @user.email, :subject => "Директор подписал вас на курс #{@course.title}")
+    mail(:to => @user.email, :subject => "Директор подписал вас на вебинар #{@course.title}")
   end
 
   def reg_webinar_lead(webinar, user)

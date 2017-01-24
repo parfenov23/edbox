@@ -114,19 +114,21 @@
                                 color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
 
                           <br>
-<span><%= @user.full_name %>, руководитель вашей учебной группы в ADCONSULT Online — <%= @user.company.directors.first.full_name rescue nil %> — только что добавил в
+<span><%= @user.full_name %>, руководитель вашей учебной группы в <%= $env_mode.name_title %> — <%= @user.company.directors.first.full_name rescue nil %> — только что добавил в
   вашу личную учебную программу
-  новый курс:<br>
+  новый вебинар:<br>
 <br>
 <strong><%= @course.title %></strong><br>
 <br>
 Верим, что вы воспринимаете эту новость с трепетом, радостью и воодушевлением :)<br>
 <br>
-По решению вашего руководителя, вы должны пройти этот назначенный вам курс до:<br>
+<% if @bunch_course.date_complete.present?  %>
+По решению вашего руководителя, вы должны пройти этот назначенный вам вебинар до:<br>
 <br>
 <strong><%= (@bunch_course.date_complete + (User.time_zone).hour).strftime("%d.%m.%y") %></strong><br>
 <br>
 Так что, не теряйте времени зря!</span>
+<% end %>
                         </td>
                       </tr>
                       </tbody>

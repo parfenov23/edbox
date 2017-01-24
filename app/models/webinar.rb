@@ -180,12 +180,8 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRegUser(user, role='GUEST')
-    unless ligament_leads.where(user_id: user.id).present?
-      HomeMailer.reg_webinar(self, user).deliver
-    else
-      HomeMailer.reg_webinar_lead(self, user).deliver
-    end
-    # binding.pry
+    HomeMailer.reg_webinar_lead(self, user).deliver if ligament_leads.where(user_id: user.id).present?
+
     resp = postRegUser({
         email: user.email,
         name: user.first_name, 
