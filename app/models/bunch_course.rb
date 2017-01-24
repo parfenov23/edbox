@@ -155,7 +155,7 @@ class BunchCourse < ActiveRecord::Base
     bunch_course.date_complete = date_complete
     bunch_course.save
     if group_id.blank?
-      HomeMailer.reg_webinar(self, user).deliver if course.online?
+      HomeMailer.reg_webinar(course.first_webinar, user).deliver if course.online?
     else
       HomeMailer.reg_course_director(course, user, bunch_course).deliver
     end
