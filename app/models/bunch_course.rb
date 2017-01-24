@@ -69,7 +69,8 @@ class BunchCourse < ActiveRecord::Base
     bc_complete = complete rescue false
     hash = progress != 0 ? {v: "Пройдено на #{progress}%"} : (bc_type ? {v: 'Добавлен'} : {v: 'Назначен'})
     date = ApplicationController.helpers.time_current_day(date_complete) rescue 0
-    hash = {v: "Пройти до #{date_complete.strftime("%d.%m.%y")}"} if date_complete.present?
+    text_v = course.online? ? "Состоится" : "Пройти до"
+    hash = {v: "#{text_v} #{date_complete.strftime("%d.%m.%y")}"} if date_complete.present?
     if overdue? && !course.online?
       count_over = ApplicationController.helpers.rus_case(date.abs, 'день', 'дня', 'дней')
       hash = {k: 'overdue', v: "Просрочен на #{count_over}"}
