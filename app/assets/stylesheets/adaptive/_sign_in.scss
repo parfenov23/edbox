@@ -1,14 +1,27 @@
 body {
+  .index_reg{
+    .right_column{
+      display: none;
+    }
+  }
   .reg__wrp {
     padding : 0;
+    padding-top: calc(50% - 70px);
     form.reg__form {
       width         : 100%;
       margin-bottom : 16px;
-      .action__block{
-        .btn{
-          font-size: 10px;
+      padding: 24px 48px 24px 33px;
+      .action__block {
+        .btn {
+          font-size : 10px;
         }
       }
+    }
+  }
+  #formCourseRegPopUp {
+    .ugly__popup_inner {
+      left        : 0;
+      margin-left : 0;
     }
   }
 }

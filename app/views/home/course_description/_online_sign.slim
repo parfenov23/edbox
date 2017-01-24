@@ -1,7 +1,7 @@
 .btn_online_reg
   - if user.present? && course.available(user)
     - user_leads = webinar.ligament_leads.where(user_id: user.id).present?
-    - if webinar.in_progress? || user_leads || webinar.valid_time_start?
+    - if webinar.start? || user_leads || webinar.valid_time_start?
       - attachment = webinar.attachment
       - class_reg = []
       - class_reg += webinar.user_webinars.where(user_id: current_user.id).blank? ? ['js_eventRegUser'] : []

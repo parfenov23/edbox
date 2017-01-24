@@ -31,11 +31,11 @@
             - unless last_webinar.id == first_webinar.id
               - last_webinar_date = " — #{ltime(last_webinar.date_start, '', 'short_date', false)}"
             .webinar__day #{ltime(first_webinar.date_start, '', 'short_date', false)}#{last_webinar_date}
-            /.webinar__calendar
+            .webinar__calendar
               | Добавить в:
-              a href="#" iCal
-              |,
-              a href="#" Google Calendar
+              / a href="#" iCal
+              / |,
+              a href=google_calendar_url(first_webinar) target="_blank" Google Calendar
 
     .adaptive__title
       .left-col style="height: 56px;"

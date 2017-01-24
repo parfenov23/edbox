@@ -92,6 +92,9 @@ body {
             max-width : 128px;
             min-width : 128px;
           }
+          .upload__block {
+            margin-left : calc(50% - 128px / 2);
+          }
         }
         .data {
           width : 100%;
@@ -140,5 +143,8 @@ body {
         }
       }
     }
+  }
+  .pop_up_confirm.popup__img .inner.allgood .imgView {
+    width : 100%;
   }
 }

@@ -21,6 +21,17 @@ module ApplicationHelper
      "file" => "Материал для скачивания", "test" => "Тест", "online__course" => "Вебинар"}
   end
 
+  def google_calendar_url(webinar)
+    date_start = (webinar.date_start).strftime("%Y%m%dT%H%M%S")
+    date_end = (webinar.date_start + webinar.duration.minute).strftime("%Y%m%dT%H%M%S")
+    "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=#{webinar.course.title}" +
+    "&dates=#{date_start}Z/#{date_end}Z" +
+    "&details=#{strip_tags(webinar.course.description)}" +
+    "&location=#{$env_mode.name_title}" +
+    "&sprop=website:&pli=1&sf=true&output=xml"
+  end
+
   def ltime(time, add_text="", format='short_min', valid_translate=true)
     begin
       time_def = valid_translate ? local_time(time) : time

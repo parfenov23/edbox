@@ -1,19 +1,52 @@
 body {
   .presentation__block {
     height : 100%;
+    padding-top: 64px;
     .play__btn {
       display : none;
     }
   }
+  .webinar__teaser{
+    width: 100%;
+    left: 0;
+    top: 64px;
+    margin-left: 0;
+    min-height: 212px;
+    background: rgb(0, 0, 0);
+    .js_openHiddenList{
+      margin-top: 10px;
+    }
+  }
   .course__description-content {
     width : 100%;
+    margin-top: 0px;
+    .webinar__date{
+      width: 100%;
+      margin-left: 0;
+      padding: 4px;
+      .webinar__calendar{
+        width: 50%;
+      }
+    }
     .course__info {
+      ////////////////
       padding : 8px;
+      // теги в описании курса
       .adaptive__title{
+        display: block;
+        width: 100%;
         .left-col{
-          width: 70% !important;
+          display: inline-flex !important;
+          width: 100% !important;
+        }
+        .right-col{
+          white-space: initial;
+          .item{
+            margin-bottom: 12px;
+          }
         }
       }
+      /////////////////
     }
     .tizer__block {
       height  : 100%;

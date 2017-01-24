@@ -357,7 +357,7 @@ i {
 @import "contenter/icons_text";
 @import "vendor/bigbluebutton_rails";
 @import "vendor/owl.carousel";
-//@import "adaptive/adaptive";
+@import "adaptive/adaptive";
 .is__noScroll {
   overflow : hidden;
 }
@@ -381,6 +381,10 @@ i {
     font-size     : smaller;
     padding-left  : 10px;
   }
+}
+
+.js_goToProgramAttachment{
+  display: none;
 }
 
 .h__BC-green {

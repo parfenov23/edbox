@@ -11,13 +11,26 @@ body {
       }
     }
   }
+  .landing__inner {
+    .description {
+      font-size : 4vw;
+    }
+    .section__title {
+      font-size : 4.8vw;
+    }
+  }
+
   .landing__banner {
-    margin-top : 0;
-    height     : 419px;
+
+    margin-top      : 0;
+    background-size : cover;
+    padding-bottom  : 19px;
+    //height     : 419px;
     .landing__inner {
+      padding-bottom : 0px;
       .section__title {
         width : 100%;
-        zoom  : 80%;
+        //zoom  : 80%;
       }
       .action__block {
         .btn {
@@ -25,6 +38,7 @@ body {
         }
       }
       .banner__img {
+        display : none;
         iframe {
           top         : 6%;
           left        : 50%;
@@ -38,8 +52,26 @@ body {
       }
     }
   }
+  .landing__counter {
+    .landing__inner {
+      overflow : auto;
+      .counter {
+        padding-left : 16px;
+        .counter__circle {
+          width       : 64px;
+          height      : 64px;
+          font-size   : 24px;
+          padding-top : 16px;
+          margin-left : calc(50% - 32px);
+        }
+        .counter__title {
+          font-size : 14px;
+        }
+      }
+    }
+  }
   .landing__courses__list {
-    padding-top : 310px;
+    //padding-top : 310px;
     .section__title {
       width : 100%;
     }
@@ -108,7 +140,7 @@ body {
         }
         .action__block {
           .btn {
-            font-size : 10px;
+            font-size : 45%;
           }
 
         }
@@ -117,12 +149,19 @@ body {
   }
   .landing__compare__table {
     .landing__inner {
+      padding-bottom : 0;
       .content__block {
+        min-height : inherit;
         .description {
           width : 100%;
         }
         .compare__table {
-          zoom : 0.37;
+          display    : none;
+          width      : 100%;
+          overflow-y : auto;
+          _overflow  : auto;
+          margin     : 0 0 1em;
+          zoom       : 65%;
           //display : none;
           th .text__wrp {
             font-size : 10px;

@@ -15,14 +15,71 @@
 
   @import "groups"; // страница управление группой
   @import "payment"; // страница оплаты
-
+  .director__statistic{
+    width: 100%;
+  }
   header {
     transition-duration : 300ms;
     &.hide_header {
       top : -100px !important;
     }
-  }
+    .left-col {
+      .page__title {
+        width : 100%;
+        //max-width: 150px;
+        img {
+          display : none;
+        }
+      }
+      .page__children {
+        width    : 85%;
+        position : relative;
+        //left: 48px;
+        a {
+          overflow : visible !important;
+        }
+      }
+    }
+    &.landing__header {
+      .action__block {
+        width   : initial;
+        display : inline-block;
+      }
+    }
 
+  }
+  .footer{
+    a{
+      display: inline-block;
+    }
+  }
+  // popap с выбором тарифа
+  #formCourseRegPopUp, .popup_test_separator {
+    .last__chance {
+      width   : 100%;
+      padding : 4px;
+      .plane__list {
+        display : block;
+        .item {
+          padding-bottom : 4px;
+          .visibile__part {
+            width  : 100%;
+            height : 100%;
+          }
+        }
+      }
+      // попал на главной страницу
+      .popupRequestRegistration {
+        width : 100%;
+        .title {
+          font-size : 5vw;
+        }
+        .showInfo.auth_agree-link {
+          display : none;
+        }
+      }
+    }
+  }//конец попапа
   #alert {
     width  : 100%;
     bottom : 0px;
@@ -30,4 +87,15 @@
       font-size : 12px;
     }
   }
+
+  .left__aside-main-nav {
+    .info__block {
+      display : none;
+    }
+  }
+  //.help_notif .help_content {
+  //  width : 320px;
+  //}
+
+
 }

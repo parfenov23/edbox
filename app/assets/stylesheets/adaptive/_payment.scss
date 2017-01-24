@@ -5,19 +5,36 @@ body {
       .page__title {
         display : none;
       }
-      form.tarif__info.tariffPay {
+      // коментарий
+      .tarif__info {
         width : 100%;
         > .title {
           font-size : 18px;
         }
-        .description {
-          .company__name {
-            width       : 100%;
-            margin-left : 0;
+        ul.right {
+          float       : left;
+          margin-left : 0px;
+        }
+        .sum {
+          .qty {
+            font-size : 16px;
+          }
+          .title {
+            font-size : 14px;
           }
         }
+        .company__name {
+          width       : 100%;
+          margin-left : 0;
+          .com__input-item {
+            float : left;
+            width : 100%;
+          }
+        }
+
         .company__calc {
-          height : 100%;
+          padding-bottom : 14px;
+          height         : 100%;
           .title {
             font-size : 11px;
           }
@@ -43,11 +60,25 @@ body {
           }
           .qty__person {
             margin-right : 4px;
+            margin-left  : 15%;
             width        : auto;
           }
           .sum {
-            margin-right : 8px;
+            margin-right : 15%;
             width        : auto;
+            .qty {
+              span {
+                font-size : 16px;
+              }
+            }
+          }
+        }
+      }
+      .action__block.company__action {
+        .btn {
+          font-size : 44%;
+          &.btn-flat{
+            font-size : 100%;
           }
         }
       }
