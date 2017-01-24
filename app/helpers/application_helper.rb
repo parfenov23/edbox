@@ -58,7 +58,7 @@ module ApplicationHelper
 
   def time_current_day(time)
     end_time_day = time.utc.end_of_day
-    end_time_day_current = Time.now.utc.end_of_day
+    end_time_day_current = (Time.now + User.time_zone.hour).utc.end_of_day
     ((end_time_day - end_time_day_current).to_i / 60)/(24*60)
   end
 
