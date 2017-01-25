@@ -104,9 +104,9 @@ class Subscription < ActiveRecord::Base
   #   (difference + b.month - a.month).abs.round
   # end
   #
-  # def residue_day
-  #   (((date_to.end_of_day - Time.current.end_of_day).abs/ 60)/(24*60)).round
-  # end
+  def residue_day
+    (((date_to.end_of_day - Time.current.end_of_day).abs/ 60)/(24*60)).round
+  end
 
   # def self.default_all_month_and_price(type)
   #   arr_hash = []
