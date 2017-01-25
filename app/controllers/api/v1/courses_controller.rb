@@ -131,7 +131,7 @@ module Api::V1
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public, :type_course, :announcement_date).compact rescue {}
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :public, :type_course, :announcement_date, :download_url).compact rescue {}
     end
   end
 

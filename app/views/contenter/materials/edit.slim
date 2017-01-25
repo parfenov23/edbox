@@ -22,7 +22,6 @@
         .description
           textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание материала" name="course[description]" data-autoresize=""
             = course.description
-
       .itemDetailInfo.material_teaser
         - teaser = course.teaser
         - class_btn = teaser.present? ? "hide" : ""
@@ -125,3 +124,7 @@
           .addedTest.itemFile data-type="test" class=(attachment.file_type == "test" ? "attachmentShow" : "")
             - if attachment.test.present?
               = render "contenter/courses/program/test", {test: attachment.test}
+
+      .itemDetailInfo
+        .title style="padding-top: 20px;"
+          input.courseTitle.js_onChangeEditCourse.js_validateCourseTitle placeholder="Прямая ссылка на скачивание файла" name="course[download_url]" value=course.download_url

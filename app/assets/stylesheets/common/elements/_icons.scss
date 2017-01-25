@@ -22,6 +22,12 @@ i.icon {
     }
   }
 
+  &.download {
+    &::before {
+      content : "\e933";
+    }
+  }
+
   &.add {
     &::before {
       content : "\e6fb";

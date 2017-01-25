@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119100324) do
+ActiveRecord::Schema.define(version: 20170125144600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20170119100324) do
     t.datetime "announcement_date"
     t.text     "og"
     t.boolean  "archive",           default: false
+    t.string   "download_url"
   end
 
   create_table "deliveries", force: true do |t|
