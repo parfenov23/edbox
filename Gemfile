@@ -6,6 +6,11 @@ gem 'pg', '0.18.3'
 gem 'activerecord-postgres-hstore'
 gem 'activejob'
 
+#========= Delay
+gem 'sidekiq'
+gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+#===============
+
 # gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'mechanize'

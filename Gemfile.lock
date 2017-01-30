@@ -15,6 +15,14 @@ GIT
       thin
 
 GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: 339c42e24f42d8d72173daae832b23504930f941
+  specs:
+    capistrano-sidekiq (0.10.0)
+      capistrano
+      sidekiq (>= 3.4)
+
+GIT
   remote: git://github.com/softeamco/active_merchant.git
   revision: 5079d9ce769b6f8f808f9d761aedd44cfbe45038
   specs:
@@ -342,6 +350,12 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    sidekiq (3.4.2)
+      celluloid (~> 0.16.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -446,6 +460,7 @@ DEPENDENCIES
   capistrano-bundler (~> 1.1)
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
+  capistrano-sidekiq!
   capistrano3-unicorn
   carrierwave
   coffee-rails
@@ -481,6 +496,7 @@ DEPENDENCIES
   russian
   sass-rails
   sdoc (~> 0.4.0)
+  sidekiq
   skylight
   slack-notifier
   slackistrano

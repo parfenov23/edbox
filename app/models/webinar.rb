@@ -210,16 +210,25 @@ class Webinar < ActiveRecord::Base
     find_users_webinar.destroy_all
   end
 
+  def self.soon_began_webinar(id)
+    webinar = Webinar.find(id)
+    webinar.user_webinars.each do |user_webinar|
+      user = user_webinar.user
+      HomeMailer.soon_began_webinar(user, webinar).deliver
+    end
+  end
+
   def create_job(date_time_start = (date_start - 5.minute))
-    WebinarMailJob.run(date_time_start, id)
+    jid = MailerWorker.perform_in(date_time_start, type: "soon_began_webinar", id: id)
+    update(jid: jid)
   end
 
   def job
-    WebinarMailJob.find(id)
+    MailerWorker.find_by_id(jid)
   end
 
   def remove_job
-    WebinarMailJob.remove(id)
+    MailerWorker.delete(jid)
   end
 
   def rebuild_job
