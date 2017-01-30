@@ -3,7 +3,6 @@ class MailerWorker
   sidekiq_options retry: false
 
   require 'sidekiq/api'
-  require 'pry'
 
   def perform(*arg)
     params = arg.first
