@@ -218,7 +218,7 @@ class Webinar < ActiveRecord::Base
     end
   end
 
-  def create_job(date_time_start = (date_start - 5.minute))
+  def create_job(date_time_start = (date_start - 15.minute))
     jid = MailerWorker.perform_in(date_time_start, type: "soon_began_webinar", id: id)
     update(jid: jid)
   end
