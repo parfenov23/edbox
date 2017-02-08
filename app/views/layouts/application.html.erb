@@ -15,6 +15,7 @@
   <link href="/assets/vendor/normalize.css" rel="stylesheet">
   <link href="/assets/application.css" rel="stylesheet">
   <link href="/assets/app.css" rel="stylesheet">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"  onerror="window.adBlock=true"></script>
   <%= render "layouts/head_og" %>
   <%= render "layouts/fb" %>
   <!--<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">-->
@@ -36,7 +37,7 @@
 <body class="࿕ <%= land_class %>" data-uri="<%= websocket_url %>" data-prod="<%= $env_mode.prod? %>">
 
 <%= yield %>
-
+<%= render "home/footer/ads" %>
 <%= render "common/notify_news_aside" %>
 <%= render "home/footer/footer" if page_footer %>
 
@@ -61,11 +62,13 @@
 <% end %>
 
 <%= render "layouts/pop_up_confirm" %>
-<%= render "layouts/yandex_metrika" if $env_mode.prod? %>
-<%= render "layouts/users_helper" if $env_mode.prod? %>
-<%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
-<%= render "layouts/help_notif_user" %>
-<%= render "layouts/mailru" %>
+<% if $env_mode.prod? %>
+  <%= render "layouts/yandex_metrika" %>
+  <%= render "layouts/users_helper" %>
+  <%= render "layouts/pixel/vkontakte_pixel" %>
+  <%= render "layouts/help_notif_user" %>
+  <%= render "layouts/mailru" %>
+<% end %>
 
 <input id="presentCurrentUser" type="hidden" value="<%= current_user.present? rescue false %>">
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">

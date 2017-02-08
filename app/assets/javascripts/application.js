@@ -22,6 +22,8 @@
 // require_tree ./websocket
 //= require_tree ./contenter
 
+window.adBlock = false
+
 var env_mode = function (type) {
     var input_type = $("#typeEnvModeCurrentServer").val();
     return (type == input_type)
