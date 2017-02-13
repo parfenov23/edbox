@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111213623) do
+ActiveRecord::Schema.define(version: 20170208181416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20170111213623) do
     t.string   "card_last_four"
     t.string   "card_type"
     t.string   "issuer_bank_country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ads", force: true do |t|
+    t.string   "type_ad"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -171,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170111213623) do
     t.datetime "announcement_date"
     t.text     "og"
     t.boolean  "archive",           default: false
+    t.string   "download_url"
   end
 
   create_table "deliveries", force: true do |t|
@@ -385,6 +393,7 @@ ActiveRecord::Schema.define(version: 20170111213623) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "participant_id"
+    t.datetime "date_entry"
   end
 
   create_table "users", force: true do |t|
@@ -423,6 +432,7 @@ ActiveRecord::Schema.define(version: 20170111213623) do
     t.string   "status"
     t.integer  "video_id"
     t.string   "url"
+    t.string   "jid"
   end
 
 end

@@ -282,6 +282,8 @@ class Course < ActiveRecord::Base
     result["categories"] = bunch_categories.map { |bc| {id: bc.category_id, name: bc.category.title} }
     # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result["ligament_groups"] = ligament_groups rescue nil
+    result["type_material"] = attachments.last.file_type if (material? || instrument?)
+    result["date_start"] = announcement_date
     if result_assigned
       bunch_course = find_bunch_course(user_id, ["group", "user"])
       result["bunch_course"] = bunch_course.transfer_to_json

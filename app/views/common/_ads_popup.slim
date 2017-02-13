@@ -1,0 +1,7 @@
+/.pop_up_confirm.is__active
+- ads = Ads.find_by_type_ad("popup")
+- if ads.present?
+  #ads_popup.pop_up_confirm
+    .inner.notice__popup.email__add
+      .title = raw ads.content
+    .close ×

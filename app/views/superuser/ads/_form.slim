@@ -1,0 +1,10 @@
+- action_url = "/superuser/ads/#{params[:id]}"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | Описание
+        textarea.form-control.description.js_includeTiny name="ads[content]" type="text"
+          = raw @ads.content
+    input type="hidden" name="_method" value="put"
+    input type="hidden" name="ads[id]" value="#{params[:id]}"
+    button.btn.btn-primary type="submit" Сохранить

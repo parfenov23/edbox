@@ -1,4 +1,6 @@
-.ads__footer
-  .ads__content
-    |Какойто текст
-  .close ×
+- ads = Ads.find_by_type_ad("bottom")
+- if ads.present?
+  .ads__footer
+    .ads__content
+      = raw ads.content
+    .close ×
