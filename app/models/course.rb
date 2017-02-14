@@ -303,6 +303,8 @@ class Course < ActiveRecord::Base
     # result["tags"] = bunch_tags.map { |bt| {id: bt.tag_id, name: bt.tag.title} }
     result_assigned = assigned?(user_id)
     result["assigned"] = result_assigned
+    result["type_material"] = attachments.last.file_type if (material? || instrument?)
+    result["date_start"] = (sections.attachments.webinars.last.date_start rescue nil) if online?
     if result_assigned
       bunch_course = find_bunch_course(user_id, ["group", "user"])
       if bunch_course.present?
