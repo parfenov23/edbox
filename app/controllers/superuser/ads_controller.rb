@@ -32,7 +32,7 @@ module Superuser
     end
 
     def params_model
-      params.require(:ads).permit(:content)
+      params.require(:ads).permit(:content, :title, :img, :href)
     end
 
   end

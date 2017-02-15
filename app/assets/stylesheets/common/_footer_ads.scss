@@ -1,6 +1,6 @@
 .ads__footer {
   height: 160px;
-  background-color: #ee8738;
+  background-color: #5B4141;
   border-radius: 2px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
   padding : 16px;
@@ -15,20 +15,74 @@
   .close{
     display: none;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font: 400 14px/1 'Roboto';
+    top: -8px;
+    right: -28px;
+    font: 300 42px/1 'Roboto';
     color: #FFF;
     cursor: pointer;
   }
+  .ads__content{
+    display: flex;
+    max-width: 1020px;
+    margin: 0 auto;
+    .image{
+      width: 170px;
+      height: 128px;
+      display: inline-block;
+      img{
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+    .info{
+      position: relative;
+      display: inline-block;
+      max-width: 764px;
+      padding: 0px 6px 0px 24px;
+      color: white;
+      .title{
+        font-size: 24px;
+        padding-bottom: 12px;
+      }
+      .btn{
+        margin-top: 12px;
+        width: 112px;
+        float: right;
+      }
+    }
+    @import "common/elements/loader";
+  }
 }
 #ads_popup{
+  .inner{
+    padding: 52px 24px 36px 24px;
+    background: #5B4141;
+    color: white;
+    text-align: center;
+    .title{
+      color: white;
+      font-size: 24px;
+    }
+    .description{
+      margin-bottom: 24px;
+    }
+    @import "common/elements/loader";
+    .cssload-container{
+      top: 8px;
+      right: 16px;
+    }
+    .btn{
+      width: 150px;
+      margin: 0 auto;
+    }
+  }
   .close{
     display: none;
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font: 400 40px/1 'Roboto';
+    top: 3px;
+    right: 22px;
+    font: 300 42px/1 'Roboto';
     color: #FFF;
     cursor: pointer;
   }

@@ -61,11 +61,11 @@ function fixed_btn_save() {
         var block_action_normal = function () {
             block.css("height", "");
             block_action.css("position", "").css("top", "")
-                .css("bottom", "")
-                .removeClass("fixed_bot")
-                .removeClass("absolute_top")
-                .css("z-index", "")
-                .css("width", "");
+            .css("bottom", "")
+            .removeClass("fixed_bot")
+            .removeClass("absolute_top")
+            .css("z-index", "")
+            .css("width", "");
 
         };
 
@@ -73,20 +73,20 @@ function fixed_btn_save() {
             block_action.css("position", "relative");
             block_height = block.outerHeight();
             block_action
-                .css("top", ((0 - (block_height - block_action_height) ) + header_height) + "px")
-                .css("bottom", "")
-                .css("z-index", "10")
-                .css("width", block.outerWidth())
+            .css("top", ((0 - (block_height - block_action_height) ) + header_height) + "px")
+            .css("bottom", "")
+            .css("z-index", "10")
+            .css("width", block.outerWidth())
         };
 
         var block_action_position_fixed = function () {
             block.css("height", block_height + "px");
             block_action.css("position", "fixed")
-                .css("top", "")
-                .css("bottom", "0px")
-                .css("z-index", "10")
-                .css("margin-left", "-24px")
-                .css("width", block.outerWidth())
+            .css("top", "")
+            .css("bottom", "0px")
+            .css("z-index", "10")
+            .css("margin-left", "-24px")
+            .css("width", block.outerWidth())
         };
 
         if (view_action_top + 5 >= 0 && (view_action_top - block_action_height) <= 0){
@@ -186,6 +186,14 @@ var validRegClickOfert = function () {
 };
 
 $(document).ready(function () {
+    if ($(".js_FormAuth").length){
+        $(document).keypress(function(e){
+            if (e.which == 13){
+                $(".js_FormAuth .action__block #submit").click();
+            }
+        });
+    }
+
     $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function () {
         var valPass = checkPassword($(this).val());
         $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0]);

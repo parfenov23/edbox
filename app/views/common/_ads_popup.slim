@@ -3,5 +3,10 @@
 - if ads.present?
   #ads_popup.pop_up_confirm
     .inner.notice__popup.email__add
-      .title = raw ads.content
-    .close ×
+      .title = ads.title
+      .description = ads.content
+      a.btn.is__blue href=ads.href Подробнее
+      .cssload-container
+        .cssload-speeding-wheel
+        .time 5
+      .close ×

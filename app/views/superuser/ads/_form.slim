@@ -2,9 +2,23 @@
 form.form-horizontal action="#{action_url}" method="post"
     .form-group
         label
+            | url картинки
+        input.form-control name="ads[img]" type="text" value=@ads.img
+    .form-group
+        label
+            | Заголовок
+        input.form-control name="ads[title]" type="text" value=@ads.title
+    .form-group
+        label
             | Описание
-        textarea.form-control.description.js_includeTiny name="ads[content]" type="text"
-          = raw @ads.content
+        textarea.form-control.description name="ads[content]" type="text"
+          = @ads.content
+
+    .form-group
+        label
+            | Ссылка
+        input.form-control name="ads[href]" type="text" value=@ads.href
+
     input type="hidden" name="_method" value="put"
     input type="hidden" name="ads[id]" value="#{params[:id]}"
     button.btn.btn-primary type="submit" Сохранить
