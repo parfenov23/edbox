@@ -55,8 +55,8 @@ var eventRegUser = function () {
         }).success(function () {
             if (btn.data('alert') != false){
                 var tsucces = "Вебинар начнется " + btn.closest('form').find('.title').text() + ", мы уведомим вас за 3 часа, " +
-                    "а так же за 5 минут до начала вебинара на электронную почту " +
-                    $('.menu__user .login').text();
+                "а так же за 5 минут до начала вебинара на электронную почту " +
+                $('.menu__user .login').text();
                 warning(tsucces, 'OK');
                 $('.js_actionYesStart').on('click', function () {window.location.reload()});
             } else {
@@ -95,6 +95,25 @@ goToWebinar = function(){
     }
 };
 
+var first_enter_material = function(){
+    var time = new Date();
+    var first_time = $.session.get("first_enter_material");
+    if (new Date(first_time) == "Invalid Date"){
+        $.session.set("first_enter_material", time);
+    }
+    setTimeout(function(){
+        $("#registration_popup").css("display", "flex");
+        pause_video_vimeo();
+    }, (2 - reside_last_date_close_ads("first_enter_material"))*1000*60 );
+    
+}
+
+var pause_video_vimeo = function(){
+    var iframe = $('iframe')[0];
+    var player = new Vimeo.Player(iframe);
+    player.pause();
+}
+
 pageLoad(function () {
     $(document).on('click', '.js_eventCreate', eventCreate);
     $(document).on('click', '.js_eventStart', eventStart);
@@ -102,4 +121,5 @@ pageLoad(function () {
     $(document).on('click', '.js_eventRegUser', eventRegUser);
     $(document).on('click', '.js_eventUnRegUser', eventUnRegUser);
     if ($(".webinar_attachment").length) goToWebinar();
+    if ( $("#attachmentCourseProgram").length && $("#presentCurrentUser").val() == "false") first_enter_material();
 });

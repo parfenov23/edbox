@@ -4,7 +4,7 @@ class HomeController < ActionController::Base
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
                                      :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
-                                     :course_cert, :instrument, :courses_rss]
+                                     :course_cert, :instrument, :courses_rss, :attachment]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
@@ -54,16 +54,16 @@ class HomeController < ActionController::Base
     if @attachment.present?
       @section = @attachment.attachmentable rescue nil
       @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
-      unless (@course.material? rescue false)
+      # unless (@course.material? rescue false)
         valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
-        valid_redirect = current_user.present? ? valid_added : @attachment.public
+        # valid_redirect = current_user.present? ? valid_added : @attachment.public
         course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
-        unless @attachment.present? && valid_redirect || course_leading
+        unless @attachment.present? || course_leading
           redirect_to "/"
         end
-      else
-        redirect_to "/course_no_reg/#{@course.id}" if current_user.blank? && !@attachment.public
-      end
+      # else
+      #   redirect_to "/course_no_reg/#{@course.id}" if current_user.blank? && !@attachment.public
+      # end
     else
       redirect_to "/"
     end

@@ -57,10 +57,6 @@
     <%= render "common/popup_request/request" %>
 <% end %>
 
-<% if params[:action] != "sign_up" && @block_registr != false %>
-    <%= render "home/course_description/registration_webinar" %>
-<% end %>
-
 <%= render "layouts/pop_up_confirm" %>
 <% if $env_mode.prod? %>
   <%= render "layouts/yandex_metrika" %>

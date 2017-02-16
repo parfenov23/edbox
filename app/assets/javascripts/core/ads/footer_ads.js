@@ -7,14 +7,14 @@ var time_show_close_footer_ads = function(){
 var func_ads_press = function(){
   if (ads_footer_is_visible()){
     var px = view_px_block($("footer"));
-    var error_px = 20;
+    var error_px = 83;
     if ($(window).width() <= 800 ) error_px = 80;
     if (px + error_px >= 0) {
       $(".ads__footer").removeClass("fixed_bottom");
       $("footer").css({'margin-top': '0px'});
     }else{
       $(".ads__footer").addClass("fixed_bottom");
-      $("footer").css({'margin-top': '160px'});
+      $("footer").css({'margin-top': $(".ads__footer").outerHeight()+"px"});
     }
   }
 }

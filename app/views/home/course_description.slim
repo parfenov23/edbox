@@ -92,8 +92,8 @@
           - natt = 0
           - if bunch_course.present?
             - bunch_section = all_sections.where(section_id: section.id).last
-          - add_class_section = !current_user.present? ? (section.attachments.where(public: true).present? ? "" : "is__shot") : ""
-          .programm__block class=add_class_section
+          / - add_class_section = !current_user.present? ? (section.attachments.where(public: true).present? ? "" : "is__shot") : ""
+          .programm__block
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if (current_user.director? rescue false)
@@ -125,10 +125,10 @@
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                - class_add_course = (!current_user.present? && attachment.public) ? "js_goToAttachment" : " "
+                - class_add_course = "js_goToAttachment "
                 - if current_user.present? && current_user.view_course?(@course) && !attachment.announcement?
-                  - redirect_att = "/attachment?id=#{attachment.id}"
                   - class_add_course += "js_addCourseToMyCourse"
+                - redirect_att = "/attachment?id=#{attachment.id}"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
