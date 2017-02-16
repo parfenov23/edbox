@@ -33,7 +33,9 @@ var ads_footer_hide = function(){
   $(".ads__footer").hide();
   $("footer").css({'margin-top': '0'});
   $(".ads__footer .close").hide();
-  auto_start_ads_footer();
+  setTimeout(function(){
+    auto_start_ads_footer();
+  }, 5000);
 }
 
 var reside_last_date_close_ads = function(type){
