@@ -19,6 +19,7 @@ var func_ads_press = function(){
     }
   }
 }
+///
 
 var fixed_bottom_ads = function(){
   $( window ).scroll(function() {
@@ -86,13 +87,11 @@ var auto_start_ads_footer = function(){
 }
 
 pageLoad(function () {
-
   if (reside_last_date_close_ads("ads_footer_close") >= max_time_ads_footer){
     start_ads();
   }else{
     auto_start_ads_footer();
   }
-
 
   $(document).on('click', '.ads__footer .close', ads_footer_hide);
 });
