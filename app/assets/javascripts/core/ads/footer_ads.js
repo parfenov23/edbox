@@ -4,6 +4,7 @@ var time_show_close_footer_ads = function(){
   return 5000;
 };
 
+// фиксирование рекламного блока
 var func_ads_press = function(){
   if (ads_footer_is_visible()){
     var px = view_px_block($("footer"));
