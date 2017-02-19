@@ -29,17 +29,14 @@ var fixed_bottom_ads = function(){
 
 var ads_footer_hide = function(){
   var time = new Date();
-  $.session.set("ads_footer_close", time);
+  $.cookie("ads_footer_close", time);
   $(".ads__footer").hide();
   $("footer").css({'margin-top': '0'});
   $(".ads__footer .close").hide();
-  setTimeout(function(){
-    auto_start_ads_footer();
-  }, 5000);
 }
 
 var reside_last_date_close_ads = function(type){
-  var last_date_string = $.session.get(type);
+  var last_date_string = $.cookie(type);
   var reside = 0;
   if (last_date_string != undefined){
     if (type == "ads_footer_close") max_time_ads_footer = 5;
@@ -82,7 +79,8 @@ var start_ads = function(){
 
 var auto_start_ads_footer = function(){
   $(".ads__footer").hide();
-  var reside_start = (max_time_ads_footer*60000) - (reside_last_date_close_ads("ads_footer_close")*60000);
+  var last_reside = reside_last_date_close_ads("ads_footer_close")*60000;
+  var reside_start = ((max_time_ads_footer*60000) - last_reside);
   setTimeout(function(){
     start_ads();
   }, reside_start);

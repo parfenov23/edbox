@@ -193,6 +193,7 @@ Rails.application.routes.draw do
         end
         member do
           get :info
+          get :attachments
           post :add_tag
           post :add_category
           post :update_teaser_material
