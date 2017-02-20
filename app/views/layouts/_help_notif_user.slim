@@ -1,0 +1,12 @@
+.overflowContentHelp
+- show_help = current_link == "/courses" ? (current_user.help rescue false).to_s : "false"
+.help_notif data-user=(current_user.present? rescue false).to_s data-show=show_help
+  .help_content
+    .title
+      = $env_mode.name_title
+    .main_content
+      |Привет
+    .close_help
+      |ПРОПУСТИТЬ РАССКАЗ
+    .next_btn
+      |Продолжить

@@ -13,7 +13,10 @@
                                               groups_count_valid: groups_count_valid,
                                               ligament_count_valid: ligament_count_valid,
                                               bunch_count_valid: bunch_count_valid}
-    = render 'home/cabinet/all_courses'
+    .actual-courses
+      = render 'home/cabinet/all_courses'
+      = render "home/user_public/my_sert", {user: current_user}
+
 /= render "home/cabinet/schedule"
 /#js-schedule-cabinet.courses-aside.schedule-cabinet
 /= render "home/courses/favorite", {favorite_courses: @favorite_courses}

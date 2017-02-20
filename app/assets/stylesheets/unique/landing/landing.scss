@@ -45,6 +45,7 @@
     @include text__setting(header__typo_3);
     text-align  : center;
     font-weight : 300;
+    font-size   : 32px;
     &.is__white {
       color : #FFF;
     }
@@ -57,7 +58,7 @@
   padding-top    : 64px;
   padding-bottom : 19px;
   .section__title {
-    @include middle-block(683px);
+    @include middle-block(686px);
     margin-bottom : 32px;
   }
   .action__block {
@@ -84,13 +85,15 @@
     margin-bottom : 24px;
     position      : relative;
     img {
-      width : 100%;
+      left     : -21px;
+      position : relative;
+      width    : 100%;
     }
     iframe {
       position    : absolute;
       top         : 21px;
       left        : 50%;
-      margin-left : -176px;
+      margin-left : -197px;
       height      : 250px;
       width       : 398px;
 
@@ -101,6 +104,42 @@
     @include middle-block(770px);
     text-align : center;
   }
+}
+
+.landing__counter {
+  padding-top      : 32px;
+  background-color : #5B4141;
+  color            : $primaryColor;
+  .landing__inner {
+    display                 : -webkit-box;
+    display                 : -webkit-flex;
+    display                 : -ms-flexbox;
+    display                 : flex;
+    -webkit-box-pack        : justify;
+    -webkit-justify-content : space-between;
+    -ms-flex-pack           : justify;
+    justify-content         : space-between;
+    padding-bottom          : 48px;
+    padding-top             : 16px;
+  }
+  .counter {
+    width      : 188px;
+    text-align : center;
+    .counter__circle {
+      width         : 124px;
+      height        : 124px;
+      border-radius : 50%;
+      border        : 2px solid $primaryColor;
+      margin-left   : calc(50% - 62px);
+      font-size     : 48px;
+      padding-top   : calc(50% - 62px);
+    }
+    .counter__title {
+      font-size   : 20px;
+      padding-top : 8px;
+    }
+  }
+
 }
 
 .landing__courses__list {
@@ -115,7 +154,7 @@
     figure {
       float  : left;
       margin : 0 24px 32px 0;
-      &:nth-child(3n) {
+      &:nth-child(3n-2) {
         margin-right : 0;
       }
     }
@@ -236,7 +275,7 @@
     .landing__banner .banner__img iframe {
       top         : 19px;
       left        : 50%;
-      margin-left : -159px;
+      margin-left : -180px;
       height      : 227px;
       width       : 361px;
     }

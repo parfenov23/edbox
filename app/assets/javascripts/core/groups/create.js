@@ -12,7 +12,7 @@ var addGroup = function (btn) {
             show_error('Группа создана', 3000);
             closePopupFormGroup();
             setTimeout(function () {
-                window.location.href = "/group?id=" + data.id
+                window.location.href = "/group/" + data.id
             }, 500)
         }).error(function () {
             show_error('Произошла ошибка', 3000);

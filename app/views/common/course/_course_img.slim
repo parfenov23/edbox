@@ -1,6 +1,6 @@
-.image class=(course.material? ? "material" : "")
+.image class=(course.material? || course.instrument? ? "material" : "")
   .fade
-  - unless course.material?
+  - unless course.material? || course.instrument?
     img src = course.get_image_path(w, h)
   - else
     - bunch_course = course.find_bunch_course(current_user.id, ["group", "user"])
@@ -19,4 +19,4 @@
     - else
       .tegs.h__BC-green #{progress}%
   - else
-    .tegs.h__BC-blue Пройденно
+    .tegs.h__BC-blue Пройдено

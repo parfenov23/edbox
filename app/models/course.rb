@@ -1,5 +1,6 @@
 require 'resize_image'
 class Course < ActiveRecord::Base
+  serialize :og, ActiveRecord::Coders::Hstore
   has_many :sections, dependent: :destroy
   has_many :bunch_courses, dependent: :destroy
   has_many :favorite_courses, dependent: :destroy
@@ -18,6 +19,7 @@ class Course < ActiveRecord::Base
   scope :webinars, -> { where(type_course: "online") }
   scope :announcement, -> { joins(sections: [:attachments]).where({"attachments.file_type" => "announcement"}) }
   default_scope { order("created_at DESC") }
+  default_scope { where(archive: false) }
   USERID_TOJSON = nil
 
   before_update :do_webinar, :if => :public
@@ -38,6 +40,13 @@ class Course < ActiveRecord::Base
 
   def audiences
     bunch_courses.map(&:user_id).uniq.count
+  end
+
+  def og_all
+    img = (course? || online? ? get_image_path : teaser.attachment.file.url) rescue '/images/title_img.png'
+    og.merge!({"title" => title}) if og["title"].blank?
+    og.merge!({"description" => description}) if og["description"].blank?
+    og.merge!({"img" => img}).compact
   end
 
   def announcement
@@ -65,7 +74,7 @@ class Course < ActiveRecord::Base
   end
 
   def description_validate
-    title.present? && description.present? && bunch_categories.present?
+    title.present? && description.present? # && bunch_categories.present?
   end
 
   def program_validate
@@ -113,12 +122,26 @@ class Course < ActiveRecord::Base
     sections.attachments.webinars.order("date_start ASC").last.date_start.end_of_day
   end
 
+  def first_webinar
+    all_webinars = sections.attachments.webinars
+    first_time = Time.now.utc - (all_webinars.map(&:duration).max).minute
+    all_webinars.start_close(first_time).first
+  end
+
   def material?
     type_course == "material"
   end
 
+  def instrument?
+    type_course == "instrument"
+  end
+
   def online?
     type_course == "online"
+  end
+
+  def course?
+    type_course == "course"
   end
 
   def leading?(user_id)

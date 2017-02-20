@@ -1,0 +1,23 @@
+body{
+  #attachmentCourseProgram{
+    .inner-content{
+      #course{
+        width: 100%;
+      }
+    }
+  }
+  form#tests{
+    width: 100%;
+    .test-info{
+      padding: 4px;
+      .title{
+        padding-right: 0;
+      }
+    }
+    .test-list{
+      .test-item{
+        width: 100%;
+      }
+    }
+  }
+}

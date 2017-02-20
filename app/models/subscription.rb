@@ -30,7 +30,7 @@ class Subscription < ActiveRecord::Base
     end
     (params[:type_account] == "company" ? (user.director = true) : nil) if params[:type_account].present?
     if user.director? && user.company.blank?
-      company = Company.build({name: params[:company_name]})
+      company = Company.build({name: params[:company_name], phone: params[:company_phone]})
       company.save
       user.company = company
       user.corporate = true

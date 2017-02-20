@@ -1,0 +1,11 @@
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/coupons/new"  Добавить купон
+  - @coupons.each do |coupon|
+    .list-group-item.col-md-6
+      span
+        = coupon.title
+      a.btn.btn-danger.pull-right href="/superuser/coupons/#{coupon.id}/remove" data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/coupons/#{coupon.id}/edit" style="margin-right: 5px;"
+        = btn_edit

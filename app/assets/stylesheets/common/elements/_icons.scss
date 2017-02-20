@@ -9,9 +9,16 @@ i.icon {
       content : "\E8DE";
     }
   }
+
   &.back {
     &::before {
       content : "\e893";
+    }
+  }
+
+  &.reload {
+    &::before {
+      content : "\e90c";
     }
   }
 
@@ -24,6 +31,11 @@ i.icon {
   &.courses {
     &::before {
       content : "\E6B2";
+    }
+  }
+  &.new_courses {
+    &::before {
+      content : "\e908";
     }
   }
 
@@ -222,7 +234,7 @@ i.icon {
 
   &.dropdown {
     &::before {
-      content : "\E7B4"
+      content : "\1f322"
     }
   }
 
@@ -300,40 +312,62 @@ i.icon {
 
   &.vk {
     &::before {
-      content : "\e906";
+      content : "\e913";
+    }
+    &.square {
+      &::before {
+        content : "\e909";
+        color   : #6383A8;
+      }
     }
   }
   &.rss {
     &::before {
-      content : "\e900";
+      content : "\e903";
     }
   }
   &.fb {
     &::before {
-      content : "\e901";
+      content : "\e904";
+    }
+    &.square {
+      &::before {
+        content : "\e90a";
+        color   : #365899;
+      }
     }
   }
   &.youtube {
-    &::before {
-      content : "\e902";
-    }
-  }
-
-  &.in {
-    &::before {
-      content : "\e903";
-    }
-  }
-  &.gplus {
-    &::before {
-      content : "\e904";
-    }
-  }
-  &.twitter {
     &::before {
       content : "\e905";
     }
   }
 
+  &.in {
+    &::before {
+      content : "\e906";
+    }
+  }
+  &.gplus {
+    &::before {
+      content : "\e907";
+    }
+    &.square {
+      &::before {
+        content : "\e90b";
+        color   : #656564;
+      }
+    }
+  }
+  &.twitter {
+    &::before {
+      content : "\e912";
+    }
+  }
+  &.insta {
+    &::before {
+      content : "\e914";
+    }
+  }
 
 }

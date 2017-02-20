@@ -23,10 +23,18 @@ module Api::V1
       render resp
     end
 
+    def order_bill
+      ['adconsult@mail.amocrm.ru', 'roman.pivovarov@gmail.com', 'bataline@gmail.com', 'corporateonline@robot.zapier.com'].each do |email|
+        HomeMailer.order_bill(email, params, current_user).deliver
+      end
+      render json: {success: true}
+    end
+
     def purchase
       subscription = create_subscription(params)
       amount = params[:sum]
       account = current_user.accounts.first
+      current_user.update({social: current_user.social.merge({phone: params[:phone]})})
       result = false
       if account.present?
         options = {
@@ -62,6 +70,10 @@ module Api::V1
       render html: "<script> var resp = #{@response.to_json.html_safe};parent.window.showMessage(resp);</script>".html_safe
     end
 
+    def find_coupon
+      render json: (BillingCoupon.where(title: params[:coupon]).last.to_json rescue {})
+    end
+
     private
 
     def success_transaction(result)
@@ -82,7 +94,7 @@ module Api::V1
       user = User.where(email: params_sub[:email]).last
       user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
       subscription = Subscription.build(params_sub)
-      #subscription.active = true
+      subscription.active = true
       subscription.save
       subscription
     end

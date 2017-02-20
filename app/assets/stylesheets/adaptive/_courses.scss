@@ -1,0 +1,40 @@
+body {
+  header{
+    .left-col{
+      overflow-x: auto !important;
+    }
+  }
+  .inner-content {
+    .category__filter_list {
+      width : 100%;
+    }
+    .content-courses#courses {
+      width        : 100%;
+      padding-left : 8px;
+      @media only screen and (max-width : 360px) {
+        padding-left : 4px;
+        figure.basic__module {
+          width  : 310px;
+          height : 327px;
+          .image {
+            width  : 310px;
+            height : 175px;
+          }
+          figcaption {
+            width : 310px;
+            .adaptive__title {
+              width        : 310px;
+              margin-right : 0px;
+              .left-col {
+                width : initial !important;
+              }
+            }
+            .info__block .time__date {
+              width : 55%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

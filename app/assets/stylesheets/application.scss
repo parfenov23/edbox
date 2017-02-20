@@ -314,6 +314,7 @@ i {
 @import "common/elements/right__aside";
 @import "common/elements/adaptive_title";
 @import "common/elements/adaptive_popup";
+@import "common/elements/popup_img";
 @import "common/elements/directors_btn";
 @import "common/elements/welcome_scenario";
 @import "common/elements/multi__action";
@@ -321,6 +322,7 @@ i {
 @import "common/elements/action__menu";
 @import "common/elements/common__help_btn";
 @import "common/elements/ava";
+@import "common/elements/help_notif_user";
 @import "common/footer";
 @import "common/form_add_card";
 
@@ -334,6 +336,7 @@ i {
 @import "unique/auth/auth";
 // @import "unique/notes/notes";
 @import "unique/profile/profile";
+@import "unique/profile/user";
 @import "unique/referal/referal";
 @import "unique/members/members";
 @import "unique/cabinet/cabinet";
@@ -357,7 +360,7 @@ i {
 @import "contenter/icons_text";
 @import "vendor/bigbluebutton_rails";
 @import "vendor/owl.carousel";
-
+//@import "adaptive/adaptive";
 .is__noScroll {
   overflow: hidden;
 }

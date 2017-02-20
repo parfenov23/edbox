@@ -1,0 +1,53 @@
+.pop_up_confirm.popup__img {
+  .inner.allgood {
+    position       : relative;
+    display        : inline-block;
+    vertical-align : middle;
+    margin         : 0 auto;
+    text-align     : left;
+    max-width      : 100%;
+    padding        : 0;
+    width          : initial;
+    .imgView {
+      width      : auto;
+      height     : auto;
+      display    : block;
+      max-height : 600px;
+    }
+    //.pluso {
+    //  position : absolute;
+    //  top      : 0;
+    //}
+    .title {
+      padding          : 12px 48px;
+      margin-bottom    : 0;
+      background-color : #EE8738;
+      color            : white;
+      p {
+        line-height : 18px;
+        padding-top : 4px;
+        font-size   : 14px;
+        font-weight : 200;
+        width       : 746px;
+      }
+    }
+    .shareBtn {
+      width         : 100%;
+      padding       : 16px;
+      background    : #473332;
+      border-radius : 0;
+      color         : white;
+      .pluso-wrap {
+        .pluso-more {
+          display : none !important;
+        }
+      }
+      .textShare {
+        position  : relative;
+        top       : -10px;
+        margin    : 5px 12px;
+        font-size : 18px;
+      }
+    }
+  }
+}

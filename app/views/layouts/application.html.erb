@@ -7,30 +7,17 @@
   </title>
   <%= render "layouts/favicon" %>
   <%= javascript_include_tag 'application' %>
-  <meta property="og:image" content="/images/title_img.png"/>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+  <% if @og.blank? %>
+      <meta property="og:image" content="/images/title_img.png"/>
+  <% end %>
   <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=latin,cyrillic" rel="stylesheet">
   <link href="/assets/vendor/normalize.css" rel="stylesheet">
   <link href="/assets/application.css" rel="stylesheet">
   <link href="/assets/app.css" rel="stylesheet">
+  <%= render "layouts/head_og" %>
   <!--<link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">-->
   <!--<script src="//vjs.zencdn.net/4.12/video.js"></script>-->
-  <% if $env_mode.prod? %>
-      <%= render "layouts/pixel/facebook_pixel" %>
-      <%= render "layouts/users_helper" %>
-      <% unless current_page?("/") %>
-          <script type="text/javascript">
-              (function (w, d, s, u, h, a, m) {
-                  w[h] = w[h] || function () {(w[h].q = w[h].q || []).push(arguments)};
-                  a = d.createElement(s), m = d.getElementsByTagName(s)[0];
-                  a.async = 1;
-                  a.src = u;
-                  a.charset = 'utf-8';
-                  m.parentNode.insertBefore(a, m)
-              })(window, document, 'script', '//hintarea.com/hint.js', '_hintArea');
-              _hintArea("start");
-          </script>
-      <% end %>
-  <% end %>
 </head>
 
 <% if params[:dev] == "true" %>
@@ -64,10 +51,6 @@
 
 <%= render "layouts/notification" %>
 
-<% if ((!current_user.present? || !current_user.view_course?(@course)) rescue true) %>
-    <%= render "common/popup_request/request" %>
-<% end %>
-
 <% if params[:action] != "sign_up" && @block_registr != false %>
     <%= render "home/course_description/registration_webinar" %>
 <% end %>
@@ -75,7 +58,12 @@
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
+<%= render "layouts/help_notif_user" %>
 
+<input id="presentCurrentUser" type="hidden" value="<%= current_user.present? rescue false %>">
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
+<input id="typeEnvModeCurrentDomain" type="hidden" value="<%= $env_mode.current_domain %>">
+<script>
+</script>
 </body>
 </html>

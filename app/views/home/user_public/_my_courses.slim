@@ -1,0 +1,8 @@
+.carusel-wrp
+  .title Курсы которые изучает #{@user.first_name}
+  .info-box
+    .course-prev-list
+      - my_bunch_courses = @user.bunch_courses.my
+      - my_bunch_courses.each do |my_bunch_course|
+        - course = my_bunch_course.course
+        = render "course/course", {course: course, type: "short__ver", model_type: "user", action_block: false}

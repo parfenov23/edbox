@@ -7,67 +7,70 @@
 
   .action__block
     .btn.btn-flat.is__blue.js_removeUserToGroup data-id="#{@group.id}" УДАЛИТЬ
-- count_members = @group.bunch_groups.count
-- text_title = "Не добавлено ни одного пользователя"
-- text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
-.members__title.h__text_15-24 
-  span = text_title
-  /.upgrade__tarif
-  /  a.btn.btn-flat ИЗМЕНИТЬ ТАРИФ
-    
-- count_residue_users = current_user.company.residue_users
-- if current_user.director? && count_residue_users <= 0
-  .tarif__is_full
-    span Вы пригласили максимальное количество пользователей согласно вашему тарифу
-    /.btn.is__blue ИЗМЕНИТЬ ТАРИФ
-    
-- if current_user.director
-  .container
-    .members.ingroups
-      .members__invite
-        ul.invited
-        form.form
-          input.input.searchMember type="text" placeholder="Введите адрес эллектронной почты сотрудника через пробел и нажмите «Отправить»"
-          .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
-            .qty__left
-              'Осталось
-              span.count_residue_users data-count=count_residue_users 10 приглашений
-            .tooltip.is__bottom Отправить приглашение пользователям
+.container
+  h3.label__name Участники группы
+  .container-inner
+    - count_members = @group.bunch_groups.count
+    - text_title = "Не добавлено ни одного пользователя"
+    - text_title = "Добавлено #{rus_case(count_members, 'пользователь', 'пользователя', 'пользователей')}" if count_members > 0
+    .members__title.h__text_15-24
+      span = text_title
+      /.upgrade__tarif
+      /  a.btn.btn-flat ИЗМЕНИТЬ ТАРИФ
 
-      ul.members__in_system.director style="display:none;"
-        - @members.each do |member|
-          li.members__in_system-item.js_addSearchMember.noHeaderOpen data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
-            .ava.icon
-              img src=default_img(member.avatar)
-            .name.h__text_15-24 = member.full_name
-            .email.h__text_15-24 = member.email
+    - count_residue_users = current_user.company.residue_users
+    - if current_user.director? && count_residue_users <= 0
+      .tarif__is_full
+        span Вы пригласили максимальное количество пользователей согласно вашему тарифу
+        /.btn.is__blue ИЗМЕНИТЬ ТАРИФ
 
-.container.members
-  - bunch_groups = @group.bunch_groups
-  - if bunch_groups.present?
-    ul.members__in_system class="#{current_user.director ? 'director' : ''}"
-      - bunch_groups.each do |bunch_group|
-        - member = bunch_group.user
-        li.members__in_system-item.js_clickItemMember data-id="#{member.id}" class=(current_user.director? ? '' : 'noHeaderOpen')
-          .ava.icon
-            img src=default_img(member.avatar)
-          .name.h__text_15-24  = member.full_name
-          .email.h__text_15-24  = member.email
-          .status
-            - all_group_course_member = member.bunch_courses.where(group_id: @group.id)
-            ul.tooltip__list
-              - overdue_courses = all_group_course_member.overdue
-              - all_group_course_member.each do |bunch_course|
-                - course = bunch_course.course
-                - hash_style = overdue_courses.where(id: bunch_course.id).present? ? {style: "color: red;"} : {}
-                li.h__text_16-12 *hash_style
-                  = course.title
+    - if current_user.director
+      .container
+        .members.ingroups
+          .members__invite
+            ul.invited
+            form.form
+              input.input.searchMember type="text" placeholder="Введите адреса электронной почты через пробел и нажмите «Отправить»"
+              .js__tooltip.plane.js_inviteUserGroup data-group_id="#{@group.id}"
+                .qty__left
+                  'Осталось
+                  span.count_residue_users data-count=count_residue_users 10 приглашений
+                .tooltip.is__bottom Отправить приглашение пользователям
 
-            // .overdue
-            - unless overdue_courses.present?
-              - complete_course = all_group_course_member.where(complete: true).count
-              .send.h__text_15-24  Пройдено #{rus_case(complete_course, "курс", "курса", "курсов")} из #{all_group_course_member.count}
-            - else
-              - overdue_courses_count = overdue_courses.count
-              - tl = "#{rus_case_label(overdue_courses_count, "Просрочен", "Просроченно", "Просроченно")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
-              .send.h__text_15-24.overdue = tl
+          ul.members__in_system.director style="display:none;"
+            - @members.each do |member|
+              li.members__in_system-item.js_addSearchMember.noHeaderOpen data-email="#{member.email.mb_chars.downcase}" data-name="#{member.full_name.mb_chars.downcase}"
+                .ava.icon
+                  img src=default_img(member.avatar)
+                .name.h__text_15-24 = member.full_name
+                .email.h__text_15-24 = member.email
+
+    .container.members
+      - bunch_groups = @group.bunch_groups
+      - if bunch_groups.present?
+        ul.members__in_system class="#{current_user.director ? 'director' : ''}"
+          - bunch_groups.each do |bunch_group|
+            - member = bunch_group.user
+            li.members__in_system-item.js_clickItemMember data-id="#{member.id}" class=(current_user.director? ? '' : 'noHeaderOpen')
+              .ava.icon
+                img src=default_img(member.avatar)
+              .name.h__text_15-24  = member.full_name
+              .email.h__text_15-24  = member.email
+              .status
+                - all_group_course_member = member.bunch_courses.where(group_id: @group.id)
+                ul.tooltip__list
+                  - overdue_courses = all_group_course_member.overdue
+                  - all_group_course_member.each do |bunch_course|
+                    - course = bunch_course.course
+                    - hash_style = overdue_courses.where(id: bunch_course.id).present? ? {style: "color: red;"} : {}
+                    li.h__text_16-12 *hash_style
+                      = course.title
+
+                // .overdue
+                - unless overdue_courses.present?
+                  - complete_course = all_group_course_member.where(complete: true).count
+                  .send.h__text_15-24  Пройдено #{rus_case(complete_course, "курс", "курса", "курсов")} из #{all_group_course_member.count}
+                - else
+                  - overdue_courses_count = overdue_courses.count
+                  - tl = "#{rus_case_label(overdue_courses_count, "Просрочен", "Просрочено", "Просрочено")} #{rus_case(overdue_courses_count, "курс", "курса", "курсов")}"
+                  .send.h__text_15-24.overdue = tl

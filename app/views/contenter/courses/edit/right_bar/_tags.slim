@@ -2,5 +2,16 @@
   .close-filter.icon Теги
   .all__Tags
     - course_bunch_tags = course.bunch_tags
-    - Tag.all.each do |tag|
-      .tag.js__contenterAddTagToCourse data-id=tag.id class=(course_bunch_tags.where(tag_id: tag.id).present? ? "active" : "") = tag.title
+    ul
+      - Tag.all_parents.each do |tag|
+        = raw tag.html_tags(tag, course)
+
+        /- cur_tag = tag
+        /li
+        /  .title = tag.title
+        /  - if tag.last?
+        /    .tag.js__contenterAddTagToCourse data-id=tag.id class=(course_bunch_tags.where(tag_id: tag.id).present? ? "active" : "") = tag.title
+        /  - else
+        /    - subtags = tag.tags
+        /    - subtags.each do |tag|
+        /      .tag.js__contenterAddTagToCourse data-id=tag.id class=(course_bunch_tags.where(tag_id: tag.id).present? ? "active" : "") = tag.title

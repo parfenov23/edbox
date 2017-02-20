@@ -17,7 +17,26 @@ Rails.application.routes.draw do
   post "subscription/pay" => "home#pay"
   get "director/:action" => "director#:action"
   get "director/statistic/:action" => "director#:action"
+  # get 'courses' => 'superuser/home#index', :constraints => { :subdomain => /.+/ }
   get ":action" => "home#:action"
+
+  #home routes
+  get "course_description/:id" => "home#course_description"
+  get "attachment/:id" => "home#attachment"
+  get "instrument/:id" => "home#instrument"
+  get "user/:id" => "home#user"
+
+  # get 'courses' => 'home#courses', :constraints => { :subdomain => /.+/ }
+  get "courses/rss" => "home#courses_rss", format: 'rss'
+  get "courses/:type" => "home#courses"
+  get "courses/:type/rss" => "home#courses_rss", format: 'rss'
+
+  get "group/:id" => "home#group"
+  get "help_answer/:id" => "home#help_answer"
+  #########
+  ### upload img instrument
+  post "tinymce_assets" => "contenter/instruments#upload_file_img"
+  #################
   # get "makeup/create_group/name" => "makeup/create_group#name", :controller => "makeup"
   namespace :makeup do
     resources :create_group do
@@ -67,6 +86,7 @@ Rails.application.routes.draw do
       resources :tests do
         member do
           get :get_test
+          get :certificate
           post :result
           post :remove
         end
@@ -97,6 +117,8 @@ Rails.application.routes.draw do
           post :post3ds
           post :remove_card
           post :purchase
+          post :order_bill
+          post :find_coupon
         end
       end
 
@@ -136,6 +158,7 @@ Rails.application.routes.draw do
           post :registration
           post :recover_password
           get :signout
+          get :social
         end
       end
       resources :companies, only: [] do
@@ -202,6 +225,9 @@ Rails.application.routes.draw do
           post :remove_section_deadline
           post :remove_user_leading
           post :send_request
+          post :include_phone
+          post :update_help
+          post :update_phone
           get :my_courses
         end
         member do
@@ -267,6 +293,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :coupons do
+      member do
+        get :remove
+      end
+    end
+
     resources :users do
       member do
         get :remove
@@ -302,6 +334,11 @@ Rails.application.routes.draw do
     resources :courses do
       member do
         get :remove
+        get :un_remove
+        get :un_archive
+      end
+      collection do
+        get :archive
       end
     end
     resources :email_notifs do
@@ -337,6 +374,7 @@ Rails.application.routes.draw do
     resources :tags do
       member do
         get :remove
+        get :subtag
       end
     end
     resources :attachments do
@@ -362,6 +400,15 @@ Rails.application.routes.draw do
         get :publication
       end
     end
+
+    resources :instruments do
+      collection do
+      end
+      member do
+        get :publication
+      end
+    end
+
     resources :admin do
       collection do
         get :tags

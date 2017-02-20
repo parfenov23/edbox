@@ -10,37 +10,60 @@ header.landing__header
 
 section.landing__banner
   .landing__inner
-    .section__title.is__white
+    // is__white
+    .section__title
       |Онлайн-курсы, вебинары в прямом эфире
       br
-      |от ведущих практиков продаж
+      |от ведущих практиков рекламного бизнеса
       br
       |и большой архив скриптов и шаблонов
     .action__block
       a.btn.btn-flat.is__border.is__white href="/sign_up" НАЧАТЬ БЕСПЛАТНО
-      .btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
+      /.btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
+      a.btn.is__blue href="/sign_up" ОФОРМИТЬ ПОДПИСКУ
     .banner__img
       img src="/assets/landing__banner_img.png"
       iframe allowfullscreen="" frameborder="0" width="398" height="250" mozallowfullscreen="" src="https://player.vimeo.com/video/141645435" webkitallowfullscreen=""
     .description
       '#{$env_mode.name_title} – это десятки онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
       |вебинары, тесты и аттестация для сотрудников рекламных агентств, медиакомпаний и СМИ.
-
+section.landing__counter
+  .landing__inner
+    .counter
+      .counter__circle = Course.all.publication.count
+      .counter__title
+        |Материалов, вебинаров и курсов
+    .counter
+      .counter__circle = Company.count
+      .counter__title
+        |Зарегистрированных компаний
+    .counter
+      .counter__circle = User.count
+      .counter__title
+        |Активных участников
+    .counter
+      .counter__circle = TestResult.where(result: 100).map { |t| [t.user_id, t.test_id] }.uniq.count
+      .counter__title
+        |Выданных сертефикатов
 section.landing__courses__list
   .landing__inner
-    .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на ваши финансовые результаты
+    .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на вашу работу и вашу зарплату
     - courses = Course.publication.where(type_course: "course")
     .courses__list_inner
+      javascript:
+        pageLoad(function () {
+          $(document).on('click', "figure", function () { window.location.href = '/sign_up' });
+        });
       - courses.first(6).each do |course|
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 6
       .action__block
-        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ КУРСЫ
+        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
 section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас на платформе более 150 уникальных уроков, тестов, материалов и образовательных курсов, которые помогут вам продавать больше и чаще
     .description
-      '#{$env_mode.name_title} — Эксперты и преподаватели #{$env_mode.name_title} научат вас как…
+      'Эксперты и преподаватели #{$env_mode.name_title} научат вас как…
     .advantages__list
       figure
         .image
@@ -83,14 +106,15 @@ section.landing__question
         'Весь отдел продаж сможет учиться в #{$env_mode.name_title}, а вы как руководитель,
         |сможете следить за успеваемостью и оценками каждого сотрудника.
       .action__block
-        .btn.is__white.js_openFormRegistration.selectType data-type='corp' СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
+        /.btn.is__white.js_openFormRegistration.selectType data-type='corp' СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
+        a.btn.is__white href="/sign_up" СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
     .block_content
       .description style="text-align: center;"
         .title ЛИЧНЫЙ АККАУНТ
         'Обучение в #{$env_mode.name_title} поможет вам увеличить ваши личные доходы от продаж рекламы,
         |обеспечит карьерный рост и мастерство в профессии.
       .action__block
-        .btn.is__white.js_openFormRegistration.selectType data-type='pers' СОЗДАТЬ ЛИЧНЫЙ АККАУНТ
+        a.btn.is__white href="/sign_up" СОЗДАТЬ ЛИЧНЫЙ АККАУНТ
 section.landing__compare__table
   .landing__inner
     .content__block
@@ -100,6 +124,7 @@ section.landing__compare__table
         br
         |Выберите подходящий вам формат и зарегистрируйте аккаунт.
       = render "common/tableTariff"
-/! begin paysto verification
-/a href="http://paysto.ru/fromshop=23056" target="_blank"  Совместно с PAYSTO
-/! end paysto verification
+      /! begin paysto verification
+      /a href="http://paysto.ru/fromshop=23056" target="_blank"  Совместно с PAYSTO
+      /! end paysto verification
+= render "common/social_buttons", {url: '/'} if !$env_mode.dev?

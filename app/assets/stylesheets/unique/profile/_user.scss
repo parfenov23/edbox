@@ -1,0 +1,83 @@
+#user_public {
+  .contentTableInfoUser {
+    border-bottom  : 1px solid rgba(0, 0, 0, 0.12);
+    padding-bottom : 38px;
+    margin-bottom  : 38px;
+    position       : relative;
+    .profile__block {
+      position : relative;
+      @include clearfix;
+      @include white__block(1, 0);
+      width    : 920px;
+      margin   : 0 auto 24px;
+      padding  : 24px 24px 24px 64px;
+    }
+
+    .profile__main {
+      .avatar {
+        position      : relative;
+        float         : left;
+        width         : 128px;
+        height        : 128px;
+        margin        : 0 32px 0 0;
+        border-radius : 100%;
+
+        .ava {
+          max-width     : 100%;
+          min-width     : 100%;
+          border-radius : 100%;
+        }
+      }
+
+      .data {
+        float : left;
+        width : 450px;
+
+        .name {
+          font   : 400 18px/1 "Roboto";
+          color  : rgba(0, 0, 0, .87);
+          margin : 0 0 12px;
+          .social{
+            margin-left: 20px;
+            a{
+              margin-left: 4px;
+            }
+          }
+        }
+
+        .other__info {
+          font-size   : 13px;
+          color       : rgba(0, 0, 0, 0.54);
+          line-height : 20px;
+        }
+      }
+    }
+
+  }
+  .actual-courses {
+    .carusel-wrp {
+      .info-box {
+        .course-prev-list {
+          .cert {
+            width          : 264px;
+            display        : inline-block;
+            vertical-align : top;
+            margin         : 0px;
+            zoom           : 1;
+            content        : "";
+            float          : none;
+            margin-right   : 10px;
+            margin-bottom  : 10px;
+            border-radius  : 2px;
+            box-shadow     : 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+            overflow       : hidden;
+            cursor: pointer;
+            &:nth-child(4) {
+              margin-right : 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

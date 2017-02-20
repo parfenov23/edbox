@@ -1,3 +1,4 @@
+require 'social/socials'
 module Api::V1
   class SessionsController < ::ApplicationController
     # skip_before_filter :verify_authenticity_token
@@ -21,6 +22,7 @@ module Api::V1
       permit_params[:email] = permit_params[:email].downcase
       permit_params[:corporate] = "true" if (params[:company][:name].to_s.length > 0 rescue false)
       permit_params[:director] = permit_params[:corporate].to_s
+      permit_params[:social] = params[:user][:social]
       if permit_params[:director].to_s == "true"
         company = Company.build(params[:company])
         permit_params[:company_id] = company.id if company.save
@@ -32,7 +34,10 @@ module Api::V1
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)
-        render_error(401, 'Не удалось пройти регистрацию, проверьте введенные данные')
+        t1 = 'Пользователь с таким Email уже зарегестрирован'
+        t2 = 'Не удалось пройти регистрацию, проверьте введенные данные'
+        error_title = User.find_by_email(permit_params[:email]).present? ? t1 : t2
+        render_error(401, error_title)
       end
     end
 
@@ -51,10 +56,19 @@ module Api::V1
       render json: {success: true}
     end
 
+    def social
+      if params[:access_token].present?
+        @info = Socials.reg_params(params[:type], params)
+        binding.pry
+      end
+      render "enter/social"
+      # render html: "".html_safe
+    end
+
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :avatar, :social)
     end
 
   end

@@ -42,8 +42,22 @@ module Superuser
     end
 
     def remove
-      find_course.destroy
+      find_course.update(archive: true)
       redirect_to :back
+    end
+
+    def un_remove
+      Course.unscoped.find(params[:id]).destroy
+      redirect_to "/superuser/courses/archive"
+    end
+
+    def archive
+      @courses = Course.unscoped.where(archive: true)
+    end
+
+    def un_archive
+      Course.unscoped.find(params[:id]).update(archive: false)
+      redirect_to "/superuser/courses/archive"
     end
 
     private
@@ -53,7 +67,7 @@ module Superuser
     end
 
     def params_course
-      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :paid).compact rescue {}
+      params.require(:course).permit(:title, :description, :img, :user_id, :duration, :paid, :updated_at).compact rescue {}
     end
   end
 end

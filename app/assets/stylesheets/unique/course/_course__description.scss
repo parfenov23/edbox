@@ -42,6 +42,11 @@
   }
   .action__block {
     width : 160px;
+    .title_action {
+      width       : 100%;
+      font-size   : 13px;
+      font-weight : 400;
+    }
   }
 }
 
@@ -625,6 +630,7 @@
 }
 
 .ugly__popup {
+  overflow-y       : auto;
   position         : absolute;
   z-index          : 9999;
   top              : 0;
@@ -716,8 +722,8 @@
             &:after {
               content : "×";
             }
-            &.hide{
-              display: none;
+            &.hide {
+              display : none;
             }
           }
           &:hover {
@@ -855,6 +861,10 @@
     .js__hiddenVideo {
       height : 100% !important;
     }
+    embed {
+      top      : -119px;
+      position : relative;
+    }
   }
 }
 
@@ -975,7 +985,7 @@
 
 .oh__nihuyase-block {
   position   : relative;
-  z-index    : 12;
+  z-index    : 1;
   @include middle-block(920px);
   margin-top : -32px;
   .tegs__list {
@@ -1106,6 +1116,9 @@
           line-height   : 24px;
           margin-bottom : 30px;
           color         : black__color('base__color');
+        }
+        img {
+          width : 100%;
         }
       }
       .leading__list {

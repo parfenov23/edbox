@@ -1,34 +1,21 @@
 .modal-2.md-modal.md-effect-1.md-show class="formGroup-#{type}"
-  .md-content
+  .md-content.popupFavorite
     div
       .modal-text
         - text_title = type == "new" ? 'Создать новую группу' : 'Редактирование группы'
         h2 = text_title
         form
-          .group
+          .input-wrp.name
             input.js_groupNameValidate placeholder=("Введите название") type="text" name="group[first_name]" value=(type == "new" ? '' : group.first_name)
             span.bar
-          .group
-            .scroll-wrapper.textarea-scrollbar.scrollbar-outer.expand.scroll-textarea style=("position: relative;")
-              .scroll-content style=("margin-bottom: 0px; margin-right: 0px;")
-                - st = "height: 39px; overflow: hidden; padding-top: 0px; padding-bottom: 0px;"
-                textarea#group-description.textarea-scrollbar.scrollbar-outer.expand cols="1" placeholder="Описание" rows="1" name="group[description]" style=st
-                  = (type == "new" ? '' : group.description)
-              .scroll-element.scroll-x
-                .scroll-element_outer
-                  .scroll-element_size
-                  .scroll-element_track
-                  .scroll-bar style=("width: 100px;")
-              .scroll-element.scroll-y
-                .scroll-element_outer
-                  .scroll-element_size
-                  .scroll-element_track
-                  .scroll-bar style=("height: 100px;")
+          .input-wrp
+            textarea#group-description cols="1" placeholder="Описание" rows="2" name="group[description]"
+              = (type == "new" ? '' : group.description)
             span.bar
           .button-area
             - if type == 'edit'
               input type='hidden' name='id' value=group.id
             input type='hidden' name='group[company_id]' value=current_user.company_id
             .action-btn
-              .btn.cancel.js_closePopupFormGroup ОТМЕНИТЬ
+              .btn.btn-flat.js_closePopupFormGroup ОТМЕНИТЬ
               .btn.is__orange.js_saveGroup data-type=type data-id=(type == "new" ? '' : group.id) СОХРАНИТЬ

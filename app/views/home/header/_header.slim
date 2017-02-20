@@ -15,23 +15,27 @@ header#page__header.adaptive__title class=hclass.join(" ")
     - else
       a.page__icon.item href=backUrl
         i.back.icon
-    .page__title class=(classPageTitle rescue nil) = titlePage
+    .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : raw("<img src='/assets/adcons__grey.svg'>")
     .page__children
       - menu_nav_links(namePage).each do |item|
         - add_params = item[:add_params].present? ? item[:add_params] : {}
         a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") *add_params
           = item[:title]
       .line
+    - if namePage == "group" && current_user.director
+      .page__action.dopActionAddGroup
+        .item.js_openPopupNewGroup
+          i.add.icon
   .right-col
     - if current_user.present?
       .page__action
         a.item href="/help"
           i.help.icon
         = render "home/header/notify_news"
-        - if namePage == "group"
-          - if current_user.director
-            .item.js_openPopupNewGroup
-              i.add.icon
+        /- if namePage == "group"
+        /  - if current_user.director
+        /    .item.js_openPopupNewGroup
+        /      i.add.icon
         - if namePage == "contenter_courses"
           - if current_user.contenter
             /a.item href="/contenter/courses/new/edit"
@@ -45,14 +49,16 @@ header#page__header.adaptive__title class=hclass.join(" ")
                   a href="/contenter/courses/new/edit?type_course=online" Вебинар
                 li
                   a href="/contenter/materials/new/edit" Материал
+                li
+                  a href="/contenter/instruments/new/edit" Инструмент
             /.item.js_openLeftSideBar data-id="js-help"
             /  i.help.icon
-        - if namePage == "courseMaterial"
-          .item.js_openLeftSideBar data-id="js-notification-courses"
-            i.notes.icon
-          - unless (@course.material? rescue true)
-            .item.js_openLeftSideBar data-id="js-programm-courses"
-              i.programm.icon
+        /- if namePage == "courseMaterial"
+        /  .item.js_openLeftSideBar data-id="js-notification-courses"
+        /    i.notes.icon
+        /  - unless (@course.material? rescue true)
+        /    .item.js_openLeftSideBar data-id="js-programm-courses"
+        /      i.programm.icon
         - if (comment rescue false)
           .item
             i.calendar.icon.js_openLeftSideBar data-id="js-comment"

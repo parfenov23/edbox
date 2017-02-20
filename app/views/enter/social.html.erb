@@ -1,0 +1,11 @@
+<% @page_footer = false %>
+<%= @info %>
+<script>
+//    access_token = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+    var url = document.URL;
+    if(url.search("#access_token") > 0){
+        window.location.href = url.replace('#access_token', '&access_token')
+    }else{
+        console.log(<%= @info.to_json.html_safe %>)
+    }
+</script>

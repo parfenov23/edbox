@@ -1,14 +1,19 @@
 class HomeController < ActionController::Base
   helper_method :current_user
+  helper_method :subdomain
   before_action :authorize, except: [:course_description, :render_file,
                                      :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay]
+                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
+                                     :course_cert, :instrument, :courses_rss]
   before_action :is_corporate?, only: [:group]
   before_action :back_url
   layout "application"
   rescue_from Exception, with: :error_message if $env_mode.prod?
   # caches_page :courses
   def index
+    @og = {'title' => 'Заголовок: ADCONSULT Online — продавайте больше с каждым днем! ',
+           'description' => 'Онлайн-курсы, вебинары в прямом эфире от ведущих практиков рекламного бизнеса и большой архив скриптов и шаблонов',
+           'img' => '/images/index_ogg.jpg'}
     @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
@@ -16,6 +21,8 @@ class HomeController < ActionController::Base
       else
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
+    else
+      redirect_to 'http://naukacity.ru/online'
     end
   end
 
@@ -62,6 +69,13 @@ class HomeController < ActionController::Base
     end
   end
 
+  def instrument
+    @attachment = Attachment.find_by_id(params[:id])
+    @section = @attachment.attachmentable rescue nil
+    @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
+    @og = @course.og_all
+  end
+
   def audio
     @current_user = current_user
     attachment = (Attachment.find(params[:id]) rescue nil)
@@ -92,11 +106,18 @@ class HomeController < ActionController::Base
   def courses
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
-    @courses = Course.all.publication.where(type_course: type_course)
-    if params[:cid].present?
-      @courses_cid = @courses.joins(:bunch_categories).where("bunch_categories.category_id" => params[:cid])
+    @courses = Course.publication.where(type_course: type_course)
+    course_sorting
+    @courses = @courses.where(type_course: type_course, public: true)
+    @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
+
+  end
+
+  def courses_rss
+    self.courses
+    respond_to do |format|
+      format.rss { render :layout => false }
     end
-    @courses = @courses.sort {|a,b| a.min_date_webinar <=> b.min_date_webinar} if params[:type] == "online"
   end
 
   def programm
@@ -108,6 +129,7 @@ class HomeController < ActionController::Base
 
   def cabinet
     @favorite_courses = current_user.favorite_courses
+    @user_tests = Test.where(id: (current_user.test_results.where(result: 100).map(&:test_id).uniq rescue []))
     # redirect_to "/schedule" unless current_user.director
   end
 
@@ -145,6 +167,7 @@ class HomeController < ActionController::Base
     # @favorite_courses = current_user.favorite_courses
     @course = Course.find_by_id(params[:id])
     if @course.present?
+      @og = @course.og_all
       bunch_course = current_user.bunch_courses.where(course_id: @course.id).last rescue nil
       test_final = @course.test
       if test_final.present?
@@ -153,12 +176,17 @@ class HomeController < ActionController::Base
           redirect_to "/tests/#{test_final.id}/run"
         end
       end
-      if @course.material?
+      if @course.material? || @course.instrument?
         attachment = @course.attachments.last
-        unless (@course.find_bunch_course(current_user.id,).present? rescue !attachment.public)
-          redirect_to "/courses?type=material"
+        unless @course.instrument?
+          unless (@course.find_bunch_course(current_user.id).present? rescue !attachment.public)
+            redirect_to "/courses/material"
+          else
+            redirect_to attachment.present? && (current_user.view_course?(@course) rescue false) ? "/attachment/#{attachment.id}" : "/"
+          end
         else
-          redirect_to attachment.present? ? "/attachment?id=#{attachment.id}" : "/"
+          attachment = @course.attachments.where.not(full_text: '').last
+          redirect_to attachment.present? ? "/instrument/#{attachment.id}" : '/courses/instrument'
         end
       end
     else
@@ -172,10 +200,10 @@ class HomeController < ActionController::Base
     unless except_params.include?(params[:id])
       if current_user.director
         @group = (current_user.company.groups.find(params[:id]) rescue nil)
-        redirect_to "/group?id=#{(current_user.company.groups.first.id rescue "new")}" unless @group.present?
+        redirect_to "/group/#{(current_user.company.groups.first.id rescue "new")}" unless @group.present?
       elsif current_user.corporate
         @group = (current_user.my_groups.find(params[:id]) rescue nil)
-        redirect_to "/group?id=#{(current_user.my_groups.first.id rescue "no_group")}" unless @group.present?
+        redirect_to "/group/#{(current_user.my_groups.first.id rescue "no_group")}" unless @group.present?
       end
     end
 
@@ -199,7 +227,28 @@ class HomeController < ActionController::Base
     render "common/page_404", :status => 404, :layout => "application"
   end
 
+  def user
+    @user = params[:id].present? ? User.find(params[:id]) : current_user
+    @user_tests = Test.where(id: (@user.test_results.where(result: 100).map(&:test_id).uniq rescue []))
+    render "common/page_404", :status => 404, :layout => "application" if @user.blank?
+  end
+
+  def course_cert
+    @course = Course.find(params[:course_id]) rescue nil
+    @params_png_id = params[:id]
+    @user_cert_id = "#{params[:id]}.png"
+    render :layout => false
+  end
+
   private
+
+  def course_sorting
+    #@courses = @courses.sort { |a, b| a.min_date_webinar <=> b.min_date_webinar } if params[:type] == "online"
+    sort_type = params[:sort_type].present? ? params[:sort_type] : 'DESC'
+    @courses = @courses.unscoped.order("#{params[:sort]} #{sort_type}") if ['title', 'created_at'].include?(params[:sort])
+    @courses = @courses.where(paid: (params[:sort] == "pay_course" ? true : false)) if ['free_course', 'pay_course'].include?(params[:sort])
+    @course
+  end
 
   def back_url
     begin
@@ -216,6 +265,11 @@ class HomeController < ActionController::Base
   def current_user
     @current_user ||= User.find_by(user_key: session[:user_key]) if session[:user_key]
     @current_user
+  end
+
+  def subdomain
+    @subdomain ||= $env_mode.subdomain(request)
+    @subdomain
   end
 
   def authorize

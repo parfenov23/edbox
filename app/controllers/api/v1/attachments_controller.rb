@@ -92,7 +92,8 @@ module Api::V1
     end
 
     def params_attachment
-      params.require(:attachment).permit(:title, :description, :file, :full_text, :duration, :attachmentable_type, :attachmentable_id).compact rescue {}
+      params.require(:attachment).permit(:title, :description, :file, :full_text,
+                                         :duration, :attachmentable_type, :attachmentable_id, :embed_video, :file_type).compact rescue {}
     end
 
     def find_user

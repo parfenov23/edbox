@@ -14,7 +14,7 @@ class BunchCourse < ActiveRecord::Base
   scope :find_bunch_attachments, -> { BunchAttachment.where(bunch_section_id: find_bunch_sections.ids) }
   scope :uniq_by_course_id, -> { select(:course_id).distinct }
   scope :all_type_courses, -> { all_type_courses_hash(all) }
-  scope :uniq_by, -> (type){ uniq_by_type(all, type) }
+  scope :uniq_by, -> (type) { uniq_by_type(all, type) }
 
   default_scope { where(archive: false) } #unscoped
 
@@ -31,8 +31,8 @@ class BunchCourse < ActiveRecord::Base
   end
 
   def self.uniq_by_type(models, type)
-    arr = models.map{|model| model.method(type).call}.uniq
-    arr_ids = arr.map{|one| models.where(type => one).last.id}
+    arr = models.map { |model| model.method(type).call }.uniq
+    arr_ids = arr.map { |one| models.where(type => one).last.id }
     models.where(id: arr_ids)
   end
 
@@ -40,7 +40,7 @@ class BunchCourse < ActiveRecord::Base
     arr_hashs = []
     # models = BunchCourse.where(id: bc.select(:course_id).uniq.ids)
     model_overdue = models.overdue.uniq_by(:course_id)
-    arr_hashs += [{type: 'overdue', models: model_overdue, title: 'Просроченно'}] if model_overdue.present?
+    arr_hashs += [{type: 'overdue', models: model_overdue, title: 'Просрочено'}] if model_overdue.present?
 
     model_study = models.in_study.uniq_by(:course_id)
     arr_hashs += [{type: 'in_study', models: model_study, title: 'На прохождении'}] if model_study.present?
@@ -62,7 +62,7 @@ class BunchCourse < ActiveRecord::Base
       count_over = ApplicationController.helpers.rus_case(date.abs, 'день', 'дня', 'дней')
       hash = {k: 'overdue', v: "Просрочен на #{count_over}"}
     end
-    hash = {k: 'completed', v: 'Пройденно'} if bc_complete
+    hash = {k: 'completed', v: 'Пройдено'} if bc_complete
     hash
   end
 
@@ -142,7 +142,11 @@ class BunchCourse < ActiveRecord::Base
     end
     bunch_course.date_complete = date_complete
     bunch_course.save
-    HomeMailer.reg_course(course, user).deliver unless course.online?
+    if group_id.blank?
+      # HomeMailer.reg_course(course, user).deliver unless course.online?
+    else
+      HomeMailer.reg_course_director(course, user, bunch_course).deliver unless course.online?
+    end
     sections.each do |section|
       current_section = (sections_hash[section.id.to_s] rescue nil)
       if type == "group"
@@ -181,11 +185,11 @@ class BunchCourse < ActiveRecord::Base
           use_time = date_complete.strftime("%Y-%m-%d")
           "Назначен до #{use_time}" if model_type == "group"
         else
-          "Пройденно #{progress}%"
+          "Пройдено #{progress}%"
         end
       else
         unless course.test.present?
-          "Пройденно"
+          "Пройдено"
         else
           user_result = course.test.test_results.where(user_id: user_id).last
           user_result.present? ? " Тест пройден на #{user_result.percent}%" : "Тест"

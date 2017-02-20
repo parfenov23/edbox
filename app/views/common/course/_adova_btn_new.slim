@@ -1,6 +1,7 @@
 - if current_user.present?
+  = render "home/courses/pop_up" if current_user.director?
   - bsid = (@section.bunch_section(current_user.id).id rescue nil)
-  - redirect_url = "/course_description?id=#{@course.id}"
+  - redirect_url = "/course_description/#{@course.id}"
   - attachs_next = (@attachment.next rescue nil)
   - if attachs_next.present?
     - redirect_url = "/attachment?id=#{attachs_next.id}"
@@ -25,3 +26,9 @@
         .main__action-tooltip.tooltext
           = text
       .hidden__actions.is__visible
+        - if current_user.director? && @course.material?
+          - add_class = current_user.company.groups.present? ? "" : "noOpenPopup"
+          - hash_params = { 'data-show' => ".select, .title span.addedToGroup, .groupAddedTitle", 'data-type' => "group", 'data-hide' => ".title .addedMySchedule" }
+          .item.main__action-tooltip-wrp.main__action-shadow.frst.js_openPopup  data-id="#{@course.id}" class="#{add_class}" *hash_params
+            i.icon.courses
+            .main__action-tooltip Добавить в групповое расписание

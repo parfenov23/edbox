@@ -1,109 +1,201 @@
 
 .new-courses-holder {
-    .content-courses {
-        position : relative;
-        .new-top-title {
-            position    : absolute;
-            left        : 0;
-            top         : 40px;
-            font-size   : 20px;
-            color       : $primaryColor;
-            line-height : 32px;
-        }
-        .new-btm-title {
-            position    : absolute;
-            left        : 0;
-            bottom      : -60px;
-            font-size   : 20px;
-            color       : #999;
-            line-height : 32px;
-        }
-        .new-label {
-            position         : absolute;
-            right            : 0;
-            top              : 40px;
-            font-size        : 13px;
-            color            : #FFF;
-            line-height      : 18px;
-            background-color : $primaryColor;
-            height           : 32px;
-            line-height      : 32px;
-            padding          : 0 9px;
-            a {
-                color : #FFF;
-            }
-        }
-        .corses-prev {
-            &:nth-child(3) {
-                margin-right : 0;
-            }
-        }
+  .content-courses {
+    position : relative;
+    .new-top-title {
+      position    : absolute;
+      left        : 0;
+      top         : 40px;
+      font-size   : 20px;
+      color       : $primaryColor;
+      line-height : 32px;
     }
+    .new-btm-title {
+      position    : absolute;
+      left        : 0;
+      bottom      : -60px;
+      font-size   : 20px;
+      color       : #999;
+      line-height : 32px;
+    }
+    .new-label {
+      position         : absolute;
+      right            : 0;
+      top              : 40px;
+      font-size        : 13px;
+      color            : #FFF;
+      line-height      : 18px;
+      background-color : $primaryColor;
+      height           : 32px;
+      line-height      : 32px;
+      padding          : 0 9px;
+      a {
+        color : #FFF;
+      }
+    }
+    .corses-prev {
+      &:nth-child(3) {
+        margin-right : 0;
+      }
+    }
+  }
 }
 
 .courses-description {
-    @import "unique/courses/description/description";
-    border-radius : 2px;
+  @import "unique/courses/description/description";
+  border-radius : 2px;
 
 }
 
 .image-bg {
-    position        : fixed;
-    top             : 0;
-    left            : 0;
-    width           : 100%;
-    height          : 100%;
-    background-size : cover;
-    -webkit-filter  : url(#blur);
-    filter          : url(#blur);
-    -webkit-filter  : blur(16px);
-    filter          : blur(16px);
-    filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius="16");
-    z-index         : -1;
-    background-size: cover !important;
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  width           : 100%;
+  height          : 100%;
+  background-size : cover;
+  -webkit-filter  : url(#blur);
+  filter          : url(#blur);
+  -webkit-filter  : blur(16px);
+  filter          : blur(16px);
+  filter          : progid:DXImageTransform.Microsoft.Blur(PixelRadius="16");
+  z-index         : -1;
+  background-size : cover !important;
 }
 
 .corses-prev {
-    .image {
-        img {
-            width: 347px;
-            height: 192px;
-        }
+  .image {
+    img {
+      width  : 347px;
+      height : 192px;
     }
+  }
 }
 
 .category__filter_list {
   @include middle-block(1128px);
-  display: flex;
-  justify-content: flex-start;
+  display         : flex;
+  justify-content : space-between;
+  .statusBar {
+    @include text__setting(smallest__typo, secondary__color);
+    line-height : 31px;
+    margin-left : 16px;
+    font-size   : 14px;
+  }
+  .sortTableCourses {
+    .select {
+      position       : relative;
+      cursor         : pointer;
+      padding-left   : 46px;
+      color          : rgba(0, 0, 0, 0.54);
+      display        : inline-block;
+      vertical-align : top;
+      margin         : 0px;
+      zoom           : 1;
+      content        : "";
+      min-height     : 26px;
+      top            : 6px;
+      i {
+        position  : absolute;
+        left      : 0;
+        font-size : 24px;
+        &::before {
+          content : "\e900";
+        }
+        &.DESC {
+          color : $primaryColor;
+        }
+        &.ASC {
+          color : rgba(0, 0, 0, 0.54);
+        }
+      }
+      .close__ul__hidden {
+        position : fixed;
+        left     : 0;
+        top      : 0;
+        width    : 100%;
+        height   : 100%;
+        z-index  : 98;
+        display  : none;
+      }
+
+      .select-trigger {
+        padding-right : 23px;
+        background    : url("arrow-grey.svg") 100% 50% no-repeat;
+        white-space   : nowrap;
+        font-size     : 15px;
+        color         : rgba(0, 0, 0, 0.54);
+        line-height   : 20px;
+      }
+
+      .hidden {
+        min-width        : 128px;
+        background-color : #FFF;
+        padding          : 6px 0;
+        box-shadow       : 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+        border-radius    : 2px;
+        max-height       : 236px;
+        overflow-y       : scroll;
+        position         : absolute;
+        top              : -13px;
+        left             : 29px;
+        display          : none;
+        z-index          : 99;
+        bottom           : auto;
+        max-width        : 434px;
+
+        li {
+          height      : 32px;
+          font-size   : 15px;
+          color       : rgba(0, 0, 0, 0.54);
+          line-height : 20px;
+          padding     : 6px 16px;
+          cursor      : pointer;
+          white-space : nowrap;
+        }
+
+        li:hover {
+          color       : #000;
+          line-height : 20px;
+          background  : rgba(0, 0, 0, 0.12);
+        }
+        &.to-top {
+          top    : auto;
+          bottom : 0;
+        }
+      }
+    }
+
+  }
   .item {
-    max-width: 296px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 8px;
-    border: 1px solid #979797;
-    border-radius: 2px;
+    max-width     : 296px;
+    height        : 32px;
+    line-height   : 32px;
+    padding       : 0 8px;
+    border        : 1px solid #979797;
+    border-radius : 2px;
     /* Подрядчик: */
-    font-size: 15px;
-    color: black__color('secondary__color');
-    margin-right: 16px;
-    margin-bottom: 16px;
-    cursor: pointer;
+    font-size     : 15px;
+    color         : black__color('secondary__color');
+    margin-right  : 16px;
+    margin-bottom : 16px;
+    cursor        : pointer;
     @include eclipses;
     &:hover {
-      color: $primaryColor;
-      border-color: $primaryColor;
+      color        : $primaryColor;
+      border-color : $primaryColor;
     }
     &.is__checked {
-      background-color: $primaryColor;
-      color: #fff;
-      border-color: $primaryColor;
+      background-color : $primaryColor;
+      color            : #FFF;
+      border-color     : $primaryColor;
     }
   }
 }
+
 .courses-list {
-    @include clearfix;
-    @import "common/elements/courses_block";
+  @include clearfix;
+  @import "common/elements/courses_block";
 }
 
 @import "unique/courses/add-course";

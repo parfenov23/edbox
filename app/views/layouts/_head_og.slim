@@ -1,0 +1,25 @@
+- if @og.present?
+  - img_url = ($env_mode.current_domain + @og["img"])
+  meta property="fb:app_id" content='1718642978353463'
+  meta property="og:type" content="article"
+  meta property="og:url" content=($env_mode.current_domain + current_link)
+  meta property="og:title" content=@og["title"]
+  meta property="og:image" content=img_url
+
+  - if @og["title"].present?
+    meta name="twitter:title" content=@og["title"]
+  - if @og["description"]
+    - description = sanitize @og["description"], :tags=>[]
+    meta content=description property="og:description"
+    meta name="description" content=description
+    meta name="twitter:description" content=description
+  //meta content=img_url property="og:url"
+  meta content=img_url property="og:image:url"
+  meta name="twitter:image" content=img_url
+
+
+  //meta content="image/jpeg" property="og:image:type"
+  meta name="twitter:card" content="summary"
+  meta name="og:site_name" content=$env_mode.name_title
+
+

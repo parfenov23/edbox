@@ -19,17 +19,18 @@
     a#reformal_tab img {
         width          : 130px;
         padding-bottom : 10px;
+        display        : none;
     }
 
     .phoneHelp {
-        text-align: center;
-        background-color: #fb9251 ;
-        border-radius: 5px 5px 0px 0px;
-        line-height: 34px;
-        padding-bottom: 5px;
-        padding-top: 5px;
-        font-size: x-large;
-        color: white;
+        text-align       : center;
+        background-color : #fb9251;
+        border-radius    : 5px 5px 0px 0px;
+        line-height      : 34px;
+        padding-bottom   : 5px;
+        padding-top      : 5px;
+        font-size        : x-large;
+        color            : white;
     }
 
     #reformal_widget {
@@ -57,9 +58,10 @@
         $(document).on('click', 'a#reformal_tab', function () {
             var intervalValidBlock;
             intervalValidBlock = setInterval(function () {
-                console.log(1);
                 if ($("#reformal_widget").length){
-                    $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 97 33 623</div>"));
+                    if (! $("#reformal_widget .phoneHelp").length){
+                        $("#reformal_widget").prepend($("<div class='phoneHelp'>Служба поддержки ADCONSULT.ONLINE +7 926 97 33 623</div>"));
+                    }
                     clearInterval(intervalValidBlock);
                 }
             }, 100);

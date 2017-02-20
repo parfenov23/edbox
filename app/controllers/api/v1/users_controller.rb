@@ -3,7 +3,7 @@ require 'resize_image'
 module Api::V1
   class UsersController < ::ApplicationController
     before_action :is_director, only: [:invite, :remove_user]
-    skip_before_action :authorize, only: [:send_request]
+    skip_before_action :authorize, only: [:send_request, :include_phone]
 
     def info
       render json: current_user.transfer_to_json
@@ -59,6 +59,7 @@ module Api::V1
 
       if user.valid?
         user.update(permit_params)
+        user.update({social: params[:user][:social]}) if params[:user][:social].present?
         render json: user.transfer_to_json
       else
         render_error(500, 'Проверьте данные')
@@ -160,6 +161,24 @@ module Api::V1
       render json: Course.where(id: current_user.bunch_courses.map(&:course_id)).map { |ca| ca.transfer_to_json_mini((current_user.id rescue nil)) }
     end
 
+    def include_phone
+      sms = Smsc::Sms.new('adconsult', 'lolopo123', 'utf-8')           # encoding is optional - utf-8 by default
+      sms.message("Код подтверждения: #{params[:code]}", [params[:phone]], sender: "adconsult.online")
+      render json: {success: true}
+    end
+
+    def update_help
+      current_user.update({help: false})
+      render json: {success: true}
+    end
+
+    def update_phone
+      social = current_user.social
+      social["phone"] = params[:phone]
+      current_user.update({social: social})
+      render json: {success: true}
+    end
+
     private
 
     def find_favorite_course
@@ -177,7 +196,7 @@ module Api::V1
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name,
                                    :password, :director, :corporate,
-                                   :company_id, :job)
+                                   :company_id, :job, :social)
     end
 
   end

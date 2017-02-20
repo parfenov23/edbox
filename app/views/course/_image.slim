@@ -1,5 +1,5 @@
 .image
-  - if course.material?
+  - if course.material? || course.instrument?
     - if course.teaser.blank?
       - attachment = course.attachments.last
       img src="/assets/orange-waves.svg"
@@ -12,19 +12,19 @@
     img src = course.get_image_path(694, 384)
     .fade
   - if type != "shot__module"
-    - category = course.bunch_categories.last.category.title rescue nil
-    - if category.present?
+    - tag = course.bunch_tags.last.tag.title rescue nil
+    - if tag.present?
       .category
         i.icon.teg
-        = category
+        = tag
 
     - bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
-    - unless bunch_course.present?
-      = course.updated_at
-      .status Опубликован #{course.updated_at.strftime("%d.%m.%y")}
-    - else
+    - if bunch_course.present?
       - hash = bunch_course.status
       - if bunch_course.complete && course.material?
         .fade
       = bunch_course.model_type
       .status class=hash[:k] = hash[:v]
+    /  /- course.updated_at
+    /  /.status Опубликован #{course.updated_at.strftime("%d.%m.%y")}
+    /- else

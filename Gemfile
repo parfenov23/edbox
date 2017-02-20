@@ -12,6 +12,14 @@ gem 'mechanize'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'actionpack-page_caching'
 
+# ============= HTML to IMG
+gem 'imgkit'
+gem 'wkhtmltopdf'
+gem 'wkhtmltoimage-binary'
+
+gem 'rmagick', '2.13.2'
+# =======================
+
 gem 'unicorn'
 gem 'faraday'
 gem 'bootstrap-material-design', '~> 0.1.7'
@@ -75,7 +83,12 @@ group :production do
 end
 gem 'activemerchant', github: 'softeamco/active_merchant'
 #=====
-
+#====== tinymce
+gem 'tinymce-rails-imageupload'
+#=============
+#========== sms center
+gem 'smsc'
+#==========
 group :development do
   gem 'rails-erd'
   gem 'better_errors'

@@ -1,0 +1,34 @@
+body {
+  header {
+    width     : 100% !important;
+    min-width : 0 !important;
+    .right-col{
+      .page__action{
+        .item{
+          display: none;
+        }
+        .item.ava.header__user{
+          display: block;
+          .menu__user{
+            right: -16px !important;
+            top: 45px !important;
+            &:before{
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .inner-content {
+    min-width : 0;
+    padding-top: 64px;
+    .content#cabinet {
+      width : 100%;
+      padding: 12px 12px;
+    }
+  }
+  .courses-aside {
+    right : -200%;
+  }
+}

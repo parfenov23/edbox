@@ -4,6 +4,8 @@
 = render "contenter/courses/edit/right_bar/tags", {course: course}
 = render "contenter/courses/edit/right_bar/categories", {course: course}
 = render "contenter/courses/edit/right_bar/leadings", {course: course}
+= javascript_include_tag "/tinymce/tinymce.min.js"
+= javascript_include_tag "/tinymce/contenter_start.js"
 .contenter#courseEditContenter
   .presentation__block
     - course_video = course.attachments.where(file_type: "video").last
@@ -67,20 +69,20 @@
       .form_group.detail__info.validateFormCourse
         = render "contenter/courses/help_error"
         .description
-          textarea.js_onChangeEditCourse.js_validateCourseTitle placeholder="Введите описание курса" name="course[description]"
+          textarea.js_onChangeEditCourse.js_includeTiny.js_validateCourseTitle placeholder="Введите описание курса" name="course[description]"
             = course.description
-      .itemDetailInfo.validateCourseCategories.validateFormCourse
-        = render "contenter/courses/help_error"
-        .title__Item Категории
-        .description__Item
-          .allCategoriesDescriptionCourse
-            - course.bunch_categories.each do |bunch_category|
-              - category = bunch_category.category
-              .category
-                = category.title
-                .remove.js_removeBunchCategoryFromCourse data-id=category.id
-          .addCategory.js_clickFromCreateCourseContenter
-            .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
+      /.itemDetailInfo.validateCourseCategories.validateFormCourse
+      /  = render "contenter/courses/help_error"
+      /  .title__Item Категории
+      /  .description__Item
+      /    .allCategoriesDescriptionCourse
+      /      - course.bunch_categories.each do |bunch_category|
+      /        - category = bunch_category.category
+      /        .category
+      /          = category.title
+      /          .remove.js_removeBunchCategoryFromCourse data-id=category.id
+      /    .addCategory.js_clickFromCreateCourseContenter
+      /      .btn.btn-flat.js_openLeftSideBar data-id="js-course-categories" ИЗМЕНИТЬ КАТЕГОРИЮ
       .itemDetailInfo
         .title__Item Теги
         .description__Item

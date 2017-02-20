@@ -13,3 +13,7 @@
         = btn_edit
       a.btn.btn-info.pull-right href=user.auth_url style="margin-right: 5px;" target="_blank"
         | >
+      - class_btn = user.last_auth.present? ? "success" : "danger"
+      - title_btn = user.last_auth.present? ? local_time(user.last_auth) : false
+      - style_btn = "margin-right: 5px;border-radius: 50%;width: 10px;height: 10px;padding: 0;margin-top: 10px;"
+      .btn.pull-right class="btn-#{class_btn}" title=title_btn style=style_btn

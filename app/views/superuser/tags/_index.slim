@@ -1,0 +1,16 @@
+.list-group.row
+  .list-group-item.active
+    - if @parent_tag.present?
+      a.btn.btn-success href="/superuser/tags/#{@parent_tag.id}/subtag?type=new"  Добавить подтег
+    - else
+      a.btn.btn-success href="/superuser/tags/new"  Добавить тег
+  - @tags.each do |tag|
+    .list-group-item.col-md-6
+      span
+        = tag.title + " (#{tag.tags.count})"
+      a.btn.btn-danger.pull-right href="/superuser/tags/#{tag.id}/remove" data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/tags/#{tag.id}/edit" style="margin-right: 5px;"
+        = btn_edit
+      a.btn.btn-warning.pull-right href="/superuser/tags/#{tag.id}/subtag" style="margin-right: 5px;"
+        = raw("&#9776;")

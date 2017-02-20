@@ -1,18 +1,21 @@
-- attachment = attachment.render_video
-.inner-content
-  #course
-    - if course.material?
-      h2 = course.title
-      .title = course.description
-    .text__description
-      .title = attachment.title
-      .description = attachment.description
-      .icon__block
-        i.icon.video
-      
-    .video__content
-      video.video-js.vjs-default-skin.vjs-big-play-centered controls="" preload="auto"
-        source src="#{attachment.file.url}?h=#{SecureRandom.hex(20)}"
-        p.vjs-no-js
-          | To view this video please enable JavaScript, and consider upgrading to a web browser that
-          a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
+- if attachment.file.url.present? && attachment.embed_video.blank?
+  - attachment = attachment.render_video
+  .inner-content
+    #course
+      - if course.material?
+        h2 = course.title
+        .title = course.description
+      .text__description
+        .title = attachment.title
+        .description = attachment.description
+        .icon__block
+          i.icon.video
+
+      .video__content
+        video.video-js.vjs-default-skin.vjs-big-play-centered controls="" preload="auto"
+          source src="#{attachment.file.url}?h=#{SecureRandom.hex(20)}"
+          p.vjs-no-js
+            | To view this video please enable JavaScript, and consider upgrading to a web browser that
+            a href="http://videojs.com/html5-video-support/" target="_blank"  supports HTML5 video
+- else
+  = render "home/course_program/embed", {attachment: attachment, course: course, section: section}

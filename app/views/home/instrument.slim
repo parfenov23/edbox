@@ -1,0 +1,24 @@
+- title_page = @og["title"].present? ? @og["title"] : @course.title
+= render "home/header/header", {namePage: "other",
+                                titlePage: @course.title, btnBack: true,
+                                backUrl: '/courses/instrument', classPageTitle: "is__gray"}
+- title title_page
+javascript:
+  pageLoad(function(){
+    $.each($(".text__inner img"), function (n, e) {
+      var elem = $(e);
+      if (elem.attr('alt').length){
+        elem.after($("<figure>" + elem.prop('outerHTML') + "<figcaption style='text-align: center;font-size: 14px;font-style: italic;color: rgba(0, 0, 0, 0.50);'>" + elem.attr('alt') + "</figcaption></figure>"));
+        elem.remove();
+      }
+    });
+  });
+
+#attachmentCourseProgram
+  .inner-content
+    #course
+      .text__content.text__content_inner
+        #js__toTogglescreen.toggle__screen.icon
+        /.separator
+        #js__text-content.js__baron.text__inner
+          = raw Nokogiri::HTML::DocumentFragment.parse(@attachment.full_text).to_html

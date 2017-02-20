@@ -1,20 +1,25 @@
 - assigned = (course.assigned?(current_user.id) rescue false)
 figcaption
   - unless type == "short__ver"
-    - unless course.material?
+    - unless course.material? || course.instrument?
       .adaptive__title
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-        .right-col = !course.paid ? "Бесплатно" : nil
+        / - if !course.paid
+        /   .right-col = "Бесплатно"
     - else
-      .authors = !course.paid ? "Бесплатно" : nil
-  - link = "/course_description?id=#{course.id}"
-  -  if current_user.present? && !assigned && course.material?
-    - redirect_att = "/course_description?id=#{course.id}"
+      .authors
+        / - if !course.paid
+        /   .free_material = 'Бесплатно'
+  - link = "/course_description/#{course.id}"
+  - if current_user.present? && !assigned && course.material?
+    - redirect_att = "/course_description/#{course.id}"
     - add_class = "js_addCourseToMyCourse"
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
     - link = "/course_no_reg?id=#{course.id}"
+  - if (!current_user.view_course?(course) rescue false)
+    - link = "/tariff"
   form data-redirect=(redirect_att rescue nil) data-alert="false"
-    - if course.material?
+    - if course.material? || course.instrument?
       input type="hidden" name="course_id" value=course.id
     a.goToCourse class=(add_class rescue nil) href=link
       .title = course.title
@@ -23,19 +28,26 @@ figcaption
       = render "course/action_menu_user", {course: course} if bunch_course.model_type == "user" && action_block
   .info__block
     .type
-      - type = (course.online? ? "online__course" : (course.material? ? course.attachments.last.file_type : (course.type_course == "course" ? "courses" : "")) rescue '')
-      - text = (course.material? ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Онлайн-курс" : "Курс") rescue 'курс')
-      i.icon class=type
-      = text
+      - cmaterial = course.material? || course.instrument?
+      - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
+      - text = (cmaterial ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
+      i.icon class=(!course.instrument? ? type : "text")
+      = !course.instrument? ? text : "Инструмент"
     - if course.announcement? || course.online?
       - if course.announcement?
         - announcement_date = course.announcement_date.present? ? ltime(course.announcement_date, "", 'short_date') : 'скоро'
         .time__date = "Выйдет #{announcement_date}"
       - elsif course.online?
         - attachments = course.sections.attachments.webinars.order("date_start ASC")
-        - date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1
-        - date_webinar = (ltime(attachments.last.date_start) rescue nil) if attachments.count == 1
-        .time__date = date_webinar
+        /- date_webinar = (ltime(attachments.first.date_start) + " - " + ltime(attachments.last.date_start) rescue nil) if attachments.count > 1
+        - date_start = (attachments.last.date_start rescue nil)
+        - if date_start.present?
+          - date_webinar_time = (ltime(date_start, '', 'time') rescue nil)
+          - date_webinar = "#{date_start.day} #{rus_schedule_line(date_start.month).mb_chars.downcase.to_s} #{date_start.year}"
+          .time__date = "#{date_webinar_time} мск, #{date_webinar}"
+    - else
+      .time__date
+        |Опубликовано: #{schedule_line[course.updated_at.month-1][:title]} #{course.updated_at.year}
     - if assigned
       .progress__block
         .bar style="width:#{bunch_course.progress}%"

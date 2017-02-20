@@ -126,12 +126,16 @@
     &.is__gray {
       color : black__color(secondary__color);
     }
+    img {
+      width      : 168px;
+      margin-top : -8px;
+    }
   }
 
   .page__children {
     position        : relative;
     display         : flex;
-    padding-top     : 14px;
+    padding-top     : 16px;
     justify-content : flex-start;
     .item {
       font-size      : 15px;
@@ -169,6 +173,13 @@
     display         : flex;
     padding-top     : 19px;
     justify-content : flex-start;
+    &.dopActionAddGroup {
+      padding-top  : 16px;
+      padding-left : 8px;
+      i::before{
+        color : $primaryColor !important;
+      }
+    }
     .btn {
       margin-right : 8px;
     }
@@ -414,8 +425,10 @@
           margin : 0 0 6px;
         }
         .login {
-          font  : 400 13px/20px "Roboto";
-          color : rgba(0, 0, 0, .54);
+          font      : 400 13px/20px "Roboto";
+          color     : rgba(0, 0, 0, .54);
+          max-width : 200px;
+          overflow  : hidden;
         }
       }
     }

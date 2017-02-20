@@ -18,17 +18,18 @@
       li style="display:none;"
 
     - if current_user.corporate && current_user.director
-      .select.group.js_show
+      .select.group.js_show.js__openHiddenListUl
         i.icon
-        - groups = current_user.company.groups
-        - if params[:group_id].present?
-          - group_find = groups.where(id: params[:group_id]).last
-        .select-trigger.titleSelectGroup = group_find.first_name rescue "Выберите группу"
-        input.selectGroupId type='hidden' name='group_id' value=(group_find.id rescue nil)
-        ul.hidden.listGroup
-          - groups.each do |group|
-            li.js_psevdo-select.selectGroup data-id="#{group.id}"
-              = group.first_name
+        - groups = current_user.company.groups rescue []
+        - if groups.present?
+          - if params[:group_id].present?
+            - group_find = groups.where(id: params[:group_id]).last
+          .select-trigger.titleSelectGroup = group_find.first_name rescue "Выберите группу"
+          input.selectGroupId type='hidden' name='group_id' value=(group_find.id rescue nil)
+          ul.hidden.listGroup
+            - groups.each do |group|
+              li.js_psevdo-select.selectGroup data-id="#{group.id}"
+                = group.first_name
     .calendar
       i.icon
       .calendar-trigger Установите срок прохождения курса
@@ -54,10 +55,10 @@
   .inner.end_added
     - if current_user.corporate && current_user.director
       .description
-        |Курс “
+        |Курс «
         span.courseFirstName
           |Имя курса
-        '” добавлен
+        '» добавлен
         span.groupAddedTitle
           |в расписание группы
         |. Для редактирования перейдите на страницу “Расписание”
@@ -66,10 +67,10 @@
         .btn.cancel.btn__noShadow ЗАКРЫТЬ
     - else
       .description
-        |Курс “
+        |Курс «
         span.courseFirstName
           |Имя курса
-        |”добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
+        |»добавлен в рассписание. Для редактирования дат перейдите на страницу “Кабинет”
       .action-btn
         .btn.yes.addCourseMySchedule.js_goToSchedule onclick="window.location.href='/cabinet'" ПЕРЕЙТИ В КАБИНЕТ
         .btn.cancel.btn__noShadow ЗАКРЫТЬ

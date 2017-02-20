@@ -1,49 +1,22 @@
 - billing_price = BillingPrice.default
-.wrp
-  .title Получайте полезные знания вместе с #{$env_mode.name_title}!
+.wrp.popupRequestRegistration
+  .title Спасибо за вашу регистрацию!
   - if params[:v].present?
     .video__te
       iframe allowfullscreen="" frameborder="0" height="416" width="745" mozallowfullscreen="" src="https://player.vimeo.com/video/141645435" webkitallowfullscreen=""
-  .description 
-    |В #{$env_mode.name_title} вы можете обучаться как индивидуально, так и в рамках компании. 
+  .description
+    |Все регистрационные данные только что были отправлены вам по электронной почте.
     br
-    |Выберите подходящий вам формат и зарегистрируйте аккаунт.
+    |Теперь, пожалуйста выберите тип аккаунта, который вам нужен.
   .plane__list
-    .item.pidor__raz
+
+    // js_openHiddenPart
+    .item.pidor__dva data-type="right" data-show="input[name='fio'], input[name='company']" data-type_account="corp"
       .visibile__part
-        .title Попробовать бесплатно
-        .description
-          |Ограниченный доступ к библиотеке знаний. 
-          br
-          |В подписку входят только бесплатные  курсы и материалы.
-        .price.h__text_24-32 Бесплатно
-        .action__block
-          - hash_class = ''
-          - hash_class += 'ya_courses_free ' if (params[:action] == 'courses')
-          - hash_class += 'ya_webinar_free ' if (@course.online? rescue false)
-          .btn.is__blue.js_openFormRegistrationAuth.ya_free_acc class=hash_class ВЫБРАТЬ
-          .ogo Заполните форму ниже
-
-
-    .item.pidor__raz.js_openHiddenPart data-type="left" data-hide="input[name='company']" data-type_account="user"
-      .visibile__part
-        .title Личный аккаунт
-        .description Получите неограниченный доступ ко всем онлайн-курсам, вебинарам, материалам и обновлениям #{$env_mode.name_title}.
-        .price.h__text_24-32 #{billing_price.user_price.to_i} рублей в месяц
-        .action__block
-          - hash_class = ''
-          - hash_class += 'ya_paid_course_pers ' if (@course.paid? rescue false)
-          - hash_class += 'ya_courses_pers ' if (params[:action] == 'courses')
-          - hash_class += 'ya_webinar_pers ' if (@course.online? rescue false)
-          .btn.is__blue.ya_pers_acc.pers class=hash_class ВЫБРАТЬ
-          .ogo Заполните форму ниже
-
-
-    .item.pidor__dva.js_openHiddenPart data-type="right" data-show="input[name='fio'], input[name='company']" data-type_account="corp"
-      .visibile__part
-        .title Корпоративный аккаунт
-        .description Зарегистрируйте корпоративный аккаунт  и пригласите ваших сотрудников. Назначайте курсы и развивайте компетенции  всех сотрудников компании.
+        .title Полный корпоративный аккаунт
+        .description Добавляйте в аккаунт ваших сотрудников, назначайте им курсы и следите за их успеваемостью.
         .price.h__text_24-32
+          span.miniText Единовременная оплата на выбранный вами период и число пользователей по безналичному расчету
           |#{billing_price.company_user_price.to_i} рублей в месяц
           span за каждого сотрудника
         .action__block
@@ -51,48 +24,125 @@
           - hash_class += 'ya_paid_course_corp ' if (@course.paid? rescue false)
           - hash_class += 'ya_courses_corp ' if (params[:action] == 'courses')
           - hash_class += 'ya_webinar_corp ' if (@course.online? rescue false)
-          .btn.is__blue.ya_corp_acc.corp class=hash_class ВЫБРАТЬ
+          .btn.is__blue.ya_corp_acc.corp.js_openFormRegistrationAuth data-type="company" class=hash_class ВЫБРАТЬ
+          .ogo Заполните форму ниже
+    // js_openHiddenPart
+    .item.pidor__dva data-type="left" data-hide="input[name='company']" data-type_account="user"
+      .visibile__part
+        .title Полный индивидуальный аккаунт
+        .description Неограниченный доступ ко всем онлайн-курсам, вебинарам, тестам и материалам. Ваше обучение будет подтверждено сертификатами.
+        .price.h__text_24-32 style='margin-bottom: 34px;'
+          span.miniText
+            |Ежемесечная автоматическая
+            br
+            |оплата по банковской карте
+          |#{billing_price.user_price.to_i} рублей в месяц
+        .action__block
+          - hash_class = ''
+          - hash_class += 'ya_paid_course_pers ' if (@course.paid? rescue false)
+          - hash_class += 'ya_courses_pers ' if (params[:action] == 'courses')
+          - hash_class += 'ya_webinar_pers ' if (@course.online? rescue false)
+          .btn.is__blue.ya_pers_acc.pers.js_openFormRegistrationAuth data-type="user" class=hash_class ВЫБРАТЬ
           .ogo Заполните форму ниже
 
-
-  // forms
-  .plane__list.form__SendMessage
-    .item.pidor__dva
-      .hidden__part
-        form.wrp.formRequest
-          .form__col
-            input type="hidden" name="ip_user" value=""
-            input type="hidden" name="current_link_page" value=""
-            input type="hidden" name="type_account" value=""
-            .com__input-item.item.empty
-              input.form-control.floating-label name="user[first_name]" type="text" placeholder="Имя"
-              hr
-            /.com__input-item.item.empty
-            /  input.form-control.floating-label name="company" type="text" placeholder="Название компании"
-            /  hr
-            .com__input-item.item.empty
-              input.form-control.floating-label name="user[email]" type="email" placeholder="e-mail"
-              hr
-            /.com__input-item.item.empty
-            /  input.form-control.floating-label name="phone" type="tel" placeholder="Номер телефона"
-            /  hr
-
-          .text__col
-            /p.h__text_15-24.item name="first_part" Чтобы оформить подписку, вам необходимо заполнить все поля и отправить заявку. После чего наш менеджер свяжется с вами для уточнения всех деталей.
-            p.h__text_15-24
-              'Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
-              b +7 926 973 36 23
+    .item.pidor__raz
+      .visibile__part
+        .title Ограниченный бесплатный аккаунт
+        .description
+          |Ограниченный доступ к 4 основным онлайн-курсам, нескольким бесплатным вебинарам и базовым справочным материалам.
+        .price.h__text_24-32 Бесплатно
         .action__block
-          .btn.is__blue.js_sendRequestForm Регистрация
-        .agrement
-          .check
-            - rand = rand(9999999)
-            input.js_offerCheckbox id="offerAgree_#{rand}" type="checkbox"
-            label.icon for="offerAgree_#{rand}"
-              i
-              .text
-                'Я принимаю условия пользовательского
-                a.auth_agree-link href="/oferta"
-                  'соглашения
+          - hash_class = ''
+          - hash_class += 'ya_courses_free ' if (params[:action] == 'courses')
+          - hash_class += 'ya_webinar_free ' if (@course.online? rescue false)
+          .btn.is__blue.js_openFormRegistrationAuth.ya_free_acc class=hash_class data-type="free" ВЫБРАТЬ
+          .ogo Заполните форму ниже
 
-      -# render "common/popup_request/yandex_cash"
+  .showInfo.auth_agree-link
+    a.auth_agree-link.jsOpenLandingCompareTable href="#" А в чем отличие между аккаунтами?
+    i.icon.dropdown
+  /// forms
+  /.plane__list.form__SendMessage
+  /  .item.pidor__dva
+  /    .hidden__part
+  /      form.wrp.formRequest
+  /        .form__col
+  /          input type="hidden" name="ip_user" value=""
+  /          input type="hidden" name="current_link_page" value=""
+  /          input type="hidden" name="type_account" value=""
+  /          .com__input-item.item.empty
+  /            input.form-control.floating-label name="user[first_name]" type="text" placeholder="Имя"
+  /            hr
+  /          /.com__input-item.item.empty
+  /          /  input.form-control.floating-label name="company" type="text" placeholder="Название компании"
+  /          /  hr
+  /          .com__input-item.item.empty
+  /            input.form-control.floating-label name="user[email]" type="email" placeholder="e-mail"
+  /            hr
+  /          /.com__input-item.item.empty
+  /          /  input.form-control.floating-label name="phone" type="tel" placeholder="Номер телефона"
+  /          /  hr
+  /
+  /        .text__col
+  /          /p.h__text_15-24.item name="first_part" Чтобы оформить подписку, вам необходимо заполнить все поля и отправить заявку. После чего наш менеджер свяжется с вами для уточнения всех деталей.
+  /          p.h__text_15-24
+  /            'Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
+  /            b +7 926 973 36 23
+  /      .action__block
+  /        .btn.is__blue.js_sendRequestForm Регистрация
+  /      .agrement
+  /        .check
+  /          - rand = rand(9999999)
+  /          input.js_offerCheckbox id="offerAgree_#{rand}" type="checkbox"
+  /          label.icon for="offerAgree_#{rand}"
+  /            i
+  /            .text
+  /              'Я принимаю условия пользовательского
+  /              a.auth_agree-link href="/oferta"
+  /                'соглашения
+  section.landing__compare__table style="display:none"
+    .landing__inner
+      .content__block
+        .compare__table
+          table#divToBeScrolledTo
+            thead
+              tr
+                th
+                th
+                  .text__wrp
+                    |Корпоративный
+                th
+                  .text__wrp
+                    |Индивидуальный
+                th
+                  .text__wrp
+                    | Бесплатный
+            tbody
+              - array_table_tariff_info.each do |info|
+                tr
+                  td
+                    .text__wrp = info.first
+                  - checks_info = (info.last == true) ? [true, true, true] : info.last
+                  - checks_info.each do |check_info|
+                    td
+                      - if check_info
+                        i.icon.done
+            tfoot
+              - billing_price = BillingPrice.default
+              tr
+                td
+                td
+                  .price
+                    |#{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} рублей в месяц
+                    span за каждого сотрудника
+                  .action__block
+                    /.btn.is__blue.js_openFormRegistration.selectType data-type="corp" ВЫБРАТЬ
+                    a.btn.is__blue href="/payment?type=company&page=reg" ВЫБРАТЬ
+                td
+                  .price #{number_with_delimiter(billing_price.user_price.to_i, delimiter: ' ')} рублей в месяц
+                  .action__block
+                    a.btn.is__blue href="/payment?type=user&page=reg"  ВЫБРАТЬ
+                td
+                  .price Бесплатно
+                  .action__block
+                    a.btn.btn-flat.is__border href="/" ВЫБРАТЬ

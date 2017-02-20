@@ -1,0 +1,176 @@
+body {
+  min-width : initial !important;
+  header.landing__header {
+    zoom : 60%;
+    .logo__legend {
+      display : none;
+    }
+    .action__block {
+      .btn {
+        font-size : 8px;
+      }
+    }
+  }
+  .landing__banner {
+    margin-top : 0;
+    height     : 419px;
+    .landing__inner {
+      .section__title {
+        width : 100%;
+        zoom  : 80%;
+      }
+      .action__block {
+        .btn {
+          font-size : 50%;
+        }
+      }
+      .banner__img {
+        iframe {
+          top         : 6%;
+          left        : 50%;
+          margin-left : -15.5%;
+          height      : 60%;
+          width       : 35%;
+        }
+      }
+      .description {
+        width : 100%;
+      }
+    }
+  }
+  .landing__courses__list {
+    padding-top : 310px;
+    .section__title {
+      width : 100%;
+    }
+    .courses__list_inner {
+      .basic__module {
+        margin : 0 4px 32px 0;
+      }
+      figure.basic__module {
+        figcaption {
+          text-align : left;
+          .adaptive__title {
+            .left-col {
+              width : initial !important;
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width : 360px) {
+        figure.basic__module {
+          width : 310px;
+          .image {
+            width  : 310px;
+            height : 175px;
+          }
+          figcaption {
+            width : 310px;
+            .adaptive__title {
+              width        : 310px;
+              margin-right : 0px;
+              .left-col {
+                width : initial !important;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+  .landing__advantages__list {
+    .landing__inner {
+      .section__title {
+        width : 100%;
+      }
+      .description {
+        width : 100%;
+      }
+      .advantages__list {
+        padding-left : 0;
+        figure {
+          margin : 0 auto;
+        }
+      }
+    }
+  }
+  .landing__question {
+    .landing__inner {
+      zoom : 0.6;
+      .section__title {
+        font-size : 24px;
+      }
+      .block_content {
+        .description {
+          font-size : 17px;
+        }
+        .action__block {
+          .btn {
+            font-size : 10px;
+          }
+
+        }
+      }
+    }
+  }
+  .landing__compare__table {
+    .landing__inner {
+      .content__block {
+        .description {
+          width : 100%;
+        }
+        .compare__table {
+          zoom : 0.37;
+          //display : none;
+          th .text__wrp {
+            font-size : 10px;
+          }
+          tr td {
+            .text__wrp {
+              font-size   : 8px;
+              line-height : 34px;
+            }
+            i.icon.done {
+              font-size : 29px;
+            }
+
+          }
+          tfoot {
+            .price {
+              font-size : 8px;
+              span {
+                font-size : 7px;
+              }
+            }
+            .action__block {
+              .btn {
+                font-size : 7px;
+              }
+            }
+          }
+        }
+        @media only screen and (max-width : 360px) {
+          zoom : 0.31;
+        }
+      }
+    }
+  }
+  .courses-aside.help__contenter {
+    display : none;
+  }
+  footer {
+    padding : 14px 10px;
+    .inthis {
+      .block {
+        display : none;
+      }
+      .block.contact__info {
+        width   : 100%;
+        display : block;
+      }
+    }
+  }
+}
+

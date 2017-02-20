@@ -1,25 +1,62 @@
+- if params[:type].present?
+  javascript:
+    var url = document.URL;
+    if (url.search("type=gplus&code=") > 0){
+      var data_gplus = {
+        client_id: "#{Gplus.app_id}",
+        client_secret: "#{Gplus.secret_key}",
+        redirect_uri: "#{$env_mode.current_domain}/sign_up?type=gplus",
+        grant_type: "authorization_code",
+        code: "#{params[:code]}"
+      };
+      getTokenGplusAuth(data_gplus);
+    }else{
+      if (url.search("#access_token") > 0){
+        window.location.href = url.replace('#access_token', '&access_token')
+      } else {
+        pageLoad(function () {
+          reg_the_social(#{@info.to_json.html_safe})
+        });
+      }
+    }
+
+header.landing__header
+  .logo
+    a href="/"
+      img src="/assets/adcons__grey.svg"
+  .logo__legend Онлайн-университет по продажам рекламы
+  .action__block
+    a.btn.btn-flat href="/sign_in" ВОЙТИ
+    - reg_type = params[:type_reg].present? ? "?type_reg=#{params[:type_reg]}" : ''
+    a.btn.btn-flat.is__border href="/sign_up#{reg_type}" ЗАРЕГИСТРИРОВАТЬСЯ
 // .error.lvl-2 lvl-3 lvl-4
 .reg__wrp
   .logo__frst
-    img src="/assets/header__edbox.svg"
+    /img src="/assets/header__edbox.svg"
   .logo__scnd
-    img src="/assets/header__adconsult.svg"
-  form.reg__form.js_registrationUser
+    /img src="/assets/header__adconsult.svg"
+  - hash_redirect = {'data-redirect' => "/courses"}
+  form.reg__form.js_registrationUser *hash_redirect
     .title Регистрация
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Ваше имя"
+      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Пожалуйста, ваше имя и фамилия"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="e-mail"
+      input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="Пожалуйста, e-mail"
+      .error__msg Обязательное поле
+      hr
+    .com__input-item.item.empty.user_phone
+      = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
+      input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Пожалуйста, телефон"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label autocomplete="off" name="user[password]" type="password" placeholder="Пароль"
+      input.form-control.floating-label autocomplete="off" name="user[password]" type="password" placeholder="Пожалуйста, придумайте пароль"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label name="password_repeat" type="password" placeholder="Подтверждение пароля"
+      input.form-control.floating-label name="password_repeat" type="password" placeholder="Пожалуйста, подтвердите пароль"
       .error__msg Обязательное поле
       hr
     .auth_agree.checkbox__holder
@@ -31,6 +68,16 @@
         ' Я принимаю условия пользовательского
         a.auth_agree-link href="/oferta" соглашения
         |.
+    .com__input-item.social_reg
+      |Зарегестрируйтесь с помощью социальных сетей
+      .social style="font-size:36px;margin-right: 24px;margin-top: 12px;"
+        a#js_validRegClickOfert href=Socials.auth_url('vk') style="margin-right: 4px;"
+          i.icon.vk.square
+        a#js_validRegClickOfert href=Socials.auth_url('fb') style="margin-right: 4px;"
+          i.icon.fb.square
+        a#js_validRegClickOfert href=Socials.auth_url('gplus')
+          i.icon.gplus.square
     .action__block
       a.btn.btn-flat href='/sign_in' У МЕНЯ ЕСТЬ АККАУНТ
       .btn.is__blue.ya_new_acc#submit data-phoenix-action="remove" СОЗДАТЬ АККАУНТ
+= render "home/tariff/check_valid_phone"

@@ -3,18 +3,25 @@
     img src="/assets/header__edbox.svg"
   .logo__scnd
     img src="/assets/header__adconsult.svg"
-  form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description?id=#{params[:redirect]}" : '')
+  form.reg__form.is__auth.js_FormAuth data-redirect=(params[:redirect].present? ? "/course_description/#{params[:redirect]}" : '')
     .title Авторизация
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[email]" type="email" placeholder="Логин"
+      input.form-control.floating-label name="user[email]" type="email" placeholder="Ваш логин (e-mail)"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label name="user[password]" type="password" placeholder="Пароль"
+      input.form-control.floating-label name="user[password]" type="password" placeholder="Ваш пароль"
       .error__msg Обязательное поле
       hr
     .forgot__pass
       a href="/reset_pass" Забыли пароль?
     .action__block
+      .social style="font-size:24px;margin-right: 24px;"
+        a href=Socials.auth_url('vk') style="margin-right: 4px;"
+          i.icon.vk.square
+        a href=Socials.auth_url('fb') style="margin-right: 4px;"
+          i.icon.fb.square
+        a href=Socials.auth_url('gplus')
+          i.icon.gplus.square
       a.btn.btn-flat href="/sign_up" СОЗДАТЬ АККАУНТ
       .btn.is__blue#submit ВОЙТИ

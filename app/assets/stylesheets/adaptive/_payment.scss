@@ -1,0 +1,56 @@
+body {
+  .billing__wrp {
+    .content__block {
+      padding-top : 64px;
+      .page__title {
+        display : none;
+      }
+      form.tarif__info.tariffPay {
+        width : 100%;
+        > .title {
+          font-size : 18px;
+        }
+        .description {
+          .company__name {
+            width       : 100%;
+            margin-left : 0;
+          }
+        }
+        .company__calc {
+          height : 100%;
+          .title {
+            font-size : 11px;
+          }
+          .duration {
+            width        : auto;
+            margin       : 0;
+            margin-right : 4px;
+            .dropdown__flash {
+              margin-left : 14px;
+              width       : auto;
+              .visible__part {
+                font-size : 14px;
+                .icon.to__drop {
+                  font-size : 14px;
+                  right     : initial;
+                }
+              }
+              .hidden__list {
+                height     : 200px;
+                overflow-x : scroll;
+              }
+            }
+          }
+          .qty__person {
+            margin-right : 4px;
+            width        : auto;
+          }
+          .sum {
+            margin-right : 8px;
+            width        : auto;
+          }
+        }
+      }
+    }
+  }
+}

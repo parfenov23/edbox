@@ -16,7 +16,7 @@
           = render "common/course/course_img", {course: course, w: 694, h: 384}
           figcaption
             .title
-              .inner onclick='window.location.href="/course_description?id=#{course.id}"' = course.title
+              .inner onclick='window.location.href="/course_description/#{course.id}"' = course.title
               .shadow
               - if my_bunch_course.model_type == "user"
                 .com__director-btn.js__select-calendar

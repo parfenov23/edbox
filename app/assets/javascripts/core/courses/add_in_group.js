@@ -8,7 +8,6 @@ var openPopup = function () {
             popup.find("input.courseId").val(course_id);
             popup.show();
             popup.find(".check_group_added").show();
-            console.log(course_id)
             popup.find(".end_added .description .courseFirstName").text($("#titleCoursePrev" + course_id).text());
             if (btn.data('hide') != undefined){
                 popup.find(btn.data('hide')).hide();
@@ -157,7 +156,7 @@ var addCourseGroup = function (btn) {
     }).success(function (data) {
         if (data.error == undefined){
             var group_id = form.find(".selectGroupId").val();
-            $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group?id=" + group_id + "&type=courses'");
+            $("#js-add-course-to-shedule .end_added .action-btn .btn.yes.js_goToSchedule").attr("onclick", "window.location.href='/group/" + group_id);
             openEdnPopup();
             clearPopup();
             var id_course = form.find("input.courseId").val();

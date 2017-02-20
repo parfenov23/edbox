@@ -12,28 +12,28 @@ function checkPassword(password) {
     var is_b = false; // Есть ли в пароле буквы в верхнем регистре
     var is_d = false; // Есть ли в пароле цифры
     var is_sp = false; // Есть ли в пароле спецсимволы
-    for (var i = 0; i < password.length; i++) {
+    for (var i = 0; i < password.length; i ++){
         /* Проверяем каждый символ пароля на принадлежность к тому или иному типу */
-        if (!is_s && s_letters.indexOf(password[i]) != -1) is_s = true;
-        else if (!is_b && b_letters.indexOf(password[i]) != -1) is_b = true;
-        else if (!is_d && digits.indexOf(password[i]) != -1) is_d = true;
-        else if (!is_sp && specials.indexOf(password[i]) != -1) is_sp = true;
+        if (! is_s && s_letters.indexOf(password[i]) != - 1) is_s = true;
+        else if (! is_b && b_letters.indexOf(password[i]) != - 1) is_b = true;
+        else if (! is_d && digits.indexOf(password[i]) != - 1) is_d = true;
+        else if (! is_sp && specials.indexOf(password[i]) != - 1) is_sp = true;
     }
     var rating = 0;
     var text = "";
     var klass = "";
-    if (is_s) rating++; // Если в пароле есть символы в нижнем регистре, то увеличиваем рейтинг сложности
-    if (is_b) rating++; // Если в пароле есть символы в верхнем регистре, то увеличиваем рейтинг сложности
-    if (is_d) rating++; // Если в пароле есть цифры, то увеличиваем рейтинг сложности
-    if (is_sp) rating++; // Если в пароле есть спецсимволы, то увеличиваем рейтинг сложности
+    if (is_s) rating ++; // Если в пароле есть символы в нижнем регистре, то увеличиваем рейтинг сложности
+    if (is_b) rating ++; // Если в пароле есть символы в верхнем регистре, то увеличиваем рейтинг сложности
+    if (is_d) rating ++; // Если в пароле есть цифры, то увеличиваем рейтинг сложности
+    if (is_sp) rating ++; // Если в пароле есть спецсимволы, то увеличиваем рейтинг сложности
     /* Далее идёт анализ длины пароля и полученного рейтинга, и на основании этого готовится текстовое описание сложности пароля */
     if (password.length < 6 && rating < 3 && password.length >= 4) klass = "lvl-2", text = "Простой";
     else if (password.length < 4 && rating < 3) klass = "lvl-1", text = "Очень простой";
-    else if (password.length < 6 && rating >= 3) klass = "lvl-3", text = "Средний";
-    else if (password.length >= 8 && rating < 3) klass = "lvl-3", text = "Средний";
-    else if (password.length >= 8 && rating >= 3) klass = "lvl-4", text = "Очень простой";
-    else if (password.length >= 6 && rating == 1) klass = "lvl-2", text = "Очень простой";
-    else if (password.length >= 6 && rating > 1 && rating < 4) klass = "lvl-3", text = "Средний";
+    else if (password.length < 6 && rating >= 3) klass = "lvl-3", text = "Хороший";
+    else if (password.length >= 8 && rating < 3) klass = "lvl-3", text = "Хороший";
+    else if (password.length >= 8 && rating >= 3) klass = "lvl-4", text = "Сложный";
+    else if (password.length >= 6 && rating == 1) klass = "lvl-2", text = "Хороший";
+    else if (password.length >= 6 && rating > 1 && rating < 4) klass = "lvl-3", text = "Хороший";
     else if (password.length >= 6 && rating == 4) klass = "lvl-4", text = "Сложный";
     return [klass, text]; // Форму не отправляем
 }
@@ -49,7 +49,7 @@ function view_px_block(block) {
 }
 
 /* Сабмит профиля */
-function fixed_btn_save(){
+function fixed_btn_save() {
     var block = $(".oferta_holder .auth_oferta");
     var block_action = block.find(".btn_active_fixed:visible");
     if (block.length > 0 && block_action.length > 0){
@@ -104,7 +104,7 @@ function fixed_btn_save(){
     }
 }
 
-var resetPassword = function(){
+var resetPassword = function () {
     var data = $(this).closest("form").serialize();
     $.ajax({
         type   : 'POST',
@@ -112,7 +112,7 @@ var resetPassword = function(){
         data   : data,
         success: function (data) {
             show_error('Вам на почту выслан новый пароль', 3000);
-            setTimeout(function(){
+            setTimeout(function () {
                 window.location.href = '/sign_in'
             }, 1000)
         },
@@ -122,26 +122,94 @@ var resetPassword = function(){
     });
 };
 
+function reg_the_social(params) {
+    var data = params;
+    var form = $(".js_registrationUser #submit").closest('form');
+    $.ajax({
+        type   : 'POST',
+        url    : '/api/v1/sessions/registration',
+        data   : {user: data},
+        success: function (m) {
+            fbq_env('CompleteRegistration');
+            $.cookie('user_key', m.user_key);
+            if (form.data('redirect') == undefined){
+                $("#formCourseRegPopUp").show();
+            } else {
+                window.location.href = form.data('redirect');
+            }
+
+        },
+        error  : function (m) {
+
+            show_error(m.responseJSON.error, 3000);
+        }
+    });
+};
+
+
+function getTokenGplusAuth(data_g) {
+    $.ajax({
+        type   : 'POST',
+        url    : 'https://www.googleapis.com/oauth2/v4/token',
+        data   : data_g,
+        success: function (m) {
+            window.location.href = '/sign_up?type=gplus&access_token=' + m.access_token;
+        }
+    });
+};
+
+var validRegClickOfert = function () {
+    var btn = $(this);
+    var valid_error = false;
+    $('input.checkbox, .form-control[type="tel"], .com__input-item.user_phone').removeClass('error');
+    if (! btn.closest('form').find(".auth_agree.checkbox__holder input.checkbox").is(':checked')){
+        $('input.checkbox').addClass('error');
+        valid_error = true;
+    }
+    if (! $('.form-control[type="tel"]').val().length){
+        $('.form-control[type="tel"], .com__input-item.user_phone').addClass('error');
+        valid_error = true;
+    } else {
+        $.cookie('user_phone', $('.form-control[type="tel"]').val());
+    }
+
+    if (valid_error){
+        show_error("Пожалуйста, заполните обязательные поля", 3000);
+    } else {
+        var curr_href = $(this).attr('href');
+        var endAction = function () {
+            window.location.href = curr_href
+        };
+        include_phone($('.form-control[type="tel"]'), endAction);
+    }
+    return false;
+};
+
 $(document).ready(function () {
-    $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function(){
+    $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function () {
         var valPass = checkPassword($(this).val());
-        $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0] );
+        $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0]);
         $(this).closest(".com__input-item").find(".error__msg").text(valPass[1]);
     });
 
-    $(".js_LendingGoToSubscription").on('click', function(){
+    $(".js_LendingGoToSubscription").on('click', function () {
         $('html,body').animate({
             scrollTop: $("#divToBeScrolledTo").offset().top - 64
         });
     });
 
     $(document).on('click', '.js_FormAuthResetPass .js_resetPassword', resetPassword);
+    $(document).on('click', '#js_validRegClickOfert', validRegClickOfert);
+    $(document).on('click', '.jsOpenLandingCompareTable', function () {
+        $(this).closest(".popupRequestRegistration").find("section.landing__compare__table").show();
+        $(this).closest(".showInfo").hide();
+    });
 
     if ($("form.js_registrationUser").length){
-        (function() {
+        (function () {
             $('.phoenix-input').phoenix();
 
-            $('[data-phoenix-action]').on('click', function(e) {
+            $('[data-phoenix-action]').on('click', function (e) {
                 $('.phoenix-input').phoenix($(this).data('phoenix-action'));
                 e.preventDefault();
                 return e.stopPropagation();
@@ -152,17 +220,17 @@ $(document).ready(function () {
         var selected = $(".js_registrationUser .auth__reg-selected");
         var input_corp_name = $(".js_registrationUser .input-wrp.corporate_acc");
         var param_type = $("#paramsInputTypeAccount").val();
-        if (param_type != undefined && !param_type.length){
+        if (param_type != undefined && ! param_type.length){
             if (val_inp.count_text_input()){
                 selected.text("Корпоративный аккаунт");
                 input_corp_name.addClass("active");
-            }else{
+            } else {
                 input_corp_name.removeClass("active");
                 selected.text("Персональный аккаунт");
             }
         }
 
-        $.each( $(".phoenix-input"), function(n, e){
+        $.each($(".phoenix-input"), function (n, e) {
             if ($(e).count_text_input()) $(e).closest(".com__input-item").removeClass("empty").addClass("is__noFocus");
         })
 
@@ -188,10 +256,10 @@ $(document).ready(function () {
             success: function (user) {
                 $.cookie('user_key', user.user_key);
                 show_error('Успешно', 3000);
-                setTimeout(function(){
-                    if(form.data('redirect') == undefined || form.data('redirect') == ''){
+                setTimeout(function () {
+                    if (form.data('redirect') == undefined || form.data('redirect') == ''){
                         window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
-                    }else{
+                    } else {
                         window.location.href = form.data('redirect');
                     }
                 }, 1000);
@@ -206,38 +274,33 @@ $(document).ready(function () {
     $(".js_registrationUser #submit").click(function (e) {
         e.preventDefault();
         validate();
-        if ($(".js_registrationUser input.error").length == 0){
-            var btn = $(this);
+        var endAction = function () {
+            var btn = $(".js_registrationUser #submit");
             var form = btn.closest("form");
             var data = form.serialize();
 
-            //var company, data, user;
-            //user = _.omit(data, 'password_repeat', 'agreed', 'name');
-            //company = _.pick(data, 'name');
-            //console.log(user, company);
-            show_error('Подождите чуть-чуть!', 5000);
+            show_error('Подождите чуть-чуть!');
             return $.ajax({
                 type   : 'POST',
                 url    : '/api/v1/sessions/registration',
                 data   : data,
-                //data   : {
-                //    user   : user,
-                //    company: company
-                //},
                 success: function (m) {
                     fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
-                    if(form.data('redirect') == undefined){
-                        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
-                    }else{
+                    show_error('Успешно', 3000);
+                    if (form.data('redirect') == undefined){
+                        $("#formCourseRegPopUp").show();
+                    } else {
                         window.location.href = form.data('redirect');
                     }
-
                 },
-                error  : function () {
-                    show_error('Произошла ошибка регистрации', 3000);
+                error  : function (m) {
+                    show_error(m.responseJSON.error, 3000);
                 }
             });
+        };
+        if ($(".js_registrationUser input.error").length == 0){
+            include_phone($('.form-control[type="tel"]'), endAction);
         }
     });
 
@@ -247,7 +310,7 @@ $(document).ready(function () {
 
 
     $("input[name='user[password]'], input[name=password_repeat]").change(function (e) {
-        if($(".auth__enter .btn-holder #submit").length){
+        if ($(".auth__enter .btn-holder #submit").length){
             changePassword(e);
         }
     });
@@ -303,7 +366,7 @@ $(document).ready(function () {
         } else {
             if (pass_repeat.length){
                 $('input[name=password_repeat]').addClass('error');
-            }else{
+            } else {
                 $('input[name=password_repeat]').removeClass('error');
             }
         }
@@ -329,18 +392,18 @@ $(document).ready(function () {
             var block = $(el);
             if (! block.val()){
                 block.addClass('error').closest(".com__input-item").addClass("error");
-            }else{
+            } else {
                 block.removeClass('error').closest(".com__input-item").removeClass("error");
             }
             if (block.attr("name") == "user[email]"){
-                if(validateEmail(block.val())){
+                if (validateEmail(block.val())){
                     block.removeClass('error').closest(".com__input-item").removeClass("error");
-                }else{
+                } else {
                     block.addClass('error').closest(".com__input-item").addClass("error");
                 }
             }
             if (block.attr("name") == "company[name]"){
-                if(! block.closest(".corporate_acc").hasClass("active")){
+                if (! block.closest(".corporate_acc").hasClass("active")){
                     block.removeClass("error").closest(".com__input-item").removeClass("error");
                 }
             }
@@ -355,19 +418,24 @@ $(document).ready(function () {
         var inputPass = $("input[name='user[password]']");
         var inputRePass = $("input[name='password_repeat']");
 
-        if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)) {
+        if ((inputPass.val() != inputRePass.val()) || (inputPass.count_text_input() <= 3)){
             inputPass.addClass("error");
             inputRePass.addClass("error");
-            if(inputPass.count_text_input() > 0 ){
-                if(inputPass.count_text_input() <= 3) show_error('Короткий пароль', 3000);
-                if(inputPass.val() != inputRePass.val()) show_error('Проверьте правильность повтора пороля', 3000);
-            }else{
+            if (inputPass.count_text_input() > 0){
+                if (inputPass.count_text_input() <= 3) show_error('Короткий пароль', 3000);
+                if (inputPass.val() != inputRePass.val()) show_error('Проверьте правильность повтора пороля', 3000);
+            } else {
                 show_error('Поле не может быть пустым', 3000);
             }
             $("#alert").css("z-index", "9999");
-        }else{
+        } else {
             inputPass.removeClass("error");
             inputRePass.removeClass("error");
         }
+    };
+
+    if ($.cookie('user_phone') != undefined && $.cookie('user_phone') != '' && current_user()){
+        CurrentUserUpdatePhone($.cookie('user_phone'));
+        $.cookie('user_phone', '');
     }
 });

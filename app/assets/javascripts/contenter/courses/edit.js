@@ -24,6 +24,7 @@ var createCourseContenter = function (data) {
             type_link = "materials";
             $(".upload_attachments input[name='attachment[attachmentable_id]']").val(data.id);
         }
+        if (type_course == "instrument") type_link = "instruments";
         history.pushState({}, '', "/contenter/" + type_link + "/" + data.id + "/edit");
         var header = $("#page__header .page__children");
         header.find(".contenter_courses_edit").attr('href', '/contenter/' + type_link + '/' + data.id + '/edit');
@@ -298,6 +299,18 @@ var announcement = function () {
     $(btn).closest('.upload_attachments').removeClass('includeValidateForm error');
 };
 
+var openTreeTagsLeftSideBar = function(){
+    var btn = $(this);
+    var block = btn.closest(".parent_tag").find("ul:first");
+    if (block.is(":visible")){
+        block.hide();
+    }else{
+        block.show();
+    }
+
+
+};
+
 pageLoad(function () {
     $('.js_courseContenter .js_onChangeEditCourse').change(onChangeEditCourse);
     $(document).on('click', ".js_courseContenter .js_clickFromCreateCourseContenter", onChangeEditCourse);
@@ -341,4 +354,5 @@ pageLoad(function () {
     });
 
     $('#courseEditContenter #inputFile_teaserImg,#courseEditContenter #inputFile_teaserVideo').change(changeTeaserCourse);
+    $(document).on('click', '#js-course-tags .all__Tags .parent_tag .title', openTreeTagsLeftSideBar)
 });

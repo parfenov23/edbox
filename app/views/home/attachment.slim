@@ -1,21 +1,22 @@
-- back_url = !@course.material? ? "/course_description?id=#{@course.id}&attachment_id=#{@attachment.id}" : 'backCourse'
+- back_url = !@course.material? ? "/course_description/#{@course.id}?attachment_id=#{@attachment.id}" : 'backCourse'
 - header_title = !@course.material? ? @attachment.title : @course.title
 = render "home/header/header", {namePage: "courseMaterial", 
   titlePage: header_title, btnBack: true, 
   backUrl: back_url, classPageTitle: "is__gray"}
-- if current_user.present?
-  = render "home/course_program/right_sidebar/notes_aside"
-- unless @course.material? || !current_user.present?
-  = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
-- unless @attachment.download
-  - case @attachment.file_type
-  - when "audio", "video", "description", "pdf", 'vimeo'
-    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+#attachmentCourseProgram
+  - if current_user.present?
+    = render "home/course_program/right_sidebar/notes_aside"
+  - unless @course.material? || !current_user.present?
+    = render "home/course_program/right_sidebar/program_aside", {attachment: @attachment, course: @course, section: @section}
+  - unless @attachment.download
+    - case @attachment.file_type
+    - when "audio", "video", "description", "pdf", 'vimeo'
+      = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+      = render "common/course/adova_btn_new"
+    - when "test"
+      = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+    - when "webinar"
+      = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
+  - else
+    = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
     = render "common/course/adova_btn_new"
-  - when "test"
-    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
-  - when "webinar"
-    = render "home/course_program/#{@attachment.file_type}", {attachment: @attachment, course: @course, section: @section}
-- else
-  = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
-  = render "common/course/adova_btn_new"

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :incoming_moneys, dependent: :destroy
   has_many :ligament_leads, dependent: :destroy
   has_many :accounts, dependent: :destroy
+  serialize :social, ActiveRecord::Coders::Hstore
 
   before_create :create_hash_key
   validates :email, presence: true
@@ -144,7 +145,8 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name.to_s + " " + last_name.to_s
+    user_name = first_name.to_s + " " + last_name.to_s
+    user_name.gsub(" Пользователь", "").gsub("Пользователь ", "")
   end
 
   def name

@@ -1,0 +1,27 @@
+- if @course.announcement?
+  .tizer__block
+    .title Полная программа курса станет доступна в скором времени
+    .action__block
+      - if current_user.present?
+        .btn.is__blue.js_annonsReg.ya_annons_course data-email=current_user.email data-course_id=@course.id УВЕДОМИТЬ МЕНЯ
+      - else
+        .btn.is__blue.js_annons.ya_annons_course УВЕДОМИТЬ МЕНЯ
+- else
+  - if current_user.present?
+    .tizer__block.start_studyCourse
+      .title
+      .action__block style="width: inherit;"
+        - if !@course.online?
+          - if bunch_course.blank?
+            .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" Начать изучение курса
+          - else
+            .btn.is__blue onclick="$($('.prgr-wrp .item').not('.is__completed')[0]).click();" Продолжить изучение курса
+        - else
+          - first_webinar = @course.first_webinar
+          - if first_webinar.present?
+            - if first_webinar.in_progress?
+              .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" Перейти к просмотру вебинара
+            - else
+              - date_start = (first_webinar.date_start + User.time_zone.hour)
+              - start_webinar_date = "#{parse_russian_date(date_start)} (по Мск)"
+              span.title_action Вебинар начнется #{start_webinar_date}

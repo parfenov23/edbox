@@ -1,0 +1,14 @@
+.inner-content
+  #course
+    - if course.material?
+      h2 = course.title
+      .title = course.description
+    .text__description
+      .title = attachment.title
+      .description = attachment.description
+      .icon__block
+        i.icon.video
+    .inner__video
+      = render "home/course_program/action_btn_video"
+      .video__content
+        = raw Nokogiri::HTML::DocumentFragment.parse(attachment.embed_video).to_html

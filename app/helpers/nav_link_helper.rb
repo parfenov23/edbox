@@ -16,6 +16,8 @@ module NavLinkHelper
         contenter_courses_new_nav_links
       when "contenter_materials_new"
         contenter_materials_new_nav_links
+      when "contenter_instruments_new"
+        contenter_materials_new_nav_links("instruments")
       when "contenter_admin"
         contenter_admin_nav_links
       when "profile"
@@ -27,18 +29,20 @@ module NavLinkHelper
 
   def courses_nav_links
     [
-      {title: "Все вместе", link: "/courses"},
-      {title: "Курсы", link: "/courses?type=course"},
-      {title: "Вебинары", link: "/courses?type=online"},
-      {title: "Материалы", link: "/courses?type=material"}
+      # {title: "Все вместе", link: "/courses"},
+      # {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
+      # {title: "Вебинары", link: "/courses/online", type: "online"},
+      # {title: "Справочные материалы", link: "/courses/material", type: "material"},
+      # {title: "Инструменты", link: "/courses/instrument", type: "instrument"}
     ]
   end
 
   def profile_nav_links
     [
       {title: "Профиль", link: "/profile"},
-      {title: "Тариф", link: "/tariff"},
-      {title: "Платежи", link: "/payments"}
+      # {title: "Тариф", link: "/tariff"},
+      # {title: "Платежи", link: "/payments"},
+      {title: "Публичная страница", link: "/user/#{current_user.id}"}
     ]
   end
 
@@ -50,13 +54,13 @@ module NavLinkHelper
     ]
   end
 
-  def contenter_materials_new_nav_links
+  def contenter_materials_new_nav_links(type="materials")
     id = params[:id].present? ? params[:id] : "new"
     [
-      {title: "Описание", link: "/contenter/materials/#{id}/edit",
+      {title: "Описание", link: "/contenter/#{type}/#{id}/edit",
        add_params: {class: "contenter_courses_edit"}
       },
-      {title: "Публикация", link: "/contenter/materials/#{id}/publication",
+      {title: "Публикация", link: "/contenter/#{type}/#{id}/publication",
        add_params: {class: "contenter_courses_public"}
       }
     ]
@@ -120,11 +124,11 @@ module NavLinkHelper
   def group_nav_link
     if current_user.director
       current_user.company.groups.map do |group|
-        {title: group.first_name, link: "/group?id=#{group.id}"}
+        {title: group.first_name, link: "/group/#{group.id}"}
       end
     elsif current_user.corporate
       current_user.my_groups.map do |group|
-        {title: group.first_name, link: "/group?id=#{group.id}"}
+        {title: group.first_name, link: "/group/#{group.id}"}
       end
     end
   end

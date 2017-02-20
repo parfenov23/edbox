@@ -39,7 +39,7 @@ module Api::V1
         arr_hash_users = emails.map do |email|
           validate = true
           user = User.find_by_email(email)
-          if current_user.company.users.where(user.as_json).present?
+          if current_user.company.users.where(id: (user.id rescue nil)).present? || user.blank?
             if user.nil?
               validate = !find_sub.present? ? true : (find_sub.user_count > company_users ? true : false)
             end

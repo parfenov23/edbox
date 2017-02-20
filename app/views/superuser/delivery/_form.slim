@@ -9,7 +9,7 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
   .form-group
     label
       | Тело письма:
-    textarea.form-control.description name="delivery[description]" type="text"
+    textarea.form-control.description.js_includeTiny name="delivery[description]" type="text"
       = raw @delivery.description
 
   input type="hidden" name="delivery[users_id]" value="#{@users.ids}"

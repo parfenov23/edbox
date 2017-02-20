@@ -1,17 +1,16 @@
-.actual-courses
-  - bunch_courses = current_user.bunch_courses
-  - bunch_courses_study = bunch_courses.in_study
-  - if bunch_courses_study.present?
-    = render "home/cabinet/current_courses", {bunch_courses_study: bunch_courses_study}
+- bunch_courses = current_user.bunch_courses
+- bunch_courses_study = bunch_courses.in_study
+- if bunch_courses_study.present?
+  = render "home/cabinet/current_courses", {bunch_courses_study: bunch_courses_study}
 
-  - overdue_bunch_courses = bunch_courses.overdue
-  - if overdue_bunch_courses.present?
-    = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
+- overdue_bunch_courses = bunch_courses.overdue
+- if overdue_bunch_courses.present?
+  = render "home/cabinet/overdue_courses", {overdue_bunch_courses: overdue_bunch_courses}
 
-  - group_bunch_courses = bunch_courses.in_group
-  - if group_bunch_courses.present?
-    = render "home/cabinet/assigned_courses", {my_bunch_courses: group_bunch_courses, type_course: "group"}
+- group_bunch_courses = bunch_courses.in_group
+- if group_bunch_courses.present?
+  = render "home/cabinet/assigned_courses", {my_bunch_courses: group_bunch_courses, type_course: "group"}
 
-  - my_bunch_courses = bunch_courses.my
-  - if my_bunch_courses.present?
-    = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses, type_course: "user"}
+- my_bunch_courses = bunch_courses.my
+- if my_bunch_courses.present?
+  = render "home/cabinet/assigned_courses", {my_bunch_courses: my_bunch_courses, type_course: "user"}

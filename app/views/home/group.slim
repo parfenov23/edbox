@@ -9,18 +9,23 @@ input#namePageGroup type="hidden" value=(@group.first_name rescue 'Нет гру
   - else
     #infoGroup.box.show
       .item.manage-group
-        = render "home/group/left_menu"
-        - unless params[:type].present?
-          .container
-            = render 'home/group/info'
-        - else
-          - case params[:type]
-          - when "user"
-            = render "home/group/users"
-          /- when "schedule"
-            = render "home/group/schedule", {group: @group}
-          - when "courses"
-            = render "home/group/courses"
+        /= render "home/group/left_menu"
+        .container
+          h3.label__name Название группы
+          = render 'home/group/info'
+        = render "home/group/users"
+        = render "home/group/courses"
+        /- unless params[:type].present?
+        /  .container
+        /    = render 'home/group/info'
+        /- else
+        /  - case params[:type]
+        /  - when "user"
+        /    = render "home/group/users"
+        /  /- when "schedule"
+        /    = render "home/group/schedule", {group: @group}
+        /  - when "courses"
+        /    = render "home/group/courses"
         .form_group
           = render 'home/group/form', {type: 'new'}
           = render 'home/group/form', {type: 'edit', group: @group}
