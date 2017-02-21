@@ -243,7 +243,7 @@
         height : 48px;
         cursor : pointer;
         &.complete {
-          background-color : #EE8738;
+          background-color : $primaryColor;
         }
         &.reload {
           i {

@@ -62,7 +62,7 @@ module ApplicationHelper
   # Заголовок страницы
   def layout_title
     d = @page_title.nil? ? "" : " | "
-    @page_title.to_s + d + "ADCONSULT.Online"
+    @page_title.to_s + d + $env_mode.name_title
   end
 
   def title(page_title=nil)
