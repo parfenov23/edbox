@@ -33,6 +33,7 @@ var start_countdown_close_popup_ads = function(){
   }, time_show_close_footer_ads());
 }
 
+
 // popup common
 var time_show_close_popup_ads_common = function(){
   return 5000;
@@ -84,7 +85,7 @@ var start_ads_popup_common = function(){
   }, time_show_close_popup_ads_common());
 }
 
-/////
+/////popup common
 
 pageLoad(function(){
   $(document).on('click', '.js_completeAttachment', run_ads_popup);

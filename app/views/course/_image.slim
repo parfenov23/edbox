@@ -12,11 +12,11 @@
     img src = course.get_image_path(694, 384)
     .fade
   - if type != "shot__module"
-    - tag = course.bunch_tags.last.tag.title rescue nil
-    - if tag.present?
-      .category
-        i.icon.teg
-        = tag
+    / - tag = course.bunch_tags.last.tag.title rescue nil
+    / - if tag.present?
+    /   .category
+    /     i.icon.teg
+    /     = tag
 
     - bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
     - if bunch_course.present?
