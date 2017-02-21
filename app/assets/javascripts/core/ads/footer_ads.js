@@ -33,6 +33,7 @@ var ads_footer_hide = function(){
   $(".ads__footer").hide();
   $("footer").css({'margin-top': '0'});
   $(".ads__footer .close").hide();
+  auto_start_ads_footer();
 }
 
 var reside_last_date_close_ads = function(type){
@@ -40,6 +41,7 @@ var reside_last_date_close_ads = function(type){
   var reside = 0;
   if (last_date_string != undefined){
     if (type == "ads_footer_close") max_time_ads_footer = 5;
+    if (type == "ads_popup_common") max_time_ads_popup_common = 10;
     var last_date = new Date(last_date_string);
     var curr_time = new Date();
     reside = Math.round((last_date - curr_time)*(-1)/1000/60)

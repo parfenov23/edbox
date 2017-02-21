@@ -97,9 +97,9 @@ goToWebinar = function(){
 
 var first_enter_material = function(){
     var time = new Date();
-    var first_time = $.session.get("first_enter_material");
+    var first_time = $.cookie("first_enter_material");
     if (new Date(first_time) == "Invalid Date"){
-        $.session.set("first_enter_material", time);
+        $.cookie("first_enter_material", time);
     }
     setTimeout(function(){
         $("#registration_popup").css("display", "flex");
@@ -109,9 +109,12 @@ var first_enter_material = function(){
 }
 
 var pause_video_vimeo = function(){
-    var iframe = $('iframe')[0];
-    var player = new Vimeo.Player(iframe);
-    player.pause();
+    if ($("iframe").length){
+        var iframe = $('iframe')[0];
+        var player = new Vimeo.Player(iframe);
+        player.pause();
+    }
+
 }
 
 pageLoad(function () {

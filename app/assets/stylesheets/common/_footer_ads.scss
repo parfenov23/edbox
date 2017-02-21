@@ -55,7 +55,7 @@
     @import "common/elements/loader";
   }
 }
-#ads_popup{
+#ads_popup, #ads_popup_common{
   .inner{
     padding: 52px 24px 36px 24px;
     background: #5B4141;
@@ -86,5 +86,43 @@
     font: 300 42px/1 'Roboto';
     color: #FFF;
     cursor: pointer;
+  }
+}
+
+#ads_popup_common{
+  .inner{
+      -webkit-transform: translateY(20%);
+      -moz-transform: translateY(20%);
+      -ms-transform: translateY(20%);
+      transform: translateY(20%);
+      opacity: 0;
+    &.animate{
+      -webkit-transform: translateY(0%);
+      -moz-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+      transform: translateY(0%);
+      opacity: 1;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+  }
+}
+
+@keyframes move_popup {
+  from{
+    top: -100%;
+  }
+  to{
+    top: 0;
+  }
+  25% {
+    top: -75%;
+  }
+  50% {
+    top: -50%;
+  }
+  70%{
+    top: -25%;
   }
 }

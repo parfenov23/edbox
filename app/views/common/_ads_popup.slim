@@ -10,3 +10,15 @@
         .cssload-speeding-wheel
         .time 5
       .close ×
+
+- ads_common = Ads.find_by_type_ad("popup_common")
+- if ads_common.present?
+  #ads_popup_common.pop_up_confirm
+    .inner.notice__popup.email__add
+      .title = ads_common.title
+      .description = ads_common.content
+      a.btn.is__blue href=ads_common.href Подробнее
+      .cssload-container
+        .cssload-speeding-wheel
+        .time 5
+      .close ×

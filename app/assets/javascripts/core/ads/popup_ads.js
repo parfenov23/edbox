@@ -1,5 +1,5 @@
 var max_time_ads_popup = 15;
-
+var max_time_ads_popup_common = 0;
 var time_show_close_popup_ads = function(){
   return 5000;
 }
@@ -33,6 +33,59 @@ var start_countdown_close_popup_ads = function(){
   }, time_show_close_footer_ads());
 }
 
+// popup common
+var time_show_close_popup_ads_common = function(){
+  return 5000;
+};
+
+var ads_popup_common_hide = function(){
+  var time = new Date();
+  $.cookie("ads_popup_common", time);
+  $("#ads_popup_common").hide();
+  $("#ads_popup_common .close").hide();
+  $("#ads_popup_common .inner").removeClass("animate");
+  auto_start_ads_popup_common();
+}
+
+var start_countdown_close_popup_ads_common = function(){
+  var block = $("#ads_popup_common .cssload-container");
+  var start_time = time_show_close_popup_ads_common()/1000;
+  block.show();
+  var int_back_time = setInterval(function(){
+    start_time -= 1
+    if (start_time >0){
+      block.find(".time").text(start_time)
+    }
+  }, 1000);
+  setTimeout(function(){
+    block.hide();
+    clearInterval(int_back_time);
+  }, time_show_close_popup_ads_common());
+}
+
+var auto_start_ads_popup_common = function(){
+  $("#ads_popup_common").hide();
+  var last_reside = reside_last_date_close_ads("ads_popup_common")*60000;
+  var reside_start = ((max_time_ads_popup_common*60000) - last_reside);
+  setTimeout(function(){
+    start_ads_popup_common();
+  }, reside_start);
+}
+
+var start_ads_popup_common = function(){
+  $("#ads_popup_common").css({display: 'flex'});
+  setTimeout(function(){
+    $("#ads_popup_common .inner").addClass("animate");
+  }, 500);
+  pause_video_vimeo();
+  start_countdown_close_popup_ads_common();
+  setTimeout(function(){
+    $("#ads_popup_common .close").show();
+  }, time_show_close_popup_ads_common());
+}
+
+/////
+
 pageLoad(function(){
   $(document).on('click', '.js_completeAttachment', run_ads_popup);
   $(document).on('click', "#ads_popup .close", function(){
@@ -40,4 +93,14 @@ pageLoad(function(){
     $("#ads_popup").hide();
     $.session.set("ads_popup_close", curr_date);
   });
+
+  if(!$(".js_completeAttachment").length){
+    if (reside_last_date_close_ads("ads_popup_common") >= max_time_ads_popup_common){
+      start_ads_popup_common();
+    }else{
+      auto_start_ads_popup_common();
+    }
+    $(document).on('click', '#ads_popup_common .close', ads_popup_common_hide);
+  }
+
 })
