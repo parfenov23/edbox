@@ -29,7 +29,7 @@ var fixed_bottom_ads = function(){
 
 var ads_footer_hide = function(){
   var time = new Date();
-  $.cookie("ads_footer_close", time);
+  $.session.set("ads_footer_close", time);
   $(".ads__footer").hide();
   $("footer").css({'margin-top': '0'});
   $(".ads__footer .close").hide();
@@ -37,7 +37,7 @@ var ads_footer_hide = function(){
 }
 
 var reside_last_date_close_ads = function(type){
-  var last_date_string = $.cookie(type);
+  var last_date_string = $.session.get(type);
   var reside = 0;
   if (last_date_string != undefined){
     if (type == "ads_footer_close") max_time_ads_footer = 5;

@@ -12,7 +12,7 @@ var time_show_close_popup_ads_common = function(){
 
 var ads_popup_common_hide = function(){
   var time = new Date();
-  $.cookie("ads_popup_common", time);
+  $.session.set("ads_popup_common", time);
   $("#ads_popup_common").hide();
   $("#ads_popup_common .close").hide();
   $("#ads_popup_common .inner").removeClass("animate");
