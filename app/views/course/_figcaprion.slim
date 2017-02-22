@@ -4,21 +4,21 @@ figcaption
     - unless course.material? || course.instrument?
       .adaptive__title
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-        - if !course.paid
-          .right-col = "Бесплатно"
+        / - if !course.paid
+        /   .right-col = "Бесплатно"
     - else
       .authors
-        - if !course.paid
-          .free_material = 'Бесплатно'
+        / - if !course.paid
+        /   .free_material = 'Бесплатно'
   - link = "/course_description/#{course.id}"
   - if current_user.present? && !assigned && course.material?
     - redirect_att = "/course_description/#{course.id}"
     - add_class = "js_addCourseToMyCourse"
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
     - link = "/course_description/#{course.id}"
-  - if (!current_user.view_course?(course) rescue false)
-    - add_class = "js_addCourseToMyCourse no_added"
-    - link = "#tarif"
+  / - if (!current_user.view_course?(course) rescue false)
+  /   - add_class = "js_addCourseToMyCourse no_added"
+  /   - link = "#tarif"
   form data-redirect=(redirect_att rescue nil) data-alert="false"
     - if course.material? || course.instrument?
       input type="hidden" name="course_id" value=course.id

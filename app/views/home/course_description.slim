@@ -125,16 +125,14 @@
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                - class_add_course = "js_goToAttachment "
-                - if current_user.present? && current_user.view_course?(@course) && !attachment.announcement?
-                  - class_add_course += "js_addCourseToMyCourse"
+                - class_add_course = "js_goToAttachment js_addCourseToMyCourse"
                 - redirect_att = "/attachment?id=#{attachment.id}"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  - ad__active = class_block_attachment(attachment)
+                  / - ad__active = class_block_attachment(attachment)
                   - ya_class = ((attachment.file_type == 'video') ? 'ya_see_video' : '')
-                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active} #{ya_class}").split(" ").join(" ")
+                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ya_class}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
                       i.icon class=(attachment.file_type == 'vimeo' ? 'video' : attachment.class_type)
