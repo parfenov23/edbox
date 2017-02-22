@@ -18,6 +18,15 @@ form.form-horizontal action="#{action_url}" method="post"
         label
             | Ссылка
         input.form-control name="ads[href]" type="text" value=@ads.href
+    .form-group
+        label
+            | Время в минутах
+        input.form-control name="ads[time_line]" type="text" value=@ads.time_line
+    .form-group
+        label
+          | Активный?:
+        = check_box("ads", "active", {checked: @ads.active})
+
 
     input type="hidden" name="_method" value="put"
     input type="hidden" name="ads[id]" value="#{params[:id]}"

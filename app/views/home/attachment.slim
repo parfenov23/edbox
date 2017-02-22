@@ -20,4 +20,5 @@
   - else
     = render "home/course_program/file", {attachment: @attachment, course: @course, section: @section}
     = render "common/course/adova_btn_new"
-= render "common/registration_popup"
+- if current_user.blank?
+  = render "common/registration_popup"

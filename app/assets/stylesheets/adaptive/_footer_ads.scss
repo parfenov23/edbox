@@ -5,3 +5,30 @@
     }
   }
 }
+
+#ads_popup_common{
+  // left: 0;
+  height: auto;
+  .inner_ads{
+    height: auto;
+    .image_ava{
+      display: none;
+    }
+    .block_info{
+      margin-left: 0px;
+      margin-right: 8px;
+      .triangel{
+        display: none;
+      }
+      .block_btn_close{
+        position: absolute;
+        right: 7px;
+        top: 4px;
+      }
+      .btn {
+        min-width: 100px;
+        margin-right: 16px !important;
+      }
+    }
+  }
+}

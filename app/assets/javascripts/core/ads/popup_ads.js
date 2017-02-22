@@ -1,4 +1,3 @@
-var max_time_ads_popup = 15;
 var max_time_ads_popup_common = 0;
 var time_show_close_popup_ads = function(){
   return 5000;
@@ -13,9 +12,10 @@ var time_show_close_popup_ads_common = function(){
 var ads_popup_common_hide = function(){
   var time = new Date();
   $.session.set("ads_popup_common", time);
-  $("#ads_popup_common").hide();
+  // $("#ads_popup_common").hide();
+  $("#ads_popup_common").removeClass("show");
   $("#ads_popup_common .close").hide();
-  $("#ads_popup_common .inner").removeClass("animate");
+
   auto_start_ads_popup_common();
 }
 
@@ -36,7 +36,7 @@ var start_countdown_close_popup_ads_common = function(){
 }
 
 var auto_start_ads_popup_common = function(){
-  $("#ads_popup_common").hide();
+  $("#ads_popup_common").removeClass("show");
   var last_reside = reside_last_date_close_ads("ads_popup_common")*60000;
   var reside_start = ((max_time_ads_popup_common*60000) - last_reside);
   setTimeout(function(){
@@ -45,9 +45,9 @@ var auto_start_ads_popup_common = function(){
 }
 
 var start_ads_popup_common = function(){
-  $("#ads_popup_common").css({display: 'flex'});
+  // $("#ads_popup_common").css({display: 'flex'});
   setTimeout(function(){
-    $("#ads_popup_common .inner").addClass("animate");
+    $("#ads_popup_common").addClass("show");
   }, 500);
   pause_video_vimeo();
   start_countdown_close_popup_ads_common();
@@ -60,6 +60,7 @@ var start_ads_popup_common = function(){
 
 var run_ads_popup = function(){
   var last_date_string = $.session.get("ads_popup_close");
+  var max_time_ads_popup = $("#ads_popup").data("time_line");
   if (last_date_string == undefined) max_time_ads_popup = 0;
   if (reside_last_date_close_ads("ads_popup_close") >= max_time_ads_popup) {
     $("#ads_popup").css({display: 'flex'});
@@ -95,7 +96,7 @@ pageLoad(function(){
     $.session.set("ads_popup_close", curr_date);
   });
 
-  if(!$(".js_completeAttachment").length){
+  if($(".js_completeAttachment, #ads_popup").length != 2){
     if (reside_last_date_close_ads("ads_popup_common") >= max_time_ads_popup_common){
       start_ads_popup_common();
     }else{

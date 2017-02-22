@@ -40,8 +40,8 @@ var reside_last_date_close_ads = function(type){
   var last_date_string = $.session.get(type);
   var reside = 0;
   if (last_date_string != undefined){
-    if (type == "ads_footer_close") max_time_ads_footer = 5;
-    if (type == "ads_popup_common") max_time_ads_popup_common = 10;
+    if (type == "ads_footer_close") max_time_ads_footer = $(".ads__footer").data("time_line");
+    if (type == "ads_popup_common") max_time_ads_popup_common = $("#ads_popup_common").data("time_line");
     var last_date = new Date(last_date_string);
     var curr_time = new Date();
     reside = Math.round((last_date - curr_time)*(-1)/1000/60)
@@ -89,11 +89,11 @@ var auto_start_ads_footer = function(){
 }
 
 pageLoad(function () {
-  if (reside_last_date_close_ads("ads_footer_close") >= max_time_ads_footer){
-    start_ads();
-  }else{
-    auto_start_ads_footer();
-  }
+  // if (reside_last_date_close_ads("ads_footer_close") >= max_time_ads_footer){
+  //   start_ads();
+  // }else{
+  //   auto_start_ads_footer();
+  // }
 
   $(document).on('click', '.ads__footer .close', ads_footer_hide);
 });

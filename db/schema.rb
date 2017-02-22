@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215131207) do
+ActiveRecord::Schema.define(version: 20170222121335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170215131207) do
     t.string   "href"
     t.string   "img"
     t.boolean  "active"
+    t.integer  "time_line",  default: 0
   end
 
   create_table "answers", force: true do |t|

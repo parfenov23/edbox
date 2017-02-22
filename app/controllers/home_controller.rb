@@ -50,6 +50,7 @@ class HomeController < ActionController::Base
   end
 
   def attachment
+    require 'social/socials'
     @attachment = Attachment.find_by_id(params[:id])
     if @attachment.present?
       @section = @attachment.attachmentable rescue nil

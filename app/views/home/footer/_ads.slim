@@ -1,6 +1,6 @@
-- ads = Ads.find_by_type_ad("bottom")
+- ads = Ads.where({type_ad: "bottom", active: true}).last
 - if ads.present?
-  .ads__footer
+  .ads__footer data-time_line=ads.time_line
     .ads__content
       .image
         img src=ads.img

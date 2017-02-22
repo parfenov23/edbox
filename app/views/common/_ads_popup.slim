@@ -1,7 +1,7 @@
 /.pop_up_confirm.is__active
-- ads = Ads.find_by_type_ad("popup")
+- ads = Ads.where({type_ad: "popup", active: true}).last
 - if ads.present?
-  #ads_popup.pop_up_confirm
+  #ads_popup data-time_line=ads.time_line
     .inner.notice__popup.email__add
       .title = ads.title
       .description = ads.content
@@ -11,14 +11,19 @@
         .time 5
       .close ×
 
-- ads_common = Ads.find_by_type_ad("popup_common")
+- ads_common = Ads.where({type_ad: "popup_common", active: true}).last
 - if ads_common.present?
-  #ads_popup_common.pop_up_confirm
-    .inner.notice__popup.email__add
-      .title = ads_common.title
-      .description = ads_common.content
-      a.btn.is__blue href=ads_common.href Подробнее
-      .cssload-container
-        .cssload-speeding-wheel
-        .time 5
-      .close ×
+  #ads_popup_common data-time_line=ads_common.time_line
+    .inner_ads
+      .image_ava
+        img src=ads_common.img
+      .block_info
+        .triangel
+        .block_content
+          .title = ads_common.title
+          a.btn.is__blue href=ads_common.href Подробнее
+        .block_btn_close
+          .cssload-container
+            .cssload-speeding-wheel
+            .time 5
+          .close ×
