@@ -90,6 +90,7 @@ var auto_start_ads_footer = function(){
 }
 
 pageLoad(function () {
+  // запуск рекламы в футере
   if ($(".ads__footer").length){
     if (reside_last_date_close_ads("ads_footer_close") >= max_time_ads_footer){
       start_ads();
