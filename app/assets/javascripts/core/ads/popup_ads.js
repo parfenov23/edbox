@@ -89,20 +89,25 @@ var start_countdown_close_popup_ads = function(){
 }
 
 pageLoad(function(){
-  $(document).on('click', '.js_completeAttachment', run_ads_popup);
-  $(document).on('click', "#ads_popup .close", function(){
-    var curr_date = new Date();
-    $("#ads_popup").hide();
-    $.session.set("ads_popup_close", curr_date);
-  });
-
-  if($(".js_completeAttachment, #ads_popup").length != 2){
-    if (reside_last_date_close_ads("ads_popup_common") >= max_time_ads_popup_common){
-      start_ads_popup_common();
-    }else{
-      auto_start_ads_popup_common();
-    }
-    $(document).on('click', '#ads_popup_common .close', ads_popup_common_hide);
+  if ($("#ads_popup").length){
+    $(document).on('click', '.js_completeAttachment', run_ads_popup);
+    $(document).on('click', "#ads_popup .close", function(){
+      var curr_date = new Date();
+      $("#ads_popup").hide();
+      $.session.set("ads_popup_close", curr_date);
+    });
   }
+
+  if ($("#ads_popup_common").length){
+    if($(".js_completeAttachment, #ads_popup").length != 2){
+      if (reside_last_date_close_ads("ads_popup_common") >= max_time_ads_popup_common){
+        start_ads_popup_common();
+      }else{
+        auto_start_ads_popup_common();
+      }
+      $(document).on('click', '#ads_popup_common .close', ads_popup_common_hide);
+    }
+  }
+
 
 })
