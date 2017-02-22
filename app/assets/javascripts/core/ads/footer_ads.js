@@ -19,13 +19,14 @@ var func_ads_press = function(){
     }
   }
 }
-///
 
 var fixed_bottom_ads = function(){
   $( window ).scroll(function() {
     func_ads_press();
   });
 }
+///
+
 
 var ads_footer_hide = function(){
   var time = new Date();
@@ -95,7 +96,6 @@ pageLoad(function () {
     }else{
       auto_start_ads_footer();
     }
+    $(document).on('click', '.ads__footer .close', ads_footer_hide);
   }
-
-  $(document).on('click', '.ads__footer .close', ads_footer_hide);
 });
