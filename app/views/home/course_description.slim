@@ -125,7 +125,8 @@
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                - class_add_course = "js_goToAttachment js_addCourseToMyCourse"
+                - class_add_course = "js_goToAttachment "
+                - class_add_course += "js_addCourseToMyCourse" if current_user.present?
                 - redirect_att = "/attachment?id=#{attachment.id}"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
@@ -156,9 +157,9 @@
             .description Станет доступным после прохождения всех материалов курса
 
 
-- h = "Получайте полезные знания вместе с #{$env_mode.name_title}"
-- i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
-= render "common/course/course_reg", {header: h, info: i}
+/ - h = "Получайте полезные знания вместе с #{$env_mode.name_title}"
+/ - i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
+/ = render "common/course/course_reg", {header: h, info: i}
 
 = render "home/course_program/sink_button", {course: @course}
 
