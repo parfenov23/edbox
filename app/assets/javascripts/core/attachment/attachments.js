@@ -69,6 +69,15 @@ var eventRegUser = function () {
     return true;
 };
 
+var goToWebinar = function(){
+    if (get_browser('Safari')){
+        var iframe = $(".webinar_attachment iframe");
+        if (iframe.length){
+            window.location.href = iframe.attr('src')
+        }
+    }
+};
+
 var eventUnRegUser = function () {
     var web_id = $(this).data('webinar_id');
     var user_id = $(this).data('user_id');
@@ -86,14 +95,6 @@ var eventUnRegUser = function () {
     return true;
 };
 
-goToWebinar = function(){
-    if (get_browser('Safari')){
-        var iframe = $(".webinar_attachment iframe");
-        if (iframe.length){
-            window.location.href = iframe.attr('src')
-        }
-    }
-};
 
 var first_enter_material = function(){
     if ($("#registration_popup").length){
