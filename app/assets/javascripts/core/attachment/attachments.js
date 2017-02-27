@@ -69,15 +69,6 @@ var eventRegUser = function () {
     return true;
 };
 
-var goToWebinar = function(){
-    if (get_browser('Safari')){
-        var iframe = $(".webinar_attachment iframe");
-        if (iframe.length){
-            window.location.href = iframe.attr('src')
-        }
-    }
-};
-
 var eventUnRegUser = function () {
     var web_id = $(this).data('webinar_id');
     var user_id = $(this).data('user_id');
@@ -95,7 +86,16 @@ var eventUnRegUser = function () {
     return true;
 };
 
+var goToWebinar = function(){
+    if (get_browser('Safari')){
+        var iframe = $(".webinar_attachment iframe");
+        if (iframe.length){
+            window.location.href = iframe.attr('src')
+        }
+    }
+};
 
+// вывод попапа о регистрации
 var first_enter_material = function(){
     if ($("#registration_popup").length){
         var time = new Date();
@@ -107,7 +107,7 @@ var first_enter_material = function(){
         setTimeout(function(){
             $("#registration_popup").css("display", "flex");
             pause_video_vimeo();
-        }, (2 - reside_last_date_close_ads("first_enter_material"))*1000*60 );
+        }, (time_line - reside_last_date_close_ads("first_enter_material"))*1000*60 );
     } 
 }
 
