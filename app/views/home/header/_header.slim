@@ -30,8 +30,8 @@ header#page__header.adaptive__title class=hclass.join(" ")
   .right-col
     - if current_user.present?
       .page__action
-        a.item href="/help"
-          i.help.icon
+        / a.item href="/help"
+        /   i.help.icon
         = render "home/header/notify_news"
         - if namePage == "contenter_courses"
           - if current_user.contenter
@@ -66,6 +66,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
   .left__aside-main-nav.js__baron.js__left-aside
     .info__block
       .top__logo
-        img src="/assets/adcons__grey.svg"
+        a href="/courses"
+          img src="/assets/adcons__grey.svg"
     .menu__list
       = render "home/header/items/all_items", {namePage: namePage} if current_user.present?

@@ -186,14 +186,17 @@ var validRegClickOfert = function () {
 };
 
 $(document).ready(function () {
-    if ($(".js_FormAuth").length){
-        $(document).keypress(function(e){
-            if (e.which == 13){
-                $(".js_FormAuth .action__block #submit").click();
-            }
-        });
-    }
+    $(".js_FormAuth").keypress(function(e){
+        if (e.which == 13){
+            $(".js_FormAuth .action__block #submit").click();
+        }
+    });
 
+    $(".js_registrationUser").keypress(function(e){
+        if (e.which == 13){
+            $(".js_registrationUser .action__block #submit").click();
+        }
+    });
     $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function () {
         var valPass = checkPassword($(this).val());
         $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0]);

@@ -338,6 +338,7 @@
 }
 
 .popValidateCodePhone {
+  font-family: 'Roboto', sans-serif;
   position         : fixed;
   width            : 100%;
   height           : 100%;
@@ -361,7 +362,6 @@
     padding-bottom : 90px;
 
     .description {
-      font-family : Roboto-Regular;
       font-size   : 15px;
       line-height : 24px;
     }

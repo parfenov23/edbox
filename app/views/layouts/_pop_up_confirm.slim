@@ -33,34 +33,34 @@
           span.pluso-wrap style="background:transparent"
             a.buttonPrint href="/course_cert?id=1_1&print=true"
 
-.pop_up_confirm.noCloseToggleState.noConfirmOpen.popup_test_separator
-  .inner.allgood.last__chance
-    .plane__list
-      - billing_price = BillingPrice.default
-      // js_openHiddenPart
-      .item.pidor__dva data-type="left" data-hide="input[name='company']" data-type_account="user"
-        .visibile__part
-          .title Полный индивидуальный аккаунт
-          .description Неограниченный доступ ко всем онлайн-курсам, вебинарам, тестам и материалам. Ваше обучение будет подтверждено сертификатами.
-          .price.h__text_24-32 style='margin-bottom: 34px;'
-            span.miniText
-              |Ежемесечная автоматическая
-              br
-              |оплата по банковской карте
-            |#{billing_price.user_price.to_i} рублей в месяц
-          .action__block
-            .btn.is__blue.ya_pers_acc.pers.js_openFormRegistrationAuth data-type="user" ВЫБРАТЬ
-            .ogo Заполните форму ниже
+/ .pop_up_confirm.noCloseToggleState.noConfirmOpen.popup_test_separator
+/   .inner.allgood.last__chance
+/     .plane__list
+/       - billing_price = BillingPrice.default
+/       // js_openHiddenPart
+/       .item.pidor__dva data-type="left" data-hide="input[name='company']" data-type_account="user"
+/         .visibile__part
+/           .title Полный индивидуальный аккаунт
+/           .description Неограниченный доступ ко всем онлайн-курсам, вебинарам, тестам и материалам. Ваше обучение будет подтверждено сертификатами.
+/           .price.h__text_24-32 style='margin-bottom: 34px;'
+/             span.miniText
+/               |Ежемесечная автоматическая
+/               br
+/               |оплата по банковской карте
+/             |#{billing_price.user_price.to_i} рублей в месяц
+/           .action__block
+/             .btn.is__blue.ya_pers_acc.pers.js_openFormRegistrationAuth data-type="user" ВЫБРАТЬ
+/             .ogo Заполните форму ниже
 
-      .item.pidor__raz
-        .visibile__part
-          .title style="margin-bottom: 8px;" Тестовый индивидуальный аккаунт
-          .description style="margin-bottom: 28px;"
-            |Неограниченный доступ ко всем онлайн-курсам, вебинарам, тестам и материалам на один день. Ваше обучение будет подтверждено сертификатами.
-          .price.h__text_24-32 style='margin-bottom: 34px;'
-            /span.miniText
-            /  |Единоразовый платеж
-            |199 рублей
-          .action__block
-            .btn.is__blue.js_openFormRegistrationAuth.ya_free_acc data-type="test_user" ВЫБРАТЬ
-            .ogo Заполните форму ниже
+/       .item.pidor__raz
+/         .visibile__part
+/           .title style="margin-bottom: 8px;" Тестовый индивидуальный аккаунт
+/           .description style="margin-bottom: 28px;"
+/             |Неограниченный доступ ко всем онлайн-курсам, вебинарам, тестам и материалам на один день. Ваше обучение будет подтверждено сертификатами.
+/           .price.h__text_24-32 style='margin-bottom: 34px;'
+/             /span.miniText
+/             /  |Единоразовый платеж
+/             |199 рублей
+/           .action__block
+/             .btn.is__blue.js_openFormRegistrationAuth.ya_free_acc data-type="test_user" ВЫБРАТЬ
+/             .ogo Заполните форму ниже
