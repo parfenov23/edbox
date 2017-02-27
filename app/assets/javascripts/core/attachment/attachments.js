@@ -110,6 +110,7 @@ var first_enter_material = function(){
         }, (time_line - reside_last_date_close_ads("first_enter_material"))*1000*60 );
     } 
 }
+/////
 
 var pause_video_vimeo = function(){
     if ($(".video__content iframe").length){
