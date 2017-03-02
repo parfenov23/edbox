@@ -4,15 +4,15 @@
   .close-filter.icon Поиск
 
   .all__Tags
-    ul.parentTreeUl
-      .title Типы контента
-      ul
-        - courses_nav_links.each do |courses_nav_link|
-          - if courses_nav_link[:type].present?
-            li
-              a href=courses_nav_link[:link]
-                '#{courses_nav_link[:title]}
-              |(#{all_courses.where(type_course: courses_nav_link[:type]).count})
+    / ul.parentTreeUl
+    /   .title Типы контента
+    /   ul
+    /     - courses_nav_links.each do |courses_nav_link|
+    /       - if courses_nav_link[:type].present?
+    /         li
+    /           a href=courses_nav_link[:link]
+    /             '#{courses_nav_link[:title]}
+    /           |(#{all_courses.where(type_course: courses_nav_link[:type]).count})
 
     ul.parentTreeUl
       - Tag.all_parents.each do |tag|

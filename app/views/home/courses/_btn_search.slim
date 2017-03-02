@@ -4,30 +4,30 @@
     |Быстрый поиск
   - if params[:tid].present? && @courses_tid.blank?
     .statusBar По запросу '#{Tag.find(params[:tid]).title}' ничего не найдено
-  .sortTableCourses
-    .select.js__selectSortCourses.js__openHiddenListUl
-      - hash_sort = {'ASC' => 'DESC', 'DESC' => 'ASC'}
-      - sort_type = params[:sort_type].present? ? hash_sort[params[:sort_type]] : 'ASC'
-      a href="/courses?#{current_params.merge({sort_type: sort_type}).to_query}"
-        i.icon class=sort_type
-      - name_param = (params[:sort].to_s+params[:sort_type].to_s).gsub('DESC', '')
-      - title_name = {'title' => "Сортировать по названию А-Я", 'titleASC' => "Сортировать по названию Я-А",
-                      'created_at' => 'Сначала новые', 'created_atASC' => 'Сначала старые',
-                      'free_course' => 'Только бесплатные', 'pay_courseASC' => 'Только платыне',
-                      'pay_course' => 'Только платыне', 'free_courseASC' => 'Только бесплатные',
-                      '' => 'Сортировать по'}[name_param]
-      .select-trigger #{title_name}
-      .close__ul__hidden
-      ul.hidden
-        li
-          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'ASC'}).to_query}" По названию А-Я
-        li
-          a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'DESC'}).to_query}" По названию Я-А
-        li
-          a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'DESC'}).to_query}" Сначала новые
-        li
-          a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'ASC'}).to_query}" Сначала старые
-        li
-          a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
-        li
-          a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные
+  / .sortTableCourses
+  /   .select.js__selectSortCourses.js__openHiddenListUl
+  /     - hash_sort = {'ASC' => 'DESC', 'DESC' => 'ASC'}
+  /     - sort_type = params[:sort_type].present? ? hash_sort[params[:sort_type]] : 'ASC'
+  /     a href="/courses?#{current_params.merge({sort_type: sort_type}).to_query}"
+  /       i.icon class=sort_type
+  /     - name_param = (params[:sort].to_s+params[:sort_type].to_s).gsub('DESC', '')
+  /     - title_name = {'title' => "Сортировать по названию А-Я", 'titleASC' => "Сортировать по названию Я-А",
+  /                     'created_at' => 'Сначала новые', 'created_atASC' => 'Сначала старые',
+  /                     'free_course' => 'Только бесплатные', 'pay_courseASC' => 'Только платыне',
+  /                     'pay_course' => 'Только платыне', 'free_courseASC' => 'Только бесплатные',
+  /                     '' => 'Сортировать по'}[name_param]
+  /     .select-trigger #{title_name}
+  /     .close__ul__hidden
+  /     ul.hidden
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'ASC'}).to_query}" По названию А-Я
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'title', sort_type: 'DESC'}).to_query}" По названию Я-А
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'DESC'}).to_query}" Сначала новые
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'ASC'}).to_query}" Сначала старые
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
+  /       li
+  /         a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные

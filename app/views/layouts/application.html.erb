@@ -58,7 +58,7 @@
 <%= render "layouts/pop_up_confirm" %>
 <%= render "layouts/yandex_metrika" if $env_mode.prod? %>
 <%= render "layouts/pixel/vkontakte_pixel" if $env_mode.prod? %>
-<%= render "layouts/help_notif_user" %>
+<%# render "layouts/help_notif_user" %>
 
 <input id="presentCurrentUser" type="hidden" value="<%= current_user.present? rescue false %>">
 <input id="typeEnvModeCurrentServer" type="hidden" value="<%= $env_mode.to_s %>">
