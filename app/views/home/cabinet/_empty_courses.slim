@@ -1,8 +1,9 @@
 - unless current_user.bunch_courses.present?
   = render "home/cabinet/empty/header"
-- if current_user.director
-  = render "home/cabinet/empty/director", {users_count_valid: users_count_valid,
-                                           groups_count_valid: groups_count_valid,
-                                           ligament_count_valid: ligament_count_valid}
-- unless bunch_count_valid
-  = render "home/cabinet/empty/my_schedule"
+  a.btn.is__blue href='/courses/online' style="width: 240px;margin: 0 auto;" Перейти в библиотеку
+/ - if current_user.director
+/   = render "home/cabinet/empty/director", {users_count_valid: users_count_valid,
+/                                            groups_count_valid: groups_count_valid,
+/                                            ligament_count_valid: ligament_count_valid}
+/ - unless bunch_count_valid
+/   = render "home/cabinet/empty/my_schedule"

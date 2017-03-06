@@ -11,7 +11,7 @@
   = render "home/course_description/popup/notify_next"
 
 .course__description-content.oh__nihuyase-block
-  - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
+  - course_title = @course.paid ? @course.title.to_s : @course.title.to_s
 
   = render "home/course_description/anonce_block_action", {bunch_course: bunch_course}
 
