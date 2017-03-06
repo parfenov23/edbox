@@ -92,8 +92,8 @@
           - natt = 0
           - if bunch_course.present?
             - bunch_section = all_sections.where(section_id: section.id).last
-          - add_class_section = !current_user.present? ? (section.attachments.where(public: true).present? ? "" : "is__shot") : ""
-          .programm__block class=add_class_section
+          / - add_class_section = !current_user.present? ? (section.attachments.where(public: true).present? ? "" : "is__shot") : ""
+          .programm__block
             .adaptive__title
               .left-col #{nsec += 1}. #{section.title}
               - if (current_user.director? rescue false)
@@ -125,16 +125,15 @@
               - section_attachments.each do |attachment|
                 - bunch_attachment = (bunch_section.bunch_attachments.where(attachment_id: attachment.id).last rescue nil)
                 - class_block = bunch_attachment.present? ? (bunch_attachment.complete ? "is__completed" : "" ) : ""
-                - class_add_course = (!current_user.present? && attachment.public) ? "js_goToAttachment" : " "
-                - if current_user.present? && current_user.view_course?(@course) && !attachment.announcement?
-                  - redirect_att = "/attachment?id=#{attachment.id}"
-                  - class_add_course += "js_addCourseToMyCourse"
+                - class_add_course = "js_goToAttachment "
+                - class_add_course += "js_addCourseToMyCourse" if current_user.present?
+                - redirect_att = "/attachment?id=#{attachment.id}"
                 form data-redirect=(redirect_att rescue nil) data-alert="false"
                   - if current_user.present?
                     input type="hidden" name="course_id" value=@course.id
-                  - ad__active = class_block_attachment(attachment)
+                  / - ad__active = class_block_attachment(attachment)
                   - ya_class = ((attachment.file_type == 'video') ? 'ya_see_video' : '')
-                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ad__active} #{ya_class}").split(" ").join(" ")
+                  - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ya_class}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
                       i.icon class=(attachment.file_type == 'vimeo' ? 'video' : attachment.class_type)
@@ -158,9 +157,9 @@
             .description Станет доступным после прохождения всех материалов курса
 
 
-- h = "Получайте полезные знания вместе с #{$env_mode.name_title}"
-- i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
-= render "common/course/course_reg", {header: h, info: i}
+/ - h = "Получайте полезные знания вместе с #{$env_mode.name_title}"
+/ - i = "Зарегистрируйтесь в системе и получите доступ к библиотеке #{$env_mode.name_title}"
+/ = render "common/course/course_reg", {header: h, info: i}
 
 = render "home/course_program/sink_button", {course: @course}
 

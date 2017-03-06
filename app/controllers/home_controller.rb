@@ -2,20 +2,20 @@ class HomeController < ActionController::Base
   helper_method :current_user
   helper_method :subdomain
   before_action :authorize, except: [:course_description, :render_file,
-                                     :courses, :attachment, :course_no_reg,
-                                     :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
-                                     :course_cert, :instrument, :courses_rss]
-  before_action :is_corporate?, only: [:group]
-  before_action :back_url
-  layout "application"
-  rescue_from Exception, with: :error_message if $env_mode.prod?
+   :courses, :attachment, :course_no_reg,
+   :help, :help_answer, :pay, :index, :auth_user, :info_pay, :user,
+   :course_cert, :instrument, :courses_rss, :attachment]
+   before_action :is_corporate?, only: [:group]
+   before_action :back_url
+   layout "application"
+   rescue_from Exception, with: :error_message if $env_mode.prod?
   # caches_page :courses
   def index
     @og = {'title' => 'Заголовок: ADCONSULT Online — продавайте больше с каждым днем! ',
-           'description' => 'Онлайн-курсы, вебинары в прямом эфире от ведущих практиков рекламного бизнеса и большой архив скриптов и шаблонов',
-           'img' => '/images/index_ogg.jpg'}
-    @block_registr = false
-    unless current_user.nil?
+     'description' => 'Онлайн-курсы, вебинары в прямом эфире от ведущих практиков рекламного бизнеса и большой архив скриптов и шаблонов',
+     'img' => '/images/index_ogg.jpg'}
+     @block_registr = false
+     unless current_user.nil?
       unless current_user.contenter
         redirect_to '/courses'
       else
@@ -50,20 +50,16 @@ class HomeController < ActionController::Base
   end
 
   def attachment
+    require 'social/socials'
     @attachment = Attachment.find_by_id(params[:id])
     if @attachment.present?
       @section = @attachment.attachmentable rescue nil
       @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
-      unless (@course.material? rescue false)
-        valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
-        valid_redirect = current_user.present? ? valid_added : @attachment.public
-        course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
-        unless @attachment.present? && valid_redirect || course_leading
-          redirect_to "/"
-        end
-      else
-        redirect_to "/course_no_reg/#{@course.id}" if current_user.blank? && !@attachment.public
-      end
+      valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)
+      course_leading = (@attachment.class_type == 'webinar' ? @attachment.webinar.ligament_leads.where(user_id: current_user.id).present? : false) rescue false
+      # unless @attachment.present? || course_leading
+      #   redirect_to "/"
+      # end
     else
       redirect_to "/"
     end
@@ -179,11 +175,7 @@ class HomeController < ActionController::Base
       if @course.material? || @course.instrument?
         attachment = @course.attachments.last
         unless @course.instrument?
-          unless (@course.find_bunch_course(current_user.id).present? rescue !attachment.public)
-            redirect_to (current_user.blank? && attachment.public) ? "/attachment/#{attachment.id}" : "/courses/material"
-          else
-            redirect_to attachment.present? && (current_user.view_course?(@course) rescue false) ? "/attachment/#{attachment.id}" : "/"
-          end
+          redirect_to attachment.present? ? "/attachment/#{attachment.id}" : "/courses/material"
         else
           attachment = @course.attachments.where.not(full_text: '').last
           redirect_to attachment.present? ? "/instrument/#{attachment.id}" : '/courses/instrument'

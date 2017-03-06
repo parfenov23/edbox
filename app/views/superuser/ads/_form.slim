@@ -1,0 +1,33 @@
+- action_url = "/superuser/ads/#{params[:id]}"
+form.form-horizontal action="#{action_url}" method="post"
+    .form-group
+        label
+            | url картинки
+        input.form-control name="ads[img]" type="text" value=@ads.img
+    .form-group
+        label
+            | Заголовок
+        input.form-control name="ads[title]" type="text" value=@ads.title
+    .form-group
+        label
+            | Описание
+        textarea.form-control.description name="ads[content]" type="text"
+          = @ads.content
+
+    .form-group
+        label
+            | Ссылка
+        input.form-control name="ads[href]" type="text" value=@ads.href
+    .form-group
+        label
+            | Время в минутах
+        input.form-control name="ads[time_line]" type="text" value=@ads.time_line
+    .form-group
+        label
+          | Активный?:
+        = check_box("ads", "active", {checked: @ads.active})
+
+
+    input type="hidden" name="_method" value="put"
+    input type="hidden" name="ads[id]" value="#{params[:id]}"
+    button.btn.btn-primary type="submit" Сохранить

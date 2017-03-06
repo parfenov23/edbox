@@ -1,32 +1,31 @@
 - webinar = @attachment.webinar
-- if current_user.present?
-  - status = webinar.eventStatus
-  - if status == 'ACTIVE'
-    .inner-content
-      #course
-        .text__description
-          - if webinar.leading?(current_user.id)
-            .btn.is__blue.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
-          - else
-            .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
-  - elsif status == 'START'
-    - if webinar.user_webinars.where(user_id: current_user).last.present?
-      - url = webinar.user_webinars.where(user_id: current_user).last.url
-      .inner-content.webinar_attachment
-        iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
-  - elsif status == 'STOP'
-    .inner-content.webinar_attachment
-      - if webinar.eventRecordStatus == "completed" 
-        - url = webinar.eventFileInfo["url"]
-        video controls="" autoplay="" name="media"
-          source src=url type="video/mp4"
-        // iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
-      - else
-        #course
-          .text__description
-            .title style="text-align: center;" = 'Подождите. Видео еще конвертируется'
-- else
+- status = webinar.eventStatus
+- if status == 'ACTIVE'
   .inner-content
     #course
       .text__description
-        .title style="text-align: center;" = 'Зарегистрируйтесь'
+        - if (webinar.leading?(current_user.id) rescue false)
+          .btn.is__blue.js_eventStart data-webinar_id=webinar.id style="text-align: center; cursor: pointer;" = "Начать вебинар #{@attachment.title}"
+        - else
+          .title style="text-align: center;" = "Вебинар #{@attachment.title} начнется #{ltime(webinar.date_start, '', 'short')}"
+- elsif status == 'START'
+  - if webinar.user_webinars.where(user_id: current_user).last.present?
+    - url = webinar.user_webinars.where(user_id: current_user).last.url
+  - else
+    - url = webinar.eventRegDemoUser['link']
+  .inner-content.webinar_attachment
+    iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
+- elsif status == 'STOP'
+  .inner-content.webinar_attachment
+    / - if webinar.eventRecordStatus == "completed" 
+    /   / - url = webinar.eventFileInfo["url"]
+    /   / video controls="" autoplay="" name="media"
+    /   /   source src=url type="video/mp4"
+    /   / // iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
+    /   #course
+    /     .text__description
+    /       .title style="text-align: center;" = 'Подождите. Видео еще конвертируется'
+    / - else
+    #course
+      .text__description
+        .title style="text-align: center;" = 'Вебинар закончился'

@@ -9,7 +9,9 @@
       }
   }
   .right-col {
-    white-space: nowrap;
+    max-width: 600px;
+    text-align: right;
+    // white-space: nowrap;
     > div {
       @include inline-block;
     }

@@ -16,6 +16,7 @@
   @import "groups"; // страница управление группой
   @import "payment"; // страница оплаты
 
+  @import "footer_ads"; // реклама в футере
   header {
     transition-duration : 300ms;
     &.hide_header {

@@ -14,6 +14,10 @@ module Api::V1
       render json: find_course.transfer_to_json((current_user.id rescue nil))
     end
 
+    def attachments
+      render json: (find_course.attachments.last.transfer_to_json rescue {})
+    end
+
     def create
       course = Course.new(params_course)
       course.save

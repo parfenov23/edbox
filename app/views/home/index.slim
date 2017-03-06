@@ -20,7 +20,7 @@ section.landing__banner
     .action__block
       a.btn.btn-flat.is__border.is__white href="/sign_up" НАЧАТЬ БЕСПЛАТНО
       /.btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
-      a.btn.is__blue href="/sign_up" ОФОРМИТЬ ПОДПИСКУ
+      a.btn.is__blue href="/courses" Перейти в библиотеку
     .banner__img
       img src="/assets/landing__banner_img.png"
       iframe allowfullscreen="" frameborder="0" width="398" height="250" mozallowfullscreen="" src="/uploads/prev_nout.png" webkitallowfullscreen=""
@@ -100,30 +100,31 @@ section.landing__advantages__list
 section.landing__question
   .landing__inner
     .section__title.is__white Возможно ли постоянно учиться продажам рекламы у ведущих экспертов страны по цене чашки кофе в день?
+    / .block_content
+    /   .description style="text-align: center;"
+    /     .title КОРПОРАТИВНЫЙ АККАУНТ
+    /     'Весь отдел продаж сможет учиться в #{$env_mode.name_title}, а вы как руководитель,
+    /     |сможете следить за успеваемостью и оценками каждого сотрудника.
+    /   .action__block
+    /     /.btn.is__white.js_openFormRegistration.selectType data-type='corp' СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
+    /     a.btn.is__white href="/sign_up" СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
     .block_content
       .description style="text-align: center;"
-        .title КОРПОРАТИВНЫЙ АККАУНТ
-        'Весь отдел продаж сможет учиться в #{$env_mode.name_title}, а вы как руководитель,
-        |сможете следить за успеваемостью и оценками каждого сотрудника.
-      .action__block
-        /.btn.is__white.js_openFormRegistration.selectType data-type='corp' СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
-        a.btn.is__white href="/sign_up" СОЗДАТЬ КОРПОРАТИВНЫЙ АККАУНТ
-    .block_content
-      .description style="text-align: center;"
-        .title ЛИЧНЫЙ АККАУНТ
+        / .title ЛИЧНЫЙ АККАУНТ
         'Обучение в #{$env_mode.name_title} поможет вам увеличить ваши личные доходы от продаж рекламы,
         |обеспечит карьерный рост и мастерство в профессии.
       .action__block
-        a.btn.is__white href="/sign_up" СОЗДАТЬ ЛИЧНЫЙ АККАУНТ
-section.landing__compare__table
-  .landing__inner
-    .content__block
-      .section__title Получайте полезные знания вместе с #{$env_mode.name_title}!
-      .description
-        'Вы можете обучаться как индивидуально, так и в рамках компании. 
-        br
-        |Выберите подходящий вам формат и зарегистрируйте аккаунт.
-      = render "common/tableTariff"
+        a.btn.is__white href="/sign_up" СОЗДАТЬ АККАУНТ
+
+/ section.landing__compare__table
+/   .landing__inner
+/     .content__block
+/       .section__title Получайте полезные знания вместе с #{$env_mode.name_title}!
+/       .description
+/         'Вы можете обучаться как индивидуально, так и в рамках компании. 
+/         br
+/         |Выберите подходящий вам формат и зарегистрируйте аккаунт.
+/       = render "common/tableTariff"
       /! begin paysto verification
       /a href="http://paysto.ru/fromshop=23056" target="_blank"  Совместно с PAYSTO
       /! end paysto verification

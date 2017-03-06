@@ -1,0 +1,16 @@
+- ads = Ads.where({type_ad: "bottom", active: true}).last
+- if ads.present?
+  .ads__footer data-time_line=ads.time_line
+    .ads__content
+      .image
+        img src=ads.img
+      .info
+        .title
+          = ads.title
+        .description
+          = ads.content
+        a.btn.is__blue href=ads.href Подробнее
+        .cssload-container
+          .cssload-speeding-wheel
+          .time 5
+        .close ×

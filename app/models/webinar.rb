@@ -62,9 +62,9 @@ class Webinar < ActiveRecord::Base
   def eventCreate
     webinar_title = attachment.attachmentable.course.title rescue Time.now.to_i
     resp = JSON.parse(event_client.post('events', 
-      {
-        name: webinar_title, startsAt: date_to_json, 
-        description: webinar_title, access: 4
+    {
+      name: webinar_title, startsAt: date_to_json, 
+      description: webinar_title, access: 4
       }.compact))
     #binding.pry
     if resp['eventId'].present?
@@ -75,9 +75,9 @@ class Webinar < ActiveRecord::Base
 
   def eventUpdate
     h_date = {
-        name: attachment.title,
-        startsAt: date_to_json, 
-        description: attachment.title, access: 4
+      name: attachment.title,
+      startsAt: date_to_json, 
+      description: attachment.title, access: 4
     }
     Thread.new {
       event_client = ::ApiClients::WebinarRu.new 
@@ -181,15 +181,24 @@ class Webinar < ActiveRecord::Base
       HomeMailer.reg_webinar_lead(self, user).deliver
     end
     # binding.pry
-    resp = JSON.parse(event_client.post("events/#{event}/register", 
-      {
+    resp = postRegUser({
         email: user.email,
         name: user.first_name, 
         secondName: user.last_name,
         role: role
-      }))
+      })
     user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)
     user_webinar.update(url: resp['link'], participant_id: resp['participationId']) if (resp['error'].blank? rescue resp == "")
+  end
+
+  def eventRegDemoUser
+    resp = postRegUser({
+      email: SecureRandom.hex(6).to_s + "@bataline.ru",
+      name: "Участник", 
+      secondName: "Вебинара",
+      role: 'GUEST'
+      })
+    resp
   end
 
   def eventUnRegUser(user)
@@ -216,6 +225,10 @@ class Webinar < ActiveRecord::Base
     create_job
   end
 
+  def postRegUser(params)
+    JSON.parse(event_client.post("events/#{event}/register", params))
+  end
+
   private
 
   def event_client
@@ -227,6 +240,6 @@ class Webinar < ActiveRecord::Base
     current_time.present? ? {
       date: {year: current_time.year, month: current_time.month, day: current_time.day}, 
       time: {hour: current_time.hour, minute: current_time.min} 
-    } : {}
+      } : {}
+    end
   end
-end

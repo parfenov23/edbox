@@ -27,7 +27,7 @@
           a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'DESC'}).to_query}" Сначала новые
         li
           a href="/courses?#{current_params.merge({sort: 'created_at', sort_type: 'ASC'}).to_query}" Сначала старые
-        li
-          a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
-        li
-          a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные
+        / li
+        /   a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
+        / li
+        /   a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные

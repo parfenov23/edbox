@@ -1,3 +1,54 @@
+.reg__form {
+  @include white__block(1, 0);
+  width   : 408px;
+  margin  : 0 auto;
+  padding : 30px 24px 24px 32px;
+  .title {
+    @include text__setting(header__typo_2);
+    margin-bottom : 68px;
+    text-align    : center;
+  }
+  .com__input-item {
+    margin-right  : 40px;
+    margin-bottom : 14px;
+    margin-left   : 2px;
+    input:-webkit-autofill {
+      -webkit-box-shadow      : inset 0 0 0 50px #FFF !important; /* Цвет фона */
+      -webkit-text-fill-color : black__color(primaryColor) !important; /* цвет текста */
+      color                   : black__color(primaryColor) !important; /* цвет текста */
+    }
+    &.social_reg {
+      font-size   : 13px;
+      line-height : 20px;
+      color       : rgba(0, 0, 0, 0.87);
+    }
+    &.user_phone {
+      #code_code_id {
+        position              : absolute;
+        z-index               : 2;
+        right                 : 0;
+        -webkit-border-radius : 2px;
+        border                : 1px solid #FFF;
+        width                 : 108px;
+        top                   : -6px;
+      }
+    }
+  }
+  &.is__auth {
+    .com__input-item {
+      margin-bottom : 7px;
+    }
+    .forgot__pass {
+      margin-top    : -14px;
+      padding-left  : 4px;
+      margin-bottom : 29px;
+      a {
+        font-size : 15px;
+      }
+    }
+  }
+}
+
 .reg__wrp {
   height          : 100%;
   min-height      : 100vh;
@@ -24,56 +75,7 @@
       width : 100%;
     }
   }
-  .reg__form {
-    @include white__block(1, 0);
-    width   : 408px;
-    margin  : 0 auto;
-    padding : 30px 24px 24px 32px;
-    .title {
-      @include text__setting(header__typo_2);
-      margin-bottom : 68px;
-      text-align    : center;
-    }
-    .com__input-item {
-      margin-right  : 40px;
-      margin-bottom : 14px;
-      margin-left   : 2px;
-      input:-webkit-autofill {
-        -webkit-box-shadow      : inset 0 0 0 50px #FFF !important; /* Цвет фона */
-        -webkit-text-fill-color : black__color(primaryColor) !important; /* цвет текста */
-        color                   : black__color(primaryColor) !important; /* цвет текста */
-      }
-      &.social_reg {
-        font-size   : 13px;
-        line-height : 20px;
-        color       : rgba(0, 0, 0, 0.87);
-      }
-      &.user_phone {
-        #code_code_id {
-          position              : absolute;
-          z-index               : 2;
-          right                 : 0;
-          -webkit-border-radius : 2px;
-          border                : 1px solid #FFF;
-          width                 : 108px;
-          top                   : -6px;
-        }
-      }
-    }
-    &.is__auth {
-      .com__input-item {
-        margin-bottom : 7px;
-      }
-      .forgot__pass {
-        margin-top    : -14px;
-        padding-left  : 4px;
-        margin-bottom : 29px;
-        a {
-          font-size : 15px;
-        }
-      }
-    }
-  }
+
   .auth_agree {
     margin-bottom : 24px;
     margin-top    : -12px;
@@ -1058,5 +1060,20 @@
   &-link {
     font  : 400 13px/20px "Roboto";
     color : rgba(0, 0, 0, .54);
+  }
+}
+
+#registration_popup{
+  overflow: auto;
+  .reg__form{
+    padding: 0;
+    width: 100%;
+    box-shadow: 0 0 0px;
+    .title{
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.87);
+      margin-bottom: 32px;
+      text-align: center;
+    }
   }
 }

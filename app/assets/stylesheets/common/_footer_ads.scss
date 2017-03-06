@@ -1,0 +1,224 @@
+.ads__footer {
+  height: auto;
+  background-color: #5B4141;
+  border-radius: 2px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+  padding : 16px;
+  padding-right: 34px;
+  position: relative;
+  display: none;
+  &.fixed_bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 199;
+  }
+  .close{
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: -28px;
+    font: 300 42px/1 'Roboto';
+    color: #FFF;
+    cursor: pointer;
+  }
+  .ads__content{
+    display: flex;
+    max-width: 1020px;
+    margin: 0 auto;
+    .image{
+      width: 170px;
+      height: 128px;
+      display: inline-block;
+      img{
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+    .info{
+      position: relative;
+      display: inline-block;
+      max-width: 764px;
+      padding: 0px 6px 0px 24px;
+      color: white;
+      .title{
+        font-size: 24px;
+        padding-bottom: 12px;
+      }
+      .btn{
+        margin-top: 12px;
+        width: 112px;
+        float: right;
+      }
+    }
+    @import "common/elements/loader";
+  }
+}
+#ads_popup{
+  position         : fixed;
+  width            : 100%;
+  height           : 100%;
+  background-color : rgba(0, 0, 0, 0.54);
+  top              : 0;
+  left             : 0;
+  z-index          : 200;
+  display          : flex;
+  justify-content  : center;
+  align-items      : center;
+  display          : none;
+  .inner{
+    padding: 52px 24px 36px 24px;
+    background: #5B4141;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+    margin: 0 auto;
+    position: relative;
+    display: block;
+
+    width: 552px;
+    height: auto;
+
+    .title{
+      color: white;
+      font-size: 24px;
+    }
+    .description{
+      margin-bottom: 24px;
+    }
+    @import "common/elements/loader";
+    .cssload-container{
+      top: 8px;
+      right: 16px;
+    }
+    .btn{
+      width: 150px;
+      margin: 0 auto;
+    }
+  }
+  .close{
+    display: none;
+    position: absolute;
+    top: 3px;
+    right: 22px;
+    font: 300 42px/1 'Roboto';
+    color: #FFF;
+    cursor: pointer;
+  }
+}
+
+#ads_popup_common{
+  position: fixed;
+  top: 72px;
+  height: 86px;
+  z-index: 99;
+  -webkit-transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: all 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  left: -150%;
+  &.show{
+    left: 8px;
+  }
+  .inner_ads{
+    display: flex;
+    height: 86px;
+    .image_ava{
+      border-radius: 4px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+      img{
+        border-radius: 4px;
+        height: 86px;
+        width: 86px;
+      }
+    }
+    .block_info{
+      padding: 16px;
+      background: #FFF;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+      margin-left: 28px;
+      .triangel{
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        overflow: hidden;
+        // box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+        margin-left: -56px;
+        top: calc(50% - 35px);
+        &:before{
+          content: '';
+          width: 20px;
+          height: 20px;
+          background: #ffffff;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+          box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.5);
+          position: absolute;
+          top: calc(50% - 10px);
+          margin-left: 30px;
+        }
+      }
+      .block_content{
+        display: flex;
+        .title{
+          max-width: 294px;
+          font-size: 16px;
+          margin-right: 12px;
+        }
+        .btn{
+          margin-right: 34px;
+        }
+      }
+      @import "common/elements/loader";
+      .cssload-container{
+        width: 24px;
+        height: 24px;
+        right: 7px;
+        top: 4px;
+        .cssload-speeding-wheel{
+          width: 24px;
+          height: 24px;
+          border: 3px solid black;
+          border-left-color: transparent;
+          border-right-color: transparent;
+        }
+        .time{
+          font-size: 16px;
+          top: -21px;
+        }
+
+      }
+      .close{
+        display: none;
+        position: absolute;
+        top: 3px;
+        right: 12px;
+        font: 300 26px/1 'Roboto';
+        color: #000;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+}
+
+@keyframes move_popup {
+  from{
+    top: -100%;
+  }
+  to{
+    top: 0;
+  }
+  25% {
+    top: -75%;
+  }
+  50% {
+    top: -50%;
+  }
+  70%{
+    top: -25%;
+  }
+}
