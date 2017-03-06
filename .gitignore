@@ -38,5 +38,3 @@ Gemfile.lock
 config/database.yml
 config/secrets.yml
 public/deploy/*
-app/views/home_mailer/*
-/app/views/home_mailer/*

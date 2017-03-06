@@ -1,0 +1,12 @@
+- url_auth = @user.auth_url({redirect: "/attachment?id=#{@attachment.id}"})
+'#{@user.full_name}, вы назначены ведущим на вебинар
+a href=url_auth =' @attachment.title
+|в системе онлайн-обучения #{$env_mode.name_title}.
+br
+b
+  'Вебинар назначен на #{@date_start},
+'за 3 часа и за 5 минут до начала мы пришлем вам письмо с
+|напоминанием.
+br
+br
+a href="#{$env_mode.current_domain}/mail_notify?type=off" Не получать уведомления

@@ -1,0 +1,808 @@
+<%= render 'home_mailer/style_html_mailer/standard' %>
+<body>
+<center>
+  <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+    <tr>
+      <td align="left" valign="top" id="bodyCell">
+        <!-- BEGIN TEMPLATE // -->
+        <!--[if gte mso 9]>
+        <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+            <tr>
+                <td align="center" valign="top" width="600" style="width:600px;">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateContainer" style="border-collapse:collapse;border:0;max-width:600px!important">
+          <tr>
+            <td valign="top" id="templateHeader">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageBlock" style="min-width:100%;">
+                <tbody class="mcnImageBlockOuter">
+                <tr>
+                  <td valign="top" style="padding:9px" class="mcnImageBlockInner">
+                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer" style="min-width:100%;">
+                      <tbody>
+                      <tr>
+                        <td class="mcnImageContent" valign="top" style="padding-right: 9px; padding-left: 9px; padding-top: 0; padding-bottom: 0;">
+                          <%= render "home_mailer/style_html_mailer/logo_header" %>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--
+                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
+                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                    -->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <h1 class="null" style="display:block;margin:0;padding:0;color:#5b4141;font-family:Helvetica;
+                                  font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:normal;text-align:left" >
+                            Ура!
+                          </h1>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" id="templateBody">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                            <span>
+                              Отлично, <%= @user.first_name %>, теперь вы с нами.<br>
+                                <br>
+                                Честно, большое вам спасибо за регистрацию в <%= $env_mode.name_title %>,
+                                  нашем интернет-университете для всех рекламщиков, медийщиков и продавцов рекламных услуг, медиа и СМИ.<br>
+                                <br>
+                                Верим, что вы узнаете много всего нужного и полезного, а главное — станете продавать ваши всевозможные рекламные продукты больше, лучше,
+                                  веселее и легче.
+                                <br>
+                                <br>
+                                А сейчас, найдите, пожалуйста пару минут — мы быстренько введем вас в курс дела. У этого письма всего 3 части:
+                            </span>
+
+                          <ol>
+                            <li><span>Самое главное.</span></li>
+                            <li>Что такое <%= $env_mode.name_title %> и с чем его едят?</li>
+                            <li>Немного лирическое.</li>
+                          </ol>
+                          В общем, это, максимум, минуты на четыре.
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--
+                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
+                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                    -->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <h1 class="null" style="display:block;margin:0;padding:0;color:#5b4141;font-family:Helvetica;font-size:24px;font-style:normal;
+                                  font-weight:normal;line-height:125%;letter-spacing:normal;text-align:left" >Самое главное!</h1>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          Ваш логин:<br>
+                          <br>
+                          <strong><%= @user.email %></strong><br>
+                          <br>
+                          Ваш пароль:<br>
+                          <br>
+                          <strong><%= @new_password %></strong><br>
+                          <br>
+                          Для входа в систему просто нажмите на эту кнопку:<br>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+                <tbody class="mcnButtonBlockOuter">
+                <tr>
+                  <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="left" class="mcnButtonBlockInner">
+                    <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 0px;background-color: #EF8637;">
+                      <tbody>
+                      <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
+                          <a class="mcnButton " title="ВХОД В <%= $env_mode.name_title %>" href="<%= @user.auth_url %>" target="_blank" style="font-weight: normal;letter-spacing: 1px;
+                                  line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">ВХОД
+                            В <%= $env_mode.name_title %></a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          Если у вас что-то не будет получаться, не расстраивайтесь — наша <strong>служба поддержки </strong>будет счастлива помочь вам в любое время дня
+                          и ночи (хотя мы будем признательны, если вы побережете ее до утра по московскому времени). Звоните смело — +7&nbsp;926&nbsp;973&nbsp;36&nbsp;33.
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--
+                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
+                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                    -->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <h1 class="null" style="display:block;margin:0;padding:0;color:#5b4141;font-family:Helvetica;font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:normal;text-align:left" >Что вообще есть в <%= $env_mode.name_title %>?</h1>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          Обучение в нашем интернет-университете стоит на трех китах — 1)&nbsp;live-встречах с экспертами, 2)&nbsp;онлайн-курсах с домашними заданиями и
+                          3)&nbsp;большом архиве учебных материалов.<br>
+                          <br>
+                          <strong>Первое </strong>— живые вебинары, онлайн-конференции и клубные встречи с лучшими экспертами из мира рекламы и рекламных продаж. Всё
+                          проходит «в прямом эфире», вы можете напрямую общаться с экспертами в чате или режиме видеосвязи (во время клубных встреч). Это опыт и обучение
+                          из первых рук. Наверное, самое ценное, что может быть.<br>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+                <tbody class="mcnButtonBlockOuter">
+                <tr>
+                  <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="left" class="mcnButtonBlockInner">
+                    <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 0px;background-color: #EF8637;">
+                      <tbody>
+                      <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
+                          <a class="mcnButton " title="ПЕРЕЙТИ К ВЕБИНАРАМ" href="<%= @user.auth_url({redirect: "/courses?type=online"}) %>" target="_blank"
+                             style="font-weight: normal;letter-spacing: 1px;line-height:
+                                     100%;
+                                     text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ
+                            К ВЕБИНАРАМ</a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          <strong>Второе </strong>— заранее подготовленные и записанные, смонтированные и тщательно отредактированные компактные онлайн-курсы, состоящие
+                          из десятка-двух коротких видеоуроков с проверочными тестами после каждого раздела и итоговым экзаменом в конце. Онлайн-курсы ведут эксперты
+                          ADCONSULT, и после прохождения каждого из курсов вы сможете получить сертификат. Это быстро, сжато, и удобно.<br>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+                <tbody class="mcnButtonBlockOuter">
+                <tr>
+                  <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="left" class="mcnButtonBlockInner">
+                    <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 0px;background-color: #EF8637;">
+                      <tbody>
+                      <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
+                          <a class="mcnButton " title="ПЕРЕЙТИ К ОНЛАЙН-КУРСАМ" href="<%= @user.auth_url({redirect: "/courses?type=course"}) %>" target="_blank"
+                             style="font-weight: normal;letter-spacing: 1px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ
+                            К ОНЛАЙН-КУРСАМ</a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          <strong>Третье </strong>— большой и постоянно обновляемый архив учебных и справочных материалов. Книжки и учебники, статьи и чеклисты, примеры
+                          скриптов и сценариев продаж. Всё это вы сможете использовать как в подготовке к выполнению домашних заданий, так и просто в своей ежедневной
+                          работе с реальными клиентами-рекламодателями. Это вам для самостоятельного освоения.<br>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+                <tbody class="mcnButtonBlockOuter">
+                <tr>
+                  <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="left" class="mcnButtonBlockInner">
+                    <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 0px;background-color: #EF8637;">
+                      <tbody>
+                      <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
+                          <a class="mcnButton " title="ПЕРЕЙТИ К АРХИВУ МАТЕРИАЛОВ" href="<%= @user.auth_url({redirect: "/courses?type=material"}) %>" target="_blank"
+                             style="font-weight: normal;letter-spacing: 1px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ
+                            К АРХИВУ МАТЕРИАЛОВ</a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--
+                                    <td class="mcnDividerBlockInner" style="padding: 18px;">
+                                    <hr class="mcnDividerContent" style="border-bottom-color:none; border-left-color:none; border-right-color:none; border-bottom-width:0; border-left-width:0; border-right-width:0; margin-top:0; margin-right:0; margin-bottom:0; margin-left:0;" />
+                    -->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <h1 class="null" style="display:block;margin:0;padding:0;color:#5b4141;font-family:Helvetica;font-size:24px;font-style:normal;
+                                  font-weight:normal;line-height:125%;letter-spacing:normal;text-align:left">И последнее, чуть лирическое</h1>
+
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <br>
+                          Нам очень важно, чтобы вы не просто «зарегистрировались и забыли» или, скажем, «посмотрели вполглаза полкурса, да и выключили» — нам очень
+                          важно, чтобы вы действительно стали профессиональнее в вашей работе.<br>
+                          <br>
+                          Поэтому отнеситесь, пожалуйста, всерьёз и к тестам, и к экзаменам, и к домашним заданиям. Только ваша сила воли, ваша последовательность, ваша
+                          дисциплинированность и упёртость смогут гарантировать, что полученные вами новые знания превратятся в вашу привычку и практику, а значит,
+                          помогут вам в деле.<br>
+                          <br>
+                          Откровенно говоря, никого на свете невозможно научить силой и против его желания. Вероятно, отдрессировать еще можно — но лишь простым навыкам,
+                          типа «упал—отжался». А таким сложным вещам, как продажи, точно нет.<br>
+                          <br>
+                          Научить нельзя — но можно помочь научиться. И мы здесь именно для этого. Если есть что-то, что мы можем сделать еще, что поможет вам учиться,
+                          <a href="mailto:supportadonline@adconsult.ru" target="_blank" style="color:#2baadf;font-weight:normal;text-decoration:underline">
+                            напишите нам
+                          </a> об этом.&nbsp;<br>
+                          <br>
+                          А теперь — вперёд, к новым знаниям, инсайтам и успеху.<br>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+                <tbody class="mcnButtonBlockOuter">
+                <tr>
+                  <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="left" class="mcnButtonBlockInner">
+                    <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 0px;background-color: #EF8637;">
+                      <tbody>
+                      <tr>
+                        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-size: 14px; padding: 10px;">
+                          <a class="mcnButton " title="ПЕРЕЙТИ В <%= $env_mode.name_title %>" href="<%= @user.auth_url %>" target="_blank" style="font-weight: normal;letter-spacing: 1px;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">ПЕРЕЙТИ
+                            В <%= $env_mode.name_title %></a>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                      <tbody>
+                      <tr>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:0;padding-right:18px;padding-bottom:9px;padding-left:18px;word-break:break-word;
+                                color:#5b4141;font-family:Helvetica;font-size:16px;line-height:150%;text-align:left;">
+
+                          <em>Успехов вам... и терпения!<br>
+                            <br>
+                            С теплотой,<br>
+                            команда <%= $env_mode.name_title %>.</em>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+                <tbody class="mcnDividerBlockOuter">
+                <tr>
+                  <td class="mcnDividerBlockInner" style="min-width: 100%; padding: 35px 18px;">
+                    <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-top-width:1px;
+                            border-top-style:solid;border-top-color:#5b4141;border-collapse:collapse">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <span></span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+                <tbody class="mcnTextBlockOuter">
+                <tr>
+                  <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+                    <!--[if mso]>
+                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                        <tr>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    <td valign="top" width="600" style="width:600px;">
+                    <![endif]-->
+                    <%= render "home_mailer/style_html_mailer/footer_info" %>
+                    <!--[if mso]>
+                    </td>
+                    <![endif]-->
+
+                    <!--[if mso]>
+                    </tr>
+                    </table>
+                    <![endif]-->
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" id="templateFooter"></td>
+          </tr>
+        </table>
+        <!--[if gte mso 9]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+        <!-- // END TEMPLATE -->
+      </td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>
