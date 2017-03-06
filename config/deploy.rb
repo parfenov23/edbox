@@ -1,3 +1,4 @@
+require 'pry'
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
@@ -27,8 +28,25 @@ set :slack_webhook, "https://hooks.slack.com/services/T03NCJVBY/B0DL1R295/7AXSC9
 
 load 'lib/tasks/resque.rake'
 
+desc "Copy file mailer to shared"
+task :copy_latters_shared do
+  on "members_adonline@adconsult.online" do
+    execute "cp -R #{release_path}/app/views/home_mailer #{shared_path}"
+  end
+end
+
+desc "Copy file mailer to release"
+task :shared_copy_latters do
+  on "members_adonline@adconsult.online" do
+    execute "cp -R #{shared_path}/home_mailer #{release_path}/app/views/"
+  end
+end
+
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
+  
+  before "deploy", "copy_latters_shared"
+  after "deploy", "shared_copy_latters" 
   # , 'deploy:websocket_restart'
   #
   # task :resque_restart do
@@ -46,6 +64,7 @@ namespace :deploy do
   task :stop do
     invoke 'unicorn:stop'
   end
+
 
   # task :websocket_restart do
   #   `ps aux | grep websocket_rails | awk '{print $2}' | xargs kill -9`
