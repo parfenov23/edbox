@@ -16,7 +16,7 @@
     - user_webinar = user_webinar.present? ? user_webinar : webinar.eventRegUser(current_user)
     - url = user_webinar.url
     .inner-content.webinar_attachment
-      iframe src=url width="100%" style="position: static; height: 90vh;border: none;"
+      iframe src=url width="100%" style="position: static; height: 100vh;border: none;"
   - elsif status == 'STOP'
     .inner-content.webinar_attachment
       - if webinar.eventRecordStatus == "completed" 

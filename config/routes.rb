@@ -346,6 +346,13 @@ Rails.application.routes.draw do
       member do
         get :remove
       end
+      collection do
+        get :latters
+        get "latters/:dir/:id/edit" => "email_notifs#edit_latters"
+        get "latters/:id/edit" => "email_notifs#edit_latters"
+        post "latters/:id" => "email_notifs#update_latters"
+        post "latters/:dir/:id" => "email_notifs#update_latters"
+      end
     end
     resources :sections do
       member do

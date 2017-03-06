@@ -1,0 +1,7 @@
+- @files.each do |file|
+  - file_name = file.gsub("#{Rails.root}/app/views/home_mailer/", "").gsub(".html.erb", "").gsub(".slim", "")
+  .list-group-item.col-md-6
+    span
+      = file_name
+    a.btn.btn-success.pull-right href="/superuser/email_notifs/latters/#{file_name}/edit" style="margin-right: 5px;"
+      = btn_edit

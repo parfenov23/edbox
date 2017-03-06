@@ -1,6 +1,8 @@
 .list-group.row
   .list-group-item.active
     a.btn.btn-success href="/superuser/email_notifs/new" Новый Email
+
+    a.btn.btn-success href="/superuser/email_notifs/latters" Письма
   - @email_notifs.each do |email_notif|
     .list-group-item.col-md-6
       span

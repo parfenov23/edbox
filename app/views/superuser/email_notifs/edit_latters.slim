@@ -1,0 +1,7 @@
+form.form-horizontal action="/superuser/email_notifs/latters/#{@file_name}" method="post"
+  .form-group
+    textarea.form-control.description style="height: 100vh;" name="description" type="text"
+      = @data_file
+
+  input type="hidden" name="_method" value="post"
+  button.btn.btn-primary type="submit" Сохранить

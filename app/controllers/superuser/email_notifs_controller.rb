@@ -28,6 +28,25 @@ module Superuser
       redirect_to :back
     end
 
+    def latters
+      @files = Dir.glob("#{Rails.root}/app/views/home_mailer/**/*")
+    end
+
+    def edit_latters
+      @file_name = [params[:dir], params[:id]].compact.join("/")
+      @file_path= Dir.glob("#{Rails.root}/app/views/home_mailer/#{@file_name}*").first
+      @data_file = File.read(@file_path)
+    end
+
+    def update_latters
+      @file_name = [params[:dir], params[:id]].compact.join("/")
+      @file_path= Dir.glob("#{Rails.root}/app/views/home_mailer/#{@file_name}*").first
+      File.open(@file_path, "w") do |f|
+        f.write(params[:description])
+      end
+      redirect_to :back
+    end
+
     private
 
     def find_email_notif
