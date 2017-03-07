@@ -24,7 +24,7 @@ header.landing__header
   .logo
     a href="/"
       img src="/assets/adcons__grey.svg"
-  .logo__legend Онлайн-университет по продажам рекламы
+  / .logo__legend Онлайн-университет по продажам рекламы
   .action__block
     a.btn.btn-flat href="/sign_in" ВОЙТИ
     - reg_type = params[:type_reg].present? ? "?type_reg=#{params[:type_reg]}" : ''
@@ -44,6 +44,14 @@ header.landing__header
       hr
     .com__input-item.item.empty
       input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="Пожалуйста, e-mail"
+      .error__msg Обязательное поле
+      hr
+    .com__input-item.item.empty
+      input.form-control.floating-label.phoenix-input name="user[kid_name]" type="text" placeholder="Пожалуйста, имя ребенка"
+      .error__msg Обязательное поле
+      hr
+    .com__input-item.item.empty
+      input.form-control.floating-label.phoenix-input name="user[kid_class]" type="text" placeholder="Пожалуйста, класс ребенка"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty.user_phone

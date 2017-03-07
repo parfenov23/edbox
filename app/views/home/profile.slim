@@ -7,27 +7,31 @@
         .upload__block
           input#imgInp name="ava" type="file"
       .data
-        .infoProfile
-          .input-wrp.name
-            input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
-            hr
-          .input-wrp.name
-            input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
-            hr
-          .input-wrp.state
-            input type="text" name="user[job]" placeholder="Должность" value="#{current_user.job}"
-            hr
-        .social
-          - social = current_user.social
-          .input-wrp.name
-            input type="text" name="user[social][vk]" placeholder="Vkontakte" value="#{social["vk"]}"
-            hr
-          .input-wrp.name
-            input type="text" name="user[social][fb]" placeholder="Facebook" value="#{social["fb"]}"
-            hr
-          .input-wrp.state
-            input type="text" name="user[social][twitter]" placeholder="Twitter" value="#{social["twitter"]}"
-            hr
+        .changeData style="display: flex;"
+          .infoProfile
+            .input-wrp.name
+              input type="text" name="user[first_name]" placeholder="Имя" value="#{current_user.first_name}"
+              hr
+            .input-wrp.name
+              input type="text" name="user[last_name]" placeholder="Фамилия" value="#{current_user.last_name}"
+              hr
+            .input-wrp.state style="margin: 0 0 12px;"
+              input type="text" name="user[kid_name]" placeholder="Имя ребенка" value="#{current_user.kid_name}"
+              hr
+            .input-wrp.state
+              input type="text" name="user[kid_class]" placeholder="Класс ребенка" value="#{current_user.kid_class}"
+              hr
+          .social
+            - social = current_user.social
+            .input-wrp.name
+              input type="text" name="user[social][vk]" placeholder="Vkontakte" value="#{social["vk"]}"
+              hr
+            .input-wrp.name
+              input type="text" name="user[social][fb]" placeholder="Facebook" value="#{social["fb"]}"
+              hr
+            .input-wrp.state
+              input type="text" name="user[social][twitter]" placeholder="Twitter" value="#{social["twitter"]}"
+              hr
         .account
           span>Ваш персональный ID:
           span.number

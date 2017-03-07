@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get :reset_pass, to: "enter#reset_pass"
   get :oferta, to: "enter#oferta"
   post :render_mini_schedule, to: "home#render_mini_schedule"
+  get "sign_up/activate", to: "enter#activate"
 
   get "video/:id" => "home#video"
   get "audio/:id" => "home#audio"

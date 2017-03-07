@@ -9,6 +9,8 @@ class HomeMailer < ActionMailer::Base
   def welcome_latter(user, new_password)
     @user = user
     @new_password = new_password
+    sid = Base64.encode64 "account_id=#{@user.email}"
+    @url = "#{$env_mode.current_domain}/sign_up/activate?sid=#{sid}"
     mail(:to => @user.email, :subject => "Добро пожаловать в #{$env_mode.name_title}!")
   end
 

@@ -68,7 +68,8 @@ module Api::V1
     private
 
     def user_params
-      params.require(:user).permit(:email, :first_name, :last_name, :password, :director, :corporate, :company_id, :avatar, :social)
+      params.require(:user).permit(:email, :first_name, :last_name, :password, 
+        :director, :corporate, :company_id, :avatar, :social, :kid_name, :kid_class)
     end
 
   end

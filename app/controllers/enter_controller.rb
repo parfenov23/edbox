@@ -15,6 +15,13 @@ class EnterController < ActionController::Base
     # redirect_to "/payment?type=#{params[:type_reg]}&page=reg" if params[:type_reg].present?
   end
 
+  def activate
+    id = Base64.decode64(params[:sid]).gsub("account_id=", "")
+    user = User.find_by_email(id)
+    user.update(active: true)
+    redirect_to user.auth_url
+  end
+
   def sign_out
     session[:user_key] = nil
     redirect_to "/"

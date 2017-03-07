@@ -186,6 +186,10 @@ var validRegClickOfert = function () {
 };
 
 $(document).ready(function () {
+    $(document).on('click', ".js_registrationUser [name='user[social][phone]']", function(){
+        $(this).closest(".com__input-item").removeClass("empty");
+    });
+
     $(document).on('keyup paste input propertychange', '.js_registrationUser input[name="user[password]"]', function () {
         var valPass = checkPassword($(this).val());
         $(this).closest(".com__input-item").removeClass("error lvl-1 lvl-2 lvl-3 lvl-4").addClass("error " + valPass[0]);
@@ -288,20 +292,22 @@ $(document).ready(function () {
                     fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
                     show_error('Успешно', 3000);
-                    if (form.data('redirect') == undefined){
-                        $("#formCourseRegPopUp").show();
-                    } else {
-                        window.location.href = form.data('redirect');
-                    }
+                    warning("На вашу почту отправленно письмо с сылкой для подтверждением аккаунта!", "ОК", function(){})
+                    // if (form.data('redirect') == undefined){
+                    //     $("#formCourseRegPopUp").show();
+                    // } else {
+                    //     window.location.href = form.data('redirect');
+                    // }
                 },
                 error  : function (m) {
                     show_error(m.responseJSON.error, 3000);
                 }
             });
         };
-        if ($(".js_registrationUser input.error").length == 0){
-            include_phone($('.form-control[type="tel"]'), endAction);
-        }
+        endAction();
+        // if ($(".js_registrationUser input.error").length == 0){
+        //     include_phone($('.form-control[type="tel"]'), endAction);
+        // }
     });
 
     $("form.auth__enter input.validInput").change(function (e) {

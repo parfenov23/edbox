@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   def self.auth(params)
     user = find_by_email(params[:email].downcase)
     unless user.nil?
-      if user.password == params[:password]
+      if user.password == params[:password] && user.active
         user.assign_last_auth.transfer_to_json
       end
     end

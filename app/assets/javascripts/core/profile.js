@@ -9,7 +9,6 @@ profileDataChange = function () {
         }).success(function () {
             show_error('Успешно сохранено', 3000);
         }).error(function () {
-            console.log('111');
             show_error('Ошибка', 3000);
         });
     });

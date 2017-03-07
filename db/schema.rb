@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412064400) do
+ActiveRecord::Schema.define(version: 20170306230346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.string   "issuer_bank_country"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "ads", force: true do |t|
+    t.string   "type_ad"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.string   "href"
+    t.string   "img"
+    t.boolean  "active"
+    t.integer  "time_line",  default: 0
   end
 
   create_table "answers", force: true do |t|
@@ -58,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.text     "full_text"
     t.integer  "position"
     t.boolean  "public",              default: false
+    t.text     "embed_video"
   end
 
   create_table "bigbluebutton_room_options", force: true do |t|
@@ -73,12 +86,20 @@ ActiveRecord::Schema.define(version: 20160412064400) do
 
   add_index "bigbluebutton_room_options", ["room_id"], name: "index_bigbluebutton_room_options_on_room_id", using: :btree
 
+  create_table "billing_coupons", force: true do |t|
+    t.string   "title"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "billing_prices", force: true do |t|
     t.float    "company_price",      default: 1.0
     t.float    "user_price",         default: 1.0
     t.float    "company_user_price", default: 1.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "test_user_price",    default: 0.0
   end
 
   create_table "bunch_attachments", force: true do |t|
@@ -144,6 +165,7 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "paid",       default: false
+    t.string   "phone"
   end
 
   create_table "courses", force: true do |t|
@@ -159,6 +181,9 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.boolean  "paid",              default: false
     t.string   "type_course",       default: "course"
     t.datetime "announcement_date"
+    t.text     "og"
+    t.boolean  "archive",           default: false
+    t.string   "download_url"
   end
 
   create_table "deliveries", force: true do |t|
@@ -298,6 +323,14 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.datetime "updated_at"
   end
 
+  create_table "phrasing_phrases", force: true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.integer "test_id"
     t.string  "title"
@@ -332,12 +365,15 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.datetime "updated_at"
     t.integer  "user_count",             default: 0
     t.text     "note"
+    t.string   "type_order"
   end
 
   create_table "tags", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tagtable_type"
+    t.integer  "tagtable_id"
   end
 
   create_table "teasers", force: true do |t|
@@ -369,6 +405,8 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "participant_id"
+    t.datetime "date_entry"
   end
 
   create_table "users", force: true do |t|
@@ -391,6 +429,11 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.boolean  "contenter",       default: false
     t.boolean  "paid",            default: false
     t.boolean  "superuser",       default: false
+    t.text     "social"
+    t.boolean  "help",            default: true
+    t.string   "kid_name"
+    t.string   "kid_class"
+    t.boolean  "active",          default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -403,6 +446,9 @@ ActiveRecord::Schema.define(version: 20160412064400) do
     t.datetime "updated_at"
     t.integer  "event"
     t.string   "status"
+    t.integer  "video_id"
+    t.string   "url"
+    t.string   "jid"
   end
 
 end
