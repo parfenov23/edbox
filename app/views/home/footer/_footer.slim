@@ -1,65 +1,74 @@
 footer
   .inthis
     .block
-      .title #{$env_mode.name_title}
+      .title Пользователям
       ul
         li
-          a href="/courses" Библиотека
+          a href="/oferta" Договор оферты 
         li
-          a href="/courses?type=course" Онлайн-курсы
+          a href="/tariff" Тарифы и условия оплаты
         li
-          a href="/courses?type=online" Вебинары
+          a href="/help" Инструкция по работе в системе
         li
-          a href="/courses?type=material" Справочный материалы
+          a href="mailto:help@naukacity.ru" Сообщить о проблеме
     .block
-      .title Сервисы и документы
+      .title О центре
       ul
         li
-          a href="/sign_up" Регистрация
+          a href="http://naukacity.ru/about" О нас
         li
-          a href="/sign_in" Авторизация
+          a href="http://naukacity.ru/about/uk" Управляющая компания
         li
-          a href="/oferta" Пользовательское соглашение
+          a href="http://naukacity.ru/about/staff" Преподаватели
         li
-          a href="/info_pay" Правила платежей
+          a href="http://naukacity.ru/about/standarts" Образовательные стандарты
+        li
+          a href="http://naukacity.ru/groups" Групповые и корпоративные занятия
+        li
+          a href="http://naukacity.ru/blog " Блог         
+
     .block
-      .title Помощь и поддержка
+      / .title Помощь и поддержка
       ul
-        - url = "http://adonline2016.reformal.ru"
-        - onclick="$('#reformal_tab').click();return false;"
         li
-          a href="#{url}" onclick="#{onclick}" Сообщить о проблеме
+          a href="http://naukacity.ru/about/contacts" Контакты   
         li
-          /a href="#{url}" onclick="#{onclick}" Написать отзыв
+          a href="http://naukacity.ru/groups" Групповые и корпоративные занятия     
         li
-          /a href="#{url}" onclick="#{onclick}" Предложить идею
+          a href="#" Научные лаборатории
         li
-          /a href="#{url}" onclick="#{onclick}" Задать вопрос
+          a href="#" Экспресс курсы
+        li
+          a href="#" Курсы
+        li
+          a href="#" Расписание        
+        li
+          a href="#" Товары 
     .block.contact__info
-      .title +7 926 973 36 23
+      .title 8 800 500 95 23
       ul
         li.send__message___back
           i.icon.email_cl
-          a href="mailto:supportadonline@adconsult.ru" Обратная связь
+          a href="mailto:help@naukacity.ru" Обратная связь
         li.other
         li.social
-          a target="_blank" href="https://plus.google.com/116073902045448332695"
-            i.icon.gplus
-          a target="_blank" href="https://twitter.com/adconsult_ru?lang=ru"
-            i.icon.twitter
-          a target="_blank" href="http://vk.com/ADCONSULT"
+          / a target="_blank" href="https://plus.google.com/116073902045448332695"
+          /   i.icon.gplus
+          / a target="_blank" href="https://twitter.com/adconsult_ru?lang=ru"
+          /   i.icon.twitter
+          a target="_blank" href="https://vk.com/scikids"
             i.icon.vk
-          a target="_blank" href="http://facebook.com/ADCONSULT"
+          a target="_blank" href="https://www.facebook.com/naukacity/"
             i.icon.fb
-          a target="_blank" href="http://linkedin.com/company/adconsult"
-            i.icon.in
-          a target="_blank" href="http://youtube.com/ADCONSULT"
-            i.icon.youtube
-          a target="_blank" href="https://www.instagram.com/adconsult.russia"
+          / a target="_blank" href="http://linkedin.com/company/adconsult"
+          /   i.icon.in
+          / a target="_blank" href="http://youtube.com/ADCONSULT"
+          /   i.icon.youtube
+          a target="_blank" href="https://www.instagram.com/sci_kids/"
             i.icon.insta
           a target="_blank" href="/courses/rss"
             i.icon.rss
-        li.copywrite ©#{$env_mode.name_title}, 2015-2016
+        li.copywrite ©#{$env_mode.name_title}, 2016-#{Time.now.year}
 
 
 

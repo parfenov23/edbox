@@ -4,12 +4,12 @@ figcaption
     - unless course.material? || course.instrument?
       .adaptive__title
         .left-col = (course.ligament_leads.last.user.full_name rescue "Нет ведущего")
-        / - if !course.paid
-        /   .right-col = "Бесплатно"
+        - if !course.paid
+          .right-col = "Бесплатно"
     - else
       .authors
-        / - if !course.paid
-        /   .free_material = 'Бесплатно'
+        - if !course.paid
+          .free_material = 'Бесплатно'
   - link = "/course_description/#{course.id}"
   - if current_user.present? && !assigned && course.material?
     - redirect_att = "/course_description/#{course.id}"

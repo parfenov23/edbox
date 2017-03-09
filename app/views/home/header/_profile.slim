@@ -9,9 +9,9 @@
         .login = current_user.email
     - sub = current_user.find_subscription
     - sub_hash = profile_header_text(sub)
-    / .sub__info
-    /   .title = sub_hash[:title]
-    /   .description class=sub_hash[:class] = sub_hash[:desc]
+    .sub__info
+      .title = sub_hash[:title]
+      .description class=sub_hash[:class] = sub_hash[:desc]
     ul.menu
       li.menu__item
         a.menu__item-link.menu__item-profile href="/profile" Профиль
