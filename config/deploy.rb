@@ -45,8 +45,8 @@ end
 namespace :deploy do
   after 'deploy:publishing', 'deploy:restart'
   
-  before "deploy", "copy_latters_shared"
-  after "deploy", "shared_copy_latters" 
+  # before "deploy", "copy_latters_shared"
+  # after "deploy", "shared_copy_latters" 
   # , 'deploy:websocket_restart'
   #
   # task :resque_restart do
