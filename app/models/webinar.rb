@@ -99,7 +99,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventUrl
-    session_id = eventSession['id']
+    session_id = (eventSession['id'] rescue nil)
     if url.blank? && session_id.present?
       self.url = "https://events.webinar.ru/adconsult/#{event}/stream/#{session_id}"
       save
