@@ -186,6 +186,7 @@ class Webinar < ActiveRecord::Base
         email: user.email,
         name: user.first_name, 
         secondName: user.last_name,
+        sendEmail: false,
         role: role
       })
     user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)

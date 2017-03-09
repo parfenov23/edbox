@@ -43,6 +43,7 @@ var eventStop = function () {
     return true;
 };
 
+// регистрация на вебинар
 var eventRegUser = function () {
     var btn = $(this);
     var web_id = btn.data('webinar_id');
@@ -55,7 +56,7 @@ var eventRegUser = function () {
         }).success(function () {
             if (btn.data('alert') != false){
                 var tsucces = "Вебинар начнется " + btn.closest('form').find('.title').text() + ", мы уведомим вас за 3 часа, " +
-                    "а так же за 5 минут до начала вебинара на электронную почту " +
+                    "а так же за 15 минут до начала вебинара на электронную почту " +
                     $('.menu__user .login').text();
                 warning(tsucces, 'OK');
                 $('.js_actionYesStart').on('click', function () {window.location.reload()});
@@ -68,6 +69,7 @@ var eventRegUser = function () {
     }
     return true;
 };
+///////////////
 
 var eventUnRegUser = function () {
     var web_id = $(this).data('webinar_id');
