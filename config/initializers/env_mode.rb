@@ -32,7 +32,7 @@ class EnvMode
     domains = {
       development: "http://server.dev:#{port}",
       beta: "http://#{beta_subdomain}.masshtab.am",
-      production: "http://adconsult.online"
+      production: "http://naukacity.online"
     }
     domains[dName]
   end
