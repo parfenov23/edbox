@@ -276,6 +276,7 @@ $(document).ready(function () {
         });
     });
 
+    // регистрация пользователя
     $(".js_registrationUser #submit").click(function (e) {
         e.preventDefault();
         validate();
@@ -310,6 +311,7 @@ $(document).ready(function () {
         //     include_phone($('.form-control[type="tel"]'), endAction);
         // }
     });
+    /////////////
 
     $("form.auth__enter input.validInput").change(function (e) {
         changeErrorInput(e);
