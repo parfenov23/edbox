@@ -103,7 +103,7 @@ function fixed_btn_save() {
 
     }
 }
-
+// сброс пароля
 var resetPassword = function () {
     var data = $(this).closest("form").serialize();
     $.ajax({
@@ -121,6 +121,7 @@ var resetPassword = function () {
         }
     });
 };
+/////////////
 
 function reg_the_social(params) {
     var data = params;
