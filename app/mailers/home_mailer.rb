@@ -3,7 +3,7 @@ class HomeMailer < ActionMailer::Base
   include ApplicationHelper
   helper_method :domain
 
-  default :from => "#{$env_mode.name_title} <info@masshtab.am>"
+  default :from => "#{$env_mode.name_title} <hello@naukacity.ru>"
   # layout 'home_email', :except => [:order_product_user]
 
   def welcome_latter(user, new_password)
