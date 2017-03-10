@@ -75,6 +75,7 @@ i {
   padding : 40px 0 40px 0;
   width   : 920px;
   margin  : 0 auto;
+  min-height: calc(100vh - 257px);
 }
 
 .inner-content {
