@@ -8,28 +8,28 @@
 
 
 // Модальное окно картинки
-.pop_up_confirm.noCloseToggleState.popup__img.noConfirmOpen
-  .inner.allgood
-    .title
-    img.imgView src='/cert.png'
-    - if !$env_mode.dev?
-      script src="/pluso.js"
-    - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
-                     'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
-                     'data-services' => 'vkontakte,facebook,twitter,google',
-                     'data-title' => "#{$env_mode.name_title}", 'data-url' => "#{$env_mode.current_domain(:production)}"}
-    .shareBtn
-      span.textShare Поделитесь сертификатом
-      .pluso *hash_params
-      span.textShare или распечатайте его
-      /- hash_params["data-services"] = "print"
-      /.pluso *hash_params
-      /#btnPrintPage
-      /  .pluso-wrap
-      /    a class="buttonPrint" href='/course_cert?id=1_1&print=true' Print
-      /
-      #btnPrintPage
-        .pluso-010010010101-08
-          span.pluso-wrap style="background:transparent"
-            a.buttonPrint href="/course_cert?id=1_1&print=true"
+/ .pop_up_confirm.noCloseToggleState.popup__img.noConfirmOpen
+/   .inner.allgood
+/     .title
+/     img.imgView src='/cert.png'
+/     - if !$env_mode.dev?
+/       script src="/pluso.js"
+/     - hash_params = {'data-background' => 'transparent','data-description' => 'Система онлайн обучения',
+/                      'data-options' => 'medium,square,line,horizontal,nocounter,theme=08',
+/                      'data-services' => 'vkontakte,facebook,twitter,google',
+/                      'data-title' => "#{$env_mode.name_title}", 'data-url' => "#{$env_mode.current_domain(:production)}"}
+/     .shareBtn
+/       span.textShare Поделитесь сертификатом
+/       .pluso *hash_params
+/       span.textShare или распечатайте его
+/       /- hash_params["data-services"] = "print"
+/       /.pluso *hash_params
+/       /#btnPrintPage
+/       /  .pluso-wrap
+/       /    a class="buttonPrint" href='/course_cert?id=1_1&print=true' Print
+/       /
+/       #btnPrintPage
+/         .pluso-010010010101-08
+/           span.pluso-wrap style="background:transparent"
+/             a.buttonPrint href="/course_cert?id=1_1&print=true"
 
