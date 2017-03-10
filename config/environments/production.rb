@@ -80,9 +80,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp-pulse.com",
     :port                 => 2525,
-    :domain               => "masshtab.am",
-    :user_name            => "prisakar@aim-m.ru",
-    :password             => "KR8LYKJBFZL9",
+    :domain               => "naukacity.ru",
+    :user_name            => "hello@naukacity.ru",
+    :password             => "44DigZELFf",
     :authentication       => "plain",
     :enable_starttls_auto => true,
     :openssl_verify_mode => 'none'
