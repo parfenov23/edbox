@@ -39,32 +39,32 @@ header.landing__header
   form.reg__form.js_registrationUser *hash_redirect
     .title Регистрация
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Пожалуйста, ваше имя и фамилия"
+      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Ваше имя и фамилия"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="Пожалуйста, e-mail"
+      input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="E-mail"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[kid_name]" type="text" placeholder="Пожалуйста, имя ребенка"
+      input.form-control.floating-label.phoenix-input name="user[kid_name]" type="text" placeholder="Имя ребенка"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[kid_class]" type="text" placeholder="Пожалуйста, класс ребенка"
+      input.form-control.floating-label.phoenix-input name="user[kid_class]" type="text" placeholder="Класс ребенка"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty.user_phone
       = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
-      input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Пожалуйста, телефон"
+      input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Телефон"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label autocomplete="off" name="user[password]" type="password" placeholder="Пожалуйста, придумайте пароль"
+      input.form-control.floating-label autocomplete="off" name="user[password]" type="password" placeholder="Придумайте пароль"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
-      input.form-control.floating-label name="password_repeat" type="password" placeholder="Пожалуйста, подтвердите пароль"
+      input.form-control.floating-label name="password_repeat" type="password" placeholder="Подтвердите пароль"
       .error__msg Обязательное поле
       hr
     .auth_agree.checkbox__holder
