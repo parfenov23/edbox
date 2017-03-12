@@ -1,0 +1,12 @@
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/tariffs/new"  Добавить Тариф
+    a.btn.btn-success href="/superuser/tariff_infos"  Возможности
+  - @tariffs.each do |tariff|
+    .list-group-item.col-md-6
+      span
+        = tariff.title
+      a.btn.btn-danger.pull-right href="/superuser/tariffs/#{tariff.id}/remove"  data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/tariffs/#{tariff.id}/edit" style="margin-right: 5px;"
+        = btn_edit

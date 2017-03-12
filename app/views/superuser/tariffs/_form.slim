@@ -1,0 +1,24 @@
+- action_url = @tariff.id.nil? ? "/superuser/tariffs" : "/superuser/tariffs/#{@tariff.id}"
+- method = @tariff.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="tariff[title]" type="text" value="#{@tariff.title}"
+  .form-group
+    label
+      | Цена:
+    input.form-control name="tariff[price]" type="text" value="#{@tariff.price}"
+
+  .form-group
+    label
+      | Активный?:
+    = check_box("tariff", "active", {checked: @tariff.active})
+
+  .form-group
+    label
+      | Тип:
+    input.form-control name="tariff[type_tariff]" type="text" value="#{@tariff.type_tariff}"
+
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

@@ -11,7 +11,8 @@ nav.navbar.navbar-default
                     {url: "/superuser/billing", title: "Биллинг"},
                     {url: "/superuser/email_notifs", title: "Emails"},
                     {url: "/superuser/news", title: "Новости"},
-                    {url: "/superuser/delivery", title: "Рассылка"}]
+                    {url: "/superuser/delivery", title: "Рассылка"},
+                    {url: "/superuser/tariffs", title: "Тарифы"}]
     - arr_nav_li.each do |li_nav|
       - class_li = li_nav[:url] == request.fullpath.to_s ? "active" : ""
       li class="#{class_li}"

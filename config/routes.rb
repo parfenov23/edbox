@@ -265,7 +265,19 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :page_questions do
+    resources :ask_questions do
+      member do
+        post :remove
+      end
+    end
+
+    resources :tariffs do
+      member do
+        post :remove
+      end
+    end
+
+    resources :tariff_infos do
       member do
         post :remove
       end

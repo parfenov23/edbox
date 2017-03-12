@@ -1,31 +1,38 @@
 - sub = (sub rescue nil)
+- all_tariff = Tariff.where(active: true)
+- corp =  all_tariff.find_by_type_tariff("corp")
+- person = all_tariff.find_by_type_tariff("person")
+- free = all_tariff.find_by_type_tariff("free")
 .compare__table
   table#divToBeScrolledTo
     thead
       tr
         th
-        th
-          .text__wrp
-            |Корпоративный
-            - if current_user.present? && (sub.company? rescue false)
-              span Ваш текущий план подписки
-        th
-          .text__wrp
-            |Индивидуальный
-            - if current_user.present? && (sub.user? rescue false)
-              span Ваш текущий план подписки
-
-        th
-          .text__wrp
-            | Бесплатный
-            - if current_user.present? && sub.blank?
-              span Ваш текущий план подписки
+        - if corp.present?
+          th
+            .text__wrp
+              = corp.title
+              - if current_user.present? && (sub.company? rescue false)
+                span Ваш текущий план подписки
+        - if person.present?
+          th
+            .text__wrp
+              = person.title
+              - if current_user.present? && (sub.user? rescue false)
+                span Ваш текущий план подписки
+        - if free.present?
+          th
+            .text__wrp
+              = free.title
+              - if current_user.present? && sub.blank?
+                span Ваш текущий план подписки
     tbody
-      - array_table_tariff_info.each do |info|
+      / - array_table_tariff_info.each do |info|
+      - TariffInfo.all.each do |tariff_info|
         tr
           td
-            .text__wrp = info.first
-          - checks_info = (info.last == true) ? [true, true, true] : info.last
+            .text__wrp = tariff_info.title
+          - checks_info = tariff_info.checked
           - checks_info.each do |check_info|
             td
               - if check_info
@@ -54,32 +61,35 @@
       - else
         tr
           td
-          td
-            .price
-              |#{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} рублей в месяц
-              span за каждого сотрудника
-            .action__block
-              - if (sub.company? rescue false) || (sub.user? rescue false)
-                - if (sub.company? rescue false)
-                  a.btn.is__blue href="/payment" продлить
-                - else
+          - if corp.present?
+            td
+              .price
+                |#{number_with_delimiter(billing_price.company_user_price.to_i, delimiter: ' ')} рублей в месяц
+                span за каждого сотрудника
+              .action__block
+                - if (sub.company? rescue false) || (sub.user? rescue false)
+                  - if (sub.company? rescue false)
+                    a.btn.is__blue href="/payment" продлить
+                  - else
+                    a.btn.is__blue href="/payment?type=company" ВЫБРАТЬ
+                - elsif (sub.blank?)
                   a.btn.is__blue href="/payment?type=company" ВЫБРАТЬ
-              - elsif (sub.blank?)
-                a.btn.is__blue href="/payment?type=company" ВЫБРАТЬ
-              - else
+                - else
+                  .btn.is__blue.disable ВЫБРАТЬ
+          - if person.present?
+            td
+              .price #{number_with_delimiter(billing_price.user_price.to_i, delimiter: ' ')} рублей в месяц
+              .action__block
+                - if (sub.user? rescue false)
+                  a.btn.is__blue href="/payment" продлить
+                - elsif (sub.blank? && !current_user.director?)
+                  a.btn.is__blue href="/payment?type=user" ВЫБРАТЬ
+                - else
+                  .btn.is__blue.disable ВЫБРАТЬ
+          - if free.present?
+            td
+              .price Бесплатно
+              .action__block
                 .btn.is__blue.disable ВЫБРАТЬ
-          td
-            .price #{number_with_delimiter(billing_price.user_price.to_i, delimiter: ' ')} рублей в месяц
-            .action__block
-              - if (sub.user? rescue false)
-                a.btn.is__blue href="/payment" продлить
-              - elsif (sub.blank? && !current_user.director?)
-                a.btn.is__blue href="/payment?type=user" ВЫБРАТЬ
-              - else
-                .btn.is__blue.disable ВЫБРАТЬ
-          td
-            .price Бесплатно
-            .action__block
-              .btn.is__blue.disable ВЫБРАТЬ
 
 

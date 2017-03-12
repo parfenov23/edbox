@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306230346) do
+ActiveRecord::Schema.define(version: 20170311173737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,22 @@ ActiveRecord::Schema.define(version: 20170306230346) do
     t.datetime "updated_at"
     t.string   "tagtable_type"
     t.integer  "tagtable_id"
+  end
+
+  create_table "tariff_infos", force: true do |t|
+    t.string   "title"
+    t.string   "array_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tariffs", force: true do |t|
+    t.string   "title"
+    t.string   "type_tariff"
+    t.boolean  "active"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teasers", force: true do |t|

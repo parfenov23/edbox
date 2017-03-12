@@ -1,0 +1,16 @@
+- action_url = @tariff_info.id.nil? ? "/superuser/tariff_infos" : "/superuser/tariff_infos/#{@tariff_info.id}"
+- method = @tariff_info.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="tariff_info[title]" type="text" value="#{@tariff_info.title}"
+  - Tariff.all.each do |tariff|
+    - check = @tariff_info.array_ids.include?(tariff.id.to_s)
+    .form-group
+      label
+        = tariff.title
+      = check_box("tariff_info", "array_ids", {checked: check, multiple: true}, tariff.id)
+
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить
