@@ -19,6 +19,7 @@ module Superuser
     def create
       params_user = user_params
       params_user[:email] = params_user[:email].downcase.gsub(" ","")
+      params_user[:password] = (params_user[:password].to_s.length == 0 ? SecureRandom.hex(8) : params_user[:password])
       if User.where(email: params_user[:email]).present?
         redirect_to new_superuser_user_path(error: "user_present")
       else
