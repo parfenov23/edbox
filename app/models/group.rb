@@ -16,6 +16,10 @@ class Group < ActiveRecord::Base
     result
   end
 
+  def users
+    User.where(id: bunch_groups.map(&:user_id))
+  end
+
   def all_courses
     Course.where(id: bunch_courses.pluck(:course_id).uniq)
   end

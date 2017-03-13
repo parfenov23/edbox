@@ -31,8 +31,9 @@ figcaption
       - cmaterial = course.material? || course.instrument?
       - type = (course.online? ? "online__course" : (cmaterial ? course.attachments.last.file_type : (course.type_course == "course" ? "new_courses" : "")) rescue '')
       - text = (cmaterial ? text_type_material[course.attachments.last.file_type] : (course.online? ? "Вебинар" : "Онлайн-курс") rescue 'Онлайн-курс')
-      i.icon class=(!course.instrument? ? type : "text")
-      = !course.instrument? ? text : "Путешествия"
+      - if !course.instrument? 
+        i.icon class=(!course.instrument? ? type : "text")
+        = text
     - if course.announcement? || course.online?
       - if course.announcement?
         - announcement_date = course.announcement_date.present? ? ltime(course.announcement_date, "", 'short_date') : 'скоро'
