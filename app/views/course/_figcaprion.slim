@@ -21,7 +21,7 @@ figcaption
   form data-redirect=(redirect_att rescue nil) data-alert="false"
     - if course.material? || course.instrument?
       input type="hidden" name="course_id" value=course.id
-    a.goToCourse class=(add_class rescue nil) href=link
+    a.goToCourse class=(add_class rescue nil) href=(course.redirect_url.present? ? course.redirect_url : link)
       .title = course.title
     - if assigned
       - bunch_course = course.find_bunch_course(current_user.id, nil)

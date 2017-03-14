@@ -8,6 +8,9 @@ form.form-horizontal action="#{action_url}" method="post" enctype="multipart/for
     label
       | Дата публикации:
     input.form-control name="course[updated_at]" type="text" value="#{@course.updated_at}"
+    label
+      | Ссылка:
+    input.form-control name="course[redirect_url]" type="text" value="#{@course.redirect_url}"
   /.form-group
   /  label
   /    | Превью:
