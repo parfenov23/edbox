@@ -66,8 +66,12 @@ class HomeMailer < ActionMailer::Base
 
   def reg_course_director(course, user, bunch_course)
     @course = course
+    @webinar = course.first_webinar
     @user = user
     @bunch_course = bunch_course
+    @attachment = @webinar.attachment
+    @user = user
+    @date_start = (@webinar.date_start + User.time_zone.hour)
     mail(:to => @user.email, :subject => "Вас зарегистрировали на вебинар #{@course.title}")
   end
 
