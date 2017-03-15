@@ -29,6 +29,10 @@ module Api::V1
       attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
       # attachment.work_to_video
+      if attachment.file_type == "webinar"
+        webinar = attachment.webinar
+        webinar.eventUpdate if webinar.present?
+      end
       render json: attachment.transfer_to_json
     end
 

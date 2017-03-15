@@ -18,16 +18,16 @@
     .inner-content.webinar_attachment
       iframe src=url width="100%" style="position: static; height: 100vh;border: none;"
   - elsif status == 'STOP'
-    .inner-content.webinar_attachment
-      - if webinar.eventRecordStatus == "completed" 
-        - url = webinar.eventFileInfo["url"]
-        video controls="" autoplay="" name="media"
-          source src=url type="video/mp4"
-        // iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
-      - else
-        #course
-          .text__description
-            .title style="text-align: center;" = 'Подождите. Видео еще конвертируется'
+    / .inner-content.webinar_attachment
+    /   - if webinar.eventRecordStatus == "completed" 
+    /     - url = webinar.eventFileInfo["url"]
+    /     video controls="" autoplay="" name="media"
+    /       source src=url type="video/mp4"
+    /     // iframe src=url width="100%" style="position: static; height: 95vh;border: none;"
+    /   - else
+    #course
+      .text__description
+        .title style="text-align: center;" = 'Вебинар завершен'
 - else
   .inner-content
     #course

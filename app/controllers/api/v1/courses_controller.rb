@@ -24,11 +24,11 @@ module Api::V1
       course = find_course
       course.update(params_course.merge({og: params[:course][:og]}).compact)
       course.notice_users
-      if course.online?
-        course.sections.attachments.webinars.each do |webinar|
-          webinar.eventUpdate
-        end
-      end
+      # if course.online?
+      #   course.sections.attachments.webinars.each do |webinar|
+      #     webinar.eventUpdate
+      #   end
+      # end
       render json: course.transfer_to_json
     end
 

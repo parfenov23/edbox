@@ -108,7 +108,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRecordUrl
-    eventUrl.gsub("stream", "record")
+    eventUrl.gsub("stream", "record") rescue nil
   end
 
   def eventRecordInfo 
