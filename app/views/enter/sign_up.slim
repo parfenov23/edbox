@@ -46,14 +46,14 @@ header.landing__header
       input.form-control.floating-label.phoenix-input name="user[email]" type="email" placeholder="E-mail"
       .error__msg Обязательное поле
       hr
-    .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[kid_name]" type="text" placeholder="Имя ребенка"
-      .error__msg Обязательное поле
-      hr
-    .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name="user[kid_class]" type="text" placeholder="Класс ребенка"
-      .error__msg Обязательное поле
-      hr
+    / .com__input-item.item.empty
+    /   input.form-control.floating-label.phoenix-input name="user[kid_name]" type="text" placeholder="Имя ребенка"
+    /   .error__msg Обязательное поле
+    /   hr
+    / .com__input-item.item.empty
+    /   input.form-control.floating-label.phoenix-input name="user[kid_class]" type="text" placeholder="Класс ребенка"
+    /   .error__msg Обязательное поле
+    /   hr
     .com__input-item.item.empty.user_phone
       = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
       input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Телефон"
