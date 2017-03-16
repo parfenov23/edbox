@@ -29,8 +29,8 @@ header#page__header.adaptive__title class=hclass.join(" ")
   .right-col
     - if current_user.present?
       .page__action
-        a.item href="/help"
-          i.help.icon
+        / a.item href="/help"
+        /   i.help.icon
         = render "home/header/notify_news"
         /- if namePage == "group"
         /  - if current_user.director
