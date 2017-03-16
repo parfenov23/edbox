@@ -29,6 +29,10 @@ module Api::V1
       #     webinar.eventUpdate
       #   end
       # end
+      if params_course[:public].to_s == "true" && course.online?
+          webinar = course.first_webinar
+          webinar.eventUpdate if webinar.present?
+      end
       render json: course.transfer_to_json
     end
 

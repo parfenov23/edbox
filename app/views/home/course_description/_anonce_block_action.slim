@@ -26,12 +26,11 @@
               - start_webinar_date = "#{parse_russian_date(date_start)} (по Мск)"
               span.title_action Вебинар начнется #{start_webinar_date}
             - elsif first_webinar.stop?
-              - if first_webinar.eventRecordStatus == "completed"
-                / - url = first_webinar.eventFileInfo["url"]
-                / - onclick = "window.location.href='#{url}'"
-                / .btn.is__blue style="float: right;" onclick=onclick target="blank" 
-                /   |Скачать вебинар
-                .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" style="float: right;margin-right: 6px;" 
-                  |Cмотреть Вебинар
-              - else
-                |Вебинар конвертируется
+              / - if first_webinar.eventRecordStatus == "completed"
+              /   / - url = first_webinar.eventFileInfo["url"]
+              /   / - onclick = "window.location.href='#{url}'"
+              /   / .btn.is__blue style="float: right;" onclick=onclick target="blank" 
+              /   /   |Скачать вебинар
+              /   .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" style="float: right;margin-right: 6px;" 
+              /     |Cмотреть Вебинар
+              |Вебинар конвертируется
