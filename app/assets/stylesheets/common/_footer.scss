@@ -1,6 +1,4 @@
 footer {
-  //height           : 120px;
-  // display          : flex;
   justify-content  : space-between;
   padding          : 0 0px 24px;
   background-color : #f7f7f7;
@@ -66,7 +64,6 @@ footer {
   .inthis {
     display: flex;
     text-align : center;
-    //border     : 2px solid gray;
     width      : 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -78,7 +75,6 @@ footer {
       text-align     : left;
       vertical-align : middle;
       width          : 25%;
-      // padding-right  : 24px;
       .title {
         font-weight    : 600;
         font-size      : 18px;
@@ -107,16 +103,6 @@ footer {
           padding-bottom : 0px;
         }
         .send__message___back {
-          // padding-top : 0;
-          // i {
-          //   font-size    : 13px;
-          //   margin-right : 4px;
-          //   position     : relative;
-          //   top          : 2px;
-          // }
-          // a {
-          //   font-size : 11px;
-          // }
           form{
             display: flex;
           }
@@ -158,6 +144,8 @@ footer {
       }
     }
   }
+
+  // часть которая под футером
   .basement{
     margin-top: 30px;
     text-align: center;
@@ -178,4 +166,5 @@ footer {
       }
     }
   }
+  ///
 }
