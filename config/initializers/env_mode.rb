@@ -50,7 +50,7 @@ class EnvMode
   end
 
   def name_title
-    "Онлайн школа «Наукасити»"
+    "Онлайн школа Наукасити"
   end
 
   def to_s

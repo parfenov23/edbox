@@ -1,55 +1,55 @@
 footer
   .inthis
     .block
-      .title Пользователям
+      .title НАУКАСИТИ
       ul
         li
-          a href="/oferta" Договор оферты 
+          a href="http://naukacity.ru/about" О нас
+        li
+          a href="#" Практические курсы         
+        li
+          a href="#" Подготовка к олимпиадам
+        li
+          a href="#" Научный фестиваль 
+        li
+          a href="#" Управляющая компания
+    .block
+      .title ПОЛЬЗОВАТЕЛЯМ
+      ul
+        li
+          a href="/profile" Профиль
+        li
+          a href="/cabinet" Личный кабинет
+        li
+          a href="/oferta" Договор оферты
         li
           a href="/tariff" Тарифы и условия оплаты
         li
           a href="/help" Инструкция по работе в системе
         li
-          a href="mailto:help@naukacity.ru" Сообщить о проблеме
-    .block
-      .title О центре
-      ul
-        li
-          a href="http://naukacity.ru/about" О нас
-        li
-          a href="http://naukacity.ru/about/uk" Управляющая компания
-        li
-          a href="http://naukacity.ru/about/staff" Преподаватели
-        li
-          a href="http://naukacity.ru/about/standarts" Образовательные стандарты
-        li
-          a href="http://naukacity.ru/groups" Групповые и корпоративные занятия
-        li
-          a href="http://naukacity.ru/blog " Блог         
+          a href="mailto:help@naukacity.ru" Связаться с поддержкой
+     
 
     .block
-      / .title Помощь и поддержка
+      .title ОНЛАЙН ШКОЛА
       ul
         li
-          a href="http://naukacity.ru/about/contacts" Контакты   
-        li
-          a href="http://naukacity.ru/groups" Групповые и корпоративные занятия     
-        li
-          a href="#" Научные лаборатории
-        li
-          a href="#" Экспресс курсы
-        li
-          a href="#" Курсы
-        li
-          a href="#" Расписание        
-        li
-          a href="#" Товары 
+          a href="#" Онлайн-курсы по предметам
+        li 
+          a href="#" Дистанционные курсы
+        li 
+          a href="#" Научные наборы
+
     .block.contact__info
-      .title 8 800 500 95 23
+      .title.desc ПОДПИШИТЕСЬ НА ЕЖЕМЕСЯЧНЫЙ ДАЙДЖЕСТ О НОВЫХ ВИДЕОУРОКАХ, КУРСАХ И НАБОРАХ
       ul
         li.send__message___back
-          i.icon.email_cl
-          a href="mailto:help@naukacity.ru" Обратная связь
+          form
+            input type="text" name="email"
+            a.send_btn href="#"
+              i.icon.send
+          / i.icon.email_cl
+          / a href="mailto:help@naukacity.ru" Обратная связь
         li.other
         li.social
           / a target="_blank" href="https://plus.google.com/116073902045448332695"
@@ -68,7 +68,15 @@ footer
             i.icon.insta
           / a target="_blank" href="/courses/rss"
           /   i.icon.rss
-        li.copywrite ©#{$env_mode.name_title}, 2016-#{Time.now.year}
-
+        / li.copywrite ©#{$env_mode.name_title}, 2016-#{Time.now.year}
+  .basement
+    .logo
+      img src="https://static.tildacdn.com/tild6233-3533-4330-b931-316431356664/_290_201.png"
+    ul.address
+      li © 2017 Наукасити, ООО "Детский научный центр"
+      li 
+        = "г. Екатеринбург, ул. Шейнкмана, 75, (вход с улицы Сакко и Ванцетти), " 
+        a href="https://yandex.ru/maps/-/CZcwZ08c" Схема проезда
+      li hello@naukacity.ru, +7 (343) 287-08-87
 
 

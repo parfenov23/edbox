@@ -45,6 +45,12 @@ i.icon {
     }
   }
 
+  &.send{
+    &::before {
+      content : "\E719";
+    }
+  }
+
   &.webinar {
     &::before {
       content : "\E833";

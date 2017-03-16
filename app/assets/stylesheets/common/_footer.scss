@@ -1,10 +1,10 @@
 footer {
   //height           : 120px;
-  display          : flex;
+  // display          : flex;
   justify-content  : space-between;
-  padding          : 0 150px 24px;
+  padding          : 0 0px 24px;
   background-color : #f7f7f7;
-  padding-top      : 23px;
+  padding-top      : 60px;
   .left-col {
     min-width : 340px;
     width     : 370px;
@@ -68,23 +68,27 @@ footer {
     text-align : center;
     //border     : 2px solid gray;
     width      : 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     .block {
-      //margin         : 10pt;
-      //padding        : 10pt;
-      //border         : 1px solid red;
-      //border-radius  : 4pt;
-      //width          : 200px;
-      //height         : 100px;
+      max-width: 260px;
+      margin-left: 20px;
+      margin-right: 20px;
       display        : inline-block;
       text-align     : left;
       vertical-align : middle;
       width          : 25%;
-      padding-right  : 24px;
+      // padding-right  : 24px;
       .title {
         font-weight    : 600;
         font-size      : 18px;
         padding-bottom : 8px;
         color          : rgba(0, 0, 0, 0.87);
+        &.desc{
+          font-weight    : 400;
+          font-size: 14px;
+          line-height: 20px;
+        }
       }
       ul {
         li {
@@ -103,16 +107,41 @@ footer {
           padding-bottom : 0px;
         }
         .send__message___back {
-          padding-top : 0;
-          i {
-            font-size    : 13px;
-            margin-right : 4px;
-            position     : relative;
-            top          : 2px;
+          // padding-top : 0;
+          // i {
+          //   font-size    : 13px;
+          //   margin-right : 4px;
+          //   position     : relative;
+          //   top          : 2px;
+          // }
+          // a {
+          //   font-size : 11px;
+          // }
+          form{
+            display: flex;
           }
-          a {
-            font-size : 11px;
+          input{
+            color: #424242;
+            border: 2px solid #424242;
+            background-color: #ffffff;
+            outline: none;
+            height: 44px;
+            width: 100%;
           }
+          .send_btn{
+            color: #ffffff;
+            border: 0px solid #424242;
+            background-color: #424242;
+            margin-left: 12px;
+            height: 44px;
+            padding: 0 15px;
+            padding-top: 10px;
+            .send{
+              font-size: 22px;
+              color: white;
+            }
+          }
+
         }
         .social {
           a {
@@ -129,5 +158,24 @@ footer {
       }
     }
   }
-
+  .basement{
+    margin-top: 30px;
+    text-align: center;
+    .logo{
+      img{
+        max-width: 150px;
+      }
+    }
+    .address{
+      padding-top: 40px;
+      padding-bottom: 10px;
+      color: rgba(0, 0, 0, 0.54);
+      li{
+        padding-bottom: 8px;
+        a{
+          color: $primaryColor;
+        }
+      }
+    }
+  }
 }
