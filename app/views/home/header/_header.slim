@@ -8,20 +8,33 @@ header#page__header class=hclass.join(" ")
   .content_header
     .left-col
       - unless (btnBack rescue false)
-        - if current_user.present? && (current_user.superuser || current_user.contenter )
-          .page__icon.item
-            i.burger.icon.js__show-aside-main-nav
-          / - else
-          /   .burger
-        - elsif current_link != "/courses"
-          .page__icon.item
-            a.logo_min href="/courses"
-              img src="/uploads/icon_logo_min.png"
+        / - if current_user.present? && (current_user.superuser || current_user.contenter )
+        /   .page__icon.item
+        /     i.burger.icon.js__show-aside-main-nav
+        /   / - else
+        /   /   .burger
+        / - elsif current_link != "/courses"
+        .page__icon.item
+          a.logo_min href="/courses"
+            img src="/uploads/icon_logo_min.png"
       - else
         a.page__icon.item href=backUrl
           i.back.icon
-      .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : raw("<img src='/assets/adcons__grey.svg'>")
+      // raw("<img src='/assets/adcons__grey.svg'>")
+      .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : nil
       .page__children
+        - if current_link.include?("/courses") && !current_link.include?("/contenter")
+          .item.btn.btn-flat#open_study_popup 
+            span Предметы
+            .icon_btn.down
+              i.icon.down_arrow
+          #study_popup
+            .triangel
+            ul
+              - Category.all.each do |category|
+                li
+                  a href="/courses?category_id=#{category.id}" = category.title
+
         - menu_nav_links(namePage).each do |item|
           - add_params = item[:add_params].present? ? item[:add_params] : {}
           a.item.btn.btn-flat href=item[:link] class=(current_link.split("&").first == item[:link] ? "active" : "") *add_params

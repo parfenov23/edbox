@@ -16,6 +16,12 @@ i.icon {
     }
   }
 
+  &.down_arrow {
+    &::before{
+      content : "\e7b7";
+    }
+  }
+
   &.reload {
     &::before {
       content : "\e90c";

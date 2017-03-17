@@ -9,15 +9,15 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.user_price
-    billing_price.user_price
+    Tariff.find_by_type_tariff("person").price rescue 0
   end
 
   def self.company_price
-    billing_price.company_price
+    Tariff.find_by_type_tariff("corp").price rescue 0
   end
 
   def self.company_price_user
-    billing_price.company_user_price
+    Tariff.find_by_type_tariff("corp").price rescue 0
   end
 
   def self.build(params)

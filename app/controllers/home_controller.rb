@@ -106,9 +106,10 @@ class HomeController < ActionController::Base
   def courses
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
-    @courses = Course.publication.where(type_course: type_course)
+    pub_courses = (!params[:category_id].present? ? Course : Category.find(params[:category_id]).courses).publication
+    @courses = pub_courses.where(type_course: type_course)
     course_sorting
-    @courses = @courses.where(type_course: type_course, public: true)
+    # @courses = @courses.where(type_course: type_course, public: true)
     @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
 
   end

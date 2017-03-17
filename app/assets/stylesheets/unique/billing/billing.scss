@@ -191,9 +191,13 @@
       width            : calc(100% + 48px);
       margin-left      : -32px;
       background-color : #F7F7F7;
-      display          : flex;
+      // display          : flex;
+      display: inline-block;
       justify-content  : space-between;
       height           : 92px;
+      .dop_info{
+        display: flex;
+      }
       .title {
         @include text__setting(normal__typo);
         text-align    : center;
@@ -216,8 +220,12 @@
         margin-right : 32px;
       }
       .duration {
-        display : none;
+        // display : none;
         margin  : 0 32px;
+        .hidden__list{
+          height: 240px;
+          overflow: auto;
+        }
       }
       // edit 22.06.16
       .sum {
@@ -225,15 +233,15 @@
         width       : 180px;
         padding-top : 32px;
         .qty {
-          text-align : left;
+          text-align : center;
           font-size  : 32px;
         }
         .title {
-          text-align : left;
+          text-align : center;
         }
       }
       .description {
-        padding   : 8px;
+        padding   : 32px;
         font-size : 12px;
       }
       ///

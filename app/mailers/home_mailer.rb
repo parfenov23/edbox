@@ -14,6 +14,12 @@ class HomeMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Добро пожаловать в #{$env_mode.name_title}!")
   end
 
+  def order_bill(email, params, user)
+    @params = params
+    @user = user
+    mail(:to => email, :subject => "Заявка на выставление счета")
+  end
+
   def email_notifs(email, user)
     @user = user
     mail(:to => email, :subject => "Регистрация в #{$env_mode.name_title}!")

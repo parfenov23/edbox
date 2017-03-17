@@ -16,7 +16,15 @@
       li.menu__item
         a.menu__item-link.menu__item-profile href="/profile" Профиль
       li.menu__item
-        a.menu__item-link.menu__item-profile href="/cabinet" Мой кабинет 
+        a.menu__item-link.menu__item-cabinet href="/cabinet" Мой кабинет 
+      - if current_user.superuser
+        li.menu__item
+          a.menu__item-link.menu__item-company href="/superuser/home" Админка
+      - if current_user.contenter
+        li.menu__item
+          a.menu__item-link.menu__item-schedule href="/contenter/admin/categories" Администрирование
+        li.menu__item
+          a.menu__item-link.menu__item-schedule href="/contenter/courses" Шеф Контентер
     .bottom class=(!sub_hash[:show_btn] ? "btn_right" : "")
       /.btn__raised.add__acc добавить аккаунт
       - unless (current_user.corporate? && !current_user.director?)

@@ -5,4 +5,8 @@ class Category < ActiveRecord::Base
   def transfer_to_json
     as_json
   end
+
+  def courses
+    Course.where(id: bunch_categories.map(&:course_id))
+  end
 end
