@@ -1,5 +1,5 @@
 - if !$env_mode.dev?
-  = render "home/header/items/no_contenter", {namePage: namePage} if !current_user.contenter
+  = render "home/header/items/no_contenter", {namePage: namePage}
   = render "home/header/items/director", {namePage: namePage} if current_user.director? && !current_user.contenter
   = render "home/header/items/company_user", {namePage: namePage} if current_user.corporate && !current_user.contenter
   = render "home/header/items/contenter", {namePage: namePage} if current_user.contenter

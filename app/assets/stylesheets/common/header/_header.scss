@@ -30,7 +30,12 @@
   height          : 64px;
   justify-content : space-between;
   min-width       : 1200px;
-
+  .content_header{
+    display: flex;
+    margin: 0 auto;
+    max-width: 1128px;
+    width: 100%;
+  }
   &.header__with_search {
     display         : flex;
     justify-content : flex-start;
@@ -93,19 +98,26 @@
   }
 
   .left-col {
+    width: 100%;
     display         : flex;
-    justify-content : flex-start;
+    // justify-content : flex-start;
   }
   .page__icon {
     line-height : 48px;
     width       : 48px;
     height      : 48px;
-    margin      : 8px 16px 16px;
+    margin: 8px 8px 8px 0px;
     text-align  : center;
     i {
       font-size : 24px;
       cursor    : pointer;
       color     : black__color('secondary__color');
+    }
+    .logo_min{
+      img{
+        width: 46px;
+        padding-top: 2px;
+      }
     }
     .ava {
       img {
