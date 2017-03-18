@@ -702,6 +702,7 @@
   }
 
   #study_popup{
+    width: 134px;
     position: absolute;
     top: 66px;
     background-color: white;
@@ -727,6 +728,7 @@
     color: #1f4fdb !important;
   }
   #study_popup ul li a{
+    font-weight: normal;
     color: black !important;
   }
   #study_popup ul li a:hover{

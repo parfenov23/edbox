@@ -52,7 +52,7 @@ $(document).ready(function(){
   $(document).ready(function(){
     var path = (location.pathname+location.search);
     var curr_li = $('#study_popup').find("a[href='"+ path +"']");
-    if (curr_li.length){
+    if (curr_li.length && path != "/courses"){
         $('#open_study_popup span').text(curr_li.text());
         $('#open_study_popup').addClass("active_page");
         curr_li.addClass("active");
