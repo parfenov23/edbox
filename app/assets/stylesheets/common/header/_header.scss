@@ -19,6 +19,7 @@
   background-color : #FFF;
 }
 
+// хедер
 #page__header {
   @include transition;
   position        : fixed;
@@ -133,7 +134,7 @@
     }
   }
   //////////
-  
+
   .page__title {
     @include eclipses;
     font-size    : 20px;
