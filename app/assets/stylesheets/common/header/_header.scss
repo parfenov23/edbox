@@ -103,7 +103,9 @@
     display         : flex;
     // justify-content : flex-start;
   }
-  // Иконка
+
+
+  // Иконка логотипа
   .page__icon {
     line-height : 48px;
     width: 60px;
@@ -130,7 +132,8 @@
       }
     }
   }
-
+  //////////
+  
   .page__title {
     @include eclipses;
     font-size    : 20px;
