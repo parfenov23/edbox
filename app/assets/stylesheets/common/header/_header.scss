@@ -206,9 +206,15 @@
       margin-right : 8px;
     }
     .our__phone {
+      width: 126px;
+      color: #424242;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Open Sans';
       //padding-top: 5px;
       margin-right : 16px;
-      @include text__setting(header__typo_1)
+      padding-top: 4px;
+      // @include text__setting(header__typo_1)
     }
     .create__contenterCourse {
       margin-right : 16px;

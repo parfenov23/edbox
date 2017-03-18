@@ -51,6 +51,7 @@ header#page__header class=hclass.join(" ")
         .page__action
           / a.item href="/help"
           /   i.help.icon
+          .our__phone 8 800 500 94 70
           = render "home/header/notify_news"
           /- if namePage == "group"
           /  - if current_user.director
@@ -88,8 +89,8 @@ header#page__header class=hclass.join(" ")
           = render "home/header/profile"
       - else
         .page__action style="margin-right: 22px;"
+          .our__phone 8 800 500 94 70
           = render "home/header/notify_news"
-          /.our__phone +7 (495) 258-46-42
           a.btn.btn-flat href="/sign_in" войти
           - hash_class = ''
           - hash_class += 'ya_courses_join ' if params[:action] == 'courses'
