@@ -294,7 +294,8 @@ $(document).ready(function () {
                     fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
                     show_error('Успешно', 3000);
-                    warning("Спасибо за регистрацию. На вашу почту отправлено письмо со ссылкой на подтверждение аккаунта.", "ОК", function(){})
+                    warning("Мы отправили вам письмо для подтверждения ваших данных. "
+                         + "Перейдите по ссылке в письме, чтобы завершить регистрацию в онлайн-школе.", "ОК", function(){})
                     // if (form.data('redirect') == undefined){
                     //     $("#formCourseRegPopUp").show();
                     // } else {

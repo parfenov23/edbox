@@ -1,82 +1,82 @@
-- curr_tariff = Tariff.find_by_type_tariff({"user" => "person"}[params[:type]])
-.billing__wrp
-  .content__block
-    .page__title
-      /img src="/assets/header__adconsult.svg"
-    .tarif__info
-      .title = curr_tariff.title
-      .description
-        /p
-        /  |Вы покупаете «
-        /  b Индивидуальный
-        /  |» пакет доступа к #{$env_mode.name_title} и получите возможности:
-        - all_info = curr_tariff.all_info
-        - left_count = (all_info.count/2)
-        - left_col = all_info[0..left_count]
-        - rigth_col = all_info[(left_count+1)..all_info.count]
-        ul
-          - left_col.each do |lc|
-            li
-              i.icon.done
-              = lc.title
+- curr_tariff = Tariff.find_by_type_tariff("person")
+- if curr_tariff.present?
+  .billing__wrp
+    .content__block
+      .page__title
+        /img src="/assets/header__adconsult.svg"
+      .tarif__info
+        .title = curr_tariff.title
+        .description
+          /p
+          /  |Вы покупаете «
+          /  b Индивидуальный
+          /  |» пакет доступа к #{$env_mode.name_title} и получите возможности:
+          - all_info = curr_tariff.all_info
+          - left_count = (all_info.count/2)
+          - left_col = all_info[0..left_count]
+          - rigth_col = all_info[(left_count+1)..all_info.count]
+          ul
+            - left_col.each do |lc|
+              li
+                i.icon.done
+                = lc.title
 
-        ul.right
-          - rigth_col.each do |rc|
-            li
-              i.icon.done
-              = rc.title
+          ul.right
+            - rigth_col.each do |rc|
+              li
+                i.icon.done
+                = rc.title
 
-      .company__name
-        .com__input-item.item.empty
-          input.form-control.floating-label type="text" placeholder="Введите код купона" name="code_coupon"
-          .error__msg Обязательное поле
-          hr
-        - user_phone = current_user.social['phone']
-        - if user_phone.blank?
-          .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
-            = select("code", "code_id", array_mask_code_phone)
-            input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
+        .company__name
+          .com__input-item.item.empty
+            input.form-control.floating-label type="text" placeholder="Промо-код или номер клиентской карты" name="code_coupon"
             .error__msg Обязательное поле
             hr
-      - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
-      - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
-      form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
-        .dop_info
-          .duration
-            .title Продолжительность
-            .dropdown__flash.js__dropdown_toggle date-n=hash_date[:n]
-              .visible__part
-                span
-                  = hash_date[:date]
-                i.icon.to__drop
-              ul.hidden__list.js_editPriceMonthTariff data-user_price=hash_date[:user_price] data-type=sub_type
-                - hash_date[:all_months].each do |month|
-                  li data-price=month[:price] = month[:month]
-          .sum
-            .qty
-              input type="hidden" name="sum" value=hash_date[:default_price]
-              input type="hidden" name="email" value=current_user.email
-              input type="hidden" name="count_month" value=hash_date[:date]
-              span = hash_date[:default_price].to_i
-              /= " ₽"
-            .title рублей в месяц
-        .description
-          p Доступ ко всем материалам #{$env_mode.name_title} будет открыт сразу после оплаты.
-          p Нажмите кнопку «ОСТАВИТЬ ЗАЯВКУ», после с вами свяжется наш менеджер, для подтверждения информации.
-          / p Вначале, для проверки данных карты, с нее будет списан 1 рубль. Затем система предложит вам оплатить первый месяц подписки.
-          / p После этого каждые 30 дней с вашей карты будет списываться стоимость ежемесячной подписки — 1890 рублей.
-          / p Вы сможете отменить подписку в любой момент в «Личном кабинете» пользователя.
-      /.legend
-      /  | Подписка начнет действовать сразу после одобрения менеджером,
-      /  br
-      /  | обычно это занимает не более 24 часов, к вам на почту придет уведомление.
-      .action__block
-        a.btn.btn-flat href="/tariff" ОТМЕНА
-        /.btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
-        - class_btn = current_user.accounts.present? ? "js_paymentAccount" : "js_openPopupAddCard"
-        .btn.is__blue.js_orderBill ОСТАВИТЬ ЗАЯВКУ
-    .help__info
-      p Нужна наша помощь? Пожалуйста, позвоните нам по телефону:
-      p +7 (343) 287-08-87
+          - user_phone = current_user.social['phone']
+          - if user_phone.blank?
+            .com__input-item.item.right class=(user_phone.present? ? 'is__noFocus' : 'empty')
+              = select("code", "code_id", array_mask_code_phone)
+              input.form-control.floating-label type="tel" data-valid=user_phone.present?.to_s placeholder="Введите ваш номер телефона" value=user_phone name="company_phone"
+              .error__msg Обязательное поле
+              hr
+        - sub_type = sub.present? ? sub.subscriptiontable_type : params[:type]
+        - hash_date = sub.present? ? sub.config : Subscription.default_config(params[:type])
+        form.privet__calc.parentPriceTariff.tariffPay data-user_price=hash_date[:user_price] action='/purchase' method='POST'
+          .dop_info
+            .duration
+              .title Сколько месяцев вы хотите оплатить?
+              .dropdown__flash.js__dropdown_toggle date-n=hash_date[:n]
+                .visible__part
+                  span
+                    = hash_date[:date]
+                  i.icon.to__drop
+                ul.hidden__list.js_editPriceMonthTariff data-user_price=hash_date[:user_price] data-type=sub_type
+                  - hash_date[:all_months].each do |month|
+                    li data-price=month[:price] = month[:month]
+            .sum
+              .qty
+                input type="hidden" name="sum" value=hash_date[:default_price]
+                input type="hidden" name="email" value=current_user.email
+                input type="hidden" name="count_month" value=hash_date[:date]
+                span = hash_date[:default_price].to_i
+                /= " ₽"
+              .title рублей в месяц
+          .description
+            p Не забудьте ввести промо-код или код клиентской карты, чтобы учиться в онлайн-школе бесплатно. После получения заявки, мы проверим ваши данные, позвоним вам для подтверждения заказа и отправим ссылку на оплату.
+            p После поступления денег, мы открываем доступ. Первым днем оплаченного периода считается день открытия доступа.
+            / p Вначале, для проверки данных карты, с нее будет списан 1 рубль. Затем система предложит вам оплатить первый месяц подписки.
+            / p После этого каждые 30 дней с вашей карты будет списываться стоимость ежемесячной подписки — 1890 рублей.
+            / p Вы сможете отменить подписку в любой момент в «Личном кабинете» пользователя.
+        /.legend
+        /  | Подписка начнет действовать сразу после одобрения менеджером,
+        /  br
+        /  | обычно это занимает не более 24 часов, к вам на почту придет уведомление.
+        .action__block
+          a.btn.btn-flat href="/tariff" ОТМЕНА
+          /.btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
+          - class_btn = current_user.accounts.present? ? "js_paymentAccount" : "js_openPopupAddCard"
+          .btn.is__blue.js_orderBill Отправить заявку
+      .help__info
+        p По всем вопросам звоните: 8 800 500 94 70
 
-= render "home/tariff/check_valid_phone"
+  / = render "home/tariff/check_valid_phone"

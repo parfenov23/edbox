@@ -10,17 +10,17 @@ headerTabsLine = (elem) ->
 
 $(document).ready ->
 
-  headerTabsLine('.page__children .item.active')
+  # headerTabsLine('.page__children .item.active')
 
-
+  ###
   $('.page__children .item').hover ->
     $(@).stop(true).queue 'fx', ->
       headerTabsLine(@)
   , ->
     $(@).stop(true).queue 'fx', ->
       headerTabsLine('.page__children .item.active')
-
-
+  ###
+  
   $(document).on 'click', '.js__show-aside-main-nav', ->
     $('.js__left-aside, .js__backing').addClass('is__active')
 

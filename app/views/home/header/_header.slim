@@ -16,7 +16,7 @@ header#page__header class=hclass.join(" ")
         / - elsif current_link != "/courses"
         .page__icon.item
           a.logo_min href="/courses"
-            img src="/uploads/icon_logo_min.png"
+            img src="/uploads/icon_logo_min.svg"
       - else
         a.page__icon.item href=backUrl
           i.back.icon
@@ -31,6 +31,8 @@ header#page__header class=hclass.join(" ")
           #study_popup
             .triangel
             ul
+              li
+                a href="/courses" Все предметы
               - Category.all.each do |category|
                 li
                   a href="/courses?category_id=#{category.id}" = category.title
