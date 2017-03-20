@@ -1,0 +1,9 @@
+- action_url = @model.id.nil? ? "/superuser/card_categories" : "/superuser/card_categories/#{@model.id}"
+- method = @model.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название
+    input.form-control name="card_category[title]" type="text" value="#{@model.title}"
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

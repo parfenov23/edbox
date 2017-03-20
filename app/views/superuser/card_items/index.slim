@@ -1,0 +1,11 @@
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/cards/new" Новая карточка
+  - @models.each do |email_notif|
+    .list-group-item.col-md-6
+      span
+        = email_notif.email
+      a.btn.btn-danger.pull-right href="/superuser/email_notifs/#{email_notif.id}/remove"  data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/email_notifs/#{email_notif.id}/edit" style="margin-right: 5px;"
+        = btn_edit

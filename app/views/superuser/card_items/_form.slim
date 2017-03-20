@@ -1,0 +1,18 @@
+- action_url = @model.id.nil? ? "/superuser/card_items" : "/superuser/card_items/#{@model.id}"
+- method = @model.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="card_item[title]" type="text" value="#{@model.title}"
+  .form-group
+    label
+      | Описание:
+    textarea.form-control.js_includeTiny name="card_item[description]" type="text" 
+      = @model.description
+  - if params[:card_category_id].present?
+    input type="hidden" name="card_item[card_category_id]" value=params[:card_category_id]
+  - elsif params[:card_id].present?
+    input type="hidden" name="card_item[card_id]" value=params[:card_id]
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

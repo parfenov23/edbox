@@ -1,0 +1,15 @@
+h2 = @model.title
+hr
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/card_items/new?card_id=#{params[:id]}" Добавить карточку
+  - @under_models.each do |model|
+    .list-group-item.col-md-6
+      span
+        = model.title + "(#{model.card_items.count})"
+      a.btn.btn-danger.pull-right href="/superuser/card_items/#{model.id}/remove"  data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/card_items/#{model.id}/edit" style="margin-right: 5px;"
+        = btn_edit
+      a.btn.btn-warning.pull-right href="/superuser/card_items/#{model.id}" style="margin-right: 5px;"
+        = raw("&#9776;")

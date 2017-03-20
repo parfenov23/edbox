@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222121335) do
+ActiveRecord::Schema.define(version: 20170319221613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,22 @@ ActiveRecord::Schema.define(version: 20170222121335) do
     t.datetime "updated_at"
   end
 
+  create_table "card_categories", force: true do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_items", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "card_id"
+    t.integer  "card_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -184,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170222121335) do
     t.text     "og"
     t.boolean  "archive",           default: false
     t.string   "download_url"
+    t.string   "redirect_url"
   end
 
   create_table "deliveries", force: true do |t|
@@ -323,6 +340,14 @@ ActiveRecord::Schema.define(version: 20170222121335) do
     t.datetime "updated_at"
   end
 
+  create_table "phrasing_phrases", force: true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.integer "test_id"
     t.string  "title"
@@ -366,6 +391,22 @@ ActiveRecord::Schema.define(version: 20170222121335) do
     t.datetime "updated_at"
     t.string   "tagtable_type"
     t.integer  "tagtable_id"
+  end
+
+  create_table "tariff_infos", force: true do |t|
+    t.string   "title"
+    t.string   "array_ids"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tariffs", force: true do |t|
+    t.string   "title"
+    t.string   "type_tariff"
+    t.boolean  "active"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teasers", force: true do |t|
@@ -423,6 +464,9 @@ ActiveRecord::Schema.define(version: 20170222121335) do
     t.boolean  "superuser",       default: false
     t.text     "social"
     t.boolean  "help",            default: true
+    t.string   "kid_name"
+    t.string   "kid_class"
+    t.boolean  "active",          default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

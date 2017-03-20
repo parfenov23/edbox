@@ -6,13 +6,14 @@ nav.navbar.navbar-default
                     {url: "/superuser/users", title: "Все пользователи"},
                     {url: "/superuser/users/all_leading", title: "Все ведущие"},
                     {url: "/superuser/tags", title: "Все теги"},
-                    {url: "/superuser/tests/all", title: "Все тесты"},
+                    # {url: "/superuser/tests/all", title: "Все тесты"},
                     {url: "/superuser/ask_questions", title: "FAQ"},
                     {url: "/superuser/billing", title: "Биллинг"},
                     {url: "/superuser/email_notifs", title: "Emails"},
                     {url: "/superuser/news", title: "Новости"},
                     {url: "/superuser/delivery", title: "Рассылка"},
-                    {url: "/superuser/ads", title: "Реклама"}]
+                    {url: "/superuser/ads", title: "Реклама"},
+                    {url: "/superuser/card_categories", title: "Карточки"}]
     - arr_nav_li.each do |li_nav|
       - class_li = li_nav[:url] == request.fullpath.to_s ? "active" : ""
       li class="#{class_li}"

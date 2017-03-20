@@ -272,6 +272,18 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :card_categories do
+      member do
+        get :remove
+      end
+    end
+
+    resources :card_items do
+      member do
+        get :remove
+      end
+    end
+
     resources :page_questions do
       member do
         post :remove

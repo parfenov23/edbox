@@ -1,0 +1,13 @@
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/card_categories/new" Добавить категорию
+  - @models.each do |model|
+    .list-group-item.col-md-6
+      span
+        = model.title
+      a.btn.btn-danger.pull-right href="/superuser/card_categories/#{model.id}/remove"  data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/card_categories/#{model.id}/edit" style="margin-right: 5px;"
+        = btn_edit
+      a.btn.btn-warning.pull-right href="/superuser/card_categories/#{model.id}" style="margin-right: 5px;"
+        = raw("&#9776;")
