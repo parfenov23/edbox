@@ -158,7 +158,7 @@ class BunchCourse < ActiveRecord::Base
     if type != "group"
       HomeMailer.reg_webinar(course.first_webinar, user).deliver if course.online?
     else
-      HomeMailer.reg_course_director(course, user, bunch_course).deliver if type == "group"
+      # HomeMailer.reg_course_director(course, user, bunch_course).deliver if type == "group"
     end
     sections.each do |section|
       current_section = (sections_hash[section.id.to_s] rescue nil)
