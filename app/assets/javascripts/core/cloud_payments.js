@@ -187,6 +187,7 @@ window.showMessage = function (result) {
 var orderBill = function () {
     if (validate_company_form()){
         var form = $(this).closest(".tarif__info").find("form.tariffPay").serialize();
+        form += "&promo=" + $("input[name='code_coupon']").val();
         $.ajax({
             type: 'POST',
             url : '/api/v1/payments/order_bill',
@@ -197,7 +198,7 @@ var orderBill = function () {
             //    window.location.href = '/'
             //}, 1500);
 
-            warning('Спасибо! Ваша заявка получена. В ближайшее время наш менеджер свяжется с вами.', 'Продолжить',
+            warning('Спасибо. Мы вам позвоним и предложим удобный способ оплаты.', 'Продолжить',
                 function () {
                     window.location.href = '/'
                 })
