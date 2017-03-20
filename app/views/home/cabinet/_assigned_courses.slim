@@ -12,4 +12,6 @@
     .course-prev-list
       - my_bunch_courses.each do |my_bunch_course|
         - course = my_bunch_course.course
-        = render "course/course", {course: course, type: "short__ver", model_type: type_course, action_block: true}
+        - if course.present?
+          - h = {course: course, type: "short__ver", model_type: type_course, action_block: true}
+          = render "course/course", h
