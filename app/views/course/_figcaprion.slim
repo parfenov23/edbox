@@ -11,7 +11,7 @@ figcaption
         - if !course.paid
           .free_material = 'Бесплатно'
   - link = "/course_description/#{course.id}"
-  - if current_user.present? && !assigned && course.material? && !course.paid
+  - if current_user.present? && !assigned && course.material? && (current_user.view_course?(course) rescue false)
     - redirect_att = "/course_description/#{course.id}"
     - add_class = "js_addCourseToMyCourse"
   - if current_user.blank? && course.material? && (!course.attachments.last.public rescue false)
