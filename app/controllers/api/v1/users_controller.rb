@@ -196,7 +196,7 @@ module Api::V1
     def user_params
       params.require(:user).permit(:email, :first_name, :last_name,
                                    :password, :director, :corporate,
-                                   :company_id, :job, :social, :kid_name, :kid_class)
+                                   :company_id, :job, :social, :city)
     end
 
   end

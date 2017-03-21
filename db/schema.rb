@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311173737) do
+ActiveRecord::Schema.define(version: 20170321061720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,22 @@ ActiveRecord::Schema.define(version: 20170311173737) do
     t.datetime "updated_at"
   end
 
+  create_table "card_categories", force: true do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_items", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "card_id"
+    t.integer  "card_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
@@ -184,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170311173737) do
     t.text     "og"
     t.boolean  "archive",           default: false
     t.string   "download_url"
+    t.string   "redirect_url"
   end
 
   create_table "deliveries", force: true do |t|
@@ -450,6 +467,7 @@ ActiveRecord::Schema.define(version: 20170311173737) do
     t.string   "kid_name"
     t.string   "kid_class"
     t.boolean  "active",          default: false
+    t.string   "city"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

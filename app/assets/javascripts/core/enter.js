@@ -447,4 +447,10 @@ $(document).ready(function () {
         CurrentUserUpdatePhone($.cookie('user_phone'));
         $.cookie('user_phone', '');
     }
+
+    var container = $("input[name='user[city]']");
+        container
+            .kladr({
+                type: $.kladr.type.city
+            });
 });

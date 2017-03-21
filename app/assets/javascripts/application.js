@@ -12,6 +12,7 @@
 //= require ./vendor/jquery.phoenix
 //= require ./vendor/jquery.printPage
 //= require ./vendor/jquery_session
+//= require ./vendor/jquery.kladr.min
 //= require ./vendor/fullscrn
 //= require ./vendor/jq.mask.min
 //= require_tree ./main
