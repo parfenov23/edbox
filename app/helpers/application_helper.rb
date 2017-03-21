@@ -34,6 +34,12 @@ module ApplicationHelper
     local_time(Time.now)
   end
 
+  def get_sort_to_url(n, v)
+    hash = current_params.to_h
+    hash[n.to_s] = v
+    hash.to_query
+  end
+
   def parse_russian_date(time)
     case time_current_day(time)
       when 0

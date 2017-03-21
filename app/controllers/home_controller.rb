@@ -110,8 +110,8 @@ class HomeController < ActionController::Base
     @courses = pub_courses.where(type_course: type_course)
     course_sorting
     # @courses = @courses.where(type_course: type_course, public: true)
-    @courses_tid = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tid]) if params[:tid].present?
-
+    @courses = @courses.joins(:bunch_tags).where("bunch_tags.tag_id" => params[:tag_id]) if params[:tag_id].present?
+    # binding.pry
   end
 
   def courses_rss

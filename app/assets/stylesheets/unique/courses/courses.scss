@@ -75,12 +75,21 @@
 .category__filter_list {
   @include middle-block(1128px);
   display         : flex;
-  justify-content : space-between;
+  // justify-content : space-between;
   .statusBar {
     @include text__setting(smallest__typo, secondary__color);
     line-height : 31px;
     margin-left : 16px;
     font-size   : 14px;
+  }
+  .klass__filter{
+    display: flex;
+    margin-bottom: 24px;
+    width: 100%;
+    .title{
+      font-weight: 400;
+      font-size: 20px;
+    }
   }
   .sortTableCourses {
     .select {
@@ -94,7 +103,8 @@
       zoom           : 1;
       content        : "";
       min-height     : 26px;
-      top            : 6px;
+      top: 3px;
+      margin-left: 12px;
       i {
         position  : absolute;
         left      : 0;
@@ -168,9 +178,10 @@
 
   }
   .item {
-    max-width     : 296px;
-    height        : 32px;
-    line-height   : 32px;
+    width: 168px;
+    height: 46px;
+    text-align: center;
+    line-height: 44px;
     padding       : 0 8px;
     border        : 1px solid #979797;
     border-radius : 2px;
