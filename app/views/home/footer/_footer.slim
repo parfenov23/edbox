@@ -6,11 +6,11 @@ footer
         li
           a href="http://naukacity.ru/about" О нас
         li
-          a href="#" Практические курсы         
+          a href="http://naukacity.ru/courses" Практические курсы         
         li
-          a href="#" Подготовка к олимпиадам
+          a href="http://naukacity.ru/minicourses" Экспресс-курсы
         li
-          a href="https://naukacity.timepad.ru/event/460399/ " Научный фестиваль 
+          a href="http://naukacity.ru/labs" Научные лаборатории
         li
           a href="http://naukacity.ru/about/uk" Управляющая компания
     .block
@@ -33,12 +33,9 @@ footer
     .block
       .title ОНЛАЙН ШКОЛА
       ul
-        li
-          a href="http://naukacity.online/courses" Онлайн-курсы по предметам
-        li 
-          a href="#" Дистанционные курсы
-        li 
-          a href="http://naukacity.ru/store" Научные наборы
+        - Category.all.each do |category|
+          li
+            a href="/courses?category_id=#{category.id}" = category.title
 
     .block.contact__info
       .title.desc ПОДПИШИТЕСЬ НА ЕЖЕМЕСЯЧНЫЙ ДАЙДЖЕСТ О НОВЫХ ВИДЕОУРОКАХ, КУРСАХ И НАБОРАХ
