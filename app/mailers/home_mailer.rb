@@ -39,7 +39,7 @@ class HomeMailer < ActionMailer::Base
   def change_password(user, new_password)
     @user = user
     @new_password = new_password
-    mail(:to => @user.email, :subject => "Смена пароля доступа в онлайн-школы Наукасити")
+    mail(:to => @user.email, :subject => "Мы изменили ваш пароль")
   end
 
   def notice_letter(email, course)
