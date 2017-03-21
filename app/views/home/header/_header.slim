@@ -21,7 +21,7 @@ header#page__header class=hclass.join(" ")
         a.page__icon.item href=backUrl
           i.back.icon
       // raw("<img src='/assets/adcons__grey.svg'>")
-      .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : nil
+      .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? nil : nil
       .page__children
         - if current_link.include?("/courses") && !current_link.include?("/contenter")
           .item.btn.btn-flat#open_study_popup 

@@ -33,13 +33,15 @@
 /           a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные
 .category__filter_list
   .klass__filter
-    .title Библиотека курсво и материалов
+    .title Библиотека курсов и материалов
     .sortTableCourses 
       .select.js__selectSortCourses.js__openHiddenListUl
         - title = params[:tag_id].present? ? Tag.find(params[:tag_id]).title : "Выберите класс"
         .select-trigger = title
         .close__ul__hidden
         ul.hidden
+          li 
+            a href=("/courses?" + get_sort_to_url(:tag_id, nil)) Все
           - Tag.all.each do |tag|
             li 
               a href=("/courses?" + get_sort_to_url(:tag_id, tag.id)) = tag.title
