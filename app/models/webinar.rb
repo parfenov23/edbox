@@ -66,6 +66,7 @@ class Webinar < ActiveRecord::Base
 
   def eventCreate
     webinar_title = attachment.attachmentable.course.title rescue Time.now.to_i
+    
     resp = JSON.parse(event_client.post('events', 
       {
         name: webinar_title, startsAt: date_to_json, 
@@ -87,7 +88,7 @@ class Webinar < ActiveRecord::Base
     Thread.new {
       event_client = ::ApiClients::WebinarRu.new 
       event_client.put("organization/events/#{self.event}", h_date) 
-      event_client.put("eventsessions/#{eventSession['id']}", h_date)
+      # event_client.put("eventsessions/#{eventSession['id']}", h_date)
     }
     #JSON.parse(resp)['error'].blank? rescue resp == ""
     h_date
@@ -107,40 +108,40 @@ class Webinar < ActiveRecord::Base
     url
   end
 
-  def eventRecordUrl
-    eventUrl.gsub("stream", "record") rescue nil
-  end
+  # def eventRecordUrl
+  #   eventUrl.gsub("stream", "record") rescue nil
+  # end
 
-  def eventRecordInfo 
-    JSON.parse(event_client.get("records?id=#{event}", {}))
-  end
+  # def eventRecordInfo 
+  #   JSON.parse(event_client.get("records?id=#{event}", {}))
+  # end
 
-  def eventRecords(find=nil)
-    resp = JSON.parse(event_client.get("records", {}))
-    if find.present?
-      resp = resp.detect {|f| f["link"] == find}
-    end
-    resp
-  end
+  # def eventRecords(find=nil)
+  #   resp = JSON.parse(event_client.get("records", {}))
+  #   if find.present?
+  #     resp = resp.detect {|f| f["link"] == find}
+  #   end
+  #   resp
+  # end
 
-  def eventRecord
-    id_note = eventRecords(eventRecordUrl)["id"]
-    resp = JSON.parse(event_client.post("records/#{id_note}/conversions", {}))
-    if resp.present?
-      self.video_id = resp["id"]
-      save
-    end
-    resp
-  end
+  # def eventRecord
+  #   id_note = eventRecords(eventRecordUrl)["id"]
+  #   resp = JSON.parse(event_client.post("records/#{id_note}/conversions", {}))
+  #   if resp.present?
+  #     self.video_id = resp["id"]
+  #     save
+  #   end
+  #   resp
+  # end
 
-  def eventRecordStatus
-    if video_id.present? 
-      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
-    else
-      eventRecord
-      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
-    end
-  end
+  # def eventRecordStatus
+  #   if video_id.present? 
+  #     JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+  #   else
+  #     eventRecord
+  #     JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+  #   end
+  # end
 
   def eventFileInfo
     JSON.parse(event_client.get("fileSystem/file/#{video_id}", {}))

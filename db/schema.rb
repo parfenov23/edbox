@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314120217) do
+ActiveRecord::Schema.define(version: 20170322074342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,22 @@ ActiveRecord::Schema.define(version: 20170314120217) do
   create_table "bunch_tags", force: true do |t|
     t.integer  "course_id"
     t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_categories", force: true do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_items", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "card_id"
+    t.integer  "card_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -451,9 +467,19 @@ ActiveRecord::Schema.define(version: 20170314120217) do
     t.string   "kid_name"
     t.string   "kid_class"
     t.boolean  "active",          default: false
+    t.string   "city"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
+  create_table "webinar_logs", force: true do |t|
+    t.string   "type_send"
+    t.string   "params"
+    t.string   "path"
+    t.text     "response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "webinars", force: true do |t|
     t.datetime "date_start"

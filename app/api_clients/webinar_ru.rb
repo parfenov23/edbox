@@ -42,10 +42,12 @@ module ApiClients
     end
 
     def get(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
-      @conn.get do |req|
+      response = @conn.get do |req|
         req.headers.merge!(headers)
         req.url path, params.merge(key: API_KEY)
       end.body
+      WebinarLog.create({path: path, params: params.to_s, type_send: "get", response: response})
+      response
     rescue
       {}
     end
@@ -60,21 +62,25 @@ module ApiClients
     end
 
     def post(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
-      @conn.post do |req|
+      response = @conn.post do |req|
         req.headers.merge!(headers)
         req.url path
         req.body = params
       end.body
+      WebinarLog.create({path: path, params: params.to_s, type_send: "post", response: response})
+      response
     rescue
       {}
     end
 
     def put(path, params = {}, headers = {'X-Auth-Token' => API_KEY})
-      @conn.put do |req|
+      response = @conn.put do |req|
         req.headers.merge!(headers)
         req.url path
         req.body = params
       end.body
+      WebinarLog.create({path: path, params: params.to_s, type_send: "get", response: response})
+      response
     rescue
       {}
     end

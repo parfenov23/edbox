@@ -23,11 +23,11 @@ class WebinarMailJob < Resque::JobWithStatus
   private
 
   def run_action
-    webinar = Webinar.find(options["webinar_id"])
-    webinar.user_webinars.each do |user_webinar|
-      user = user_webinar.user
-      HomeMailer.soon_began_webinar(user, webinar).deliver
-    end
+    # webinar = Webinar.find(options["webinar_id"])
+    # webinar.user_webinars.each do |user_webinar|
+    #   user = user_webinar.user
+    #   HomeMailer.soon_began_webinar(user, webinar).deliver
+    # end
   end
 
   def perform_start
