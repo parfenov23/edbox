@@ -189,6 +189,10 @@ var onChangeEditAttachment = function (input_incl) {
         input_file.attr("name", "");
     }
 
+    if (input.attr("name") == "ogg[title]" || input.attr("name") == "ogg[description]" || input.attr("name") == "ogg[image]"){
+        input_file.attr("name", "");
+    }
+
     if (input.attr("name") == "attachment[file]"){
         show_error('Идет загрузка файла', 3000);
         ajaxUploadFileAttachment(input);

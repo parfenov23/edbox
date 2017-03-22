@@ -28,6 +28,7 @@ module Api::V1
     def update
       attachment = params[:id] != "new" ? find_attachment : Attachment.create(params_attachment)
       attachment.update(params_attachment)
+      (attachment.ogg.present? ? attachment.ogg.update(params[:ogg].to_h) : Ogg.build_or_create(attachment, params[:ogg]) ) if params[:ogg].present?
       # attachment.work_to_video
       render json: attachment.transfer_to_json
     end
@@ -54,6 +55,9 @@ module Api::V1
       #   webinar = Webinar.create({attachment_id: attachment.id})
       #   webinar.eventCreate
       # end
+      params_ogg = params[:ogg]
+      Ogg.build_or_create(attachment, params_ogg) if params_ogg.present?
+
       if attachment.file_type == "webinar"
         webinar = Webinar.create({attachment_id: attachment.id})
         webinar.eventCreate

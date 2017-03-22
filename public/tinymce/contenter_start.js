@@ -10,6 +10,7 @@ function init_tiny() {
         toolbar              : "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |" +
         " uploadimage",
         imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+        language:"ru",
         setup                : function (editor) {
             editor.on('change', function (e) {
                 var editor_tiny = $(e.target.editorContainer);
