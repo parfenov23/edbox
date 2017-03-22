@@ -153,8 +153,8 @@ class Webinar < ActiveRecord::Base
 
   def eventSession
     if eventInfo["eventSessions"].blank?
-      session = event_client.post("events/#{event}/sessions", {})
-      session = JSON.parse(session)
+      # session = event_client.post("events/#{event}/sessions", {})
+      # session = JSON.parse(session)
     end
     session = eventInfo['eventSessions'].first
     #binding.pry
