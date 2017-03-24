@@ -246,7 +246,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def postRegUser(params)
-    session.present? ? JSON.parse(event_client.post("/eventsessions/#{session}/register", params)) : {}
+    session.present? ? JSON.parse(event_client.post("eventsessions/#{session}/register", params)) : {}
   end
 
   private
