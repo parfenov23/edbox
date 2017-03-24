@@ -72,9 +72,9 @@ class Webinar < ActiveRecord::Base
         name: webinar_title, startsAt: date_to_json, 
         description: webinar_title, access: 4
       }.compact))
-    #binding.pry
     if resp['eventId'].present?
       self.event = resp['eventId'].to_i
+      self.session = createSession
       save
     end
   end
@@ -88,7 +88,7 @@ class Webinar < ActiveRecord::Base
     Thread.new {
       event_client = ::ApiClients::WebinarRu.new 
       event_client.put("organization/events/#{self.event}", h_date) 
-      # event_client.put("eventsessions/#{eventSession['id']}", h_date)
+      event_client.put("eventsessions/#{eventSession['id']}", h_date)
     }
     #JSON.parse(resp)['error'].blank? rescue resp == ""
     h_date
@@ -152,14 +152,19 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventSession
-    if eventInfo["eventSessions"].blank?
-      # session = event_client.post("events/#{event}/sessions", {})
-      # session = JSON.parse(session)
-    end
-    session = eventInfo['eventSessions'].first
-    #binding.pry
-    session["id"] = session["eventSessionId"] if session["eventSessionId"].present?
-    session
+    # if eventInfo["eventSessions"].blank?
+    #   # session = event_client.post("events/#{event}/sessions", {})
+    #   # session = JSON.parse(session)
+    # end
+    # session = eventInfo['eventSessions'].first
+    # #binding.pry
+    # session["id"] = session["eventSessionId"] if session["eventSessionId"].present?
+    {"id" => session}
+  end
+
+  def createSession
+    session = event_client.post("events/#{event}/sessions", {})
+    JSON.parse(session)["id"]
   end
 
   def eventActive(status = 'ACTIVE')
@@ -241,7 +246,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def postRegUser(params)
-    JSON.parse(event_client.post("events/#{event}/register", params))
+    session.present? ? JSON.parse(event_client.post("/eventsessions/#{session}/register", params)) : {}
   end
 
   private
