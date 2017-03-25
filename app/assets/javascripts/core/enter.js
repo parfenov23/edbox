@@ -61,11 +61,11 @@ function fixed_btn_save() {
         var block_action_normal = function () {
             block.css("height", "");
             block_action.css("position", "").css("top", "")
-                .css("bottom", "")
-                .removeClass("fixed_bot")
-                .removeClass("absolute_top")
-                .css("z-index", "")
-                .css("width", "");
+            .css("bottom", "")
+            .removeClass("fixed_bot")
+            .removeClass("absolute_top")
+            .css("z-index", "")
+            .css("width", "");
 
         };
 
@@ -73,20 +73,20 @@ function fixed_btn_save() {
             block_action.css("position", "relative");
             block_height = block.outerHeight();
             block_action
-                .css("top", ((0 - (block_height - block_action_height) ) + header_height) + "px")
-                .css("bottom", "")
-                .css("z-index", "10")
-                .css("width", block.outerWidth())
+            .css("top", ((0 - (block_height - block_action_height) ) + header_height) + "px")
+            .css("bottom", "")
+            .css("z-index", "10")
+            .css("width", block.outerWidth())
         };
 
         var block_action_position_fixed = function () {
             block.css("height", block_height + "px");
             block_action.css("position", "fixed")
-                .css("top", "")
-                .css("bottom", "0px")
-                .css("z-index", "10")
-                .css("margin-left", "-24px")
-                .css("width", block.outerWidth())
+            .css("top", "")
+            .css("bottom", "0px")
+            .css("z-index", "10")
+            .css("margin-left", "-24px")
+            .css("width", block.outerWidth())
         };
 
         if (view_action_top + 5 >= 0 && (view_action_top - block_action_height) <= 0){
@@ -185,6 +185,38 @@ var validRegClickOfert = function () {
     }
     return false;
 };
+
+var sendApiHolli = function(){
+    var $form = $('form.js_registrationUser');
+
+    var tariff     = "Бесплатно"
+    var parent     = $form.find("input[name='user[first_name]']").val();
+    var child      = "Неизвестно"
+    var email      = $form.find("input[name='user[email]']").val();
+    var phone      = $form.find("input[name='user[social][phone]']").val();
+    var formTitle = "Регистрация Naukacity.online"
+    var details    = 'Форма: '+formTitle+'\n'
+    +'Фамилия и имя родителя: '+parent+'\n' 
+    +'Тариф:' + tariff;
+
+
+
+    if (phone!='' && parent!='' && email!='' && child!='') {
+        $.ajax({
+            url: "https://naukacity.t8s.ru/Api/V1/AddStudyRequest",
+            data: {
+                fullName: child,
+                phone: phone,
+                eMail: email,
+                description: details,
+            },
+
+            type: "GET",
+            crossDomain: true,
+            dataType: "jsonp"
+        });
+    }
+}
 
 $(document).ready(function () {
     $(document).on('click', ".js_registrationUser [name='user[social][phone]']", function(){
@@ -294,6 +326,7 @@ $(document).ready(function () {
                     fbq_env('CompleteRegistration');
                     $.cookie('user_key', m.user_key);
                     show_error('Успешно', 3000);
+                    sendApiHolli();
                     warning(" Вы успешно зарегистрировались в онлайн-школе. Вам отправлено письмо на почту с инструкцией по активации аккаунта.", "ОК", function(){})
                     // if (form.data('redirect') == undefined){
                     //     $("#formCourseRegPopUp").show();
@@ -449,8 +482,8 @@ $(document).ready(function () {
     }
 
     var container = $("input[name='user[city]']");
-        container
-            .kladr({
-                type: $.kladr.type.city
-            });
+    container
+    .kladr({
+        type: $.kladr.type.city
+    });
 });

@@ -261,13 +261,7 @@ Rails.application.routes.draw do
 
     resources :ask_questions do
       member do
-        post :remove
-      end
-    end
-
-    resources :ask_questions do
-      member do
-        post :remove
+        get :remove
       end
     end
 

@@ -32,14 +32,14 @@
             .input-wrp.state
               input type="text" name="user[social][twitter]" placeholder="Twitter" value="#{social["twitter"]}"
               hr
-        .account
-          span>Ваш персональный ID:
-          span.number
-            = current_user.user_key
-          .tets
-            'Это ваш идентификационный номер в #{$env_mode.name_title}. Он
-            'понадобится вам для участия в различных акциях и
-            |специальных предложениях от #{$env_mode.name_title}.
+        / .account
+        /   span>Ваш персональный ID:
+        /   span.number
+        /     = current_user.user_key
+        /   .tets
+        /     'Это ваш идентификационный номер в #{$env_mode.name_title}. Он
+        /     'понадобится вам для участия в различных акциях и
+        /     |специальных предложениях от #{$env_mode.name_title}.
       .btn-holder
         .btn.btn-raised.is__orange#submit сохранить
 
