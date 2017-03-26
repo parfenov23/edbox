@@ -39,7 +39,11 @@ header.landing__header
   form.reg__form.js_registrationUser *hash_redirect
     .title Регистрация
     .com__input-item.item.empty
-      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Ваше имя и фамилия"
+      input.form-control.floating-label.phoenix-input name='user[first_name]' type="text" placeholder="Имя"
+      .error__msg Обязательное поле
+      hr
+    .com__input-item.item.empty
+      input.form-control.floating-label.phoenix-input name='user[last_name]' type="text" placeholder="Фамилия"
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty
