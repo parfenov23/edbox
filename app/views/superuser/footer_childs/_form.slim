@@ -1,0 +1,15 @@
+- action_url = @footer_child.id.nil? ? "/superuser/footer_childs" : "/superuser/footer_childs/#{@footer_child.id}"
+- method = @footer_child.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="footer_child[title]" type="text" value="#{@footer_child.title}"
+  .form-group
+    label
+      | Ссылка:
+    input.form-control name="footer_child[href]" type="text" value="#{@footer_child.href}"
+  - pi = @footer_child.footer_parent_id || params[:footer_parent_id]
+  input.form-control name="footer_child[footer_parent_id]" type="hidden" value="#{pi}"
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

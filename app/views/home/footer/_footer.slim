@@ -1,71 +1,66 @@
 footer
   .inthis
-    .block
-      .title НАУКАСИТИ
-      ul
-        li
-          a href="http://naukacity.ru/about" О нас
-        li
-          a href="http://naukacity.ru/courses" Практические курсы         
-        li
-          a href="http://naukacity.ru/minicourses" Экспресс-курсы
-        li
-          a href="http://naukacity.ru/labs" Научные лаборатории
-        li
-          a href="http://naukacity.ru/about/uk" Управляющая компания
-    .block
-      .title ПОЛЬЗОВАТЕЛЯМ
-      ul
-        li
-          a href="/profile" Профиль
-        li
-          a href="/cabinet" Личный кабинет
-        li
-          a href="/oferta" Договор оферты
-        li
-          a href="/tariff" Тарифы и условия оплаты
-        li
-          a href="/help" Инструкция по работе в системе
-        li
-          a href="mailto:online@naukacity.ru " Связаться с поддержкой
+    - FooterParent.all.each do |footer_parent|
+      .block
+        .title =footer_parent.title
+        ul
+          - footer_parent.footer_childs.each do |footer_child|
+            li
+              a href=footer_child.href = footer_child.title
+
+    / .block
+    /   .title ПОЛЬЗОВАТЕЛЯМ
+    /   ul
+    /     li
+    /       a href="/profile" Профиль
+    /     li
+    /       a href="/cabinet" Личный кабинет
+    /     li
+    /       a href="/oferta" Договор оферты
+    /     li
+    /       a href="/tariff" Тарифы и условия оплаты
+    /     li
+    /       a href="/help" Инструкция по работе в системе
+    /     li
+    /       a href="mailto:online@naukacity.ru " Связаться с поддержкой
      
 
-    .block
-      .title ОНЛАЙН ШКОЛА
-      ul
-        - Category.all.each do |category|
-          li
-            a href="/courses?category_id=#{category.id}" = category.title
+    / .block
+    /   .title ОНЛАЙН ШКОЛА
+    /   ul
+    /     - Category.all.each do |category|
+    /       li
+    /         a href="/courses?category_id=#{category.id}" = category.title
 
-    .block.contact__info
-      .title.desc ПОДПИШИТЕСЬ НА ЕЖЕМЕСЯЧНЫЙ ДАЙДЖЕСТ О НОВЫХ ВИДЕОУРОКАХ, КУРСАХ И НАБОРАХ
-      ul
-        li.send__message___back
-          form
-            input type="text" name="email"
-            a.send_btn href="#"
-              i.icon.send
-          / i.icon.email_cl
-          / a href="mailto:help@naukacity.ru" Обратная связь
-        li.other
-        li.social
-          / a target="_blank" href="https://plus.google.com/116073902045448332695"
-          /   i.icon.gplus
-          / a target="_blank" href="https://twitter.com/adconsult_ru?lang=ru"
-          /   i.icon.twitter
-          a target="_blank" href="https://vk.com/scikids"
-            i.icon.vk
-          a target="_blank" href="https://www.facebook.com/naukacity/"
-            i.icon.fb
-          / a target="_blank" href="http://linkedin.com/company/adconsult"
-          /   i.icon.in
-          / a target="_blank" href="http://youtube.com/ADCONSULT"
-          /   i.icon.youtube
-          a target="_blank" href="https://www.instagram.com/sci_kids/"
-            i.icon.insta
-          / a target="_blank" href="/courses/rss"
-          /   i.icon.rss
-        / li.copywrite ©#{$env_mode.name_title}, 2016-#{Time.now.year}
+    / .block.contact__info
+    /   .title.desc ПОДПИШИТЕСЬ НА ЕЖЕМЕСЯЧНЫЙ ДАЙДЖЕСТ О НОВЫХ ВИДЕОУРОКАХ, КУРСАХ И НАБОРАХ
+    /   ul
+    /     li.send__message___back
+    /       form
+    /         input type="text" name="email"
+    /         a.send_btn href="#"
+    /           i.icon.send
+    /       / i.icon.email_cl
+    /       / a href="mailto:help@naukacity.ru" Обратная связь
+    /     li.other
+    /     li.social
+    /       / a target="_blank" href="https://plus.google.com/116073902045448332695"
+    /       /   i.icon.gplus
+    /       / a target="_blank" href="https://twitter.com/adconsult_ru?lang=ru"
+    /       /   i.icon.twitter
+    /       a target="_blank" href="https://vk.com/scikids"
+    /         i.icon.vk
+    /       a target="_blank" href="https://www.facebook.com/naukacity/"
+    /         i.icon.fb
+    /       / a target="_blank" href="http://linkedin.com/company/adconsult"
+    /       /   i.icon.in
+    /       / a target="_blank" href="http://youtube.com/ADCONSULT"
+    /       /   i.icon.youtube
+    /       a target="_blank" href="https://www.instagram.com/sci_kids/"
+    /         i.icon.insta
+    /       / a target="_blank" href="/courses/rss"
+    /       /   i.icon.rss
+    /     / li.copywrite ©#{$env_mode.name_title}, 2016-#{Time.now.year}
   .basement
     .logo
       img src="https://static.tildacdn.com/tild6233-3533-4330-b931-316431356664/_290_201.png"

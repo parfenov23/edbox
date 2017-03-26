@@ -358,6 +358,16 @@ Rails.application.routes.draw do
         get :remove
       end
     end
+    resources :footer_parents do
+      member do
+        get :remove
+      end
+    end
+    resources :footer_childs do
+      member do
+        get :remove
+      end
+    end
     resources :tests do
       member do
         get :remove

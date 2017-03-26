@@ -1,0 +1,11 @@
+- action_url = @footer_parent.id.nil? ? "/superuser/footer_parents" : "/superuser/footer_parents/#{@footer_parent.id}"
+- method = @footer_parent.id.nil? ? "post" : "put"
+form.form-horizontal action="#{action_url}" method="post"
+  .form-group
+    label
+      | Название:
+    input.form-control name="footer_parent[title]" type="text" value="#{@footer_parent.title}"
+
+
+  input type="hidden" name="_method" value="#{method}"
+  button.btn.btn-primary type="submit" Сохранить

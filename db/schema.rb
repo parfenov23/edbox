@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321061720) do
+ActiveRecord::Schema.define(version: 20170326184744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,20 @@ ActiveRecord::Schema.define(version: 20170321061720) do
     t.datetime "updated_at"
   end
 
+  create_table "footer_children", force: true do |t|
+    t.string   "title"
+    t.string   "href"
+    t.integer  "footer_parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "footer_parents", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_webinars", force: true do |t|
     t.integer  "webinar_id"
     t.integer  "group_id"
@@ -321,6 +335,16 @@ ActiveRecord::Schema.define(version: 20170321061720) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "action_type"
+  end
+
+  create_table "oggs", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "oggtable_type"
+    t.integer  "oggtable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "page_questions", force: true do |t|
@@ -472,6 +496,15 @@ ActiveRecord::Schema.define(version: 20170321061720) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "webinar_logs", force: true do |t|
+    t.string   "type_send"
+    t.string   "params"
+    t.string   "path"
+    t.text     "response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "webinars", force: true do |t|
     t.datetime "date_start"
     t.integer  "duration"
@@ -483,6 +516,7 @@ ActiveRecord::Schema.define(version: 20170321061720) do
     t.integer  "video_id"
     t.string   "url"
     t.string   "jid"
+    t.integer  "session"
   end
 
 end

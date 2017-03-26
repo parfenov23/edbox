@@ -1,0 +1,11 @@
+.list-group.row
+  .list-group-item.active
+    a.btn.btn-success href="/superuser/footer_parents/new"  Добавить колонку футера
+  - @footer_parents.each do |footer_parent|
+    .list-group-item.col-md-6
+      span
+        = footer_parent.title
+      a.btn.btn-danger.pull-right href="/superuser/footer_parents/#{footer_parent.id}/remove"  data-method='delete' *delete_confirm
+        = btn_delete
+      a.btn.btn-success.pull-right href="/superuser/footer_parents/#{footer_parent.id}/edit" style="margin-right: 5px;"
+        = btn_edit
