@@ -148,6 +148,9 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.9.8)
     formatador (0.2.5)
+    gibbon (3.0.1)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -452,6 +455,7 @@ DEPENDENCIES
   eventmachine (= 1.0.4)
   faraday
   faraday_middleware
+  gibbon
   guard-livereload (~> 2.4)
   hiredis
   imgkit

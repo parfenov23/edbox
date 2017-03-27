@@ -12,7 +12,7 @@ hr
         .list-group-item.col-md-6
             span
                 = footer_child.title
-            a.btn.btn-danger.pull-right href="/superuser/footer_childs/#{@footer_parent.id}/remove"  data-method='delete'
+            a.btn.btn-danger.pull-right href="/superuser/footer_childs/#{@footer_child.id}/remove"  data-method='delete'
                 | Удалить
-            a.btn.btn-success.pull-right href="/superuser/footer_childs/#{@footer_parent.id}/edit" style="margin-right: 5px;"
+            a.btn.btn-success.pull-right href="/superuser/footer_childs/#{@footer_child.id}/edit" style="margin-right: 5px;"
                 | Редактировать
