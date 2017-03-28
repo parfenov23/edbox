@@ -25,9 +25,9 @@ module Superuser
     end
 
     def update
-      model = find_model
-      model.update(params_model)
-      redirect_to :back
+      @model = find_model
+      @model.update(params_model)
+      redirect_to index_redirect
     end
 
     def remove

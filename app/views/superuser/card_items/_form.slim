@@ -6,6 +6,8 @@ form.form-horizontal action="#{action_url}" method="post"
       | Название:
     input.form-control name="card_item[title]" type="text" value="#{@model.title}"
   .form-group
+    p
+      b $имя$ , $компания$
     label
       | Описание:
     textarea.form-control.js_includeTiny name="card_item[description]" type="text" 

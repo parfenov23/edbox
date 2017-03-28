@@ -1,15 +1,16 @@
-- type rescue type = nil
-- bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
-- fclass = [(type != "shot__module" ? "basic__module" : ""), type]
-- fclass += ["completed"] if bunch_course.complete rescue false
-- fclass += ["basic__mat"] if course.material? || course.instrument?
+- if course.present?
+  - type rescue type = nil
+  - bunch_course = course.find_bunch_course(current_user.id, (model_type rescue nil) ) rescue nil
+  - fclass = [(type != "shot__module" ? "basic__module" : ""), type]
+  - fclass += ["completed"] if bunch_course.complete rescue false
+  - fclass += ["basic__mat"] if course.material? || course.instrument?
 
-- action_block = action_block rescue false
-- model_type = (model_type rescue nil)
-- text_status = (text_status rescue "").to_s
-figure class=fclass.join(' ')
-  = render "course/image", {course: course, type: type, model_type: model_type}
-  - if type != "shot__module"
-    = render "course/figcaprion", {course: course, type: type, action_block: action_block}
-  - else
-    = render "course/figcaption_line", {course: course, type: type, ligament_course: ligament_course, action_menu: action_block, text_status: text_status}
+  - action_block = action_block rescue false
+  - model_type = (model_type rescue nil)
+  - text_status = (text_status rescue "").to_s
+  figure class=fclass.join(' ')
+    = render "course/image", {course: course, type: type, model_type: model_type}
+    - if type != "shot__module"
+      = render "course/figcaprion", {course: course, type: type, action_block: action_block}
+    - else
+      = render "course/figcaption_line", {course: course, type: type, ligament_course: ligament_course, action_menu: action_block, text_status: text_status}

@@ -213,6 +213,10 @@ module ApplicationHelper
     return [first_string, last_string]
   end
 
+  def scripto_gsub_text(text)
+    text.gsub("$имя$", current_user.full_name).gsub("$компания$", (current_user.company.first_name rescue "") )
+  end
+
   def array_table_tariff_info
     [['8 стартовых бесплатных базовых онлайн-курсов', true],
      ['Бесплатные вебинары экспертов 1 раз в 2 месяца', true],
