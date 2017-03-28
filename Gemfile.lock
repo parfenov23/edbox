@@ -79,6 +79,10 @@ GEM
     autoprefixer-rails (6.0.3)
       execjs
       json
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     babosa (1.0.2)
     bcrypt (3.1.10)
     better_errors (2.1.1)
@@ -118,6 +122,8 @@ GEM
     choice (0.2.0)
     chronic (0.10.2)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -129,6 +135,8 @@ GEM
     connection_pool (2.2.0)
     daemons (1.2.3)
     debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     em-synchrony (1.0.4)
@@ -136,6 +144,7 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.4)
     execjs (2.6.0)
@@ -175,6 +184,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     imgkit (1.6.1)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -380,6 +390,9 @@ GEM
       net-ssh
       term-ansicolor
     streamio-ffmpeg (1.0.0)
+    telegram-bot-ruby (0.7.2)
+      faraday
+      virtus
     temple (0.6.10)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
@@ -415,6 +428,11 @@ GEM
       raindrops (~> 0.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     webrobots (0.1.1)
     websocket-driver (0.6.2)
       websocket-extensions (>= 0.1.0)
@@ -492,6 +510,7 @@ DEPENDENCIES
   sqlite3
   sqlite3_ar_regexp (~> 2.1)
   streamio-ffmpeg
+  telegram-bot-ruby
   therubyracer
   thin (~> 1.5.0)
   tinymce-rails-imageupload
