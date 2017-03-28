@@ -27,6 +27,9 @@ module Api::V1
       EmailNotif.all.each do |email_notif|
         HomeMailer.order_bill(email_notif.email, params, current_user).deliver
       end
+      @user = current_user
+      @params = params
+      Thread.new { ApiClients::TelegramCli.new.send_message(order_bill_to_text) } if !$env_mode.dev?
       render json: {success: true}
     end
 
@@ -76,6 +79,11 @@ module Api::V1
 
     private
 
+    def order_bill_to_text
+      "Пользователь ID: #{@user.id}, Имя: #{@user.full_name}, Email: #{@user.email}, Количество месяцев: #{@params[:count_month]},"+
+      "Сумма: #{@params[:sum]} рублей, Промо код: #{@params[:promo]}, Телефон: #{@user.social['phone']}, Город: #{@user.city}"
+    end
+
     def success_transaction(result)
       current_user.accounts.destroy_all
       current_user.accounts.create(parametrize(result))
@@ -88,9 +96,9 @@ module Api::V1
        card_first_six: rp["CardFirstSix"],
        card_last_four: rp["CardLastFour"],
        issuer_bank_country: rp["IssuerBankCountry"]}
-    end
+     end
 
-    def create_subscription(params_sub)
+     def create_subscription(params_sub)
       user = User.where(email: params_sub[:email]).last
       user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
       subscription = Subscription.build(params_sub)

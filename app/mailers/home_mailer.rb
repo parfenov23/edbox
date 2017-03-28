@@ -17,7 +17,6 @@ class HomeMailer < ActionMailer::Base
   def order_bill(email, params, user)
     @params = params
     @user = user
-    Thread.new { ApiClients::TelegramCli.new.send_message(order_bill_to_text) } if !$env_mode.dev?
     HomeMailer.order_bill_user(user).deliver
     mail(:to => email, :subject => "Заявка на выставление счета")
   end
@@ -106,11 +105,6 @@ class HomeMailer < ActionMailer::Base
   end
 
   private
-
-  def order_bill_to_text
-    "Пользователь ID: #{@user.id}, Имя: #{@user.full_name}, Email: #{@user.email}, Количество месяцев: #{@params[:count_month]},"+
-    "Сумма: #{@params[:sum]} рублей, Промо код: #{@params[:promo]}, Телефон: #{@user.social['phone']}, Город: #{@user.city}"
-  end
 
   def domain
     @domain ||= current_domain(5000)
