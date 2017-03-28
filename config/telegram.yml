@@ -1,0 +1,3 @@
+peer: 'Зайка'
+key_path: '/opt/tg/tg-server.pub'
+telegram_path: 'telegram-cli'
