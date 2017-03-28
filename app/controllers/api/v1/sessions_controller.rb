@@ -31,6 +31,7 @@ module Api::V1
       if (user.save rescue false)
         session[:user_key] = user["user_key"]
         Rails.cache.clear rescue nil
+        Thread.new { ApiClients::TelegramCli.new.send_message(permit_params) } if !$env_mode.dev?
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)
