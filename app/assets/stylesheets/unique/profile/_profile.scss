@@ -258,7 +258,7 @@
     @include white__block(1, 0);
     width    : 920px;
     margin   : 0 auto 24px;
-    padding  : 24px 24px 72px 64px;
+    padding  : 24px 24px 72px 24px;
     .input-wrp{
       .title, .content_val{
         display: none;
@@ -270,12 +270,16 @@
   }
 
   .profile__main {
+    .title{
+      font-size: 20px;
+      padding-bottom: 24px;
+    }
     .avatar {
       position      : relative;
       float         : left;
       width         : 128px;
       height        : 128px;
-      margin        : 0 32px 0 0;
+      margin        : 0 64px 0 0;
       border-radius : 100%;
       .ava {
         max-width     : 100%;

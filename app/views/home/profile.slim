@@ -2,6 +2,7 @@
 .inner-content
   .content#profile
     form.profile__block.profile__main.close
+      .title Персональные данные
       .avatar
         img.ava src="#{default_img(current_user.avatar)}"
         .upload__block
@@ -57,14 +58,14 @@
         /     'понадобится вам для участия в различных акциях и
         /     |специальных предложениях от #{$env_mode.name_title}.
       .btn-holder
-        .btn.js_openChangeProfile Изменить
-        .btn#submit сохранить
+        .btn.btn-flat.js_openChangeProfile href="#" Изменить
+        .btn.btn-flat#submit сохранить
 
 
     form.profile__block.profile__password
       .title_password
         .title Смена пароля
-        .btn.js_openEditPassword Изменить
+        .btn.btn-flat.js_openEditPassword Изменить
       .content_password_change
         .input-wrp.password
           input type="password" name="password" placeholder="Введите старый пароль"
@@ -76,4 +77,4 @@
           input type="password" name="password_repeat" placeholder="Повторите новый пароль"
           hr
         .btn-holder
-          .btn#submit сохранить
+          .btn.btn-flat#submit сохранить
