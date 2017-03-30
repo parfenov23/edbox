@@ -259,6 +259,14 @@
     width    : 920px;
     margin   : 0 auto 24px;
     padding  : 24px 24px 72px 64px;
+    .input-wrp{
+      .title, .content_val{
+        display: none;
+      }
+    }
+    .js_openChangeProfile{
+      display: none;
+    }
   }
 
   .profile__main {
@@ -329,6 +337,7 @@
         margin : 0 0 24px;
       }
 
+
       .account {
         font          : 400 13px/1 "Roboto";
         color         : rgba(0, 0, 0, .54);
@@ -347,19 +356,64 @@
     }
   }
 
-  .profile__password {
-    padding : 24px 24px 72px 32px;
+  .profile__block.close{
+    .input-wrp{
+      margin-bottom: 26px !important;
+      .title{
+        font-size: 12px;
+        color: darkgrey;
+        display: block !important;
+      }
+      .content_val{
+        font-size: 16px;
+        padding-top: 6px;
+        display: block !important;
+      }
+      input{
+        display: none;
+      }
 
+    }
+    .js_openChangeProfile{
+      display: block !important;
+    }
+    .btn-holder{
+      #submit{
+        display: none;
+      }
+    }
+  }
+
+  .profile__password {
+    padding: 24px 24px 0 32px;
+    .title_password{
+      display: flex;
+    }
     .title {
       font   : 400 18px/18px "Roboto";
       color  : rgba(0, 0, 0, .54);
       margin : 0 0 32px;
+      width: 100%;
+    }
+    .content_password_change{
+      display: none;
     }
 
     .password {
       margin : 0 0 12px;
       font   : 400 13px/13px "Roboto";
       color  : rgba(0, 0, 0, .26);
+    }
+    &.open{
+      padding : 24px 24px 72px 32px;
+      .content_password_change{
+        display: block;
+      }
+      .title_password{
+        .btn{
+          display: none;
+        }
+      }
     }
   }
 
