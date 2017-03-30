@@ -1,4 +1,4 @@
-- ads = Ads.where({type_ad: "registration_popup", active: true}).last
+- ads = Ads.where({type_ad: "registration_common", active: true}).last
 - if ads.present? 
   #registration_popup.pop_up_confirm data-time_line=ads.time_line
     .inner.notice__popup.email__add
