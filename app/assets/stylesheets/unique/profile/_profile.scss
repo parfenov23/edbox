@@ -270,10 +270,6 @@
   }
 
   .profile__main {
-    .title_form{
-      font-size: 20px;
-      padding-bottom: 24px;
-    }
     .avatar {
       position      : relative;
       float         : left;
@@ -318,7 +314,11 @@
         }
       }
     }
-
+    //заголовок формы
+    .title_form{
+      font-size: 20px;
+      padding-bottom: 24px;
+    }
     .data {
       float : left;
       width : 524px;
