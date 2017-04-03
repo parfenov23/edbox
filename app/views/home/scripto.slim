@@ -1,15 +1,23 @@
 = render "home/header/header", {namePage: "scripto", titlePage: "СкрипТо"}
+- @footer = false
+- @white_body = true
 .inner-content#inner_scripto
   .content#scripto
+    .card_welcome
+      .title  Добро пожаловать в скрипто
+      .description Выбери категорию и начни продавать!
     .card_items
       .item.back_item
         i.icon.back
       - CardItem.all.each do |card|
         .card_info_block data-card_category_id=card.card_category_id data-card_item_id=card.card_id
-          - opened = (card.card_items.present? ? "false" : "true")
+          - card_items_present = card.card_items.present? 
+          - opened = (card_items_present ? "false" : "true")
           - first = (card.card_item.present? ? "false" : "true")
           .item data-open=opened data-card_id=card.id data-first_card=first data-add_crumbs="true"
             .title = card.title
+            - if card_items_present
+              .count = "+#{card.count_all_items}"
           .card_item__description
             .inner_content
               .text = raw scripto_gsub_text(card.description.to_s)
@@ -18,5 +26,5 @@
       - CardCategory.all.each do |category|
         .item.js_openCategoryScripto data-card_category_id=category.id
           .item_icon
-            i.icon data-icon="\e660"
+            i.icon class="scripto-#{category.icon}"
           .title = category.title

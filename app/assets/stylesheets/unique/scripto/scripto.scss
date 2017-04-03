@@ -1,11 +1,74 @@
+@font-face {
+  font-family : 'scriptoIcon';
+  src         : url('/scripto/ico/icomoon.eot'); /* IE9 Compat Modes */
+  src         : url('/scripto/ico/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/scripto/ico/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/scripto/ico/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/scripto/ico/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
+}
+
+[class*="scripto-"]{
+  font-family: 'scriptoIcon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 24px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.scripto-900:before {
+  content: "\e900";
+}
+.scripto-901:before {
+  content: "\e901";
+}
+.scripto-902:before {
+  content: "\e902";
+}
+.scripto-903:before {
+  content: "\e903";
+}
+.scripto-904:before {
+  content: "\e904";
+}
+.scripto-905:before {
+  content: "\e905";
+}
+.scripto-906:before {
+  content: "\e906";
+}
+.scripto-907:before {
+  content: "\e907";
+}
+
 #inner_scripto{
   background-color: white;
+  min-height: 100%;
 }
 #scripto{
   width: 100%;
-  max-width: 1280px;
+  // max-width: 1280px;
+  .card_welcome{
+    .title{
+      text-align: center;
+      margin-bottom: 21px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .description{
+      text-align: center;
+      display: block;
+      width: 650px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 24px;
+    }
+  }
   .card_items{
-    max-width: 1104px;
+    max-width: 100%;
+    padding: 8px;
     margin: 0 auto;
     margin-bottom: 120px;
     display: flex;
@@ -22,8 +85,31 @@
       margin-bottom: 16px;
       padding: 12px;
       cursor: pointer;
+      position: relative;
       &[data-open="true"]{
         background-color: #f0f0f0;
+      }
+      &[data-open="false"]{
+        background-image: url(/scripto/bg.png);
+        background-size: cover;
+      }
+      .count{
+        position: absolute;
+        right: 12px;
+        bottom: 8px;
+        border: 1px solid;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        text-align: center;
+        line-height: 22px;
+        color: white;
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+      }
+      .title{
+        font-weight: 600;
       }
       &:hover{
         transition-duration: 0.3s;
@@ -46,7 +132,7 @@
             content: "\e893";
             border: 1px solid;
             padding: 8px;
-            background-color: #e1e1e1;
+            // background-color: #e1e1e1;
             border-radius: 50%;
             border-color: $primaryColor;
             color: $primaryColor;
@@ -69,7 +155,7 @@
       justify-content: center;
       align-items: center;
       .inner_content{
-        width: 552px;
+        width: 800px;
         height: auto;
         padding: 32px 24px 8px;
         position: relative;
@@ -81,7 +167,7 @@
         padding-bottom: 30px;
         .text{
           position: relative;
-          max-height: 328px;
+          max-height: 500px;
           overflow: auto;
         }
       }
@@ -106,6 +192,10 @@
     border-radius: 4px;
     border-color: $primaryColor;
     padding: 16px;
+    position: fixed;
+    width: calc(100% - 16px);
+    background-color: #fff;
+    bottom: 0;
     .item {
       display: inline-block;
       width: 140px;
@@ -116,7 +206,7 @@
       margin-right: 16px;
       padding: 14px;
       cursor: pointer;
-      i.icon::before{ content: '\e660'; }
+      // i.icon::before{ content: '\e660'; }
       &:hover{
         transition-duration: 0.3s;
         transition-property: transform;

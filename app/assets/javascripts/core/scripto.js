@@ -10,7 +10,6 @@
 // }
 
 var open_card_item_category = function(){
-  console.log(1)
   $("#scripto .card_categories .item").removeClass("active");
   var curr_card_category = $("#scripto .card_categories .item[data-card_category_id='"+ $(this).data('card_category_id') +"']")
   curr_card_category.addClass("active");
@@ -19,6 +18,7 @@ var open_card_item_category = function(){
   $("#scripto .card_info_block[data-card_category_id='" + $(this).data('card_category_id') + "']").show();
   $("header .left-col .crumbs").remove();
   $(".card_items .item.back_item").hide();
+  $(".card_welcome").hide();
   $("header .left-col").append($("<ul class='crumbs'><li class='js_openCategoryScripto' data-card_category_id='" + 
     $(this).data("card_category_id") + "'>"+ curr_card_category.find(".title").text() +"</li></ul>"));
   $("header .left-col .js_openCategoryScripto").on('click', open_card_item_category)

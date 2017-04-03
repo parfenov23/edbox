@@ -5,5 +5,9 @@ form.form-horizontal action="#{action_url}" method="post"
     label
       | Название
     input.form-control name="card_category[title]" type="text" value="#{@model.title}"
+  .form-group
+    label
+      | Иконка
+    input.form-control name="card_category[icon]" type="text" value="#{@model.icon}"
   input type="hidden" name="_method" value="#{method}"
   button.btn.btn-primary type="submit" Сохранить

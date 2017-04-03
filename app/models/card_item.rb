@@ -13,4 +13,13 @@ class CardItem < ActiveRecord::Base
     end
     html
   end
+
+  def count_all_items
+    result = 0
+    result += card_items.count
+    card_items.each do |ci|
+      result += ci.count_all_items
+    end
+    result
+  end
 end
