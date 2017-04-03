@@ -1,5 +1,5 @@
 = render "home/header/header", {namePage: "scripto", titlePage: "СкрипТо"}
-.inner-content
+.inner-content#inner_scripto
   .content#scripto
     .card_items
       .item.back_item
@@ -8,7 +8,7 @@
         .card_info_block data-card_category_id=card.card_category_id data-card_item_id=card.card_id
           - opened = (card.card_items.present? ? "false" : "true")
           - first = (card.card_item.present? ? "false" : "true")
-          .item data-open=opened data-card_id=card.id data-first_card=first
+          .item data-open=opened data-card_id=card.id data-first_card=first data-add_crumbs="true"
             .title = card.title
           .card_item__description
             .inner_content
@@ -16,7 +16,7 @@
               .close ×
     .card_categories
       - CardCategory.all.each do |category|
-        .item data-card_category_id=category.id
+        .item.js_openCategoryScripto data-card_category_id=category.id
           .item_icon
             i.icon data-icon="\e660"
           .title = category.title

@@ -10,8 +10,18 @@
 // }
 
 var open_card_item_category = function(){
+  console.log(1)
+  $("#scripto .card_categories .item").removeClass("active");
+  var curr_card_category = $("#scripto .card_categories .item[data-card_category_id='"+ $(this).data('card_category_id') +"']")
+  curr_card_category.addClass("active");
+  $("header .page__title").hide();
   $("#scripto .card_info_block").hide();
   $("#scripto .card_info_block[data-card_category_id='" + $(this).data('card_category_id') + "']").show();
+  $("header .left-col .crumbs").remove();
+  $(".card_items .item.back_item").hide();
+  $("header .left-col").append($("<ul class='crumbs'><li class='js_openCategoryScripto' data-card_category_id='" + 
+    $(this).data("card_category_id") + "'>"+ curr_card_category.find(".title").text() +"</li></ul>"));
+  $("header .left-col .js_openCategoryScripto").on('click', open_card_item_category)
 }
 
 var open_card_item = function(){
@@ -23,6 +33,18 @@ var open_card_item = function(){
     if ($(this).data('first_card')){
       data_type_prev = "category"
     }
+    // $("header .left-col .crumbs li:last").append("<span class='arrow-right'></span>");
+    if ($(this).data('add_crumbs')){
+      $("header .left-col .crumbs").append($("<li class='js_openCardScripto' data-card_id=" + 
+        $(this).data("card_id") + " data-first_card="+ $(this).data("first_card") +
+        " data-open="+ $(this).data("open") +">" + 
+        $(this).find(".title").text() + "</li>"));
+    }
+    $(".js_openCardScripto").unbind('click');
+    $(".js_openCardScripto").on('click', open_card_item);
+    if($(this).prop("tagName") == "LI"){
+      $(this).nextAll().remove();
+    }
     $("#scripto .card_items .item.back_item").data('prev_type', data_type_prev)
     $("#scripto .card_info_block[data-card_item_id='" + id + "']").show();
   }
@@ -32,6 +54,7 @@ var back_item = function(){
   var first_vis = $("#scripto .card_items .card_info_block .item:visible:first").closest(".card_info_block");
   var id = first_vis.data("card_item_id");
   $("#scripto .card_info_block").hide();
+  $("header .left-col .crumbs li:last").remove();
   if ($(this).data('prev_type') == "category"){
     find_category_id = $("#scripto .card_info_block .item[data-card_id='" + id + "']").closest(".card_info_block").data('card_category_id');
     $("#scripto .card_info_block[data-card_category_id='" + find_category_id + "']").show();
@@ -59,7 +82,7 @@ pageLoad(function(){
     $(this).closest(".card_item__description").hide();
   });
 
-  $("#scripto .card_items .card_info_block .item").on('click', open_card_item);
+  $("#scripto .card_items .card_info_block .item, .js_openCardScripto").on('click', open_card_item);
 
   $("#scripto .card_items .item[data-open='true']").on('click', function(){
     $(this).closest(".card_info_block").find(".card_item__description").css('display', 'flex');
@@ -68,5 +91,5 @@ pageLoad(function(){
 
   $("#scripto .card_items .item.back_item").on('click', back_item);
 
-  $("#scripto .card_categories .item").on('click', open_card_item_category)
-})
+  $(".js_openCategoryScripto").on('click', open_card_item_category)
+});
