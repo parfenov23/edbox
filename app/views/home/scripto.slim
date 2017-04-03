@@ -12,7 +12,7 @@
             .title = card.title
           .card_item__description
             .inner_content
-              .text = raw scripto_gsub_text(card.description)
+              .text = raw scripto_gsub_text(card.description.to_s)
               .close ×
     .card_categories
       - CardCategory.all.each do |category|
