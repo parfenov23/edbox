@@ -4,6 +4,7 @@
   src         : url('/scripto/ico/icomoon.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/scripto/ico/icomoon.woff') format('woff'), /* Pretty Modern Browsers */ url('/scripto/ico/icomoon.ttf') format('truetype'), /* Safari, Android, iOS */ url('/scripto/ico/icomoon.svg#Icons') format('svg'); /* Legacy iOS */
 }
 
+// иконки категорий 
 [class*="scripto-"]{
   font-family: 'scriptoIcon' !important;
   speak: none;
@@ -17,6 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+///////
 
 .scripto-900:before {
   content: "\e900";
