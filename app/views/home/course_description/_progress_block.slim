@@ -1,8 +1,8 @@
 - unless current_user.present?
   .progress__block
     .title.adaptive__title.h__no_margin
-      - course_type = (@course.online? ? 'Вебинар' : 'Онлайн-курс')
-      .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
+      / - course_type = (@course.online? ? 'Вебинар' : 'Онлайн-курс')
+      / .left-col.h__text_20-28 = @course.paid? ? "Данный курс доступен по подписке" : "#{course_type} доступен зарегистрированным пользователям"
       .right-col
         /- hash_class = ((@course.online? rescue false) ? 'ya_webinar_reg' : '')
         a.btn.is__blue href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
@@ -10,39 +10,39 @@
         /  .btn.is__blue.js_openFormRegistration.ya_paid_course_reg class=hash_class Регистрация
         /- else
         /  .btn.is__blue.js_openFormRegistrationAuth.ya_free_course_reg class=hash_class Бесплатная регистрация
-  - if bunch_course.present?
-    - date_complete = local_time(bunch_course.date_complete) rescue nil
-    - all_sections = bunch_course.bunch_sections
-    - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
-    - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
-    - if !@course.paid || (@course.paid && current_user.get_account_type)
-      .progress__block
-        .title.adaptive__title class=((date_complete < current_time rescue false) ? "overdue" : "")
-          .left-col Прогресс прохождения курса
-          - if (!bunch_course.complete rescue false) && (bunch_course.model_type == "group")
-            .right-col = (ltime(date_complete, "Завершить до ", 'short_min', false) rescue nil)
-            - if bunch_course.model_type == "user"
-              .edit-menu.js__select-calendar
-                .edit-date href="#"
-                  i.icon-uniE8A3
-                .hidden-calendar-wrp
-                  .hidden-calendar
-                    .calendar-header
-                      .back.icon
-                      |Выбор даты
-                    .calendar-holder
-                      .selected-value  Выберите дату
-                      .datapicker__trigger
-                  ul.hidden-list
-                    li.datapicker__trigger.js_actionBtn
-                      |Перенести дату окончания раздела
-                      - ts = "Дата оканчания курса изменена"
-                      input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
-                        data-course_id=@course.id data-text=ts data-no_schedule="true"
-                      }
-        .progress__wrp
-          .bar
-          .completed style ="width: #{complete_proc}%"
-        .info
-          .precent Пройдено #{complete_proc} %
-          .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "раздела", "разделов", "разделов")}
+- if bunch_course.present?
+  - date_complete = local_time(bunch_course.date_complete) rescue nil
+  - all_sections = bunch_course.bunch_sections
+  - all_attachments = BunchAttachment.where(bunch_section_id: all_sections.pluck(:id))
+  - complete_proc = ((100.0 / (all_attachments.count.to_f / all_attachments.all_complete.count.to_f)).round) rescue 0
+  - if !@course.paid || (@course.paid && current_user.get_account_type)
+    .progress__block
+      .title.adaptive__title class=((date_complete < current_time rescue false) ? "overdue" : "")
+        .left-col Прогресс прохождения курса
+        - if (!bunch_course.complete rescue false) && (bunch_course.model_type == "group")
+          .right-col = (ltime(date_complete, "Завершить до ", 'short_min', false) rescue nil)
+          - if bunch_course.model_type == "user"
+            .edit-menu.js__select-calendar
+              .edit-date href="#"
+                i.icon-uniE8A3
+              .hidden-calendar-wrp
+                .hidden-calendar
+                  .calendar-header
+                    .back.icon
+                    |Выбор даты
+                  .calendar-holder
+                    .selected-value  Выберите дату
+                    .datapicker__trigger
+                ul.hidden-list
+                  li.datapicker__trigger.js_actionBtn
+                    |Перенести дату окончания раздела
+                    - ts = "Дата оканчания курса изменена"
+                    input.datapicker__trigger.js__set-date.js_changeDateToDatePicker.hiddenInputDataPicker.js_changeDeadLineCourseMy{
+                      data-course_id=@course.id data-text=ts data-no_schedule="true"
+                    }
+      .progress__wrp
+        .bar
+        .completed style ="width: #{complete_proc}%"
+      .info
+        .precent Пройдено #{complete_proc} %
+        .qty #{all_sections.all_complete.count} из #{rus_case(all_sections.count, "раздела", "разделов", "разделов")}
