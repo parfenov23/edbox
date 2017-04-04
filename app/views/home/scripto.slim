@@ -23,8 +23,22 @@
               .text = raw scripto_gsub_text(card.description.to_s)
               .close ×
     .card_categories
-      - CardCategory.all.each do |category|
+      .card_setting_profile.js__openPopupEditProfile
+        i.icon.setting
+      - CardCategory.all.order("position ASC").each do |category|
         .item.js_openCategoryScripto data-card_category_id=category.id
           .item_icon
             i.icon class="scripto-#{category.icon}"
           .title = category.title
+  
+  .popupProfile
+    form.inner_content.profile__main
+      .firstName
+        input placeholder="Имя" name="user[first_name]" value=current_user.first_name
+      .lastName
+        input placeholder="Фамилия" name="user[last_name]" value=current_user.last_name
+      .companyName
+        input placeholder="Компания" name="user[social][company_name]" value=current_user.social["company_name"]
+      .btn.is__orange#submit Сохранить
+
+

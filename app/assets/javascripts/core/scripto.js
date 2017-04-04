@@ -85,8 +85,29 @@ pageLoad(function(){
   $("#scripto .card_items .card_info_block .item, .js_openCardScripto").on('click', open_card_item);
 
   $("#scripto .card_items .item[data-open='true']").on('click', function(){
-    $(this).closest(".card_info_block").find(".card_item__description").css('display', 'flex');
+    var btn = $(this);
+    btn.addClass("open_animate");
+    
+    setTimeout(function(){
+      btn.closest(".card_info_block").find(".card_item__description").css('display', 'flex');
+      btn.removeClass("open_animate");
+    }, 500);
+    
   });
+
+  $("#scripto .js__openPopupEditProfile").on('click', function(){
+    $("#inner_scripto .popupProfile").css("display", "flex");
+  });
+
+  $("#inner_scripto .popupProfile").on('click', function(e){
+    if( $(e.target).hasClass("popupProfile") ) $("#inner_scripto .popupProfile").hide();
+  });
+
+  $("#inner_scripto .popupProfile .btn").on('click', function(){
+    setTimeout(function(){
+      window.location.reload();
+    }, 500);
+  })
 
 
   $("#scripto .card_items .item.back_item").on('click', back_item);

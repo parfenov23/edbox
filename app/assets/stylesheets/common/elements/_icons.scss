@@ -51,6 +51,12 @@ i.icon {
     }
   }
 
+  &.setting {
+    &::before{
+      content : "\e660";
+    }
+  }
+
   &.image {
     &::before {
       content : "\E87A";

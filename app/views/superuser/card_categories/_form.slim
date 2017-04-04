@@ -9,5 +9,9 @@ form.form-horizontal action="#{action_url}" method="post"
     label
       | Иконка
     input.form-control name="card_category[icon]" type="text" value="#{@model.icon}"
+  .form-group
+    label
+      | Позиция
+    input.form-control name="card_category[position]" type="text" value="#{@model.position}"
   input type="hidden" name="_method" value="#{method}"
   button.btn.btn-primary type="submit" Сохранить
