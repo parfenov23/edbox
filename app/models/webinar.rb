@@ -4,7 +4,8 @@ class Webinar < ActiveRecord::Base
   has_many :user_webinars, :dependent => :destroy
   has_many :group_webinars, dependent: :destroy
 
-  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time]).order("date_start ASC").select { |web| web.id if !web.stop? }) }
+  scope :start_close, ->(time) { where(id: where(["date_start >= ?", time-2.hour]).order("date_start ASC").select { |web| web.id if !web.stop? }) }
+  scope :courses, -> { Course.where(id: all.map{|w| w.course.id rescue nil}) }
 
   def transfer_to_json
     as_json
@@ -59,25 +60,33 @@ class Webinar < ActiveRecord::Base
     eventStatus == 'STOP'
   end
 
+  def active?
+    eventStatus == 'ACTIVE'
+  end
+
   def eventCreate
     webinar_title = attachment.attachmentable.course.title rescue Time.now.to_i
+    
     resp = JSON.parse(event_client.post('events', 
-    {
-      name: webinar_title, startsAt: date_to_json, 
-      description: webinar_title, access: 4
+      {
+        name: webinar_title, startsAt: date_to_json, 
+        description: webinar_title, access: 4
       }.compact))
-    #binding.pry
     if resp['eventId'].present?
       self.event = resp['eventId'].to_i
+      self.session = createSession
+      self.session = self.session.nil? ? eventInfo["eventSessions"].first["id"] : self.session
       save
     end
   end
 
   def eventUpdate
+    self.session = self.session.nil? ? eventInfo["eventSessions"].first["id"] : self.session
+    save
     h_date = {
-      name: attachment.title,
-      startsAt: date_to_json, 
-      description: attachment.title, access: 4
+        name: attachment.title,
+        startsAt: date_to_json, 
+        description: attachment.title, access: 4
     }
     Thread.new {
       event_client = ::ApiClients::WebinarRu.new 
@@ -94,7 +103,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventUrl
-    session_id = eventSession['id']
+    session_id = (eventSession['id'] rescue nil)
     if url.blank? && session_id.present?
       self.url = "https://events.webinar.ru/adconsult/#{event}/stream/#{session_id}"
       save
@@ -102,40 +111,40 @@ class Webinar < ActiveRecord::Base
     url
   end
 
-  def eventRecordUrl
-    eventUrl.gsub("stream", "record")
-  end
+  # def eventRecordUrl
+  #   eventUrl.gsub("stream", "record") rescue nil
+  # end
 
-  def eventRecordInfo 
-    JSON.parse(event_client.get("records?id=#{event}", {}))
-  end
+  # def eventRecordInfo 
+  #   JSON.parse(event_client.get("records?id=#{event}", {}))
+  # end
 
-  def eventRecords(find=nil)
-    resp = JSON.parse(event_client.get("records", {}))
-    if find.present?
-      resp = resp.detect {|f| f["link"] == find}
-    end
-    resp
-  end
+  # def eventRecords(find=nil)
+  #   resp = JSON.parse(event_client.get("records", {}))
+  #   if find.present?
+  #     resp = resp.detect {|f| f["link"] == find}
+  #   end
+  #   resp
+  # end
 
-  def eventRecord
-    id_note = eventRecords(eventRecordUrl)["id"]
-    resp = JSON.parse(event_client.post("records/#{id_note}/conversions", {}))
-    if resp.present?
-      self.video_id = resp["id"]
-      save
-    end
-    resp
-  end
+  # def eventRecord
+  #   id_note = eventRecords(eventRecordUrl)["id"]
+  #   resp = JSON.parse(event_client.post("records/#{id_note}/conversions", {}))
+  #   if resp.present?
+  #     self.video_id = resp["id"]
+  #     save
+  #   end
+  #   resp
+  # end
 
-  def eventRecordStatus
-    if video_id.present? 
-      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
-    else
-      eventRecord
-      JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
-    end
-  end
+  # def eventRecordStatus
+  #   if video_id.present? 
+  #     JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+  #   else
+  #     eventRecord
+  #     JSON.parse(event_client.get("records/conversions/#{video_id}", {}))["state"] 
+  #   end
+  # end
 
   def eventFileInfo
     JSON.parse(event_client.get("fileSystem/file/#{video_id}", {}))
@@ -146,12 +155,19 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventSession
+    # if eventInfo["eventSessions"].blank?
+    #   # session = event_client.post("events/#{event}/sessions", {})
+    #   # session = JSON.parse(session)
+    # end
+    # session = eventInfo['eventSessions'].first
+    # #binding.pry
+    # session["id"] = session["eventSessionId"] if session["eventSessionId"].present?
+    {"id" => session}
+  end
+
+  def createSession
     session = event_client.post("events/#{event}/sessions", {})
-    session = JSON.parse(session)
-    session = eventInfo['eventSessions'].first if session["error"].present?
-    #binding.pry
-    session["id"] = session["eventSessionId"] if session["eventSessionId"].present?
-    session
+    JSON.parse(session)["id"]
   end
 
   def eventActive(status = 'ACTIVE')
@@ -175,28 +191,26 @@ class Webinar < ActiveRecord::Base
   end
 
   def eventRegUser(user, role='GUEST')
-    unless ligament_leads.where(user_id: user.id).present?
-      HomeMailer.reg_webinar(self, user).deliver
-    else
-      HomeMailer.reg_webinar_lead(self, user).deliver
-    end
-    # binding.pry
+    HomeMailer.reg_webinar_lead(self, user).deliver if ligament_leads.where(user_id: user.id).present?
+
     resp = postRegUser({
         email: user.email,
         name: user.first_name, 
         secondName: user.last_name,
+        sendEmail: false,
         role: role
       })
     user_webinar = UserWebinar.find_or_create_by(webinar_id: id, user_id: user.id)
     user_webinar.update(url: resp['link'], participant_id: resp['participationId']) if (resp['error'].blank? rescue resp == "")
+    user_webinar
   end
 
   def eventRegDemoUser
     resp = postRegUser({
-      email: SecureRandom.hex(6).to_s + "@bataline.ru",
-      name: "Участник", 
-      secondName: "Вебинара",
-      role: 'GUEST'
+        email: SecureRandom.hex(6).to_s + "@bataline.ru",
+        name: "Участник", 
+        secondName: "Вебинара",
+        role: 'GUEST'
       })
     resp
   end
@@ -208,16 +222,25 @@ class Webinar < ActiveRecord::Base
     find_users_webinar.destroy_all
   end
 
-  def create_job(date_time_start = (date_start - 5.minute))
-    WebinarMailJob.run(date_time_start, id)
+  def self.soon_began_webinar(id)
+    webinar = Webinar.find(id)
+    webinar.user_webinars.each do |user_webinar|
+      user = user_webinar.user
+      HomeMailer.soon_began_webinar(user, webinar).deliver
+    end
+  end
+
+  def create_job(date_time_start = (date_start - 15.minute))
+    jid = MailerWorker.perform_in(date_time_start, type: "soon_began_webinar", id: id)
+    update(jid: jid)
   end
 
   def job
-    WebinarMailJob.find(id)
+    MailerWorker.find_by_id(jid)
   end
 
   def remove_job
-    WebinarMailJob.remove(id)
+    MailerWorker.delete(jid)
   end
 
   def rebuild_job
@@ -226,7 +249,7 @@ class Webinar < ActiveRecord::Base
   end
 
   def postRegUser(params)
-    JSON.parse(event_client.post("events/#{event}/register", params))
+    session.present? ? JSON.parse(event_client.post("eventsessions/#{session}/register", params)) : {}
   end
 
   private
@@ -240,6 +263,6 @@ class Webinar < ActiveRecord::Base
     current_time.present? ? {
       date: {year: current_time.year, month: current_time.month, day: current_time.day}, 
       time: {hour: current_time.hour, minute: current_time.min} 
-      } : {}
-    end
+    } : {}
   end
+end
