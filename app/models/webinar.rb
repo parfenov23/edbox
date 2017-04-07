@@ -75,11 +75,14 @@ class Webinar < ActiveRecord::Base
     if resp['eventId'].present?
       self.event = resp['eventId'].to_i
       self.session = createSession
+      self.session = self.session.nil? ? eventInfo["eventSessions"].first["id"] : self.session
       save
     end
   end
 
   def eventUpdate
+    self.session = self.session.nil? ? eventInfo["eventSessions"].first["id"] : self.session
+    save
     h_date = {
         name: attachment.title,
         startsAt: date_to_json, 
