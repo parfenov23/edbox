@@ -73,9 +73,9 @@
         /  | обычно это занимает не более 24 часов, к вам на почту придет уведомление.
         .action__block
           a.btn.btn-flat href="/tariff" ОТМЕНА
-          /.btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
+          .btn.is__blue.js_submitFormEditTariff ОПЛАТИТЬ
           - class_btn = current_user.accounts.present? ? "js_paymentAccount" : "js_openPopupAddCard"
-          .btn.is__blue.js_orderBill Отправить заявку
+          / .btn.is__blue.js_orderBill Отправить заявку
       .help__info
         p По всем вопросам звоните: 8 800 500 94 70
 

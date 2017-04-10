@@ -1,10 +1,10 @@
 class CloudPayments
   def public_id
-    $env_mode.prod? ? "pk_2377a9bea1c81aa78ec0932c3ac6a" : "pk_7422925e4c9acd299acd41748f643"
+    $env_mode.prod? ? "pk_c541b3e9299230109c9182224ec4f" : "pk_1e5ab229cac0bd1658806cb8caa0c"
   end
 
   def api_secret
-    $env_mode.prod? ? "ff962d80ad7802811cf0c071e009be02" : "426e9dd0b41d71ed8fb51f953efc1ed5"
+    $env_mode.prod? ? "68baad20d3f126541bcf3eb2929b03b1" : "53bd01213e8ed0e9b09a816ccc2a0322"
   end
 
   def currency
