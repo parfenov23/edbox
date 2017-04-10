@@ -29,7 +29,7 @@ form.form-horizontal action="#{action_url}" method="post"
   .form-group
     label
       | Активировать?:
-    = check_box("user", "active", {checked: active})
+    = check_box("user", "active", {checked: @user.active})
   /.form-group
   /  label
   /    | Оплачено?:
