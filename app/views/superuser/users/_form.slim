@@ -26,6 +26,10 @@ form.form-horizontal action="#{action_url}" method="post"
       | Ведущий?:
     - check = params[:leading].nil? ? @user.leading : (params[:leading].to_s == "true" ? true : false)
     = check_box("user", "leading", {checked: check})
+  .form-group
+    label
+      | Активировать?:
+    = check_box("user", "active", {checked: active})
   /.form-group
   /  label
   /    | Оплачено?:
