@@ -55,8 +55,8 @@ var eventRegUser = function () {
             data: {user_id: user_id}
         }).success(function () {
             if (btn.data('alert') != false){
-                var tsucces = "Вебинар начнется " + btn.closest('form').find('.title').text() + ", мы уведомим вас за 3 часа, " +
-                    "а так же за 15 минут до начала вебинара на электронную почту " +
+                var tsucces = "Вебинар начнется " + btn.closest('form').find('.title').text() + ", мы уведомим вас " +
+                    "за 15 минут до начала вебинара на электронную почту " +
                     $('.menu__user .login').text();
                 warning(tsucces, 'OK');
                 $('.js_actionYesStart').on('click', function () {window.location.reload()});
