@@ -1,6 +1,6 @@
 .profile__new
   .profile__section.sub_info__block
-    .main__title Ваш тариф: «#{(sub.user? ? 'Индивидульный' : 'Корпоративный')}»
+    .main__title Ваш тариф: «#{(Tariff.find_by_type_tariff(sub.user? ? 'person' : 'corp').title rescue nil)}»
     = render "home/tariff/description", {sub: sub}
     - unless (current_user.corporate? && !current_user.director?)
       .action__block

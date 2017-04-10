@@ -255,6 +255,7 @@ GEM
       json (~> 1.7)
       money (< 7.0.0)
       nokogiri (~> 1.4)
+    petrovich (1.1.1)
     pg (0.18.3)
     pg-hstore (1.2.0)
     pry (0.10.1)
@@ -484,6 +485,7 @@ DEPENDENCIES
   mini_magick (= 4.2.7)
   multi_xml
   net-ssh (~> 2.7.0)
+  petrovich (~> 1.0)
   pg (= 0.18.3)
   pry
   rack-fiber_pool

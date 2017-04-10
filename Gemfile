@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'actionpack-page_caching'
 gem 'gibbon'
 gem 'telegram-bot-ruby'
+gem 'petrovich', '~> 1.0'
 
 # ============= HTML to IMG
 gem 'imgkit'

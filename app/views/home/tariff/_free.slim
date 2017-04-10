@@ -1,5 +1,5 @@
 .profile__new
   .profile__section.sub_info__block
-    .main__title Ваш тариф: «Бесплатный»
+    .main__title Ваш тариф: «#{Tariff.find_by_type_tariff("free").title rescue nil}»
     .description
     p Действует бессрочно
