@@ -5,13 +5,14 @@ module Api::V1
         IpAddress: request.ip,
         AccountId: current_user.email,
         Name: params[:name],
-        JsonData: {updating_card: true}.to_json,
+        JsonData: {updating_card: false}.to_json,
         Currency: $cloud_payments.currency,
         Description: "Добавление карты"
       }
-      response = $cloud_payments.gateway.purchase(params[:cryptogram], 1, options, true)
+      response = $cloud_payments.gateway.authorize(params[:cryptogram], 1, options, true)
       if response.success?
         resp = success_transaction(response.params)
+        void(resp)
       else
         response_params = response.params
         if response_params and response_params['PaReq'].present?
@@ -66,6 +67,7 @@ module Api::V1
       response = $cloud_payments.gateway.check_3ds(params[:MD], params[:PaRes])
       if response.success?
         resp = success_transaction(response.params)
+        void(resp)
       else
         resp = {message: response.message}
       end
@@ -78,6 +80,10 @@ module Api::V1
     end
 
     private
+
+    def void(resp)
+      $cloud_payments.gateway.void(resp[:json][:response]["TransactionId"])
+    end
 
     def order_bill_to_text
       "Пользователь ID: #{@user.id}, Имя: #{@user.full_name}, Email: #{@user.email}, Количество месяцев: #{@params[:count_month]},"+
