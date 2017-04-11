@@ -99,11 +99,13 @@ module Api::V1
      end
 
      def create_subscription(params_sub)
-      user = User.where(email: params_sub[:email]).last
-      user.present? ? params_sub[:user_id] = user.id : params_sub[:type] = "new_user"
+      @user = User.where(email: params_sub[:email]).last
+      @user.present? ? params_sub[:user_id] = @user.id : params_sub[:type] = "new_user"
       subscription = Subscription.build(params_sub)
       subscription.active = true
       subscription.save
+      @params = params_sub
+      Thread.new { ApiClients::TelegramCli.new.send_message(order_bill_to_text) } if !$env_mode.dev?
       subscription
     end
   end
