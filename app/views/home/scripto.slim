@@ -1,4 +1,4 @@
-= render "home/header/header", {namePage: "scripto", titlePage: "СкрипТо"}
+= render "home/header/header", {namePage: "scripto", titlePage: "Помощник продаж"}
 - @footer = false
 - @white_body = true
 .inner-content#inner_scripto
@@ -28,7 +28,9 @@
       - CardCategory.all.order("position ASC").each do |category|
         .item.js_openCategoryScripto data-card_category_id=category.id
           .item_icon
-            i.icon class="scripto-#{category.icon}"
+            img.default src="/scripto/ico/#{category.icon}.png"
+            img.active src="/scripto/ico/#{category.icon}_a.png"
+            / i.icon class="scripto-#{category.icon}"
           .title = category.title
   
   .popupProfile

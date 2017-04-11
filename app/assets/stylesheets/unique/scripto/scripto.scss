@@ -48,6 +48,7 @@
 #inner_scripto{
   background-color: white;
   min-height: 100%;
+  padding-top: 48px;
 }
 #scripto{
   width: 100%;
@@ -92,7 +93,7 @@
         transition-duration: 0.5s;
         transition-property: transform;
         transform: rotateY(180deg) scale(1.1);
-        animation: animationFrames linear 1s;
+        animation: animationFrames linear 0.5s;
         animation-iteration-count: 1;
         // animation-delay: 0.5s;
         animation-direction: alternate;
@@ -232,17 +233,20 @@
       padding: 14px;
       cursor: pointer;
       // i.icon::before{ content: '\e660'; }
-      &:hover{
-        transition-duration: 0.3s;
-        transition-property: transform;
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-      }
+      // &:hover{
+      //   transition-duration: 0.3s;
+      //   transition-property: transform;
+      //   -webkit-transform: scale(1.1);
+      //   transform: scale(1.1);
+      // }
       &:last-child{
         margin-right: 0px;
       }
       .item_icon{
         margin-top: 35px;
+        img.active{
+          display: none;
+        }
       }
       .title{
         height: 64px;
@@ -252,6 +256,14 @@
       &.active{
         background: $primaryColor;
         color: #fff;
+        .item_icon{
+          img.default{
+            display: none;
+          }
+          img.active{
+            display: inline-block;
+          }
+        }
       }
     }
   }
