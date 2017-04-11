@@ -1,0 +1,35 @@
+#inner_scripto{
+  .card_welcome{
+    .description{
+      width: 100%;
+    }
+  }
+  .card_items{
+    display: block;
+    margin-bottom: 240px;
+    .item.back_item{
+      max-width: 100%;
+      margin-right: 0;
+    }
+    .card_info_block{
+      width: 100%;
+      .item{
+        max-width: 100%;
+        margin-right: 0;
+      }
+    }
+  }
+  .card_categories{
+    .item{
+      height: 64px;
+      width: 70px;
+      margin-bottom: 0px;
+      .item_icon{
+        margin-top: 4px;
+      }
+      .title{
+        display: none;
+      }
+    }
+  }
+}

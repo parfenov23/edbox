@@ -19,7 +19,7 @@ var open_card_item_category = function(){
   $("header .left-col .crumbs").remove();
   $(".card_items .item.back_item").hide();
   $(".card_welcome").hide();
-  $("header .left-col").append($("<ul class='crumbs'><li class='js_openCategoryScripto' data-card_category_id='" + 
+  $("header .left-col .page__children").before($("<ul class='crumbs'><li class='js_openCategoryScripto' data-card_category_id='" + 
     $(this).data("card_category_id") + "'>"+ curr_card_category.find(".title").text() +"</li></ul>"));
   $("header .left-col .js_openCategoryScripto").on('click', open_card_item_category)
 }
