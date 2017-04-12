@@ -82,6 +82,12 @@ $(document).ready(function () {
     $(document).on('click', '.js_openChangeProfile', function(){
         $(this).closest(".profile__block").removeClass("close");
     });
+    $(document).on('click', '.js_closeChangeProfile', function(){
+        $(this).closest(".profile__block").addClass("close");
+    })
+    $(document).on('click', '.js_closeEditPassword', function(){
+        $(this).closest(".profile__block").removeClass("open");
+    })
 
     $("#profile input[name='user[social][phone]']").mask("+7 (999) 999-9999");
     var container = $(".profile__block input[name='user[city]']");

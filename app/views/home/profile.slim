@@ -58,7 +58,8 @@
         /     'понадобится вам для участия в различных акциях и
         /     |специальных предложениях от #{$env_mode.name_title}.
       .btn-holder
-        .btn.btn-flat.js_openChangeProfile href="#" Изменить
+        .btn.btn-flat.js_openChangeProfile Изменить
+        .btn.btn-flat.js_closeChangeProfile Отменить
         .btn.btn-flat#submit сохранить
 
 
@@ -77,4 +78,5 @@
           input type="password" name="password_repeat" placeholder="Повторите новый пароль"
           hr
         .btn-holder
+          .btn.btn-flat.js_closeEditPassword Отменить
           .btn.btn-flat#submit сохранить
