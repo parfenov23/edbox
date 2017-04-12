@@ -31,8 +31,9 @@ module NavLinkHelper
     [
       # {title: "Все вместе", link: "/courses"},
       # {title: "Онлайн-курсы", link: "/courses/course", type: "course"},
-      {title: "Вебинары", link: "/courses/online", type: "online"},
+      # {title: "Вебинары", link: "/courses/online", type: "online"},
       {title: "Записи прошедших вебинаров", link: "/courses/material", type: "online"},
+      {title: "Рабочая группа в Facebook", link: "https://www.facebook.com/groups/adconsult2017", type: "online"},
       {title: "Путешествия и мероприятия ADCONSULT.Network", link: "/courses/instrument", type: "instrument"}
     ]
   end
