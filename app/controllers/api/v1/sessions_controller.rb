@@ -31,10 +31,15 @@ module Api::V1
       if (user.save rescue false)
         session[:user_key] = user["user_key"]
         Rails.cache.clear rescue nil
-        ApiClients::Mailchimp.new.create_member({email_address: user.email, status: "subscribed", 
-          :merge_fields=>{:FNAME=>user.first_name, :LNAME=>user.last_name, 
-            MMERGE3: user.social["phone"], CLASS: 0, KID_NAME: "", PROMOCODE: "", TARIF: "Бесплатно"}
-            })
+        if !$env_mode.dev?
+          param_reg = {email_address: user.email, status: "subscribed", 
+            :merge_fields=>{:FNAME=>user.first_name, :LNAME=>user.last_name, 
+              MMERGE3: user.social["phone"], CLASS: 0, KID_NAME: "", PROMOCODE: "", TARIF: "Бесплатно"}
+              }
+          ApiClients::Mailchimp.new.create_member(param_reg)
+          text_reg_t = "Регистрация в системе:\nEmail:#{user.email}\nИмя:#{user.full_name}\nТелефон:#{user.social['phone']}"
+          Thread.new { ApiClients::TelegramCli.new.send_message(text_reg_t) }
+        end
         render json: user.transfer_to_json
       else
         company.destroy unless (company.nil? rescue true)

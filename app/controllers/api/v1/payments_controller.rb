@@ -86,8 +86,8 @@ module Api::V1
     end
 
     def order_bill_to_text
-      "Пользователь ID: #{@user.id}, Имя: #{@user.full_name}, Email: #{@user.email}, Количество месяцев: #{@params[:count_month]},"+
-      "Сумма: #{@params[:sum]} рублей, Промо код: #{@params[:promo]}, Телефон: #{@user.social['phone']}, Город: #{@user.city}"
+      "Пользователь ID: #{@user.id}\nИмя: #{@user.full_name}\nEmail: #{@user.email}\nКоличество месяцев: #{@params[:count_month]}\n"+
+      "Сумма: #{@params[:sum]} рублей\nПромо код: #{@params[:promo]}\nТелефон: #{@user.social['phone']}\nГород: #{@user.city}"
     end
 
     def success_transaction(result)
