@@ -1,6 +1,31 @@
 #contacts{
+  padding-top: 0;
   .header__title{
     font-size: 24px;
     text-align: center;
+    margin-bottom: 24px;
+  }
+  .item__contacts{
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #ababab;
+    padding-bottom: 14px;
+    .item{
+      .title{
+        margin-bottom: 14px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      width: 50%;
+      margin-right: 14px;
+      .nC{
+        color: rgb(123, 123, 123);
+        margin-bottom: 4px;
+        a{
+          color: blue;
+        }
+      }
+    }
   }
 }
