@@ -43,12 +43,12 @@ class HomeMailer < ActionMailer::Base
   end
 
   def reg_webinar(webinar, user)
-    @webinar = webinar
-    @attachment = @webinar.attachment
-    @user = user
-    @date_start = (@webinar.date_start + User.time_zone.hour)
+    # @webinar = webinar
+    # @attachment = @webinar.attachment
+    # @user = user
+    # @date_start = (@webinar.date_start + User.time_zone.hour)
 
-    mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
+    # mail(:to => @user.email, :subject => "Вы зарегистрировались на вебинар #{@attachment.title}")
   end
 
   def reg_course(course, user)
@@ -86,19 +86,19 @@ class HomeMailer < ActionMailer::Base
   end
 
   def unreg_webinar(webinar, user)
-    @webinar = webinar
-    @attachment = @webinar.attachment
-    @user = user
+    # @webinar = webinar
+    # @attachment = @webinar.attachment
+    # @user = user
 
-    mail(:to => @user.email, :subject => "Вы отменили регистрацию на вебинар #{@attachment.title}")
+    # mail(:to => @user.email, :subject => "Вы отменили регистрацию на вебинар #{@attachment.title}")
   end
 
   def soon_began_webinar(user, webinar)
-    @webinar = webinar
-    @attachment = @webinar.attachment
-    @user = user
+    # @webinar = webinar
+    # @attachment = @webinar.attachment
+    # @user = user
 
-    mail(:to => @user.email, :subject => "Через 15 минут начнется вебинар #{@attachment.title}")
+    # mail(:to => @user.email, :subject => "Через 15 минут начнется вебинар #{@attachment.title}")
   end
 
   def support_back(user, text)
