@@ -3,29 +3,32 @@ header.landing__header
   .logo
     a href=""
       img src="/assets/adcons__grey.svg"
-  .logo__legend Онлайн-университет по продажам рекламы
-  .action__block
-    a.btn.btn-flat href="/sign_in" ВОЙТИ
-    a.btn.btn-flat.is__border href="/sign_up" ЗАРЕГИСТРИРОВАТЬСЯ
+  .logo__legend Онлайн-университет рекламного рынка
+  .action__block style="width: 366px;"
+    a.btn.is__blue href="/sign_in" ВОЙТИ
+    a.btn.btn-flat.is__border href="/sign_up" зарегистрироваться бесплатно
 
 section.landing__banner
   .landing__inner
     // is__white
     .section__title
-      |Онлайн-курсы, вебинары в прямом эфире
+      |Онлайн-курсы и вебинары #{$env_mode.name_title} от ведущих практиков рекламного бизнеса,
       br
-      |от ведущих практиков рекламного бизнеса
-      br
-      |и большой архив скриптов и шаблонов
+      |а так же большой архив скриптов и шаблонов для работы в рекламе
+      / |Онлайн-курсы, вебинары в прямом эфире
+      / br
+      / |от ведущих практиков рекламного бизнеса
+      / br
+      / |и большой архив скриптов и шаблонов
     .action__block
-      a.btn.btn-flat.is__border.is__white href="/sign_up" НАЧАТЬ БЕСПЛАТНО
+      a.btn.btn-flat.is__border.is__white href="/sign_in" зарегистрироваться бесплатно
       /.btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
       a.btn.is__blue href="/courses" Перейти в библиотеку
     .banner__img
       img src="/assets/landing__banner_img.png"
       iframe allowfullscreen="" frameborder="0" width="398" height="250" mozallowfullscreen="" src="/uploads/prev_nout.png" webkitallowfullscreen=""
     .description
-      '#{$env_mode.name_title} – это десятки онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
+      '#{$env_mode.name_title} - это сотни онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
       |вебинары, тесты и аттестация для сотрудников рекламных агентств, медиакомпаний и СМИ.
 section.landing__counter
   .landing__inner
@@ -56,9 +59,9 @@ section.landing__courses__list
         });
       - courses.first(6).each do |course|
         = render "course/course", {course: course, type: 'courses'}
-    - if courses.count > 6
+    - if courses.count > 3
       .action__block
-        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
+        a.btn.is__blue style="font-size: 16px;" href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
 section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас на платформе более 150 уникальных уроков, тестов, материалов и образовательных курсов, которые помогут вам продавать больше и чаще
@@ -96,7 +99,7 @@ section.landing__advantages__list
         figcaption
           .title Заставить клиента поверить в ваши услуги или продукт
     .action__block
-      a.btn.is__blue href="/courses" ПЕРЕЙТИ В БИБЛИОТЕКУ
+      a.btn.is__blue style="font-size: 16px;" href="/courses" ПЕРЕЙТИ В БИБЛИОТЕКУ
 section.landing__question
   .landing__inner
     .section__title.is__white Возможно ли постоянно учиться продажам рекламы у ведущих экспертов страны по цене чашки кофе в день?
