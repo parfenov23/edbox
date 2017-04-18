@@ -37,7 +37,7 @@ module Api::V1
               MMERGE3: user.social["phone"], CLASS: 0, KID_NAME: "", PROMOCODE: "", TARIF: "Бесплатно"}
               }
           ApiClients::Mailchimp.new.create_member(param_reg)
-          text_reg_t = "Регистрация в системе:\nEmail:#{user.email}\nИмя:#{user.full_name}\nТелефон:#{user.social['phone']}"
+          text_reg_t = "Регистрация в системе:\\nEmail:#{user.email}\\nИмя:#{user.full_name}\\nТелефон:#{user.social['phone']}"
           Thread.new { ApiClients::TelegramCli.new.send_message(text_reg_t) }
         end
         render json: user.transfer_to_json
