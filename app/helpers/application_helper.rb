@@ -84,6 +84,10 @@ module ApplicationHelper
     @page_footer = page_footer
   end
 
+  def split_number(number)
+    number.to_s.gsub(/\D/, '').reverse.gsub(/.{3}/, '\0 ').reverse
+  end
+
   def page_footer
     @page_footer.nil? ? true : @page_footer
   end
