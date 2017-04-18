@@ -12,25 +12,26 @@
         .title У вас нет привязанной карты
         .action__block
           .btn.is__blue.js_openPopupAddCard Добавить
-
-    .user_payments_history
-      .payments_history_table
-        .psevdo__table__header
-          .course__title__list
-            .wrp
-              .item Номер транзакции
-              .item Дата/Время
-              .item Карта
-              .item Сумма
-        .psevdo__table__body
-          - current_user.incoming_moneys.each do |im|
-            - data = im.data
-            - if data["TransactionId"].present? && data["Amount"].to_i > 1
-              .status__table
-                .item = data["TransactionId"]
-                .item = data["ConfirmDateIso"].gsub("T", " ")
-                .item #{data["CardFirstSix"]}****#{data["CardLastFour"]}
-                .item #{split_number(data["Amount"])} ₽
+    - all_im = current_user.incoming_moneys
+    if all_im.present?
+      .user_payments_history
+        .payments_history_table
+          .psevdo__table__header
+            .course__title__list
+              .wrp
+                .item Номер транзакции
+                .item Дата/Время
+                .item Карта
+                .item Сумма
+          .psevdo__table__body
+            - all_im.each do |im|
+              - data = im.data
+              - if data["TransactionId"].present? && data["Amount"].to_i > 1
+                .status__table
+                  .item = data["TransactionId"]
+                  .item = data["ConfirmDateIso"].gsub("T", " ")
+                  .item #{data["CardFirstSix"]}****#{data["CardLastFour"]}
+                  .item #{split_number(data["Amount"])} ₽
 
 
 = render "common/form_add_card_pay"
