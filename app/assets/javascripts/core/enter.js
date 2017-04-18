@@ -310,9 +310,12 @@ $(document).ready(function () {
                 }
             });
         };
-        if ($(".js_registrationUser input.error").length == 0){
-            include_phone($('.form-control[type="tel"]'), endAction);
-        }
+        setTimeout(function(){
+            if ($(".js_registrationUser input.error").length == 0){
+                include_phone($('.form-control[type="tel"]'), endAction);
+            }
+        }, 100);
+
     });
 
     $("form.auth__enter input.validInput").change(function (e) {
@@ -402,6 +405,7 @@ $(document).ready(function () {
         $.each($('input'), function (k, el) {
             var block = $(el);
             if (! block.val()){
+                if (block.attr("type") == "checkbox") block.removeClass('error');
                 block.addClass('error').closest(".com__input-item").addClass("error");
             } else {
                 block.removeClass('error').closest(".com__input-item").removeClass("error");
@@ -424,7 +428,10 @@ $(document).ready(function () {
         });
 
         if (! $('input.checkbox').is(':checked')){
-            $('input.checkbox').addClass('error');
+            setTimeout(function(){
+                $('input.checkbox').addClass('error');
+            }, 50);
+            
         }
         var inputPass = $("input[name='user[password]']");
         var inputRePass = $("input[name='password_repeat']");

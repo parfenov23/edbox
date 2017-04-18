@@ -16,7 +16,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
     - else
       a.page__icon.item href=backUrl
         i.back.icon
-    .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : raw("<img src='/assets/adcons__grey.svg'>")
+    .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : raw("<a href='/'><img src='/assets/adcons__grey.svg'></a>")
     .page__children
       - menu_nav_links(namePage).each do |item|
         - add_params = item[:add_params].present? ? item[:add_params] : {}

@@ -1,4 +1,6 @@
-= render "home/header/header", {namePage: "other_white", titlePage: @course.title}
+- header_merge_param = !current_user.present? ? {btnBack: true, backUrl: "/courses"} : {}
+- header_params = {namePage: "other_white", titlePage: @course.title}.merge!(header_merge_param)
+= render "home/header/header", header_params
 = render "home/course_description/teaser"
 - course_bunch_tags = @course.bunch_tags
 - bunch_course = current_user.bunch_courses.where({course_id: @course.id, model_type: ['user', 'group']}).last rescue nil
@@ -11,7 +13,7 @@
   = render "home/course_description/popup/notify_next"
 
 .course__description-content.oh__nihuyase-block
-  - course_title = @course.paid ? @course.title.to_s : @course.title.to_s + ' (бесплатный)'
+  - course_title = @course.title.to_s 
 
   = render "home/course_description/anonce_block_action", {bunch_course: bunch_course}
 
