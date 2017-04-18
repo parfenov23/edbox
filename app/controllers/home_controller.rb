@@ -22,7 +22,7 @@ class HomeController < ActionController::Base
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
       end
     else
-      redirect_to 'http://naukacity.ru/online'
+      render :layout => false
     end
   end
 
