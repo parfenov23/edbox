@@ -84,6 +84,8 @@
                 -webkit-animation: rippleAnimation .3s ease-out;
             }
         }
+        
+        // checkbox
       &.error:not(:checked) + label:before {
         border: 1px solid #f8538d;
         animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;/*Вот эта строчка нужна для того, чтобы работало дрожание*/
