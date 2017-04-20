@@ -19,7 +19,7 @@ class HomeController < ActionController::Base
       unless current_user.contenter
         redirect_to '/courses/online'
       else
-        (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/cabinet')
+        (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/courses/online')
       end
     end
   end
