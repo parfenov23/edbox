@@ -13,7 +13,7 @@
         .action__block
           .btn.is__blue.js_openPopupAddCard Добавить
     - all_im = current_user.incoming_moneys
-    if all_im.present?
+    -if all_im.present?
       .user_payments_history
         .payments_history_table
           .psevdo__table__header

@@ -135,7 +135,7 @@ module ApplicationHelper
 
   def profile_header_text(sub=nil)
     if sub.nil?
-      {title: "У вас стартовый аккаунт", desc: "Вы можете просматривать только бесплатные курсы и материалы", show_btn: true}
+      {title: "У вас базовый аккаунт", desc: "Вы можете просматривать только бесплатные курсы и материалы", show_btn: true}
     else
       desc = if !sub.overdue? && !sub.overdue?(7)
                "Действует до #{ltime(sub.date_to, '', 'long_without_time')}"
@@ -149,7 +149,7 @@ module ApplicationHelper
              else
                "Подписка закончилась"
              end
-      sub_title = sub.company? ? "Корпоративная подписка" : "Базовая подписка"
+      sub_title = sub.company? ? "Корпоративная подписка" : "Стартовая подписка"
       sub_class = sub.overdue?(3) ? "overdue" : ""
       sub_btn = sub.overdue?(7) ? true : false
       {title: sub_title, desc: desc, class: sub_class, show_btn: sub_btn}

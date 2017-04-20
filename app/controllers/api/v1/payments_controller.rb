@@ -51,6 +51,8 @@ module Api::V1
           current_user.incoming_moneys.create(data: response.params)
           current_user.sub_active(subscription)
           result = true
+        else
+          subscription.destroy
         end
       else
         subscription.destroy

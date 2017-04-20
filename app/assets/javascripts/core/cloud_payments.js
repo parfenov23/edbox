@@ -26,6 +26,10 @@ var includePaymentMethods = function () {
                 var data_json = data.responseJSON;
                 if (data_json.type == '3ds'){
                     updateForm3ds(data_json.response);
+                } else if(data_json.type == 'error') {
+                    show_error(data_json.response.message, 3000);
+                    openInfoProgress('close');
+                    $("#paymentFormSample").show();
                 } else {
                     show_error('Ошибка', 3000);
                 }
@@ -98,6 +102,8 @@ var purchase_pay = function () {
         } else {
             show_error('Произошла ошибка', 3000);
         }
+    }).error(function () {
+        show_error('Недостаточно средств', 3000);
     });
 };
 
