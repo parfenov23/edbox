@@ -105,7 +105,7 @@ class HomeController < ActionController::Base
   end
 
   def courses
-    redirect_to "/courses/online" if params[:type].blank?
+    redirect_to "/courses/material" if params[:type].blank? || params[:type] == "online"
     
     @courses_cid = nil
     type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
