@@ -258,7 +258,7 @@ $(document).ready(function () {
                 show_error('Успешно', 3000);
                 setTimeout(function () {
                     if (form.data('redirect') == undefined || form.data('redirect') == ''){
-                        window.location.href = back_url('find', ['/courses', "/course_description", "/attachment"], '/cabinet');
+                        window.location.href = '/courses/material';
                     } else {
                         window.location.href = form.data('redirect');
                     }

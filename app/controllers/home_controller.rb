@@ -17,7 +17,7 @@ class HomeController < ActionController::Base
     @block_registr = false
     unless current_user.nil?
       unless current_user.contenter
-        redirect_to '/courses/online'
+        redirect_to '/courses/material'
       else
         (Rails.env.production?) ? (redirect_to '/contenter/courses') : (redirect_to '/courses/online')
       end
