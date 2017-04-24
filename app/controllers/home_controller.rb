@@ -101,7 +101,7 @@ class HomeController < ActionController::Base
 
   def courses
     @courses_cid = nil
-    type_course = params[:type].present? ? params[:type] : ['course', 'online', 'material']
+    type_course = params[:type].present? ? params[:type] : (redirect_to "/courses/course")
     @courses = Course.publication.where(type_course: type_course)
     course_sorting
     @courses = @courses.where(type_course: type_course, public: true)

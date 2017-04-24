@@ -1,5 +1,5 @@
 - header_merge_param = !current_user.present? ? {btnBack: true, backUrl: "/courses"} : {}
-- header_params = {namePage: "other_white", titlePage: @course.title}.merge!(header_merge_param)
+- header_params = {namePage: "courses", titlePage: @course.title}.merge!(header_merge_param)
 = render "home/header/header", header_params
 = render "home/course_description/teaser"
 - course_bunch_tags = @course.bunch_tags

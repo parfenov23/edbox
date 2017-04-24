@@ -21,7 +21,7 @@ section.landing__banner
       / br
       / |и большой архив скриптов и шаблонов
     .action__block
-      a.btn.btn-flat.is__border.is__white href="/sign_in" зарегистрироваться бесплатно
+      a.btn.btn-flat.is__border.is__white href="/sign_up" зарегистрироваться бесплатно
       /.btn.is__blue.js_LendingGoToSubscription ОФОРМИТЬ ПОДПИСКУ
       a.btn.is__blue href="/courses" Перейти в библиотеку
     .banner__img
@@ -61,7 +61,7 @@ section.landing__courses__list
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 3
       .action__block
-        a.btn.is__blue style="font-size: 16px;" href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
+        a.btn.is__blue href="/courses" СМОТРЕТЬ ВСЕ ОНЛАЙН-КУРСЫ, ВЕБИНАРЫ И МАТЕРИАЛЫ
 section.landing__advantages__list
   .landing__inner
     .section__title Уже сейчас на платформе более 150 уникальных уроков, тестов, материалов и образовательных курсов, которые помогут вам продавать больше и чаще
@@ -99,7 +99,7 @@ section.landing__advantages__list
         figcaption
           .title Заставить клиента поверить в ваши услуги или продукт
     .action__block
-      a.btn.is__blue style="font-size: 16px;" href="/courses" ПЕРЕЙТИ В БИБЛИОТЕКУ
+      a.btn.is__blue href="/courses" ПЕРЕЙТИ В БИБЛИОТЕКУ
 section.landing__question
   .landing__inner
     .section__title.is__white 

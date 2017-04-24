@@ -7,10 +7,10 @@
         i.icon class=(attachment.file_type rescue "other")
     - else
       img src = course.teaser.get_image_path(694, 384)
-      .fade
+      / .fade
   - else
     img src = course.get_image_path(694, 384)
-    .fade
+    / .fade
   - if type != "shot__module"
     / - tag = course.bunch_tags.last.tag.title rescue nil
     / - if tag.present?

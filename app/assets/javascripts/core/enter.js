@@ -186,6 +186,10 @@ var validRegClickOfert = function () {
 };
 
 $(document).ready(function () {
+    $(document).on('click', ".js_registrationUser [name='user[social][phone]']", function(){
+        $(this).closest(".com__input-item").removeClass("empty");
+    });
+    
     $(".js_FormAuth").keypress(function(e){
         if (e.which == 13){
             $(".js_FormAuth .action__block #submit").click();
