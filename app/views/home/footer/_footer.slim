@@ -17,14 +17,14 @@
       .block
         .title Сервисы и документы
         ul
-          - unless current_user.present?
+          - unless session[:user_key].present?
             li
               a href="/sign_up" Регистрация
             li
               a href="/sign_in" Авторизация
           li
             a href="/oferta" Пользовательское соглашение
-          - if current_user.present?
+          - if session[:user_key].present?
             li
             li
           li
