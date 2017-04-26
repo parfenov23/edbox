@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     user = find_by_email(params[:email].downcase)
     unless user.nil?
       if user.password == params[:password]
-        user.update_user_key
+        user.update_user_key if (!user.superuser || !user.contenter)
         user.assign_last_auth.transfer_to_json
       end
     end

@@ -28,8 +28,10 @@ class Attachment < ActiveRecord::Base
   has_one :webinar, :dependent => :destroy
   has_many :attachments, :as => :attachmentable, :dependent => :destroy
   has_one :test, :as => :testable, :dependent => :destroy
+  has_one :ogg, :as => :oggtable, :dependent => :destroy
   scope :not_empty, -> { where.not(title: [nil, ""]) }
   scope :webinars, -> { Webinar.where(attachment_id: ids) }
+
 
   default_scope { where(archive: false) } #unscoped
   default_scope { order("position ASC") } #unscoped

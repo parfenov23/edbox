@@ -26,6 +26,26 @@
           span.current_count = attachment.description.to_s.length
           span.max_count
             |/500
+
+      .form_group
+        .titleEdit Полное описание
+        textarea.js_includeTiny name="attachment[full_text]"
+          = attachment.full_text
+        hr
+      .form_group style="padding-bottom: 40px;"
+        - ogg = attachment.ogg || Ogg.new(oggtable_id: attachment.id, oggtable_type: "Attachment")
+        .input_title
+          .itemDetailInfo style="padding-bottom: 40px;"
+            .titleEdit OGG Title
+            input.attachmentInput.js_onChangeEditAttachment name="ogg[title]" placeholder="заголовок мета теги" value=ogg.title
+          .itemDetailInfo style="padding-bottom: 40px;"
+            .titleEdit OGG Description
+            textarea.attachmentInput.js_onChangeEditAttachment name="ogg[description]" placeholder="описание мета теги" 
+              = ogg.description
+          .itemDetailInfo style="padding-bottom: 40px;"
+            .titleEdit OGG Image
+            input.attachmentInput.js_onChangeEditAttachment name="ogg[image]" placeholder="картинка мета теги" value=ogg.image
+          hr
     - hP = {'data-validate' => "present_file"}
     - valid_arr = ["description", "webinar", "test", "announcement", "video"]
     - vaft = attachment.file_type

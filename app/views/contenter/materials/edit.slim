@@ -61,7 +61,23 @@
 
           .addTag.js_clickFromCreateCourseContenter
             .btn.btn-flat.js_openLeftSideBar data-id="js-course-tags" ДОБАВИТЬ ТЕГ
-
+      .itemDetailInfo style="padding-bottom: 40px;"
+        .titleEdit Полное описание
+        textarea.js_includeTiny name="attachment[full_text]"
+          = attachment.full_text
+        hr
+      - ogg = attachment.ogg || Ogg.new(oggtable_id: attachment.id, oggtable_type: "Attachment")
+      .itemDetailInfo style="padding-bottom: 40px;"
+        .titleEdit OGG Title
+        input.js_onChangeEditAttachment.courseTitle name="ogg[title]" placeholder="заголовок мета теги" value=ogg.title
+      .itemDetailInfo style="padding-bottom: 40px;"
+        .titleEdit OGG Description
+        textarea.js_onChangeEditAttachment.courseTitle name="ogg[description]" placeholder="описание мета теги" 
+          = ogg.description
+      .itemDetailInfo style="padding-bottom: 40px;"
+        .titleEdit OGG Image
+        input.js_onChangeEditAttachment.courseTitle name="ogg[image]" placeholder="картинка мета теги" value=ogg.image
+        hr
       .itemDetailInfo
         - valid_arr = ["description", "webinar", "test", "video"]
         - vaft = attachment.file_type

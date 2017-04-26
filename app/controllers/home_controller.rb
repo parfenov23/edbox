@@ -53,6 +53,8 @@ class HomeController < ActionController::Base
     require 'social/socials'
     @attachment = Attachment.find_by_id(params[:id])
     if @attachment.present?
+      ogg = @attachment.ogg
+      @og = ogg.to_html_hash if ogg.present?
       @section = @attachment.attachmentable rescue nil
       @course = @attachment.attachmentable_type != "Course" ? (@section.course rescue nil) : @section
       valid_added = (current_user.bunch_courses.find_bunch_attachments.where(attachment_id: @attachment.id).present? rescue false)

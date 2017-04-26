@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170418155314) do
 
   # These are extensions that must be enabled in order to support this database
@@ -159,7 +160,10 @@ ActiveRecord::Schema.define(version: 20170418155314) do
     t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.integer  "position"
+=======
+>>>>>>> release
   end
 
   create_table "card_items", force: true do |t|
