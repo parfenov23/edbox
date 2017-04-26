@@ -376,4 +376,10 @@ i.icon {
     }
   }
 
+  &.sort_filter{
+    &::before {
+      content : "\ea5b";
+    }
+  }
+
 }

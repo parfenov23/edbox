@@ -4,11 +4,15 @@
   padding-top: 34px;
   @import "frst__time";
   .basic__module{
-    margin: 0 24px 32px 0;
+    margin: 0 22px 22px 0;
     float: left;
   }
+  &#courses{
+    width: 1068px;
+    padding-top: 16px;
+  }
   .basic__module:nth-child(3n){
-    margin: 0 0 32px 0;
+    margin: 0 0 22px 0;
   }
   .director__summery-info {
     @include middle-block(936px);

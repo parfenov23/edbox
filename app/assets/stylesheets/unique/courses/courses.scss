@@ -72,8 +72,39 @@
   }
 }
 
+#all_courses{
+  .content_page_courses{
+    display: flex;
+    .left_content_category{
+      width: 164px;
+      padding-left: 32px;
+      padding-top: 8px;
+      .all_categories{
+        .item_category{
+          padding-bottom: 16px;
+          .title{
+            font-size: 13px;
+            font-weight: 800;
+            padding-bottom: 8px;
+          }
+          a{
+            display: block;
+            font-size: 11px;
+            padding-bottom: 8px;
+            &:hover{
+              color: $primaryColor;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .category__filter_list {
-  @include middle-block(1128px);
+  @include middle-block(984px);
+  min-height: 33px;
   display         : flex;
   justify-content : space-between;
   .statusBar {
@@ -82,11 +113,19 @@
     margin-left : 16px;
     font-size   : 14px;
   }
+  .infoTitle{
+    font-size: 12px;
+    padding-top: 10px;
+  }
   .sortTableCourses {
     .select {
+      border: 1px solid;
+      padding: 6px 12px 6px 42px;
+      border-radius: 3px;
+
       position       : relative;
       cursor         : pointer;
-      padding-left   : 46px;
+      // padding-left   : 46px;
       color          : rgba(0, 0, 0, 0.54);
       display        : inline-block;
       vertical-align : top;
@@ -94,14 +133,17 @@
       zoom           : 1;
       content        : "";
       min-height     : 26px;
-      top            : 6px;
+      // top            : 6px;
       i {
         position  : absolute;
-        left      : 0;
-        font-size : 24px;
-        &::before {
-          content : "\e900";
-        }
+        // left      : 6px;
+        // font-size : 24px;
+        font-size: 16px;
+        left: 14px;
+        line-height: 18px;
+        // &::before {
+        //   content : "\e900";
+        // }
         &.DESC {
           color : $primaryColor;
         }

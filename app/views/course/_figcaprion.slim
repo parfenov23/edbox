@@ -48,7 +48,7 @@ figcaption
           .time__date = "#{date_webinar_time} мск, #{date_webinar}"
     - else
       .time__date
-        |Опубликовано: #{schedule_line[course.updated_at.month-1][:title]} #{course.updated_at.year}
+        |#{schedule_line[course.updated_at.month-1][:title]} #{course.updated_at.year}
     - if assigned
       .progress__block
         .bar style="width:#{bunch_course.progress}%"

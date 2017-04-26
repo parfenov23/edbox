@@ -17,13 +17,13 @@ figure {
 
 figure.basic__module {
   @include white__block(1, 0);
-  width    : 360px;
-  height   : 352px;
+  width: 312px;
+  height: 304px;
   overflow : hidden;
   .image {
     position : relative;
-    height   : 200px;
-    width    : 360px;
+    width: 312px;
+    height: 174px;
     overflow : hidden;
     .type__icon {
       position   : absolute;
@@ -88,8 +88,8 @@ figure.basic__module {
   }
   figcaption {
     position : relative;
-    height   : 152px;
-    width    : 365px;
+    height: 130px;
+    width: 100%;
     .adaptive__title {
       //padding: 13px 16px 0 16px;
       padding       : 13px 0px 0 16px;
@@ -108,7 +108,7 @@ figure.basic__module {
     .title {
       padding       : 0 16px;
       @include text__setting(small__typo);
-      height        : 56px;
+      height: 44px;
       overflow      : hidden;
       margin-bottom : 16px;
       font-size     : 16px;
@@ -119,10 +119,10 @@ figure.basic__module {
       display         : flex;
       justify-content : space-between;
       .type {
-        @include text__setting(normal__typo, secondary__color);
+        @include text__setting(smallest__typo, secondary__color);
         position     : relative;
         padding-left : 24px;
-        width        : 67%;
+        width        : 60%;
         i {
           position : absolute;
           top      : 0;
@@ -132,7 +132,7 @@ figure.basic__module {
       .time__date {
         width       : 100%;
         @include text__setting(smallest__typo, secondary__color);
-        line-height : 24px;
+        // line-height : 24px;
         text-align  : right;
       }
 
@@ -193,6 +193,7 @@ figure.basic__module {
 
       .title {
         @include text__setting(small__typo);
+        height: 64px;
         width : 254px;
       }
       .info__block {
