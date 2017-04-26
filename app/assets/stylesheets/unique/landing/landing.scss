@@ -157,7 +157,7 @@
     figure {
       float  : left;
       margin : 0 24px 32px 0;
-      &:nth-child(3n-2) {
+      &:nth-child(3n) {
         margin-right : 0;
       }
     }
