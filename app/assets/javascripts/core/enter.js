@@ -186,6 +186,8 @@ var validRegClickOfert = function () {
 };
 
 $(document).ready(function () {
+    $("#code_code_id").disableTab();
+    
     $(document).on('click', ".js_registrationUser [name='user[social][phone]']", function(){
         $(this).closest(".com__input-item").removeClass("empty");
     });

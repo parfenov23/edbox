@@ -28,7 +28,7 @@ section.landing__banner
       img src="/assets/landing__banner_img.png"
       iframe allowfullscreen="" frameborder="0" width="398" height="250" mozallowfullscreen="" src="/uploads/prev_nout.png" webkitallowfullscreen=""
     .description
-      '#{$env_mode.name_title} - это сотни онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
+      '#{$env_mode.name_title} &mdash; это сотни онлайн-курсов по актуальным темам продаж рекламы, практические занятия и домашние задания,
       |вебинары, тесты и аттестация для сотрудников рекламных агентств, медиакомпаний и СМИ.
 section.landing__counter
   .landing__inner
@@ -53,10 +53,6 @@ section.landing__courses__list
     .section__title С каждым новым курсом, пройденным тестом, сданным экзаменом вы получаете навыки, непосредственно влияющие на вашу работу и вашу зарплату
     - courses = Course.publication.where(type_course: "course")
     .courses__list_inner
-      javascript:
-        pageLoad(function () {
-          $(document).on('click', "figure", function () { window.location.href = '/sign_up' });
-        });
       - courses.first(6).each do |course|
         = render "course/course", {course: course, type: 'courses'}
     - if courses.count > 3

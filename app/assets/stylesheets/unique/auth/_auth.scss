@@ -47,6 +47,12 @@
       }
     }
   }
+  .auth_agree{
+    .checkbox.error:not(:checked) + label{
+      color: #F50057;
+    }
+  }
+
 }
 
 .reg__wrp {
@@ -101,7 +107,7 @@
   }
   .action__block {
     display         : flex;
-    justify-content : flex-end;
+    justify-content : space-between;
     .btn {
       &:first-child {
         margin-right : 16px;

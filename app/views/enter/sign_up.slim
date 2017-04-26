@@ -51,8 +51,8 @@ header.landing__header
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty.user_phone
-      = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
       input.form-control.floating-label.phoenix-input name="user[social][phone]" type="tel" placeholder="Пожалуйста, телефон"
+      = select("code", "code_id", array_mask_code_phone, :selected => '+7(999)999-99-99')
       .error__msg Обязательное поле
       hr
     .com__input-item.item.empty

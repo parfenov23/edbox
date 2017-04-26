@@ -7,7 +7,7 @@
 header#page__header.adaptive__title class=hclass.join(" ")
   .left-col
     - unless (btnBack rescue false)
-      .page__icon.item
+      .page__icon.item style="width: 4px;margin: 0;"
         / - if current_user.present?
 
         /   i.burger.icon.js__show-aside-main-nav
@@ -18,7 +18,7 @@ header#page__header.adaptive__title class=hclass.join(" ")
         i.back.icon
     / .page__title class=(classPageTitle rescue nil) = namePage != "courses" ? titlePage : raw("<a href='/'><img src='/assets/adcons__grey.svg'></a>")
     .page__title class=(classPageTitle rescue nil) 
-      = raw("<a href='/'><img src='/assets/adcons__grey.svg'></a>")
+      = raw("<a href='/courses'><img src='/assets/adcons__grey.svg'></a>")
     .page__children
       - menu_nav_links(namePage).each do |item|
         - add_params = item[:add_params].present? ? item[:add_params] : {}

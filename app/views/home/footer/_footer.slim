@@ -4,23 +4,29 @@
       .block
         .title #{$env_mode.name_title}
         ul
-          li
-            a href="/courses" Библиотека
+          / li
+          /   a href="/courses" Библиотека
           li
             a href="/courses?type=course" Онлайн-курсы
+          / li
+          /   a href="/courses?type=online" Вебинары
           li
-            a href="/courses?type=online" Вебинары
+            a href="/courses?type=material" Дополнительные материалы
           li
-            a href="/courses?type=material" Полезные материалы
+          li
       .block
         .title Сервисы и документы
         ul
-          li
-            a href="/sign_up" Регистрация
-          li
-            a href="/sign_in" Авторизация
+          - unless current_user.present?
+            li
+              a href="/sign_up" Регистрация
+            li
+              a href="/sign_in" Авторизация
           li
             a href="/oferta" Пользовательское соглашение
+          - if current_user.present?
+            li
+            li
           li
             / a href="/info_pay" Правила платежей
       .block
@@ -29,7 +35,7 @@
           - url = "http://adonline2016.reformal.ru"
           - onclick="$('#reformal_tab').click();return false;"
           li
-            a href="#{url}" onclick="#{onclick}" Сообщить о проблеме
+            a href="mailto:supportadonline@adconsult.ru" Сообщить о проблеме
           li
             /a href="#{url}" onclick="#{onclick}" Написать отзыв
           li

@@ -53,10 +53,10 @@
           - audiences = (@course.bunch_courses.count rescue 0)
           = rus_case(audiences, "слушатель", "слушателя", "слушателей")
           i.groups.icon
-      .right-col
-        - course_bunch_tags.each do |bunch_tag|
-          - tag = bunch_tag.tag
-          .item = tag.title
+      / .right-col
+      /   - course_bunch_tags.each do |bunch_tag|
+      /     - tag = bunch_tag.tag
+      /     .item = tag.title
     - in_study = current_user.bunch_courses.where(course_id: @course.id).in_study rescue nil
     .detail__info class = "#{'is__closed' unless in_study.present?}"
       .description
@@ -138,7 +138,7 @@
                   - class_item = ("#{class_block} #{ya_class} #{class_add_course} #{ya_class}").split(" ").join(" ")
                   .item.js_blockAttachmentInProgram data-id=attachment.id class=class_item
                     .icon__block
-                      i.icon class=(attachment.file_type == 'vimeo' ? 'video' : attachment.class_type)
+                      i.icon class=(attachment.file_type == 'video' ? 'play' : attachment.class_type)
                     .adaptive__title
                       .left-col #{nsec}.#{natt += 1} #{attachment.title}
                       .right-col = attachment.full_duration

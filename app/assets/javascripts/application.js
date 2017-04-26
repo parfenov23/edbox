@@ -74,6 +74,11 @@ function bindEventDocument(hash) {
         $(document).on(hash.nameAction, parent_block + ' ' + elem, eval(func_name));
     });
 }
+$.prototype.disableTab = function() {
+    this.each(function() {
+        $(this).attr('tabindex', '-1');
+    });
+};
 
 (function ($) {
     $.fn.serializefiles = function () {
@@ -121,7 +126,7 @@ var goToProgramAttachment = function () {
 
 var elemFullScreen = function (elem, btn) {
     var fsButton = btn,
-        fsElement = elem;
+    fsElement = elem;
     if (window.fullScreenApi.supportsFullScreen){
         //console.log('YES: Your browser supports FullScreen');
         //console.log('fullScreenSupported');
@@ -246,21 +251,21 @@ Array.prototype.getUnique = function () {
 var optionDatePicker = function () {
     var btn = $(this);
     //setTimeout(function(){
-    var bl_dt = $('.datapicker__trigger');
-    btn.datepicker("destroy");
-    includeDatePicker($('.datapicker__trigger, .js__set-date'));
-    if (btn.data('min-date')){
-        btn.datepicker("option", "minDate", new Date(btn.data('min-date')));
-    } else {
-        btn.datepicker("option", "minDate", new Date());
-    }
-    if (btn.data('max-date')){
-        btn.datepicker("option", "maxDate", new Date(btn.data('max-date')));
-    } else {
-        btn.datepicker("option", "maxDate", null);
-    }
-    btn.datepicker('show');
-    installPositionBlock($("#ui-datepicker-div"));
+        var bl_dt = $('.datapicker__trigger');
+        btn.datepicker("destroy");
+        includeDatePicker($('.datapicker__trigger, .js__set-date'));
+        if (btn.data('min-date')){
+            btn.datepicker("option", "minDate", new Date(btn.data('min-date')));
+        } else {
+            btn.datepicker("option", "minDate", new Date());
+        }
+        if (btn.data('max-date')){
+            btn.datepicker("option", "maxDate", new Date(btn.data('max-date')));
+        } else {
+            btn.datepicker("option", "maxDate", null);
+        }
+        btn.datepicker('show');
+        installPositionBlock($("#ui-datepicker-div"));
     //}, 3000)
 };
 
@@ -422,7 +427,7 @@ $(document).ready(function () {
     $(document).on('click', function (e) {
         if (! $(e.target).closest(".js__select-calendar").length){
             $(".js__select-calendar.is__active").removeClass("is__active")
-                .find(".hidden-calendar").hide()
+            .find(".hidden-calendar").hide()
         }
     });
 

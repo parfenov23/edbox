@@ -7,7 +7,7 @@ function all_helps() { //весь массив помощи
             btn_close_text: "ПРОПУСТИТЬ ОБУЧЕНИЕ",
             btn_next_css  : {width: 260},
             btn_color     : "#9B65BB",
-            title         : "Добро пожаловать в Онлайн университет по продажам рекламы ADCONSULT Online.",
+            title         : "Добро пожаловать в Онлайн университет по продажам рекламы ADCONSULT Online",
             content       : "Буквально несколько слов о том как тут все устроено, хорошо?"
         },
         {
@@ -18,18 +18,18 @@ function all_helps() { //весь массив помощи
             //btn_action: "open_right_bar_tags",
             skip_btn  : true,
             text_align: "left",
-            content   : "Именно здесь находится кнопка меню, доступ к основным функциям."
+            content   : "Доступ к основным функциям"
         },
-        {
-            block     : ".right-col .page__action .item .help",
-            btn_text  : "ДАЛЕЕ",
-            color     : "#4527A0",
-            btn_color : "#54D2E2",
-            //btn_action: "close_right_bar_tags",
-            skip_btn  : true,
-            text_align: "left",
-            content   : "Нужна помощь? В разделе FAQ — подробные видеоуроки об использовании сервиса ADCONSULT Online"
-        },
+        // {
+        //     block     : ".right-col .page__action .item .help",
+        //     btn_text  : "ДАЛЕЕ",
+        //     color     : "#4527A0",
+        //     btn_color : "#54D2E2",
+        //     //btn_action: "close_right_bar_tags",
+        //     skip_btn  : true,
+        //     text_align: "left",
+        //     content   : "Нужна помощь? В разделе FAQ — подробные видеоуроки об использовании сервиса ADCONSULT Online"
+        // },
         {
             block     : ".right-col .page__action .item .notification_i",
             btn_text  : "ДАЛЕЕ",
@@ -37,7 +37,7 @@ function all_helps() { //весь массив помощи
             btn_color : "#54D2E2",
             skip_btn  : true,
             text_align: "left",
-            content   : "Все оповещния о новых курсах и материалах — тут."
+            content   : "Все оповещения о новых курсах и материалах — тут"
         },
         {
             block     : ".right-col .page__action .item.ava",
@@ -46,7 +46,7 @@ function all_helps() { //весь массив помощи
             btn_color : "#54D2E2",
             skip_btn  : true,
             text_align: "left",
-            content   : "Ваш аккаунт и все ваши сертификаты."
+            content   : "Ваш аккаунт и персональные настройки"
         },
         {
             block     : "#page__header .left-col .page__children",
@@ -68,15 +68,15 @@ function all_helps() { //весь массив помощи
         //    text_align: "left",
         //    content   : "Вот это меню, потом повыбирай разделы, посмотри может что то понравится"
         //},
-        {
-            block     : ".inner-content .category__filter_list .btn.js_openLeftSideBar",
-            btn_text  : "ДАЛЕЕ",
-            color     : "#00695C",
-            btn_color : "#54D2E2",
-            skip_btn  : true,
-            text_align: "left",
-            content   : "А это — поиск по всем материалам."
-        },
+        // {
+        //     block     : ".inner-content .category__filter_list .btn.js_openLeftSideBar",
+        //     btn_text  : "ДАЛЕЕ",
+        //     color     : "#00695C",
+        //     btn_color : "#54D2E2",
+        //     skip_btn  : true,
+        //     text_align: "left",
+        //     content   : "А это — поиск по всем материалам."
+        // },
         {
             block       : ".inner-content .category__filter_list .sortTableCourses",
             btn_text    : "НАЧАТЬ РАБОТУ",

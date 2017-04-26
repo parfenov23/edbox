@@ -330,7 +330,7 @@ $(document).ready(function () {
     $(document).on('click', '.js_removeCourseMy',
         function () {
             var btn = $(this);
-            confirm("Вы действительно хотите удалить курс?",
+            confirm("Вы хотите удалить курс из личного плана обучения?",
                 function () {
                     removeCourseMy(btn, btn.data("text"));
                 }
