@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324080427) do
+ActiveRecord::Schema.define(version: 20170426151241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170324080427) do
     t.integer  "position"
     t.boolean  "public",              default: false
     t.text     "embed_video"
+    t.text     "download_url"
   end
 
   create_table "bigbluebutton_room_options", force: true do |t|
@@ -159,6 +160,7 @@ ActiveRecord::Schema.define(version: 20170324080427) do
     t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "card_items", force: true do |t|
@@ -220,6 +222,20 @@ ActiveRecord::Schema.define(version: 20170324080427) do
   create_table "favorite_courses", force: true do |t|
     t.integer  "course_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "footer_children", force: true do |t|
+    t.string   "title"
+    t.string   "href"
+    t.integer  "footer_parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "footer_parents", force: true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -459,7 +475,7 @@ ActiveRecord::Schema.define(version: 20170324080427) do
     t.string   "first_name",      default: "Пользователь"
     t.string   "last_name",       default: "Пользователь"
     t.text     "avatar",          default: ""
-    t.string   "job",             default: "Должность"
+    t.string   "job"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"

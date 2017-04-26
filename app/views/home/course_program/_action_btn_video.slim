@@ -17,9 +17,10 @@
 /   - else
 /     - add_class = "js_completeMaterial"
 /   - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid, 'data-redirect_url' => redirect_url}
-- if @course.download_url.present?
+- download_url = @course.download_url || @attachment.download_url
+- if download_url.present?
   .action__block_video
     .item.complete
-      a href=@course.download_url target="_blank"
+      a href=download_url target="_blank"
         i.icon class="download"
         span.help_btn скачать
