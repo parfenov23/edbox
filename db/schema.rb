@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170418155314) do
+ActiveRecord::Schema.define(version: 20170428042356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170418155314) do
     t.integer  "position"
     t.boolean  "public",              default: false
     t.text     "embed_video"
+    t.text     "download_url"
   end
 
   create_table "bigbluebutton_room_options", force: true do |t|
@@ -160,10 +160,7 @@ ActiveRecord::Schema.define(version: 20170418155314) do
     t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
     t.integer  "position"
-=======
->>>>>>> release
   end
 
   create_table "card_items", force: true do |t|
@@ -420,6 +417,8 @@ ActiveRecord::Schema.define(version: 20170418155314) do
     t.datetime "updated_at"
     t.string   "tagtable_type"
     t.integer  "tagtable_id"
+    t.boolean  "active",        default: true
+    t.integer  "position"
   end
 
   create_table "tariff_infos", force: true do |t|

@@ -8,19 +8,14 @@
     .content_page_courses
       .left_content_category
         .all_categories
-          .item_category
-            .title Темы
-            a href="#" Маркетинг (12)
-            a href="#" Навыки продаж (4)
-            a href="#" Медиа (15)
-            a href="#" Креатив (2)
-            a href="#" Диджитал (4)
-
-          .item_category
-            .title Уровень
-            a href="#" Маркетинг (12)
-            a href="#" Навыки продаж (4)
-            a href="#" Медиа (15)
+          - Tag.all_parents.each do |tag|
+            - if tag.active
+            .item_category
+              .title = tag.title
+              - tag.tags.each do |child_tag|
+                - count_courses = child_tag.count_courses
+                - if count_courses > 0
+                  a href="/courses/#{params[:type]}?tid=#{child_tag.id}" #{child_tag.title} (#{count_courses})
           
       .right_content_all_courses
         = render "home/courses/btn_search"

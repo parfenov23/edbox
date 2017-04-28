@@ -120,7 +120,7 @@
   .sortTableCourses {
     .select {
       border: 1px solid;
-      padding: 6px 12px 6px 42px;
+      padding: 6px 12px 4px 12px;
       border-radius: 3px;
 
       position       : relative;
@@ -133,13 +133,17 @@
       zoom           : 1;
       content        : "";
       min-height     : 26px;
+      min-width: 234px;
+      display: flex;
+      justify-content: center;
       // top            : 6px;
       i {
-        position  : absolute;
+        // position  : absolute;
         // left      : 6px;
         // font-size : 24px;
+        margin-right: 8px;
         font-size: 16px;
-        left: 14px;
+        // left: 14px;
         line-height: 18px;
         // &::before {
         //   content : "\e900";
@@ -162,10 +166,10 @@
       }
 
       .select-trigger {
-        padding-right : 23px;
-        background    : url("arrow-grey.svg") 100% 50% no-repeat;
+        padding-right : 8px;
+        // background    : url("arrow-grey.svg") 100% 50% no-repeat;
         white-space   : nowrap;
-        font-size     : 15px;
+        font-size     : 12px;
         color         : rgba(0, 0, 0, 0.54);
         line-height   : 20px;
       }

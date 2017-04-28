@@ -31,4 +31,5 @@
         /   a href="/courses?#{current_params.merge({sort: 'free_course', sort_type: 'DESC'}).to_query}" Только бесплатные
         / li
         /   a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные
-  .infoTitle Всего материалов 134
+  - count_courses = @courses_tid.present? ? @courses_tid.count : @courses.count
+  .infoTitle Всего материалов #{count_courses}

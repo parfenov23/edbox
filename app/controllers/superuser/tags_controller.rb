@@ -58,7 +58,7 @@ module Superuser
     end
 
     def params_tag
-      params.require(:tag).permit(:title, :tagtable_id, :tagtable_type)
+      params.require(:tag).permit(:title, :tagtable_id, :tagtable_type, :active, :position)
     end
 
   end
