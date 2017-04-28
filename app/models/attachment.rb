@@ -43,13 +43,20 @@ class Attachment < ActiveRecord::Base
     attach
   end
 
+  def prev
+    return nil unless attachmentable_type == 'Section'
+    attach = attachmentable.attachments.find_by(position: (position - 1))
+    attach = attachmentable.course.sections.where(position: (attachmentable.position - 1)).attachments.first unless attach.present?
+    attach
+  end
+
   def link
     "/attachment?id=#{id}"
   end
 
   def clear_full_text
     ActionView::Base.full_sanitizer.sanitize(full_text.to_s.gsub("<p>", "").gsub("</p>", "\n")).html_safe.to_s
-      .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
+    .gsub("&nbsp;", " ").gsub("&quot;", '"').gsub('&laquo;', '"').gsub('&raquo;', '"')
   end
 
   def self.save_file(type, id, file, size=nil, width=nil, height=nil)
@@ -82,14 +89,14 @@ class Attachment < ActiveRecord::Base
 
   def valid_other
     case file_type
-      when "test"
-        test.present? ? test.validate : false
-      when "description"
-        full_text.present?
-      when "webinar"
-        true
-      else
-        true
+    when "test"
+      test.present? ? test.validate : false
+    when "description"
+      full_text.present?
+    when "webinar"
+      true
+    else
+      true
     end
   end
 
@@ -102,6 +109,10 @@ class Attachment < ActiveRecord::Base
     positions_max = positions_max.present? ? positions_max : 0
     self.position = positions_max + 1
     save
+  end
+
+  def find_bunch_course_material(user_id)
+    attachmentable.bunch_courses.where(user_id: user_id).first
   end
 
   def class_type
@@ -170,19 +181,19 @@ class Attachment < ActiveRecord::Base
 
   def transfer_to_json
     as_json.merge({file_name: (file.file.original_filename rescue nil),
-                   file_size: (file.file.size rescue nil), file_url: file.url})
+     file_size: (file.file.size rescue nil), file_url: file.url})
   end
 
   def uploadType
     case file_type
-      when "audio"
-        'audio/*'
-      when "video"
-        'video/*'
-      when "pdf"
-        'application/pdf'
-      when "other"
-        ''
+    when "audio"
+      'audio/*'
+    when "video"
+      'video/*'
+    when "pdf"
+      'application/pdf'
+    when "other"
+      ''
     end
   end
 

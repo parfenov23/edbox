@@ -9,7 +9,7 @@ var completeAttachment = function (btn) {
     }).success(function () {
         show_error('Материал пройден', 3000);
         btn.removeClass('js_completeAttachment');
-        btn.find('.tooltext').text('Следующий материал');
+        btn.find('.help_btn').text('Следующий материал');
         btn.addClass('js_redirectAttachment');
         var icon = btn.find('.icon');
         icon.removeClass('done');

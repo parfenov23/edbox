@@ -37,11 +37,14 @@
   display         : flex;
   justify-content : space-between;
   .title {
-    width : 600px;
+    width : 300px;
     @include text__setting(header__typo_1);
   }
   .action__block {
     width : 160px;
+    form{
+      margin-right: 14px;
+    }
     .title_action {
       width       : 100%;
       font-size   : 13px;

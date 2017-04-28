@@ -187,6 +187,12 @@ var validRegClickOfert = function () {
 
 $(document).ready(function () {
     $("#code_code_id").disableTab();
+
+    $(document).on('click', '.js__resetPassBtn', function(e){
+        e.preventDefault();
+        var email = $("input[name='user[email]'").val();
+        window.location.href = "/reset_pass?email=" + email;
+    });
     
     $(document).on('click', ".js_registrationUser [name='user[social][phone]']", function(){
         $(this).closest(".com__input-item").removeClass("empty");

@@ -183,7 +183,8 @@ var addCourseMySchedule = function () {
         var time_redirect = 0;
         if (form.data('alert') != false){
             time_redirect = 1500;
-            show_error('Курс добавлен в мои курсы', 3000);
+            show_error('Добавлен в план обучения', 3000);
+            btn.closest(".action_add_course_rm").hide();
         }
         setTimeout(function(){
             if(form.data('redirect') != undefined && !btn.hasClass('js_eventUnRegUser') && !btn.hasClass('js_eventRegUser')){

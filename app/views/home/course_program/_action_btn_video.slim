@@ -3,27 +3,43 @@
   - redirect_url = "/course_description/#{@course.id}"
   - attachs_next = (@attachment.next rescue nil)
   - if attachs_next.present?
-    - redirect_url = "/attachment?id=#{attachs_next.id}"
+    - redirect_url = "/attachment/#{attachs_next.id}"
   - elsif @course.test.present?
     - redirect_url = "/tests/#{@course.test.id}/run"
+  - attachs_prev = (@attachment.prev rescue nil)
+  - prev_url = attachs_prev.present? ? "/attachment/#{attachs_prev.id}" : "#"
 
   - icon = 'done'
   - unless @course.material?
     - if (@attachment.bunch_attachment(current_user.id).complete rescue true)
       - add_class = "js_redirectAttachment"
       - icon = 'next'
+      - text_btn = "Cледующая часть"
     - else
+      - text_btn = "Завершить"
       - add_class = "js_completeAttachment"
   - else
     - add_class = "js_completeMaterial"
   - add_hash = {'data-course_id' => @course.id, 'data-id' => @attachment.id, 'data-bunch_section_id' => bsid, 'data-redirect_url' => redirect_url}
   .action__block_video
-    .item.complete class=add_class *add_hash
-      i.icon class=icon
-      span.help_btn Завершить
+    - unless @course.material? 
+      .item.complete class=add_class *add_hash
+        i.icon class=icon
+        span.help_btn = text_btn
+      .item.prev onclick="window.location.href='#{prev_url}'"
+        i.icon.back
+        span.help_btn Предыдущая часть
     .item.reload onclick="window.location.reload()"
       i.icon.reload
       span.help_btn Обновить
-    .item.back__to__program onclick="$('.page__icon.item .back').click()"
-      i.icon class=(@course.material? || @course.instrument? ? "biblio" : "notes")
-      span.help_btn Программа
+    - unless @course.material? 
+      .item.back__to__program onclick="$('.page__icon.item .back').click()"
+        i.icon class=(@course.material? || @course.instrument? ? "biblio" : "notes")
+        span.help_btn Программа
+    - else
+      - unless @course.find_bunch_course(current_user.id).present?
+        form.action_add_course_rm
+          input type="hidden" name="course_id" value=@course.id
+          .item.back__to__program.js_addCourseToMyCourse
+            i.icon.biblio
+            span.help_btn Добавить в план обучения 

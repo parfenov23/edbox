@@ -245,6 +245,7 @@
       .item {
         height : 48px;
         cursor : pointer;
+        position: relative;
         &.complete {
           background-color : #EE8738;
         }
@@ -257,6 +258,9 @@
         }
         &.back__to__program {
           background-color : #E65100;
+        }
+        &.prev{
+          background-color : #e87b27;
         }
         &:hover {
           .help_btn {
@@ -273,7 +277,7 @@
       .help_btn {
         position          : absolute;
         margin-top        : 50%;
-        right             : calc(-100% - 42px);
+        left: 52px;
         background        : rgba(0, 0, 0, 0.54);
         border-radius     : 2px;
         font-size         : 11px;

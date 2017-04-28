@@ -10,8 +10,12 @@
   - if current_user.present?
     .tizer__block.start_studyCourse
       .title
-      .action__block style="width: inherit;"
+      .action__block style="width: inherit;display: flex;"
         - if !@course.online?
+          - unless @course.find_bunch_course(current_user.id).present?
+            form.action_add_course_rm
+              input type="hidden" name="course_id" value=@course.id
+              .btn.is__blue.js_addCourseToMyCourse ДОБАВИТЬ В ЛИЧНЫЙ ПЛАН ОБУЧЕНИЯ
           - if bunch_course.blank?
             .btn.is__blue onclick="$('.prgr-wrp .item:first').click();" Начать изучение курса
           - else
