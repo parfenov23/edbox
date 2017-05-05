@@ -32,4 +32,5 @@
         / li
         /   a href="/courses?#{current_params.merge({sort: 'pay_course', sort_type: 'ASC'}).to_query}" Только платные
   - count_courses = @courses_tid.present? ? @courses_tid.count : @courses.count
-  .infoTitle Всего материалов #{count_courses}
+  - title_name = params[:type] == "course" ? "онлайн-курсов" : "материалов"
+  .infoTitle Всего #{title_name}: #{count_courses}

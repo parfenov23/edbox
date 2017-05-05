@@ -3,7 +3,7 @@
 - if (current_user.corporate rescue false)
   = render "home/courses/groups"
 - if @courses.present?
-  .inner-content#all_courses
+  .inner-content#all_courses data-type=params[:type]
     -# render "home/courses/category"
     .content_page_courses
       .left_content_category
